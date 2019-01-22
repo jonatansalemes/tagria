@@ -6,7 +6,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 	<description>Tagria Hc library</description>
 	<display-name>Tagria Hc</display-name>
-	<tlib-version>1.0</tlib-version>
+	<tlib-version>3.0</tlib-version>
 	<short-name>h</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/h</uri>
 

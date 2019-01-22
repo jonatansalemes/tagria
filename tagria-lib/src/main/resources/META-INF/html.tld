@@ -6,9 +6,52 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 	<description>Tagria html library</description>
 	<display-name>Tagria html library</display-name>
-	<tlib-version>1.0</tlib-version>
+	<tlib-version>3.0</tlib-version>
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
+	
+	<tag>
+		<description>Renders a modal confirmation</description>
+		<display-name>Misc</display-name>
+		<name>confirm</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ConfirmTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label of the title modal</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to confirm the operation</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component target. Default: _self. Options: _blank, _newtab, nomedoiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name that triggers the confirm screen</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the confirm screen</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:button id="botao" label="Confirmar algo"/&gt;
+			&lt;html:confirm url="#" label="Titulo do modal" attachToSelector="#botao"&gt;
+								
+			&lt;/html:confirm&gt; </example>
+	</tag>
 	
 	<tag>
 		<description>Renders a h2</description>
