@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>Tagria ajax library</description>
+	<display-name>Tagria ajax</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>ajax</short-name>
+	<uri>http://tagrialib.jslsolucoes.com/tags/ajax</uri>
+
+	<tag>
+		<description>Renders an ajax function</description>
+		<display-name>Ajax</display-name>
+		<name>function</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.FunctionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the type of return expected by ajax request. Default: json. Options: xml, json, script, html, jsonp, text</description>
+			<name>dataType</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the ajax function should be run to load the DOM. Default: false.</description>
+			<name>executeOnDocumentLoad</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the ajax function</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the url to be called by the Ajax request</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" value="Valor 0"/&gt;
+			
+			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			     dados();
+			&lt;/html:jsEvent&gt;
+		
+			&lt;ajax:function name="dados" url="/app/ajax"&gt;
+				&lt;ajax:parameters&gt;
+					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
+				&lt;/ajax:parameters&gt;
+			    &lt;ajax:onSuccess&gt;
+			           /*Nesse trecho está disponivel as variaveis javascript ( Anything data, String textStatus, jqXHR jqXHR )*/
+			           alert('O valor enviado foi' + data.field);
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			           
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders writing in a particular component</description>
+		<display-name>Ajax</display-name>
+		<name>target</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.TargetTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates which attribute of the object must be used</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the fixed value to be used in target val</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the type of iteration being used. Options: val, html</description>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name to be achieved</description>
+			<name>target</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			
+			&lt;html:input name="input1" value="Valor 0"/&gt;
+			&lt;html:input name="input2" disabled="true"/&gt;
+			
+			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			     dados();
+			&lt;/html:jsEvent&gt;
+		
+			&lt;ajax:function name="dados" url="/app/ajax"&gt;
+				&lt;ajax:parameters&gt;
+					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
+				&lt;/ajax:parameters&gt;
+			    &lt;ajax:onSuccess&gt;
+			          &lt;ajax:target type="val" data="field" target="input2"/&gt;
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			           
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function&gt;
+		
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders the error block if they occur in ajax request</description>
+		<display-name>Ajax</display-name>
+		<name>onError</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnErrorTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;ajax:function name="dados" url="/app/url/nao/existe" executeOnDocumentLoad="true"&gt;
+			    &lt;ajax:onSuccess&gt;
+			    	      
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			           /*Nesse trecho está disponivel as variaveis javascript ( jqXHR jqXHR, String textStatus, String errorThrown )*/
+			           alert(textStatus);
+			           alert(errorThrown);
+			           alert(jqXHR);
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function>
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders before send block on ajax request</description>
+		<display-name>Ajax</display-name>
+		<name>beforeSend</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.BeforeSendTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+				&lt;ajax:function name="data" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+			    &lt;ajax:beforeSend&gt;
+			    	    /* Available javascript variables ( jqXHR jqXHR, Object settings )*/
+			           alert(settings);
+			           alert(jqXHR);
+			    &lt;/ajax:beforeSend&gt;
+			&lt;/ajax:function&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders block on ajax request done</description>
+		<display-name>Ajax</display-name>
+		<name>onDone</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnDoneTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+				&lt;ajax:function name="data" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+			    	&lt;ajax:onDone&gt;
+			    	   alert('on function done');
+			    	&lt;/ajax:onDone&gt;
+				&lt;/ajax:function&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders block on begin of ajax request</description>
+		<display-name>Ajax</display-name>
+		<name>preCode</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.PreCodeTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+				&lt;ajax:function name="data" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+			    	&lt;ajax:preCode&gt;
+			    	   alert('block declared as first instructions of ajax function');
+			    	&lt;/ajax:preCode&gt;
+				&lt;/ajax:function&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders success block if the ajax request run smoothly</description>
+		<display-name>Ajax</display-name>
+		<name>onSuccess</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnSuccessTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:input name="input1" value="Valor 0"/&gt;
+		
+			&lt;ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+				&lt;ajax:parameters&gt;
+					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
+				&lt;/ajax:parameters&gt;
+			    &lt;ajax:onSuccess&gt;
+			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
+			           alert(textStatus);
+			           alert(data);
+			           alert(jqXHR);
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			          
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders the parameter block to be sent by ajax request</description>
+		<display-name>Ajax</display-name>
+		<name>parameters</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.ParametersTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:input name="input1" value="Valor 0"/&gt;
+		
+			&lt;ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+				&lt;ajax:parameters&gt;
+					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
+				&lt;/ajax:parameters&gt;
+			    &lt;ajax:onSuccess&gt;
+			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			          
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a parameter that must be sent by ajax request</description>
+		<display-name>Ajax</display-name>
+		<name>parameter</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.ParameterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component of the name to be used as the source</description>
+			<name>src</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the fixed value to be used in parameter name</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the type of iteration being used. Options: val, html</description>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the parameter</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if the value is optional occur to the function call. Default: false.</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" value="Valor 0"/&gt;
+			&lt;html:input name="input2" value="" /&gt;
+			
+			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			     dados();
+			&lt;/html:jsEvent&gt;
+		
+			&lt;ajax:function name="dados" url="/app/ajax"&gt;
+				&lt;ajax:parameters&gt;
+					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
+					&lt;ajax:parameter name="input2" src="input2" type="val" required="false" /&gt;
+				&lt;/ajax:parameters&gt;
+			    &lt;ajax:onSuccess&gt;
+			          alert('Executada');
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			           
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a mapping of an options list to select a component</description>
+		<display-name>Ajax</display-name>
+		<name>mapOptions</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.MapOptionsTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name to be achieved</description>
+			<name>target</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the contents of the option to be displayed</description>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the value of the option to be filled</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:select name="input2"&gt;
+				&lt;html:option value=""&gt;- - -&lt;/html:option&gt;
+			&lt;/html:select&gt;
+			
+			&lt;ajax:function name="dados" url="/app/ajax/list" executeOnDocumentLoad="true"&gt;
+			    &lt;ajax:onSuccess&gt;
+			          &lt;ajax:mapOptions target="input2" value="id" text="nome" /&gt;
+			    &lt;/ajax:onSuccess&gt;
+			    &lt;ajax:onError&gt;
+			           
+			    &lt;/ajax:onError&gt;
+			&lt;/ajax:function&gt;
+		</example>
+	</tag>
+	
+	
+</taglib>

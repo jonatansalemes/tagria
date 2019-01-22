@@ -1,0 +1,15 @@
+.overflow-y-scroll {
+	overflow-y : scroll;
+}
+
+.mw-75 {
+	max-width: 75% !important;
+}
+
+.w-49 {
+  	width: 49% !important;
+}
+
+.mt-60px {
+	margin-top: 60px !important;
+}
