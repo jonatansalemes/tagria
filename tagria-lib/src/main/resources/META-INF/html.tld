@@ -11,6 +11,73 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a panel de abas</description>
+		<display-name>Tab</display-name>
+		<name>tabPanel</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabPanelTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabPanel&gt;
+				&lt;html:tab label="Tab 1" active="true"&gt;
+					Conteúdo aba 1
+				&lt;/html:tab&gt;
+				&lt;html:tab label="Tab 2" url="/app/welcome"/&gt;
+			&lt;/html:tabPanel&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renders a flap within a panel flaps</description>
+		<display-name>Tab</display-name>
+		<name>tab</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the tab should be initiated selected</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label of the tab</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the url to be incorporated into the tab. If not indicated it renders content in the component body.</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the tab should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component state. Default: default. Options: danger, default</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the tab should be recharged to clicar.Default: true.</description>
+			<name>reloadOnSelect</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:tabPanel&gt;
+				&lt;html:tab label="Aba 1" active="true"&gt;
+					Conteúdo aba 1
+				&lt;/html:tab&gt;
+				&lt;html:tab label="Aba 2" url="/app/welcome"/&gt;
+			&lt;/html:tabPanel&gt; </example>
+	</tag>
+	
+	<tag>
 		<description>Renders a modal confirmation</description>
 		<display-name>Misc</display-name>
 		<name>confirm</name>
