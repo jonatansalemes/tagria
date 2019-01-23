@@ -25,7 +25,7 @@ public class CardTag extends SimpleTagSupport {
 			div.add(Attribute.CLASS, "card bg-" + state);
 			div.add(TagUtil.getBody(getJspBody()));
 			if (!visible) {
-				div.add(Attribute.CLASS, "d-none");
+				div.add(Attribute.CLASS, "collapse");
 			}
 			TagUtil.out(getJspContext(), div);
 		}

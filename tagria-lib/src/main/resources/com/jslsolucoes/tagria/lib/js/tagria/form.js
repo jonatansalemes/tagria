@@ -69,8 +69,12 @@
 				        data : data,
 				        dataType : 'json',
 				        success:  function(data){
-							if(data.errors && data.errors != '') {
-								$('.form-error',form).html(data.errors).show();
+							if(data.errors) {
+								var ul = $(document.createElement('ul')).addClass('list-group shadow-sm');
+								$.each(data.errors,function( index, value ) {
+									ul.append($(document.createElement('li')).addClass('list-group-item list-group-item-danger').text(value));
+								});					
+								$('.form-error',form).html(ul).show();
 								self._unblock();
 							} else {
 								self._submit();

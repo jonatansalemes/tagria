@@ -75,7 +75,7 @@ public class GridColumnTag extends SimpleTagSupport {
 					Span icon = new Span();
 					icon.add(Attribute.CLASS, "fas fa-search");
 					td.add(icon);
-					container.add(Attribute.CLASS, "d-none grid-column-collapsable-content");
+					container.add(Attribute.CLASS, "collapse grid-column-collapsable-content");
 				}
 
 				if (!StringUtils.isEmpty(format)) {

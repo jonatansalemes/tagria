@@ -59,7 +59,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			}
 			
 			Div errors = new Div();
-			errors.add(Attribute.CLASS, "collapse alert alert-danger alert-dismissible form-error");
+			errors.add(Attribute.CLASS, "collapse form-error");
 			errors.add("&nbsp;");
 			
 			form.add(errors);
