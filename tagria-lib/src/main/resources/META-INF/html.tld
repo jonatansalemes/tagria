@@ -10,6 +10,45 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
+	<tag>
+		<description>Renders a datePicker for a input</description>
+		<display-name>Picker</display-name>
+		<name>datePicker</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component that triggers the date picker</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the minimum day for date choice</description>
+			<name>min</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" placeholder="Date birth" /&gt;
+			&lt;html:datePicker attachTo="input1" min="0"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>>Renders an event after datePicker select date for a input</description>
+		<display-name>Picker</display-name>
+		<name>datePickerOnSelect</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerOnSelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:input name="input1" placeholder="Date birth" /&gt;
+			&lt;html:datePicker attachTo="input1" min="0"&gt;
+				&lt;html:datePickerOnSelect&gt;
+					/* Available variables on select dateText,inst  */
+					alert(dateText);
+				&lt;/html:datePickerOnSelect&gt;
+			&lt;/html:datePicker&gt; </example>
+	</tag>
 	
 	<tag>
 		<description>Renders a google recaptcha</description>
