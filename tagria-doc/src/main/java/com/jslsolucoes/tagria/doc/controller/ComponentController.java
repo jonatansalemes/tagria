@@ -28,11 +28,7 @@ public class ComponentController {
 
 	@Path("{component}")
 	public void component(String component) {
-
-		if ("grid".equals(component) || "gridColumn".equals(component) || "select".equals(component)
-				|| "dataBlock".equals(component)) {
-			this.result.include("persons", pessoaRepository.listAll());
-		}
+		this.result.include("persons", pessoaRepository.listAll());
 		this.result.forwardTo("/WEB-INF/jsp/component/" + component + ".jsp");
 	}
 }

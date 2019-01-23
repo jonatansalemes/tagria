@@ -32,6 +32,7 @@ public class InputTag extends SimpleTagSupport {
 	private String cssClass;
 	private Integer max;
 	private Integer min;
+	private String list;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -45,6 +46,10 @@ public class InputTag extends SimpleTagSupport {
 
 		if (min != null) {
 			input.add(Attribute.MIN, max);
+		}
+		
+		if(!StringUtils.isEmpty(list)) {
+			input.add(Attribute.LIST, list);
 		}
 
 		if (multiple) {
@@ -247,6 +252,14 @@ public class InputTag extends SimpleTagSupport {
 
 	public void setMin(Integer min) {
 		this.min = min;
+	}
+
+	public String getList() {
+		return list;
+	}
+
+	public void setList(String list) {
+		this.list = list;
 	}
 
 }

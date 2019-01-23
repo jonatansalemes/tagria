@@ -18,15 +18,21 @@ public class OptionTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		SelectTag select = (SelectTag) findAncestorWithClass(this, SelectTag.class);
 		Option option = new Option();
 		option.add(Attribute.VALUE, value);
 		option.add(TagUtil.getBody(getJspBody()));
-		if (value.equals(select.getValue()) || (select.getRequired() && !CollectionUtils.isEmpty(select.getData())
-				&& select.getData().size() == 1)) {
-			option.add(Attribute.SELECTED, "selected");
-		}
+		checkForSelected(option);
 		TagUtil.out(getJspContext(), option);
+	}
+
+	private void checkForSelected(Option option) {
+		SelectTag select = (SelectTag) findAncestorWithClass(this, SelectTag.class);
+		if(select != null) {
+			if (value.equals(select.getValue()) || (select.getRequired() && !CollectionUtils.isEmpty(select.getData())
+					&& select.getData().size() == 1)) {
+				option.add(Attribute.SELECTED, "selected");
+			}
+		}
 	}
 
 	public String getValue() {

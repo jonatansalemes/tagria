@@ -11,6 +11,53 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a data list component</description>
+		<display-name>Input</display-name>
+		<name>dataList</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DataListTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the collection to be iterated in component</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the map to be iterated in component</description>
+			<name>map</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Map</type>
+		</attribute>
+		<attribute>
+			<description>Indicates that component has fixed options</description>
+			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="dl" list="myDatalist1"/&gt;
+			&lt;html:dataList id="myDatalist1" data="${ persons }" var="person"&gt;
+				&lt;html:option value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:option&gt;
+			&lt;/html:dataList&gt;
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a datePicker for a input</description>
 		<display-name>Picker</display-name>
 		<name>datePicker</name>
@@ -35,7 +82,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 
 	<tag>
-		<description>>Renders an event after datePicker select date for a input</description>
+		<description>Renders an event after datePicker select date for a input</description>
 		<display-name>Picker</display-name>
 		<name>datePickerOnSelect</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerOnSelectTag</tag-class>
@@ -183,12 +230,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>var</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates whether the component form is mandatory in form</description>
-			<name>required</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
 			&lt;html:select name="select1" data="${ persons }" var="person"&gt;
@@ -1363,6 +1404,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>input</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.InputTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a data list to attach on input</description>
+			<name>list</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>It indicates a CSS class to the component</description>
 			<name>cssClass</name>
