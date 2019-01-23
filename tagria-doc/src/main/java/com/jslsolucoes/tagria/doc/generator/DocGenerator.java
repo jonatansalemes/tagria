@@ -50,10 +50,9 @@ public class DocGenerator {
 			StringBuilder template = new StringBuilder(
 					"<%@include file=\"../app/taglibs.jsp\"%>										"
 							+ "<html:view title=\"{title}\">											"
-							+ "						<html:panel>																		"
-							+ "							<html:panelHead label=\"" + tag.getName()
-							+ "\"></html:panelHead>					"
-							+ "							<html:panelBody>																"
+							+ "						<html:card>																		"
+							+ "							<html:cardHeader label=\"" + tag.getName()+ "\"/>					"
+							+ "							<html:cardBody>																"
 							+ "								<html:tabPanel>																"
 							+ "									<html:tab label=\"{about}\" active=\"true\">							"
 							+ "										<html:alert state=\"warning\">										"
@@ -67,14 +66,12 @@ public class DocGenerator {
 				template.append("<html:alert state=\"info\" label=\"{tag.empty.attributes}\"></html:alert>");
 			} else {
 
-				template.append("<html:table><html:tableLine>"
-						+ "<html:tableColumn header=\"true\"><fmt:message key=\"tag.attribute\"/></html:tableColumn>"
-						+ "<html:tableColumn header=\"true\"><fmt:message key=\"tag.required\"/></html:tableColumn>"
-						+ "<html:tableColumn header=\"true\"><fmt:message key=\"tag.type\"/></html:tableColumn>"
-						+ "<html:tableColumn header=\"true\"><fmt:message key=\"tag.description\"/></html:tableColumn>"
-						+
-
-						"</html:tableLine>");
+				template.append("<html:table stripe=\"true\" hover=\"true\"><html:tableHeader light=\"true\"><html:tableLine>"
+						+ "<html:tableHead><fmt:message key=\"tag.attribute\"/></html:tableHead>"
+						+ "<html:tableHead><fmt:message key=\"tag.required\"/></html:tableHead>"
+						+ "<html:tableHead><fmt:message key=\"tag.type\"/></html:tableHead>"
+						+ "<html:tableHead><fmt:message key=\"tag.description\"/></html:tableHead>"
+						+ "</html:tableLine></html:tableHeader><html:tableBody>");
 
 				for (Attribute attribute : tag.getAttributes()) {
 
@@ -87,7 +84,7 @@ public class DocGenerator {
 							"</html:tableLine>");
 				}
 
-				template.append("</html:table>");
+				template.append("</html:tableBody></html:table>");
 			}
 
 			template.append(
@@ -104,8 +101,8 @@ public class DocGenerator {
 							+ "										</html:code>														"
 							+ "									</html:tab>																"
 							+ "								</html:tabPanel>															"
-							+ "							</html:panelBody>																"
-							+ "						</html:panel>																		"
+							+ "							</html:cardBody>																"
+							+ "						</html:card>																		"
 							+ "					</html:view>																			");
 			FileUtils.writeStringToFile(
 					new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/component/" + tag.getName() + ".jsp"),

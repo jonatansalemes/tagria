@@ -95,7 +95,7 @@ public class Tagria extends HttpServlet {
 			in.close();
 
 		} catch (Exception exception) {
-			logger.error("Could not load resource", exception);
+			logger.error("Could not load resource {}, {}",uri, exception);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}

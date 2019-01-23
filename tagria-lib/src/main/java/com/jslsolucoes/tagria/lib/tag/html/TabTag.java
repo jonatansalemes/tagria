@@ -32,14 +32,14 @@ public class TabTag extends SimpleTagSupport {
 			String id = TagUtil.getId();
 			Li li = new Li();
 			if (reloadOnSelect) {
-				li.add(Attribute.CLASS, "ui-tabs-reload-on-select nav-item");
-			}
-			if (active) {
-				li.add(Attribute.CLASS, "active");
+				li.add(Attribute.CLASS, "tab-reload-on-select nav-item");
 			}
 			
 			A a = new A();
 			a.add(Attribute.CLASS, "nav-link");
+			if (active) {
+				a.add(Attribute.CLASS, "active");
+			}
 			a.add(Attribute.HREF, "#" + id);
 			a.add(Attribute.DATA_TOGGLE, "tab");
 			a.add(TagUtil.getLocalized(label, getJspContext()));
@@ -48,7 +48,7 @@ public class TabTag extends SimpleTagSupport {
 			panel.addLi(li);
 
 			Div div = new Div();
-			div.add(Attribute.CLASS, "tab-pane m-5");
+			div.add(Attribute.CLASS, "tab-pane m-2");
 			if (active) {
 				div.add(Attribute.CLASS, "active");
 			}

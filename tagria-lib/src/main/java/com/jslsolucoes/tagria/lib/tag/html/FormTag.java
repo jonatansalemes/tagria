@@ -64,7 +64,9 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			
 			form.add(errors);
 			form.add(TagUtil.getBody(getJspBody()));
-			form.add(toolbar);
+			if(toolbar != null) {
+				form.add(toolbar);
+			}
 			
 			container.add(form);
 
