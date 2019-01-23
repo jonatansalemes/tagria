@@ -9,21 +9,21 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.apache.commons.lang.RandomStringUtils;
 
-import com.jslsolucoes.tagria.doc.model.Pessoa;
-import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
+import com.jslsolucoes.tagria.doc.model.Person;
+import com.jslsolucoes.tagria.doc.repository.PersonRepository;
 
 @ApplicationScoped
-public class PessoaRepositoryImpl implements PessoaRepository {
+public class PersonRepositoryImpl implements PersonRepository {
 
-	private List<Pessoa> pessoas;
+	private List<Person> pessoas;
 
-	public PessoaRepositoryImpl() {
-		pessoas = new ArrayList<Pessoa>();
+	public PersonRepositoryImpl() {
+		pessoas = new ArrayList<Person>();
 		for (int i = 1; i <= 20; i++) {
-			Pessoa pessoa = new Pessoa();
-			pessoa.setNome(RandomStringUtils.randomAlphabetic(10));
-			pessoa.setDataNascimento(Calendar.getInstance().getTime());
-			pessoa.setGostaChocolate((i % 2 == 0 ? 1 : 0));
+			Person pessoa = new Person();
+			pessoa.setName(RandomStringUtils.randomAlphabetic(10));
+			pessoa.setBirthDate(Calendar.getInstance().getTime());
+			pessoa.setLikeChocolate((i % 2 == 0 ? 1 : 0));
 			pessoa.setCpf(RandomStringUtils.randomNumeric(11));
 			pessoa.setCep(RandomStringUtils.randomNumeric(8));
 			pessoa.setId(Long.valueOf(i));
@@ -32,13 +32,13 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
 	}
 
-	public List<Pessoa> listAll() {
+	public List<Person> listAll() {
 		return pessoas;
 	}
 
 	@Override
-	public Pessoa load(Pessoa pessoa) {
-		for (Pessoa load : this.listAll()) {
+	public Person load(Person pessoa) {
+		for (Person load : this.listAll()) {
 			if (load.getId().equals(pessoa.getId()))
 				return load;
 		}
@@ -46,7 +46,7 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 	}
 
 	@Override
-	public List<Pessoa> listAll(Integer firstResult, Integer maxResult) {
+	public List<Person> listAll(Integer firstResult, Integer maxResult) {
 		return pessoas.subList(firstResult, firstResult + maxResult);
 	}
 

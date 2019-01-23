@@ -10,6 +10,204 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
+	<tag>
+		<description>Renders a data block iteration</description>
+		<display-name>Layout</display-name>
+		<name>dataBlock</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DataBlockTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the collection to be iterated by the component</description>
+			<name>data</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the limit for every row block . Default: 4. Options : 1-12</description>
+			<name>limit</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
+			<name>extraSmall</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to small viewport. Options: 1 to 12</description>
+			<name>small</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to medium viewport. Options: 1 to 12</description>
+			<name>medium</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to large viewport. Options: 1 to 12</description>
+			<name>large</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:dataBlock limit="12" extraSmall="12" medium="4" small="4" large="1" data="${ persons }" var="person"&gt;
+				&lt;html:alert state="success"&gt;
+					${ person.name }
+				&lt;/html:alert&gt;
+			&lt;/html:dataBlock&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a select box</description>
+		<display-name>Input</display-name>
+		<name>select</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the collection to be iterated in component</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the map to be iterated in component</description>
+			<name>map</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Map</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component form is mandatory in form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates that component has fixed options</description>
+			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the value selected in the component</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component form is mandatory in form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:select name="select1" data="${ persons }" var="person"&gt;
+				&lt;html:option value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:option&gt;
+			&lt;/html:select&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders an option of a select box</description>
+		<display-name>Input</display-name>
+		<name>option</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.OptionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the value of the component</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:select name="select1" data="${ persons }" var="person"&gt;
+				&lt;html:option value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:option&gt;
+			&lt;/html:select&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders an textarea</description>
+		<display-name>Input</display-name>
+		<name>textarea</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TextareaTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder for textarea</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the value of the component</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component is required in the form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of component lines</description>
+			<name>rows</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:textarea name="textarea1" rows="3"/&gt; </example>
+	</tag>
 	
 	<tag>
 		<description>Renders a detail table</description>
@@ -1685,12 +1883,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:grid label="Pessoas" url="/component/grid" data="${ pessoas }" var="pessoa" noRowText="Não há pessoas disponíveis"&gt;
-				&lt;html:gridColumn label="Identificação" exportable="true"&gt;
-					${ pessoa.id }
+			&lt;html:grid label="Pessoas" url="/component/grid" data="${ persons }" var="person" noRowText="No records found"&gt;
+				&lt;html:gridColumn label="Identification" exportable="true"&gt;
+					${ person.id }
 				&lt;/html:gridColumn&gt;
-				&lt;html:gridColumn label="Nome" exportable="true"&gt;
-					${ pessoa.nome }
+				&lt;html:gridColumn label="Name" exportable="true"&gt;
+					${ person.name }
 				&lt;/html:gridColumn&gt;
 			&lt;/html:grid&gt; </example>
 	</tag>

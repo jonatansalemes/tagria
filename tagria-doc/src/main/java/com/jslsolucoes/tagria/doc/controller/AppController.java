@@ -3,7 +3,7 @@ package com.jslsolucoes.tagria.doc.controller;
 
 import javax.inject.Inject;
 
-import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
+import com.jslsolucoes.tagria.doc.repository.PersonRepository;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
@@ -14,14 +14,14 @@ import br.com.caelum.vraptor.view.Results;
 public class AppController {
 
 	private Result result;
-	private PessoaRepository pessoaRepository;
+	private PersonRepository pessoaRepository;
 
 	public AppController() {
 
 	}
 
 	@Inject
-	public AppController(Result result, PessoaRepository pessoaRepository) {
+	public AppController(Result result, PersonRepository pessoaRepository) {
 		this.result = result;
 		this.pessoaRepository = pessoaRepository;
 	}
