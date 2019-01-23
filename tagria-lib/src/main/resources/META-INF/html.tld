@@ -1110,6 +1110,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates a label for the alert.</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1686,6 +1692,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuDropDownTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates the label to be used in dropdown root</description>
 			<name>label</name>
 			<required>true</required>
@@ -1710,6 +1722,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>menuDropDownItem</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuDropDownItemTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>Indicates the icon to be used in the menu icon. available list https://fontawesome.com/icons</description>
 			<name>icon</name>

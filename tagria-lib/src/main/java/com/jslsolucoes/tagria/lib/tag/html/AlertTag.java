@@ -22,6 +22,7 @@ public class AlertTag extends SimpleTagSupport {
 	private String state;
 	private String label;
 	private String id;
+	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -31,7 +32,11 @@ public class AlertTag extends SimpleTagSupport {
 			div.add(Attribute.CLASS, "alert alert-" + state + " shadow-sm");
 			div.add(Attribute.ROLE, "alert");
 			div.add(Attribute.ID, TagUtil.getId(id));
-
+			
+			if (!StringUtils.isEmpty(cssClass)) {
+				div.add(Attribute.CLASS, cssClass);
+			}
+			
 			if (!visible) {
 				div.add(Attribute.CLASS, "collapse");
 			}
@@ -104,5 +109,13 @@ public class AlertTag extends SimpleTagSupport {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public String getCssClass() {
+		return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
 	}
 }

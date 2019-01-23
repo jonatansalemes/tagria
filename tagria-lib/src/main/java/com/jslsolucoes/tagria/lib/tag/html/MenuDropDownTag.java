@@ -13,6 +13,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuDropDownTag extends SimpleTagSupport {
 	
+	private String id;
 	private String label;
 	private Boolean rendered = Boolean.TRUE;
 	
@@ -24,6 +25,7 @@ public class MenuDropDownTag extends SimpleTagSupport {
 			
 			A a = new A();
 			a.add(Attribute.HREF, "#");
+			a.add(Attribute.ID, TagUtil.getId(id));
 			a.add(Attribute.CLASS, "nav-link dropdown-toggle");
 			a.add(Attribute.DATA_TOGGLE,"dropdown");
 			a.add(TagUtil.getLocalized(label, getJspContext()));	
@@ -53,5 +55,13 @@ public class MenuDropDownTag extends SimpleTagSupport {
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}	
 }
