@@ -10,6 +10,26 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
+	
+	<tag>
+		<description>Renders a google recaptcha</description>
+		<display-name>Misc</display-name>
+		<name>recaptcha</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.RecaptchaTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the site key available in google account developer for recaptcha</description>
+			<name>siteKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:recaptcha siteKey="yourapikey" &gt;
+				
+			&lt;/html:recaptcha&gt; </example>
+	</tag>
+	
 	<tag>
 		<description>Renders a data block iteration</description>
 		<display-name>Layout</display-name>
