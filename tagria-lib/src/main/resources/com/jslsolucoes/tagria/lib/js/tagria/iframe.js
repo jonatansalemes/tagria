@@ -2,7 +2,7 @@
 	$.widget("tagria.iframe", {
 		options: {
 			interval : 1000,
-			offset : 50
+			offset : 70
 		},
 		_create: function() {
 			var self = this;

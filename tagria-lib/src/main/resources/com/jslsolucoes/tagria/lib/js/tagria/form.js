@@ -11,11 +11,12 @@
 		_create: function() {
 			var self = this;
 			var form = self.element;  
-			$("input,select",form).on('keydown.form',function(e) {
-				if(e.keyCode==13) {
-					self._validateAndSubmit();
-        		}
+			
+			$(form).on('submit',function(e){
+				self._validateAndSubmit();
+				e.preventDefault();
 			});
+			
 			var submit = $('a.btn[data-type=submit]',form);
 			var target = submit.attr('data-target');
 			if(target){
