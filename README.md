@@ -9,31 +9,31 @@
 [![][paypal img]][paypal]
 
 [travis]:https://travis-ci.org/jslsolucoes/tagria
-[travis img]:https://travis-ci.org/jslsolucoes/tagria.svg?branch=develop
+[travis img]:https://travis-ci.org/jslsolucoes/tagria.svg?branch=master
 
 [maven]:http://search.maven.org/#search|gav|1|g:"com.jslsolucoes"%20AND%20a:"tagria"
 [maven img]:https://maven-badges.herokuapp.com/maven-central/com.jslsolucoes/tagria/badge.svg
 
-[sonar]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[sonar img]:https://sonarcloud.io/api/badges/gate?key=com.jslsolucoes:tagria:develop
+[sonar]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[sonar img]:https://sonarcloud.io/api/badges/gate?key=com.jslsolucoes:tagria:master
 
-[bugs]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[bugs img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=bugs
+[bugs]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[bugs img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:master&metric=bugs
 
-[coverage]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[coverage img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=coverage
+[coverage]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[coverage img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:master&metric=coverage
 
-[bugs]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[bugs img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=bugs
+[bugs]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[bugs img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:master&metric=bugs
 
-[lines]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[lines img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=lines
+[lines]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[lines img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:master&metric=lines
 
-[vulnerabilities]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[vulnerabilities img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=vulnerabilities
+[vulnerabilities]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[vulnerabilities img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:master&metric=vulnerabilities
 
-[code_smells]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:develop
-[code_smells img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=code_smells
+[code_smells]:https://sonarcloud.io/dashboard/index/com.jslsolucoes:tagria:master
+[code_smells img]:https://sonarcloud.io/api/badges/measure?key=com.jslsolucoes:tagria:master&metric=code_smells
 
 [paypal]:https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PE25DPU3CNFH4
 [paypal img]:https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
@@ -86,7 +86,7 @@ Add maven dependency to your project :
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.0-SNAPSHOT&lt;/version&gt;
+	&lt;version&gt;3.0.0&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
@@ -158,7 +158,7 @@ skin=green
 			<td>skin</td>
 			<td>Skin to use</td>
 			<td align="center">default</td>
-			<td>default,green</td>
+			<td>default</td>
 		</tr>
 	</tbody>
 </table>
