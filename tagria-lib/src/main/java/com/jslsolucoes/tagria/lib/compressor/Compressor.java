@@ -46,7 +46,7 @@ public class Compressor {
 
 	public void compressJs() throws IOException {
 		String[] files = new String[] { "jquery/jquery.js","jquery/ui/jquery-ui.js", 
-				"tagria/form.js","tagria/mask.js",
+				"tagria/form.js","tagria/mask.js","tagria/currency.mask.js",
 				"fontawesome/all.js","tagria/iframe.js","tagria/grid.js","tagria/tabs.js"
 				,"tagria/detail.table.js",
 				"popper/popper.js","bootstrap/bootstrap.js"};

@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
@@ -12,13 +14,19 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class BlockTag extends SimpleTagSupport {
 
 	private Boolean rendered = Boolean.TRUE;
-	private Integer margin = 5;
+	private Integer margin = 3;
+	private String align;
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
 			div.add(Attribute.CLASS, "mt-"+margin+" mb-"+margin+" clearfix");
+			
+			if(!StringUtils.isEmpty(align)) {
+				div.add(Attribute.CLASS, "text-"+align);
+			}
+			
 			div.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), div);
 		}
@@ -38,6 +46,14 @@ public class BlockTag extends SimpleTagSupport {
 
 	public void setMargin(Integer margin) {
 		this.margin = margin;
+	}
+
+	public String getAlign() {
+		return align;
+	}
+
+	public void setAlign(String align) {
+		this.align = align;
 	}
 
 	
