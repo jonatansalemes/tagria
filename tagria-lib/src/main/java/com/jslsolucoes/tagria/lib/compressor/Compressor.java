@@ -111,7 +111,7 @@ public class Compressor {
 
 		for (String theme : themes) {
 
-			String[] files = new String[] { "bootstrap.css","bootstrap.fix.css","jquery.ui.css","jquery.ui.fix.css","common.css" };
+			String[] files = new String[] { "bootstrap.css","bootstrap.css.map","bootstrap.fix.css","jquery.ui.css","jquery.ui.fix.css","common.css" };
 
 			String content = StringUtils.join(Stream
 					.concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),

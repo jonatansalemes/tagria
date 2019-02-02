@@ -120,7 +120,7 @@
 			var error = false;
 			$('input[type=email]',form).each(function(){
 				if(!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test( $(this).val() )){
-					$(this).parent().addClass('form-has-error');
+					$(this).addClass('form-has-error');
 					$(this).popover({
 					       content : self.options.invalid.email,
 					       html : true,
@@ -137,7 +137,7 @@
 			
 			$('input[type=number][max]',form).each(function(){
 				if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
-					$(this).parent().addClass('form-has-error');
+					$(this).addClass('form-has-error');
 					$(this).popover({
 					       content : self.options.invalid.max + ' ' + $(this).attr("max"),
 					       html : true,
@@ -153,7 +153,7 @@
 			
 			$('input[type=number][min]',form).each(function(){
 				if(parseInt($(this).val()) < parseInt($(this).attr("min"))){
-					$(this).parent().addClass('form-has-error');
+					$(this).addClass('form-has-error');
 					$(this).popover({
 					       content : self.options.invalid.min + ' ' + $(this).attr("min"),
 					       html : true,

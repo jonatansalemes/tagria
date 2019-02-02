@@ -15,16 +15,15 @@ public class MaskTag extends SimpleTagSupport {
 	private String mask;
 	private String attachTo;
 	private Boolean reverse = Boolean.FALSE;
+	private String onKeyPress;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-
+		TagUtil.getBody(getJspBody());			
 		String placeholder = mask.replaceAll("([0-9]|[A-Za-z]|#)", "_");
-
 		StringBuilder builder = new StringBuilder();
 		builder.append("$('#" + TagUtil.getId(attachTo, null, this) + "').mask('" + mask + "', {placeholder: '"
-				+ placeholder + "' , reverse : " + reverse + "});");
-
+				+ placeholder + "' , reverse : " + reverse + ",onKeyPress: function(value, e, field, options){" +onKeyPress+ "}});");
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
 		script.add(builder.toString());
@@ -54,5 +53,13 @@ public class MaskTag extends SimpleTagSupport {
 
 	public void setReverse(Boolean reverse) {
 		this.reverse = reverse;
+	}
+
+	public String getOnKeyPress() {
+		return onKeyPress;
+	}
+
+	public void setOnKeyPress(String onKeyPress) {
+		this.onKeyPress = onKeyPress;
 	}
 }
