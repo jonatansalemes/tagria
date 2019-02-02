@@ -36,6 +36,7 @@ public class DataBlockTag extends SimpleTagSupport {
 			for(Object object : objects) {
 				jspContext.setAttribute(var, object);
 				Div col = new Div();
+				col.add(Attribute.CLASS, "mt-3");
 				col.add(Attribute.CLASS, "col-xs-" + extraSmall);
 				
 				if(small != null){

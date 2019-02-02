@@ -7,18 +7,18 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.lib.html.P;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class CardHeaderTag extends SimpleTagSupport {
+public class CardTextTag extends SimpleTagSupport {
 
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		Div div = new Div();
-		div.add(Attribute.CLASS, "card-header");
-		div.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), div);
+		P p = new P();
+		p.add(Attribute.CLASS, "card-text");
+		p.add(TagUtil.getBody(getJspBody()));
+		TagUtil.out(getJspContext(), p);
 	}
 
 }

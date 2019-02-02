@@ -838,29 +838,112 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Components
 				&lt;/html:cardBody&gt;
 			&lt;/html:card>
 		</example>
 	</tag>
-
+	
+	<tag>
+		<description>Renders an card image</description>
+		<display-name>Card</display-name>
+		<name>cardImage</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardImageTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates if the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the alt of image</description>
+			<name>alt</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if the component must be loaded from cdn</description>
+			<name>cdn</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image height</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image url</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImg url="/image/person.png" alt="logo"/&gt;
+			&lt;/html:card>
+		</example>
+	</tag>
+	
 	<tag>
 		<description>Renders a title on the card</description>
+		<display-name>Card</display-name>
+		<name>cardTitle</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTitleTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;
+						Title
+					&lt;/html:cardTitle&gt;
+				&lt;/html:cardBody&gt;
+			&lt;/html:card>
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a text on the card</description>
+		<display-name>Card</display-name>
+		<name>cardText</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTextTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardText&gt;
+						Text
+					&lt;/html:cardText&gt;
+				&lt;/html:cardBody&gt;
+			&lt;/html:card>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a card header</description>
 		<display-name>Card</display-name>
 		<name>cardHeader</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates the title card</description>
-			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Outros componentes
 				&lt;/html:cardBody&gt;
@@ -876,7 +959,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Componentes
 				&lt;/html:cardBody&gt;
