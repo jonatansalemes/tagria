@@ -10,6 +10,15 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
+	<tag>
+		<description>Renders a jumbotron</description>
+		<display-name>Misc</display-name>
+		<name>jumbotron</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.JumbotronTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:jumbotron&gt; &lt;html:h1&gt; Header &lt;/html:h1&gt; &lt;/html:jumbotron&gt; </example>
+	</tag>
 	
 	<tag>
 		<description>Renders a mask in currency format for a particular input</description>
