@@ -24,6 +24,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	private String attachTo;
 	private String attachToSelector;
 	private Boolean closeable = Boolean.TRUE;
+	private Boolean centered = Boolean.FALSE;
 	private Boolean open = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
 	private String toolbar;
@@ -42,10 +43,15 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			}
 			
 			
+			
+			
 			Div dialog = new Div();
 			dialog.add(Attribute.CLASS, "modal-dialog");
 			if(!StringUtils.isEmpty(size)) {
 				dialog.add(Attribute.CLASS, "modal-"+size);
+			}
+			if(centered) {
+				dialog.add(Attribute.CLASS, "modal-dialog-centered");
 			}
 
 			Div content = new Div();
@@ -174,6 +180,18 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+
+
+	public Boolean getCentered() {
+		return centered;
+	}
+
+
+
+	public void setCentered(Boolean centered) {
+		this.centered = centered;
 	}
 
 }

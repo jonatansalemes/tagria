@@ -1407,6 +1407,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if modal is vertically centered. Default : false. Options : true,false</description>
+			<name>centered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates if component is opened on load. Default : false. Options : true,false</description>
 			<name>open</name>
 			<rtexprvalue>true</rtexprvalue>
