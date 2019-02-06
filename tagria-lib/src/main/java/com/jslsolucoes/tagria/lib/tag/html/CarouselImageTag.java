@@ -10,7 +10,7 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Img;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class CardImageTag extends SimpleTagSupport {
+public class CarouselImageTag extends SimpleTagSupport {
 
 	private String alt;
 	private String url;
@@ -21,7 +21,7 @@ public class CardImageTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Img img = new Img();
-			img.add(Attribute.CLASS, "card-img-top");
+			img.add(Attribute.CLASS, "d-block w-100");
 			img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
 			img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
 			TagUtil.out(getJspContext(), img);

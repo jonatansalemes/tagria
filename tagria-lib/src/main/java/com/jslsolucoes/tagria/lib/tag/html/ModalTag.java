@@ -27,6 +27,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	private Boolean open = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
 	private String toolbar;
+	private String size;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -39,9 +40,13 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 				modal.add(Attribute.DATA_KEYBOARD, "false");
 				modal.add(Attribute.DATA_BACKDROP, "static");
 			}
-
+			
+			
 			Div dialog = new Div();
 			dialog.add(Attribute.CLASS, "modal-dialog");
+			if(!StringUtils.isEmpty(size)) {
+				dialog.add(Attribute.CLASS, "modal-"+size);
+			}
 
 			Div content = new Div();
 			content.add(Attribute.CLASS, "modal-content");
@@ -157,6 +162,18 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	public void setAttachToSelector(String attachToSelector) {
 		this.attachToSelector = attachToSelector;
+	}
+
+
+
+	public String getSize() {
+		return size;
+	}
+
+
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 }
