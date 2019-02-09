@@ -23,6 +23,7 @@ public class ColTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
+		div.add(Attribute.CLASS, "col");
 		if(extraSmall != null){
 			div.add(Attribute.CLASS, "col-" + extraSmall);
 		}

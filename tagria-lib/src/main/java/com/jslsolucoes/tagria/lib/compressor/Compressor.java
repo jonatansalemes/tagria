@@ -2,10 +2,7 @@
 package com.jslsolucoes.tagria.lib.compressor;
 
 import java.io.File;
-
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,7 +23,6 @@ import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.jscomp.SourceFile;
 import com.jslsolucoes.tagria.lib.error.TagriaRuntimeException;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
-import com.yahoo.platform.yui.compressor.CssCompressor;
 
 public class Compressor {
 
@@ -45,11 +41,9 @@ public class Compressor {
 	}
 
 	public void compressJs() throws IOException {
-		String[] files = new String[] { "jquery/jquery.js","jquery/ui/jquery-ui.js", 
-				"tagria/form.js","tagria/mask.js","tagria/currency.mask.js",
-				"fontawesome/all.js","tagria/iframe.js","tagria/grid.js","tagria/tabs.js"
-				,"tagria/detail.table.js",
-				"popper/popper.js","bootstrap/bootstrap.js"};
+		String[] files = new String[] { "jquery/jquery.js", "jquery/ui/jquery-ui.js", "tagria/form.js",
+				"tagria/mask.js", "tagria/currency.mask.js", "fontawesome/all.js", "tagria/iframe.js", "tagria/grid.js",
+				"tagria/tabs.js", "tagria/detail.table.js", "popper/popper.js", "bootstrap/bootstrap.js" };
 
 		List<String> contents = new ArrayList<>();
 		for (String file : files) {
@@ -80,7 +74,7 @@ public class Compressor {
 				themeFolder.mkdirs();
 			}
 			File baseFolder = new File(root, "base");
-			if(!baseFolder.exists()) {
+			if (!baseFolder.exists()) {
 				baseFolder.mkdirs();
 			}
 			Stream.concat(Arrays.asList(baseFolder.listFiles()).stream(),
@@ -106,12 +100,13 @@ public class Compressor {
 	}
 
 	public void compressCss() throws IOException {
-		
+
 		File root = new File(new File(source, "css"), THEME);
 
 		for (String theme : themes) {
 
-			String[] files = new String[] { "bootstrap.css","bootstrap.css.map","bootstrap.fix.css","jquery.ui.css","jquery.ui.fix.css","common.css" };
+			String[] files = new String[] { "jquery.ui.css", "jquery.ui.fix.css", "common.css", "iframe.css",
+					"bootstrap.css", "bootstrap.fix.css" };
 
 			String content = StringUtils.join(Stream
 					.concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),
@@ -126,12 +121,8 @@ public class Compressor {
 	}
 
 	private String minifyCss(String code) throws IOException {
-		
-		try (StringWriter minified = new StringWriter()) {
-			CssCompressor cssCompressor = new CssCompressor(new StringReader(code));
-			cssCompressor.compress(minified, -1);
-			return minified.toString();
-		}
+		return code.replaceAll("(\n|\t|\r| {2,})", "");
+
 	}
 
 	private String normalizeCssFile(File cssFile, String theme) {
