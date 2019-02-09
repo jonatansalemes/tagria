@@ -67,6 +67,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<function-class>com.jslsolucoes.tagria.lib.tag.x.StringUtil</function-class>
 		<function-signature>java.lang.String format(java.lang.String,java.lang.Object)</function-signature>
 	</function>
+	<function>
+		<name>truncate</name>
+		<function-class>com.jslsolucoes.tagria.lib.tag.x.StringUtil</function-class>
+		<function-signature>java.lang.String truncate(java.lang.String,java.lang.Integer)</function-signature>
+	</function>
 	
 	
 </taglib>

@@ -405,12 +405,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the limit for every row block . Default: 4. Options : 1-12</description>
-			<name>limit</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
 			<name>extraSmall</name>
 			<required>true</required>
@@ -940,6 +934,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>card</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>Indicates the card state. Default: primary. Options: success, danger, info, default, primary</description>
 			<name>state</name>

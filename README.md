@@ -86,12 +86,10 @@ Add maven dependency to your project :
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.2&lt;/version&gt;
+	&lt;version&gt;3.0.3&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
-
-or download binary and dependencies hosted on <a href='https://bintray.com/jslsolucoes/tagria/com.jslsolucoes.tagria'>bintray</a> 
 
 Create an jsp for example index.jsp and import directives
 <pre>

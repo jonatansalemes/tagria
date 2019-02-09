@@ -24,7 +24,7 @@ public class StringUtil {
 	private StringUtil() {
 
 	}
-	
+
 	public static Boolean equals(String value1, String value2) {
 		return value1.equals(value2);
 	}
@@ -69,7 +69,6 @@ public class StringUtil {
 		Locale locale = Locale.forLanguageTag(TagUtil.getInitParam(TagriaConfigParameter.LOCALE));
 		return format(type, (value == null ? "" : value.toString()), locale);
 	}
-	
 
 	public static String format(String type, String value, Locale locale) {
 		if (StringUtils.isEmpty(value)) {
@@ -115,6 +114,14 @@ public class StringUtil {
 			return String.format("%08d", Long.valueOf(value)).replaceAll("^([0-9]{5})-([0-9]{3})$", "$1-$2");
 		}
 		return value;
+	}
+
+	public static String truncate(String value, Integer size) {
+		if (size > value.length()) {
+			return value;
+		} else {
+			return value.substring(0, size).concat("...");
+		}
 	}
 
 }
