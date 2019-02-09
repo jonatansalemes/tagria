@@ -16,6 +16,8 @@ public class CarouselImageTag extends SimpleTagSupport {
 	private String url;
 	private Boolean cdn = true;
 	private Boolean rendered = Boolean.TRUE;
+	private Integer height;
+	private Integer width;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -24,8 +26,30 @@ public class CarouselImageTag extends SimpleTagSupport {
 			img.add(Attribute.CLASS, "d-block w-100");
 			img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
 			img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
+			if (width != null) {
+				img.add(Attribute.WIDTH, width);
+			} 
+			if (height != null) {
+				img.add(Attribute.HEIGHT, height);
+			}
 			TagUtil.out(getJspContext(), img);
 		}
+	}
+	
+	public Integer getHeight() {
+		return height;
+	}
+
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+
+	public Integer getWidth() {
+		return width;
+	}
+
+	public void setWidth(Integer width) {
+		this.width = width;
 	}
 
 	public String getAlt() {

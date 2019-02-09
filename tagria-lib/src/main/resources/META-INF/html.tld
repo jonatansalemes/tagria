@@ -84,6 +84,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CarouselImageTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 			<description>It indicates if the component should be rendered. Default : true</description>
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -976,6 +988,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description>It indicates the alt of image</description>
@@ -1952,17 +1976,17 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the point component</description>
-			<name>height</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 			<description>Indicates the image url</description>
 			<name>url</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the image width</description>
