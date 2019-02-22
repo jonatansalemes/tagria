@@ -86,7 +86,7 @@ Add maven dependency to your project :
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.3&lt;/version&gt;
+	&lt;version&gt;3.0.4&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
@@ -116,7 +116,7 @@ encoding=ISO-8859-1
 locale=pt-BR
 cdn.enabled=true
 cdn.url=fdsfds.cloudfront.net
-skin=green
+skin=default
 	</code>
 </pre>
 
