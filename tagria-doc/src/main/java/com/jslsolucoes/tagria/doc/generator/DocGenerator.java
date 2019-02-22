@@ -51,7 +51,9 @@ public class DocGenerator {
 					"<%@include file=\"../app/taglibs.jsp\"%>										"
 							+ "<html:view title=\"{title}\">											"
 							+ "						<html:card>																		"
-							+ "							<html:cardHeader label=\"" + tag.getName()+ "\"/>					"
+							+ "							<html:cardHeader>															"
+							+ 									tag.getName()
+							+ "							</html:cardHeader>															"
 							+ "							<html:cardBody>																"
 							+ "								<html:tabPanel>																"
 							+ "									<html:tab label=\"{about}\" active=\"true\">							"

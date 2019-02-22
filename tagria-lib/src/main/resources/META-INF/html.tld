@@ -234,8 +234,15 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-				&lt;html:menuLink label="Menu dropdown" url="#" &gt;
-				&lt;/html:menuLink&gt; </example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuLink label="Menu Link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
 	
 	<tag>
@@ -2129,9 +2136,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-				&lt;html:menuDropDown label="Menu dropdown" &gt;
-					&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
-				&lt;/html:menuDropDown&gt; </example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
 
 	<tag>
@@ -2178,13 +2196,19 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:menuButton icon="cog" align="right"&gt;
-					&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
-					&lt;html:menuDropDownDivider/&gt;
-					&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
-					&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
-				&lt;/html:menuButton&gt;
-			&lt;/html:menu&gt; </example>
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
 	
 	<tag>
@@ -2207,9 +2231,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					&lt;/html:menuCollapse&gt;
 				
 				&lt;html:menuCollapsable id="block1"&gt;
-					&lt;html:menuText&gt;
-						My text menu
-					&lt;/html:menuText&gt;
+					menu components
 				&lt;/html:menuCollapsable&gt;
 				
 			&lt;/html:menu&gt;
@@ -2263,13 +2285,19 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:menuButton icon="cog" align="right"&gt;
-					&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
-					&lt;html:menuDropDownDivider/&gt;
-					&lt;html:menuDropDownItem label="Item 2" url="#"/&gt;
-					&lt;html:menuDropDownItem label="Item 3" url="#"/&gt;
-				&lt;/html:menuButton&gt;
-			&lt;/html:menu&gt; </example>
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
 
 	<tag>
@@ -2293,7 +2321,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:brand label="Meu titulo" url="#"/&gt;
+				&lt;html:menuBrand label="Meu titulo" url="#"/&gt;
 			&lt;/html:menu&gt; </example>
 	</tag>
 
@@ -2378,7 +2406,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:grid label="Pessoas" url="/component/grid" data="${ persons }" var="person" noRowText="No records found"&gt;
+			&lt;html:grid label="Persons" url="/component/grid" data="${ persons }" var="person" noRowText="No records found"&gt;
 				&lt;html:gridColumn label="Identification" exportable="true"&gt;
 					${ person.id }
 				&lt;/html:gridColumn&gt;
@@ -2582,12 +2610,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:menuButton icon="cog" align="right"&gt;
+				&lt;html:menuDropDown label="Menu"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;
 					&lt;html:menuItem label="Item 2" url="#"/&gt;
 					&lt;html:menuItem label="Item 3" url="#"/&gt;
-				&lt;/html:menuButton&gt;
+				&lt;/html:menuDropDown&gt;
 			&lt;/html:menu&gt; </example>
 	</tag>
 
