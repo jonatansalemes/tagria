@@ -2512,6 +2512,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates a CSS class to the component</description>
 			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
