@@ -2263,6 +2263,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the id of component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the component selector that triggers the menu group</description>
 			<name>attachToSelector</name>
 			<rtexprvalue>true</rtexprvalue>
