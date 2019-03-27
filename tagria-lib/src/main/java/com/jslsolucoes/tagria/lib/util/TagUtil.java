@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -16,6 +17,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
@@ -29,17 +31,44 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jslsolucoes.tagria.lib.auth.Auth;
 import com.jslsolucoes.tagria.lib.html.Element;
+import com.jslsolucoes.tagria.lib.servlet.Tagria;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
+import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
 
 public class TagUtil {
 
-	public static final String VERSION = "3.0.4.0";
+	public static final String VERSION = "3.0.5.0";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {
 
+	}
+	
+	public static PageContext pageContext(JspContext jspContext) {
+		return (PageContext) jspContext;
+	}
+	
+	public static HttpServletRequest httpServletRequest(JspContext jspContext) {
+		return (HttpServletRequest) pageContext(jspContext).getRequest();
+	}
+	
+	public static HttpServletResponse httpServletResponse(JspContext jspContext) {
+		return (HttpServletResponse) pageContext(jspContext).getResponse();
+	}
+
+	public static Boolean allowed(JspContext jspContext, CheckRule checkRule) {
+		return allowed(jspContext,Arrays.asList(checkRule));
+	}
+
+	public static Boolean allowed(JspContext jspContext, List<CheckRule> rules) {
+		Auth auth = Tagria.AUTH;
+		return rules.stream()
+				.map(checkRule -> auth.allowed(httpServletRequest(jspContext),
+						httpServletResponse(jspContext), checkRule.getUri(), checkRule.getMethod()))
+				.reduce((a, b) -> a && b).get();
 	}
 
 	public static String localization(JspContext jspContext) {
@@ -214,14 +243,15 @@ public class TagUtil {
 		}
 	}
 
-	public static String queryString(HttpServletRequest request, List<String> excludesParams)
+	public static String queryString(JspContext jspContext, List<String> excludesParams)
 			throws UnsupportedEncodingException {
 		List<String> queryString = new ArrayList<>();
-		Enumeration<String> en = request.getParameterNames();
+		HttpServletRequest httpServletRequest = httpServletRequest(jspContext);
+		Enumeration<String> en = httpServletRequest.getParameterNames();
 		while (en.hasMoreElements()) {
 			String paramName = en.nextElement();
 			if (!excludesParams.contains(paramName))
-				queryString.add(paramName + "=" + URLEncoder.encode(request.getParameter(paramName), "UTF-8"));
+				queryString.add(paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
 		}
 		return StringUtils.join(queryString, '&');
 	}
@@ -246,10 +276,10 @@ public class TagUtil {
 		return getPathForUrl(jspContext, "/tagria/locale");
 	}
 
-	public static String attachTo(String attachToSelector, String attachTo,SimpleTagSupport simpleTagSupport) {
-		if(StringUtils.isEmpty(attachToSelector)){
+	public static String attachTo(String attachToSelector, String attachTo, SimpleTagSupport simpleTagSupport) {
+		if (StringUtils.isEmpty(attachToSelector)) {
 			return "#" + TagUtil.getId(attachTo, null, simpleTagSupport);
-		} 
+		}
 		return attachToSelector;
 	}
 }
