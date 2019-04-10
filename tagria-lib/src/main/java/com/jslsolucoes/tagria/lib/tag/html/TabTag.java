@@ -67,7 +67,7 @@ public class TabTag extends SimpleTagSupport {
 				div.add(iframe);
 
 				Script script = new Script();
-				script.add(Attribute.TYPE, "text/javascript");
+				
 				script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
 				div.add(script);
 			}

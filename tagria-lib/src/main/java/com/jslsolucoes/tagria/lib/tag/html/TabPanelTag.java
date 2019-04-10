@@ -41,7 +41,7 @@ public class TabPanelTag extends SimpleTagSupport {
 		TagUtil.out(getJspContext(), div);
 
 		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
+		
 		script.add("$('#" + div.get(Attribute.ID) + "').tabs();");
 		TagUtil.out(getJspContext(), script);
 

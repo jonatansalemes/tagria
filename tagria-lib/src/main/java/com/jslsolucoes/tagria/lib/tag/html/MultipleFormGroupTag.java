@@ -81,7 +81,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		
 		TagUtil.out(getJspContext(), container);
 		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
+		
 		script.add("$('#" + container.get(Attribute.ID) + "').formGroup({ atLeast : " + atLeast + " , empty : " + empty
 				+ ", afterInsert : function (element) { " + afterInsert + " } });");
 		TagUtil.out(getJspContext(), script);
@@ -109,7 +109,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	
 	private Element remove() {
 		Button minus = new Button();
-		minus.add(Attribute.ID, TagUtil.getId("fg.remove[]", null));
+		minus.add(Attribute.ID, TagUtil.getId());
 		minus.add(Attribute.CLASS, "btn btn-outline-danger fg-minus");
 		minus.add(new Span().add(Attribute.CLASS, "fas fa-minus"));
 		return minus;

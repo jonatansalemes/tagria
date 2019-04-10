@@ -73,7 +73,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			TagUtil.out(getJspContext(), container);
 
 			Script script = new Script();
-			script.add(Attribute.TYPE, "text/javascript");
+			
 			script.add("$('#" + form.get(Attribute.ID) + "')"
 					+ "		.form({ 																														" 
 					+ "					validation : '" + (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "',	" 

@@ -76,7 +76,6 @@ public class ButtonTag extends SimpleTagSupport {
 			
 			if(autoblock) {
 				Script script = new Script();
-				script.add(Attribute.TYPE, "text/javascript");
 				script.add("$('#" + a.get(Attribute.ID) + "').click(function(){ $(this).addClass('disabled'); });");
 				TagUtil.out(getJspContext(), script);
 			}

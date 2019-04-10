@@ -60,12 +60,10 @@ public class ViewTag extends SimpleTagSupport {
 		head.add(css);
 		
 		Script recaptcha = new Script();
-		recaptcha.add(Attribute.TYPE, "text/javascript");
 		recaptcha.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
 		head.add(recaptcha);
 		
 		Script js = new Script();
-		js.add(Attribute.TYPE, "text/javascript");
 		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
 		head.add(js);
 
@@ -82,7 +80,6 @@ public class ViewTag extends SimpleTagSupport {
 				"$(document).ajaxStart(function(){ $('.ajax-loading').fadeIn(); }).ajaxStop(function(){ $('.ajax-loading').fadeOut(); });");
 		}
 		Script ready = new Script();
-		ready.add(Attribute.TYPE, "text/javascript");
 		ready.add(jsReady.toString());
 		head.add(ready);
 

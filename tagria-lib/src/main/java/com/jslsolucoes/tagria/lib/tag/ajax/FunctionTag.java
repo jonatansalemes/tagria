@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -64,14 +63,12 @@ public class FunctionTag extends SimpleTagSupport {
 								+ "}";
 
 			Script function = new Script();
-			function.add(Attribute.TYPE, "text/javascript");
 			function.add(ajaxFunction);
 
 			TagUtil.out(getJspContext(), function);
 
 			if (executeOnDocumentLoad) {
 				Script script = new Script();
-				script.add(Attribute.TYPE, "text/javascript");
 				script.add(name + "();");
 				TagUtil.out(getJspContext(), script);
 			}

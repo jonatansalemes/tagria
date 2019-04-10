@@ -33,7 +33,7 @@ public class IframeTag extends SimpleTagSupport {
 		TagUtil.out(getJspContext(), iframe);
 
 		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
+		
 		script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
 		TagUtil.out(getJspContext(), script);
 	}
