@@ -1,9 +1,9 @@
 (function($) {
-	$.widget("tagria.detail", {
+	$.widget("tagria.formGroup", {
 		options: {
 			atLeast : 0,
 			empty : false,
-			afterInsert : function (tr) {
+			afterInsert : function (element) {
 			
 			}
 		},
@@ -11,12 +11,12 @@
 			var self = this;
 			var detail = self.element;
 			
-			$('.detail-table-plus',detail).on('click',function(){
+			$('.fg-plus',detail).on('click',function(){
 				self._cloneLine();
 				self._bindRemove();
 				self._reorganize();
 				self._atLeast();
-				self.options.afterInsert($('.detail-table-table > tbody > tr:last',detail));
+				self.options.afterInsert($('.fg-row:last',detail));
 			});
 			
 			self._cloneToTemplate();
@@ -31,23 +31,23 @@
 		_empty : function() {
 			var self = this;
 			var detail = self.element;
-			$('.detail-table-minus',detail).trigger("click");
+			$('.fg-minus',detail).trigger("click");
 		},
 		_atLeast : function() {
 			var self = this;
 			if( self.options.atLeast > 0 ) {
 				var detail = this.element;
-				if($('.detail-table-table > tbody > tr',detail).length == self.options.atLeast) {
-					$('.detail-table-minus',detail).hide();
+				if($('.fg-row',detail).length == self.options.atLeast) {
+					$('.fg-minus',detail).hide();
 				} else {
-					$('.detail-table-minus',detail).show();
+					$('.fg-minus',detail).show();
 				}
 			}
 		},
 		_bindRemove : function() {
 			var self = this;
 			var detail = self.element;
-			$('.detail-table-minus',detail).on('click.detail',function(){
+			$('.fg-minus',detail).on('click.detail',function(){
 				$(this).parent().parent().remove();	
 				self._reorganize();
 				self._atLeast();
@@ -65,9 +65,8 @@
 		_cloneLine : function() {
 			var self = this;
 			var detail = self.element;
-		
-			var clone = $($('.detail-table-template',detail).val());
-			
+			var template = $('.fg-template',detail);
+			var clone = $(template.val());
 			$('*',clone).each(function(){
 				if($(this).attr('id')){
 					var id = $(this).attr('id');
@@ -83,20 +82,19 @@
 			$(':checkbox,:radio',clone).each(function(){
 				$(this).prop('checked',false);
 			});
-			$('.detail-table-table > tbody',detail).append(clone);	
+			$('.fg-content',detail).append(clone);	
 		},
 		_cloneToTemplate : function() {
 			var self = this;
 			var detail = self.element;
-			var template = $('.detail-table-template',detail);
-			template.val('<tr>' + $('.detail-table-table > tbody > tr:first',detail).html()
+			$('.fg-template',detail).val('<div class="row fg-row border rounded text-secondary mt-3 mb-3 p-3">' + $('.fg-row:first',detail).html()
 					.replace(new RegExp('id="(.*?)_([^_]*?)"','g'),'id="$1"')
-					.replace(new RegExp("'#(.*?)_([^_]*?)'",'g'),"'#$1'") + '</tr>');
+					.replace(new RegExp("'#(.*?)_([^_]*?)'",'g'),"'#$1'") + '</div>');
 		},
 		_reorganize : function (){
 			var self = this;
 			var detail = self.element;	
-			$('.detail-table-table > tbody > tr',detail).each(function(index){
+			$('.fg-row',detail).each(function(index){
 				$('*',this).each(function(){
 					if($(this).attr('name')){
 						var name = $(this).attr('name');

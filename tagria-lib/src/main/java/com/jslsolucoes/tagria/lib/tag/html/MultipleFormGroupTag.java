@@ -10,7 +10,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.Attribute;
@@ -20,23 +19,17 @@ import com.jslsolucoes.tagria.lib.html.Element;
 import com.jslsolucoes.tagria.lib.html.H4;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
-import com.jslsolucoes.tagria.lib.html.Table;
-import com.jslsolucoes.tagria.lib.html.Tbody;
-import com.jslsolucoes.tagria.lib.html.Td;
 import com.jslsolucoes.tagria.lib.html.Textarea;
 import com.jslsolucoes.tagria.lib.html.Th;
-import com.jslsolucoes.tagria.lib.html.Thead;
-import com.jslsolucoes.tagria.lib.html.Tr;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
-public class DetailTableTag extends SimpleTagSupport {
+public class MultipleFormGroupTag extends SimpleTagSupport {
 
 	private Collection data;
 	private String var;
 	private String label;
 	private List<Element> ths = new ArrayList<>();
-	private String iteration = RandomStringUtils.randomAlphanumeric(20);
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
@@ -44,13 +37,12 @@ public class DetailTableTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		String body = TagUtil.getBody(getJspBody());
-
 		Div container = new Div();
 		container.add(Attribute.ID, TagUtil.getId());
+		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
 		
 		Textarea template = new Textarea();
-		template.add(Attribute.CLASS, "d-none detail-table-template");
+		template.add(Attribute.CLASS, "d-none fg-template");
 		container.add(template);
 		
 		if (!StringUtils.isEmpty(label)) {
@@ -67,68 +59,60 @@ public class DetailTableTag extends SimpleTagSupport {
 		toolbar.add(Attribute.CLASS, "p-2");
 		Button button = new Button();
 		button.add(Attribute.TYPE, "button");
-		button.add(Attribute.CLASS, "btn btn-outline-primary detail-table-plus");
+		button.add(Attribute.CLASS, "btn btn-outline-primary fg-plus");
 		button.add(new Span().add(Attribute.CLASS, "fas fa-plus"));
 		toolbar.add(button);
 		container.add(toolbar);
 
-		Table table = new Table();
-		table.add(Attribute.CLASS, "table table-striped table-hover detail-table-table");
-
-		Th th = new Th();
-		this.ths.add(th);
-
-		Thead thead = new Thead();
-		Tr tr = new Tr();
-		thead.add(tr);
-		tr.add(this.ths);
-		table.add(thead);
-
-		Tbody tbody = new Tbody();
-
+		Div content = new Div();
+		content.add(Attribute.CLASS,"fg-content");
 		if (!CollectionUtils.isEmpty(data)) {
-			for (Object row : data) {
-				getJspContext().setAttribute(var, row);
-				Tr line = new Tr();
-				line.add(TagUtil.getBody(getJspBody()));
-				line.add(remove());
-				tbody.add(line);
-				iteration = RandomStringUtils.randomAlphanumeric(20);
+			for (Object object : data) {
+				getJspContext().setAttribute(var, object);
+				content.add(formGroup(TagUtil.getBody(getJspBody())));
 			}
 			getJspContext().setAttribute(var, null);
 		} else {
 			for (int i = 0; i < (atLeast > 0 ? atLeast : 1); i++) {
-				Tr line = new Tr();
-				line.add(body);
-				line.add(remove());
-				tbody.add(line);
-				iteration = RandomStringUtils.randomAlphanumeric(20);
+				content.add(formGroup(TagUtil.getBody(getJspBody())));
 			}
 		}
-
-		table.add(tbody);
-
-		container.add(table);
-
+		container.add(content);
+		
 		TagUtil.out(getJspContext(), container);
-
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('#" + container.get(Attribute.ID) + "').detail({ atLeast : " + atLeast + " , empty : " + empty
-				+ ", afterInsert : function (tr) { " + afterInsert + " } });");
+		script.add("$('#" + container.get(Attribute.ID) + "').formGroup({ atLeast : " + atLeast + " , empty : " + empty
+				+ ", afterInsert : function (element) { " + afterInsert + " } });");
 		TagUtil.out(getJspContext(), script);
 
 	}
-
+	
+	private Element formGroup(String content) {
+		
+		Div row = new Div();
+		row.add(Attribute.CLASS,"row fg-row border rounded text-secondary mt-3 mb-3 p-3");
+		
+		Div col1 = new Div();
+		col1.add(Attribute.CLASS,"col col-11");
+		col1.add(new Div().add(content));
+		
+		Div col2 = new Div();
+		col2.add(Attribute.CLASS,"col col-1 my-auto");
+		col2.add(remove());
+		
+		row.add(col1);
+		row.add(col2);
+		
+		return row;
+	}
+	
 	private Element remove() {
-		Td td = new Td();
-		td.add(Attribute.CLASS,"detail-table-minus-column");
 		Button minus = new Button();
-		minus.add(Attribute.ID, TagUtil.getId("bs.detail.table.remove[]", null));
-		minus.add(Attribute.CLASS, "btn btn-outline-danger detail-table-minus");
+		minus.add(Attribute.ID, TagUtil.getId("fg.remove[]", null));
+		minus.add(Attribute.CLASS, "btn btn-outline-danger fg-minus");
 		minus.add(new Span().add(Attribute.CLASS, "fas fa-minus"));
-		td.add(minus);
-		return td;
+		return minus;
 	}
 
 	public String getLabel() {
@@ -165,14 +149,6 @@ public class DetailTableTag extends SimpleTagSupport {
 
 	public void setVar(String var) {
 		this.var = var;
-	}
-
-	public String getIteration() {
-		return iteration;
-	}
-
-	public void setIteration(String iteration) {
-		this.iteration = iteration;
 	}
 
 	public Integer getAtLeast() {

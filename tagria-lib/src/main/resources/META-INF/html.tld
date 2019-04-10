@@ -581,8 +581,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders a detail table</description>
 		<display-name>Detail table</display-name>
-		<name>detailTable</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableTag</tag-class>
+		<name>multipleFormGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -622,54 +622,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1" label="Persons details"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
+				&lt;html:multipleFormGroup&gt;
+					
+				&lt;/html:multipleFormGroup&gt;
 			&lt;/html:form&gt;
 		</example>
 	</tag>
-
-	<tag>
-		<description>Renders a column in the detail table</description>
-		<display-name>Detail table</display-name>
-		<name>detailTableColumn</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableColumnTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates the label component</description>
-			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component has its required on a form</description>
-			<name>required</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<example>
-			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
-			&lt;/html:form&gt;
-		</example>
-	</tag>
-	
 	
 	<tag>
 		<description>Renders an icon</description>
