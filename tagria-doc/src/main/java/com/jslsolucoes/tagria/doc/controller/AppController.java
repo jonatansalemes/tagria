@@ -30,6 +30,11 @@ public class AppController {
 	public void index() {
 
 	}
+	
+	@Path("/app/playground")
+	public void playground() {
+
+	}
 
 	@Path("/app/welcome")
 	public void welcome() {

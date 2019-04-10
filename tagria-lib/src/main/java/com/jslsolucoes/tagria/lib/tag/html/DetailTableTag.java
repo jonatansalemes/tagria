@@ -122,6 +122,7 @@ public class DetailTableTag extends SimpleTagSupport {
 
 	private Element remove() {
 		Td td = new Td();
+		td.add(Attribute.CLASS,"detail-table-minus-column");
 		Button minus = new Button();
 		minus.add(Attribute.ID, TagUtil.getId("bs.detail.table.remove[]", null));
 		minus.add(Attribute.CLASS, "btn btn-outline-danger detail-table-minus");
