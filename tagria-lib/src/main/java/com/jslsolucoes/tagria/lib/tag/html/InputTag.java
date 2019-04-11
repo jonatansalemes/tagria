@@ -14,7 +14,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class InputTag extends SimpleTagSupport {
 
-	private String checked;
+	private Boolean checked;
 	private String name;
 	private String value;
 	private String pattern;
@@ -47,8 +47,8 @@ public class InputTag extends SimpleTagSupport {
 		if (min != null) {
 			input.add(Attribute.MIN, max);
 		}
-		
-		if(!StringUtils.isEmpty(list)) {
+
+		if (!StringUtils.isEmpty(list)) {
 			input.add(Attribute.LIST, list);
 		}
 
@@ -59,7 +59,7 @@ public class InputTag extends SimpleTagSupport {
 			input.add(Attribute.ACCEPT, accept);
 		}
 
-		input.add(Attribute.ID, TagUtil.getId(name, id, this));
+		input.add(Attribute.ID, TagUtil.getId(name, id));
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
 			input.add(Attribute.CLASS, "form-control shadow-sm");
 		}
@@ -89,8 +89,8 @@ public class InputTag extends SimpleTagSupport {
 		if (!StringUtils.isEmpty(pattern)) {
 			input.add(Attribute.PATTERN, pattern);
 		}
-		if (("checkbox".equals(type) || "radio".equals(type)) && !StringUtils.isEmpty(checked)
-				&& (checked.equals(value) || "true".equals(checked))) {
+		if (("checkbox".equals(type) || "radio".equals(type)) && checked != null
+				&& checked) {
 			input.add(Attribute.CHECKED, "checked");
 		}
 		if (disabled) {
@@ -182,11 +182,11 @@ public class InputTag extends SimpleTagSupport {
 		this.maxLength = maxLength;
 	}
 
-	public String getChecked() {
+	public Boolean getChecked() {
 		return checked;
 	}
 
-	public void setChecked(String checked) {
+	public void setChecked(Boolean checked) {
 		this.checked = checked;
 	}
 

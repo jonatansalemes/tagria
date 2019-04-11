@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
@@ -33,6 +34,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
+	private String varStatus;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -42,7 +44,8 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
 		
 		Textarea template = new Textarea();
-		template.add(Attribute.CLASS, "d-none fg-template");
+		//d-none
+		template.add(Attribute.CLASS, "fg-template");
 		container.add(template);
 		
 		if (!StringUtils.isEmpty(label)) {
@@ -67,9 +70,13 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		Div content = new Div();
 		content.add(Attribute.CLASS,"fg-content");
 		if (!CollectionUtils.isEmpty(data)) {
+			VarStatus varStatusObject = new VarStatus();
 			for (Object object : data) {
-				getJspContext().setAttribute(var, object);
+				JspContext jspContext = getJspContext();
+				jspContext.setAttribute(var, object);
+				jspContext.setAttribute(varStatus, varStatusObject);
 				content.add(formGroup(TagUtil.getBody(getJspBody())));
+				varStatusObject.increment();
 			}
 			getJspContext().setAttribute(var, null);
 		} else {
@@ -80,10 +87,11 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		container.add(content);
 		
 		TagUtil.out(getJspContext(), container);
-		Script script = new Script();
 		
+		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
+		Script script = new Script();
 		script.add("$('#" + container.get(Attribute.ID) + "').formGroup({ atLeast : " + atLeast + " , empty : " + empty
-				+ ", afterInsert : function (element) { " + afterInsert + " } });");
+				+ ", afterInsert : function (idx,element) { " + afterInsertFunction  + " } });");
 		TagUtil.out(getJspContext(), script);
 
 	}
@@ -173,6 +181,14 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 	public void setAfterInsert(String afterInsert) {
 		this.afterInsert = afterInsert;
+	}
+
+	public String getVarStatus() {
+		return varStatus;
+	}
+
+	public void setVarStatus(String varStatus) {
+		this.varStatus = varStatus;
 	}
 
 }

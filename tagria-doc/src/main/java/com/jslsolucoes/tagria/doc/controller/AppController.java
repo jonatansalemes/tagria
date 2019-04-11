@@ -33,7 +33,8 @@ public class AppController {
 	
 	@Path("/app/playground")
 	public void playground() {
-
+		this.result.include("booleanValue",Boolean.TRUE);
+		this.result.include("persons", pessoaRepository.listAll(0,3));
 	}
 
 	@Path("/app/welcome")

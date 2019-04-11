@@ -23,7 +23,7 @@ public class MenuCollapseTag extends SimpleTagSupport {
 		button.add(Attribute.TYPE,"button");
 		button.add(Attribute.CLASS,"navbar-toggler");
 		button.add(Attribute.DATA_TOGGLE,"collapse");
-		button.add(Attribute.DATA_TARGET,TagUtil.attachTo(attachToSelector,attachTo,this));	
+		button.add(Attribute.DATA_TARGET,TagUtil.attachTo(attachToSelector,attachTo));	
 		button.add(new Span().add(Attribute.CLASS,"navbar-toggler-icon"));
 		TagUtil.out(getJspContext(), button);
 	}

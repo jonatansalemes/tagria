@@ -8,20 +8,26 @@
 		<html:formGroup label="Password" required="true">
 			<html:input name="teste2" required="true"></html:input>
 		</html:formGroup>
-		<html:multipleFormGroup label="Minha divisao">
+		<html:formGroup label="Radio" required="true">
+			<html:input type="radio" name="rdb" value="true" checked="${ booleanValue }"></html:input>
+			<html:input type="radio" name="rdb" value="false" checked="${ !booleanValue }"></html:input>
+		</html:formGroup>
+		<html:multipleFormGroup label="Minha divisao" varStatus="status" data="${ persons }" var="person" afterInsert="newPerson">
 			<html:formGroup label="Last name">
-				<html:input name="lnames[]"></html:input>
+				<html:select id="par_person_lnames__${ status.index }" name="lnames[]" fixed="true">
+					<html:option value="1">Teste 1</html:option>
+					<html:option value="2">Teste 2</html:option>
+					<html:option value="3">Teste 3</html:option>
+				</html:select>
+				<html:jsEvent event="change" attachToSelector="#par_person_lnames__${ status.index }">
+					enableOrDisableContact(this);
+				</html:jsEvent>
 			</html:formGroup>
 			<html:formGroup label="First name">
-				<html:input name="fnames[]"></html:input>
+				<html:input id="par_first_name__${ status.index }" name="fnames[]"></html:input>
 			</html:formGroup>
 			<html:formGroup label="Ages">
 				<html:input name="ages[]"></html:input>
-			</html:formGroup>
-		</html:multipleFormGroup>
-		<html:multipleFormGroup label="Minha outra divisao">
-			<html:formGroup label="Last name">
-				<html:input name="emails[]" type="email"></html:input>
 			</html:formGroup>
 		</html:multipleFormGroup>
 		<html:multipleFormGroup label="Minha table">
@@ -58,6 +64,23 @@
 			</html:buttonGroup>
 		</html:toolbar>
 	</html:form>
+	
+	
+	
+	
+	<html:jsCode>
+		function enableOrDisableContact(object) {
+			var id = $(object).attr('id');
+			var line = id.split("__")[1];
+			$('#par_first_name__' + line).val(id);
+		}
+		
+		function newPerson(lineIndex,object) {
+			$('#par_person_lnames__' + lineIndex).change(function(){
+				enableOrDisableContact(this);
+			});
+		}
+	</html:jsCode>
 
 
 

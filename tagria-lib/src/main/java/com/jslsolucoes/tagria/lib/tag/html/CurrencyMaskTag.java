@@ -17,7 +17,7 @@ public class CurrencyMaskTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("$('" + TagUtil.attachTo(attachToSelector, attachTo, this)+ "').priceFormat({ prefix: '',centsSeparator: ',',thousandsSeparator: '.',centsLimit: 2});");
+		builder.append("$('" + TagUtil.attachTo(attachToSelector, attachTo)+ "').priceFormat({ prefix: '',centsSeparator: ',',thousandsSeparator: '.',centsLimit: 2});");
 
 		Script script = new Script();
 		

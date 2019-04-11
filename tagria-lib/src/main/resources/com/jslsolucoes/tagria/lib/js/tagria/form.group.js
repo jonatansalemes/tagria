@@ -3,7 +3,7 @@
 		options: {
 			atLeast : 0,
 			empty : false,
-			afterInsert : function (element) {
+			afterInsert : function (idx,element) {
 			
 			}
 		},
@@ -16,7 +16,7 @@
 				self._bindRemove();
 				self._reorganize();
 				self._atLeast();
-				self.options.afterInsert($('.fg-row:last',detail));
+				self._afterInsert();
 			});
 			
 			self._cloneToTemplate();
@@ -28,6 +28,18 @@
 				self._empty();
 			}
 		},
+		_afterInsert: function() {
+			var self = this;
+			var detail = self.element;
+			var idx = self._size() - 1;
+			var element = $('.fg-row:last',detail);
+			self.options.afterInsert(idx,element);
+		},
+		_size: function() {
+			var self = this;
+			var detail = self.element;
+			return $('.fg-row',detail).length;
+		},
 		_empty : function() {
 			var self = this;
 			var detail = self.element;
@@ -37,7 +49,7 @@
 			var self = this;
 			if( self.options.atLeast > 0 ) {
 				var detail = this.element;
-				if($('.fg-row',detail).length == self.options.atLeast) {
+				if(self._size() == self.options.atLeast) {
 					$('.fg-minus',detail).hide();
 				} else {
 					$('.fg-minus',detail).show();
@@ -53,43 +65,36 @@
 				self._atLeast();
 			});
 		},
-		_randString : function(string_length){
-			var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-			var randomstring = '';
-			for (var i=0; i<string_length; i++) {
-				var rnum = Math.floor(Math.random() * chars.length);
-				randomstring += chars.substring(rnum,rnum+1);
-			}
-			return randomstring;
-		},
 		_cloneLine : function() {
 			var self = this;
 			var detail = self.element;
 			var template = $('.fg-template',detail);
 			var clone = $(template.val());
+			var currentIndex = self._size();
 			$('*',clone).each(function(){
-				if($(this).attr('id')){
-					var id = $(this).attr('id');
-					var generated = id + '_' + self._randString(20);
-					clone.html(clone.html()
-							.replace(new RegExp('\\b' + id + '\\b', 'g'), generated));
+				var id = $(this).attr('id');
+				if(id){
+					var generated = id + '__' + currentIndex;
+					clone.html(clone.html().replace(new RegExp('\\b' + id + '\\b', 'g'), generated));
 				}
 			}); 
 			
 			$(':input:not(:button,:checkbox,:radio,.notClean)',clone).each(function(){
 				$(this).val('');
 			});
+			
 			$(':checkbox,:radio',clone).each(function(){
 				$(this).prop('checked',false);
 			});
+			
 			$('.fg-content',detail).append(clone);	
 		},
 		_cloneToTemplate : function() {
 			var self = this;
 			var detail = self.element;
 			$('.fg-template',detail).val('<div class="row fg-row border rounded text-secondary mt-3 mb-3 p-3">' + $('.fg-row:first',detail).html()
-					.replace(new RegExp('id="(.*?)_([^_]*?)"','g'),'id="$1"')
-					.replace(new RegExp("'#(.*?)_([^_]*?)'",'g'),"'#$1'") + '</div>');
+					.replace(new RegExp('id="([A-Z0-9a-z_]+)__[0-9]{1,}"','g'),'id="$1"')
+					.replace(new RegExp("<script>.*?<\/script>",'gs'),"") + '</div>');
 		},
 		_reorganize : function (){
 			var self = this;

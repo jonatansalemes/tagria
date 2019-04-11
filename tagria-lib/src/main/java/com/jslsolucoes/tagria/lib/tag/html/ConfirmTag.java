@@ -90,7 +90,7 @@ public class ConfirmTag extends SimpleTagSupport {
 
 		Script script = new Script();
 		
-		script.add("$('" + TagUtil.attachTo(attachToSelector, attachTo, this) + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
+		script.add("$('" + TagUtil.attachTo(attachToSelector, attachTo) + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
 				+ "');");
 		TagUtil.out(getJspContext(), script);
 	}

@@ -24,7 +24,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.tagext.JspFragment;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
@@ -40,7 +39,7 @@ import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
 
 public class TagUtil {
 
-	public static final String VERSION = "3.0.7.9";
+	public static final String VERSION = "3.0.7.25";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {
@@ -94,7 +93,7 @@ public class TagUtil {
 		return StringUtil.format(type, value, locale(jspContext));
 	}
 
-	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {
+	public static String getId(String name, String id) {
 		String idForComponent = "par_" + RandomStringUtils.randomAlphanumeric(20);
 		if (!StringUtils.isEmpty(id)) {
 			idForComponent = id;
@@ -103,17 +102,13 @@ public class TagUtil {
 		}
 		return idForComponent;
 	}
-
-	public static String getId(String name, String id) {
-		return TagUtil.getId(name, id, null);
-	}
-
+	
 	public static String getId() {
-		return TagUtil.getId(null, null, null);
+		return TagUtil.getId(null, null);
 	}
 
 	public static String getId(String id) {
-		return TagUtil.getId(null, id, null);
+		return TagUtil.getId(null, id);
 	}
 
 	public static String minifyHtml(String value) {
@@ -276,9 +271,9 @@ public class TagUtil {
 		return getPathForUrl(jspContext, "/tagria/locale");
 	}
 
-	public static String attachTo(String attachToSelector, String attachTo, SimpleTagSupport simpleTagSupport) {
+	public static String attachTo(String attachToSelector, String attachTo) {
 		if (StringUtils.isEmpty(attachToSelector)) {
-			return "#" + TagUtil.getId(attachTo, null, simpleTagSupport);
+			return "#" + TagUtil.getId(attachTo, null);
 		}
 		return attachToSelector;
 	}

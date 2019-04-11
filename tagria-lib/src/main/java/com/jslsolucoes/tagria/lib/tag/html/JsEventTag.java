@@ -20,7 +20,7 @@ public class JsEventTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			StringBuilder builder = new StringBuilder();
-			builder.append("$('" + TagUtil.attachTo(attachToSelector, attachTo, this) + "')." + event + "(function(){");
+			builder.append("$('" + TagUtil.attachTo(attachToSelector, attachTo) + "')." + event + "(function(){");
 			builder.append(TagUtil.getBody(getJspBody()));
 			builder.append("});");
 

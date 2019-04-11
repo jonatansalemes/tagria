@@ -19,7 +19,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 @SuppressWarnings("rawtypes")
 public class SelectTag extends SimpleTagSupport {
 
-	
+	private String id;
 	private Collection data;
 	private Map map;
 	private String name;
@@ -33,7 +33,7 @@ public class SelectTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Select select = new Select();
-		select.add(Attribute.ID, TagUtil.getId(name, null, this));
+		select.add(Attribute.ID, TagUtil.getId(name, id));
 		select.add(Attribute.NAME, name);
 		select.add(new Option().add(Attribute.VALUE, "").add("- - -"));
 		if (required) {
@@ -126,6 +126,14 @@ public class SelectTag extends SimpleTagSupport {
 
 	public void setFixed(Boolean fixed) {
 		this.fixed = fixed;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
