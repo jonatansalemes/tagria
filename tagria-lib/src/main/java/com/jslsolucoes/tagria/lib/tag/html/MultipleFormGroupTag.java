@@ -71,14 +71,19 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		content.add(Attribute.CLASS,"fg-content");
 		if (!CollectionUtils.isEmpty(data)) {
 			VarStatus varStatusObject = new VarStatus();
+			JspContext jspContext = getJspContext();
 			for (Object object : data) {
-				JspContext jspContext = getJspContext();
 				jspContext.setAttribute(var, object);
-				jspContext.setAttribute(varStatus, varStatusObject);
+				if(!StringUtils.isEmpty(varStatus)) {
+					jspContext.setAttribute(varStatus, varStatusObject);
+				}
 				content.add(formGroup(TagUtil.getBody(getJspBody())));
 				varStatusObject.increment();
 			}
-			getJspContext().setAttribute(var, null);
+			if(!StringUtils.isEmpty(varStatus)) {
+				jspContext.setAttribute(varStatus, null);
+			}
+			jspContext.setAttribute(var, null);
 		} else {
 			for (int i = 0; i < (atLeast > 0 ? atLeast : 1); i++) {
 				content.add(formGroup(TagUtil.getBody(getJspBody())));
