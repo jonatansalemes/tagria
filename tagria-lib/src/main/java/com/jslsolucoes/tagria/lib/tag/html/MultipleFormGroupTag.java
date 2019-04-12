@@ -44,8 +44,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
 		
 		Textarea template = new Textarea();
-		//d-none
-		template.add(Attribute.CLASS, "fg-template");
+		template.add(Attribute.CLASS, "d-none fg-template");
 		container.add(template);
 		
 		if (!StringUtils.isEmpty(label)) {
