@@ -26,7 +26,7 @@ public class TabPanelTag extends SimpleTagSupport {
 		TagUtil.flushBody(getJspBody());
 
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId());
+		div.add(Attribute.ID, TagUtil.getId(this));
 
 		Ul ul = new Ul();
 		ul.add(Attribute.CLASS, "nav nav-tabs");

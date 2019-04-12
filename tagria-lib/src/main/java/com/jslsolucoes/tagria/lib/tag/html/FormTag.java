@@ -41,7 +41,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 				form.add(Attribute.NAME, name);
 			}
 			form.add(Attribute.TARGET, target);
-			form.add(Attribute.ID, TagUtil.getId());
+			form.add(Attribute.ID, TagUtil.getId(this));
 			form.add(Attribute.METHOD, method);
 			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
 			if (multipart) {

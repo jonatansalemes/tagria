@@ -59,7 +59,7 @@ public class InputTag extends SimpleTagSupport {
 			input.add(Attribute.ACCEPT, accept);
 		}
 
-		input.add(Attribute.ID, TagUtil.getId(name, id));
+		input.add(Attribute.ID, TagUtil.getId(name, id,this));
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
 			input.add(Attribute.CLASS, "form-control shadow-sm");
 		}

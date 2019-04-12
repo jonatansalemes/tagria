@@ -40,7 +40,7 @@ public class ButtonTag extends SimpleTagSupport {
 				a.add(Attribute.DATA_TYPE, type);
 			}
 			a.add(Attribute.TARGET, target);
-			a.add(Attribute.ID, TagUtil.getId(id));
+			a.add(Attribute.ID, TagUtil.getId(id,this));
 			a.add(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm");
 
 			if (!StringUtils.isEmpty(cssClass)) {

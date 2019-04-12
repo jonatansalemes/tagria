@@ -65,7 +65,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 			Div container = new Div();
 			container.add(Attribute.CLASS, "border border-secondary rounded p-2");
-			container.add(Attribute.ID, TagUtil.getId());
+			container.add(Attribute.ID, TagUtil.getId(this));
 
 			if (!StringUtils.isEmpty(label)) {
 				Div title = new Div();

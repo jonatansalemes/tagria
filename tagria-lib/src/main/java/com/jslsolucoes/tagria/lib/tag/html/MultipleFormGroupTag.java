@@ -35,17 +35,31 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
 	private String varStatus;
+	private VarStatus varStatusObject;
 
 	@Override
 	public void doTag() throws JspException, IOException {
 
+		varStatusObject = new VarStatus();
 		Div container = new Div();
-		container.add(Attribute.ID, TagUtil.getId());
+		container.add(Attribute.ID, TagUtil.getId(this));
 		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
 		
 		Textarea template = new Textarea();
 		template.add(Attribute.CLASS, "d-none fg-template");
 		container.add(template);
+		
+		Div toolbar = new Div();
+		toolbar.add(Attribute.CLASS, "p-2");
+		
+		Div buttonGroup = new Div();
+		buttonGroup.add(Attribute.CLASS, "float-left clear-both");
+		Button button = new Button();
+		button.add(Attribute.TYPE, "button");
+		button.add(Attribute.CLASS, "btn btn-outline-primary fg-plus");
+		button.add(new Span().add(Attribute.CLASS, "fas fa-plus"));
+		buttonGroup.add(button);
+		toolbar.add(buttonGroup);
 		
 		if (!StringUtils.isEmpty(label)) {
 			Div title = new Div();
@@ -54,22 +68,16 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 			h4.add(Attribute.CLASS, "text-secondary");
 			h4.add(TagUtil.getLocalized(getLabel(), getJspContext()));
 			title.add(h4);
-			container.add(title);
+			toolbar.add(title);
 		}
-
-		Div toolbar = new Div();
-		toolbar.add(Attribute.CLASS, "p-2");
-		Button button = new Button();
-		button.add(Attribute.TYPE, "button");
-		button.add(Attribute.CLASS, "btn btn-outline-primary fg-plus");
-		button.add(new Span().add(Attribute.CLASS, "fas fa-plus"));
-		toolbar.add(button);
+		
 		container.add(toolbar);
 
 		Div content = new Div();
 		content.add(Attribute.CLASS,"fg-content");
+
 		if (!CollectionUtils.isEmpty(data)) {
-			VarStatus varStatusObject = new VarStatus();
+			
 			JspContext jspContext = getJspContext();
 			for (Object object : data) {
 				jspContext.setAttribute(var, object);
@@ -121,7 +129,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	
 	private Element remove() {
 		Button minus = new Button();
-		minus.add(Attribute.ID, TagUtil.getId());
+		minus.add(Attribute.ID, TagUtil.getId(this));
 		minus.add(Attribute.CLASS, "btn btn-outline-danger fg-minus");
 		minus.add(new Span().add(Attribute.CLASS, "fas fa-minus"));
 		return minus;
@@ -193,6 +201,14 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 	public void setVarStatus(String varStatus) {
 		this.varStatus = varStatus;
+	}
+
+	public VarStatus getVarStatusObject() {
+		return varStatusObject;
+	}
+
+	public void setVarStatusObject(VarStatus varStatusObject) {
+		this.varStatusObject = varStatusObject;
 	}
 
 }
