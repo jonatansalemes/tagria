@@ -12,7 +12,7 @@
 			<html:input type="radio" name="rdb" value="true" checked="${ booleanValue }"></html:input>
 			<html:input type="radio" name="rdb" value="false" checked="${ !booleanValue }"></html:input>
 		</html:formGroup>
-		<html:multipleFormGroup label="Minha divisao" varStatus="status" data="${ persons }" var="person" afterInsert="newPerson">
+		<html:multipleFormGroup label="Minha divisao" varStatus="status" data="${ persons }" var="person" afterInsert="newPerson" afterRemove="removePerson">
 			<html:formGroup label="Last name">
 				<html:select name="lnames[]" fixed="true">
 					<html:option value="1">Teste 1</html:option>
@@ -71,11 +71,14 @@
 	
 	
 	<html:jsCode>
-		function newPerson(lineIndex,object) {
-			console.log(lineIndex);
+		function removePerson() {
+			console.log('remove');
+		}
+		
+		function newPerson(idx,object) {
+			console.log('insert:' + idx);
 		}
 	</html:jsCode>
-
 
 
 </html:view>
