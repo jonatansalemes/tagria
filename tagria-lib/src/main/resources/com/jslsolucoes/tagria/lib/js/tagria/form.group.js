@@ -76,17 +76,9 @@
 		_cloneLine : function() {
 			var self = this;
 			var detail = self.element;
-			var template = $('.fg-template',detail);
-			var clone = $(template.val());
 			var currentIndex = self._size();
-			$('*',clone).each(function(){
-				var id = $(this).attr('id');
-				if(id){
-					var generated = id + '__' + currentIndex;
-					clone.html(clone.html().replace(new RegExp('\\b' + id + '\\b', 'g'), generated));
-				}
-			}); 
-			
+			var template = $('.fg-template',detail).val().replace(new RegExp('__0','g'),'__' + currentIndex);
+			var clone = $(template);
 			$(':input:not(:button,:checkbox,:radio,.notClean)',clone).each(function(){
 				$(this).val('');
 			});
@@ -101,17 +93,20 @@
 			var self = this;
 			var detail = self.element;
 			$('.fg-template',detail).val('<div class="row fg-row border rounded text-secondary mt-3 mb-3 p-3">' + $('.fg-row:first',detail).html()
-					.replace(new RegExp('id="([A-Z0-9a-z_]+)__[0-9]{1,}"','g'),'id="$1"')
-					.replace(new RegExp("<script>.*?<\/script>",'gs'),"") + '</div>');
+					+ '</div>');
 		},
 		_reorganize : function (){
 			var self = this;
 			var detail = self.element;	
 			$('.fg-row',detail).each(function(index){
 				$('*',this).each(function(){
-					if($(this).attr('name')){
-						var name = $(this).attr('name');
+					var name = $(this).attr('name');
+					if(name){
 						$(this).attr('name',name.replace(/(\[.*?\])/,'['+index+']'));
+					}
+					var id = $(this).attr('id');
+					if(id){
+						$(this).attr('id',id.replace(new RegExp('__[0-9]{1,}','g'),'__' + index));
 					}
 				});
 			});

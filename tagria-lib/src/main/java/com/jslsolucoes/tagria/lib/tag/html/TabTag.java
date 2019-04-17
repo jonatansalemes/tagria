@@ -29,7 +29,7 @@ public class TabTag extends SimpleTagSupport {
 		if (rendered != null && rendered) {
 			TabPanelTag panel = (TabPanelTag) findAncestorWithClass(this, TabPanelTag.class);
 
-			String id = TagUtil.getId();
+			String id = TagUtil.getId(this);
 			Li li = new Li();
 			if (reloadOnSelect) {
 				li.add(Attribute.CLASS, "tab-reload-on-select nav-item");
@@ -58,7 +58,7 @@ public class TabTag extends SimpleTagSupport {
 			} else {
 				Iframe iframe = new Iframe();
 				iframe.add(Attribute.CLASS,"iframe");
-				iframe.add(Attribute.ID, TagUtil.getId());
+				iframe.add(Attribute.ID, TagUtil.getId(this));
 				iframe.add(Attribute.SRC, TagUtil.getPathForBlank(getJspContext()));
 				iframe.add(Attribute.DATA_URL, TagUtil.getPathForUrl(getJspContext(), url));
 				if (active) {

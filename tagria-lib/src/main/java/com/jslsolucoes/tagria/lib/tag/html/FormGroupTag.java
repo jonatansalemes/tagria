@@ -33,7 +33,7 @@ public class FormGroupTag extends SimpleTagSupport {
 				div.add(Attribute.CLASS, "collapse");
 			}
 
-			div.add(Attribute.ID, TagUtil.getId(id));
+			div.add(Attribute.ID, TagUtil.getId(id,this));
 
 			if (!StringUtils.isEmpty(label)) {
 				Label title = new Label();

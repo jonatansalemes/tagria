@@ -28,7 +28,7 @@ public class IframeTag extends SimpleTagSupport {
 			iframe.add(Attribute.CLASS, cssClass);
 		}
 		iframe.add(Attribute.NAME, name);
-		iframe.add(Attribute.ID, TagUtil.getId(name, id));
+		iframe.add(Attribute.ID, TagUtil.getId(name, id,this));
 		iframe.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));
 		TagUtil.out(getJspContext(), iframe);
 

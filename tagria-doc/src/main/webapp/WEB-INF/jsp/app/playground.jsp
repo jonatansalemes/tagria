@@ -9,14 +9,10 @@
 			<html:input name="teste2" required="true"></html:input>
 		</html:formGroup>
 		<html:formGroup label="Radio" required="true">
-			<html:input type="radio" name="rdb" value="true"
-				checked="${ booleanValue }"></html:input>
-			<html:input type="radio" name="rdb" value="false"
-				checked="${ !booleanValue }"></html:input>
+			<html:input type="radio" name="rdb" value="true" checked="${ booleanValue }"></html:input>
+			<html:input type="radio" name="rdb" value="false" checked="${ !booleanValue }"></html:input>
 		</html:formGroup>
-		<html:multipleFormGroup label="Minha divisao" varStatus="status"
-			data="${ persons }" var="person" afterInsert="newPerson"
-			afterRemove="removePerson">
+		<html:multipleFormGroup label="Minha divisao" varStatus="status" data="${ persons }" var="person" afterInsert="newPerson">
 			<html:formGroup label="Last name">
 				<html:select name="lnames[]" fixed="true">
 					<html:option value="1">Teste 1</html:option>
@@ -24,9 +20,9 @@
 					<html:option value="3">Teste 3</html:option>
 				</html:select>
 				<html:jsEvent event="change" attachTo="lnames[]">
-					var id = $(object).attr('id');
+					var id = $(this).attr('id');
 					var line = id.split("__")[1];
-					$('#par_first_name__' + line).val(id);
+					$('#par_fnames__' + line).val(id);
 				</html:jsEvent>
 			</html:formGroup>
 			<html:formGroup label="First name">
@@ -70,19 +66,13 @@
 			</html:buttonGroup>
 		</html:toolbar>
 	</html:form>
-
-
-
-
+	
+	
+	
+	
 	<html:jsCode>
-		
-		
-		function removePerson() {
-			console.log('removed');
-		}
-		
-		function newPerson(idx,object) {
-			console.log(idx);
+		function newPerson(lineIndex,object) {
+			console.log(lineIndex);
 		}
 	</html:jsCode>
 

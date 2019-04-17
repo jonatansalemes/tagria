@@ -33,7 +33,7 @@ public class SelectTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Select select = new Select();
-		select.add(Attribute.ID, TagUtil.getId(name, id));
+		select.add(Attribute.ID, TagUtil.getId(name, id,this));
 		select.add(Attribute.NAME, name);
 		select.add(new Option().add(Attribute.VALUE, "").add("- - -"));
 		if (required) {
