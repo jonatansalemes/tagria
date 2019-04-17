@@ -34,6 +34,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
+	private String afterRemove;
 	private String varStatus;
 
 	@Override
@@ -42,12 +43,11 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		Div container = new Div();
 		container.add(Attribute.ID, TagUtil.getId());
 		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
-		
+
 		Textarea template = new Textarea();
-		//d-none
-		template.add(Attribute.CLASS, "fg-template");
+		template.add(Attribute.CLASS, "d-none fg-template");
 		container.add(template);
-		
+
 		if (!StringUtils.isEmpty(label)) {
 			Div title = new Div();
 			title.add(Attribute.CLASS, "text-center");
@@ -68,7 +68,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		container.add(toolbar);
 
 		Div content = new Div();
-		content.add(Attribute.CLASS,"fg-content");
+		content.add(Attribute.CLASS, "fg-content");
 		if (!CollectionUtils.isEmpty(data)) {
 			VarStatus varStatusObject = new VarStatus();
 			for (Object object : data) {
@@ -85,36 +85,38 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 			}
 		}
 		container.add(content);
-		
+
 		TagUtil.out(getJspContext(), container);
+
+		String afterInsertFunction = (StringUtils.isEmpty(afterInsert) ? "function (idx,element) { }" : afterInsert);
+		String afterRemoveFunction = (StringUtils.isEmpty(afterRemove) ? "function () { }" : afterRemove);
 		
-		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
 		Script script = new Script();
 		script.add("$('#" + container.get(Attribute.ID) + "').formGroup({ atLeast : " + atLeast + " , empty : " + empty
-				+ ", afterInsert : function (idx,element) { " + afterInsertFunction  + " } });");
+				+ ", afterInsert : " + afterInsertFunction + " , afterRemove : " + afterRemoveFunction + " });");
 		TagUtil.out(getJspContext(), script);
 
 	}
-	
+
 	private Element formGroup(String content) {
-		
+
 		Div row = new Div();
-		row.add(Attribute.CLASS,"row fg-row border rounded text-secondary mt-3 mb-3 p-3");
-		
+		row.add(Attribute.CLASS, "row fg-row border rounded text-secondary mt-3 mb-3 p-3");
+
 		Div col1 = new Div();
-		col1.add(Attribute.CLASS,"col col-11");
+		col1.add(Attribute.CLASS, "col col-11");
 		col1.add(new Div().add(content));
-		
+
 		Div col2 = new Div();
-		col2.add(Attribute.CLASS,"col col-1 my-auto");
+		col2.add(Attribute.CLASS, "col col-1 my-auto");
 		col2.add(remove());
-		
+
 		row.add(col1);
 		row.add(col2);
-		
+
 		return row;
 	}
-	
+
 	private Element remove() {
 		Button minus = new Button();
 		minus.add(Attribute.ID, TagUtil.getId());
@@ -189,6 +191,14 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 	public void setVarStatus(String varStatus) {
 		this.varStatus = varStatus;
+	}
+
+	public String getAfterRemove() {
+		return afterRemove;
+	}
+
+	public void setAfterRemove(String afterRemove) {
+		this.afterRemove = afterRemove;
 	}
 
 }

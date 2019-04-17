@@ -5,6 +5,9 @@
 			empty : false,
 			afterInsert : function (idx,element) {
 			
+			},
+			afterRemove : function() {
+				
 			}
 		},
 		_create: function() {
@@ -35,6 +38,10 @@
 			var element = $('.fg-row:last',detail);
 			self.options.afterInsert(idx,element);
 		},
+		_afterRemove : function() {
+			var self = this;
+			self.options.afterRemove();
+		},
 		_size: function() {
 			var self = this;
 			var detail = self.element;
@@ -63,6 +70,7 @@
 				$(this).parent().parent().remove();	
 				self._reorganize();
 				self._atLeast();
+				self._afterRemove();
 			});
 		},
 		_cloneLine : function() {

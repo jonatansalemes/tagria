@@ -627,8 +627,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates a javascript function to be performed after inserting a row</description>
+			<description>Indicates a javascript function to be performed after insert a row. function signature is f(idx,element). idx: index of line was added, element: clone of elements declared in template  </description>
 			<name>afterInsert</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a javascript function to be performed after remove a row. function signature is void f()</description>
+			<name>afterRemove</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
