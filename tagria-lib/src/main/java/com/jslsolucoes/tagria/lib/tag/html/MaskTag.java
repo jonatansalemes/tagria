@@ -21,7 +21,7 @@ public class MaskTag extends SimpleTagSupport {
 		TagUtil.getBody(getJspBody());			
 		String placeholder = mask.replaceAll("([0-9]|[A-Za-z]|#)", "_");
 		StringBuilder builder = new StringBuilder();
-		builder.append("$('#" + TagUtil.getId(attachTo, null) + "').mask('" + mask + "', {placeholder: '"
+		builder.append("$('" + TagUtil.attachTo(null, attachTo, this) + "').mask('" + mask + "', {placeholder: '"
 				+ placeholder + "' , reverse : " + reverse + ",onKeyPress: function(value, e, field, options){" +onKeyPress+ "}});");
 		Script script = new Script();
 		

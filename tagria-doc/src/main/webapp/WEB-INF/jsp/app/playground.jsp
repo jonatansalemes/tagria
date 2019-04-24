@@ -46,6 +46,8 @@
 					<html:tableLine>
 						<html:tableColumn>
 							<html:input name="chocolates[]"></html:input>
+							<html:mask mask="99/99/9999" attachTo="chocolates[]"></html:mask>
+							<html:datePicker attachTo="chocolates[]"></html:datePicker>
 						</html:tableColumn>
 						<html:tableColumn>
 							<html:input name="chocolates1[]"></html:input>

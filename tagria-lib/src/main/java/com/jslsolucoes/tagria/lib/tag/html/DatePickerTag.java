@@ -18,7 +18,7 @@ public class DatePickerTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("$(document).ready(function(){ " + "	$('#" + TagUtil.getId(attachTo, null)
+		builder.append("$(document).ready(function(){ " + "	$('" + TagUtil.attachTo(null, attachTo, this)
 				+ "').datepicker({ 																																																																	"
 				+ "					changeMonth: true,																																																																																																																																																																																																																																																		"
 				+ "					changeYear: true,																																																																								"

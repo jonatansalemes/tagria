@@ -15,17 +15,14 @@
 			var detail = self.element;
 			
 			$('.fg-plus',detail).on('click',function(){
-				self._cloneLine();
-				self._bindRemove();
-				self._reorganize();
-				self._atLeast();
-				self._afterInsert();
+				self._addLine();
 			});
 			
 			self._cloneToTemplate();
-			self._bindRemove();
+			self._bindRemove('.fg-minus');
 			self._reorganize();
 			self._atLeast();
+			self._setIndex(self._size());
 			
 			if(self.options.empty){
 				self._empty();
@@ -34,7 +31,7 @@
 		_afterInsert: function() {
 			var self = this;
 			var detail = self.element;
-			var idx = self._size() - 1;
+			var idx = self._index();
 			var element = $('.fg-row:last',detail);
 			self.options.afterInsert(idx,element);
 		},
@@ -54,29 +51,55 @@
 		},
 		_atLeast : function() {
 			var self = this;
+			var size = self._size();
 			if( self.options.atLeast > 0 ) {
 				var detail = this.element;
-				if(self._size() == self.options.atLeast) {
+				if(size == self.options.atLeast) {
 					$('.fg-minus',detail).hide();
 				} else {
 					$('.fg-minus',detail).show();
 				}
 			}
 		},
-		_bindRemove : function() {
+		_bindRemove : function(selector) {
 			var self = this;
 			var detail = self.element;
-			$('.fg-minus',detail).on('click.detail',function(){
-				$(this).parent().parent().remove();	
-				self._reorganize();
-				self._atLeast();
-				self._afterRemove();
+			$(selector,detail).on('click.formGroup',function(){
+				self._removeLine(this);
 			});
+		},
+		_removeObjectLine : function(object) {
+			$(object).parent().parent().remove();
+		},
+		_removeLine: function(object) {
+			var self = this;
+			self._removeObjectLine(object);
+			self._reorganize();
+			self._atLeast();
+			self._afterRemove();
+		},
+		_addLine : function() {
+			var self = this;
+			self._cloneLine();
+			self._incrementIndex();
+			self._bindRemove('.fg-minus:last');
+			self._reorganize();
+			self._atLeast();
+			self._afterInsert();
+		},
+		_setIndex : function(value) {
+			this.index = value;
+		},
+		_index : function() {
+			return this.index;
+		},
+		_incrementIndex : function() {
+			this.index++;
 		},
 		_cloneLine : function() {
 			var self = this;
 			var detail = self.element;
-			var currentIndex = self._size();
+			var currentIndex = self._index();
 			var template = $('.fg-template',detail).val().replace(new RegExp('__0','g'),'__' + currentIndex);
 			var clone = $(template);
 			$(':input:not(:button,:checkbox,:radio,.notClean)',clone).each(function(){
@@ -103,10 +126,6 @@
 					var name = $(this).attr('name');
 					if(name){
 						$(this).attr('name',name.replace(/(\[.*?\])/,'['+index+']'));
-					}
-					var id = $(this).attr('id');
-					if(id){
-						$(this).attr('id',id.replace(new RegExp('__[0-9]{1,}','g'),'__' + index));
 					}
 				});
 			});
