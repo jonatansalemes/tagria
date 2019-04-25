@@ -28,7 +28,7 @@ public class MenuDropDownItemTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered && (auth ? TagUtil.allowed(getJspContext(),new CheckRule(url, "GET")) : true)) {
 			A a = new A();
-			a.add(Attribute.ID, TagUtil.getId(id));
+			a.add(Attribute.ID, TagUtil.getId(id,this));
 			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 			a.add(Attribute.TARGET, target);
 			a.add(Attribute.CLASS,"dropdown-item");

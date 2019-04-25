@@ -25,7 +25,7 @@ public class MenuDropDownTag extends SimpleTagSupport {
 			
 			A a = new A();
 			a.add(Attribute.HREF, "#");
-			a.add(Attribute.ID, TagUtil.getId(id));
+			a.add(Attribute.ID, TagUtil.getId(id,this));
 			a.add(Attribute.CLASS, "nav-link dropdown-toggle");
 			a.add(Attribute.DATA_TOGGLE,"dropdown");
 			a.add(TagUtil.getLocalized(label, getJspContext()));	

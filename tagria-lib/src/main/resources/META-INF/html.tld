@@ -452,6 +452,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SelectTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates a css class to the component</description>
 			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -581,8 +587,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders a detail table</description>
 		<display-name>Detail table</display-name>
-		<name>detailTable</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableTag</tag-class>
+		<name>multipleFormGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -603,6 +609,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates the name of the variable java (com.jslsolucoes.tagria.lib.tag.html.VarStatus) to be made available the index of iteration.  </description>
+			<name>varStatus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the minimum number of lines to be filled</description>
 			<name>atLeast</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -615,61 +627,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates a javascript function to be performed after inserting a row</description>
+			<description>Indicates a javascript function to be performed after insert a row. function signature is f(idx,element). idx: index of line was added, element: clone of elements declared in template  </description>
 			<name>afterInsert</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<example>
-			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1" label="Persons details"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
-			&lt;/html:form&gt;
-		</example>
-	</tag>
-
-	<tag>
-		<description>Renders a column in the detail table</description>
-		<display-name>Detail table</display-name>
-		<name>detailTableColumn</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableColumnTag</tag-class>
-		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the label component</description>
-			<name>label</name>
+			<description>Indicates a javascript function to be performed after remove a row. function signature is void f()</description>
+			<name>afterRemove</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<attribute>
-			<description>It indicates whether the component has its required on a form</description>
-			<name>required</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
 		<example>
 			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
+				&lt;html:multipleFormGroup&gt;
+					
+				&lt;/html:multipleFormGroup&gt;
 			&lt;/html:form&gt;
 		</example>
 	</tag>
-	
 	
 	<tag>
 		<description>Renders an icon</description>
@@ -1838,8 +1814,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the component should win the cursor focus</description>
+			<description>It indicates whether the component should gain the cursor focus</description>
 			<name>focus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Defines if input allow autocomplete previous input date.Default false</description>
+			<name>autocomplete</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -1883,7 +1865,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<description>Indicates if (radio, checkbox) if the component should be marked</description>
 			<name>checked</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates whether the component supports multiple inputs</description>

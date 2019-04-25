@@ -29,7 +29,7 @@ public class MenuLinkTag extends SimpleTagSupport {
 			A a = new A();
 			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 			a.add(Attribute.TARGET, target);
-			a.add(Attribute.ID, TagUtil.getId(id));
+			a.add(Attribute.ID, TagUtil.getId(id,this));
 			a.add(Attribute.CLASS,"nav-link");
 
 			if (!StringUtils.isEmpty(icon)) {

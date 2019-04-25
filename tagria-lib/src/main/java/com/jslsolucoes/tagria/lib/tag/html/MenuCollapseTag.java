@@ -19,7 +19,7 @@ public class MenuCollapseTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Button button = new Button();
-		button.add(Attribute.ID, TagUtil.getId(id));
+		button.add(Attribute.ID, TagUtil.getId(id,this));
 		button.add(Attribute.TYPE,"button");
 		button.add(Attribute.CLASS,"navbar-toggler");
 		button.add(Attribute.DATA_TOGGLE,"collapse");

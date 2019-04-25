@@ -30,6 +30,12 @@ public class AppController {
 	public void index() {
 
 	}
+	
+	@Path("/app/playground")
+	public void playground() {
+		this.result.include("booleanValue",Boolean.TRUE);
+		this.result.include("persons", pessoaRepository.listAll(0,3));
+	}
 
 	@Path("/app/welcome")
 	public void welcome() {

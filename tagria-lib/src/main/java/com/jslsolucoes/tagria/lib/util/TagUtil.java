@@ -36,11 +36,12 @@ import com.jslsolucoes.tagria.lib.html.Element;
 import com.jslsolucoes.tagria.lib.servlet.Tagria;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
+import com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag;
 import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
 
 public class TagUtil {
 
-	public static final String VERSION = "3.0.5.0";
+	public static final String VERSION = "3.0.7.46";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {
@@ -94,26 +95,39 @@ public class TagUtil {
 		return StringUtil.format(type, value, locale(jspContext));
 	}
 
-	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {
+	public static String getId(String name, String id,SimpleTagSupport simpleTagSupport) {
 		String idForComponent = "par_" + RandomStringUtils.randomAlphanumeric(20);
 		if (!StringUtils.isEmpty(id)) {
 			idForComponent = id;
 		} else if (!StringUtils.isEmpty(name)) {
 			idForComponent = "par_" + name.replaceAll("\\.", "_").replaceAll("\\[([0-9]{1,}|)\\]", "");
 		}
-		return idForComponent;
+		return idForComponent + complementForMultipleFormGroup(simpleTagSupport);
+	}
+	
+	private static String complementForMultipleFormGroup(SimpleTagSupport simpleTagSupport) {
+		if (simpleTagSupport == null) {
+			return "";
+		} else {
+			MultipleFormGroupTag multipleFormGroupTag = (MultipleFormGroupTag) SimpleTagSupport.findAncestorWithClass(simpleTagSupport,
+					MultipleFormGroupTag.class);
+			return multipleFormGroupTag != null ? "__" + multipleFormGroupTag.getVarStatusObject().getIndex() : "";
+		}
+	}
+	
+	public static String attachTo(String attachToSelector, String attachTo,SimpleTagSupport simpleTagSupport) {
+		if (StringUtils.isEmpty(attachToSelector)) {
+			return "#" + TagUtil.getId(attachTo, null,simpleTagSupport);
+		}
+		return attachToSelector;
+	}
+	
+	public static String getId(SimpleTagSupport simpleTagSupport) {
+		return TagUtil.getId(null, null,simpleTagSupport);
 	}
 
-	public static String getId(String name, String id) {
-		return TagUtil.getId(name, id, null);
-	}
-
-	public static String getId() {
-		return TagUtil.getId(null, null, null);
-	}
-
-	public static String getId(String id) {
-		return TagUtil.getId(null, id, null);
+	public static String getId(String id,SimpleTagSupport simpleTagSupport) {
+		return TagUtil.getId(null, id,simpleTagSupport);
 	}
 
 	public static String minifyHtml(String value) {
@@ -274,12 +288,5 @@ public class TagUtil {
 
 	public static String getPathForLocale(JspContext jspContext) {
 		return getPathForUrl(jspContext, "/tagria/locale");
-	}
-
-	public static String attachTo(String attachToSelector, String attachTo, SimpleTagSupport simpleTagSupport) {
-		if (StringUtils.isEmpty(attachToSelector)) {
-			return "#" + TagUtil.getId(attachTo, null, simpleTagSupport);
-		}
-		return attachToSelector;
 	}
 }
