@@ -33,12 +33,14 @@ public class InputTag extends SimpleTagSupport {
 	private Integer max;
 	private Integer min;
 	private String list;
+	private Boolean autocomplete = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		Input input = new Input();
 		input.add(Attribute.TYPE, type);
 		input.add(Attribute.NAME, name);
+		input.add(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
 
 		if (max != null) {
 			input.add(Attribute.MAX, max);
@@ -59,7 +61,7 @@ public class InputTag extends SimpleTagSupport {
 			input.add(Attribute.ACCEPT, accept);
 		}
 
-		input.add(Attribute.ID, TagUtil.getId(name, id,this));
+		input.add(Attribute.ID, TagUtil.getId(name, id, this));
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
 			input.add(Attribute.CLASS, "form-control shadow-sm");
 		}
@@ -89,8 +91,7 @@ public class InputTag extends SimpleTagSupport {
 		if (!StringUtils.isEmpty(pattern)) {
 			input.add(Attribute.PATTERN, pattern);
 		}
-		if (("checkbox".equals(type) || "radio".equals(type)) && checked != null
-				&& checked) {
+		if (("checkbox".equals(type) || "radio".equals(type)) && checked != null && checked) {
 			input.add(Attribute.CHECKED, "checked");
 		}
 		if (disabled) {
@@ -260,6 +261,14 @@ public class InputTag extends SimpleTagSupport {
 
 	public void setList(String list) {
 		this.list = list;
+	}
+
+	public Boolean getAutocomplete() {
+		return autocomplete;
+	}
+
+	public void setAutocomplete(Boolean autocomplete) {
+		this.autocomplete = autocomplete;
 	}
 
 }

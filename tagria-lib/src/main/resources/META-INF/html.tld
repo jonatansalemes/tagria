@@ -1814,8 +1814,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the component should win the cursor focus</description>
+			<description>It indicates whether the component should gain the cursor focus</description>
 			<name>focus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Defines if input allow autocomplete previous input date.Default false</description>
+			<name>autocomplete</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
