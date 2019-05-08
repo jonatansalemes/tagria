@@ -10,14 +10,17 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Td;
+import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class TableColumnTag extends SimpleTagSupport {
+public class TableColumnTag extends SimpleTagSupport implements Formattabler {
 
 	private String state = "default";
 	private Integer colspan;
-	private String format;
 	private String label;
+	private String formatType;
+	private String formatMatch;
+	private String formatReplace;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -31,8 +34,8 @@ public class TableColumnTag extends SimpleTagSupport {
 			td.add(TagUtil.getLocalized(label, getJspContext()));
 		} else {
 			String body = TagUtil.getBody(getJspBody());
-			if (!StringUtils.isEmpty(format)) {
-				body = TagUtil.format(format, body, getJspContext());
+			if (!StringUtils.isEmpty(formatType)) {
+				body = TagUtil.format(formatType, formatMatch, formatReplace, body, getJspContext());
 			}
 			td.add(body);
 		}
@@ -45,14 +48,6 @@ public class TableColumnTag extends SimpleTagSupport {
 
 	public void setColspan(Integer colspan) {
 		this.colspan = colspan;
-	}
-
-	public String getFormat() {
-		return format;
-	}
-
-	public void setFormat(String format) {
-		this.format = format;
 	}
 
 	public String getLabel() {
@@ -69,6 +64,21 @@ public class TableColumnTag extends SimpleTagSupport {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	@Override
+	public void setFormatType(String formatType) {
+		this.formatType = formatType;
+	}
+
+	@Override
+	public void setFormatMatch(String formatMatch) {
+		this.formatMatch = formatMatch;
+	}
+
+	@Override
+	public void setFormatReplace(String formatReplace) {
+		this.formatReplace = formatReplace;
 	}
 
 }

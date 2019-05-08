@@ -47,29 +47,28 @@ public class TagUtil {
 	private TagUtil() {
 
 	}
-	
+
 	public static PageContext pageContext(JspContext jspContext) {
 		return (PageContext) jspContext;
 	}
-	
+
 	public static HttpServletRequest httpServletRequest(JspContext jspContext) {
 		return (HttpServletRequest) pageContext(jspContext).getRequest();
 	}
-	
+
 	public static HttpServletResponse httpServletResponse(JspContext jspContext) {
 		return (HttpServletResponse) pageContext(jspContext).getResponse();
 	}
 
 	public static Boolean allowed(JspContext jspContext, CheckRule checkRule) {
-		return allowed(jspContext,Arrays.asList(checkRule));
+		return allowed(jspContext, Arrays.asList(checkRule));
 	}
 
 	public static Boolean allowed(JspContext jspContext, List<CheckRule> rules) {
 		Auth auth = Tagria.AUTH;
-		return rules.stream()
-				.map(checkRule -> auth.allowed(httpServletRequest(jspContext),
-						httpServletResponse(jspContext), checkRule.getUri(), checkRule.getMethod()))
-				.reduce((a, b) -> a && b).get();
+		return rules.stream().map(checkRule -> auth.allowed(httpServletRequest(jspContext),
+				httpServletResponse(jspContext), checkRule.getUri(), checkRule.getMethod())).reduce((a, b) -> a && b)
+				.get();
 	}
 
 	public static String localization(JspContext jspContext) {
@@ -91,11 +90,11 @@ public class TagUtil {
 		return locale;
 	}
 
-	public static String format(String type, String value, JspContext jspContext) {
-		return StringUtil.format(type, value, locale(jspContext));
+	public static String format(String type, String match, String replace, String value, JspContext jspContext) {
+		return StringUtil.format(type, match, replace, value, locale(jspContext));
 	}
-
-	public static String getId(String name, String id,SimpleTagSupport simpleTagSupport) {
+	
+	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {
 		String idForComponent = "par_" + RandomStringUtils.randomAlphanumeric(20);
 		if (!StringUtils.isEmpty(id)) {
 			idForComponent = id;
@@ -104,30 +103,30 @@ public class TagUtil {
 		}
 		return idForComponent + complementForMultipleFormGroup(simpleTagSupport);
 	}
-	
+
 	private static String complementForMultipleFormGroup(SimpleTagSupport simpleTagSupport) {
 		if (simpleTagSupport == null) {
 			return "";
 		} else {
-			MultipleFormGroupTag multipleFormGroupTag = (MultipleFormGroupTag) SimpleTagSupport.findAncestorWithClass(simpleTagSupport,
-					MultipleFormGroupTag.class);
+			MultipleFormGroupTag multipleFormGroupTag = (MultipleFormGroupTag) SimpleTagSupport
+					.findAncestorWithClass(simpleTagSupport, MultipleFormGroupTag.class);
 			return multipleFormGroupTag != null ? "__" + multipleFormGroupTag.getVarStatusObject().getIndex() : "";
 		}
 	}
-	
-	public static String attachTo(String attachToSelector, String attachTo,SimpleTagSupport simpleTagSupport) {
+
+	public static String attachTo(String attachToSelector, String attachTo, SimpleTagSupport simpleTagSupport) {
 		if (StringUtils.isEmpty(attachToSelector)) {
-			return "#" + TagUtil.getId(attachTo, null,simpleTagSupport);
+			return "#" + TagUtil.getId(attachTo, null, simpleTagSupport);
 		}
 		return attachToSelector;
 	}
-	
+
 	public static String getId(SimpleTagSupport simpleTagSupport) {
-		return TagUtil.getId(null, null,simpleTagSupport);
+		return TagUtil.getId(null, null, simpleTagSupport);
 	}
 
-	public static String getId(String id,SimpleTagSupport simpleTagSupport) {
-		return TagUtil.getId(null, id,simpleTagSupport);
+	public static String getId(String id, SimpleTagSupport simpleTagSupport) {
+		return TagUtil.getId(null, id, simpleTagSupport);
 	}
 
 	public static String minifyHtml(String value) {
@@ -265,7 +264,8 @@ public class TagUtil {
 		while (en.hasMoreElements()) {
 			String paramName = en.nextElement();
 			if (!excludesParams.contains(paramName))
-				queryString.add(paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
+				queryString
+						.add(paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
 		}
 		return StringUtils.join(queryString, '&');
 	}
