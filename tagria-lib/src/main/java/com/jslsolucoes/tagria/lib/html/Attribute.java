@@ -17,7 +17,7 @@ public enum Attribute {
 	SRC("src"), SELECTED("selected"), 
 	STYLE("style"), TYPE("type"), TITLE("title"), 
 	TARGET("target"), VALUE("value"), XMLNS("xmlns"), 
-	WIDTH("width"), DATA_SITEKEY("data-sitekey"), DATA_RIDE("data-ride"), LIST("list");
+	WIDTH("width"), DATA_SITEKEY("data-sitekey"), DATA_RIDE("data-ride"), LIST("list"), DATA_SLIDE("data-slide");
 
 	private String name;
 

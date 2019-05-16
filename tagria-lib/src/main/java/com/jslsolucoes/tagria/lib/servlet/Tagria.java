@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jslsolucoes.tagria.lib.auth.Auth;
 import com.jslsolucoes.tagria.lib.grid.exporter.impl.CsvExporter;
 import com.jslsolucoes.tagria.lib.grid.exporter.impl.ExcelExporter;
 import com.jslsolucoes.tagria.lib.grid.exporter.impl.PdfExporter;
@@ -35,6 +37,16 @@ public class Tagria extends HttpServlet {
 
 	private static final Integer CACHE_EXPIRES_DAY = 365;
 	private static Logger logger = LoggerFactory.getLogger(Tagria.class);
+	public static Auth AUTH;
+	
+	@Override
+	public void init(ServletConfig servletConfig) throws ServletException {
+		try {
+			AUTH = (Auth) Class.forName(TagUtil.getInitParam(TagriaConfigParameter.AUTH_CLASS)).newInstance();
+		} catch (Exception e) {
+			logger.error("Could not initialize auth integration");
+		}
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

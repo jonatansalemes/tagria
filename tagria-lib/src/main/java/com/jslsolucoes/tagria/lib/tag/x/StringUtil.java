@@ -24,7 +24,7 @@ public class StringUtil {
 	private StringUtil() {
 
 	}
-	
+
 	public static Boolean equals(String value1, String value2) {
 		return value1.equals(value2);
 	}
@@ -65,13 +65,12 @@ public class StringUtil {
 		return value.replaceAll("\n", "<br>");
 	}
 
-	public static String format(String type, Object value) {
+	public static String format(String type, String match, String replace, Object value) {
 		Locale locale = Locale.forLanguageTag(TagUtil.getInitParam(TagriaConfigParameter.LOCALE));
-		return format(type, (value == null ? "" : value.toString()), locale);
+		return format(type, (value == null ? "" : value.toString()), match, replace, locale);
 	}
-	
 
-	public static String format(String type, String value, Locale locale) {
+	public static String format(String type, String match, String replace, String value, Locale locale) {
 		if (StringUtils.isEmpty(value)) {
 			return value;
 		} else if ("date".equals(type) || "datetime".equals(type) || "timestamp".equals(type) || "hour".equals(type)) {
@@ -89,9 +88,9 @@ public class StringUtil {
 			patterns.add("yyyy-MM-dd HH:mm:ss");
 			patterns.add("yyyy-MM-dd");
 			patterns.add("E MMM dd HH:mm:ss zzz yyyy");
-			for (String pattern : patterns) {
+			for (String cpattern : patterns) {
 				try {
-					return dateFormat.format(new SimpleDateFormat(pattern, Locale.ENGLISH).parse(value));
+					return dateFormat.format(new SimpleDateFormat(cpattern, Locale.ENGLISH).parse(value));
 				} catch (ParseException pe) {
 					// Try another format
 				}
@@ -113,8 +112,18 @@ public class StringUtil {
 					"($1) $2-$3");
 		} else if ("zipCode".equals(type)) {
 			return String.format("%08d", Long.valueOf(value)).replaceAll("^([0-9]{5})-([0-9]{3})$", "$1-$2");
+		} else if ("custom".equals(type)) {
+			return value.replaceAll(match, replace);
 		}
 		return value;
+	}
+
+	public static String truncate(String value, Integer size) {
+		if (size > value.length()) {
+			return value;
+		} else {
+			return value.substring(0, size).concat("...");
+		}
 	}
 
 }

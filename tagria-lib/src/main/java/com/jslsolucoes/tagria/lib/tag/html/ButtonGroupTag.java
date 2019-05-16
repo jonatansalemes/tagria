@@ -15,7 +15,7 @@ public class ButtonGroupTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div buttonGroup = new Div();
-		buttonGroup.add(Attribute.CLASS, "btn-group w-100");
+		buttonGroup.add(Attribute.CLASS, "btn-group");
 		buttonGroup.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), buttonGroup);
 	}

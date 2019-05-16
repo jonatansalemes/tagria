@@ -26,7 +26,7 @@ public class TabPanelTag extends SimpleTagSupport {
 		TagUtil.flushBody(getJspBody());
 
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId());
+		div.add(Attribute.ID, TagUtil.getId(this));
 
 		Ul ul = new Ul();
 		ul.add(Attribute.CLASS, "nav nav-tabs");
@@ -41,8 +41,8 @@ public class TabPanelTag extends SimpleTagSupport {
 		TagUtil.out(getJspContext(), div);
 
 		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('#" + div.get(Attribute.ID) + "').tab();");
+		
+		script.add("$('#" + div.get(Attribute.ID) + "').tabs();");
 		TagUtil.out(getJspContext(), script);
 
 	}

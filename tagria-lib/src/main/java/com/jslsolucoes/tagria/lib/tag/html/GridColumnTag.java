@@ -13,9 +13,10 @@ import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.html.Td;
 import com.jslsolucoes.tagria.lib.html.Th;
+import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class GridColumnTag extends SimpleTagSupport {
+public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 
 	private String label;
 	private Boolean booleanType = Boolean.FALSE;
@@ -23,9 +24,11 @@ public class GridColumnTag extends SimpleTagSupport {
 	private Boolean exportable = Boolean.FALSE;
 	private String align = "left";
 	private Boolean rendered = Boolean.TRUE;
-	private String format;
 	private String state;
 	private String hideOnViewport;
+	private String formatType;
+	private String formatMatch;
+	private String formatReplace;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -40,7 +43,7 @@ public class GridColumnTag extends SimpleTagSupport {
 			GridTag grid = (GridTag) findAncestorWithClass(this, GridTag.class);
 
 			Th th = new Th();
-			th.add(Attribute.CLASS, "text-center");
+			th.add(Attribute.CLASS, "text-" + align);
 			if (!StringUtils.isEmpty(hideOnViewport)) {
 				th.add(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
 			}
@@ -78,8 +81,8 @@ public class GridColumnTag extends SimpleTagSupport {
 					container.add(Attribute.CLASS, "collapse grid-column-collapsable-content");
 				}
 
-				if (!StringUtils.isEmpty(format)) {
-					container.add(TagUtil.format(format, body, getJspContext()));
+				if (!StringUtils.isEmpty(formatType)) {
+					container.add(TagUtil.format(formatType, formatMatch, formatReplace, body, getJspContext()));
 				} else if (booleanType) {
 					if ("1".equals(body) || "true".equals(body)) {
 						Span icon = new Span();
@@ -135,14 +138,6 @@ public class GridColumnTag extends SimpleTagSupport {
 		this.rendered = rendered;
 	}
 
-	public String getFormat() {
-		return format;
-	}
-
-	public void setFormat(String format) {
-		this.format = format;
-	}
-
 	public String getState() {
 		return state;
 	}
@@ -165,6 +160,21 @@ public class GridColumnTag extends SimpleTagSupport {
 
 	public void setCollapsable(Boolean collapsable) {
 		this.collapsable = collapsable;
+	}
+
+	@Override
+	public void setFormatType(String formatType) {
+		this.formatType = formatType;
+	}
+
+	@Override
+	public void setFormatMatch(String formatMatch) {
+		this.formatMatch = formatMatch;
+	}
+
+	@Override
+	public void setFormatReplace(String formatReplace) {
+		this.formatReplace = formatReplace;
 	}
 
 }

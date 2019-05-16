@@ -31,7 +31,7 @@ public class AlertTag extends SimpleTagSupport {
 			Div div = new Div();
 			div.add(Attribute.CLASS, "alert alert-" + state + " shadow-sm");
 			div.add(Attribute.ROLE, "alert");
-			div.add(Attribute.ID, TagUtil.getId(id));
+			div.add(Attribute.ID, TagUtil.getId(id,this));
 			
 			if (!StringUtils.isEmpty(cssClass)) {
 				div.add(Attribute.CLASS, cssClass);

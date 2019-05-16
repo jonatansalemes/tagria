@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
@@ -16,13 +18,17 @@ public class CardTag extends SimpleTagSupport {
 	private String id;
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean visible = Boolean.TRUE;
+	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.ID, TagUtil.getId(id));
+			div.add(Attribute.ID, TagUtil.getId(id,this));
 			div.add(Attribute.CLASS, "card bg-" + state);
+			if (!StringUtils.isEmpty(cssClass)) {
+				div.add(Attribute.CLASS, cssClass);
+			}
 			div.add(TagUtil.getBody(getJspBody()));
 			if (!visible) {
 				div.add(Attribute.CLASS, "collapse");
@@ -61,5 +67,13 @@ public class CardTag extends SimpleTagSupport {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public String getCssClass() {
+		return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
 	}
 }

@@ -24,24 +24,35 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	private String attachTo;
 	private String attachToSelector;
 	private Boolean closeable = Boolean.TRUE;
+	private Boolean centered = Boolean.FALSE;
 	private Boolean open = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
 	private String toolbar;
+	private String size;
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div modal = new Div();
 			modal.add(Attribute.CLASS, "modal fade");
-			modal.add(Attribute.ID, TagUtil.getId(id));
+			modal.add(Attribute.ID, TagUtil.getId(id,this));
 
 			if (!closeable) {
 				modal.add(Attribute.DATA_KEYBOARD, "false");
 				modal.add(Attribute.DATA_BACKDROP, "static");
 			}
-
+			
+			
+			
+			
 			Div dialog = new Div();
 			dialog.add(Attribute.CLASS, "modal-dialog");
+			if(!StringUtils.isEmpty(size)) {
+				dialog.add(Attribute.CLASS, "modal-"+size);
+			}
+			if(centered) {
+				dialog.add(Attribute.CLASS, "modal-dialog-centered");
+			}
 
 			Div content = new Div();
 			content.add(Attribute.CLASS, "modal-content");
@@ -81,15 +92,13 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			TagUtil.out(getJspContext(), modal);
 
 			Script scriptForAttach = new Script();
-			scriptForAttach.add(Attribute.TYPE, "text/javascript");
-			scriptForAttach.add("$('" +TagUtil.attachTo(attachToSelector, attachTo, this) + "').attr('data-toggle','modal').attr('data-target','#"
+			scriptForAttach.add("$('" +TagUtil.attachTo(attachToSelector, attachTo,this) + "').attr('data-toggle','modal').attr('data-target','#"
 						+ modal.get(Attribute.ID) + "');");
 			TagUtil.out(getJspContext(), scriptForAttach);
 			
 
 			if (open != null && open) {
 				Script scriptForOpen = new Script();
-				scriptForOpen.add(Attribute.TYPE, "text/javascript");
 				scriptForOpen.add("$('#" + modal.get(Attribute.ID) + "').modal('show')");
 				TagUtil.out(getJspContext(), scriptForOpen);
 			}
@@ -157,6 +166,30 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	public void setAttachToSelector(String attachToSelector) {
 		this.attachToSelector = attachToSelector;
+	}
+
+
+
+	public String getSize() {
+		return size;
+	}
+
+
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+
+
+	public Boolean getCentered() {
+		return centered;
+	}
+
+
+
+	public void setCentered(Boolean centered) {
+		this.centered = centered;
 	}
 
 }

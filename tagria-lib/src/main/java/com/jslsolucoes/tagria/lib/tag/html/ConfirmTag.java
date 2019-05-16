@@ -29,7 +29,7 @@ public class ConfirmTag extends SimpleTagSupport {
 
 		Div modal = new Div();
 		modal.add(Attribute.CLASS, "modal fade");
-		modal.add(Attribute.ID, TagUtil.getId());
+		modal.add(Attribute.ID, TagUtil.getId(this));
 
 		Div dialog = new Div();
 		dialog.add(Attribute.CLASS, "modal-dialog modal-sm");
@@ -89,8 +89,8 @@ public class ConfirmTag extends SimpleTagSupport {
 		TagUtil.out(getJspContext(), modal);
 
 		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('" + TagUtil.attachTo(attachToSelector, attachTo, this) + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
+		
+		script.add("$('" + TagUtil.attachTo(attachToSelector, attachTo,this) + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
 				+ "');");
 		TagUtil.out(getJspContext(), script);
 	}

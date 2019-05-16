@@ -18,7 +18,7 @@ public class MenuCollapsableTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId(id));
+		div.add(Attribute.ID, TagUtil.getId(id,this));
 		div.add(Attribute.CLASS, "collapse navbar-collapse");
 		
 		Ul ul = new Ul();

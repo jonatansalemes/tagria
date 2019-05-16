@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -19,7 +18,7 @@ public class DatePickerTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("$(document).ready(function(){ " + "	$('#" + TagUtil.getId(attachTo, null, this)
+		builder.append("$(document).ready(function(){ " + "	$('" + TagUtil.attachTo(null, attachTo, this)
 				+ "').datepicker({ 																																																																	"
 				+ "					changeMonth: true,																																																																																																																																																																																																																																																		"
 				+ "					changeYear: true,																																																																								"
@@ -94,7 +93,7 @@ public class DatePickerTag extends SimpleTagSupport {
 		builder.append("}); });");
 
 		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
+		
 		script.add(builder.toString());
 		TagUtil.out(getJspContext(), script);
 

@@ -1,13 +1,17 @@
-<%@include file="../app/taglibs.jsp"%>										<html:view title="{title}">																	<html:card>																									<html:cardHeader label="cardBody"/>												<html:cardBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renders the body card																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:alert state="info" label="{tag.empty.attributes}"></html:alert>																																	</html:tab>																									<html:tab label="{demo}">																						
+<%@include file="../app/taglibs.jsp"%>										<html:view title="{title}">																	<html:card>																									<html:cardHeader>															cardBody							</html:cardHeader>																						<html:cardBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renders the body card																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:alert state="info" label="{tag.empty.attributes}"></html:alert>																																	</html:tab>																									<html:tab label="{demo}">																						
 			<html:card>
-				<html:cardHeader label="Title"/>
+				<html:cardHeader>
+					Title
+				</html:cardHeader>
 				<html:cardBody>
 					Componentes
 				</html:cardBody>
 			</html:card>
 																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Componentes
 				&lt;/html:cardBody&gt;

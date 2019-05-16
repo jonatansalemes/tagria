@@ -11,6 +11,404 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a menu dropdown divider</description>
+		<display-name>Misc</display-name>
+		<name>dropDownDivider</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DropDownDividerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:dropDown label="List"&gt;
+					&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+					&lt;html:dropDownDivider/&gt;
+					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:dropDown&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a dropdown item list</description>
+		<display-name>Misc</display-name>
+		<name>dropDownItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DropDownItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the icon to be used in the menu icon. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+				&lt;html:dropDown label="List"&gt;
+					&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+					&lt;html:dropDownDivider/&gt;
+					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:dropDown&gt;
+		</example>
+	</tag>
+	
+	
+	
+	<tag>
+		<description>Renders a dropdown list</description>
+		<display-name>Misc</display-name>
+		<name>dropDown</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DropDownTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the size of dropdown. Default none. Options: xl,sm,lg</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dropdown state. Default: default. Options: success, danger, info, default, primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used in dropdown root</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:dropDown label="List"&gt;
+					&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+					&lt;html:dropDownDivider/&gt;
+					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:dropDown&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a carousel</description>
+		<display-name>Carousel</display-name>
+		<name>carousel</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CarouselTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for carousel</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:carousel&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+			&lt;/html:carousel&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a carousel item</description>
+		<display-name>Carousel</display-name>
+		<name>carouselItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CarouselItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label of carousel item</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the description of carousel item</description>
+			<name>description</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component must start activated. Default: false. Options: true,false</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:carousel&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+			&lt;/html:carousel&gt; 
+		</example>
+	</tag>
+	
+	
+	<tag>
+		<description>Renders an carousel image</description>
+		<display-name>Carousel</display-name>
+		<name>carouselImage</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CarouselImageTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the alt of image</description>
+			<name>alt</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if the component must be loaded from cdn</description>
+			<name>cdn</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image url</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:carousel&gt;
+				&lt;html:carouselItem&gt;
+					&lt;html:carouselImage url="/image/person.png" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+			&lt;/html:carousel&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a jumbotron</description>
+		<display-name>Misc</display-name>
+		<name>jumbotron</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.JumbotronTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:jumbotron&gt; &lt;html:h1&gt; Header &lt;/html:h1&gt; &lt;/html:jumbotron&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a mask in currency format for a particular input</description>
+		<display-name>Mask</display-name>
+		<name>currencyMask</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CurrencyMaskTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name to attach currency mask</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector to attach currency mask</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="teste" value="0" format="currency"/&gt;
+			&lt;html:currencyMask attachTo="teste"/&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders event on mask after any key press</description>
+		<display-name>Mask</display-name>
+		<name>maskOnKeyPress</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MaskTagOnKeyPress</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:input name="teste"/&gt;
+			&lt;html:mask mask="(00) 0000-00000" attachTo="teste"&gt;
+				&lt;html:maskOnKeyPress&gt;
+				    var masks = ['(00) 0000-00000', '(00) 00000-0000'];
+					mask = (value.length > 14) ? masks[1] : masks[0];
+					$('#'+$(field[0]).attr('id')).mask(mask,options);
+				&lt;/html:maskOnKeyPress&gt;
+			&lt;/html:mask&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a h1</description>
+		<display-name>Html</display-name>
+		<name>h1</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H1Tag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:h1&gt; Cabecalho &lt;/html:h1&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a menu link</description>
+		<display-name>Menu</display-name>
+		<name>menuLink</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuLinkTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the icon to be used. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of menu link</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuLink label="Menu Link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a h3</description>
+		<display-name>Html</display-name>
+		<name>h3</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H3Tag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:h3&gt; Cabecalho &lt;/html:h3&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a block with top and bottom spacing</description>
+		<display-name>Misc</display-name>
+		<name>block</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.BlockTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the align of text inside block. Default: left . Options: left,center,right </description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates size of margin top and left . Default : 3. Options: 1-5</description>
+			<name>margin</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:block margin="3"&gt;
+				Meu bloco de componentes
+			&lt;/html:block&gt; </example>
+	</tag>
+	
+	<tag>
 		<description>Renders a data list component</description>
 		<display-name>Input</display-name>
 		<name>dataList</name>
@@ -137,12 +535,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the limit for every row block . Default: 4. Options : 1-12</description>
-			<name>limit</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
 			<name>extraSmall</name>
 			<required>true</required>
@@ -182,6 +574,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>select</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SelectTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>It indicates a css class to the component</description>
 			<name>cssClass</name>
@@ -312,8 +710,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders a detail table</description>
 		<display-name>Detail table</display-name>
-		<name>detailTable</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableTag</tag-class>
+		<name>multipleFormGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -334,6 +732,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates the name of the variable java (com.jslsolucoes.tagria.lib.tag.html.VarStatus) to be made available the index of iteration.  </description>
+			<name>varStatus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the minimum number of lines to be filled</description>
 			<name>atLeast</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -346,61 +750,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates a javascript function to be performed after inserting a row</description>
+			<description>Indicates a javascript function to be performed after insert a row. function signature is f(idx,element). idx: index of line was added, element: clone of elements declared in template  </description>
 			<name>afterInsert</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<example>
-			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1" label="Persons details"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
-			&lt;/html:form&gt;
-		</example>
-	</tag>
-
-	<tag>
-		<description>Renders a column in the detail table</description>
-		<display-name>Detail table</display-name>
-		<name>detailTableColumn</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableColumnTag</tag-class>
-		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the label component</description>
-			<name>label</name>
+			<description>Indicates a javascript function to be performed after remove a row. function signature is void f()</description>
+			<name>afterRemove</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<attribute>
-			<description>It indicates whether the component has its required on a form</description>
-			<name>required</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
 		<example>
 			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
+				&lt;html:multipleFormGroup&gt;
+					
+				&lt;/html:multipleFormGroup&gt;
 			&lt;/html:form&gt;
 		</example>
 	</tag>
-	
 	
 	<tag>
 		<description>Renders an icon</description>
@@ -527,12 +895,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>It indicates a label for column content</description>
 			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates a format in which the value must be converted. Options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
-			<name>format</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -673,6 +1035,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the card state. Default: primary. Options: success, danger, info, default, primary</description>
 			<name>state</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -699,29 +1067,118 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Components
 				&lt;/html:cardBody&gt;
 			&lt;/html:card>
 		</example>
 	</tag>
-
+	
 	<tag>
-		<description>Renders a title on the card</description>
+		<description>Renders an card image</description>
 		<display-name>Card</display-name>
-		<name>cardHeader</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardHeaderTag</tag-class>
+		<name>cardImage</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardImageTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the title card</description>
-			<name>label</name>
+			<description>It indicates if the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the alt of image</description>
+			<name>alt</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if the component must be loaded from cdn</description>
+			<name>cdn</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image url</description>
+			<name>url</name>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardImage url="/image/person.png" alt="logo"/&gt;
+			&lt;/html:card>
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a title on the card</description>
+		<display-name>Card</display-name>
+		<name>cardTitle</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTitleTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;
+						Title
+					&lt;/html:cardTitle&gt;
+				&lt;/html:cardBody&gt;
+			&lt;/html:card>
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a text on the card</description>
+		<display-name>Card</display-name>
+		<name>cardText</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTextTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardText&gt;
+						Text
+					&lt;/html:cardText&gt;
+				&lt;/html:cardBody&gt;
+			&lt;/html:card>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a card header</description>
+		<display-name>Card</display-name>
+		<name>cardHeader</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Outros componentes
 				&lt;/html:cardBody&gt;
@@ -737,7 +1194,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardHeader label="Title"/&gt;
+				&lt;html:cardHeader&gt;
+					Title
+				&lt;/html:cardHeader&gt;
 				&lt;html:cardBody&gt;
 					Componentes
 				&lt;/html:cardBody&gt;
@@ -952,6 +1411,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates a match regular expression value</description>
+			<name>match</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a replace regular expression value</description>
+			<name>replace</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:format type="currency"&gt; ${ myValue} &lt;/html:format&gt;
 		</example>
@@ -1035,6 +1506,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ModalTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates the size of modal. Default none. Options: xl,sm,lg</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the modal id for direct manipulation of events</description>
 			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1062,6 +1539,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates if modal can be closeable. Default : true. Options : true,false</description>
 			<name>closeable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if modal is vertically centered. Default : false. Options : true,false</description>
+			<name>centered</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -1423,12 +1906,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates a format in which the value must be converted. Options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
-			<name>format</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>It indicates the type of input. Default: text. Options: button, checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week</description>
 			<name>type</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1460,8 +1937,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the component should win the cursor focus</description>
+			<description>It indicates whether the component should gain the cursor focus</description>
 			<name>focus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Defines if input allow autocomplete previous input date.Default false</description>
+			<name>autocomplete</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -1505,7 +1988,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<description>Indicates if (radio, checkbox) if the component should be marked</description>
 			<name>checked</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates whether the component supports multiple inputs</description>
@@ -1605,17 +2088,17 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the point component</description>
-			<name>height</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 			<description>Indicates the image url</description>
 			<name>url</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the image width</description>
@@ -1652,6 +2135,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>url</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -1731,7 +2220,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:iframe url="/app/welcome" name="conteudo"/&gt; </example>
 	</tag>
 	
-	
 	<tag>
 		<description>Renders a dropdown menu</description>
 		<display-name>Menu</display-name>
@@ -1758,11 +2246,22 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-				&lt;html:menuDropDown label="Menu dropdown" &gt;
-					&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
-				&lt;/html:menuDropDown&gt; </example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
-
+	
 	<tag>
 		<description>Renders a menu item on dropdown</description>
 		<display-name>Menu</display-name>
@@ -1788,6 +2287,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates the label to be used</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1807,13 +2312,19 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:menuButton icon="cog" align="right"&gt;
-					&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
-					&lt;html:menuDropDownDivider/&gt;
-					&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
-					&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
-				&lt;/html:menuButton&gt;
-			&lt;/html:menu&gt; </example>
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
 	
 	<tag>
@@ -1836,9 +2347,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					&lt;/html:menuCollapse&gt;
 				
 				&lt;html:menuCollapsable id="block1"&gt;
-					&lt;html:menuText&gt;
-						My text menu
-					&lt;/html:menuText&gt;
+					menu components
 				&lt;/html:menuCollapsable&gt;
 				
 			&lt;/html:menu&gt;
@@ -1854,6 +2363,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the component name that triggers the menu group</description>
 			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of component</description>
+			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1892,13 +2407,19 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:menuButton icon="cog" align="right"&gt;
-					&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
-					&lt;html:menuDropDownDivider/&gt;
-					&lt;html:menuDropDownItem label="Item 2" url="#"/&gt;
-					&lt;html:menuDropDownItem label="Item 3" url="#"/&gt;
-				&lt;/html:menuButton&gt;
-			&lt;/html:menu&gt; </example>
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; 
+		</example>
 	</tag>
 
 	<tag>
@@ -1922,7 +2443,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:brand label="Meu titulo" url="#"/&gt;
+				&lt;html:menuBrand label="Meu titulo" url="#"/&gt;
 			&lt;/html:menu&gt; </example>
 	</tag>
 
@@ -2007,7 +2528,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:grid label="Pessoas" url="/component/grid" data="${ persons }" var="person" noRowText="No records found"&gt;
+			&lt;html:grid label="Persons" url="/component/grid" data="${ persons }" var="person" noRowText="No records found"&gt;
 				&lt;html:gridColumn label="Identification" exportable="true"&gt;
 					${ person.id }
 				&lt;/html:gridColumn&gt;
@@ -2060,12 +2581,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates a format in which the content should be converted. Options: date,datetime, timestamp, hour, currency, zip code, cnpj, tel, cpf</description>
-			<name>format</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>It indicates whether the component should be rendered</description>
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2109,6 +2624,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the component linked to dismiss button. Default false. Options: true,false</description>
 			<name>dismiss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -2211,12 +2732,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:menu&gt;
-				&lt;html:menuButton icon="cog" align="right"&gt;
+				&lt;html:menuDropDown label="Menu"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;
 					&lt;html:menuItem label="Item 2" url="#"/&gt;
 					&lt;html:menuItem label="Item 3" url="#"/&gt;
-				&lt;/html:menuButton&gt;
+				&lt;/html:menuDropDown&gt;
 			&lt;/html:menu&gt; </example>
 	</tag>
 
