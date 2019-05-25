@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -60,14 +59,13 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 		if (rendered != null && rendered) {
 
-			PageContext pageContext = (PageContext) getJspContext();
-			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+			
 
 			TagUtil.flushBody(getJspBody());
 
-			Div container = new Div();			
-			container.add(Attribute.CLASS,"border border-secondary rounded p-2");
-			container.add(Attribute.ID, TagUtil.getId());
+			Div container = new Div();
+			container.add(Attribute.CLASS, "border border-secondary rounded p-2");
+			container.add(Attribute.ID, TagUtil.getId(this));
 
 			if (!StringUtils.isEmpty(label)) {
 				Div title = new Div();
@@ -82,7 +80,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			Div clearfix2 = new Div();
 			clearfix2.add(Attribute.CLASS, "clearfix");
 			container.add(clearfix2);
-			
+
 			if (!StringUtils.isEmpty(toolbar)) {
 				Div divForToolbar = new Div();
 				divForToolbar.add(Attribute.CLASS, "float-left m-2 button-group");
@@ -141,7 +139,6 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					divForSearch.add(input);
 					clearfix2.add(divForSearch);
 				}
-				
 
 				Table table = new Table();
 				table.add(Attribute.CLASS, "table table-striped table-hover table-light");
@@ -172,16 +169,17 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				table.add(tbody);
 				container.add(table);
 
-				
 				if (paginate) {
-					
+
 					Div clearfix = new Div();
 					clearfix.add(Attribute.CLASS, "clearfix");
 
+					HttpServletRequest request = TagUtil.httpServletRequest(getJspContext());
 					Integer page = (request.getParameter("page") != null ? Integer.valueOf(request.getParameter("page"))
 							: 1);
 					Integer resultsPerPage = (request.getParameter("resultsPerPage") != null
-							? Integer.valueOf(request.getParameter("resultsPerPage")) : this.resultsPerPage);
+							? Integer.valueOf(request.getParameter("resultsPerPage"))
+							: this.resultsPerPage);
 
 					Integer toResult = page * resultsPerPage;
 					Integer fromResult = (toResult + 1) - resultsPerPage;
@@ -195,8 +193,6 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 							fromResult, toResult, totalResults)));
 					clearfix.add(display);
 
-					
-						
 					Integer totalOfPages = (int) Math
 							.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
 
@@ -214,7 +210,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 						}
 						A a = new A();
 						a.add(Attribute.HREF, "#");
-						a.add(Attribute.CLASS,"page-link");
+						a.add(Attribute.CLASS, "page-link");
 						a.add(String.valueOf(i));
 						li.add(a);
 						ul.add(li);
@@ -222,14 +218,13 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					nav.add(ul);
 					pagination.add(nav);
 					clearfix.add(pagination);
-					
+
 					Div divForResultsPerPage = new Div();
 					divForResultsPerPage.add(Attribute.CLASS, "float-right m-2");
 
 					Div dropdown = new Div();
 					dropdown.add(Attribute.CLASS, "dropdown dropup");
-					dropdown.add(Attribute.TITLE,
-							TagUtil.getLocalizedForLib("grid.results.per.page", getJspContext()));
+					dropdown.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.results.per.page", getJspContext()));
 
 					Button button = new Button();
 					button.add(Attribute.CLASS, "btn btn-default dropdown-toggle");
@@ -255,7 +250,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					dropdown.add(results);
 					divForResultsPerPage.add(dropdown);
 					clearfix.add(divForResultsPerPage);
-					
+
 					container.add(clearfix);
 				}
 
@@ -267,7 +262,6 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 						: TagUtil.getLocalizedForLib("grid.no.row", getJspContext())));
 				container.add(noRow);
 			}
-
 
 			if (export) {
 				Div exporter = new Div();
@@ -294,8 +288,12 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			TagUtil.out(getJspContext(), container);
 
 			Script script = new Script();
-			script.add(Attribute.TYPE, "text/javascript");
-			script.add("$('#" + container.get(Attribute.ID) + "').grid({ url : '"+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString : '" + TagUtil.queryString(request, Arrays.asList("page", "property", "direction", "resultsPerPage")) + "'});");
+			
+			script.add("$('#" + container.get(Attribute.ID) + "').grid({ url : '"
+					+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString : '"
+					+ TagUtil.queryString(getJspContext(),
+							Arrays.asList("page", "property", "direction", "resultsPerPage"))
+					+ "'});");
 			TagUtil.out(getJspContext(), script);
 		}
 	}
@@ -412,5 +410,5 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	public void setNoRowText(String noRowText) {
 		this.noRowText = noRowText;
 	}
-	
+
 }

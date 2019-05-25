@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.A;
 import com.jslsolucoes.tagria.lib.html.Attribute;
+import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class LinkTag extends SimpleTagSupport {
@@ -18,10 +19,11 @@ public class LinkTag extends SimpleTagSupport {
 	private String label;
 	private String target = "_self";
 	private Boolean rendered = Boolean.TRUE;
+	private Boolean auth = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered != null && rendered) {
+		if (rendered != null && rendered && (auth ? TagUtil.allowed(getJspContext(),new CheckRule(url, "GET")) : true)) {
 			A a = new A();
 			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 			a.add(Attribute.TARGET, target);
@@ -64,6 +66,14 @@ public class LinkTag extends SimpleTagSupport {
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public Boolean getAuth() {
+		return auth;
+	}
+
+	public void setAuth(Boolean auth) {
+		this.auth = auth;
 	}
 
 }

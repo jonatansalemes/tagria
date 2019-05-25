@@ -10,11 +10,12 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Input;
+import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class InputTag extends SimpleTagSupport {
+public class InputTag extends SimpleTagSupport implements Formattabler {
 
-	private String checked;
+	private Boolean checked;
 	private String name;
 	private String value;
 	private String pattern;
@@ -28,17 +29,24 @@ public class InputTag extends SimpleTagSupport {
 	private String id;
 	private String title;
 	private Integer maxLength;
-	private String format;
 	private String cssClass;
 	private Integer max;
 	private Integer min;
 	private String list;
+	private Boolean autocomplete = Boolean.FALSE;
+	private String formatType;
+	private String formatMatch;
+	private String formatReplace;
 
 	@Override
 	public void doTag() throws JspException, IOException {
+		
+		TagUtil.flushBody(getJspBody());
+		
 		Input input = new Input();
 		input.add(Attribute.TYPE, type);
 		input.add(Attribute.NAME, name);
+		input.add(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
 
 		if (max != null) {
 			input.add(Attribute.MAX, max);
@@ -47,8 +55,8 @@ public class InputTag extends SimpleTagSupport {
 		if (min != null) {
 			input.add(Attribute.MIN, max);
 		}
-		
-		if(!StringUtils.isEmpty(list)) {
+
+		if (!StringUtils.isEmpty(list)) {
 			input.add(Attribute.LIST, list);
 		}
 
@@ -79,8 +87,8 @@ public class InputTag extends SimpleTagSupport {
 			input.add(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
 		}
 
-		if (!StringUtils.isEmpty(format)) {
-			value = TagUtil.format(format, value, getJspContext());
+		if (!StringUtils.isEmpty(formatType)) {
+			value = TagUtil.format(formatType, formatMatch, formatReplace, value, getJspContext());
 		}
 
 		if (!StringUtils.isEmpty(value)) {
@@ -89,8 +97,7 @@ public class InputTag extends SimpleTagSupport {
 		if (!StringUtils.isEmpty(pattern)) {
 			input.add(Attribute.PATTERN, pattern);
 		}
-		if (("checkbox".equals(type) || "radio".equals(type)) && !StringUtils.isEmpty(checked)
-				&& (checked.equals(value) || "true".equals(checked))) {
+		if (("checkbox".equals(type) || "radio".equals(type)) && checked != null && checked) {
 			input.add(Attribute.CHECKED, "checked");
 		}
 		if (disabled) {
@@ -182,11 +189,11 @@ public class InputTag extends SimpleTagSupport {
 		this.maxLength = maxLength;
 	}
 
-	public String getChecked() {
+	public Boolean getChecked() {
 		return checked;
 	}
 
-	public void setChecked(String checked) {
+	public void setChecked(Boolean checked) {
 		this.checked = checked;
 	}
 
@@ -196,14 +203,6 @@ public class InputTag extends SimpleTagSupport {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getFormat() {
-		return format;
-	}
-
-	public void setFormat(String format) {
-		this.format = format;
 	}
 
 	public Boolean getFocus() {
@@ -260,6 +259,29 @@ public class InputTag extends SimpleTagSupport {
 
 	public void setList(String list) {
 		this.list = list;
+	}
+
+	public Boolean getAutocomplete() {
+		return autocomplete;
+	}
+
+	public void setAutocomplete(Boolean autocomplete) {
+		this.autocomplete = autocomplete;
+	}
+
+	@Override
+	public void setFormatType(String formatType) {
+		this.formatType = formatType;
+	}
+
+	@Override
+	public void setFormatMatch(String formatMatch) {
+		this.formatMatch = formatMatch;
+	}
+
+	@Override
+	public void setFormatReplace(String formatReplace) {
+		this.formatReplace = formatReplace;
 	}
 
 }

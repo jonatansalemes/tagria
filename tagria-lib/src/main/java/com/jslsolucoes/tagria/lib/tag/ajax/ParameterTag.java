@@ -28,7 +28,7 @@ public class ParameterTag extends SimpleTagSupport {
 		if(!StringUtils.isEmpty(value)) {
 			return "'" +  value + "'";
 		} else {
-			return "$('#" + TagUtil.getId(src, null) + "')" + "." + type + "()";
+			return "$('#" + TagUtil.getId(src, null,this) + "')" + "." + type + "()";
 		}
 	}
 

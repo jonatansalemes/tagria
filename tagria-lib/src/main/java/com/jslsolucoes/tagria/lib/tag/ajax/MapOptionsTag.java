@@ -16,9 +16,8 @@ public class MapOptionsTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		String id = TagUtil.getId(target, null);
-		String expression =   "		$('#" + id + "').html('');  																						"
-							+ "		$('#" + id+ "').append($(document.createElement('option')).attr('value','').text('- - -'));							"
+		String id = TagUtil.getId(target, null,this);
+		String expression =   "		$('#" + id + "').html('').append($(document.createElement('option')).attr('value','').text('- - -'));				"
 							+ " 	for(i=0;i < data.list.length;i++){ 																					"
 							+ 			options()
 							+ " 		var option= $(document.createElement('option')).attr('value',data.list[i]." + value+ ").text(text.join(' - ')); " 

@@ -3,6 +3,8 @@ package com.jslsolucoes.tagria.doc.controller;
 
 import javax.inject.Inject;
 
+import org.joda.time.LocalDate;
+
 import com.jslsolucoes.tagria.doc.repository.PersonRepository;
 
 import br.com.caelum.vraptor.Controller;
@@ -29,6 +31,14 @@ public class AppController {
 	@Path("/")
 	public void index() {
 
+	}
+	
+	@Path("/app/playground")
+	public void playground() {
+		this.result.include("booleanValue",Boolean.TRUE);
+		this.result.include("persons", pessoaRepository.listAll(0,3));
+		this.result.include("dateTime" , LocalDate.now());
+		this.result.include("myValue",12345L);
 	}
 
 	@Path("/app/welcome")

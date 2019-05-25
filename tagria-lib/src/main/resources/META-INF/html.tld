@@ -11,6 +11,129 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a menu dropdown divider</description>
+		<display-name>Misc</display-name>
+		<name>dropDownDivider</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DropDownDividerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:dropDown label="List"&gt;
+					&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+					&lt;html:dropDownDivider/&gt;
+					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:dropDown&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a dropdown item list</description>
+		<display-name>Misc</display-name>
+		<name>dropDownItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DropDownItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the icon to be used in the menu icon. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+				&lt;html:dropDown label="List"&gt;
+					&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+					&lt;html:dropDownDivider/&gt;
+					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:dropDown&gt;
+		</example>
+	</tag>
+	
+	
+	
+	<tag>
+		<description>Renders a dropdown list</description>
+		<display-name>Misc</display-name>
+		<name>dropDown</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DropDownTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the size of dropdown. Default none. Options: xl,sm,lg</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dropdown state. Default: default. Options: success, danger, info, default, primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used in dropdown root</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:dropDown label="List"&gt;
+					&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+					&lt;html:dropDownDivider/&gt;
+					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:dropDown&gt;
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a carousel</description>
 		<display-name>Carousel</display-name>
 		<name>carousel</name>
@@ -452,6 +575,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SelectTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates a css class to the component</description>
 			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -468,6 +597,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>map</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.util.Map</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if select support autocomplete</description>
+			<name>autocomplete</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
@@ -581,8 +716,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders a detail table</description>
 		<display-name>Detail table</display-name>
-		<name>detailTable</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableTag</tag-class>
+		<name>multipleFormGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -603,6 +738,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates the name of the variable java (com.jslsolucoes.tagria.lib.tag.html.VarStatus) to be made available the index of iteration.  </description>
+			<name>varStatus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the minimum number of lines to be filled</description>
 			<name>atLeast</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -615,61 +756,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates a javascript function to be performed after inserting a row</description>
+			<description>Indicates a javascript function to be performed after insert a row. function signature is f(idx,element). idx: index of line was added, element: clone of elements declared in template  </description>
 			<name>afterInsert</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<example>
-			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1" label="Persons details"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
-			&lt;/html:form&gt;
-		</example>
-	</tag>
-
-	<tag>
-		<description>Renders a column in the detail table</description>
-		<display-name>Detail table</display-name>
-		<name>detailTableColumn</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableColumnTag</tag-class>
-		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the label component</description>
-			<name>label</name>
+			<description>Indicates a javascript function to be performed after remove a row. function signature is void f()</description>
+			<name>afterRemove</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<attribute>
-			<description>It indicates whether the component has its required on a form</description>
-			<name>required</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
 		<example>
 			&lt;html:form action="#" label="Form with details"&gt;
-				&lt;html:formGroup&gt;
-					&lt;html:detailTable atLeast="1"&gt;
-						&lt;html:detailTableColumn label="Name" required="true"&gt;
-							&lt;html:input name="names[]" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-						&lt;html:detailTableColumn label="Age" required="true"&gt;
-							&lt;html:input name="ages[]" type="number" required="true"/&gt;
-						&lt;/html:detailTableColumn&gt;
-					&lt;/html:detailTable&gt;
-				&lt;/html:formGroup&gt;
+				&lt;html:multipleFormGroup&gt;
+					
+				&lt;/html:multipleFormGroup&gt;
 			&lt;/html:form&gt;
 		</example>
 	</tag>
-	
 	
 	<tag>
 		<description>Renders an icon</description>
@@ -796,12 +901,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>It indicates a label for column content</description>
 			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates a format in which the value must be converted. Options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
-			<name>format</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1318,6 +1417,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates a match regular expression value</description>
+			<name>match</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a replace regular expression value</description>
+			<name>replace</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:format type="currency"&gt; ${ myValue} &lt;/html:format&gt;
 		</example>
@@ -1801,12 +1912,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates a format in which the value must be converted. Options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
-			<name>format</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>It indicates the type of input. Default: text. Options: button, checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week</description>
 			<name>type</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1838,8 +1943,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the component should win the cursor focus</description>
+			<description>It indicates whether the component should gain the cursor focus</description>
 			<name>focus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Defines if input allow autocomplete previous input date.Default false</description>
+			<name>autocomplete</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -1883,7 +1994,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<description>Indicates if (radio, checkbox) if the component should be marked</description>
 			<name>checked</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates whether the component supports multiple inputs</description>
@@ -2032,6 +2143,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the label component</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2109,7 +2226,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:iframe url="/app/welcome" name="conteudo"/&gt; </example>
 	</tag>
 	
-	
 	<tag>
 		<description>Renders a dropdown menu</description>
 		<display-name>Menu</display-name>
@@ -2151,7 +2267,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:menu&gt; 
 		</example>
 	</tag>
-
+	
 	<tag>
 		<description>Renders a menu item on dropdown</description>
 		<display-name>Menu</display-name>
@@ -2175,6 +2291,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>url</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>It indicates the label to be used</description>
@@ -2247,6 +2369,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the component name that triggers the menu group</description>
 			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of component</description>
+			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -2459,12 +2587,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates a format in which the content should be converted. Options: date,datetime, timestamp, hour, currency, zip code, cnpj, tel, cpf</description>
-			<name>format</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>It indicates whether the component should be rendered</description>
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2508,6 +2630,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the component linked to dismiss button. Default false. Options: true,false</description>
 			<name>dismiss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component must check for url auth integration</description>
+			<name>auth</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>

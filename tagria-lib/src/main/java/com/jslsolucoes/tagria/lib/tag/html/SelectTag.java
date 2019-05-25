@@ -13,19 +13,21 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Option;
+import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Select;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
 public class SelectTag extends SimpleTagSupport {
 
-	
+	private String id;
 	private Collection data;
 	private Map map;
 	private String name;
 	private String value;
 	private String var;
 	private Boolean required = Boolean.FALSE;
+	private Boolean autocomplete = Boolean.FALSE;
 	private Boolean fixed = Boolean.FALSE;
 	private String cssClass;
 
@@ -33,7 +35,7 @@ public class SelectTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Select select = new Select();
-		select.add(Attribute.ID, TagUtil.getId(name, null, this));
+		select.add(Attribute.ID, TagUtil.getId(name, id, this));
 		select.add(Attribute.NAME, name);
 		select.add(new Option().add(Attribute.VALUE, "").add("- - -"));
 		if (required) {
@@ -45,16 +47,17 @@ public class SelectTag extends SimpleTagSupport {
 		if (!StringUtils.isEmpty(cssClass)) {
 			select.add(Attribute.CLASS, cssClass);
 		}
-		
-		if(fixed){
+
+		if (fixed) {
 			select.add(TagUtil.getBody(getJspBody()));
-		} if (!CollectionUtils.isEmpty(data)) {
+		}
+		if (!CollectionUtils.isEmpty(data)) {
 			for (Object item : data) {
 				getJspContext().setAttribute(var, item);
 				select.add(TagUtil.getBody(getJspBody()));
 			}
 			getJspContext().setAttribute(var, null);
-		} else if(map != null) {
+		} else if (map != null) {
 			for (Object entry : map.entrySet()) {
 				getJspContext().setAttribute(var, entry);
 				select.add(TagUtil.getBody(getJspBody()));
@@ -62,8 +65,14 @@ public class SelectTag extends SimpleTagSupport {
 			getJspContext().setAttribute(var, null);
 		}
 		TagUtil.out(getJspContext(), select);
+
+		if (autocomplete) {
+			Script script = new Script();
+			script.add("$('#" + select.get(Attribute.ID) + "').select2();");
+			TagUtil.out(getJspContext(), script);
+		}
 	}
-	
+
 	public Collection getData() {
 		return data;
 	}
@@ -126,6 +135,22 @@ public class SelectTag extends SimpleTagSupport {
 
 	public void setFixed(Boolean fixed) {
 		this.fixed = fixed;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Boolean getAutocomplete() {
+		return autocomplete;
+	}
+
+	public void setAutocomplete(Boolean autocomplete) {
+		this.autocomplete = autocomplete;
 	}
 
 }

@@ -19,7 +19,7 @@ public class CarouselTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId(id));
+		div.add(Attribute.ID, TagUtil.getId(id,this));
 		div.add(Attribute.CLASS, "carousel slide");
 		div.add(Attribute.DATA_RIDE, "carousel");
 

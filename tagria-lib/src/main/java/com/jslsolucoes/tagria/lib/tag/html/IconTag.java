@@ -20,7 +20,7 @@ public class IconTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Span span = new Span();
-			span.add(Attribute.ID, TagUtil.getId(id));
+			span.add(Attribute.ID, TagUtil.getId(id,this));
 			span.add(Attribute.CLASS, "fas fa-" + icon);
 			TagUtil.out(getJspContext(), span);
 		}

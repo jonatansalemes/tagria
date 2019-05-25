@@ -35,7 +35,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 		if (rendered != null && rendered) {
 			Div modal = new Div();
 			modal.add(Attribute.CLASS, "modal fade");
-			modal.add(Attribute.ID, TagUtil.getId(id));
+			modal.add(Attribute.ID, TagUtil.getId(id,this));
 
 			if (!closeable) {
 				modal.add(Attribute.DATA_KEYBOARD, "false");
@@ -92,15 +92,13 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			TagUtil.out(getJspContext(), modal);
 
 			Script scriptForAttach = new Script();
-			scriptForAttach.add(Attribute.TYPE, "text/javascript");
-			scriptForAttach.add("$('" +TagUtil.attachTo(attachToSelector, attachTo, this) + "').attr('data-toggle','modal').attr('data-target','#"
+			scriptForAttach.add("$('" +TagUtil.attachTo(attachToSelector, attachTo,this) + "').attr('data-toggle','modal').attr('data-target','#"
 						+ modal.get(Attribute.ID) + "');");
 			TagUtil.out(getJspContext(), scriptForAttach);
 			
 
 			if (open != null && open) {
 				Script scriptForOpen = new Script();
-				scriptForOpen.add(Attribute.TYPE, "text/javascript");
 				scriptForOpen.add("$('#" + modal.get(Attribute.ID) + "').modal('show')");
 				TagUtil.out(getJspContext(), scriptForOpen);
 			}
