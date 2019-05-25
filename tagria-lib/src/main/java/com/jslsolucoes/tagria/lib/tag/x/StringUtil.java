@@ -64,6 +64,10 @@ public class StringUtil {
 	public static String lineBreak(String value) {
 		return value.replaceAll("\n", "<br>");
 	}
+	
+	public static String format(String type, Object value) {
+		return format(type,null,null, value);
+	}
 
 	public static String format(String type, String match, String replace, Object value) {
 		Locale locale = Locale.forLanguageTag(TagUtil.getInitParam(TagriaConfigParameter.LOCALE));

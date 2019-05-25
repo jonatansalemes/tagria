@@ -25,7 +25,7 @@ public class TargetTag extends SimpleTagSupport {
 	}
 
 	private String selector() {
-		return "$('#" + TagUtil.getId(target, null) + "')";
+		return "$('#" + TagUtil.getId(target, null,this) + "')";
 	}
 
 	private String valueForParameter() {

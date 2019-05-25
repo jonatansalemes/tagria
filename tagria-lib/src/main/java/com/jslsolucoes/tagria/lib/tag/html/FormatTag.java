@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -17,14 +19,14 @@ public class FormatTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
+		String body = TagUtil.getBody(getJspBody());
 		Formattabler formattabler = (Formattabler) findAncestorWithClass(this, Formattabler.class);
-		if (formattabler != null) {
+		if (formattabler != null && StringUtils.isEmpty(body)) {
 			formattabler.setFormatType(type);
 			formattabler.setFormatMatch(match);
 			formattabler.setFormatReplace(replace);
 		} else {
-			TagUtil.out(getJspContext(),
-					TagUtil.format(type, match, replace, TagUtil.getBody(getJspBody()), getJspContext()));
+			TagUtil.out(getJspContext(), TagUtil.format(type, match, replace, body, getJspContext()));
 		}
 	}
 

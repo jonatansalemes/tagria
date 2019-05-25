@@ -599,6 +599,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.util.Map</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if select support autocomplete</description>
+			<name>autocomplete</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
 			<name>required</name>
 			<rtexprvalue>true</rtexprvalue>
