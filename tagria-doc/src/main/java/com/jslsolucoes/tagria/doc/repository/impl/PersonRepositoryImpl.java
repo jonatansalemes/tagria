@@ -19,7 +19,7 @@ public class PersonRepositoryImpl implements PersonRepository {
 
 	public PersonRepositoryImpl() {
 		pessoas = new ArrayList<Person>();
-		for (int i = 1; i <= 20; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			Person pessoa = new Person();
 			pessoa.setName(RandomStringUtils.randomAlphabetic(10));
 			pessoa.setBirthDate(Calendar.getInstance().getTime());
@@ -31,9 +31,13 @@ public class PersonRepositoryImpl implements PersonRepository {
 		}
 
 	}
-
+	
 	public List<Person> listAll() {
-		return pessoas;
+		return listAll(20);
+	}
+	
+	public List<Person> listAll(Integer maxResult) {
+		return pessoas.subList(0, maxResult);
 	}
 
 	@Override
@@ -47,7 +51,7 @@ public class PersonRepositoryImpl implements PersonRepository {
 
 	@Override
 	public List<Person> listAll(Integer firstResult, Integer maxResult) {
-		return pessoas.subList(firstResult, firstResult + maxResult);
+		return listAll().subList(firstResult, firstResult + maxResult);
 	}
 
 }

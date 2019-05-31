@@ -36,7 +36,7 @@ public class AppController {
 	@Path("/app/playground")
 	public void playground() {
 		this.result.include("booleanValue",Boolean.TRUE);
-		this.result.include("persons", pessoaRepository.listAll(0,3));
+		this.result.include("persons", pessoaRepository.listAll(400));
 		this.result.include("dateTime" , LocalDate.now());
 		this.result.include("myValue",12345L);
 	}

@@ -11,10 +11,16 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.jslsolucoes.tagria.lib.html.A;
 import com.jslsolucoes.tagria.lib.html.Attribute;
+import com.jslsolucoes.tagria.lib.html.Button;
+import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.lib.html.H4;
+import com.jslsolucoes.tagria.lib.html.Input;
 import com.jslsolucoes.tagria.lib.html.Option;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Select;
+import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
@@ -27,12 +33,20 @@ public class SelectTag extends SimpleTagSupport {
 	private String value;
 	private String var;
 	private Boolean required = Boolean.FALSE;
-	private Boolean autocomplete = Boolean.FALSE;
 	private Boolean fixed = Boolean.FALSE;
 	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
+
+		Div container = new Div();
+		container.add(Attribute.ID, TagUtil.getId(this));
+
+		Div row = new Div();
+		row.add(Attribute.CLASS, "row");
+
+		Div col1 = new Div();
+		col1.add(Attribute.CLASS, "col col-11");
 
 		Select select = new Select();
 		select.add(Attribute.ID, TagUtil.getId(name, id, this));
@@ -42,7 +56,7 @@ public class SelectTag extends SimpleTagSupport {
 			select.add(Attribute.CLASS, "form-required");
 			select.add(Attribute.REQUIRED, "required");
 		}
-		select.add(Attribute.CLASS, "form-control shadow-sm");
+		select.add(Attribute.CLASS, "select form-control shadow-sm");
 
 		if (!StringUtils.isEmpty(cssClass)) {
 			select.add(Attribute.CLASS, cssClass);
@@ -64,13 +78,83 @@ public class SelectTag extends SimpleTagSupport {
 			}
 			getJspContext().setAttribute(var, null);
 		}
-		TagUtil.out(getJspContext(), select);
+		col1.add(select);
+		row.add(col1);
 
-		if (autocomplete) {
-			Script script = new Script();
-			script.add("$('#" + select.get(Attribute.ID) + "').select2();");
-			TagUtil.out(getJspContext(), script);
-		}
+		Div col2 = new Div();
+		col2.add(Attribute.CLASS, "col col-1");
+
+		Span span = new Span();
+		span.add(Attribute.CLASS, "fas fa-search");
+		A a = new A();
+		a.add(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm");
+		a.add(Attribute.HREF, "#");
+		a.add(span);
+		col2.add(a);
+		row.add(col2);
+
+		container.add(row);
+		container.add(modal());
+
+		TagUtil.out(getJspContext(), container);
+
+		Script script = new Script();
+		script.add("$('#" + container.get(Attribute.ID) + "').select();");
+		TagUtil.out(getJspContext(), script);
+
+	}
+
+	public Div modal() {
+		Div modal = new Div();
+		modal.add(Attribute.CLASS, "modal fade");
+		modal.add(Attribute.ID, TagUtil.getId(id, this));
+
+		Div dialog = new Div();
+		dialog.add(Attribute.CLASS, "modal-dialog modal-dialog-centered");
+
+		Div content = new Div();
+		content.add(Attribute.CLASS, "modal-content");
+
+		Div header = new Div();
+		header.add(Attribute.CLASS, "modal-header");
+
+		H4 h4 = new H4();
+		h4.add(Attribute.CLASS, "modal-title");
+		h4.add(TagUtil.getLocalizedForLib("select.search.title", getJspContext()));
+		header.add(h4);
+
+		Button close = new Button();
+		close.add(Attribute.CLASS, "close");
+		close.add(Attribute.DATA_DISMISS, "modal");
+		close.add(new Span().add("&times;"));
+		header.add(close);
+
+		content.add(header);
+
+		Div body = new Div();
+		body.add(Attribute.CLASS, "modal-body");
+		
+		
+		Div inputContainer = new Div();
+		Input input = new Input();
+		input.add(Attribute.TYPE, "text");
+		input.add(Attribute.AUTOCOMPLETE, "off");
+		input.add(Attribute.CLASS, "form-control shadow-sm select-search-input");
+		input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("select.search.input", getJspContext()));
+		input.add(Attribute.AUTOFOCUS, "autofocus");
+		inputContainer.add(input);
+		body.add(inputContainer);
+		
+		Div searchContainer = new Div();
+		searchContainer.add(Attribute.CLASS, "select-search-container");
+		body.add(searchContainer);
+		
+		
+		content.add(body);
+
+		dialog.add(content);
+		modal.add(dialog);
+		return modal;
 	}
 
 	public Collection getData() {
@@ -143,14 +227,6 @@ public class SelectTag extends SimpleTagSupport {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public Boolean getAutocomplete() {
-		return autocomplete;
-	}
-
-	public void setAutocomplete(Boolean autocomplete) {
-		this.autocomplete = autocomplete;
 	}
 
 }
