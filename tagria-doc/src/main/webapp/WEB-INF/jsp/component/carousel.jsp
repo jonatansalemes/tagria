@@ -6,8 +6,7 @@
 				<html:carouselItem label="Item 2" description="Description 2">
 					<html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/>
 				</html:carouselItem>
-			</html:carousel> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:carousel> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:carousel&gt;
 				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
 					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
@@ -15,5 +14,4 @@
 				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
 					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
 				&lt;/html:carouselItem&gt;
-			&lt;/html:carousel&gt; 
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:carousel&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

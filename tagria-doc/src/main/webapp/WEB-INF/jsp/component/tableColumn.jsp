@@ -9,8 +9,7 @@
 						<html:tableColumn colspan="2">Value colspan 3</html:tableColumn>
 					</html:tableLine>
 				</html:tableBody>
-			</html:table>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:table> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:table&gt;
 				&lt;html:tableBody&gt;
 					&lt;html:tableLine&gt;
@@ -21,5 +20,4 @@
 						&lt;html:tableColumn colspan="2"&gt;Value colspan 3&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:table&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

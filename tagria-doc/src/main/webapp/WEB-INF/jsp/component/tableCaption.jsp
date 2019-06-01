@@ -11,8 +11,7 @@
 						<html:tableColumn>Value 1</html:tableColumn>
 					</html:tableLine>
 				</html:tableBody>
-			</html:table>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:table> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:table&gt;
 				&lt;html:tableCaption&gt;
 					Caption
@@ -25,5 +24,4 @@
 						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:table&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

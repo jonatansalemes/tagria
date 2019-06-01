@@ -11,8 +11,7 @@
 						<html:menuDropDownItem icon="trash" label="Item 3" url="#"/>
 					</html:menuDropDown>
 				</html:menuCollapsable>
-			</html:menu> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:menu> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:menu&gt;
 				&lt;html:menuCollapse attachToSelector="#block1"&gt;
 					
@@ -25,5 +24,4 @@
 						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
 					&lt;/html:menuDropDown&gt;
 				&lt;/html:menuCollapsable&gt;
-			&lt;/html:menu&gt; 
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:menu&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

@@ -3,11 +3,9 @@
 				<html:carouselItem>
 					<html:carouselImage url="/image/person.png" alt="logo"/>
 				</html:carouselItem>
-			</html:carousel>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:carousel> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:carousel&gt;
 				&lt;html:carouselItem&gt;
 					&lt;html:carouselImage url="/image/person.png" alt="logo"/&gt;
 				&lt;/html:carouselItem&gt;
-			&lt;/html:carousel&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:carousel&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

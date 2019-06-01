@@ -5,13 +5,11 @@
 						<html:tableHead label="Head 1"/>
 					</html:tableLine>
 				</html:tableHeader>
-			</html:table>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:table> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:table&gt;
 				&lt;html:tableHeader light="dark"&gt;
 					&lt;html:tableLine&gt;
 						&lt;html:tableHead label="Head 1"/&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableHeader&gt;
-			&lt;/html:table&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:table&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

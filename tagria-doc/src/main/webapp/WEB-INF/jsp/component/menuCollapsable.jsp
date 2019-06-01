@@ -9,8 +9,7 @@
 					menu components
 				</html:menuCollapsable>
 				
-			</html:menu>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:menu> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:menu&gt;
 				
 					&lt;html:menuCollapse attachToSelector="#block1"&gt;
@@ -21,5 +20,4 @@
 					menu components
 				&lt;/html:menuCollapsable&gt;
 				
-			&lt;/html:menu&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:menu&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

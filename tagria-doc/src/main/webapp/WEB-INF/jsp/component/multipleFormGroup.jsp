@@ -3,11 +3,9 @@
 				<html:multipleFormGroup>
 					
 				</html:multipleFormGroup>
-			</html:form>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:form action="#" label="Form with details"&gt;
 				&lt;html:multipleFormGroup&gt;
 					
 				&lt;/html:multipleFormGroup&gt;
-			&lt;/html:form&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:form&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

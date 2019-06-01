@@ -3,11 +3,9 @@
 				<html:option value="${ person.id }">
 					${ person.name }
 				</html:option>
-			</html:select>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:select> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:select name="select1" data="\${ persons }" var="person"&gt;
 				&lt;html:option value="\${ person.id }"&gt;
 					\${ person.name }
 				&lt;/html:option&gt;
-			&lt;/html:select&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:select&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			

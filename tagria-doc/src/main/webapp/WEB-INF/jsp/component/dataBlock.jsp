@@ -3,11 +3,9 @@
 				<html:alert state="success">
 					${ person.name }
 				</html:alert>
-			</html:dataBlock>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
+			</html:dataBlock> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:dataBlock limit="12" extraSmall="12" medium="4" small="4" large="1" data="\${ persons }" var="person"&gt;
 				&lt;html:alert state="success"&gt;
 					\${ person.name }
 				&lt;/html:alert&gt;
-			&lt;/html:dataBlock&gt;
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+			&lt;/html:dataBlock&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
