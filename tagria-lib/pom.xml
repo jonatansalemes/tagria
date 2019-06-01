@@ -27,6 +27,16 @@
 		</dependency>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
+			<artifactId>tagria-tag-x</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>tagria-exception</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
 			<artifactId>tagria-exporter</artifactId>
 			<version>${project.version}</version>
 		</dependency>

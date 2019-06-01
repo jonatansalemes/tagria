@@ -1,4 +1,4 @@
-package playground;
+package com.jslsolucoes.tagria.base;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -12,14 +12,11 @@ import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
-import com.jslsolucoes.tagria.html.Script;
-import com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag;
-import com.jslsolucoes.tagria.lib.tag.html.ViewTag;
 
 public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implements DynamicAttributes {
 
 	private Map<String, String> attributes = new WeakHashMap<String, String>();
-	
+
 	private void print() throws IOException {
 		getJspContext().getOut().print(html());
 	}
@@ -27,25 +24,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	@Override
 	public void doTag() throws JspException, IOException {
 		print();
-		propagateJs();
-	}
-
-	private void propagateJs() {
-		Script script = new Script();
-		script.add(js());
-
-		ViewTag viewTag = findAncestorWithClass(ViewTag.class)
-				.orElseThrow(() -> new TagriaRuntimeException("View tag not found as ancestor"));
-		viewTag.setScript(script);
-
-		Optional<MultipleFormGroupTag> optionalMultipleFormGroupTag = findAncestorWithClass(MultipleFormGroupTag.class);
-		if (optionalMultipleFormGroupTag.isPresent()) {
-			MultipleFormGroupTag multipleFormGroupTag = optionalMultipleFormGroupTag.get();
-			if (multipleFormGroupTag.getVarStatusObject().getIndex() == 0) {
-				multipleFormGroupTag.setScript(script);
-			}
-		}
-
 	}
 
 	public Optional<String> body() {
@@ -76,11 +54,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public abstract String html();
-	
+
 	public String js() {
 		return "";
 	}
-	
+
 	public String css() {
 		return "";
 	}

@@ -51,8 +51,11 @@
 	</scm>
 
 	<modules>
-		<module>tagria-exporter</module>
+		<module>tagria-exception</module>
 		<module>tagria-html</module>
+		<module>tagria-base</module>
+		<module>tagria-exporter</module>
+		<module>tagria-tag-x</module>
 		<module>tagria-lib</module>
 		<module>tagria-doc</module>
 	</modules>

@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Row;
 
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Column;
 import com.jslsolucoes.tagria.exporter.parser.model.Header;
@@ -66,7 +67,7 @@ public class ExcelExporter implements Exporter {
 				return byteArrayOutputStream.toByteArray();
 			}
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new TagriaRuntimeException(e);
 		}
 	}
 

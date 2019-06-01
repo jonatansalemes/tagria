@@ -10,6 +10,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Column;
 import com.jslsolucoes.tagria.exporter.parser.model.Header;
@@ -56,7 +57,7 @@ public class PdfExporter implements Exporter {
 			pdfWriter.close();
 			return byteArrayOutputStream.toByteArray();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new TagriaRuntimeException(e);
 		}
 	}
 

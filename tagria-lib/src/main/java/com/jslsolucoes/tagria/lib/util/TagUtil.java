@@ -38,7 +38,7 @@ import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag;
 import com.jslsolucoes.tagria.lib.tag.html.ViewTag;
-import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
+import com.jslsolucoes.tagria.tag.x.XTag;
 
 public class TagUtil {
 
@@ -108,7 +108,7 @@ public class TagUtil {
 	}
 
 	public static String format(String type, String match, String replace, String value, JspContext jspContext) {
-		return StringUtil.format(type, match, replace, value, locale(jspContext));
+		return XTag.format(type, match, replace, value, locale(jspContext));
 	}
 
 	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {

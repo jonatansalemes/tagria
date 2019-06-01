@@ -21,7 +21,7 @@ import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.jscomp.SourceFile;
-import com.jslsolucoes.tagria.lib.error.TagriaRuntimeException;
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class Compressor {

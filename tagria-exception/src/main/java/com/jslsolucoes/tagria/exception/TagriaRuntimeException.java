@@ -1,4 +1,4 @@
-package com.jslsolucoes.tagria.lib.error;
+package com.jslsolucoes.tagria.exception;
 
 @SuppressWarnings("serial")
 public class TagriaRuntimeException extends RuntimeException {

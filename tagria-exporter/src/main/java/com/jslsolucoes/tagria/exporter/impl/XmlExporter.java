@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Header;
 import com.jslsolucoes.tagria.exporter.parser.model.Row;
@@ -75,7 +76,7 @@ public class XmlExporter implements Exporter {
 			byteArrayOutputStream.write(tableEnd());
 			return byteArrayOutputStream.toByteArray();
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new TagriaRuntimeException(e);
 		}
 	}
 

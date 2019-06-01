@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.lib.tag.x;
+package com.jslsolucoes.tagria.tag.x;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -13,15 +13,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+public class XTag {
 
-public class StringUtil {
-
-	private StringUtil() {
+	private XTag() {
 
 	}
 
@@ -58,7 +55,7 @@ public class StringUtil {
 	}
 
 	public static String fullStackTrace(Exception exception) {
-		return ExceptionUtils.getFullStackTrace(exception).replaceAll("\n", "<br/>");
+		return ExceptionUtils.getStackTrace(exception).replaceAll("\n", "<br/>");
 	}
 
 	public static String lineBreak(String value) {
@@ -66,12 +63,7 @@ public class StringUtil {
 	}
 
 	public static String format(String type, Object value) {
-		return format(type, null, null, value);
-	}
-
-	public static String format(String type, String match, String replace, Object value) {
-		Locale locale = Locale.forLanguageTag(TagUtil.getInitParam(TagriaConfigParameter.LOCALE));
-		return format(type, (value == null ? "" : value.toString()), match, replace, locale);
+		return format(type, null, null, value.toString(), Locale.getDefault());
 	}
 
 	public static String format(String type, String match, String replace, String value, Locale locale) {
