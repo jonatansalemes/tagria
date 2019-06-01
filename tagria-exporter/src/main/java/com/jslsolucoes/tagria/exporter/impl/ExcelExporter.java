@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.lib.grid.exporter.impl;
+package com.jslsolucoes.tagria.exporter.impl;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -7,13 +7,14 @@ import java.io.OutputStream;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Column;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Header;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
+import com.jslsolucoes.tagria.exporter.model.Column;
+import com.jslsolucoes.tagria.exporter.model.Header;
+import com.jslsolucoes.tagria.exporter.model.Table;
 
 public class ExcelExporter {
 	private Table table;
@@ -37,37 +38,34 @@ public class ExcelExporter {
 		for (Header header : table.getHeaders()) {
 			Cell sheetCel = sheetRow.createCell(cell);
 			sheetCel.setCellValue(header.getContent());
-
-			CellStyle cellStyle = workbook.createCellStyle();
-			if ("center".equals(header.getAlign()))
-				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-			else if ("left".equals(header.getAlign()))
-				cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
-			else if ("right".equals(header.getAlign()))
-				cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
+			CellStyle cellStyle = cellStyle(header.getAlign(), workbook);
 			sheetCel.setCellStyle(cellStyle);
-
 			cell++;
 		}
 
 	}
 
+	private CellStyle cellStyle(String align, Workbook workbook) {
+		CellStyle cellStyle = workbook.createCellStyle();
+		if ("center".equals(align)) {
+			cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		} else if ("left".equals(align)) {
+			cellStyle.setAlignment(HorizontalAlignment.LEFT);
+		} else if ("right".equals(align)) {
+			cellStyle.setAlignment(HorizontalAlignment.RIGHT);
+		}
+		return cellStyle;
+	}
+
 	private void body(Sheet sheet, Workbook workbook) {
 		int line = 1;
-		for (com.jslsolucoes.tagria.lib.grid.exporter.model.Row row : table.getRows()) {
+		for (com.jslsolucoes.tagria.exporter.model.Row row : table.getRows()) {
 			Row sheetRow = sheet.createRow(line);
 			int cell = 0;
 			for (Column column : row.getColumns()) {
 				Cell sheetCel = sheetRow.createCell(cell);
 				sheetCel.setCellValue(column.getContent());
-
-				CellStyle cellStyle = workbook.createCellStyle();
-				if ("center".equals(column.getAlign()))
-					cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-				else if ("left".equals(column.getAlign()))
-					cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
-				else if ("right".equals(column.getAlign()))
-					cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
+				CellStyle cellStyle = cellStyle(column.getAlign(), workbook);
 				sheetCel.setCellStyle(cellStyle);
 				cell++;
 			}

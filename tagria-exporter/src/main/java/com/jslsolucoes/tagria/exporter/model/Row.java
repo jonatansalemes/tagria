@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.lib.grid.exporter.model;
+package com.jslsolucoes.tagria.exporter.model;
 
 import java.util.List;
 

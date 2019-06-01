@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.lib.grid.exporter.impl;
+package com.jslsolucoes.tagria.exporter.impl;
 
 import java.io.OutputStream;
 
@@ -11,10 +11,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Column;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Header;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Row;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
+import com.jslsolucoes.tagria.exporter.model.Column;
+import com.jslsolucoes.tagria.exporter.model.Header;
+import com.jslsolucoes.tagria.exporter.model.Row;
+import com.jslsolucoes.tagria.exporter.model.Table;
 
 public class PdfExporter {
 	private Table table;

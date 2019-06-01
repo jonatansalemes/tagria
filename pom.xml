@@ -51,6 +51,7 @@
 	</scm>
 
 	<modules>
+		<module>tagria-exporter</module>
 		<module>tagria-html</module>
 		<module>tagria-lib</module>
 		<module>tagria-doc</module>

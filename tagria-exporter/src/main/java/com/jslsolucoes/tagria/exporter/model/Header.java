@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.lib.grid.exporter.model;
+package com.jslsolucoes.tagria.exporter.model;
 
 public class Header {
 	private String align;

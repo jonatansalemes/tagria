@@ -1,16 +1,13 @@
 
-package com.jslsolucoes.tagria.lib.grid.exporter.impl;
+package com.jslsolucoes.tagria.exporter.impl;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.commons.io.IOUtils;
-
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Column;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Header;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Row;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
+import com.jslsolucoes.tagria.exporter.model.Column;
+import com.jslsolucoes.tagria.exporter.model.Header;
+import com.jslsolucoes.tagria.exporter.model.Row;
+import com.jslsolucoes.tagria.exporter.model.Table;
 
 public class XmlExporter {
 	private Table table;
@@ -20,7 +17,8 @@ public class XmlExporter {
 	}
 
 	public void doExport(OutputStream outputStream) throws IOException {
-		IOUtils.copy(new ByteArrayInputStream(export()), outputStream);
+		outputStream.write(export());
+		outputStream.flush();
 	}
 
 	private byte[] export() {

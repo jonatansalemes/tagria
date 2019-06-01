@@ -23,12 +23,12 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jslsolucoes.tagria.exporter.impl.CsvExporter;
+import com.jslsolucoes.tagria.exporter.impl.ExcelExporter;
+import com.jslsolucoes.tagria.exporter.impl.PdfExporter;
+import com.jslsolucoes.tagria.exporter.impl.XmlExporter;
+import com.jslsolucoes.tagria.exporter.model.Table;
 import com.jslsolucoes.tagria.lib.auth.Auth;
-import com.jslsolucoes.tagria.lib.grid.exporter.impl.CsvExporter;
-import com.jslsolucoes.tagria.lib.grid.exporter.impl.ExcelExporter;
-import com.jslsolucoes.tagria.lib.grid.exporter.impl.PdfExporter;
-import com.jslsolucoes.tagria.lib.grid.exporter.impl.XmlExporter;
-import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("serial")
