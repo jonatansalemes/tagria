@@ -7,8 +7,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class BlockTag extends SimpleTagSupport {
@@ -21,10 +21,10 @@ public class BlockTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS, "mt-" + margin + " mb-" + margin + " clearfix");
+			div.attribute(HtmlAttribute.CLASS, "mt-" + margin + " mb-" + margin + " clearfix");
 
 			if (!StringUtils.isEmpty(align)) {
-				div.add(Attribute.CLASS, "text-" + align);
+				div.attribute(HtmlAttribute.CLASS, "text-" + align);
 			}
 
 			div.add(TagUtil.getBody(getJspBody()));

@@ -7,12 +7,12 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.H4;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ConfirmTag extends SimpleTagSupport {
@@ -27,33 +27,33 @@ public class ConfirmTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div modal = new Div();
-		modal.add(Attribute.CLASS, "modal fade");
-		modal.add(Attribute.ID, TagUtil.getId(this));
+		modal.attribute(HtmlAttribute.CLASS, "modal fade");
+		modal.attribute(HtmlAttribute.ID, TagUtil.getId(this));
 
 		Div dialog = new Div();
-		dialog.add(Attribute.CLASS, "modal-dialog modal-sm");
+		dialog.attribute(HtmlAttribute.CLASS, "modal-dialog modal-sm");
 
 		Div content = new Div();
-		content.add(Attribute.CLASS, "modal-content");
+		content.attribute(HtmlAttribute.CLASS, "modal-content");
 
 		Div header = new Div();
-		header.add(Attribute.CLASS, "modal-header");
+		header.attribute(HtmlAttribute.CLASS, "modal-header");
 
 		H4 h4 = new H4();
-		h4.add(Attribute.CLASS, "modal-title");
+		h4.attribute(HtmlAttribute.CLASS, "modal-title");
 		h4.add(TagUtil.getLocalizedForLib("confirm.title", getJspContext()));
 		header.add(h4);
 
 		Button close = new Button();
-		close.add(Attribute.CLASS, "close");
-		close.add(Attribute.DATA_DISMISS, "modal");
+		close.attribute(HtmlAttribute.CLASS, "close");
+		close.attribute(HtmlAttribute.DATA_DISMISS, "modal");
 		close.add(new Span().add("&times;"));
 		header.add(close);
 
 		content.add(header);
 
 		Div body = new Div();
-		body.add(Attribute.CLASS, "modal-body");
+		body.attribute(HtmlAttribute.CLASS, "modal-body");
 
 		String bodyContent = TagUtil.getBody(getJspBody());
 
@@ -67,18 +67,18 @@ public class ConfirmTag extends SimpleTagSupport {
 		content.add(body);
 
 		Div footer = new Div();
-		footer.add(Attribute.CLASS, "modal-footer");
+		footer.attribute(HtmlAttribute.CLASS, "modal-footer");
 		Button cancel = new Button();
-		cancel.add(Attribute.CLASS, "btn btn-outline-danger cancel");
-		cancel.add(Attribute.DATA_DISMISS, "modal");
+		cancel.attribute(HtmlAttribute.CLASS, "btn btn-outline-danger cancel");
+		cancel.attribute(HtmlAttribute.DATA_DISMISS, "modal");
 		cancel.add(TagUtil.getLocalizedForLib("confirm.cancel", getJspContext()));
 		footer.add(cancel);
 
 		A confirm = new A();
-		confirm.add(Attribute.CLASS, "btn btn-outline-primary sure");
+		confirm.attribute(HtmlAttribute.CLASS, "btn btn-outline-primary sure");
 		confirm.add(TagUtil.getLocalizedForLib("confirm.ok", getJspContext()));
-		confirm.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-		confirm.add(Attribute.TARGET, target);
+		confirm.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+		confirm.attribute(HtmlAttribute.TARGET, target);
 
 		footer.add(confirm);
 		content.add(footer);
@@ -89,7 +89,7 @@ public class ConfirmTag extends SimpleTagSupport {
 
 		TagUtil.appendJs(
 				"$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
-						+ "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID) + "');",
+						+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(HtmlAttribute.ID) + "');",
 				this);
 	}
 

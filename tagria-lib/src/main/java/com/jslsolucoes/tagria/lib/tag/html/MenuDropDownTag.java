@@ -5,10 +5,10 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Li;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Li;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuDropDownTag extends SimpleTagSupport {
@@ -21,19 +21,19 @@ public class MenuDropDownTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Li li = new Li();
-			li.add(Attribute.CLASS, "nav-item dropdown");
+			li.attribute(HtmlAttribute.CLASS, "nav-item dropdown");
 
 			A a = new A();
-			a.add(Attribute.HREF, "#");
-			a.add(Attribute.ID, TagUtil.getId(id, this));
-			a.add(Attribute.CLASS, "nav-link dropdown-toggle");
-			a.add(Attribute.DATA_TOGGLE, "dropdown");
+			a.attribute(HtmlAttribute.HREF, "#");
+			a.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+			a.attribute(HtmlAttribute.CLASS, "nav-link dropdown-toggle");
+			a.attribute(HtmlAttribute.DATA_TOGGLE, "dropdown");
 			a.add(TagUtil.getLocalized(label, getJspContext()));
 
 			li.add(a);
 
 			Div div = new Div();
-			div.add(Attribute.CLASS, "dropdown-menu");
+			div.attribute(HtmlAttribute.CLASS, "dropdown-menu");
 			div.add(TagUtil.getBody(getJspBody()));
 			li.add(div);
 

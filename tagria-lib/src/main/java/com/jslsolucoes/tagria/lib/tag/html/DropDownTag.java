@@ -7,9 +7,9 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class DropDownTag extends SimpleTagSupport {
@@ -24,15 +24,15 @@ public class DropDownTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div dropDown = new Div();
-			dropDown.add(Attribute.CLASS, "dropdown");
+			dropDown.attribute(HtmlAttribute.CLASS, "dropdown");
 
 			Button button = new Button();
-			button.add(Attribute.TYPE, "button");
-			button.add(Attribute.ID, TagUtil.getId(id, this));
-			button.add(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm dropdown-toggle");
-			button.add(Attribute.DATA_TOGGLE, "dropdown");
+			button.attribute(HtmlAttribute.TYPE, "button");
+			button.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+			button.attribute(HtmlAttribute.CLASS, "btn btn-outline-" + state + " shadow-sm dropdown-toggle");
+			button.attribute(HtmlAttribute.DATA_TOGGLE, "dropdown");
 			if (!StringUtils.isEmpty(size)) {
-				button.add(Attribute.CLASS, "btn-" + size);
+				button.attribute(HtmlAttribute.CLASS, "btn-" + size);
 			}
 
 			button.add(TagUtil.getLocalized(label, getJspContext()));
@@ -40,7 +40,7 @@ public class DropDownTag extends SimpleTagSupport {
 			dropDown.add(button);
 
 			Div div = new Div();
-			div.add(Attribute.CLASS, "dropdown-menu");
+			div.attribute(HtmlAttribute.CLASS, "dropdown-menu");
 			div.add(TagUtil.getBody(getJspBody()));
 			dropDown.add(div);
 

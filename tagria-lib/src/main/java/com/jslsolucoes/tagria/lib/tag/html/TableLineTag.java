@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Tr;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Tr;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TableLineTag extends SimpleTagSupport {
@@ -19,7 +19,7 @@ public class TableLineTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Tr tr = new Tr();
-			tr.add(Attribute.CLASS, "bg-" + state);
+			tr.attribute(HtmlAttribute.CLASS, "bg-" + state);
 			tr.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), tr);
 		}

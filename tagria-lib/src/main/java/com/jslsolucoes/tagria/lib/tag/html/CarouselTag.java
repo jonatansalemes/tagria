@@ -5,10 +5,10 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CarouselTag extends SimpleTagSupport {
@@ -19,28 +19,28 @@ public class CarouselTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId(id, this));
-		div.add(Attribute.CLASS, "carousel slide");
-		div.add(Attribute.DATA_RIDE, "carousel");
+		div.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+		div.attribute(HtmlAttribute.CLASS, "carousel slide");
+		div.attribute(HtmlAttribute.DATA_RIDE, "carousel");
 
 		Div inner = new Div();
-		inner.add(Attribute.CLASS, "carousel-inner");
+		inner.attribute(HtmlAttribute.CLASS, "carousel-inner");
 		inner.add(TagUtil.getBody(getJspBody()));
 
 		div.add(inner);
 
 		A prev = new A();
-		prev.add(Attribute.CLASS, "carousel-control-prev");
-		prev.add(Attribute.HREF, "#" + div.get(Attribute.ID));
-		prev.add(Attribute.DATA_SLIDE, "prev");
-		prev.add(new Span().add(Attribute.CLASS, "carousel-control-prev-icon"));
+		prev.attribute(HtmlAttribute.CLASS, "carousel-control-prev");
+		prev.attribute(HtmlAttribute.HREF, "#" + div.attribute(HtmlAttribute.ID));
+		prev.attribute(HtmlAttribute.DATA_SLIDE, "prev");
+		prev.add(new Span().attribute(HtmlAttribute.CLASS, "carousel-control-prev-icon"));
 		div.add(prev);
 
 		A next = new A();
-		next.add(Attribute.CLASS, "carousel-control-next");
-		next.add(Attribute.HREF, "#" + div.get(Attribute.ID));
-		next.add(Attribute.DATA_SLIDE, "next");
-		next.add(new Span().add(Attribute.CLASS, "carousel-control-next-icon"));
+		next.attribute(HtmlAttribute.CLASS, "carousel-control-next");
+		next.attribute(HtmlAttribute.HREF, "#" + div.attribute(HtmlAttribute.ID));
+		next.attribute(HtmlAttribute.DATA_SLIDE, "next");
+		next.add(new Span().attribute(HtmlAttribute.CLASS, "carousel-control-next-icon"));
 		div.add(next);
 
 		TagUtil.out(getJspContext(), div);

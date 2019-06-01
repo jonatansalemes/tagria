@@ -8,9 +8,9 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -37,33 +37,33 @@ public class ButtonTag extends SimpleTagSupport {
 				&& (auth ? TagUtil.allowed(getJspContext(), new CheckRule(url, "GET")) : true)) {
 			A a = new A();
 			if (!StringUtils.isEmpty(type)) {
-				a.add(Attribute.DATA_TYPE, type);
+				a.attribute(HtmlAttribute.DATA_TYPE, type);
 			}
-			a.add(Attribute.TARGET, target);
-			a.add(Attribute.ID, TagUtil.getId(id, this));
-			a.add(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm");
+			a.attribute(HtmlAttribute.TARGET, target);
+			a.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+			a.attribute(HtmlAttribute.CLASS, "btn btn-outline-" + state + " shadow-sm");
 
 			if (!StringUtils.isEmpty(cssClass)) {
-				a.add(Attribute.CLASS, cssClass);
+				a.attribute(HtmlAttribute.CLASS, cssClass);
 			}
 
 			if (disabled) {
-				a.add(Attribute.CLASS, "disabled");
+				a.attribute(HtmlAttribute.CLASS, "disabled");
 			}
 
 			if (!StringUtils.isEmpty(title)) {
-				a.add(Attribute.TITLE, TagUtil.getLocalized(title, getJspContext()));
+				a.attribute(HtmlAttribute.TITLE, TagUtil.getLocalized(title, getJspContext()));
 			}
 
 			if (dismiss) {
-				a.add(Attribute.DATA_DISMISS, "modal");
+				a.attribute(HtmlAttribute.DATA_DISMISS, "modal");
 			}
 
-			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+			a.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 
 			if (!StringUtils.isEmpty(icon)) {
 				Span span = new Span();
-				span.add(Attribute.CLASS, "fas fa-" + icon);
+				span.attribute(HtmlAttribute.CLASS, "fas fa-" + icon);
 				a.add(span);
 			}
 
@@ -74,7 +74,7 @@ public class ButtonTag extends SimpleTagSupport {
 			TagUtil.out(getJspContext(), a);
 
 			if (autoblock) {
-				TagUtil.appendJs("$('#" + a.get(Attribute.ID) + "').click(function(){$(this).addClass('disabled');});",
+				TagUtil.appendJs("$('#" + a.attribute(HtmlAttribute.ID) + "').click(function(){$(this).addClass('disabled');});",
 						this);
 			}
 		}

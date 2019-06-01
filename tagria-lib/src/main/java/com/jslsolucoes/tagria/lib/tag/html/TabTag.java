@@ -8,11 +8,11 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Iframe;
-import com.jslsolucoes.tagria.lib.html.Li;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Iframe;
+import com.jslsolucoes.tagria.html.Li;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TabTag extends SimpleTagSupport {
@@ -31,40 +31,40 @@ public class TabTag extends SimpleTagSupport {
 			String id = TagUtil.getId(this);
 			Li li = new Li();
 			if (reloadOnSelect) {
-				li.add(Attribute.CLASS, "tab-reload-on-select nav-item");
+				li.attribute(HtmlAttribute.CLASS, "tab-reload-on-select nav-item");
 			}
 
 			A a = new A();
-			a.add(Attribute.CLASS, "nav-link");
+			a.attribute(HtmlAttribute.CLASS, "nav-link");
 			if (active) {
-				a.add(Attribute.CLASS, "active");
+				a.attribute(HtmlAttribute.CLASS, "active");
 			}
-			a.add(Attribute.HREF, "#" + id);
-			a.add(Attribute.DATA_TOGGLE, "tab");
+			a.attribute(HtmlAttribute.HREF, "#" + id);
+			a.attribute(HtmlAttribute.DATA_TOGGLE, "tab");
 			a.add(TagUtil.getLocalized(label, getJspContext()));
 			li.add(a);
 
 			panel.addLi(li);
 
 			Div div = new Div();
-			div.add(Attribute.CLASS, "tab-pane m-2");
+			div.attribute(HtmlAttribute.CLASS, "tab-pane m-2");
 			if (active) {
-				div.add(Attribute.CLASS, "active");
+				div.attribute(HtmlAttribute.CLASS, "active");
 			}
-			div.add(Attribute.ID, id);
+			div.attribute(HtmlAttribute.ID, id);
 			if (StringUtils.isEmpty(url)) {
 				div.add(TagUtil.getBody(getJspBody()));
 			} else {
 				Iframe iframe = new Iframe();
-				iframe.add(Attribute.CLASS, "iframe");
-				iframe.add(Attribute.ID, TagUtil.getId(this));
-				iframe.add(Attribute.SRC, TagUtil.getPathForBlank(getJspContext()));
-				iframe.add(Attribute.DATA_URL, TagUtil.getPathForUrl(getJspContext(), url));
+				iframe.attribute(HtmlAttribute.CLASS, "iframe");
+				iframe.attribute(HtmlAttribute.ID, TagUtil.getId(this));
+				iframe.attribute(HtmlAttribute.SRC, TagUtil.getPathForBlank(getJspContext()));
+				iframe.attribute(HtmlAttribute.DATA_URL, TagUtil.getPathForUrl(getJspContext(), url));
 				if (active) {
-					iframe.add(Attribute.CLASS, "active");
+					iframe.attribute(HtmlAttribute.CLASS, "active");
 				}
 				div.add(iframe);
-				TagUtil.appendJs("$('#" + iframe.get(Attribute.ID) + "').iframe();", this);
+				TagUtil.appendJs("$('#" + iframe.attribute(HtmlAttribute.ID) + "').iframe();", this);
 			}
 			panel.addDiv(div);
 		}

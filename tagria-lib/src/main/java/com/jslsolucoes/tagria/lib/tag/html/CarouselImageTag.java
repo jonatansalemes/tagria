@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Img;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Img;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CarouselImageTag extends SimpleTagSupport {
@@ -23,14 +23,14 @@ public class CarouselImageTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Img img = new Img();
-			img.add(Attribute.CLASS, "d-block w-100");
-			img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-			img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
+			img.attribute(HtmlAttribute.CLASS, "d-block w-100");
+			img.attribute(HtmlAttribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
+			img.attribute(HtmlAttribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
 			if (width != null) {
-				img.add(Attribute.WIDTH, width);
+				img.attribute(HtmlAttribute.WIDTH, width);
 			}
 			if (height != null) {
-				img.add(Attribute.HEIGHT, height);
+				img.attribute(HtmlAttribute.HEIGHT, height);
 			}
 			TagUtil.out(getJspContext(), img);
 		}

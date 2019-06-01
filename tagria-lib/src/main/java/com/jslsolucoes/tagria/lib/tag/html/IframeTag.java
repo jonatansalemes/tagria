@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Iframe;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Iframe;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class IframeTag extends SimpleTagSupport {
@@ -22,15 +22,15 @@ public class IframeTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Iframe iframe = new Iframe();
-		iframe.add(Attribute.CLASS, "iframe");
+		iframe.attribute(HtmlAttribute.CLASS, "iframe");
 		if (!StringUtils.isEmpty(cssClass)) {
-			iframe.add(Attribute.CLASS, cssClass);
+			iframe.attribute(HtmlAttribute.CLASS, cssClass);
 		}
-		iframe.add(Attribute.NAME, name);
-		iframe.add(Attribute.ID, TagUtil.getId(name, id, this));
-		iframe.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));
+		iframe.attribute(HtmlAttribute.NAME, name);
+		iframe.attribute(HtmlAttribute.ID, TagUtil.getId(name, id, this));
+		iframe.attribute(HtmlAttribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));
 		TagUtil.out(getJspContext(), iframe);
-		TagUtil.appendJs("$('#" + iframe.get(Attribute.ID) + "').iframe();", this);
+		TagUtil.appendJs("$('#" + iframe.attribute(HtmlAttribute.ID) + "').iframe();", this);
 	}
 
 	public String getName() {

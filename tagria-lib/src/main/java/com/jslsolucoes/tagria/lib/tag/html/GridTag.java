@@ -14,24 +14,24 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Element;
-import com.jslsolucoes.tagria.lib.html.Form;
-import com.jslsolucoes.tagria.lib.html.H2;
-import com.jslsolucoes.tagria.lib.html.H5;
-import com.jslsolucoes.tagria.lib.html.Input;
-import com.jslsolucoes.tagria.lib.html.Li;
-import com.jslsolucoes.tagria.lib.html.Nav;
-import com.jslsolucoes.tagria.lib.html.Span;
-import com.jslsolucoes.tagria.lib.html.Table;
-import com.jslsolucoes.tagria.lib.html.Tbody;
-import com.jslsolucoes.tagria.lib.html.Th;
-import com.jslsolucoes.tagria.lib.html.Thead;
-import com.jslsolucoes.tagria.lib.html.Tr;
-import com.jslsolucoes.tagria.lib.html.Ul;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.Form;
+import com.jslsolucoes.tagria.html.H2;
+import com.jslsolucoes.tagria.html.H5;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.HtmlTag;
+import com.jslsolucoes.tagria.html.Input;
+import com.jslsolucoes.tagria.html.Li;
+import com.jslsolucoes.tagria.html.Nav;
+import com.jslsolucoes.tagria.html.Span;
+import com.jslsolucoes.tagria.html.TBody;
+import com.jslsolucoes.tagria.html.THead;
+import com.jslsolucoes.tagria.html.Table;
+import com.jslsolucoes.tagria.html.Th;
+import com.jslsolucoes.tagria.html.Tr;
+import com.jslsolucoes.tagria.html.Ul;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -45,7 +45,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	private Boolean paginate = Boolean.FALSE;
 	private String label;
 	private Collection data;
-	private List<Element> ths = new ArrayList<>();
+	private List<HtmlTag> ths = new ArrayList<>();
 	private Integer resultsPerPage = 60;
 	private Integer totalResults;
 	private String toolbar;
@@ -61,26 +61,26 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			TagUtil.flushBody(getJspBody());
 
 			Div container = new Div();
-			container.add(Attribute.CLASS, "border border-secondary rounded p-2");
-			container.add(Attribute.ID, TagUtil.getId(this));
+			container.attribute(HtmlAttribute.CLASS, "border border-secondary rounded p-2");
+			container.attribute(HtmlAttribute.ID, TagUtil.getId(this));
 
 			if (!StringUtils.isEmpty(label)) {
 				Div title = new Div();
-				title.add(Attribute.CLASS, "text-center mb-3");
+				title.attribute(HtmlAttribute.CLASS, "text-center mb-3");
 				H2 h2 = new H2();
-				h2.add(Attribute.CLASS, "text-secondary");
+				h2.attribute(HtmlAttribute.CLASS, "text-secondary");
 				h2.add(TagUtil.getLocalized(label, getJspContext()));
 				title.add(h2);
 				container.add(title);
 			}
 
 			Div clearfix2 = new Div();
-			clearfix2.add(Attribute.CLASS, "clearfix");
+			clearfix2.attribute(HtmlAttribute.CLASS, "clearfix");
 			container.add(clearfix2);
 
 			if (!StringUtils.isEmpty(toolbar)) {
 				Div divForToolbar = new Div();
-				divForToolbar.add(Attribute.CLASS, "float-left m-2 button-group");
+				divForToolbar.attribute(HtmlAttribute.CLASS, "float-left m-2 button-group");
 				divForToolbar.add(toolbar);
 				clearfix2.add(divForToolbar);
 			}
@@ -93,33 +93,33 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 				if (export) {
 					Div divForExportation = new Div();
-					divForExportation.add(Attribute.CLASS, "float-right m-2");
+					divForExportation.attribute(HtmlAttribute.CLASS, "float-right m-2");
 
 					Div buttonGroup = new Div();
-					buttonGroup.add(Attribute.CLASS, "btn-group");
+					buttonGroup.attribute(HtmlAttribute.CLASS, "btn-group");
 
 					Button pdf = new Button();
-					pdf.add(Attribute.CLASS, "btn btn-outline-primary grid-export-pdf");
-					pdf.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.pdf", getJspContext()));
-					pdf.add(new Span().add(Attribute.CLASS, "fa fa-file-pdf"));
+					pdf.attribute(HtmlAttribute.CLASS, "btn btn-outline-primary grid-export-pdf");
+					pdf.attribute(HtmlAttribute.TITLE, TagUtil.getLocalizedForLib("grid.export.pdf", getJspContext()));
+					pdf.add(new Span().attribute(HtmlAttribute.CLASS, "fa fa-file-pdf"));
 					buttonGroup.add(pdf);
 
 					Button excel = new Button();
-					excel.add(Attribute.CLASS, "btn btn-outline-primary grid-export-excel");
-					excel.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xls", getJspContext()));
-					excel.add(new Span().add(Attribute.CLASS, "fa fa-file-excel"));
+					excel.attribute(HtmlAttribute.CLASS, "btn btn-outline-primary grid-export-excel");
+					excel.attribute(HtmlAttribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xls", getJspContext()));
+					excel.add(new Span().attribute(HtmlAttribute.CLASS, "fa fa-file-excel"));
 					buttonGroup.add(excel);
 
 					Button csv = new Button();
-					csv.add(Attribute.CLASS, "btn btn-outline-primary grid-export-csv");
-					csv.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.csv", getJspContext()));
-					csv.add(new Span().add(Attribute.CLASS, "fa fa-file-csv"));
+					csv.attribute(HtmlAttribute.CLASS, "btn btn-outline-primary grid-export-csv");
+					csv.attribute(HtmlAttribute.TITLE, TagUtil.getLocalizedForLib("grid.export.csv", getJspContext()));
+					csv.add(new Span().attribute(HtmlAttribute.CLASS, "fa fa-file-csv"));
 					buttonGroup.add(csv);
 
 					Button xml = new Button();
-					xml.add(Attribute.CLASS, "btn btn-outline-primary grid-export-xml");
-					xml.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xml", getJspContext()));
-					xml.add(new Span().add(Attribute.CLASS, "fa fa-file-code"));
+					xml.attribute(HtmlAttribute.CLASS, "btn btn-outline-primary grid-export-xml");
+					xml.attribute(HtmlAttribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xml", getJspContext()));
+					xml.add(new Span().attribute(HtmlAttribute.CLASS, "fa fa-file-code"));
 					buttonGroup.add(xml);
 
 					divForExportation.add(buttonGroup);
@@ -128,25 +128,25 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 				if (search) {
 					Div divForSearch = new Div();
-					divForSearch.add(Attribute.CLASS, "float-right m-5");
+					divForSearch.attribute(HtmlAttribute.CLASS, "float-right m-5");
 					Input input = new Input();
-					input.add(Attribute.TYPE, "search");
-					input.add(Attribute.CLASS, "grid-search form-control");
-					input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("grid.search", getJspContext()));
+					input.attribute(HtmlAttribute.TYPE, "search");
+					input.attribute(HtmlAttribute.CLASS, "grid-search form-control");
+					input.attribute(HtmlAttribute.PLACEHOLDER, TagUtil.getLocalizedForLib("grid.search", getJspContext()));
 					divForSearch.add(input);
 					clearfix2.add(divForSearch);
 				}
 
 				Table table = new Table();
-				table.add(Attribute.CLASS, "table table-striped table-hover table-light");
+				table.attribute(HtmlAttribute.CLASS, "table table-striped table-hover table-light");
 
-				Thead thead = new Thead();
+				THead thead = new THead();
 				Tr tr = new Tr();
 				thead.add(tr);
 				tr.add(this.ths);
 				table.add(thead);
 
-				Tbody tbody = new Tbody();
+				TBody tbody = new TBody();
 				int index = 0;
 				for (Object row : data) {
 					getJspContext().setAttribute(var, row);
@@ -169,7 +169,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				if (paginate) {
 
 					Div clearfix = new Div();
-					clearfix.add(Attribute.CLASS, "clearfix");
+					clearfix.attribute(HtmlAttribute.CLASS, "clearfix");
 
 					HttpServletRequest request = TagUtil.httpServletRequest(getJspContext());
 					Integer page = (request.getParameter("page") != null ? Integer.valueOf(request.getParameter("page"))
@@ -185,7 +185,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					}
 
 					Div display = new Div();
-					display.add(Attribute.CLASS, "float-left m-2");
+					display.attribute(HtmlAttribute.CLASS, "float-left m-2");
 					display.add(new H5().add(TagUtil.getLocalizedForLib("grid.page.viewing", getJspContext(),
 							fromResult, toResult, totalResults)));
 					clearfix.add(display);
@@ -194,20 +194,20 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 							.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
 
 					Div pagination = new Div();
-					pagination.add(Attribute.CLASS, "float-right m-2");
+					pagination.attribute(HtmlAttribute.CLASS, "float-right m-2");
 					Nav nav = new Nav();
-					nav.add(Attribute.CLASS, "float-left");
+					nav.attribute(HtmlAttribute.CLASS, "float-left");
 					Ul ul = new Ul();
-					ul.add(Attribute.CLASS, "pagination");
+					ul.attribute(HtmlAttribute.CLASS, "pagination");
 					for (int i = 1; i <= totalOfPages; i++) {
 						Li li = new Li();
-						li.add(Attribute.CLASS, "page-item grid-paginate-item");
+						li.attribute(HtmlAttribute.CLASS, "page-item grid-paginate-item");
 						if (i == page) {
-							li.add(Attribute.CLASS, "active");
+							li.attribute(HtmlAttribute.CLASS, "active");
 						}
 						A a = new A();
-						a.add(Attribute.HREF, "#");
-						a.add(Attribute.CLASS, "page-link");
+						a.attribute(HtmlAttribute.HREF, "#");
+						a.attribute(HtmlAttribute.CLASS, "page-link");
 						a.add(String.valueOf(i));
 						li.add(a);
 						ul.add(li);
@@ -217,28 +217,28 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					clearfix.add(pagination);
 
 					Div divForResultsPerPage = new Div();
-					divForResultsPerPage.add(Attribute.CLASS, "float-right m-2");
+					divForResultsPerPage.attribute(HtmlAttribute.CLASS, "float-right m-2");
 
 					Div dropdown = new Div();
-					dropdown.add(Attribute.CLASS, "dropdown dropup");
-					dropdown.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.results.per.page", getJspContext()));
+					dropdown.attribute(HtmlAttribute.CLASS, "dropdown dropup");
+					dropdown.attribute(HtmlAttribute.TITLE, TagUtil.getLocalizedForLib("grid.results.per.page", getJspContext()));
 
 					Button button = new Button();
-					button.add(Attribute.CLASS, "btn btn-default dropdown-toggle");
-					button.add(Attribute.DATA_TOGGLE, "dropdown");
+					button.attribute(HtmlAttribute.CLASS, "btn btn-default dropdown-toggle");
+					button.attribute(HtmlAttribute.DATA_TOGGLE, "dropdown");
 					button.add(String.valueOf(resultsPerPage));
 
 					dropdown.add(button);
 
 					Div results = new Div();
-					results.add(Attribute.CLASS, "dropdown-menu");
+					results.attribute(HtmlAttribute.CLASS, "dropdown-menu");
 					Integer iteration = 100;
 					while (iteration >= 20) {
 						A a = new A();
-						a.add(Attribute.HREF, "#");
-						a.add(Attribute.CLASS, "dropdown-item grid-results-per-page-item");
+						a.attribute(HtmlAttribute.HREF, "#");
+						a.attribute(HtmlAttribute.CLASS, "dropdown-item grid-results-per-page-item");
 						if (iteration == resultsPerPage) {
-							a.add(Attribute.CLASS, "active");
+							a.attribute(HtmlAttribute.CLASS, "active");
 						}
 						a.add(String.valueOf(iteration));
 						results.add(a);
@@ -253,8 +253,8 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 			} else {
 				Div noRow = new Div();
-				noRow.add(Attribute.CLASS, "alert alert-info");
-				noRow.add(Attribute.ROLE, "alert");
+				noRow.attribute(HtmlAttribute.CLASS, "alert alert-info");
+				noRow.attribute(HtmlAttribute.ROLE, "alert");
 				noRow.add((!StringUtils.isEmpty(noRowText) ? TagUtil.getLocalized(noRowText, getJspContext())
 						: TagUtil.getLocalizedForLib("grid.no.row", getJspContext())));
 				container.add(noRow);
@@ -262,28 +262,28 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 			if (export) {
 				Div exporter = new Div();
-				exporter.add(Attribute.CLASS, "hidden");
+				exporter.attribute(HtmlAttribute.CLASS, "hidden");
 				Form form = new Form();
-				form.add(Attribute.METHOD, "post");
-				form.add(Attribute.TARGET, "_blank");
-				form.add(Attribute.CLASS, "grid-export-form");
-				form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), "/tagria/exporter"));
+				form.attribute(HtmlAttribute.METHOD, "post");
+				form.attribute(HtmlAttribute.TARGET, "_blank");
+				form.attribute(HtmlAttribute.CLASS, "grid-export-form");
+				form.attribute(HtmlAttribute.ACTION, TagUtil.getPathForUrl(getJspContext(), "/tagria/exporter"));
 				Input type = new Input();
-				type.add(Attribute.TYPE, "hidden");
-				type.add(Attribute.NAME, "type");
-				type.add(Attribute.CLASS, "grid-export-type");
+				type.attribute(HtmlAttribute.TYPE, "hidden");
+				type.attribute(HtmlAttribute.NAME, "type");
+				type.attribute(HtmlAttribute.CLASS, "grid-export-type");
 				form.add(type);
 				Input html = new Input();
-				html.add(Attribute.TYPE, "hidden");
-				html.add(Attribute.NAME, "json");
-				html.add(Attribute.CLASS, "grid-export-json");
+				html.attribute(HtmlAttribute.TYPE, "hidden");
+				html.attribute(HtmlAttribute.NAME, "json");
+				html.attribute(HtmlAttribute.CLASS, "grid-export-json");
 				form.add(html);
 				exporter.add(form);
 				container.add(exporter);
 			}
 
 			TagUtil.out(getJspContext(), container);
-			TagUtil.appendJs("$('#" + container.get(Attribute.ID) + "').grid({ url : '"
+			TagUtil.appendJs("$('#" + container.attribute(HtmlAttribute.ID) + "').grid({ url : '"
 					+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString:'" + TagUtil.queryString(
 							getJspContext(), Arrays.asList("page", "property", "direction", "resultsPerPage"))
 					+ "'});", this);
@@ -306,11 +306,11 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 		this.var = var;
 	}
 
-	public List<Element> getThs() {
+	public List<HtmlTag> getThs() {
 		return ths;
 	}
 
-	public void setThs(List<Element> ths) {
+	public void setThs(List<HtmlTag> ths) {
 		this.ths = ths;
 	}
 

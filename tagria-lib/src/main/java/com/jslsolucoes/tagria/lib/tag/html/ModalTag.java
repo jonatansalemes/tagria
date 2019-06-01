@@ -8,11 +8,11 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.H4;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -33,38 +33,38 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div modal = new Div();
-			modal.add(Attribute.CLASS, "modal fade");
-			modal.add(Attribute.ID, TagUtil.getId(id, this));
+			modal.attribute(HtmlAttribute.CLASS, "modal fade");
+			modal.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 
 			if (!closeable) {
-				modal.add(Attribute.DATA_KEYBOARD, "false");
-				modal.add(Attribute.DATA_BACKDROP, "static");
+				modal.attribute(HtmlAttribute.DATA_KEYBOARD, "false");
+				modal.attribute(HtmlAttribute.DATA_BACKDROP, "static");
 			}
 
 			Div dialog = new Div();
-			dialog.add(Attribute.CLASS, "modal-dialog");
+			dialog.attribute(HtmlAttribute.CLASS, "modal-dialog");
 			if (!StringUtils.isEmpty(size)) {
-				dialog.add(Attribute.CLASS, "modal-" + size);
+				dialog.attribute(HtmlAttribute.CLASS, "modal-" + size);
 			}
 			if (centered) {
-				dialog.add(Attribute.CLASS, "modal-dialog-centered");
+				dialog.attribute(HtmlAttribute.CLASS, "modal-dialog-centered");
 			}
 
 			Div content = new Div();
-			content.add(Attribute.CLASS, "modal-content");
+			content.attribute(HtmlAttribute.CLASS, "modal-content");
 
 			Div header = new Div();
-			header.add(Attribute.CLASS, "modal-header");
+			header.attribute(HtmlAttribute.CLASS, "modal-header");
 
 			H4 h4 = new H4();
-			h4.add(Attribute.CLASS, "modal-title");
+			h4.attribute(HtmlAttribute.CLASS, "modal-title");
 			h4.add(TagUtil.getLocalized(label, getJspContext()));
 			header.add(h4);
 
 			if (closeable) {
 				Button close = new Button();
-				close.add(Attribute.CLASS, "close");
-				close.add(Attribute.DATA_DISMISS, "modal");
+				close.attribute(HtmlAttribute.CLASS, "close");
+				close.attribute(HtmlAttribute.DATA_DISMISS, "modal");
 				close.add(new Span().add("&times;"));
 				header.add(close);
 			}
@@ -72,13 +72,13 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			content.add(header);
 
 			Div body = new Div();
-			body.add(Attribute.CLASS, "modal-body");
+			body.attribute(HtmlAttribute.CLASS, "modal-body");
 			body.add(TagUtil.getBody(getJspBody()));
 			content.add(body);
 
 			if (!StringUtils.isEmpty(toolbar)) {
 				Div footer = new Div();
-				footer.add(Attribute.CLASS, "modal-footer");
+				footer.attribute(HtmlAttribute.CLASS, "modal-footer");
 				footer.add(toolbar);
 				content.add(footer);
 			}
@@ -89,11 +89,11 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 			TagUtil.appendJs(
 					"$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
-							+ "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID) + "');",
+							+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(HtmlAttribute.ID) + "');",
 					this);
 
 			if (open != null && open) {
-				TagUtil.appendJs("$('#" + modal.get(Attribute.ID) + "').modal('show')", this);
+				TagUtil.appendJs("$('#" + modal.attribute(HtmlAttribute.ID) + "').modal('show')", this);
 
 			}
 		}

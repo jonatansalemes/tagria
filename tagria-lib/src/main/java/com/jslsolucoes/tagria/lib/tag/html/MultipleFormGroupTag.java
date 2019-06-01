@@ -13,15 +13,15 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Element;
-import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Script;
-import com.jslsolucoes.tagria.lib.html.Span;
-import com.jslsolucoes.tagria.lib.html.Textarea;
-import com.jslsolucoes.tagria.lib.html.Th;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.H4;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.HtmlTag;
+import com.jslsolucoes.tagria.html.Script;
+import com.jslsolucoes.tagria.html.Span;
+import com.jslsolucoes.tagria.html.TextArea;
+import com.jslsolucoes.tagria.html.Th;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
@@ -30,7 +30,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	private Collection data;
 	private String var;
 	private String label;
-	private List<Element> ths = new ArrayList<>();
+	private List<HtmlTag> ths = new ArrayList<>();
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
@@ -44,35 +44,35 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 		varStatusObject = new VarStatus();
 		Div container = new Div();
-		container.add(Attribute.ID, TagUtil.getId(this));
-		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
+		container.attribute(HtmlAttribute.ID, TagUtil.getId(this));
+		container.attribute(HtmlAttribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
 
-		Textarea templateForScript = new Textarea();
-		templateForScript.add(Attribute.CLASS, "d-none fg-template-script");
+		TextArea templateForScript = new TextArea();
+		templateForScript.attribute(HtmlAttribute.CLASS, "d-none fg-template-script");
 		templateForScript.add(script);
 		container.add(templateForScript);
 
-		Textarea template = new Textarea();
-		template.add(Attribute.CLASS, "d-none fg-template");
+		TextArea template = new TextArea();
+		template.attribute(HtmlAttribute.CLASS, "d-none fg-template");
 		container.add(template);
 
 		Div toolbar = new Div();
-		toolbar.add(Attribute.CLASS, "p-2");
+		toolbar.attribute(HtmlAttribute.CLASS, "p-2");
 
 		Div buttonGroup = new Div();
-		buttonGroup.add(Attribute.CLASS, "float-left clear-both");
+		buttonGroup.attribute(HtmlAttribute.CLASS, "float-left clear-both");
 		Button button = new Button();
-		button.add(Attribute.TYPE, "button");
-		button.add(Attribute.CLASS, "btn btn-outline-primary fg-plus");
-		button.add(new Span().add(Attribute.CLASS, "fas fa-plus"));
+		button.attribute(HtmlAttribute.TYPE, "button");
+		button.attribute(HtmlAttribute.CLASS, "btn btn-outline-primary fg-plus");
+		button.add(new Span().attribute(HtmlAttribute.CLASS, "fas fa-plus"));
 		buttonGroup.add(button);
 		toolbar.add(buttonGroup);
 
 		if (!StringUtils.isEmpty(label)) {
 			Div title = new Div();
-			title.add(Attribute.CLASS, "text-center");
+			title.attribute(HtmlAttribute.CLASS, "text-center");
 			H4 h4 = new H4();
-			h4.add(Attribute.CLASS, "text-secondary");
+			h4.attribute(HtmlAttribute.CLASS, "text-secondary");
 			h4.add(TagUtil.getLocalized(getLabel(), getJspContext()));
 			title.add(h4);
 			toolbar.add(title);
@@ -81,7 +81,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		container.add(toolbar);
 
 		Div content = new Div();
-		content.add(Attribute.CLASS, "fg-content");
+		content.attribute(HtmlAttribute.CLASS, "fg-content");
 
 		if (!CollectionUtils.isEmpty(data)) {
 
@@ -109,23 +109,23 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
 		String afterRemoveFunction = (!StringUtils.isEmpty(afterRemove) ? afterRemove + "();" : "");
-		TagUtil.appendJs("$('#" + container.get(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
+		TagUtil.appendJs("$('#" + container.attribute(HtmlAttribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
 				+ ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
 				+ afterRemoveFunction + "}});", this);
 
 	}
 
-	private Element formGroup(String content) {
+	private HtmlTag formGroup(String content) {
 
 		Div row = new Div();
-		row.add(Attribute.CLASS, "row fg-row border rounded text-secondary mt-3 mb-3 p-3");
+		row.attribute(HtmlAttribute.CLASS, "row fg-row border rounded text-secondary mt-3 mb-3 p-3");
 
 		Div col1 = new Div();
-		col1.add(Attribute.CLASS, "col col-11");
+		col1.attribute(HtmlAttribute.CLASS, "col col-11");
 		col1.add(new Div().add(content));
 
 		Div col2 = new Div();
-		col2.add(Attribute.CLASS, "col col-1 my-auto");
+		col2.attribute(HtmlAttribute.CLASS, "col col-1 my-auto");
 		col2.add(remove());
 
 		row.add(col1);
@@ -134,11 +134,11 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		return row;
 	}
 
-	private Element remove() {
+	private HtmlTag remove() {
 		Button minus = new Button();
-		minus.add(Attribute.ID, TagUtil.getId(this));
-		minus.add(Attribute.CLASS, "btn btn-outline-danger fg-minus");
-		minus.add(new Span().add(Attribute.CLASS, "fas fa-minus"));
+		minus.attribute(HtmlAttribute.ID, TagUtil.getId(this));
+		minus.attribute(HtmlAttribute.CLASS, "btn btn-outline-danger fg-minus");
+		minus.add(new Span().attribute(HtmlAttribute.CLASS, "fas fa-minus"));
 		return minus;
 	}
 
@@ -150,11 +150,11 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		this.label = label;
 	}
 
-	public List<Element> getThs() {
+	public List<HtmlTag> getThs() {
 		return ths;
 	}
 
-	public void setThs(List<Element> ths) {
+	public void setThs(List<HtmlTag> ths) {
 		this.ths = ths;
 	}
 

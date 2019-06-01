@@ -10,8 +10,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.collections.CollectionUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Datalist;
+import com.jslsolucoes.tagria.html.DataList;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
@@ -26,8 +26,8 @@ public class DataListTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		Datalist datalist = new Datalist();
-		datalist.add(Attribute.ID, TagUtil.getId(id, this));
+		DataList datalist = new DataList();
+		datalist.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 		if (fixed) {
 			datalist.add(TagUtil.getBody(getJspBody()));
 		}

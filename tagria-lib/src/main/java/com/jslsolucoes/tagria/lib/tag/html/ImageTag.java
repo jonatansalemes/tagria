@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Img;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Img;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ImageTag extends SimpleTagSupport {
@@ -28,21 +28,21 @@ public class ImageTag extends SimpleTagSupport {
 
 		Img img = new Img();
 		if (responsive) {
-			img.add(Attribute.CLASS, "img-responsive");
+			img.attribute(HtmlAttribute.CLASS, "img-responsive");
 		}
 		if (!StringUtils.isEmpty(shape)) {
-			img.add(Attribute.CLASS, "img-" + shape);
+			img.attribute(HtmlAttribute.CLASS, "img-" + shape);
 		}
 		if (!StringUtils.isEmpty(cssClass)) {
-			img.add(Attribute.CLASS, cssClass);
+			img.attribute(HtmlAttribute.CLASS, cssClass);
 		}
-		img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-		img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
+		img.attribute(HtmlAttribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
+		img.attribute(HtmlAttribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
 		if (width != null) {
-			img.add(Attribute.WIDTH, width);
+			img.attribute(HtmlAttribute.WIDTH, width);
 		}
 		if (height != null) {
-			img.add(Attribute.HEIGHT, height);
+			img.attribute(HtmlAttribute.HEIGHT, height);
 		}
 		TagUtil.out(getJspContext(), img);
 	}

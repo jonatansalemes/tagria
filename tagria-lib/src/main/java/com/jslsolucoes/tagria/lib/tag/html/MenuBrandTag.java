@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuBrandTag extends SimpleTagSupport {
@@ -21,8 +21,8 @@ public class MenuBrandTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		A a = new A();
-		a.add(Attribute.CLASS, "navbar-brand");
-		a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+		a.attribute(HtmlAttribute.CLASS, "navbar-brand");
+		a.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 		if (!StringUtils.isEmpty(label)) {
 			a.add(TagUtil.getLocalized(label, getJspContext()));
 		} else {

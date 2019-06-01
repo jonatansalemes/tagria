@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Li;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Li;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ListGroupItemTag extends SimpleTagSupport {
@@ -22,12 +22,12 @@ public class ListGroupItemTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Li li = new Li();
-			li.add(Attribute.CLASS, "list-group-item");
+			li.attribute(HtmlAttribute.CLASS, "list-group-item");
 			if (!StringUtils.isEmpty(cssClass)) {
-				li.add(Attribute.CLASS, cssClass);
+				li.attribute(HtmlAttribute.CLASS, cssClass);
 			}
 			if (!StringUtils.isEmpty(state)) {
-				li.add(Attribute.CLASS, "list-group-item-" + state);
+				li.attribute(HtmlAttribute.CLASS, "list-group-item-" + state);
 			}
 			li.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), li);

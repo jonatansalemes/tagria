@@ -11,15 +11,15 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Input;
-import com.jslsolucoes.tagria.lib.html.Option;
-import com.jslsolucoes.tagria.lib.html.Select;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.H4;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Input;
+import com.jslsolucoes.tagria.html.Option;
+import com.jslsolucoes.tagria.html.Select;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
@@ -39,26 +39,26 @@ public class SelectTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div container = new Div();
-		container.add(Attribute.ID, TagUtil.getId(this));
+		container.attribute(HtmlAttribute.ID, TagUtil.getId(this));
 
 		Div row = new Div();
-		row.add(Attribute.CLASS, "row");
+		row.attribute(HtmlAttribute.CLASS, "row");
 
 		Div col1 = new Div();
-		col1.add(Attribute.CLASS, "col col-11");
+		col1.attribute(HtmlAttribute.CLASS, "col col-11");
 
 		Select select = new Select();
-		select.add(Attribute.ID, TagUtil.getId(name, id, this));
-		select.add(Attribute.NAME, name);
-		select.add(new Option().add(Attribute.VALUE, "").add("- - -"));
+		select.attribute(HtmlAttribute.ID, TagUtil.getId(name, id, this));
+		select.attribute(HtmlAttribute.NAME, name);
+		select.add(new Option().attribute(HtmlAttribute.VALUE, "").add("- - -"));
 		if (required) {
-			select.add(Attribute.CLASS, "form-required");
-			select.add(Attribute.REQUIRED, "required");
+			select.attribute(HtmlAttribute.CLASS, "form-required");
+			select.attribute(HtmlAttribute.REQUIRED, "required");
 		}
-		select.add(Attribute.CLASS, "select form-control shadow-sm");
+		select.attribute(HtmlAttribute.CLASS, "select form-control shadow-sm");
 
 		if (!StringUtils.isEmpty(cssClass)) {
-			select.add(Attribute.CLASS, cssClass);
+			select.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 
 		if (fixed) {
@@ -81,13 +81,13 @@ public class SelectTag extends SimpleTagSupport {
 		row.add(col1);
 
 		Div col2 = new Div();
-		col2.add(Attribute.CLASS, "col col-1");
+		col2.attribute(HtmlAttribute.CLASS, "col col-1");
 
 		Span span = new Span();
-		span.add(Attribute.CLASS, "fas fa-search");
+		span.attribute(HtmlAttribute.CLASS, "fas fa-search");
 		A a = new A();
-		a.add(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm");
-		a.add(Attribute.HREF, "#");
+		a.attribute(HtmlAttribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm");
+		a.attribute(HtmlAttribute.HREF, "#");
 		a.add(span);
 		col2.add(a);
 		row.add(col2);
@@ -96,51 +96,51 @@ public class SelectTag extends SimpleTagSupport {
 		container.add(modal());
 
 		TagUtil.out(getJspContext(), container);
-		TagUtil.appendJs("$('#" + container.get(Attribute.ID) + "').select();", this);
+		TagUtil.appendJs("$('#" + container.attribute(HtmlAttribute.ID) + "').select();", this);
 	}
 
 	public Div modal() {
 		Div modal = new Div();
-		modal.add(Attribute.CLASS, "modal fade");
-		modal.add(Attribute.ID, TagUtil.getId(id, this));
+		modal.attribute(HtmlAttribute.CLASS, "modal fade");
+		modal.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 
 		Div dialog = new Div();
-		dialog.add(Attribute.CLASS, "modal-dialog modal-dialog-centered");
+		dialog.attribute(HtmlAttribute.CLASS, "modal-dialog modal-dialog-centered");
 
 		Div content = new Div();
-		content.add(Attribute.CLASS, "modal-content");
+		content.attribute(HtmlAttribute.CLASS, "modal-content");
 
 		Div header = new Div();
-		header.add(Attribute.CLASS, "modal-header");
+		header.attribute(HtmlAttribute.CLASS, "modal-header");
 
 		H4 h4 = new H4();
-		h4.add(Attribute.CLASS, "modal-title");
+		h4.attribute(HtmlAttribute.CLASS, "modal-title");
 		h4.add(TagUtil.getLocalizedForLib("select.search.title", getJspContext()));
 		header.add(h4);
 
 		Button close = new Button();
-		close.add(Attribute.CLASS, "close");
-		close.add(Attribute.DATA_DISMISS, "modal");
+		close.attribute(HtmlAttribute.CLASS, "close");
+		close.attribute(HtmlAttribute.DATA_DISMISS, "modal");
 		close.add(new Span().add("&times;"));
 		header.add(close);
 
 		content.add(header);
 
 		Div body = new Div();
-		body.add(Attribute.CLASS, "modal-body");
+		body.attribute(HtmlAttribute.CLASS, "modal-body");
 
 		Div inputContainer = new Div();
-		Input input = new Input();
-		input.add(Attribute.TYPE, "text");
-		input.add(Attribute.AUTOCOMPLETE, "off");
-		input.add(Attribute.CLASS, "form-control shadow-sm select-search-input");
-		input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("select.search.input", getJspContext()));
-		input.add(Attribute.AUTOFOCUS, "autofocus");
+		Input  input = new Input();
+		input.attribute(HtmlAttribute.TYPE, "text");
+		input.attribute(HtmlAttribute.AUTOCOMPLETE, "off");
+		input.attribute(HtmlAttribute.CLASS, "form-control shadow-sm select-search-input");
+		input.attribute(HtmlAttribute.PLACEHOLDER, TagUtil.getLocalizedForLib("select.search.input", getJspContext()));
+		input.attribute(HtmlAttribute.AUTOFOCUS, "autofocus");
 		inputContainer.add(input);
 		body.add(inputContainer);
 
 		Div searchContainer = new Div();
-		searchContainer.add(Attribute.CLASS, "select-search-container");
+		searchContainer.attribute(HtmlAttribute.CLASS, "select-search-container");
 		body.add(searchContainer);
 
 		content.add(body);

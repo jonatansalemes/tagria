@@ -8,9 +8,9 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -29,13 +29,13 @@ public class MenuDropDownItemTag extends SimpleTagSupport {
 		if (rendered != null && rendered
 				&& (auth ? TagUtil.allowed(getJspContext(), new CheckRule(url, "GET")) : true)) {
 			A a = new A();
-			a.add(Attribute.ID, TagUtil.getId(id, this));
-			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-			a.add(Attribute.TARGET, target);
-			a.add(Attribute.CLASS, "dropdown-item");
+			a.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+			a.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+			a.attribute(HtmlAttribute.TARGET, target);
+			a.attribute(HtmlAttribute.CLASS, "dropdown-item");
 
 			if (!StringUtils.isEmpty(icon)) {
-				a.add(new Span().add(Attribute.CLASS, "fas fa-" + icon));
+				a.add(new Span().attribute(HtmlAttribute.CLASS, "fas fa-" + icon));
 				a.add(" ");
 			}
 

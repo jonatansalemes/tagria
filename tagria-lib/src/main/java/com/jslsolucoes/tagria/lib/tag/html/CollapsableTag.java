@@ -6,10 +6,10 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.H5;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.H5;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CollapsableTag extends SimpleTagSupport {
@@ -21,20 +21,20 @@ public class CollapsableTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div card = new Div();
-		card.add(Attribute.CLASS, "card");
-		card.add(Attribute.ID, TagUtil.getId(this));
+		card.attribute(HtmlAttribute.CLASS, "card");
+		card.attribute(HtmlAttribute.ID, TagUtil.getId(this));
 
 		Div cardHeader = new Div();
-		cardHeader.add(Attribute.CLASS, "card-header");
+		cardHeader.attribute(HtmlAttribute.CLASS, "card-header");
 		H5 h5 = new H5();
-		h5.add(Attribute.CLASS, "mb-0");
+		h5.attribute(HtmlAttribute.CLASS, "mb-0");
 
 		String idTarget = TagUtil.getId(this);
 		Button button = new Button();
-		button.add(Attribute.CLASS, "btn btn-link");
-		button.add(Attribute.DATA_TOGGLE, "collapse");
-		button.add(Attribute.DATA_TARGET, "#" + idTarget);
-		button.add(Attribute.ID, TagUtil.getId(this));
+		button.attribute(HtmlAttribute.CLASS, "btn btn-link");
+		button.attribute(HtmlAttribute.DATA_TOGGLE, "collapse");
+		button.attribute(HtmlAttribute.DATA_TARGET, "#" + idTarget);
+		button.attribute(HtmlAttribute.ID, TagUtil.getId(this));
 		button.add(TagUtil.getLocalized(label, getJspContext()));
 		h5.add(button);
 
@@ -43,11 +43,11 @@ public class CollapsableTag extends SimpleTagSupport {
 		card.add(cardHeader);
 
 		Div content = new Div();
-		content.add(Attribute.ID, idTarget);
-		content.add(Attribute.CLASS, "collapse " + (opened ? "show" : ""));
+		content.attribute(HtmlAttribute.ID, idTarget);
+		content.attribute(HtmlAttribute.CLASS, "collapse " + (opened ? "show" : ""));
 
 		Div cardBody = new Div();
-		cardBody.add(Attribute.CLASS, "card-body");
+		cardBody.attribute(HtmlAttribute.CLASS, "card-body");
 		cardBody.add(TagUtil.getBody(getJspBody()));
 
 		content.add(cardBody);

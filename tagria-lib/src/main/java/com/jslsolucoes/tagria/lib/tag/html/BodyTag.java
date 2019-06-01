@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Body;
+import com.jslsolucoes.tagria.html.Body;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class BodyTag extends SimpleTagSupport {
@@ -21,7 +21,7 @@ public class BodyTag extends SimpleTagSupport {
 		ViewTag viewTag = TagUtil.findAncestorWithClass(this, ViewTag.class);
 		Body body = viewTag.getBody();
 		if (!StringUtils.isEmpty(cssClass)) {
-			body.add(Attribute.CLASS, cssClass);
+			body.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 		body.add(TagUtil.getBody(getJspBody()));
 	}

@@ -7,10 +7,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.H5;
-import com.jslsolucoes.tagria.lib.html.P;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.H5;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.P;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CarouselItemTag extends SimpleTagSupport {
@@ -24,17 +24,17 @@ public class CarouselItemTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS, "carousel-item");
+			div.attribute(HtmlAttribute.CLASS, "carousel-item");
 
 			if (active) {
-				div.add(Attribute.CLASS, "active");
+				div.attribute(HtmlAttribute.CLASS, "active");
 			}
 
 			div.add(TagUtil.getBody(getJspBody()));
 
 			if (!StringUtils.isEmpty(label)) {
 				Div caption = new Div();
-				caption.add(Attribute.CLASS, "carousel-caption d-none d-md-block");
+				caption.attribute(HtmlAttribute.CLASS, "carousel-caption d-none d-md-block");
 
 				H5 h5 = new H5();
 				h5.add(TagUtil.getLocalized(label, getJspContext()));

@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class DivTag extends SimpleTagSupport {
@@ -22,9 +22,9 @@ public class DivTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.ID, TagUtil.getId(id, this));
+			div.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 			if (!StringUtils.isEmpty(cssClass)) {
-				div.add(Attribute.CLASS, cssClass);
+				div.attribute(HtmlAttribute.CLASS, cssClass);
 			}
 			div.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), div);

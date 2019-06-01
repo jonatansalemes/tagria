@@ -8,10 +8,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Form;
-import com.jslsolucoes.tagria.lib.html.H2;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.Form;
+import com.jslsolucoes.tagria.html.H2;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -32,33 +32,33 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 		if (rendered != null && rendered) {
 
 			Div container = new Div();
-			container.add(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm");
+			container.attribute(HtmlAttribute.CLASS, "border border-secondary rounded p-2 shadow-sm");
 
 			Form form = new Form();
-			form.add(Attribute.NOVALIDATE, "novalidate");
+			form.attribute(HtmlAttribute.NOVALIDATE, "novalidate");
 			if (!StringUtils.isEmpty(name)) {
-				form.add(Attribute.NAME, name);
+				form.attribute(HtmlAttribute.NAME, name);
 			}
-			form.add(Attribute.TARGET, target);
-			form.add(Attribute.ID, TagUtil.getId(this));
-			form.add(Attribute.METHOD, method);
-			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
+			form.attribute(HtmlAttribute.TARGET, target);
+			form.attribute(HtmlAttribute.ID, TagUtil.getId(this));
+			form.attribute(HtmlAttribute.METHOD, method);
+			form.attribute(HtmlAttribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
 			if (multipart) {
-				form.add(Attribute.ENCTYPE, "multipart/form-data");
+				form.attribute(HtmlAttribute.ENCTYPE, "multipart/form-data");
 			}
 
 			if (!StringUtils.isEmpty(label)) {
 				Div title = new Div();
-				title.add(Attribute.CLASS, "text-center");
+				title.attribute(HtmlAttribute.CLASS, "text-center");
 				H2 h2 = new H2();
-				h2.add(Attribute.CLASS, "text-secondary");
+				h2.attribute(HtmlAttribute.CLASS, "text-secondary");
 				h2.add(TagUtil.getLocalized(getLabel(), getJspContext()));
 				title.add(h2);
 				form.add(title);
 			}
 
 			Div errors = new Div();
-			errors.add(Attribute.CLASS, "collapse form-error");
+			errors.attribute(HtmlAttribute.CLASS, "collapse form-error");
 			errors.add("&nbsp;");
 
 			form.add(errors);
@@ -71,7 +71,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 			TagUtil.out(getJspContext(), container);
 
-			TagUtil.appendJs("$('#" + form.get(Attribute.ID) + "').form({validation:'"
+			TagUtil.appendJs("$('#" + form.attribute(HtmlAttribute.ID) + "').form({validation:'"
 					+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
 					+ "',invalid:{email : '" + TagUtil.getLocalizedForLib("form.email.invalid", getJspContext())
 					+ "',max:'" + TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) + "',min:'"

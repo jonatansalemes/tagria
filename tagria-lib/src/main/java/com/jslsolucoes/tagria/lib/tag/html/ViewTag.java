@@ -6,18 +6,18 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Body;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.DocType;
-import com.jslsolucoes.tagria.lib.html.Head;
-import com.jslsolucoes.tagria.lib.html.Html;
-import com.jslsolucoes.tagria.lib.html.Img;
-import com.jslsolucoes.tagria.lib.html.Link;
-import com.jslsolucoes.tagria.lib.html.Meta;
-import com.jslsolucoes.tagria.lib.html.NoScript;
-import com.jslsolucoes.tagria.lib.html.Script;
-import com.jslsolucoes.tagria.lib.html.Title;
+import com.jslsolucoes.tagria.html.Body;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.DocType;
+import com.jslsolucoes.tagria.html.Head;
+import com.jslsolucoes.tagria.html.Html;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Img;
+import com.jslsolucoes.tagria.html.Link;
+import com.jslsolucoes.tagria.html.Meta;
+import com.jslsolucoes.tagria.html.NoScript;
+import com.jslsolucoes.tagria.html.Script;
+import com.jslsolucoes.tagria.html.Title;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -35,8 +35,8 @@ public class ViewTag extends SimpleTagSupport {
 		String title = TagUtil.getLocalized(this.title, getJspContext());
 
 		Html html = new Html();
-		html.add(Attribute.XMLNS, "http://www.w3.org/1999/xhtml");
-		html.add(Attribute.LANG, lang);
+		html.attribute(HtmlAttribute.XMLNS, "http://www.w3.org/1999/xhtml");
+		html.attribute(HtmlAttribute.LANG, lang);
 		Head head = new Head();
 		html.add(head);
 		Title titleForPage = new Title();
@@ -44,29 +44,29 @@ public class ViewTag extends SimpleTagSupport {
 		head.add(titleForPage);
 
 		Meta meta = new Meta();
-		meta.add(Attribute.HTTP_EQUIV, "content-type");
-		meta.add(Attribute.CONTENT, "text/html;charset=" + TagUtil.getInitParam(TagriaConfigParameter.ENCODING));
+		meta.attribute(HtmlAttribute.HTTP_EQUIV, "content-type");
+		meta.attribute(HtmlAttribute.CONTENT, "text/html;charset=" + TagUtil.getInitParam(TagriaConfigParameter.ENCODING));
 
 		head.add(meta);
 
 		Meta viewport = new Meta();
-		viewport.add(Attribute.NAME, "viewport");
-		viewport.add(Attribute.CONTENT, "width=device-width, initial-scale=1");
+		viewport.attribute(HtmlAttribute.NAME, "viewport");
+		viewport.attribute(HtmlAttribute.CONTENT, "width=device-width, initial-scale=1");
 		head.add(viewport);
 
 		Meta description = new Meta();
-		description.add(Attribute.NAME, "description");
-		description.add(Attribute.CONTENT, title);
+		description.attribute(HtmlAttribute.NAME, "description");
+		description.attribute(HtmlAttribute.CONTENT, title);
 		head.add(description);
 
 		Link favicon = new Link();
-		favicon.add(Attribute.REL, "icon");
-		favicon.add(Attribute.TYPE, "image/x-icon");
-		favicon.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), "/favicon.ico"));
+		favicon.attribute(HtmlAttribute.REL, "icon");
+		favicon.attribute(HtmlAttribute.TYPE, "image/x-icon");
+		favicon.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), "/favicon.ico"));
 		head.add(favicon);
 
 		Div noScriptBody = new Div();
-		noScriptBody.add(Attribute.CLASS, "alert alert-danger");
+		noScriptBody.attribute(HtmlAttribute.CLASS, "alert alert-danger");
 		noScriptBody.add(TagUtil.getLocalizedForLib("app.no.script", getJspContext()));
 
 		NoScript noScript = new NoScript();
@@ -82,36 +82,36 @@ public class ViewTag extends SimpleTagSupport {
 		body.add(TagUtil.removeBreakLines(TagUtil.getBody(getJspBody())));
 
 		Link css = new Link();
-		css.add(Attribute.REL, "stylesheet");
-		css.add(Attribute.TYPE, "text/css");
-		css.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
+		css.attribute(HtmlAttribute.REL, "stylesheet");
+		css.attribute(HtmlAttribute.TYPE, "text/css");
+		css.attribute(HtmlAttribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
 		body.add(css);
 
 		Script recaptcha = new Script();
-		recaptcha.add(Attribute.SRC,
+		recaptcha.attribute(HtmlAttribute.SRC,
 				TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
 		body.add(recaptcha);
 
 		Script js = new Script();
-		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
+		js.attribute(HtmlAttribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
 		body.add(js);
 
 		body.add(script);
 		html.add(body);
 
 		Img img = new Img();
-		img.add(Attribute.SRC, TagUtil.getPathForImageLibResource(getJspContext(), "loading.gif"));
-		img.add(Attribute.WIDTH, 100);
-		img.add(Attribute.HEIGHT, 100);
-		img.add(Attribute.CLASS, "mx-auto d-block");
-		img.add(Attribute.ALT, "loading");
+		img.attribute(HtmlAttribute.SRC, TagUtil.getPathForImageLibResource(getJspContext(), "loading.gif"));
+		img.attribute(HtmlAttribute.WIDTH, 100);
+		img.attribute(HtmlAttribute.HEIGHT, 100);
+		img.attribute(HtmlAttribute.CLASS, "mx-auto d-block");
+		img.attribute(HtmlAttribute.ALT, "loading");
 
 		Div loading = new Div();
-		loading.add(Attribute.CLASS, "fixed-top collapse ajax-loading");
+		loading.attribute(HtmlAttribute.CLASS, "fixed-top collapse ajax-loading");
 		loading.add(img);
 		body.add(loading);
 
-		TagUtil.out(getJspContext(), DocType.HTML5);
+		TagUtil.out(getJspContext(), DocType.HTML5.definition());
 		TagUtil.out(getJspContext(), html);
 	}
 

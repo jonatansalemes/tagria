@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ColTag extends SimpleTagSupport {
@@ -23,22 +23,22 @@ public class ColTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
-		div.add(Attribute.CLASS, "col");
+		div.attribute(HtmlAttribute.CLASS, "col");
 		if (extraSmall != null) {
-			div.add(Attribute.CLASS, "col-" + extraSmall);
+			div.attribute(HtmlAttribute.CLASS, "col-" + extraSmall);
 		}
 		if (small != null) {
-			div.add(Attribute.CLASS, "col-sm-" + small);
+			div.attribute(HtmlAttribute.CLASS, "col-sm-" + small);
 		}
 		if (medium != null) {
-			div.add(Attribute.CLASS, "col-md-" + medium);
+			div.attribute(HtmlAttribute.CLASS, "col-md-" + medium);
 		}
 		if (large != null) {
-			div.add(Attribute.CLASS, "col-lg-" + large);
+			div.attribute(HtmlAttribute.CLASS, "col-lg-" + large);
 		}
 
 		if (!StringUtils.isEmpty(cssClass)) {
-			div.add(Attribute.CLASS, cssClass);
+			div.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 
 		div.add(TagUtil.getBody(getJspBody()));

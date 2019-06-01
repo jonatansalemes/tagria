@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.P;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.P;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CardTextTag extends SimpleTagSupport {
@@ -19,9 +19,9 @@ public class CardTextTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		P p = new P();
-		p.add(Attribute.CLASS, "card-text");
+		p.attribute(HtmlAttribute.CLASS, "card-text");
 		if (!StringUtils.isEmpty(cssClass)) {
-			p.add(Attribute.CLASS, cssClass);
+			p.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 		p.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), p);

@@ -31,8 +31,8 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jslsolucoes.tagria.html.HtmlTag;
 import com.jslsolucoes.tagria.lib.auth.Auth;
-import com.jslsolucoes.tagria.lib.html.Element;
 import com.jslsolucoes.tagria.lib.servlet.Tagria;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
@@ -250,8 +250,8 @@ public class TagUtil {
 		}
 	}
 
-	public static void out(JspContext jspContext, Element element) throws IOException {
-		out(jspContext, element.getHtml());
+	public static void out(JspContext jspContext, HtmlTag element) throws IOException {
+		out(jspContext, element.html());
 	}
 
 	public static void out(JspContext jspContext, String content) throws IOException {

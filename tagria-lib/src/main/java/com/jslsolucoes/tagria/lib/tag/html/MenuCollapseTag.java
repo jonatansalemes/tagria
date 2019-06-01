@@ -5,9 +5,9 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuCollapseTag extends SimpleTagSupport {
@@ -19,12 +19,12 @@ public class MenuCollapseTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Button button = new Button();
-		button.add(Attribute.ID, TagUtil.getId(id, this));
-		button.add(Attribute.TYPE, "button");
-		button.add(Attribute.CLASS, "navbar-toggler");
-		button.add(Attribute.DATA_TOGGLE, "collapse");
-		button.add(Attribute.DATA_TARGET, TagUtil.attachTo(attachToSelector, attachTo, this));
-		button.add(new Span().add(Attribute.CLASS, "navbar-toggler-icon"));
+		button.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+		button.attribute(HtmlAttribute.TYPE, "button");
+		button.attribute(HtmlAttribute.CLASS, "navbar-toggler");
+		button.attribute(HtmlAttribute.DATA_TOGGLE, "collapse");
+		button.attribute(HtmlAttribute.DATA_TARGET, TagUtil.attachTo(attachToSelector, attachTo, this));
+		button.add(new Span().attribute(HtmlAttribute.CLASS, "navbar-toggler-icon"));
 		TagUtil.out(getJspContext(), button);
 	}
 

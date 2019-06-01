@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class RecaptchaTag extends SimpleTagSupport {
@@ -17,8 +17,8 @@ public class RecaptchaTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div div = new Div();
-		div.add(Attribute.CLASS, "g-recaptcha");
-		div.add(Attribute.DATA_SITEKEY, siteKey);
+		div.attribute(HtmlAttribute.CLASS, "g-recaptcha");
+		div.attribute(HtmlAttribute.DATA_SITEKEY, siteKey);
 		TagUtil.out(getJspContext(), div);
 	}
 

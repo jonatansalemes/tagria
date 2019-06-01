@@ -8,7 +8,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Caption;
+import com.jslsolucoes.tagria.html.Caption;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TableCaptionTag extends SimpleTagSupport {

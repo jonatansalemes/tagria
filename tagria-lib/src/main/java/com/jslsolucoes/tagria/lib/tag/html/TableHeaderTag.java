@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Thead;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.THead;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TableHeaderTag extends SimpleTagSupport {
@@ -17,14 +17,14 @@ public class TableHeaderTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		Thead thead = new Thead();
+		THead thead = new THead();
 
 		if (dark) {
-			thead.add(Attribute.CLASS, "thead-dark");
+			thead.attribute(HtmlAttribute.CLASS, "thead-dark");
 		}
 
 		if (light) {
-			thead.add(Attribute.CLASS, "thead-light");
+			thead.attribute(HtmlAttribute.CLASS, "thead-light");
 		}
 
 		thead.add(TagUtil.getBody(getJspBody()));

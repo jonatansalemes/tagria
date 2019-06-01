@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Textarea;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.TextArea;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TextareaTag extends SimpleTagSupport {
@@ -23,25 +23,25 @@ public class TextareaTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		Textarea textarea = new Textarea();
-		textarea.add(Attribute.NAME, name);
-		textarea.add(Attribute.ROWS, rows);
-		textarea.add(Attribute.ID, TagUtil.getId(name, null));
-		textarea.add(Attribute.CLASS, "form-control shadow-sm");
+		TextArea textarea = new TextArea();
+		textarea.attribute(HtmlAttribute.NAME, name);
+		textarea.attribute(HtmlAttribute.ROWS, rows);
+		textarea.attribute(HtmlAttribute.ID, TagUtil.getId(name, null));
+		textarea.attribute(HtmlAttribute.CLASS, "form-control shadow-sm");
 
 		if (!StringUtils.isEmpty(cssClass)) {
-			textarea.add(Attribute.CLASS, cssClass);
+			textarea.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 
 		if (!StringUtils.isEmpty(placeholder)) {
-			textarea.add(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
+			textarea.attribute(HtmlAttribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
 		}
 		if (!StringUtils.isEmpty(value)) {
 			textarea.add(value);
 		}
 		if (required) {
-			textarea.add(Attribute.CLASS, "form-required");
-			textarea.add(Attribute.REQUIRED, "required");
+			textarea.attribute(HtmlAttribute.CLASS, "form-required");
+			textarea.attribute(HtmlAttribute.REQUIRED, "required");
 		}
 		TagUtil.out(getJspContext(), textarea);
 	}

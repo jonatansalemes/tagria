@@ -7,10 +7,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.A;
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Li;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.A;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Li;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuLinkTag extends SimpleTagSupport {
@@ -27,13 +27,13 @@ public class MenuLinkTag extends SimpleTagSupport {
 		if (rendered != null && rendered) {
 
 			A a = new A();
-			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-			a.add(Attribute.TARGET, target);
-			a.add(Attribute.ID, TagUtil.getId(id, this));
-			a.add(Attribute.CLASS, "nav-link");
+			a.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+			a.attribute(HtmlAttribute.TARGET, target);
+			a.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+			a.attribute(HtmlAttribute.CLASS, "nav-link");
 
 			if (!StringUtils.isEmpty(icon)) {
-				a.add(new Span().add(Attribute.CLASS, "fas fa-" + icon));
+				a.add(new Span().attribute(HtmlAttribute.CLASS, "fas fa-" + icon));
 				a.add(" ");
 			}
 
@@ -43,7 +43,7 @@ public class MenuLinkTag extends SimpleTagSupport {
 				a.add(TagUtil.getBody(getJspBody()));
 			}
 			Li li = new Li();
-			li.add(Attribute.CLASS, "nav-item");
+			li.attribute(HtmlAttribute.CLASS, "nav-item");
 			li.add(a);
 			TagUtil.out(getJspContext(), li);
 		}

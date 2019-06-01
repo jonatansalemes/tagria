@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.H1;
+import com.jslsolucoes.tagria.html.H1;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class H1Tag extends SimpleTagSupport {

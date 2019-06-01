@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Table;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Table;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TableTag extends SimpleTagSupport {
@@ -21,26 +21,26 @@ public class TableTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Table table = new Table();
-		table.add(Attribute.CLASS, "table");
+		table.attribute(HtmlAttribute.CLASS, "table");
 
 		if (stripe) {
-			table.add(Attribute.CLASS, "table-striped");
+			table.attribute(HtmlAttribute.CLASS, "table-striped");
 		}
 
 		if (dark) {
-			table.add(Attribute.CLASS, "table-dark");
+			table.attribute(HtmlAttribute.CLASS, "table-dark");
 		}
 
 		if (hover) {
-			table.add(Attribute.CLASS, "table-hover");
+			table.attribute(HtmlAttribute.CLASS, "table-hover");
 		}
 
 		if (small) {
-			table.add(Attribute.CLASS, "table-sm");
+			table.attribute(HtmlAttribute.CLASS, "table-sm");
 		}
 
 		if (border) {
-			table.add(Attribute.CLASS, "table-bordered");
+			table.attribute(HtmlAttribute.CLASS, "table-bordered");
 		}
 
 		table.add(TagUtil.getBody(getJspBody()));

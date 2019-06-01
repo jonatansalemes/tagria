@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class RowTag extends SimpleTagSupport {
@@ -19,10 +19,10 @@ public class RowTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
-		div.add(Attribute.CLASS, "row");
+		div.attribute(HtmlAttribute.CLASS, "row");
 
 		if (!StringUtils.isEmpty(cssClass)) {
-			div.add(Attribute.CLASS, cssClass);
+			div.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 		div.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), div);

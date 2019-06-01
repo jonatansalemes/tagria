@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Small;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Small;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class SmallTag extends SimpleTagSupport {
@@ -20,7 +20,7 @@ public class SmallTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		Small small = new Small();
 		if (!StringUtils.isEmpty(cssClass)) {
-			small.add(Attribute.CLASS, cssClass);
+			small.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 		small.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), small);

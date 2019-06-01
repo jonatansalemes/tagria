@@ -8,10 +8,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Label;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Label;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class FormGroupTag extends SimpleTagSupport {
@@ -27,24 +27,24 @@ public class FormGroupTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS, "form-group");
+			div.attribute(HtmlAttribute.CLASS, "form-group");
 
 			if (!visible) {
-				div.add(Attribute.CLASS, "collapse");
+				div.attribute(HtmlAttribute.CLASS, "collapse");
 			}
 
-			div.add(Attribute.ID, TagUtil.getId(id, this));
+			div.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 
 			if (!StringUtils.isEmpty(label)) {
 				Label title = new Label();
 				if (!StringUtils.isEmpty(forElement)) {
-					title.add(Attribute.FOR, TagUtil.getId(forElement, null, this));
+					title.attribute(HtmlAttribute.FOR, TagUtil.getId(forElement, null, this));
 				}
 				title.add(TagUtil.getLocalized(label, getJspContext()));
 
 				if (required) {
 					Span span = new Span();
-					span.add(Attribute.CLASS, "text-danger");
+					span.attribute(HtmlAttribute.CLASS, "text-danger");
 					span.add(" * ");
 					title.add(span);
 				}

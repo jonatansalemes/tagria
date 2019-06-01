@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class IconTag extends SimpleTagSupport {
@@ -20,8 +20,8 @@ public class IconTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Span span = new Span();
-			span.add(Attribute.ID, TagUtil.getId(id, this));
-			span.add(Attribute.CLASS, "fas fa-" + icon);
+			span.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+			span.attribute(HtmlAttribute.CLASS, "fas fa-" + icon);
 			TagUtil.out(getJspContext(), span);
 		}
 	}

@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Nav;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Nav;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuTag extends SimpleTagSupport {
@@ -20,9 +20,9 @@ public class MenuTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Nav nav = new Nav();
-		nav.add(Attribute.CLASS, "navbar navbar-expand-lg navbar-light bg-light");
+		nav.attribute(HtmlAttribute.CLASS, "navbar navbar-expand-lg navbar-light bg-light");
 		if (!StringUtils.isEmpty(fixed)) {
-			nav.add(Attribute.CLASS, "fixed-" + fixed);
+			nav.attribute(HtmlAttribute.CLASS, "fixed-" + fixed);
 		}
 		nav.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), nav);

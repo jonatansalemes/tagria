@@ -8,11 +8,11 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Span;
-import com.jslsolucoes.tagria.lib.html.Td;
-import com.jslsolucoes.tagria.lib.html.Th;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
+import com.jslsolucoes.tagria.html.Td;
+import com.jslsolucoes.tagria.html.Th;
 import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -43,13 +43,13 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 			GridTag grid = TagUtil.findAncestorWithClass(this, GridTag.class);
 
 			Th th = new Th();
-			th.add(Attribute.CLASS, "text-" + align);
+			th.attribute(HtmlAttribute.CLASS, "text-" + align);
 			if (!StringUtils.isEmpty(hideOnViewport)) {
-				th.add(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
+				th.attribute(HtmlAttribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
 			}
 
 			if (exportable) {
-				th.add(Attribute.CLASS, "grid-column-exportable");
+				th.attribute(HtmlAttribute.CLASS, "grid-column-exportable");
 			}
 			if (!StringUtils.isEmpty(label)) {
 				th.add(TagUtil.getLocalized(label, getJspContext()));
@@ -57,28 +57,28 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 			grid.addTh(th);
 
 			Td td = new Td();
-			td.add(Attribute.CLASS, "text-" + align);
-			td.add(Attribute.CLASS, "v-align-middle");
+			td.attribute(HtmlAttribute.CLASS, "text-" + align);
+			td.attribute(HtmlAttribute.CLASS, "v-align-middle");
 
 			if (!StringUtils.isEmpty(state)) {
-				td.add(Attribute.CLASS, "bg-" + state);
+				td.attribute(HtmlAttribute.CLASS, "bg-" + state);
 			}
 
 			if (!StringUtils.isEmpty(hideOnViewport)) {
-				td.add(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
+				td.attribute(HtmlAttribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
 			}
 
 			if (exportable) {
-				td.add(Attribute.CLASS, "grid-column-exportable");
+				td.attribute(HtmlAttribute.CLASS, "grid-column-exportable");
 			}
 			if (!StringUtils.isEmpty(body)) {
 				Div container = new Div();
 				if (collapsable) {
-					td.add(Attribute.CLASS, "grid-column-collapsable");
+					td.attribute(HtmlAttribute.CLASS, "grid-column-collapsable");
 					Span icon = new Span();
-					icon.add(Attribute.CLASS, "fas fa-search");
+					icon.attribute(HtmlAttribute.CLASS, "fas fa-search");
 					td.add(icon);
-					container.add(Attribute.CLASS, "collapse grid-column-collapsable-content");
+					container.attribute(HtmlAttribute.CLASS, "collapse grid-column-collapsable-content");
 				}
 
 				if (!StringUtils.isEmpty(formatType)) {
@@ -86,7 +86,7 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 				} else if (booleanType) {
 					if ("1".equals(body) || "true".equals(body)) {
 						Span icon = new Span();
-						icon.add(Attribute.CLASS, "fas fa-check");
+						icon.attribute(HtmlAttribute.CLASS, "fas fa-check");
 						container.add(icon);
 					}
 				} else {

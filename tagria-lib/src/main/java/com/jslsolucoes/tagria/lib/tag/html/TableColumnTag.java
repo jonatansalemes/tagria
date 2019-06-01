@@ -8,8 +8,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Td;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Td;
 import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -27,9 +27,9 @@ public class TableColumnTag extends SimpleTagSupport implements Formattabler {
 
 		String body = TagUtil.getBody(getJspBody());
 		Td td = new Td();
-		td.add(Attribute.CLASS, "bg-" + state);
+		td.attribute(HtmlAttribute.CLASS, "bg-" + state);
 		if (colspan != null) {
-			td.add(Attribute.COLSPAN, colspan);
+			td.attribute(HtmlAttribute.COLSPAN, colspan);
 		}
 		if (!StringUtils.isEmpty(label)) {
 			td.add(TagUtil.getLocalized(label, getJspContext()));

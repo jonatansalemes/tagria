@@ -5,9 +5,9 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Ul;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Ul;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuCollapsableTag extends SimpleTagSupport {
@@ -17,11 +17,11 @@ public class MenuCollapsableTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId(id, this));
-		div.add(Attribute.CLASS, "collapse navbar-collapse");
+		div.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+		div.attribute(HtmlAttribute.CLASS, "collapse navbar-collapse");
 
 		Ul ul = new Ul();
-		ul.add(Attribute.CLASS, "navbar-nav mr-auto");
+		ul.attribute(HtmlAttribute.CLASS, "navbar-nav mr-auto");
 		ul.add(TagUtil.getBody(getJspBody()));
 		div.add(ul);
 

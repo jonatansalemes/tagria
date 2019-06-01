@@ -8,10 +8,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.html.Button;
+import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class AlertTag extends SimpleTagSupport {
@@ -29,24 +29,24 @@ public class AlertTag extends SimpleTagSupport {
 
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS, "alert alert-" + state + " shadow-sm");
-			div.add(Attribute.ROLE, "alert");
-			div.add(Attribute.ID, TagUtil.getId(id, this));
+			div.attribute(HtmlAttribute.CLASS, "alert alert-" + state + " shadow-sm");
+			div.attribute(HtmlAttribute.ROLE, "alert");
+			div.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 
 			if (!StringUtils.isEmpty(cssClass)) {
-				div.add(Attribute.CLASS, cssClass);
+				div.attribute(HtmlAttribute.CLASS, cssClass);
 			}
 
 			if (!visible) {
-				div.add(Attribute.CLASS, "collapse");
+				div.attribute(HtmlAttribute.CLASS, "collapse");
 			}
 
 			if (dismissible) {
-				div.add(Attribute.CLASS, "alert-dismissible");
+				div.attribute(HtmlAttribute.CLASS, "alert-dismissible");
 				Button button = new Button();
-				button.add(Attribute.TYPE, "button");
-				button.add(Attribute.CLASS, "close");
-				button.add(Attribute.DATA_DISMISS, "alert");
+				button.attribute(HtmlAttribute.TYPE, "button");
+				button.attribute(HtmlAttribute.CLASS, "close");
+				button.attribute(HtmlAttribute.DATA_DISMISS, "alert");
 
 				Span span = new Span();
 				span.add("&times;");

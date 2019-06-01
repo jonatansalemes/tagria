@@ -6,9 +6,9 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Link;
-import com.jslsolucoes.tagria.lib.html.Script;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Link;
+import com.jslsolucoes.tagria.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ImportTag extends SimpleTagSupport {
@@ -21,13 +21,13 @@ public class ImportTag extends SimpleTagSupport {
 
 		if ("css".equals(type)) {
 			Link link = new Link();
-			link.add(Attribute.REL, "stylesheet");
-			link.add(Attribute.TYPE, "text/css");
-			link.add(Attribute.HREF, TagUtil.getPathForStatic(getJspContext(), url));
+			link.attribute(HtmlAttribute.REL, "stylesheet");
+			link.attribute(HtmlAttribute.TYPE, "text/css");
+			link.attribute(HtmlAttribute.HREF, TagUtil.getPathForStatic(getJspContext(), url));
 			TagUtil.out(getJspContext(), link);
 		} else if ("js".equals(type)) {
 			Script script = new Script();
-			script.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url));
+			script.attribute(HtmlAttribute.SRC, TagUtil.getPathForStatic(getJspContext(), url));
 			TagUtil.out(getJspContext(), script);
 		}
 	}

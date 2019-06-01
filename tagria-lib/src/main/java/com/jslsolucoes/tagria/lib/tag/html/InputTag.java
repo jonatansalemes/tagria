@@ -11,8 +11,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Input;
+import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.Input;
 import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -49,55 +49,55 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 		TagUtil.flushBody(getJspBody());
 
 		Input input = new Input();
-		input.add(Attribute.TYPE, type);
-		input.add(Attribute.NAME, name);
-		input.add(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
+		input.attribute(HtmlAttribute.TYPE, type);
+		input.attribute(HtmlAttribute.NAME, name);
+		input.attribute(HtmlAttribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
 
 		attributes.entrySet().forEach(entry -> {
-			input.add(entry.getKey(), entry.getValue());
+			input.attribute(entry.getKey(), entry.getValue());
 		});
 
 		if (step != null) {
-			input.add(Attribute.STEP, step);
+			input.attribute(HtmlAttribute.STEP, step);
 		}
 
 		if (max != null) {
-			input.add(Attribute.MAX, max);
+			input.attribute(HtmlAttribute.MAX, max);
 		}
 
 		if (min != null) {
-			input.add(Attribute.MIN, min);
+			input.attribute(HtmlAttribute.MIN, min);
 		}
 
 		if (!StringUtils.isEmpty(list)) {
-			input.add(Attribute.LIST, list);
+			input.attribute(HtmlAttribute.LIST, list);
 		}
 
 		if (multiple) {
-			input.add(Attribute.MULTIPLE, "multiple");
+			input.attribute(HtmlAttribute.MULTIPLE, "multiple");
 		}
 		if (!StringUtils.isEmpty(accept)) {
-			input.add(Attribute.ACCEPT, accept);
+			input.attribute(HtmlAttribute.ACCEPT, accept);
 		}
 
-		input.add(Attribute.ID, TagUtil.getId(name, id, this));
+		input.attribute(HtmlAttribute.ID, TagUtil.getId(name, id, this));
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
-			input.add(Attribute.CLASS, "form-control shadow-sm");
+			input.attribute(HtmlAttribute.CLASS, "form-control shadow-sm");
 		}
 
 		if (focus) {
-			input.add(Attribute.AUTOFOCUS, "autofocus");
+			input.attribute(HtmlAttribute.AUTOFOCUS, "autofocus");
 		}
 
 		if (!StringUtils.isEmpty(title)) {
-			input.add(Attribute.TITLE, TagUtil.getLocalized(title, getJspContext()));
+			input.attribute(HtmlAttribute.TITLE, TagUtil.getLocalized(title, getJspContext()));
 		}
 
 		if (maxLength != null) {
-			input.add(Attribute.MAXLENGTH, maxLength);
+			input.attribute(HtmlAttribute.MAXLENGTH, maxLength);
 		}
 		if (!StringUtils.isEmpty(placeholder)) {
-			input.add(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
+			input.attribute(HtmlAttribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
 		}
 
 		if (!StringUtils.isEmpty(formatType)) {
@@ -105,26 +105,26 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 		}
 
 		if (!StringUtils.isEmpty(value)) {
-			input.add(Attribute.VALUE, TagUtil.getLocalized(value, getJspContext()));
+			input.attribute(HtmlAttribute.VALUE, TagUtil.getLocalized(value, getJspContext()));
 		}
 		if (!StringUtils.isEmpty(pattern)) {
-			input.add(Attribute.PATTERN, pattern);
+			input.attribute(HtmlAttribute.PATTERN, pattern);
 		}
 		if (("checkbox".equals(type) || "radio".equals(type)) && checked != null && checked) {
-			input.add(Attribute.CHECKED, "checked");
+			input.attribute(HtmlAttribute.CHECKED, "checked");
 		}
 		if (disabled) {
-			input.add(Attribute.DISABLED, "disabled");
-			input.add(Attribute.CLASS, "disabled");
+			input.attribute(HtmlAttribute.DISABLED, "disabled");
+			input.attribute(HtmlAttribute.CLASS, "disabled");
 		}
 
 		if (required) {
-			input.add(Attribute.REQUIRED, "required");
-			input.add(Attribute.CLASS, "form-required");
+			input.attribute(HtmlAttribute.REQUIRED, "required");
+			input.attribute(HtmlAttribute.CLASS, "form-required");
 		}
 
 		if (!StringUtils.isEmpty(cssClass)) {
-			input.add(Attribute.CLASS, cssClass);
+			input.attribute(HtmlAttribute.CLASS, cssClass);
 		}
 
 		TagUtil.out(getJspContext(), input);
