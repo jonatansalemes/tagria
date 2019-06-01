@@ -27,7 +27,6 @@ public class ImportTag extends SimpleTagSupport {
 			TagUtil.out(getJspContext(), link);
 		} else if ("js".equals(type)) {
 			Script script = new Script();
-			
 			script.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url));
 			TagUtil.out(getJspContext(), script);
 		}

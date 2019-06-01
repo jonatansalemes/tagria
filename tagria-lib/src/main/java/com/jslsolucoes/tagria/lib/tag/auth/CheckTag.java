@@ -21,14 +21,15 @@ public class CheckTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		String body = TagUtil.getBody(getJspBody());
-		if (!StringUtils.isEmpty(uri)) addRule(uri,method);
-		if (TagUtil.allowed(getJspContext(),rules)) {
-			TagUtil.out(getJspContext(),body);
+		if (!StringUtils.isEmpty(uri))
+			addRule(uri, method);
+		if (TagUtil.allowed(getJspContext(), rules)) {
+			TagUtil.out(getJspContext(), body);
 		}
 	}
 
 	public void addRule(String uri, String method) {
-		rules.add(new CheckRule(uri, method));	
+		rules.add(new CheckRule(uri, method));
 	}
 
 	public String getUri() {

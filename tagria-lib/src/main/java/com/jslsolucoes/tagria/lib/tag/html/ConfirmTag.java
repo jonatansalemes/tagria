@@ -12,7 +12,6 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Button;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -39,12 +38,12 @@ public class ConfirmTag extends SimpleTagSupport {
 
 		Div header = new Div();
 		header.add(Attribute.CLASS, "modal-header");
-		
+
 		H4 h4 = new H4();
 		h4.add(Attribute.CLASS, "modal-title");
 		h4.add(TagUtil.getLocalizedForLib("confirm.title", getJspContext()));
 		header.add(h4);
-		
+
 		Button close = new Button();
 		close.add(Attribute.CLASS, "close");
 		close.add(Attribute.DATA_DISMISS, "modal");
@@ -88,11 +87,10 @@ public class ConfirmTag extends SimpleTagSupport {
 		modal.add(dialog);
 		TagUtil.out(getJspContext(), modal);
 
-		Script script = new Script();
-		
-		script.add("$('" + TagUtil.attachTo(attachToSelector, attachTo,this) + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
-				+ "');");
-		TagUtil.out(getJspContext(), script);
+		TagUtil.appendJs(
+				"$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
+						+ "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID) + "');",
+				this);
 	}
 
 	public String getLabel() {

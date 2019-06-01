@@ -15,7 +15,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class SmallTag extends SimpleTagSupport {
 
 	private String cssClass;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Small small = new Small();
@@ -25,7 +25,7 @@ public class SmallTag extends SimpleTagSupport {
 		small.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), small);
 	}
-	
+
 	public String getCssClass() {
 		return cssClass;
 	}

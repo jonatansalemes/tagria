@@ -15,7 +15,5 @@ public class VarStatus {
 	public void increment() {
 		this.index++;
 	}
-	
-	
-	
+
 }

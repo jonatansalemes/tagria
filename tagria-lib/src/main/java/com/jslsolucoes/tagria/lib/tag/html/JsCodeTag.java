@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class JsCodeTag extends SimpleTagSupport {
@@ -16,10 +15,7 @@ public class JsCodeTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
-			Script script = new Script();
-			
-			script.add(TagUtil.getBody(getJspBody()));
-			TagUtil.out(getJspContext(), script);
+			TagUtil.appendJs(TagUtil.getBody(getJspBody()), this);
 		}
 	}
 

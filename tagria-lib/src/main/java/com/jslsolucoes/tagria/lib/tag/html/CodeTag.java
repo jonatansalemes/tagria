@@ -16,8 +16,8 @@ public class CodeTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		Pre pre = new Pre();
 		Code code = new Code();
-		code.add(TagUtil.getBody(getJspBody()).replaceAll(">", "&gt;").replaceAll("<", "&lt;")
-					.replaceAll("\n", "</br>").replaceAll("    ", "&nbsp;&nbsp;&nbsp;&nbsp;"));
+		code.add(TagUtil.getBody(getJspBody()).replaceAll(">", "&gt;").replaceAll("<", "&lt;").replaceAll("\n", "</br>")
+				.replaceAll("    ", "&nbsp;&nbsp;&nbsp;&nbsp;"));
 		pre.add(code);
 		TagUtil.out(getJspContext(), pre);
 	}

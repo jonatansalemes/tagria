@@ -11,22 +11,22 @@ import com.jslsolucoes.tagria.lib.html.Thead;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TableHeaderTag extends SimpleTagSupport {
-	
+
 	private Boolean dark = Boolean.FALSE;
 	private Boolean light = Boolean.FALSE;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Thead thead = new Thead();
-		
-		if(dark) {
-			thead.add(Attribute.CLASS,"thead-dark");
+
+		if (dark) {
+			thead.add(Attribute.CLASS, "thead-dark");
 		}
-		
-		if(light) {
-			thead.add(Attribute.CLASS,"thead-light");
+
+		if (light) {
+			thead.add(Attribute.CLASS, "thead-light");
 		}
-		
+
 		thead.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), thead);
 	}
@@ -46,7 +46,5 @@ public class TableHeaderTag extends SimpleTagSupport {
 	public void setLight(Boolean light) {
 		this.light = light;
 	}
-
-
 
 }

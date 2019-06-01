@@ -12,7 +12,6 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Button;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
@@ -35,22 +34,19 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 		if (rendered != null && rendered) {
 			Div modal = new Div();
 			modal.add(Attribute.CLASS, "modal fade");
-			modal.add(Attribute.ID, TagUtil.getId(id,this));
+			modal.add(Attribute.ID, TagUtil.getId(id, this));
 
 			if (!closeable) {
 				modal.add(Attribute.DATA_KEYBOARD, "false");
 				modal.add(Attribute.DATA_BACKDROP, "static");
 			}
-			
-			
-			
-			
+
 			Div dialog = new Div();
 			dialog.add(Attribute.CLASS, "modal-dialog");
-			if(!StringUtils.isEmpty(size)) {
-				dialog.add(Attribute.CLASS, "modal-"+size);
+			if (!StringUtils.isEmpty(size)) {
+				dialog.add(Attribute.CLASS, "modal-" + size);
 			}
-			if(centered) {
+			if (centered) {
 				dialog.add(Attribute.CLASS, "modal-dialog-centered");
 			}
 
@@ -64,7 +60,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			h4.add(Attribute.CLASS, "modal-title");
 			h4.add(TagUtil.getLocalized(label, getJspContext()));
 			header.add(h4);
-			
+
 			if (closeable) {
 				Button close = new Button();
 				close.add(Attribute.CLASS, "close");
@@ -91,21 +87,17 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			modal.add(dialog);
 			TagUtil.out(getJspContext(), modal);
 
-			Script scriptForAttach = new Script();
-			scriptForAttach.add("$('" +TagUtil.attachTo(attachToSelector, attachTo,this) + "').attr('data-toggle','modal').attr('data-target','#"
-						+ modal.get(Attribute.ID) + "');");
-			TagUtil.out(getJspContext(), scriptForAttach);
-			
+			TagUtil.appendJs(
+					"$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
+							+ "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID) + "');",
+					this);
 
 			if (open != null && open) {
-				Script scriptForOpen = new Script();
-				scriptForOpen.add("$('#" + modal.get(Attribute.ID) + "').modal('show')");
-				TagUtil.out(getJspContext(), scriptForOpen);
+				TagUtil.appendJs("$('#" + modal.get(Attribute.ID) + "').modal('show')", this);
+
 			}
 		}
 	}
-	
-	
 
 	public String getId() {
 		return id;
@@ -168,25 +160,17 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 		this.attachToSelector = attachToSelector;
 	}
 
-
-
 	public String getSize() {
 		return size;
 	}
-
-
 
 	public void setSize(String size) {
 		this.size = size;
 	}
 
-
-
 	public Boolean getCentered() {
 		return centered;
 	}
-
-
 
 	public void setCentered(Boolean centered) {
 		this.centered = centered;

@@ -26,12 +26,13 @@ public class DropDownItemTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered != null && rendered && (auth ? TagUtil.allowed(getJspContext(),new CheckRule(url, "GET")) : true)) {
+		if (rendered != null && rendered
+				&& (auth ? TagUtil.allowed(getJspContext(), new CheckRule(url, "GET")) : true)) {
 			A a = new A();
-			a.add(Attribute.ID, TagUtil.getId(id,this));
+			a.add(Attribute.ID, TagUtil.getId(id, this));
 			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 			a.add(Attribute.TARGET, target);
-			a.add(Attribute.CLASS,"dropdown-item");
+			a.add(Attribute.CLASS, "dropdown-item");
 
 			if (!StringUtils.isEmpty(icon)) {
 				a.add(new Span().add(Attribute.CLASS, "fas fa-" + icon));

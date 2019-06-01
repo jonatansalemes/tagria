@@ -21,12 +21,12 @@ public class BlockTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS, "mt-"+margin+" mb-"+margin+" clearfix");
-			
-			if(!StringUtils.isEmpty(align)) {
-				div.add(Attribute.CLASS, "text-"+align);
+			div.add(Attribute.CLASS, "mt-" + margin + " mb-" + margin + " clearfix");
+
+			if (!StringUtils.isEmpty(align)) {
+				div.add(Attribute.CLASS, "text-" + align);
 			}
-			
+
 			div.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), div);
 		}
@@ -56,5 +56,4 @@ public class BlockTag extends SimpleTagSupport {
 		this.align = align;
 	}
 
-	
 }

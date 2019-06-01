@@ -38,7 +38,7 @@ public class Tagria extends HttpServlet {
 	private static final Integer CACHE_EXPIRES_DAY = 365;
 	private static Logger logger = LoggerFactory.getLogger(Tagria.class);
 	public static Auth AUTH;
-	
+
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		try {
@@ -107,7 +107,7 @@ public class Tagria extends HttpServlet {
 			in.close();
 
 		} catch (Exception exception) {
-			logger.error("Could not load resource {}, {}",uri, exception);
+			logger.error("Could not load resource {}, {}", uri, exception);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}

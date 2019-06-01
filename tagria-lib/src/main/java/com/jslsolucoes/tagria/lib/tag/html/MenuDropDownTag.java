@@ -12,31 +12,31 @@ import com.jslsolucoes.tagria.lib.html.Li;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuDropDownTag extends SimpleTagSupport {
-	
+
 	private String id;
 	private String label;
 	private Boolean rendered = Boolean.TRUE;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Li li = new Li();
 			li.add(Attribute.CLASS, "nav-item dropdown");
-			
+
 			A a = new A();
 			a.add(Attribute.HREF, "#");
-			a.add(Attribute.ID, TagUtil.getId(id,this));
+			a.add(Attribute.ID, TagUtil.getId(id, this));
 			a.add(Attribute.CLASS, "nav-link dropdown-toggle");
-			a.add(Attribute.DATA_TOGGLE,"dropdown");
-			a.add(TagUtil.getLocalized(label, getJspContext()));	
-			
+			a.add(Attribute.DATA_TOGGLE, "dropdown");
+			a.add(TagUtil.getLocalized(label, getJspContext()));
+
 			li.add(a);
-			
+
 			Div div = new Div();
 			div.add(Attribute.CLASS, "dropdown-menu");
 			div.add(TagUtil.getBody(getJspBody()));
 			li.add(div);
-			
+
 			TagUtil.out(getJspContext(), li);
 		}
 	}
@@ -63,5 +63,5 @@ public class MenuDropDownTag extends SimpleTagSupport {
 
 	public void setId(String id) {
 		this.id = id;
-	}	
+	}
 }

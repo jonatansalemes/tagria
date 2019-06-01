@@ -10,12 +10,11 @@ import java.util.Map;
 public abstract class Element {
 	private List<Element> elements = new ArrayList<>();
 	private Map<String, String> attributes = new HashMap<>();
-	
-	
+
 	public Element add(String html) {
 		return add(new CData(html));
 	}
-	
+
 	public Element add(Element element) {
 		return add(Arrays.asList(element));
 	}
@@ -28,11 +27,11 @@ public abstract class Element {
 	public String get(Attribute attribute) {
 		return get(attribute.getName());
 	}
-	
+
 	public String get(String attribute) {
 		return attributes.get(attribute);
 	}
-	
+
 	public Element add(Attribute attribute, Boolean value) {
 		return add(attribute.getName(), String.valueOf(value));
 	}
@@ -40,11 +39,11 @@ public abstract class Element {
 	public Element add(Attribute attribute, Integer value) {
 		return add(attribute.getName(), String.valueOf(value));
 	}
-	
+
 	public Element add(Attribute attribute, String value) {
 		return add(attribute.getName(), String.valueOf(value));
 	}
-	
+
 	public Element add(String attribute, String value) {
 		String newValue = value.trim();
 		if (attributes.containsKey(attribute)) {

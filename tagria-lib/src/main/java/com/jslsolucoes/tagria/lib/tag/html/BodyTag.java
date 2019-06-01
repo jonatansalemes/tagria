@@ -18,7 +18,7 @@ public class BodyTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		ViewTag viewTag = (ViewTag) findAncestorWithClass(this, ViewTag.class);
+		ViewTag viewTag = TagUtil.findAncestorWithClass(this, ViewTag.class);
 		Body body = viewTag.getBody();
 		if (!StringUtils.isEmpty(cssClass)) {
 			body.add(Attribute.CLASS, cssClass);

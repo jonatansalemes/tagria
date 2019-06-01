@@ -20,7 +20,7 @@ public class FormatTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		String body = TagUtil.getBody(getJspBody());
-		Formattabler formattabler = (Formattabler) findAncestorWithClass(this, Formattabler.class);
+		Formattabler formattabler = TagUtil.findAncestorWithClass(this, Formattabler.class);
 		if (formattabler != null && StringUtils.isEmpty(body)) {
 			formattabler.setFormatType(type);
 			formattabler.setFormatMatch(match);

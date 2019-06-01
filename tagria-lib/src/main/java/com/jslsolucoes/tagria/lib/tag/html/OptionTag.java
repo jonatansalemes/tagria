@@ -26,8 +26,8 @@ public class OptionTag extends SimpleTagSupport {
 	}
 
 	private void checkForSelected(Option option) {
-		SelectTag select = (SelectTag) findAncestorWithClass(this, SelectTag.class);
-		if(select != null) {
+		SelectTag select = TagUtil.findAncestorWithClass(this, SelectTag.class);
+		if (select != null) {
 			if (value.equals(select.getValue()) || (select.getRequired() && !CollectionUtils.isEmpty(select.getData())
 					&& select.getData().size() == 1)) {
 				option.add(Attribute.SELECTED, "selected");

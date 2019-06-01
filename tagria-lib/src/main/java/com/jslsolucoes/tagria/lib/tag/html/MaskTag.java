@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MaskTag extends SimpleTagSupport {
@@ -18,16 +17,12 @@ public class MaskTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		TagUtil.getBody(getJspBody());			
+		TagUtil.flushBody(getJspBody());
 		String placeholder = mask.replaceAll("([0-9]|[A-Za-z]|#)", "_");
-		StringBuilder builder = new StringBuilder();
-		builder.append("$('" + TagUtil.attachTo(null, attachTo, this) + "').mask('" + mask + "', {placeholder: '"
-				+ placeholder + "' , reverse : " + reverse + ",onKeyPress: function(value, e, field, options){" +onKeyPress+ "}});");
-		Script script = new Script();
-		
-		script.add(builder.toString());
-		TagUtil.out(getJspContext(), script);
-
+		TagUtil.appendJs(
+				"$('" + TagUtil.attachTo(null, attachTo, this) + "').mask('" + mask + "',{placeholder: '" + placeholder
+						+ "',reverse:" + reverse + ",onKeyPress:function(value,e,field,options){" + onKeyPress + "}});",
+				this);
 	}
 
 	public String getMask() {

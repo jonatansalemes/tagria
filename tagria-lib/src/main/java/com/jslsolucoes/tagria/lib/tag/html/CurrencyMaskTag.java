@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CurrencyMaskTag extends SimpleTagSupport {
@@ -16,13 +15,8 @@ public class CurrencyMaskTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		StringBuilder builder = new StringBuilder();
-		builder.append("$('" + TagUtil.attachTo(attachToSelector, attachTo,this)+ "').priceFormat({ prefix: '',centsSeparator: ',',thousandsSeparator: '.',centsLimit: 2});");
-
-		Script script = new Script();
-		
-		script.add(builder.toString());
-		TagUtil.out(getJspContext(), script);
+		TagUtil.appendJs("$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
+				+ "').priceFormat({prefix:'',centsSeparator:',',thousandsSeparator:'.',centsLimit:2});", this);
 
 	}
 

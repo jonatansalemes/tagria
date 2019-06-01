@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Iframe;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class IframeTag extends SimpleTagSupport {
@@ -23,19 +22,15 @@ public class IframeTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Iframe iframe = new Iframe();
-		iframe.add(Attribute.CLASS,"iframe");
+		iframe.add(Attribute.CLASS, "iframe");
 		if (!StringUtils.isEmpty(cssClass)) {
 			iframe.add(Attribute.CLASS, cssClass);
 		}
 		iframe.add(Attribute.NAME, name);
-		iframe.add(Attribute.ID, TagUtil.getId(name, id,this));
+		iframe.add(Attribute.ID, TagUtil.getId(name, id, this));
 		iframe.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));
 		TagUtil.out(getJspContext(), iframe);
-
-		Script script = new Script();
-		
-		script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
-		TagUtil.out(getJspContext(), script);
+		TagUtil.appendJs("$('#" + iframe.get(Attribute.ID) + "').iframe();", this);
 	}
 
 	public String getName() {

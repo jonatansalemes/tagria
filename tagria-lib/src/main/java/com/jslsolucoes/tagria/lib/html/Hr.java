@@ -7,7 +7,7 @@ public class Hr extends Element {
 	public String getTag() {
 		return "hr";
 	}
-	
+
 	@Override
 	public boolean forceCloseTagWithEmptyBody() {
 		return true;

@@ -37,6 +37,7 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 	private String afterRemove;
 	private String varStatus;
 	private VarStatus varStatusObject;
+	private Script script = new Script();
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -45,6 +46,11 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 		Div container = new Div();
 		container.add(Attribute.ID, TagUtil.getId(this));
 		container.add(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
+
+		Textarea templateForScript = new Textarea();
+		templateForScript.add(Attribute.CLASS, "d-none fg-template-script");
+		templateForScript.add(script);
+		container.add(templateForScript);
 
 		Textarea template = new Textarea();
 		template.add(Attribute.CLASS, "d-none fg-template");
@@ -101,13 +107,11 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 		TagUtil.out(getJspContext(), container);
 
-		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);"
-				: "");
+		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
 		String afterRemoveFunction = (!StringUtils.isEmpty(afterRemove) ? afterRemove + "();" : "");
-		Script script = new Script();
-		script.add("$('#" + container.get(Attribute.ID) + "').formGroup({ atLeast : " + atLeast + " , empty : " + empty
-				+ ", afterInsert : function (idx,element) { " + afterInsertFunction + " }, afterRemove: function() {" + afterRemoveFunction + "}  });");
-		TagUtil.out(getJspContext(), script);
+		TagUtil.appendJs("$('#" + container.get(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
+				+ ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
+				+ afterRemoveFunction + "}});", this);
 
 	}
 
@@ -220,6 +224,14 @@ public class MultipleFormGroupTag extends SimpleTagSupport {
 
 	public void setAfterRemove(String afterRemove) {
 		this.afterRemove = afterRemove;
+	}
+
+	public Script getScript() {
+		return script;
+	}
+
+	public void setScript(Script script) {
+		this.script = script;
 	}
 
 }

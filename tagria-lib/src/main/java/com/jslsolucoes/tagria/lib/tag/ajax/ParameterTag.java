@@ -21,14 +21,14 @@ public class ParameterTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		ParametersTag parametersTag = (ParametersTag) findAncestorWithClass(this, ParametersTag.class);
-		parametersTag.addParameter(name,required,valueForParameter());
+		parametersTag.addParameter(name, required, valueForParameter());
 	}
-	
+
 	private String valueForParameter() {
-		if(!StringUtils.isEmpty(value)) {
-			return "'" +  value + "'";
+		if (!StringUtils.isEmpty(value)) {
+			return "'" + value + "'";
 		} else {
-			return "$('#" + TagUtil.getId(src, null,this) + "')" + "." + type + "()";
+			return "$('#" + TagUtil.getId(src, null, this) + "')" + "." + type + "()";
 		}
 	}
 

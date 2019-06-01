@@ -10,6 +10,6 @@ public class HtmlUtil {
 	}
 
 	public static String urlEncode(String content) throws UnsupportedEncodingException {
-		return URLEncoder.encode(content,"UTF-8");
+		return URLEncoder.encode(content, "UTF-8");
 	}
 }

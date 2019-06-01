@@ -13,7 +13,6 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.Iframe;
 import com.jslsolucoes.tagria.lib.html.Li;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TabTag extends SimpleTagSupport {
@@ -27,14 +26,14 @@ public class TabTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
-			TabPanelTag panel = (TabPanelTag) findAncestorWithClass(this, TabPanelTag.class);
+			TabPanelTag panel = TagUtil.findAncestorWithClass(this, TabPanelTag.class);
 
 			String id = TagUtil.getId(this);
 			Li li = new Li();
 			if (reloadOnSelect) {
 				li.add(Attribute.CLASS, "tab-reload-on-select nav-item");
 			}
-			
+
 			A a = new A();
 			a.add(Attribute.CLASS, "nav-link");
 			if (active) {
@@ -57,7 +56,7 @@ public class TabTag extends SimpleTagSupport {
 				div.add(TagUtil.getBody(getJspBody()));
 			} else {
 				Iframe iframe = new Iframe();
-				iframe.add(Attribute.CLASS,"iframe");
+				iframe.add(Attribute.CLASS, "iframe");
 				iframe.add(Attribute.ID, TagUtil.getId(this));
 				iframe.add(Attribute.SRC, TagUtil.getPathForBlank(getJspContext()));
 				iframe.add(Attribute.DATA_URL, TagUtil.getPathForUrl(getJspContext(), url));
@@ -65,11 +64,7 @@ public class TabTag extends SimpleTagSupport {
 					iframe.add(Attribute.CLASS, "active");
 				}
 				div.add(iframe);
-
-				Script script = new Script();
-				
-				script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
-				div.add(script);
+				TagUtil.appendJs("$('#" + iframe.get(Attribute.ID) + "').iframe();", this);
 			}
 			panel.addDiv(div);
 		}

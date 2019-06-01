@@ -40,7 +40,7 @@ public class ImageTag extends SimpleTagSupport {
 		img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
 		if (width != null) {
 			img.add(Attribute.WIDTH, width);
-		} 
+		}
 		if (height != null) {
 			img.add(Attribute.HEIGHT, height);
 		}

@@ -115,8 +115,9 @@
 		_cloneToTemplate : function() {
 			var self = this;
 			var detail = self.element;
+			var templateScript = $('.fg-template-script',detail).val();
 			$('.fg-template',detail).val('<div class="row fg-row border rounded text-secondary mt-3 mb-3 p-3">' + $('.fg-row:first',detail).html()
-					+ '</div>');
+					+ templateScript + '</div>');
 		},
 		_reorganize : function (){
 			var self = this;

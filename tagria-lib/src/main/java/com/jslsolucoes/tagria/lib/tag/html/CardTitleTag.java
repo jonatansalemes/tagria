@@ -12,7 +12,6 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CardTitleTag extends SimpleTagSupport {
 
-
 	@Override
 	public void doTag() throws JspException, IOException {
 		H5 h5 = new H5();

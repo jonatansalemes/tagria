@@ -15,11 +15,11 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class ParametersTag extends SimpleTagSupport {
 
 	private List<String> parameters = new ArrayList<String>();
-	
+
 	public ParametersTag() {
 		addParameter("ajax", true, "true");
 	}
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		TagUtil.getBody(getJspBody());
@@ -27,8 +27,8 @@ public class ParametersTag extends SimpleTagSupport {
 		functionTag.setParameters(StringUtils.join(parameters, ","));
 	}
 
-	public void addParameter(String name,Boolean required,String value) {
-		this.parameters.add("'"+name+"' : { required : "+required+", value : "+value+" }");
+	public void addParameter(String name, Boolean required, String value) {
+		this.parameters.add("'" + name + "' : { required : " + required + ", value : " + value + " }");
 	}
 
 }

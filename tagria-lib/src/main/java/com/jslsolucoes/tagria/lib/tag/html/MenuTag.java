@@ -13,16 +13,16 @@ import com.jslsolucoes.tagria.lib.html.Nav;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuTag extends SimpleTagSupport {
-	
-	private String fixed; 
+
+	private String fixed;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		Nav nav = new Nav();
 		nav.add(Attribute.CLASS, "navbar navbar-expand-lg navbar-light bg-light");
-		if(!StringUtils.isEmpty(fixed)){
-			nav.add(Attribute.CLASS,"fixed-" + fixed);
+		if (!StringUtils.isEmpty(fixed)) {
+			nav.add(Attribute.CLASS, "fixed-" + fixed);
 		}
 		nav.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), nav);

@@ -24,7 +24,7 @@ public class TableColumnTag extends SimpleTagSupport implements Formattabler {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		String body = TagUtil.getBody(getJspBody());
 		Td td = new Td();
 		td.add(Attribute.CLASS, "bg-" + state);
@@ -34,7 +34,7 @@ public class TableColumnTag extends SimpleTagSupport implements Formattabler {
 		if (!StringUtils.isEmpty(label)) {
 			td.add(TagUtil.getLocalized(label, getJspContext()));
 		} else {
-			
+
 			if (!StringUtils.isEmpty(formatType)) {
 				body = TagUtil.format(formatType, formatMatch, formatReplace, body, getJspContext());
 			}

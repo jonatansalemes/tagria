@@ -25,16 +25,15 @@ public class ViewTag extends SimpleTagSupport {
 
 	private String title = "-";
 	private Body body = new Body();
+	private Script script = new Script();
 	private Boolean ajaxAnimation = Boolean.TRUE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		String lang = TagUtil.localization(getJspContext());
-		
-		
 		String title = TagUtil.getLocalized(this.title, getJspContext());
-		
+
 		Html html = new Html();
 		html.add(Attribute.XMLNS, "http://www.w3.org/1999/xhtml");
 		html.add(Attribute.LANG, lang);
@@ -54,12 +53,11 @@ public class ViewTag extends SimpleTagSupport {
 		viewport.add(Attribute.NAME, "viewport");
 		viewport.add(Attribute.CONTENT, "width=device-width, initial-scale=1");
 		head.add(viewport);
-		
+
 		Meta description = new Meta();
 		description.add(Attribute.NAME, "description");
 		description.add(Attribute.CONTENT, title);
 		head.add(description);
-		
 
 		Link favicon = new Link();
 		favicon.add(Attribute.REL, "icon");
@@ -74,44 +72,40 @@ public class ViewTag extends SimpleTagSupport {
 		NoScript noScript = new NoScript();
 		noScript.add(noScriptBody);
 		body.add(noScript);
-		
-		body.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
-		
-		
-		
+
+		script.add("URL_BASE='" + TagUtil.getPathForUrl(getJspContext(), "") + "';");
+		if (ajaxAnimation) {
+			script.add(
+					"$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});");
+		}
+
+		body.add(TagUtil.removeBreakLines(TagUtil.getBody(getJspBody())));
+
 		Link css = new Link();
 		css.add(Attribute.REL, "stylesheet");
 		css.add(Attribute.TYPE, "text/css");
 		css.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
 		body.add(css);
-		
+
 		Script recaptcha = new Script();
-		recaptcha.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
+		recaptcha.add(Attribute.SRC,
+				TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
 		body.add(recaptcha);
-		
+
 		Script js = new Script();
 		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
 		body.add(js);
-		
-		StringBuilder jsReady = new StringBuilder();
-		jsReady.append("URL_BASE='" + TagUtil.getPathForUrl(getJspContext(), "") + "';");
-		if(ajaxAnimation) {
-			jsReady.append(
-				"$(document).ajaxStart(function(){ $('.ajax-loading').fadeIn(); }).ajaxStop(function(){ $('.ajax-loading').fadeOut(); });");
-		}
-		Script ready = new Script();
-		ready.add(jsReady.toString());
-		body.add(ready);
-		
+
+		body.add(script);
 		html.add(body);
-		
+
 		Img img = new Img();
 		img.add(Attribute.SRC, TagUtil.getPathForImageLibResource(getJspContext(), "loading.gif"));
 		img.add(Attribute.WIDTH, 100);
 		img.add(Attribute.HEIGHT, 100);
 		img.add(Attribute.CLASS, "mx-auto d-block");
-		img.add(Attribute.ALT,"loading");
-		
+		img.add(Attribute.ALT, "loading");
+
 		Div loading = new Div();
 		loading.add(Attribute.CLASS, "fixed-top collapse ajax-loading");
 		loading.add(img);
@@ -139,5 +133,13 @@ public class ViewTag extends SimpleTagSupport {
 
 	public void setAjaxAnimation(Boolean ajaxAnimation) {
 		this.ajaxAnimation = ajaxAnimation;
+	}
+
+	public Script getScript() {
+		return script;
+	}
+
+	public void setScript(Script script) {
+		this.script = script;
 	}
 }

@@ -11,7 +11,6 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.Element;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Ul;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -39,12 +38,7 @@ public class TabPanelTag extends SimpleTagSupport {
 		div.add(tabs);
 
 		TagUtil.out(getJspContext(), div);
-
-		Script script = new Script();
-		
-		script.add("$('#" + div.get(Attribute.ID) + "').tabs();");
-		TagUtil.out(getJspContext(), script);
-
+		TagUtil.appendJs("$('#" + div.get(Attribute.ID) + "').tabs();", this);
 	}
 
 	public void addLi(Element element) {

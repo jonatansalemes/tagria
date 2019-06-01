@@ -15,12 +15,12 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class RowTag extends SimpleTagSupport {
 
 	private String cssClass;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
 		div.add(Attribute.CLASS, "row");
-		
+
 		if (!StringUtils.isEmpty(cssClass)) {
 			div.add(Attribute.CLASS, cssClass);
 		}

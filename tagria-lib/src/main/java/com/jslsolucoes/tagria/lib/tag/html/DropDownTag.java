@@ -25,19 +25,16 @@ public class DropDownTag extends SimpleTagSupport {
 		if (rendered != null && rendered) {
 			Div dropDown = new Div();
 			dropDown.add(Attribute.CLASS, "dropdown");
-			
-			
 
 			Button button = new Button();
 			button.add(Attribute.TYPE, "button");
 			button.add(Attribute.ID, TagUtil.getId(id, this));
 			button.add(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm dropdown-toggle");
 			button.add(Attribute.DATA_TOGGLE, "dropdown");
-			if(!StringUtils.isEmpty(size)) {
+			if (!StringUtils.isEmpty(size)) {
 				button.add(Attribute.CLASS, "btn-" + size);
 			}
-			
-			
+
 			button.add(TagUtil.getLocalized(label, getJspContext()));
 
 			dropDown.add(button);

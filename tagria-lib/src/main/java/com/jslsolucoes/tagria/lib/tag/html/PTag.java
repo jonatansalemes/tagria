@@ -10,7 +10,7 @@ import com.jslsolucoes.tagria.lib.html.P;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class PTag extends SimpleTagSupport {
-	
+
 	private Boolean rendered = Boolean.TRUE;
 
 	@Override

@@ -25,7 +25,6 @@ import com.jslsolucoes.tagria.lib.html.H5;
 import com.jslsolucoes.tagria.lib.html.Input;
 import com.jslsolucoes.tagria.lib.html.Li;
 import com.jslsolucoes.tagria.lib.html.Nav;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.html.Table;
 import com.jslsolucoes.tagria.lib.html.Tbody;
@@ -58,8 +57,6 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	public void doTag() throws JspException, IOException {
 
 		if (rendered != null && rendered) {
-
-			
 
 			TagUtil.flushBody(getJspBody());
 
@@ -286,15 +283,10 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			}
 
 			TagUtil.out(getJspContext(), container);
-
-			Script script = new Script();
-			
-			script.add("$('#" + container.get(Attribute.ID) + "').grid({ url : '"
-					+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString : '"
-					+ TagUtil.queryString(getJspContext(),
-							Arrays.asList("page", "property", "direction", "resultsPerPage"))
-					+ "'});");
-			TagUtil.out(getJspContext(), script);
+			TagUtil.appendJs("$('#" + container.get(Attribute.ID) + "').grid({ url : '"
+					+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString:'" + TagUtil.queryString(
+							getJspContext(), Arrays.asList("page", "property", "direction", "resultsPerPage"))
+					+ "'});", this);
 		}
 	}
 

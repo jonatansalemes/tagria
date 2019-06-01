@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class JsEventTag extends SimpleTagSupport {
@@ -19,15 +18,8 @@ public class JsEventTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
-			StringBuilder builder = new StringBuilder();
-			builder.append("$('" + TagUtil.attachTo(attachToSelector, attachTo,this) + "')." + event + "(function(){");
-			builder.append(TagUtil.getBody(getJspBody()));
-			builder.append("});");
-
-			Script script = new Script();
-			
-			script.add(builder.toString());
-			TagUtil.out(getJspContext(), script);
+			TagUtil.appendJs("$('" + TagUtil.attachTo(attachToSelector, attachTo, this) + "')." + event + "(function(){"
+					+ TagUtil.getBody(getJspBody()) + "});", this);
 		}
 
 	}

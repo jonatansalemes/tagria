@@ -16,7 +16,7 @@ public class ToolbarTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
-			Toolballer form = (Toolballer) findAncestorWithClass(this, Toolballer.class);
+			Toolballer form = TagUtil.findAncestorWithClass(this, Toolballer.class);
 			form.setToolbar(TagUtil.getBody(getJspBody()));
 		}
 	}

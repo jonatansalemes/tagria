@@ -18,7 +18,6 @@ import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.H4;
 import com.jslsolucoes.tagria.lib.html.Input;
 import com.jslsolucoes.tagria.lib.html.Option;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Select;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
@@ -97,11 +96,7 @@ public class SelectTag extends SimpleTagSupport {
 		container.add(modal());
 
 		TagUtil.out(getJspContext(), container);
-
-		Script script = new Script();
-		script.add("$('#" + container.get(Attribute.ID) + "').select();");
-		TagUtil.out(getJspContext(), script);
-
+		TagUtil.appendJs("$('#" + container.get(Attribute.ID) + "').select();", this);
 	}
 
 	public Div modal() {
@@ -133,8 +128,7 @@ public class SelectTag extends SimpleTagSupport {
 
 		Div body = new Div();
 		body.add(Attribute.CLASS, "modal-body");
-		
-		
+
 		Div inputContainer = new Div();
 		Input input = new Input();
 		input.add(Attribute.TYPE, "text");
@@ -144,12 +138,11 @@ public class SelectTag extends SimpleTagSupport {
 		input.add(Attribute.AUTOFOCUS, "autofocus");
 		inputContainer.add(input);
 		body.add(inputContainer);
-		
+
 		Div searchContainer = new Div();
 		searchContainer.add(Attribute.CLASS, "select-search-container");
 		body.add(searchContainer);
-		
-		
+
 		content.add(body);
 
 		dialog.add(content);

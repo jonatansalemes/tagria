@@ -27,7 +27,7 @@ public class DataListTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Datalist datalist = new Datalist();
-		datalist.add(Attribute.ID, TagUtil.getId(id,this));
+		datalist.add(Attribute.ID, TagUtil.getId(id, this));
 		if (fixed) {
 			datalist.add(TagUtil.getBody(getJspBody()));
 		}

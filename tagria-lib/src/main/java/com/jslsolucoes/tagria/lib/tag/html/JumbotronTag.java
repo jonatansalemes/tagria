@@ -14,7 +14,7 @@ public class JumbotronTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
-		div.add(Attribute.CLASS,"jumbotron");
+		div.add(Attribute.CLASS, "jumbotron");
 		div.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), div);
 	}

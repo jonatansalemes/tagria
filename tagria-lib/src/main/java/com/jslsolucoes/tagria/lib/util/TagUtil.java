@@ -37,11 +37,12 @@ import com.jslsolucoes.tagria.lib.servlet.Tagria;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag;
+import com.jslsolucoes.tagria.lib.tag.html.ViewTag;
 import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
 
 public class TagUtil {
 
-	public static final String VERSION = "3.1.0.1";
+	public static final String VERSION = "3.1.0.2";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {
@@ -90,10 +91,26 @@ public class TagUtil {
 		return locale;
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <T> T findAncestorWithClass(SimpleTagSupport simpleTagSupport, Class<T> ancestorClass) {
+		return (T) SimpleTagSupport.findAncestorWithClass(simpleTagSupport, ancestorClass);
+	}
+
+	public static void appendJs(String jsCode, SimpleTagSupport simpleTagSupport) {
+		MultipleFormGroupTag multipleFormGroupTag = findAncestorWithClass(simpleTagSupport, MultipleFormGroupTag.class);
+		if (multipleFormGroupTag != null && multipleFormGroupTag.getVarStatusObject().getIndex() == 0) {
+			multipleFormGroupTag.getScript().add(jsCode);
+		}
+
+		ViewTag viewTag = findAncestorWithClass(simpleTagSupport, ViewTag.class);
+		viewTag.getScript().add(jsCode);
+
+	}
+
 	public static String format(String type, String match, String replace, String value, JspContext jspContext) {
 		return StringUtil.format(type, match, replace, value, locale(jspContext));
 	}
-	
+
 	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {
 		String idForComponent = "par_" + RandomStringUtils.randomAlphanumeric(20);
 		if (!StringUtils.isEmpty(id)) {
@@ -108,8 +125,8 @@ public class TagUtil {
 		if (simpleTagSupport == null) {
 			return "";
 		} else {
-			MultipleFormGroupTag multipleFormGroupTag = (MultipleFormGroupTag) SimpleTagSupport
-					.findAncestorWithClass(simpleTagSupport, MultipleFormGroupTag.class);
+			MultipleFormGroupTag multipleFormGroupTag = findAncestorWithClass(simpleTagSupport,
+					MultipleFormGroupTag.class);
 			return multipleFormGroupTag != null ? "__" + multipleFormGroupTag.getVarStatusObject().getIndex() : "";
 		}
 	}
@@ -129,7 +146,7 @@ public class TagUtil {
 		return TagUtil.getId(null, id, simpleTagSupport);
 	}
 
-	public static String minifyHtml(String value) {
+	public static String removeBreakLines(String value) {
 		return value.replaceAll("\r|\t", "");
 	}
 

@@ -37,9 +37,6 @@ public class RecaptchaValidator {
 		return new RecaptchaValidator();
 	}
 
-
-	
-
 	public RecaptchaValidator withSecret(String secret) {
 		this.secret = secret;
 		return this;

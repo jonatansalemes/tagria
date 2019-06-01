@@ -12,9 +12,9 @@ import com.jslsolucoes.tagria.lib.html.Caption;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TableCaptionTag extends SimpleTagSupport {
-	
+
 	private String label;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Caption caption = new Caption();

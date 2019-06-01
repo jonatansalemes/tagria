@@ -19,33 +19,33 @@ public class CarouselItemTag extends SimpleTagSupport {
 	private String description;
 	private Boolean active = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS,"carousel-item");
-			
-			if(active) {
-				div.add(Attribute.CLASS,"active");
+			div.add(Attribute.CLASS, "carousel-item");
+
+			if (active) {
+				div.add(Attribute.CLASS, "active");
 			}
-			
+
 			div.add(TagUtil.getBody(getJspBody()));
-			
-			if(!StringUtils.isEmpty(label)){
+
+			if (!StringUtils.isEmpty(label)) {
 				Div caption = new Div();
-				caption.add(Attribute.CLASS,"carousel-caption d-none d-md-block");
-				
+				caption.add(Attribute.CLASS, "carousel-caption d-none d-md-block");
+
 				H5 h5 = new H5();
 				h5.add(TagUtil.getLocalized(label, getJspContext()));
 				caption.add(h5);
-				
-				if(!StringUtils.isEmpty(description)){
+
+				if (!StringUtils.isEmpty(description)) {
 					P p = new P();
 					p.add(TagUtil.getLocalized(description, getJspContext()));
 					caption.add(p);
 				}
-				
+
 				div.add(caption);
 			}
 			TagUtil.out(getJspContext(), div);

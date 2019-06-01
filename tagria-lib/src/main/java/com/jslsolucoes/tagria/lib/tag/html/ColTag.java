@@ -24,26 +24,26 @@ public class ColTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
 		div.add(Attribute.CLASS, "col");
-		if(extraSmall != null){
+		if (extraSmall != null) {
 			div.add(Attribute.CLASS, "col-" + extraSmall);
 		}
-		if(small != null){
+		if (small != null) {
 			div.add(Attribute.CLASS, "col-sm-" + small);
 		}
-		if(medium != null){
+		if (medium != null) {
 			div.add(Attribute.CLASS, "col-md-" + medium);
 		}
-		if(large != null){
+		if (large != null) {
 			div.add(Attribute.CLASS, "col-lg-" + large);
 		}
-		
+
 		if (!StringUtils.isEmpty(cssClass)) {
 			div.add(Attribute.CLASS, cssClass);
 		}
 
 		div.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), div);
-		
+
 	}
 
 	public Integer getExtraSmall() {

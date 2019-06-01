@@ -19,7 +19,7 @@ public class CarouselTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		Div div = new Div();
-		div.add(Attribute.ID, TagUtil.getId(id,this));
+		div.add(Attribute.ID, TagUtil.getId(id, this));
 		div.add(Attribute.CLASS, "carousel slide");
 		div.add(Attribute.DATA_RIDE, "carousel");
 
@@ -28,21 +28,21 @@ public class CarouselTag extends SimpleTagSupport {
 		inner.add(TagUtil.getBody(getJspBody()));
 
 		div.add(inner);
-		
+
 		A prev = new A();
 		prev.add(Attribute.CLASS, "carousel-control-prev");
-		prev.add(Attribute.HREF,"#" + div.get(Attribute.ID));
+		prev.add(Attribute.HREF, "#" + div.get(Attribute.ID));
 		prev.add(Attribute.DATA_SLIDE, "prev");
 		prev.add(new Span().add(Attribute.CLASS, "carousel-control-prev-icon"));
 		div.add(prev);
-		
+
 		A next = new A();
 		next.add(Attribute.CLASS, "carousel-control-next");
-		next.add(Attribute.HREF,"#" + div.get(Attribute.ID));
+		next.add(Attribute.HREF, "#" + div.get(Attribute.ID));
 		next.add(Attribute.DATA_SLIDE, "next");
 		next.add(new Span().add(Attribute.CLASS, "carousel-control-next-icon"));
 		div.add(next);
-		
+
 		TagUtil.out(getJspContext(), div);
 	}
 

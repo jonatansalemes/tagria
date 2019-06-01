@@ -40,7 +40,7 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 				align = "center";
 			}
 
-			GridTag grid = (GridTag) findAncestorWithClass(this, GridTag.class);
+			GridTag grid = TagUtil.findAncestorWithClass(this, GridTag.class);
 
 			Th th = new Th();
 			th.add(Attribute.CLASS, "text-" + align);

@@ -12,7 +12,6 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.Form;
 import com.jslsolucoes.tagria.lib.html.H2;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -31,10 +30,10 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
-			
+
 			Div container = new Div();
-			container.add(Attribute.CLASS,"border border-secondary rounded p-2 shadow-sm");
-	
+			container.add(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm");
+
 			Form form = new Form();
 			form.add(Attribute.NOVALIDATE, "novalidate");
 			if (!StringUtils.isEmpty(name)) {
@@ -47,7 +46,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			if (multipart) {
 				form.add(Attribute.ENCTYPE, "multipart/form-data");
 			}
-			
+
 			if (!StringUtils.isEmpty(label)) {
 				Div title = new Div();
 				title.add(Attribute.CLASS, "text-center");
@@ -57,34 +56,26 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 				title.add(h2);
 				form.add(title);
 			}
-			
+
 			Div errors = new Div();
 			errors.add(Attribute.CLASS, "collapse form-error");
 			errors.add("&nbsp;");
-			
+
 			form.add(errors);
 			form.add(TagUtil.getBody(getJspBody()));
-			if(toolbar != null) {
+			if (toolbar != null) {
 				form.add(toolbar);
 			}
-			
+
 			container.add(form);
 
 			TagUtil.out(getJspContext(), container);
 
-			Script script = new Script();
-			
-			script.add("$('#" + form.get(Attribute.ID) + "')"
-					+ "		.form({ 																														" 
-					+ "					validation : '" + (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "',	" 
-					+ "   				invalid : { " 
-					+ "						email : '"+ TagUtil.getLocalizedForLib("form.email.invalid", getJspContext()) 	+ "',								" 
-					+ "						max : '" + TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) 		+ "',								" 
-					+ "						min : '" + TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) 		+ "'								" 
-					+ "					}																													" 
-					+ "		});																																");
-
-			TagUtil.out(getJspContext(), script);
+			TagUtil.appendJs("$('#" + form.get(Attribute.ID) + "').form({validation:'"
+					+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
+					+ "',invalid:{email : '" + TagUtil.getLocalizedForLib("form.email.invalid", getJspContext())
+					+ "',max:'" + TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) + "',min:'"
+					+ TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) + "'}});", this);
 		}
 	}
 

@@ -11,7 +11,7 @@ import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ButtonGroupTag extends SimpleTagSupport {
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div buttonGroup = new Div();

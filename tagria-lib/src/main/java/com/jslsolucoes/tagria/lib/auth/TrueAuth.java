@@ -6,7 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 public class TrueAuth implements Auth {
 
 	@Override
-	public Boolean allowed(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,String uri, String method) {
+	public Boolean allowed(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String uri,
+			String method) {
 		return true;
 	}
 
