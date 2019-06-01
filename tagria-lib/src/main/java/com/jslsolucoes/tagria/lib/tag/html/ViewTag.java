@@ -32,13 +32,16 @@ public class ViewTag extends SimpleTagSupport {
 		
 		String lang = TagUtil.localization(getJspContext());
 		
+		
+		String title = TagUtil.getLocalized(this.title, getJspContext());
+		
 		Html html = new Html();
 		html.add(Attribute.XMLNS, "http://www.w3.org/1999/xhtml");
 		html.add(Attribute.LANG, lang);
 		Head head = new Head();
 		html.add(head);
 		Title titleForPage = new Title();
-		titleForPage.add(TagUtil.getLocalized(this.title, getJspContext()));
+		titleForPage.add(title);
 		head.add(titleForPage);
 
 		Meta meta = new Meta();
@@ -50,38 +53,19 @@ public class ViewTag extends SimpleTagSupport {
 		Meta viewport = new Meta();
 		viewport.add(Attribute.NAME, "viewport");
 		viewport.add(Attribute.CONTENT, "width=device-width, initial-scale=1");
-
 		head.add(viewport);
 		
-		Link css = new Link();
-		css.add(Attribute.REL, "stylesheet");
-		css.add(Attribute.TYPE, "text/css");
-		css.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
-		head.add(css);
+		Meta description = new Meta();
+		description.add(Attribute.NAME, "description");
+		description.add(Attribute.CONTENT, title);
+		head.add(description);
 		
-		Script recaptcha = new Script();
-		recaptcha.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
-		head.add(recaptcha);
-		
-		Script js = new Script();
-		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
-		head.add(js);
 
 		Link favicon = new Link();
 		favicon.add(Attribute.REL, "icon");
 		favicon.add(Attribute.TYPE, "image/x-icon");
 		favicon.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), "/favicon.ico"));
 		head.add(favicon);
-
-		StringBuilder jsReady = new StringBuilder();
-		jsReady.append("URL_BASE='" + TagUtil.getPathForUrl(getJspContext(), "") + "';");
-		if(ajaxAnimation) {
-			jsReady.append(
-				"$(document).ajaxStart(function(){ $('.ajax-loading').fadeIn(); }).ajaxStop(function(){ $('.ajax-loading').fadeOut(); });");
-		}
-		Script ready = new Script();
-		ready.add(jsReady.toString());
-		head.add(ready);
 
 		Div noScriptBody = new Div();
 		noScriptBody.add(Attribute.CLASS, "alert alert-danger");
@@ -90,7 +74,37 @@ public class ViewTag extends SimpleTagSupport {
 		NoScript noScript = new NoScript();
 		noScript.add(noScriptBody);
 		body.add(noScript);
-
+		
+		body.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
+		
+		
+		
+		Link css = new Link();
+		css.add(Attribute.REL, "stylesheet");
+		css.add(Attribute.TYPE, "text/css");
+		css.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
+		body.add(css);
+		
+		Script recaptcha = new Script();
+		recaptcha.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
+		body.add(recaptcha);
+		
+		Script js = new Script();
+		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
+		body.add(js);
+		
+		StringBuilder jsReady = new StringBuilder();
+		jsReady.append("URL_BASE='" + TagUtil.getPathForUrl(getJspContext(), "") + "';");
+		if(ajaxAnimation) {
+			jsReady.append(
+				"$(document).ajaxStart(function(){ $('.ajax-loading').fadeIn(); }).ajaxStop(function(){ $('.ajax-loading').fadeOut(); });");
+		}
+		Script ready = new Script();
+		ready.add(jsReady.toString());
+		body.add(ready);
+		
+		html.add(body);
+		
 		Img img = new Img();
 		img.add(Attribute.SRC, TagUtil.getPathForImageLibResource(getJspContext(), "loading.gif"));
 		img.add(Attribute.WIDTH, 100);
@@ -102,9 +116,6 @@ public class ViewTag extends SimpleTagSupport {
 		loading.add(Attribute.CLASS, "fixed-top collapse ajax-loading");
 		loading.add(img);
 		body.add(loading);
-
-		body.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
-		html.add(body);
 
 		TagUtil.out(getJspContext(), DocType.HTML5);
 		TagUtil.out(getJspContext(), html);

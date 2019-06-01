@@ -38,7 +38,7 @@ public class FormGroupTag extends SimpleTagSupport {
 			if (!StringUtils.isEmpty(label)) {
 				Label title = new Label();
 				if (!StringUtils.isEmpty(forElement)) {
-					title.add(Attribute.FOR, TagUtil.getId(forElement, null));
+					title.add(Attribute.FOR, TagUtil.getId(forElement,null,this));
 				}
 				title.add(TagUtil.getLocalized(label, getJspContext()));
 

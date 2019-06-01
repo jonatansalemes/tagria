@@ -2,36 +2,22 @@
 package com.jslsolucoes.tagria.lib.html;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-
 public abstract class Element {
 	private List<Element> elements = new ArrayList<>();
-	private EnumMap<Attribute, String> attributes = new EnumMap<>(Attribute.class);
+	private Map<String, String> attributes = new HashMap<>();
+	
+	
+	public Element add(String html) {
+		return add(new CData(html));
+	}
 	
 	public Element add(Element element) {
-		elements.add(element);
-		return this;
-	}
-
-	public void remove(Attribute attribute) {
-		attributes.remove(attribute);
-	}
-
-	public void remove(Attribute attribute, String value) {
-
-		String separator = " ";
-		if (attribute.equals(Attribute.STYLE))
-			separator = ";";
-		String newValue = attributes.get(attribute).replaceAll(value + "(" + separator + "|)", "");
-		if (StringUtils.isEmpty(newValue)) {
-			remove(attribute);
-		} else {
-			attributes.put(attribute, newValue);
-		}
+		return add(Arrays.asList(element));
 	}
 
 	public Element add(List<Element> elements) {
@@ -40,44 +26,41 @@ public abstract class Element {
 	}
 
 	public String get(Attribute attribute) {
+		return get(attribute.getName());
+	}
+	
+	public String get(String attribute) {
 		return attributes.get(attribute);
 	}
-
-	public Element add(Attribute attribute, boolean value) {
-		return add(attribute, String.valueOf(value));
-	}
-
-	public Element add(String html) {
-		this.elements.add(new CData(html));
-		return this;
-	}
-
-	public Element add(Attribute attribute, String attributeValue) {
-		String value = attributeValue.trim();
-		if (attributes.containsKey(attribute)) {
-			String separator = " ";
-			if (attribute.equals(Attribute.STYLE))
-				separator = ";";
-			value = get(attribute).concat(separator).concat(value);
-		}
-		attributes.put(attribute, value);
-		return this;
+	
+	public Element add(Attribute attribute, Boolean value) {
+		return add(attribute.getName(), String.valueOf(value));
 	}
 
 	public Element add(Attribute attribute, Integer value) {
-		return this.add(attribute, String.valueOf(value));
+		return add(attribute.getName(), String.valueOf(value));
+	}
+	
+	public Element add(Attribute attribute, String value) {
+		return add(attribute.getName(), String.valueOf(value));
+	}
+	
+	public Element add(String attribute, String value) {
+		String newValue = value.trim();
+		if (attributes.containsKey(attribute)) {
+			String separator = "style".equals(attribute) ? ";" : " ";
+			newValue = get(attribute).concat(separator).concat(newValue);
+		}
+		attributes.put(attribute, newValue);
+		return this;
 	}
 
 	public String getHtml() {
 		StringBuilder html = new StringBuilder();
 		html.append("<");
-		html.append(this.getTag());
-		for (Map.Entry<Attribute, String> entry : attributes.entrySet()) {
-			html.append(" ");
-			html.append(entry.getKey().getName());
-			html.append("=\"");
-			html.append(entry.getValue());
-			html.append("\"");
+		html.append(getTag());
+		for (Map.Entry<String, String> entry : attributes.entrySet()) {
+			html.append(" ".concat(entry.getKey()).concat("=\"").concat(entry.getValue()).concat("\""));
 		}
 		if (this.elements.isEmpty() && !forceCloseTagWithEmptyBody()) {
 			html.append("/");
@@ -87,13 +70,9 @@ public abstract class Element {
 			html.append(element.getHtml());
 		}
 		if (!this.elements.isEmpty() || forceCloseTagWithEmptyBody()) {
-			html.append("</" + this.getTag() + ">");
+			html.append("</" + getTag() + ">");
 		}
 		return html.toString();
-	}
-
-	public boolean hasAttribute(Attribute attribute) {
-		return this.attributes.get(attribute) != null;
 	}
 
 	public abstract String getTag();

@@ -2,8 +2,11 @@
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
@@ -13,7 +16,7 @@ import com.jslsolucoes.tagria.lib.html.Input;
 import com.jslsolucoes.tagria.lib.tag.Formattabler;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class InputTag extends SimpleTagSupport implements Formattabler {
+public class InputTag extends SimpleTagSupport implements Formattabler, DynamicAttributes {
 
 	private Boolean checked;
 	private String name;
@@ -32,28 +35,38 @@ public class InputTag extends SimpleTagSupport implements Formattabler {
 	private String cssClass;
 	private Integer max;
 	private Integer min;
+	private Integer step;
 	private String list;
 	private Boolean autocomplete = Boolean.FALSE;
 	private String formatType;
 	private String formatMatch;
 	private String formatReplace;
+	private Map<String, String> attributes = new WeakHashMap<String, String>();
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		TagUtil.flushBody(getJspBody());
-		
+
 		Input input = new Input();
 		input.add(Attribute.TYPE, type);
 		input.add(Attribute.NAME, name);
 		input.add(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
+
+		attributes.entrySet().forEach(entry -> {
+			input.add(entry.getKey(), entry.getValue());
+		});
+
+		if (step != null) {
+			input.add(Attribute.STEP, step);
+		}
 
 		if (max != null) {
 			input.add(Attribute.MAX, max);
 		}
 
 		if (min != null) {
-			input.add(Attribute.MIN, max);
+			input.add(Attribute.MIN, min);
 		}
 
 		if (!StringUtils.isEmpty(list)) {
@@ -282,6 +295,23 @@ public class InputTag extends SimpleTagSupport implements Formattabler {
 	@Override
 	public void setFormatReplace(String formatReplace) {
 		this.formatReplace = formatReplace;
+	}
+
+	public Integer getStep() {
+		return step;
+	}
+
+	public void setStep(Integer step) {
+		this.step = step;
+	}
+
+	@Override
+	public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
+		if (!localName.startsWith("data-")) {
+			throw new RuntimeException(
+					"Dynamic attributes must start with data- . Eg.  data-id=\"1\",data-url=\"/start\" ... ");
+		}
+		attributes.put(localName, value.toString());
 	}
 
 }

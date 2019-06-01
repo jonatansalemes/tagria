@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>3.0.10-SNAPSHOT</version>
+		<version>3.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>tagria-lib</artifactId>
 
@@ -108,7 +108,7 @@
 							<arguments>
 								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
 								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
-								<argument>false</argument>
+								<argument>true</argument>
 							</arguments>
 						</configuration>
 					</execution>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	version="2.0">
@@ -9,7 +10,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tlib-version>3.0</tlib-version>
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
-	
+
 	<tag>
 		<description>Renders a menu dropdown divider</description>
 		<display-name>Misc</display-name>
@@ -22,8 +23,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					&lt;html:dropDownDivider/&gt;
 					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
 					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
-				&lt;/html:dropDown&gt;
-		</example>
+				&lt;/html:dropDown&gt; </example>
 	</tag>
 
 	<tag>
@@ -80,12 +80,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					&lt;html:dropDownDivider/&gt;
 					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
 					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
-				&lt;/html:dropDown&gt;
-		</example>
+				&lt;/html:dropDown&gt; </example>
 	</tag>
-	
-	
-	
+
+
+
 	<tag>
 		<description>Renders a dropdown list</description>
 		<display-name>Misc</display-name>
@@ -129,10 +128,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					&lt;html:dropDownDivider/&gt;
 					&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
 					&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
-				&lt;/html:dropDown&gt;
-		</example>
+				&lt;/html:dropDown&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a carousel</description>
 		<display-name>Carousel</display-name>
@@ -153,10 +151,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
 					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
 				&lt;/html:carouselItem&gt;
-			&lt;/html:carousel&gt; 
-		</example>
+			&lt;/html:carousel&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a carousel item</description>
 		<display-name>Carousel</display-name>
@@ -195,11 +192,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
 					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
 				&lt;/html:carouselItem&gt;
-			&lt;/html:carousel&gt; 
-		</example>
+			&lt;/html:carousel&gt; </example>
 	</tag>
-	
-	
+
+
 	<tag>
 		<description>Renders an carousel image</description>
 		<display-name>Carousel</display-name>
@@ -249,10 +245,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:carouselItem&gt;
 					&lt;html:carouselImage url="/image/person.png" alt="logo"/&gt;
 				&lt;/html:carouselItem&gt;
-			&lt;/html:carousel&gt;
-		</example>
+			&lt;/html:carousel&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a jumbotron</description>
 		<display-name>Misc</display-name>
@@ -262,7 +257,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:jumbotron&gt; &lt;html:h1&gt; Header &lt;/html:h1&gt; &lt;/html:jumbotron&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a mask in currency format for a particular input</description>
 		<display-name>Mask</display-name>
@@ -286,7 +281,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="teste" value="0" format="currency"/&gt;
 			&lt;html:currencyMask attachTo="teste"/&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders event on mask after any key press</description>
 		<display-name>Mask</display-name>
@@ -303,7 +298,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;/html:maskOnKeyPress&gt;
 			&lt;/html:mask&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a h1</description>
 		<display-name>Html</display-name>
@@ -313,7 +308,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:h1&gt; Cabecalho &lt;/html:h1&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a menu link</description>
 		<display-name>Menu</display-name>
@@ -364,10 +359,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:menuCollapsable id="block1"&gt;
 					&lt;html:menuLink label="Menu Link" url="#" /&gt;
 				&lt;/html:menuCollapsable&gt;
-			&lt;/html:menu&gt; 
-		</example>
+			&lt;/html:menu&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a h3</description>
 		<display-name>Html</display-name>
@@ -377,7 +371,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:h3&gt; Cabecalho &lt;/html:h3&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a block with top and bottom spacing</description>
 		<display-name>Misc</display-name>
@@ -407,7 +401,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				Meu bloco de componentes
 			&lt;/html:block&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a data list component</description>
 		<display-name>Input</display-name>
@@ -451,50 +445,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:option value="${ person.id }"&gt;
 					${ person.name }
 				&lt;/html:option&gt;
-			&lt;/html:dataList&gt;
-		</example>
-	</tag>
-	
-	<tag>
-		<description>Renders a datePicker for a input</description>
-		<display-name>Picker</display-name>
-		<name>datePicker</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates the component that triggers the date picker</description>
-			<name>attachTo</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the minimum day for date choice</description>
-			<name>min</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<example>
-			&lt;html:input name="input1" placeholder="Date birth" /&gt;
-			&lt;html:datePicker attachTo="input1" min="0"/&gt; </example>
+			&lt;/html:dataList&gt; </example>
 	</tag>
 
-	<tag>
-		<description>Renders an event after datePicker select date for a input</description>
-		<display-name>Picker</display-name>
-		<name>datePickerOnSelect</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerOnSelectTag</tag-class>
-		<body-content>scriptless</body-content>
-		<example>
-			&lt;html:input name="input1" placeholder="Date birth" /&gt;
-			&lt;html:datePicker attachTo="input1" min="0"&gt;
-				&lt;html:datePickerOnSelect&gt;
-					/* Available variables on select dateText,inst  */
-					alert(dateText);
-				&lt;/html:datePickerOnSelect&gt;
-			&lt;/html:datePicker&gt; </example>
-	</tag>
-	
+
 	<tag>
 		<description>Renders a google recaptcha</description>
 		<display-name>Misc</display-name>
@@ -513,7 +467,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				
 			&lt;/html:recaptcha&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a data block iteration</description>
 		<display-name>Layout</display-name>
@@ -564,10 +518,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:alert state="success"&gt;
 					${ person.name }
 				&lt;/html:alert&gt;
-			&lt;/html:dataBlock&gt;
-		</example>
+			&lt;/html:dataBlock&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a select box</description>
 		<display-name>Input</display-name>
@@ -634,8 +587,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:option value="${ person.id }"&gt;
 					${ person.name }
 				&lt;/html:option&gt;
-			&lt;/html:select&gt;
-		</example>
+			&lt;/html:select&gt; </example>
 	</tag>
 
 	<tag>
@@ -656,10 +608,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:option value="${ person.id }"&gt;
 					${ person.name }
 				&lt;/html:option&gt;
-			&lt;/html:select&gt;
-		</example>
+			&lt;/html:select&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders an textarea</description>
 		<display-name>Input</display-name>
@@ -706,7 +657,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:textarea name="textarea1" rows="3"/&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a detail table</description>
 		<display-name>Detail table</display-name>
@@ -766,10 +717,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:multipleFormGroup&gt;
 					
 				&lt;/html:multipleFormGroup&gt;
-			&lt;/html:form&gt;
-		</example>
+			&lt;/html:form&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders an icon</description>
 		<display-name>Image</display-name>
@@ -797,7 +747,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:icon icon="cog" /&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a table</description>
 		<display-name>Table</display-name>
@@ -844,8 +794,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
 
 	<tag>
@@ -876,8 +825,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
 
 	<tag>
@@ -915,10 +863,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableColumn colspan="2">Value colspan 3&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a table caption</description>
 		<display-name>Table</display-name>
@@ -944,10 +891,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a table body</description>
 		<display-name>Table</display-name>
@@ -967,17 +913,16 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a table</description>
 		<display-name>Table</display-name>
 		<name>tableHeader</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TableHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
-		
+
 		<attribute>
 			<description>It indicates whether the table header should be dark theme. Default : false</description>
 			<name>dark</name>
@@ -990,7 +935,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
-		
+
 		<example>
 			&lt;html:table&gt;
 				&lt;html:tableHeader light="true"&gt;
@@ -998,10 +943,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableHead&gt;Head 1&lt;/html:tableHead&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableHeader&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a table head</description>
 		<display-name>Table</display-name>
@@ -1021,13 +965,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:tableHead label="Head 1"/&gt;
 					&lt;/html:tableLine&gt;
 				&lt;/html:tableHeader&gt;
-			&lt;/html:table&gt;
-		</example>
+			&lt;/html:table&gt; </example>
 	</tag>
-	
-	
-	
-	
+
+
+
+
 	<tag>
 		<description>Renders a card</description>
 		<display-name>Card</display-name>
@@ -1064,7 +1007,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
-		
+
 		<example>
 			&lt;html:card&gt;
 				&lt;html:cardHeader&gt;
@@ -1076,7 +1019,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:card>
 		</example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders an card image</description>
 		<display-name>Card</display-name>
@@ -1127,7 +1070,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:card>
 		</example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a title on the card</description>
 		<display-name>Card</display-name>
@@ -1144,7 +1087,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:card>
 		</example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a text on the card</description>
 		<display-name>Card</display-name>
@@ -1203,7 +1146,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:card>
 		</example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders the footer card</description>
 		<display-name>Card</display-name>
@@ -1224,8 +1167,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:card>
 		</example>
 	</tag>
-	
-	
+
+
 	<tag>
 		<description>Renders a component with collapsable effect</description>
 		<display-name>Misc</display-name>
@@ -1256,7 +1199,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				Components
 			&lt;/html:collapsable&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a panel tabs</description>
 		<display-name>Tab</display-name>
@@ -1317,7 +1260,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:tab label="Tab 2" url="/app/welcome"/&gt;
 			&lt;/html:tabPanel&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a modal confirmation</description>
 		<display-name>Misc</display-name>
@@ -1360,7 +1303,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 								
 			&lt;/html:confirm&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a h2</description>
 		<display-name>Html</display-name>
@@ -1370,7 +1313,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:h2&gt; Header &lt;/html:h2&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a horizontal line</description>
 		<display-name>Html</display-name>
@@ -1378,10 +1321,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.HrTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;html:hr/&gt; 
-		</example>
+			&lt;html:hr/&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a small</description>
 		<display-name>Html</display-name>
@@ -1397,7 +1339,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:small&gt; small text &lt;/html:small&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Format values</description>
 		<display-name>Misc</display-name>
@@ -1424,10 +1366,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:format type="currency"&gt; ${ myValue} &lt;/html:format&gt;
-		</example>
+			&lt;html:format type="currency"&gt; ${ myValue} &lt;/html:format&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a paragraf</description>
 		<display-name>Html</display-name>
@@ -1457,9 +1398,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					private String name;
 				}
 			&lt;/html:code&gt; </example>
-			
+
 	</tag>
-	
+
 	<tag>
 		<description>Renders a triggered event for a given component</description>
 		<display-name>Javascript</display-name>
@@ -1498,7 +1439,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			    alert('blur');
 			&lt;/html:jsEvent&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a modal block</description>
 		<display-name>Misc</display-name>
@@ -1985,6 +1926,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the step increment number</description>
+			<name>step</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 			<description>Indicates if (radio, checkbox) if the component should be marked</description>
 			<name>checked</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2002,9 +1949,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
-			&lt;html:input name="field1"/&gt; 
-		</example>
+			&lt;html:input name="field1"/&gt; </example>
 	</tag>
 
 	<tag>
@@ -2121,8 +2068,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:img url="/image/person.png" alt="logo" responsive="true"/&gt; </example>
 	</tag>
-	
-	
+
+
 
 	<tag>
 		<description>Renders a link</description>
@@ -2163,11 +2110,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:link label="Meu link" url="#"/&gt; </example>
 	</tag>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<tag>
 		<description>Renders a body</description>
 		<display-name>Html</display-name>
@@ -2219,7 +2166,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:iframe url="/app/welcome" name="conteudo"/&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a dropdown menu</description>
 		<display-name>Menu</display-name>
@@ -2258,10 +2205,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
 					&lt;/html:menuDropDown&gt;
 				&lt;/html:menuCollapsable&gt;
-			&lt;/html:menu&gt; 
-		</example>
+			&lt;/html:menu&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a menu item on dropdown</description>
 		<display-name>Menu</display-name>
@@ -2323,10 +2269,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
 					&lt;/html:menuDropDown&gt;
 				&lt;/html:menuCollapsable&gt;
-			&lt;/html:menu&gt; 
-		</example>
+			&lt;/html:menu&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a menu collapsable content group</description>
 		<display-name>Menu</display-name>
@@ -2350,10 +2295,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					menu components
 				&lt;/html:menuCollapsable&gt;
 				
-			&lt;/html:menu&gt;
-		</example>
+			&lt;/html:menu&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a menu collapse group</description>
 		<display-name>Menu</display-name>
@@ -2389,10 +2333,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 					menu components
 				&lt;/html:menuCollapsable&gt;
 				
-			&lt;/html:menu&gt;
-		</example>
+			&lt;/html:menu&gt; </example>
 	</tag>
-	
+
 	<tag>
 		<description>Renders a horizontal menu</description>
 		<display-name>Menu</display-name>
@@ -2418,8 +2361,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
 					&lt;/html:menuDropDown&gt;
 				&lt;/html:menuCollapsable&gt;
-			&lt;/html:menu&gt; 
-		</example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 
 	<tag>
