@@ -1,75 +1,89 @@
 
 package com.jslsolucoes.tagria.exporter.impl;
 
-import java.io.OutputStream;
+import java.io.ByteArrayOutputStream;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.jslsolucoes.tagria.exporter.model.Column;
-import com.jslsolucoes.tagria.exporter.model.Header;
-import com.jslsolucoes.tagria.exporter.model.Row;
-import com.jslsolucoes.tagria.exporter.model.Table;
+import com.jslsolucoes.tagria.exporter.parser.TableParser;
+import com.jslsolucoes.tagria.exporter.parser.model.Column;
+import com.jslsolucoes.tagria.exporter.parser.model.Header;
+import com.jslsolucoes.tagria.exporter.parser.model.Row;
+import com.jslsolucoes.tagria.exporter.parser.model.Table;
 
-public class PdfExporter {
-	private Table table;
-	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD);
+public class PdfExporter implements Exporter {
 
-	public PdfExporter(Table table) {
-		this.table = table;
+	private PdfPCell createCell(String content, String align) {
+		return createCell(content, align, null);
 	}
 
-	public void doExport(OutputStream out) throws DocumentException {
-		Document document = new Document();
-		PdfWriter.getInstance(document, out);
-		document.open();
-		PdfPTable pdf = new PdfPTable(table.getHeaders().size());
-		pdf.setWidthPercentage(100);
-		title(pdf);
-		header(pdf);
-		body(pdf);
-		document.add(pdf);
-		document.close();
+	private PdfPCell createCell(String content, String align, Integer colspan) {
+		Font font = new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD);
+		PdfPCell pdfPCell = new PdfPCell(new Phrase(content, font));
+		pdfPCell.setHorizontalAlignment(align(align));
+		if (colspan != null) {
+			pdfPCell.setColspan(colspan);
+		}
+		return pdfPCell;
 	}
 
-	private void title(PdfPTable pdf) {
-		PdfPCell cell = new PdfPCell(new Phrase(table.getTitle(), smallBold));
-		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		cell.setColspan(table.getHeaders().size());
-		pdf.addCell(cell);
-	}
-
-	private void header(PdfPTable pdf) {
-		for (Header header : table.getHeaders()) {
-			PdfPCell cell = new PdfPCell(new Phrase(header.getContent(), smallBold));
-			if ("center".equals(header.getAlign()))
-				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			else if ("left".equals(header.getAlign()))
-				cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-			else if ("right".equals(header.getAlign()))
-				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			pdf.addCell(cell);
+	private Integer align(String align) {
+		if ("center".equals(align)) {
+			return Element.ALIGN_CENTER;
+		} else if ("left".equals(align)) {
+			return Element.ALIGN_LEFT;
+		} else if ("right".equals(align)) {
+			return Element.ALIGN_RIGHT;
+		} else {
+			return Element.ALIGN_CENTER;
 		}
 	}
 
-	private void body(PdfPTable pdf) {
-		for (Row row : table.getRows()) {
-			for (Column column : row.getColumns()) {
-				PdfPCell cell = new PdfPCell(new Phrase(column.getContent(), smallBold));
-				if ("center".equals(column.getAlign()))
-					cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				else if ("left".equals(column.getAlign()))
-					cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-				else if ("right".equals(column.getAlign()))
-					cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-				pdf.addCell(cell);
+	@Override
+	public byte[] export(String json) {
+		Table table = TableParser.newParser().withJson(json).parse();
+		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+			Document document = new Document();
+			PdfWriter pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
+			document.open();
+			document.add(pdfTable(table));
+			document.close();
+			pdfWriter.close();
+			return byteArrayOutputStream.toByteArray();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private PdfPTable pdfTable(Table table) {
+		Integer numColumns = table.getHeaders().size();
+		PdfPTable pdfPTable = new PdfPTable(numColumns);
+		pdfPTable.setWidthPercentage(100);
+		pdfPTable.addCell(createCell(table.getTitle(), "center", numColumns));
+		for (Header header : table.getHeaders()) {
+			pdfPTable.addCell(createCell(header.getContent(), header.getAlign()));
+		}
+		for(Row row : table.getRows()) {
+			for(Column column : row.getColumns()) {
+				pdfPTable.addCell(createCell(column.getContent(), column.getAlign()));
 			}
 		}
+		return pdfPTable;
+	}
+
+	@Override
+	public String contentType() {
+		return "application/pdf";
+	}
+
+	@Override
+	public Boolean accepts(String mediaType) {
+		return "pdf".equals(mediaType);
 	}
 
 }

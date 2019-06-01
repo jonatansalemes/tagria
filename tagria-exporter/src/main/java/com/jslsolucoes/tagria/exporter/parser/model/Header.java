@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.exporter.model;
+package com.jslsolucoes.tagria.exporter.parser.model;
 
 public class Header {
 	private String align;

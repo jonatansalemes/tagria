@@ -267,7 +267,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				form.attribute(HtmlAttribute.METHOD, "post");
 				form.attribute(HtmlAttribute.TARGET, "_blank");
 				form.attribute(HtmlAttribute.CLASS, "grid-export-form");
-				form.attribute(HtmlAttribute.ACTION, TagUtil.getPathForUrl(getJspContext(), "/tagria/exporter"));
+				form.attribute(HtmlAttribute.ACTION, TagUtil.getPathForUrl(getJspContext(), "/tagria-exporter"));
 				Input type = new Input();
 				type.attribute(HtmlAttribute.TYPE, "hidden");
 				type.attribute(HtmlAttribute.NAME, "type");

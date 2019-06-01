@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.exporter.model;
+package com.jslsolucoes.tagria.exporter.parser.model;
 
 import java.util.List;
 

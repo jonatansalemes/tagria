@@ -21,13 +21,6 @@ import org.joda.time.Seconds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.jslsolucoes.tagria.exporter.impl.CsvExporter;
-import com.jslsolucoes.tagria.exporter.impl.ExcelExporter;
-import com.jslsolucoes.tagria.exporter.impl.PdfExporter;
-import com.jslsolucoes.tagria.exporter.impl.XmlExporter;
-import com.jslsolucoes.tagria.exporter.model.Table;
 import com.jslsolucoes.tagria.lib.auth.Auth;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -112,35 +105,4 @@ public class Tagria extends HttpServlet {
 		}
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
-			Gson gson = new GsonBuilder().create();
-			String json = request.getParameter("json");
-			String type = request.getParameter("type");
-			Table table = gson.fromJson(json, Table.class);
-			response.setHeader("Content-Disposition", "attachment; filename=grid." + type);
-			if ("pdf".equals(type)) {
-				response.setContentType("application/pdf");
-				PdfExporter exporter = new PdfExporter(table);
-				exporter.doExport(response.getOutputStream());
-			} else if ("csv".equals(type)) {
-				response.setContentType("text/csv");
-				CsvExporter exporter = new CsvExporter(table);
-				exporter.doExport(response.getOutputStream());
-			} else if ("xml".equals(type)) {
-				response.setContentType("text/xml");
-				XmlExporter exporter = new XmlExporter(table);
-				exporter.doExport(response.getOutputStream());
-			} else if ("xls".equals(type)) {
-				response.setContentType("application/vnd.ms-excel");
-				ExcelExporter exporter = new ExcelExporter(table);
-				exporter.doExport(response.getOutputStream());
-			}
-		} catch (Exception exception) {
-			logger.error("Could not export data", exception);
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		}
-	}
 }

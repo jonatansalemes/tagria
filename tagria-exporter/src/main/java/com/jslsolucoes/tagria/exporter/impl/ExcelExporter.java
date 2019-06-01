@@ -1,48 +1,37 @@
 
 package com.jslsolucoes.tagria.exporter.impl;
 
+import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
 
-import com.jslsolucoes.tagria.exporter.model.Column;
-import com.jslsolucoes.tagria.exporter.model.Header;
-import com.jslsolucoes.tagria.exporter.model.Table;
+import com.jslsolucoes.tagria.exporter.parser.TableParser;
+import com.jslsolucoes.tagria.exporter.parser.model.Column;
+import com.jslsolucoes.tagria.exporter.parser.model.Header;
+import com.jslsolucoes.tagria.exporter.parser.model.Table;
 
-public class ExcelExporter {
-	private Table table;
+public class ExcelExporter implements Exporter {
 
-	public ExcelExporter(Table table) {
-		this.table = table;
+	private AtomicInteger atomicInteger = new AtomicInteger(0);
 
+	private Row createRow(Sheet sheet) {
+		return sheet.createRow(atomicInteger.getAndIncrement());
 	}
 
-	public void doExport(OutputStream out) throws IOException {
-		Workbook workbook = new HSSFWorkbook();
-		Sheet sheet = workbook.createSheet("data");
-		header(sheet, workbook);
-		body(sheet, workbook);
-		workbook.write(out);
-	}
-
-	private void header(Sheet sheet, Workbook workbook) {
-		Row sheetRow = sheet.createRow(0);
-		int cell = 0;
-		for (Header header : table.getHeaders()) {
-			Cell sheetCel = sheetRow.createCell(cell);
-			sheetCel.setCellValue(header.getContent());
-			CellStyle cellStyle = cellStyle(header.getAlign(), workbook);
-			sheetCel.setCellStyle(cellStyle);
-			cell++;
-		}
-
+	private void createCell(Row row, String content, String align) {
+		CellStyle cellStyle = cellStyle(align, row.getSheet().getWorkbook());
+		Cell cell = row.createCell(row.getLastCellNum());
+		cell.setCellValue(content);
+		cell.setCellStyle(cellStyle);
 	}
 
 	private CellStyle cellStyle(String align, Workbook workbook) {
@@ -57,20 +46,37 @@ public class ExcelExporter {
 		return cellStyle;
 	}
 
-	private void body(Sheet sheet, Workbook workbook) {
-		int line = 1;
-		for (com.jslsolucoes.tagria.exporter.model.Row row : table.getRows()) {
-			Row sheetRow = sheet.createRow(line);
-			int cell = 0;
-			for (Column column : row.getColumns()) {
-				Cell sheetCel = sheetRow.createCell(cell);
-				sheetCel.setCellValue(column.getContent());
-				CellStyle cellStyle = cellStyle(column.getAlign(), workbook);
-				sheetCel.setCellStyle(cellStyle);
-				cell++;
+	@Override
+	public byte[] export(String json) {
+		Table table = TableParser.newParser().withJson(json).parse();
+		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+			try (Workbook workbook = new HSSFWorkbook()) {
+				Sheet sheet = workbook.createSheet("data");
+				Row headerRow = createRow(sheet);
+				for (Header header : table.getHeaders()) {
+					createCell(headerRow, header.getContent(), header.getAlign());
+				}
+				for (com.jslsolucoes.tagria.exporter.parser.model.Row tableRow : table.getRows()) {
+					Row row = createRow(sheet);
+					for (Column colum : tableRow.getColumns()) {
+						createCell(row, colum.getContent(), colum.getAlign());
+					}
+				}
+				workbook.write(byteArrayOutputStream);
+				return byteArrayOutputStream.toByteArray();
 			}
-			line++;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
+	}
 
+	@Override
+	public String contentType() {
+		return "application/vnd.ms-excel";
+	}
+
+	@Override
+	public Boolean accepts(String mediaType) {
+		return "xls".equals(mediaType);
 	}
 }

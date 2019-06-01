@@ -1,77 +1,91 @@
 
 package com.jslsolucoes.tagria.exporter.impl;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import com.jslsolucoes.tagria.exporter.model.Column;
-import com.jslsolucoes.tagria.exporter.model.Header;
-import com.jslsolucoes.tagria.exporter.model.Row;
-import com.jslsolucoes.tagria.exporter.model.Table;
+import com.jslsolucoes.tagria.exporter.parser.TableParser;
+import com.jslsolucoes.tagria.exporter.parser.model.Header;
+import com.jslsolucoes.tagria.exporter.parser.model.Row;
+import com.jslsolucoes.tagria.exporter.parser.model.Table;
 
-public class XmlExporter {
-	private Table table;
+public class XmlExporter implements Exporter {
 
-	public XmlExporter(Table table) {
-		this.table = table;
+	private byte[] title(String title) {
+		return ("<title>" + title + "</title>").getBytes();
 	}
 
-	public void doExport(OutputStream outputStream) throws IOException {
-		outputStream.write(export());
-		outputStream.flush();
+	private byte[] header(List<Header> headers) {
+		return headers.stream()
+				.map(header -> "<column align=\"" + header.getAlign() + "\">" + header.getContent() + "</column>")
+				.collect(Collectors.joining()).getBytes();
 	}
 
-	private byte[] export() {
-		StringBuilder xml = new StringBuilder();
-		init(xml);
-		start(xml);
-		title(xml);
-		header(xml);
-		body(xml);
-		end(xml);
-		return xml.toString().getBytes();
+	private byte[] row(Row row) {
+		return row.getColumns().stream()
+				.map(column -> "<column align=\"" + column.getAlign() + "\">" + column.getContent() + "</column>")
+				.collect(Collectors.joining()).getBytes();
 	}
 
-	private void header(StringBuilder xml) {
-		xml.append("<header>");
-		for (Header header : table.getHeaders()) {
-			xml.append("<column>");
-			xml.append(header.getContent());
-			xml.append("</column>");
-		}
-		xml.append("</header>");
+	private byte[] init() {
+		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".getBytes();
 	}
 
-	private void body(StringBuilder xml) {
-		xml.append("<body>");
-		for (Row row : table.getRows()) {
-			xml.append("<row>");
-			for (Column column : row.getColumns()) {
-				xml.append("<column>");
-				xml.append(column.getContent());
-				xml.append("</column>");
+	private byte[] tableStart() {
+		return "<table>".getBytes();
+	}
+
+	private byte[] tableEnd() {
+		return "</table>".getBytes();
+	}
+
+	private byte[] headerStart() {
+		return "<header>".getBytes();
+	}
+
+	private byte[] headerEnd() {
+		return "</header>".getBytes();
+	}
+
+	private byte[] bodyStart() {
+		return "<body>".getBytes();
+	}
+
+	private byte[] bodyEnd() {
+		return "</body>".getBytes();
+	}
+
+	@Override
+	public byte[] export(String json) {
+		Table table = TableParser.newParser().withJson(json).parse();
+		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+			byteArrayOutputStream.write(init());
+			byteArrayOutputStream.write(tableStart());
+			byteArrayOutputStream.write(title(table.getTitle()));
+			byteArrayOutputStream.write(headerStart());
+			byteArrayOutputStream.write(header(table.getHeaders()));
+			byteArrayOutputStream.write(headerEnd());
+			byteArrayOutputStream.write(bodyStart());
+			for (Row row : table.getRows()) {
+				byteArrayOutputStream.write(row(row));
 			}
-			xml.append("</row>");
+			byteArrayOutputStream.write(bodyEnd());
+			byteArrayOutputStream.write(tableEnd());
+			return byteArrayOutputStream.toByteArray();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
-		xml.append("</body>");
 	}
 
-	private void title(StringBuilder xml) {
-		xml.append("<title>");
-		xml.append(table.getTitle());
-		xml.append("</title>");
-
+	@Override
+	public String contentType() {
+		return "text/xml";
 	}
 
-	private void init(StringBuilder xml) {
-		xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-	}
-
-	private void end(StringBuilder xml) {
-		xml.append("</data>");
-	}
-
-	private void start(StringBuilder xml) {
-		xml.append("<data>");
+	@Override
+	public Boolean accepts(String mediaType) {
+		return "xml".equals(mediaType);
 	}
 }
