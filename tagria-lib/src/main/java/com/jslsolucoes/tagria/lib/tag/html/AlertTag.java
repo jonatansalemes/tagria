@@ -8,9 +8,9 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
 import com.jslsolucoes.tagria.html.HtmlAttribute;
+import com.jslsolucoes.tagria.html.HtmlFactory;
+import com.jslsolucoes.tagria.html.HtmlTag;
 import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -28,10 +28,9 @@ public class AlertTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 
 		if (rendered != null && rendered) {
-			Div div = new Div();
-			div.attribute(HtmlAttribute.CLASS, "alert alert-" + state + " shadow-sm");
-			div.attribute(HtmlAttribute.ROLE, "alert");
-			div.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
+
+			HtmlTag div = HtmlFactory.newDiv().attribute(HtmlAttribute.CLASS, "alert alert-" + state + " shadow-sm")
+					.attribute(HtmlAttribute.ROLE, "alert").attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 
 			if (!StringUtils.isEmpty(cssClass)) {
 				div.attribute(HtmlAttribute.CLASS, cssClass);
@@ -43,10 +42,8 @@ public class AlertTag extends SimpleTagSupport {
 
 			if (dismissible) {
 				div.attribute(HtmlAttribute.CLASS, "alert-dismissible");
-				Button button = new Button();
-				button.attribute(HtmlAttribute.TYPE, "button");
-				button.attribute(HtmlAttribute.CLASS, "close");
-				button.attribute(HtmlAttribute.DATA_DISMISS, "alert");
+				HtmlTag button = HtmlFactory.newButton().attribute(HtmlAttribute.TYPE, "button")
+						.attribute(HtmlAttribute.CLASS, "close").attribute(HtmlAttribute.DATA_DISMISS, "alert");
 
 				Span span = new Span();
 				span.add("&times;");

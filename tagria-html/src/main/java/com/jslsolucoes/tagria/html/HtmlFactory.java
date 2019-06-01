@@ -9,4 +9,8 @@ public class HtmlFactory {
 	public static Div newDiv() {
 		return new Div();
 	}
+	
+	public static Button newButton() {
+		return new Button();
+	}
 }
