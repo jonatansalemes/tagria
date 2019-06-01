@@ -1,15 +1,15 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Hr extends Element {
+public class Hr extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "hr";
 	}
 
 	@Override
-	public boolean forceCloseTagWithEmptyBody() {
+	public Boolean closeOnEmpty() {
 		return true;
 	}
 

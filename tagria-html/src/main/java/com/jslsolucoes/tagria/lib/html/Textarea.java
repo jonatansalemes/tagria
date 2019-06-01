@@ -1,15 +1,15 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Textarea extends Element {
+public class Textarea extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "textarea";
 	}
 
 	@Override
-	public boolean forceCloseTagWithEmptyBody() {
+	public Boolean closeOnEmpty() {
 		return true;
 	}
 

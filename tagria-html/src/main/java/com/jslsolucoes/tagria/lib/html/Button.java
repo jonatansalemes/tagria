@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Button extends Element {
+public class Button extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "button";
 	}
 }

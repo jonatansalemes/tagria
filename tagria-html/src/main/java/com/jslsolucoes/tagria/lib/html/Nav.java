@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Nav extends Element {
+public class Nav extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "nav";
 	}
 }

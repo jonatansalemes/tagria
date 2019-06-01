@@ -1,15 +1,15 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Iframe extends Element {
+public class Iframe extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "iframe";
 	}
 
 	@Override
-	public boolean forceCloseTagWithEmptyBody() {
+	public Boolean closeOnEmpty() {
 		return true;
 	}
 }

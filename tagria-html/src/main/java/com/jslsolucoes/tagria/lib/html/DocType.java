@@ -1,12 +1,18 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class DocType {
+public enum DocType {
 
-	public static final String HTML5 = "<!DOCTYPE html> \n";
+	HTML5("<!DOCTYPE html>");
 
-	private DocType() {
+	private String definition;
 
+	private DocType(String definition) {
+		this.definition = definition;
+	}
+
+	public String definition() {
+		return definition;
 	}
 
 }

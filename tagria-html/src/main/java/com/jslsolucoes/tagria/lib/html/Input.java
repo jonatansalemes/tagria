@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Input extends Element {
+public class Input extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "input";
 	}
 

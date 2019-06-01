@@ -1,15 +1,15 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Canvas extends Element {
+public class Canvas extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "canvas";
 	}
 
 	@Override
-	public boolean forceCloseTagWithEmptyBody() {
+	public Boolean closeOnEmpty() {
 		return true;
 	}
 }

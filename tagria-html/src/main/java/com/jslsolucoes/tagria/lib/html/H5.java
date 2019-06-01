@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class H5 extends Element {
+public class H5 extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "h5";
 	}
 

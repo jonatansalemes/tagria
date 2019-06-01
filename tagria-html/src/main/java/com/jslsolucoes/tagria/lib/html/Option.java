@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Option extends Element {
+public class Option extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "option";
 	}
 }

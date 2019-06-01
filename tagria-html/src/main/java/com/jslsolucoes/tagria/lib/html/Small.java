@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Small extends Element {
+public class Small extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "small";
 	}
 }

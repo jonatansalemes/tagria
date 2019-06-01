@@ -1,15 +1,15 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Span extends Element {
+public class Span extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "span";
 	}
 
 	@Override
-	public boolean forceCloseTagWithEmptyBody() {
+	public Boolean closeOnEmpty() {
 		return true;
 	}
 }

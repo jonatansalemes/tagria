@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Form extends Element {
+public class Form extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "form";
 	}
 

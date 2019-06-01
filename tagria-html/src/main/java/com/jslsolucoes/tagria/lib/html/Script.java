@@ -1,15 +1,15 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Script extends Element {
+public class Script extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "script";
 	}
 
 	@Override
-	public boolean forceCloseTagWithEmptyBody() {
+	public Boolean closeOnEmpty() {
 		return true;
 	}
 

@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class NoScript extends Element {
+public class NoScript extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "noscript";
 	}
 

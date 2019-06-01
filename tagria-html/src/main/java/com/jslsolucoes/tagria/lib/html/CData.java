@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class CData extends Element {
+public class CData extends AbstractElement {
 
 	private String value;
 
@@ -10,12 +10,12 @@ public class CData extends Element {
 	}
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "";
 	}
 
 	@Override
-	public String getHtml() {
+	public String html() {
 		return value;
 	}
 }

@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Thead extends Element {
+public class Thead extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "thead";
 	}
 }

@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Tbody extends Element {
+public class Tbody extends AbstractElement {
 
 	@Override
-	public String getTag() {
+	public String tag() {
 		return "tbody";
 	}
 }
