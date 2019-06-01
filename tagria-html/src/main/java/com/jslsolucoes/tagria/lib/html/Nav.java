@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Nav extends AbstractElement {
+public class Nav extends AbstractHtmlTag {
 
 	@Override
 	public String tag() {

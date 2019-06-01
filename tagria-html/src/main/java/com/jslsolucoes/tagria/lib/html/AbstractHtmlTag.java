@@ -7,56 +7,56 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractElement implements Element {
+public abstract class AbstractHtmlTag implements HtmlTag {
 
-	private List<Element> elements = new ArrayList<>();
+	private List<HtmlTag> elements = new ArrayList<>();
 	private Map<String, String> attributes = new HashMap<>();
 
-	public AbstractElement add(String html) {
+	public HtmlTag add(String html) {
 		return add(new CData(html));
 	}
 
-	public AbstractElement add(Element element) {
+	public HtmlTag add(HtmlTag element) {
 		return add(Arrays.asList(element));
 	}
 
-	public AbstractElement add(Element... elements) {
+	public HtmlTag add(HtmlTag... elements) {
 		return add(Arrays.asList(elements));
 	}
 
-	public AbstractElement add(List<Element> elements) {
+	public HtmlTag add(List<HtmlTag> elements) {
 		this.elements.addAll(elements);
 		return this;
 	}
 
+	public HtmlTag attribute(Attribute attribute, Boolean attributeValue) {
+		return attribute(attribute.getName(), String.valueOf(attributeValue));
+	}
+
+	public HtmlTag attribute(Attribute attribute, Integer attributeValue) {
+		return attribute(attribute.getName(), String.valueOf(attributeValue));
+	}
+
+	public HtmlTag attribute(Attribute attribute, String attributeValue) {
+		return attribute(attribute.getName(), String.valueOf(attributeValue));
+	}
+
+	public HtmlTag attribute(String attributeName, String attributeValue) {
+		String newAttributeValue = attributeValue.trim();
+		if (attributes.containsKey(attributeName)) {
+			String separator = "style".equals(attributeName) ? ";" : " ";
+			newAttributeValue = attribute(attributeName).concat(separator).concat(newAttributeValue);
+		}
+		attributes.put(attributeName, newAttributeValue);
+		return this;
+	}
+	
 	public String attribute(Attribute attribute) {
 		return attribute(attribute.getName());
 	}
 
 	public String attribute(String attribute) {
 		return attributes.get(attribute);
-	}
-
-	public AbstractElement attribute(Attribute attribute, Boolean attributeValue) {
-		return attribute(attribute.getName(), String.valueOf(attributeValue));
-	}
-
-	public AbstractElement attribute(Attribute attribute, Integer attributeValue) {
-		return attribute(attribute.getName(), String.valueOf(attributeValue));
-	}
-
-	public AbstractElement attribute(Attribute attribute, String attributeValue) {
-		return attribute(attribute.getName(), String.valueOf(attributeValue));
-	}
-
-	public AbstractElement attribute(String attributeName, String attributeValue) {
-		String newValue = attributeValue.trim();
-		if (attributes.containsKey(attributeName)) {
-			String separator = "style".equals(attributeName) ? ";" : " ";
-			newValue = attribute(attributeName).concat(separator).concat(newValue);
-		}
-		attributes.put(attributeName, newValue);
-		return this;
 	}
 
 	public String html() {
@@ -70,7 +70,7 @@ public abstract class AbstractElement implements Element {
 			html.append("/");
 		}
 		html.append(">");
-		for (Element element : elements) {
+		for (HtmlTag element : elements) {
 			html.append(element.html());
 		}
 		if (!elements.isEmpty() || closeOnEmpty()) {
@@ -78,9 +78,7 @@ public abstract class AbstractElement implements Element {
 		}
 		return html.toString();
 	}
-
-	public abstract String tag();
-
+	
 	public Boolean closeOnEmpty() {
 		return false;
 	}

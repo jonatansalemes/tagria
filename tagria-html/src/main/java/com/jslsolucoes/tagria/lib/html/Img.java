@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.lib.html;
 
-public class Img extends AbstractElement {
+public class Img extends AbstractHtmlTag {
 
 	@Override
 	public String tag() {
