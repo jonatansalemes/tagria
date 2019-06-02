@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ButtonTag extends SimpleTagSupport {
@@ -28,13 +27,11 @@ public class ButtonTag extends SimpleTagSupport {
 	private String cssClass;
 	private Boolean disabled = Boolean.FALSE;
 	private Boolean autoblock = Boolean.FALSE;
-	private Boolean auth = Boolean.FALSE;
 	private String state = "primary";
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered != null && rendered
-				&& (auth ? TagUtil.allowed(getJspContext(), new CheckRule(url, "GET")) : true)) {
+		if (rendered != null && rendered) {
 			A a = new A();
 			if (!StringUtils.isEmpty(type)) {
 				a.attribute(HtmlAttribute.DATA_TYPE, type);
@@ -74,7 +71,8 @@ public class ButtonTag extends SimpleTagSupport {
 			TagUtil.out(getJspContext(), a);
 
 			if (autoblock) {
-				TagUtil.appendJs("$('#" + a.attribute(HtmlAttribute.ID) + "').click(function(){$(this).addClass('disabled');});",
+				TagUtil.appendJs(
+						"$('#" + a.attribute(HtmlAttribute.ID) + "').click(function(){$(this).addClass('disabled');});",
 						this);
 			}
 		}
@@ -184,11 +182,4 @@ public class ButtonTag extends SimpleTagSupport {
 		this.autoblock = autoblock;
 	}
 
-	public Boolean getAuth() {
-		return auth;
-	}
-
-	public void setAuth(Boolean auth) {
-		this.auth = auth;
-	}
 }

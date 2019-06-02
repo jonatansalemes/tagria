@@ -21,7 +21,6 @@ import org.joda.time.Seconds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jslsolucoes.tagria.lib.auth.Auth;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("serial")
@@ -30,15 +29,10 @@ public class Tagria extends HttpServlet {
 
 	private static final Integer CACHE_EXPIRES_DAY = 365;
 	private static Logger logger = LoggerFactory.getLogger(Tagria.class);
-	public static Auth AUTH;
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
-		try {
-			AUTH = (Auth) Class.forName(TagUtil.getInitParam(TagriaConfigParameter.AUTH_CLASS)).newInstance();
-		} catch (Exception e) {
-			logger.error("Could not initialize auth integration");
-		}
+		
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -32,10 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jslsolucoes.tagria.html.HtmlTag;
-import com.jslsolucoes.tagria.lib.auth.Auth;
-import com.jslsolucoes.tagria.lib.servlet.Tagria;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
-import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag;
 import com.jslsolucoes.tagria.lib.tag.html.ViewTag;
 import com.jslsolucoes.tagria.tag.x.XTag;
@@ -61,16 +57,7 @@ public class TagUtil {
 		return (HttpServletResponse) pageContext(jspContext).getResponse();
 	}
 
-	public static Boolean allowed(JspContext jspContext, CheckRule checkRule) {
-		return allowed(jspContext, Arrays.asList(checkRule));
-	}
-
-	public static Boolean allowed(JspContext jspContext, List<CheckRule> rules) {
-		Auth auth = Tagria.AUTH;
-		return rules.stream().map(checkRule -> auth.allowed(httpServletRequest(jspContext),
-				httpServletResponse(jspContext), checkRule.getUri(), checkRule.getMethod())).reduce((a, b) -> a && b)
-				.get();
-	}
+	
 
 	public static String localization(JspContext jspContext) {
 		Locale locale = locale(jspContext);

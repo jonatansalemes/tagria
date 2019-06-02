@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.HtmlAttribute;
 import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class DropDownItemTag extends SimpleTagSupport {
@@ -22,12 +21,10 @@ public class DropDownItemTag extends SimpleTagSupport {
 	private String target = "_self";
 	private Boolean rendered = Boolean.TRUE;
 	private String icon;
-	private Boolean auth = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered != null && rendered
-				&& (auth ? TagUtil.allowed(getJspContext(), new CheckRule(url, "GET")) : true)) {
+		if (rendered != null && rendered) {
 			A a = new A();
 			a.attribute(HtmlAttribute.ID, TagUtil.getId(id, this));
 			a.attribute(HtmlAttribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
@@ -96,11 +93,4 @@ public class DropDownItemTag extends SimpleTagSupport {
 		this.id = id;
 	}
 
-	public Boolean getAuth() {
-		return auth;
-	}
-
-	public void setAuth(Boolean auth) {
-		this.auth = auth;
-	}
 }

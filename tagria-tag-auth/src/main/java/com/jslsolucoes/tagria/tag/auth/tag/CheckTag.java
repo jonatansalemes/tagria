@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +22,7 @@ public class CheckTag extends AbstractSimpleTagSupport {
 	private String uri;
 	private String method = "GET";
 	private List<AuthRule> rules = new ArrayList<AuthRule>();
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		String body = body();
@@ -69,7 +71,10 @@ public class CheckTag extends AbstractSimpleTagSupport {
 	}
 
 	public Boolean allowed() {
-		return rules.stream().map(authRule -> tagriaAuth().allowed(httpServletRequest(), httpServletResponse(),
+		TagriaAuth tagriaAuth = tagriaAuth();
+		HttpServletRequest httpServletRequest = httpServletRequest();
+		HttpServletResponse httpServletResponse = httpServletResponse();
+		return rules.stream().map(authRule -> tagriaAuth.allowed(httpServletRequest, httpServletResponse,
 				authRule.getUri(), authRule.getMethod())).reduce((a, b) -> a && b).get();
 	}
 

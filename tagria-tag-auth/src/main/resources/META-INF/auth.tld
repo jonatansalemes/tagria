@@ -4,11 +4,11 @@
 http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	version="2.0">
 
-	<description>Tagria auth library</description>
-	<display-name>Tagria auth</display-name>
-	<tlib-version>3.0</tlib-version>
+	<description>Tagria Auth library</description>
+	<display-name>Tagria Auth</display-name>
+	<tlib-version>3</tlib-version>
 	<short-name>auth</short-name>
-	<uri>http://tagrialib.jslsolucoes.com/tags/auth</uri>
+	<uri>http://tagria.jslsolucoes.com/tags/auth</uri>
 
 	<tag>
 		<description>Renders an auth integration checking for existent rule</description>
@@ -28,6 +28,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;auth:check uri="/my/uri" method="GET"&gt;
 			     &lt;html:input name="input1" value="Valor 0"/&gt;
@@ -54,6 +55,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;auth:check&gt;
 				 &lt;auth:checkRule uri="/my/uri" method="GET"/&gt;
