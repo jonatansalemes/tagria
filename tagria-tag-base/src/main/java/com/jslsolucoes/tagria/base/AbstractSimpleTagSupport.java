@@ -1,8 +1,10 @@
 package com.jslsolucoes.tagria.base;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.Map;
+import java.util.Properties;
 import java.util.WeakHashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,28 +17,29 @@ import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.jslsolucoes.tagria.base.config.TagriaConfigParameter;
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 
 public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implements DynamicAttributes {
 
+	private static final Logger logger = LoggerFactory.getLogger(AbstractSimpleTagSupport.class);
 	private Map<String, String> attributes = new WeakHashMap<String, String>();
-	
+
 	private JspWriter jspWriter() {
 		return getJspContext().getOut();
 	}
 
-	private void print() throws IOException {
-		String html = html();
-		if(StringUtils.isEmpty(html)) {
+	public void print(String html) throws IOException {
+		if (StringUtils.isEmpty(html)) {
 			jspWriter().print(html);
 		}
 	}
-
+	
 	@Override
-	public void doTag() throws JspException, IOException {
-		print();
-	}
+	public abstract void doTag() throws JspException, IOException;
 
 	public PageContext pageContext() {
 		return (PageContext) getJspContext();
@@ -77,7 +80,22 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		attributes.put(localName, value.toString());
 	}
 
-	public String html() {
+	public String getInitParam(TagriaConfigParameter tagriaConfigParameter) {
+		InputStream props = AbstractSimpleTagSupport.class.getResourceAsStream("/tagrialib.properties");
+		if (props == null) {
+			return tagriaConfigParameter.getDefaultValue();
+		} else {
+			try {
+				Properties properties = new Properties();
+				properties.load(props);
+				String value = (String) properties.get(tagriaConfigParameter.getName());
+				if (value == null)
+					return tagriaConfigParameter.getDefaultValue();
+				return value;
+			} catch (IOException exception) {
+				logger.warn("Could not load tagrialib.properties", exception);
+			}
+		}
 		return null;
 	}
 

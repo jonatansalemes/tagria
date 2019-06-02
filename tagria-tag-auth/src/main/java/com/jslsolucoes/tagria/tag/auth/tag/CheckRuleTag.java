@@ -13,7 +13,7 @@ public class CheckRuleTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		CheckTag checkTag = findAncestorWithClass(this, CheckTag.class);
+		CheckTag checkTag = findAncestorWithClass(CheckTag.class);
 		checkTag.addRule(uri, method);
 	}
 

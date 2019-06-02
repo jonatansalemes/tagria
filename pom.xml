@@ -53,8 +53,8 @@
 	<modules>
 		<module>tagria-exception</module>
 		<module>tagria-html</module>
-		<module>tagria-base</module>
 		<module>tagria-exporter</module>
+		<module>tagria-tag-base</module>
 		<module>tagria-tag-x</module>
 		<module>tagria-tag-auth</module>
 		<module>tagria-lib</module>
@@ -68,6 +68,17 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
