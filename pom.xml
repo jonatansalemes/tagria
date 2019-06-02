@@ -55,6 +55,7 @@
 		<module>tagria-html</module>
 		<module>tagria-exporter</module>
 		<module>tagria-tag-base</module>
+		<module>tagria-tag-ajax</module>
 		<module>tagria-tag-x</module>
 		<module>tagria-tag-auth</module>
 		<module>tagria-lib</module>
