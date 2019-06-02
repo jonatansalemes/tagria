@@ -1,6 +1,8 @@
 
 package com.jslsolucoes.tagria.tag.x;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -20,6 +22,10 @@ public class XTag {
 
 	private XTag() {
 
+	}
+	
+	public static String urlEncode(String content) throws UnsupportedEncodingException {
+		return URLEncoder.encode(content, "UTF-8");
 	}
 
 	public static Boolean equals(String value1, String value2) {

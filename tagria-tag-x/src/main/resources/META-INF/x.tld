@@ -10,6 +10,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.XTagsd"
 	<short-name>x</short-name>
 	<uri>http://tagria.jslsolucoes.com/tags/x</uri>
 
+
+	<function>
+		<name>urlEncode</name>
+		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-signature>java.lang.String urlEncode(java.lang.String)</function-signature>
+	</function>
 	<function>
 		<name>equals</name>
 		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>

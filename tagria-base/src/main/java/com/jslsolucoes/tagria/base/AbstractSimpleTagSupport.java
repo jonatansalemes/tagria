@@ -3,22 +3,34 @@ package com.jslsolucoes.tagria.base;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
-import java.util.Optional;
 import java.util.WeakHashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 
 public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implements DynamicAttributes {
 
 	private Map<String, String> attributes = new WeakHashMap<String, String>();
+	
+	private JspWriter jspWriter() {
+		return getJspContext().getOut();
+	}
 
 	private void print() throws IOException {
-		getJspContext().getOut().print(html());
+		String html = html();
+		if(StringUtils.isEmpty(html)) {
+			jspWriter().print(html);
+		}
 	}
 
 	@Override
@@ -26,22 +38,34 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		print();
 	}
 
-	public Optional<String> body() {
+	public PageContext pageContext() {
+		return (PageContext) getJspContext();
+	}
+
+	public HttpServletRequest httpServletRequest() {
+		return (HttpServletRequest) pageContext().getRequest();
+	}
+
+	public HttpServletResponse httpServletResponse() {
+		return (HttpServletResponse) pageContext().getResponse();
+	}
+
+	public String body() {
 		JspFragment jspFragment = getJspBody();
 		if (jspFragment != null) {
 			try (StringWriter body = new StringWriter()) {
 				jspFragment.invoke(body);
-				return Optional.of(body.toString().trim());
+				return body.toString().trim();
 			} catch (Exception e) {
 				throw new TagriaRuntimeException(e);
 			}
 		}
-		return Optional.empty();
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> Optional<T> findAncestorWithClass(Class<T> ancestorClass) {
-		return (Optional<T>) Optional.ofNullable(SimpleTagSupport.findAncestorWithClass(this, ancestorClass));
+	public <T> T findAncestorWithClass(Class<T> ancestorClass) {
+		return (T) SimpleTagSupport.findAncestorWithClass(this, ancestorClass);
 	}
 
 	@Override
@@ -53,14 +77,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		attributes.put(localName, value.toString());
 	}
 
-	public abstract String html();
-
-	public String js() {
-		return "";
-	}
-
-	public String css() {
-		return "";
+	public String html() {
+		return null;
 	}
 
 }

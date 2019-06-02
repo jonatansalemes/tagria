@@ -7,7 +7,7 @@
 		<artifactId>tagria</artifactId>
 		<version>3.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>tagria-base</artifactId>
+	<artifactId>tagria-tag-auth</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -23,7 +23,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
-			<artifactId>tagria-exception</artifactId>
+			<artifactId>tagria-base</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
