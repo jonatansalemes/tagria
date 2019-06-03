@@ -140,7 +140,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	}
 
 	private Element loadingImage() {
-		return ElementCreator.newImg().attribute(Attribute.SRC, pathForImageOnLibrary("loading.gif"))
+		return ElementCreator.newImg().attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif"))
 				.attribute(Attribute.WIDTH, 100).attribute(Attribute.HEIGHT, 100)
 				.attribute(Attribute.CLASS, "mx-auto d-block").attribute(Attribute.ALT, "loading");
 	}

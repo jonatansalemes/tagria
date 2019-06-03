@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -124,7 +125,7 @@ public class Compressor {
 		if (!folder.exists()) {
 			Files.createDirectories(folder.toPath());
 		}
-		Files.copy(file.toPath(), folder.toPath().resolve(file.getName()));
+		Files.copy(file.toPath(), folder.toPath().resolve(file.getName()),StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	private void writeStringToFile(File file, String content, String charset)
