@@ -1,17 +1,75 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.jslsolucoes</groupId>
-    <artifactId>tagria</artifactId>
-    <version>3.1.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>tagria-tag-html</artifactId>
-  
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jslsolucoes</groupId>
+		<artifactId>tagria</artifactId>
+		<version>3.1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>tagria-tag-html</artifactId>
+
+	<dependencies>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
 			<artifactId>tagria-tag-base</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>tagria-compressor</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 	</dependencies>
+	
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<includeProjectDependencies>true</includeProjectDependencies>
+							<mainClass>com.jslsolucoes.tagria.compressor.ResourceCompressor</mainClass>
+							<arguments>
+								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
+								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
+								<argument>true</argument>
+								<argument>${project.version}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<excludes>
+						<exclude>**/js/bootstrap/**</exclude>
+						<exclude>**/js/fontawesome/**</exclude>
+						<exclude>**/js/jquery/**</exclude>
+						<exclude>**/js/popper/**</exclude>
+						<exclude>**/js/tagria/**</exclude>
+						<exclude>**/image/theme/base/**</exclude>
+						<exclude>**/fonts/theme/base/**</exclude>
+						<exclude>**/css/theme/base/**</exclude>
+						<exclude>**/css/theme/default/form.css</exclude>
+						<exclude>**/css/theme/default/theme.css</exclude>
+						<exclude>**/css/theme/default/form.group.css</exclude>
+						<exclude>**/css/theme/default/select.css</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -63,6 +63,7 @@
 		<module>tagria-doc</module>  -->
 		<module>tagria-tag-html</module>
 		<module>tagria-library</module>
+		<module>tagria-compressor</module>
 	</modules>
 
 	<properties>

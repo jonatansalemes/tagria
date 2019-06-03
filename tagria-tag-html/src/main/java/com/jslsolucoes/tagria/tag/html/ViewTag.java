@@ -2,8 +2,9 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import javax.servlet.jsp.JspException;
@@ -22,15 +23,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	private String title = "";
 	private String key;
 	private String cssClass = "body-default";
-	private List<String> jsScripts = Arrays.asList(jsCodeForUrlBase(), jsCodeForAjaxAnimation());
-
-	private String jsCodeForAjaxAnimation() {
-		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
-	}
-
-	private String jsCodeForUrlBase() {
-		return "URL_BASE='" + pathForUrl("") + "';";
-	}
+	private List<String> jsScripts = new ArrayList<>();
 
 	public void jsCode(String jsCode) {
 		this.jsScripts.add(jsCode);
@@ -42,8 +35,20 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 		out(html());
 	}
 
+	public static void main(String[] args) {
+		System.out.println(Locale.getDefault().getLanguage() + Locale.getDefault().getCountry());
+	}
+
 	private String lang() {
-		return locale().getDisplayLanguage();
+		return language().concat(country());
+	}
+
+	private String language() {
+		return locale().getLanguage();
+	}
+
+	private String country() {
+		return (!StringUtils.isEmpty(locale().getCountry()) ? "-" + locale().getCountry() : "");
 	}
 
 	private Element html() {
@@ -103,8 +108,17 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 				pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()));
 	}
 
+	private String jsCodeForAjaxAnimation() {
+		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
+	}
+
+	private String jsCodeForUrlBase() {
+		return "URL_BASE='" + pathForUrl("") + "';";
+	}
+
 	private Element appJs() {
-		return ElementCreator.newScript().add(jsScripts.stream().collect(Collectors.joining()));
+		return ElementCreator.newScript().add(jsCodeForUrlBase()).add(jsCodeForAjaxAnimation())
+				.add(jsScripts.stream().collect(Collectors.joining()));
 	}
 
 	private Element tagriaCss() {
