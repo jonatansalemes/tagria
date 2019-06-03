@@ -10,20 +10,17 @@ public class TargetTag extends AbstractSimpleTagSupport {
 	private String type;
 	private String target;
 	private String value;
-	private Boolean rendered = Boolean.TRUE;
 
 	@Override
 	public void render() {
-		if (rendered()) {
-			FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
-			functionTag.addOnSuccess(jsCode());
-		}
+		FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
+		functionTag.addOnSuccess(jsCode());
 	}
 
 	private String jsCode() {
 		return selector() + "." + type + "( " + valueForParameter() + ");";
 	}
-	
+
 	private String selector() {
 		return "$('#" + idForName(target) + "')";
 	}
@@ -66,14 +63,6 @@ public class TargetTag extends AbstractSimpleTagSupport {
 
 	public void setValue(String value) {
 		this.value = value;
-	}
-
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
 	}
 
 }

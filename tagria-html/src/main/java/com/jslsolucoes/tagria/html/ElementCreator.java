@@ -1,9 +1,17 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
+	
+	public static A newA() {
+		return new A();
+	}
 
 	public static Html newHtml() {
 		return new Html();
+	}
+	
+	public static Span newSpan() {
+		return new Span();
 	}
 
 	public static Body newBody() {

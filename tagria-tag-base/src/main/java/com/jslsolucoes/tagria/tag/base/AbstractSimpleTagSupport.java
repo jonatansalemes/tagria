@@ -162,6 +162,20 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return TagriaConfig.newConfig().propertyValue(tagriaConfigParameter);
 	}
 
+	public Boolean hasKeyOrLabel(String key, String label) {
+		return !StringUtils.isEmpty(key) || !StringUtils.isEmpty(label);
+	}
+
+	public String keyOrLabel(String key, String label) {
+		if (!StringUtils.isEmpty(key)) {
+			return keyForApplication(key);
+		} else if (!StringUtils.isEmpty(label)) {
+			return label;
+		} else {
+			return null;
+		}
+	}
+
 	private String keyFor(String key, String bundle, Object... args) {
 		try {
 			MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle(bundle, locale()).getString(key));
