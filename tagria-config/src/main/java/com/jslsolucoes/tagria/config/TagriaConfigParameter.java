@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.base.config;
+package com.jslsolucoes.tagria.config;
 
 public enum TagriaConfigParameter {
 	CDN_ENABLED("cdn.enabled", "false"), ENCODING("encoding", "utf-8"), CDN_URL("cdn.url"), SKIN("skin", "default"),

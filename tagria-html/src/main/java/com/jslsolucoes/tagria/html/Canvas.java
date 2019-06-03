@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.html;
 
-public class Canvas extends AbstractHtmlTag {
+public class Canvas extends AbstractElement {
 
 	@Override
 	public String tag() {

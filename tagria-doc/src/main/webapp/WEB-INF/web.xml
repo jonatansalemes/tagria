@@ -36,7 +36,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	
 	<servlet>
 		<servlet-name>tagria</servlet-name>
-		<servlet-class>com.jslsolucoes.tagria.lib.servlet.Tagria</servlet-class>
+		<servlet-class>com.jslsolucoes.tagria.library.servlet.Tagria</servlet-class>
 	</servlet>
 	
 	 <servlet-mapping>

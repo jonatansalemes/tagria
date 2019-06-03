@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import com.jslsolucoes.tagria.doc.model.Person;
 import com.jslsolucoes.tagria.doc.repository.PersonRepository;

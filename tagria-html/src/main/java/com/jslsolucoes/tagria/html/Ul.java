@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.html;
 
-public class Ul extends AbstractHtmlTag {
+public class Ul extends AbstractElement {
 
 	public static Ul newBuilder() {
 		return new Ul();

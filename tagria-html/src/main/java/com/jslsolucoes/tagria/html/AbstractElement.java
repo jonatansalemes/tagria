@@ -7,41 +7,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractHtmlTag implements HtmlTag {
+public abstract class AbstractElement implements Element {
 
-	private List<HtmlTag> elements = new ArrayList<>();
+	private List<Element> elements = new ArrayList<>();
 	private Map<String, String> attributes = new HashMap<>();
 
-	public HtmlTag add(String html) {
+	public Element add(String html) {
 		return add(new CData(html));
 	}
 
-	public HtmlTag add(HtmlTag element) {
+	public Element add(Element element) {
 		return add(Arrays.asList(element));
 	}
 
-	public HtmlTag add(HtmlTag... elements) {
+	public Element add(Element... elements) {
 		return add(Arrays.asList(elements));
 	}
 
-	public HtmlTag add(List<HtmlTag> elements) {
+	public Element add(List<Element> elements) {
 		this.elements.addAll(elements);
 		return this;
 	}
 
-	public HtmlTag attribute(HtmlAttribute attribute, Boolean attributeValue) {
+	public Element attribute(Attribute attribute, Boolean attributeValue) {
 		return attribute(attribute.getName(), String.valueOf(attributeValue));
 	}
 
-	public HtmlTag attribute(HtmlAttribute attribute, Integer attributeValue) {
+	public Element attribute(Attribute attribute, Integer attributeValue) {
 		return attribute(attribute.getName(), String.valueOf(attributeValue));
 	}
 
-	public HtmlTag attribute(HtmlAttribute attribute, String attributeValue) {
+	public Element attribute(Attribute attribute, String attributeValue) {
 		return attribute(attribute.getName(), String.valueOf(attributeValue));
 	}
 
-	public HtmlTag attribute(String attributeName, String attributeValue) {
+	public Element attribute(String attributeName, String attributeValue) {
 		String newAttributeValue = attributeValue.trim();
 		if (attributes.containsKey(attributeName)) {
 			String separator = "style".equals(attributeName) ? ";" : " ";
@@ -51,7 +51,7 @@ public abstract class AbstractHtmlTag implements HtmlTag {
 		return this;
 	}
 	
-	public String attribute(HtmlAttribute attribute) {
+	public String attribute(Attribute attribute) {
 		return attribute(attribute.getName());
 	}
 
@@ -66,11 +66,11 @@ public abstract class AbstractHtmlTag implements HtmlTag {
 		for (Map.Entry<String, String> entry : attributes.entrySet()) {
 			html.append(" ".concat(entry.getKey()).concat("=\"").concat(entry.getValue()).concat("\""));
 		}
-		if (this.elements.isEmpty() && !closeOnEmpty()) {
+		if (elements.isEmpty() && !closeOnEmpty()) {
 			html.append("/");
 		}
 		html.append(">");
-		for (HtmlTag element : elements) {
+		for (Element element : elements) {
 			html.append(element.html());
 		}
 		if (!elements.isEmpty() || closeOnEmpty()) {

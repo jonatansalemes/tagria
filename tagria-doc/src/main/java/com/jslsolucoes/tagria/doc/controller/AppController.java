@@ -1,9 +1,9 @@
 
 package com.jslsolucoes.tagria.doc.controller;
 
-import javax.inject.Inject;
+import java.time.LocalDateTime;
 
-import org.joda.time.LocalDate;
+import javax.inject.Inject;
 
 import com.jslsolucoes.tagria.doc.repository.PersonRepository;
 
@@ -37,7 +37,7 @@ public class AppController {
 	public void playground() {
 		this.result.include("booleanValue",Boolean.TRUE);
 		this.result.include("persons", pessoaRepository.listAll(3));
-		this.result.include("dateTime" , LocalDate.now());
+		this.result.include("dateTime" , LocalDateTime.now());
 		this.result.include("myValue",12345L);
 	}
 

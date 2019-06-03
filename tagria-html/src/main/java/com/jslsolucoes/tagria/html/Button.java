@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.html;
 
-public class Button extends AbstractHtmlTag {
+public class Button extends AbstractElement {
 
 	@Override
 	public String tag() {

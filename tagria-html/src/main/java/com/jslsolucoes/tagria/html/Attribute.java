@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.html;
 
-public enum HtmlAttribute {
+public enum Attribute {
 
 	ACTION("action"), ACCEPT("accept"), ALT("alt"), AUTOFOCUS("autofocus"), AUTOCOMPLETE("autocomplete"),
 	CLASS("class"), CONTENT("content"), CHECKED("checked"), COLSPAN("colspan"), DATA_DISMISS("data-dismiss"),
@@ -16,7 +16,7 @@ public enum HtmlAttribute {
 
 	private String name;
 
-	private HtmlAttribute(String name) {
+	private Attribute(String name) {
 		this.name = name;
 	}
 

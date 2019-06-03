@@ -54,12 +54,15 @@
 		<module>tagria-exception</module>
 		<module>tagria-html</module>
 		<module>tagria-exporter</module>
+		<module>tagria-config</module>
 		<module>tagria-tag-base</module>
-		<module>tagria-tag-ajax</module>
+		<!-- <module>tagria-tag-ajax</module>
 		<module>tagria-tag-x</module>
 		<module>tagria-tag-auth</module>
 		<module>tagria-lib</module>
-		<module>tagria-doc</module>
+		<module>tagria-doc</module>  -->
+		<module>tagria-tag-html</module>
+		<module>tagria-library</module>
 	</modules>
 
 	<properties>

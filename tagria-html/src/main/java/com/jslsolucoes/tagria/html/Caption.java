@@ -1,7 +1,7 @@
 
 package com.jslsolucoes.tagria.html;
 
-public class Caption extends AbstractHtmlTag {
+public class Caption extends AbstractElement {
 
 	@Override
 	public String tag() {
