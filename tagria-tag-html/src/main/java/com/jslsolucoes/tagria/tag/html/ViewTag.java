@@ -1,13 +1,10 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -36,7 +33,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	}
 
 	@Override
-	public void doTag() throws JspException, IOException {
+	public void render() {
 		out(docTypeHtml5());
 		out(html());
 	}

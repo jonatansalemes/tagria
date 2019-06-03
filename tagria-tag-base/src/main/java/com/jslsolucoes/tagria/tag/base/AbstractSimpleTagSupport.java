@@ -48,26 +48,29 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	private String version() {
 		return "3.1.0";
 	}
-	
+
 	public Boolean rendered() {
 		return rendered != null && rendered;
 	}
 
-	public void out(String value) throws IOException {
-		if (!StringUtils.isEmpty(value)) {
-			writer().print(value);
+	public void out(String value) {
+		try {
+			if (!StringUtils.isEmpty(value)) {
+				writer().print(value);
+			}
+		} catch (Exception e) {
+			throw new TagriaRuntimeException(e);
 		}
 	}
 
-	public void out(Element element) throws IOException {
+	public void out(Element element) {
 		out(element.html());
 	}
 
-	
 	public String idForId(String id) {
-		return id(null,id);
+		return id(null, id);
 	}
-	
+
 	public String idForName(String name) {
 		return id(name, null);
 	}
@@ -87,8 +90,14 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return cloneableJsAppender != null ? "__" + cloneableJsAppender.index() : "";
 	}
 
+	public abstract void render();
+
 	@Override
-	public abstract void doTag() throws JspException, IOException;
+	public void doTag() throws JspException, IOException {
+		if (rendered()) {
+			render();
+		}
+	}
 
 	public PageContext pageContext() {
 		return (PageContext) getJspContext();
@@ -109,7 +118,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	public HttpServletResponse httpServletResponse() {
 		return (HttpServletResponse) pageContext().getResponse();
 	}
-	
+
 	public void flushBodyContent() {
 		bodyContent();
 	}
@@ -253,7 +262,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 			cloneableJsAppender.jsCode(jsCode);
 		}
 	}
-	
+
 	public Boolean getRendered() {
 		return rendered;
 	}

@@ -1,10 +1,6 @@
 
 package com.jslsolucoes.tagria.tag.ajax;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.tag.ajax.model.FunctionParameter;
@@ -19,7 +15,7 @@ public class ParameterTag extends AbstractSimpleTagSupport {
 	private Boolean required = Boolean.TRUE;
 
 	@Override
-	public void doTag() throws JspException, IOException {
+	public void render() {
 		FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
 		functionTag.addFunctionParameter(new FunctionParameter(name, required, valueForParameter()));
 	}

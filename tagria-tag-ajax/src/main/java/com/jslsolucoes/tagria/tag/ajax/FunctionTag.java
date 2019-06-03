@@ -6,8 +6,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.jsp.JspException;
-
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.tag.ajax.model.FunctionParameter;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 import com.jslsolucoes.template.TemplateBuilder;
@@ -25,18 +24,19 @@ public class FunctionTag extends AbstractSimpleTagSupport {
 	private List<FunctionParameter> data = new ArrayList<FunctionParameter>();
 
 	@Override
-	public void doTag() throws JspException, IOException {
-		if (rendered()) {
-			flushBodyContent();
-			try (StringWriter stringWriter = new StringWriter()) {
-				TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "function.tpl").withData("name", name)
-						.withData("url", pathForUrl(url)).withData("dataType", dataType).withData("data", data)
-						.withData("onSuccess", onSuccess).withData("onDone", onDone).withOutput(stringWriter).process();
-				appendJsCode(stringWriter.toString());
-			}
-			if (execute) {
-				appendJsCode(name + "();");
-			}
+	public void render() {
+		flushBodyContent();
+		try (StringWriter stringWriter = new StringWriter()) {
+			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "function.tpl")
+					.withData("name", name).withData("url", pathForUrl(url)).withData("dataType", dataType)
+					.withData("data", data).withData("onSuccess", onSuccess).withData("onDone", onDone)
+					.withOutput(stringWriter).process();
+			appendJsCode(stringWriter.toString());
+		} catch (IOException e) {
+			throw new TagriaRuntimeException(e);
+		}
+		if (execute) {
+			appendJsCode(name + "();");
 		}
 	}
 
@@ -99,7 +99,7 @@ public class FunctionTag extends AbstractSimpleTagSupport {
 	public void addFunctionParameter(FunctionParameter functionParameter) {
 		this.data.add(functionParameter);
 	}
-	
+
 	public void addOnSuccess(String jsCode) {
 		this.onSuccess.add(jsCode);
 	}

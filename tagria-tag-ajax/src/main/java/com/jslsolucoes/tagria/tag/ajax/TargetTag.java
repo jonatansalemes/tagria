@@ -1,10 +1,6 @@
 
 package com.jslsolucoes.tagria.tag.ajax;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
@@ -17,7 +13,7 @@ public class TargetTag extends AbstractSimpleTagSupport {
 	private Boolean rendered = Boolean.TRUE;
 
 	@Override
-	public void doTag() throws JspException, IOException {
+	public void render() {
 		if (rendered()) {
 			FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
 			functionTag.addOnSuccess(jsCode());
