@@ -3,14 +3,19 @@ package com.jslsolucoes.tagria.tag.html;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.javascript.jscomp.CompilationLevel;
+import com.google.javascript.jscomp.Compiler;
+import com.google.javascript.jscomp.CompilerOptions;
+import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
+import com.google.javascript.jscomp.SourceFile;
 import com.jslsolucoes.tagria.config.TagriaConfigParameter;
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;
@@ -23,6 +28,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	private String title = "";
 	private String key;
 	private String cssClass = "body-default";
+	private Boolean minifyJs = Boolean.TRUE;
 	private List<String> jsScripts = new ArrayList<>();
 
 	public void jsCode(String jsCode) {
@@ -33,10 +39,6 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	public void doTag() throws JspException, IOException {
 		out(docTypeHtml5());
 		out(html());
-	}
-
-	public static void main(String[] args) {
-		System.out.println(Locale.getDefault().getLanguage() + Locale.getDefault().getCountry());
 	}
 
 	private String lang() {
@@ -116,9 +118,27 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 		return "URL_BASE='" + pathForUrl("") + "';";
 	}
 
+	private String minifyJs(String jsCode) {
+		if (minifyJs) {
+			Compiler compiler = new Compiler();
+			CompilerOptions options = new CompilerOptions();
+			CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
+			options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+			compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
+			return compiler.toSource();
+		} else {
+			return jsCode;
+		}
+	}
+
 	private Element appJs() {
-		return ElementCreator.newScript().add(jsCodeForUrlBase()).add(jsCodeForAjaxAnimation())
-				.add(jsScripts.stream().collect(Collectors.joining()));
+		String appJs = minifyJs(Arrays.asList(jsCodeForUrlBase(), jsCodeForAjaxAnimation(), componentJs()).stream()
+				.collect(Collectors.joining()));
+		return ElementCreator.newScript().add(appJs);
+	}
+
+	private String componentJs() {
+		return jsScripts.stream().collect(Collectors.joining());
 	}
 
 	private Element tagriaCss() {
@@ -159,6 +179,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 
 	public void setCssClass(String cssClass) {
 		this.cssClass = cssClass;
+	}
+
+	public Boolean getMinifyJs() {
+		return minifyJs;
+	}
+
+	public void setMinifyJs(Boolean minifyJs) {
+		this.minifyJs = minifyJs;
 	}
 
 }

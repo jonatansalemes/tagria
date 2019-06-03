@@ -4,16 +4,14 @@ package com.jslsolucoes.tagria.tag.ajax;
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
-public class OnSuccessTag extends SimpleTagSupport {
+public class OnSuccessTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		FunctionTag functionTag = (FunctionTag) findAncestorWithClass(this, FunctionTag.class);
-		functionTag.setOnSuccess(TagUtil.getBody(getJspBody()));
+		flushBodyContent();
 	}
 
 }

@@ -25,6 +25,7 @@ import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractSimpleTagSupport.class);
 	private Map<String, String> attributes = new WeakHashMap<String, String>();
+	private Boolean rendered = Boolean.TRUE;
 
 	private JspWriter writer() {
 		return getJspContext().getOut();
@@ -45,6 +47,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	private String version() {
 		return "3.1.0";
+	}
+	
+	public Boolean rendered() {
+		return rendered != null && rendered;
 	}
 
 	public void out(String value) throws IOException {
@@ -55,6 +61,30 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public void out(Element element) throws IOException {
 		out(element.html());
+	}
+
+	
+	public String idForId(String id) {
+		return id(null,id);
+	}
+	
+	public String idForName(String name) {
+		return id(name, null);
+	}
+
+	public String id(String name, String id) {
+		String idForComponent = "par_" + RandomStringUtils.randomAlphanumeric(20);
+		if (!StringUtils.isEmpty(id)) {
+			idForComponent = id;
+		} else if (!StringUtils.isEmpty(name)) {
+			idForComponent = "par_" + name.replaceAll("\\.", "_").replaceAll("\\[([0-9]{1,}|)\\]", "");
+		}
+		return idForComponent + complementForMultipleFormGroup();
+	}
+
+	private String complementForMultipleFormGroup() {
+		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
+		return cloneableJsAppender != null ? "__" + cloneableJsAppender.index() : "";
 	}
 
 	@Override
@@ -78,6 +108,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public HttpServletResponse httpServletResponse() {
 		return (HttpServletResponse) pageContext().getResponse();
+	}
+	
+	public void flushBodyContent() {
+		bodyContent();
 	}
 
 	public String bodyContent() {
@@ -215,8 +249,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		jsAppender.jsCode(jsCode);
 
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
-		if (cloneableJsAppender != null && cloneableJsAppender.iteration() == 0) {
+		if (cloneableJsAppender != null && cloneableJsAppender.index() == 0) {
 			cloneableJsAppender.jsCode(jsCode);
 		}
+	}
+	
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 }

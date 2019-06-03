@@ -2,51 +2,42 @@
 package com.jslsolucoes.tagria.tag.ajax;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.tag.ajax.model.FunctionParameter;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
+import com.jslsolucoes.template.TemplateBuilder;
 
-public class FunctionTag extends SimpleTagSupport {
+public class FunctionTag extends AbstractSimpleTagSupport {
 
-	private Boolean executeOnDocumentLoad = Boolean.FALSE;
+	private Boolean execute = Boolean.FALSE;
 	private String dataType = "json";
 	private String name;
 	private String url;
-	private Boolean rendered = Boolean.TRUE;
-	private String preCode = "";
-	private String beforeSend = "";
-	private String onDone = "";
-	private String onError = "";
-	private String onSuccess = "";
-	private String parameters = "";
+	private String beforeSend;
+	private String onDone;
+	private String onError;
+	private List<String> onSuccess = new ArrayList<String>();
+	private List<FunctionParameter> data = new ArrayList<FunctionParameter>();
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered != null && rendered) {
-			TagUtil.flushBody(getJspBody());
-			TagUtil.appendJs("function " + name
-					+ "(){var data = new Array(); $.ajax({type:'post',processData:false,dataType:'" + dataType
-					+ "',beforeSend: function(jqXHR, settings) {var data = {};for (var property in settings.data) {data[property] = settings.data[property].value;									"
-					+ "if(settings.data[property].required && settings.data[property].value == ''){return false;}}settings.data = $.param(data);"
-					+ beforeSend + "return true;},url:'" + TagUtil.getPathForUrl(getJspContext(), url)
-					+ "',async:true,data:{" + parameters + "},error:function(jqXHR,textStatus,errorThrown){" + onError
-					+ "},success:function(data,textStatus,jqXHR){" + onSuccess + "}}).done(function(){" + onDone
-					+ "});}", this);
-			if (executeOnDocumentLoad) {
-				TagUtil.appendJs(name + "();", this);
+		if (rendered()) {
+			flushBodyContent();
+			try (StringWriter stringWriter = new StringWriter()) {
+				TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "function.tpl").withData("name", name)
+						.withData("url", pathForUrl(url)).withData("dataType", dataType).withData("data", data)
+						.withData("onSuccess", onSuccess).withData("onDone", onDone).withOutput(stringWriter).process();
+				appendJsCode(stringWriter.toString());
+			}
+			if (execute) {
+				appendJsCode(name + "();");
 			}
 		}
-
-	}
-
-	public Boolean getExecuteOnDocumentLoad() {
-		return executeOnDocumentLoad;
-	}
-
-	public void setExecuteOnDocumentLoad(Boolean executeOnDocumentLoad) {
-		this.executeOnDocumentLoad = executeOnDocumentLoad;
 	}
 
 	public String getDataType() {
@@ -73,22 +64,6 @@ public class FunctionTag extends SimpleTagSupport {
 		this.url = url;
 	}
 
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
-	}
-
-	public String getPreCode() {
-		return preCode;
-	}
-
-	public void setPreCode(String preCode) {
-		this.preCode = preCode;
-	}
-
 	public String getBeforeSend() {
 		return beforeSend;
 	}
@@ -113,20 +88,36 @@ public class FunctionTag extends SimpleTagSupport {
 		this.onError = onError;
 	}
 
-	public String getOnSuccess() {
+	public List<FunctionParameter> getData() {
+		return data;
+	}
+
+	public void setData(List<FunctionParameter> data) {
+		this.data = data;
+	}
+
+	public void addFunctionParameter(FunctionParameter functionParameter) {
+		this.data.add(functionParameter);
+	}
+	
+	public void addOnSuccess(String jsCode) {
+		this.onSuccess.add(jsCode);
+	}
+
+	public Boolean getExecute() {
+		return execute;
+	}
+
+	public void setExecute(Boolean execute) {
+		this.execute = execute;
+	}
+
+	public List<String> getOnSuccess() {
 		return onSuccess;
 	}
 
-	public void setOnSuccess(String onSuccess) {
+	public void setOnSuccess(List<String> onSuccess) {
 		this.onSuccess = onSuccess;
-	}
-
-	public String getParameters() {
-		return parameters;
-	}
-
-	public void setParameters(String parameters) {
-		this.parameters = parameters;
 	}
 
 }

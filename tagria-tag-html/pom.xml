@@ -20,7 +20,6 @@
 			<artifactId>tagria-compressor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
 	</dependencies>
 	
 	
@@ -29,7 +28,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.1.1</version>
+				<version>1.6.0</version>
 				<executions>
 					<execution>
 						<phase>prepare-package</phase>
@@ -42,7 +41,7 @@
 							<arguments>
 								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
 								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
-								<argument>true</argument>
+								<argument>false</argument>
 								<argument>${project.version}</argument>
 							</arguments>
 						</configuration>

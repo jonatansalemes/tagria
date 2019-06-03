@@ -3,16 +3,15 @@ package com.jslsolucoes.tagria.tag.ajax;
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
-public class OnDoneTag extends SimpleTagSupport {
+public class OnDoneTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		FunctionTag functionTag = (FunctionTag) findAncestorWithClass(this, FunctionTag.class);
-		functionTag.setOnDone(TagUtil.getBody(getJspBody()));
+		FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
+		functionTag.setOnDone(bodyContent());
 	}
 
 }

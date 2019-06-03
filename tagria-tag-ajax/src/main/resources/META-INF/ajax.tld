@@ -14,7 +14,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an ajax function</description>
 		<display-name>Ajax</display-name>
 		<name>function</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.FunctionTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.FunctionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the type of return expected by ajax request. Default: json. Options: xml, json, script, html, jsonp, text</description>
@@ -24,7 +24,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<attribute>
 			<description>It indicates whether the ajax function should be run to load the DOM. Default: false.</description>
-			<name>executeOnDocumentLoad</name>
+			<name>execute</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -52,7 +52,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     dados();
+			     datas();
 			&lt;/html:jsEvent&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax"&gt;
@@ -74,7 +74,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders writing in a particular component</description>
 		<display-name>Ajax</display-name>
 		<name>target</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.TargetTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.TargetTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates which attribute of the object must be used</description>
@@ -114,7 +114,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="input2" disabled="true"/&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     dados();
+			     datas();
 			&lt;/html:jsEvent&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax"&gt;
@@ -136,10 +136,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders the error block if they occur in ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>onError</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnErrorTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.OnErrorTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;ajax:function name="dados" url="/app/url/nao/existe" executeOnDocumentLoad="true"&gt;
+			&lt;ajax:function name="dados" url="/app/url/nao/existe" execute="true"&gt;
 			    &lt;ajax:onSuccess&gt;
 			    	      
 			    &lt;/ajax:onSuccess&gt;
@@ -157,10 +157,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders before send block on ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>beforeSend</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.BeforeSendTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.BeforeSendTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-				&lt;ajax:function name="data" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+				&lt;ajax:function name="data" url="/app/ajax" execute="true"&gt;
 			    &lt;ajax:beforeSend&gt;
 			    	    /* Available javascript variables ( jqXHR jqXHR, Object settings )*/
 			           alert(settings);
@@ -174,10 +174,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders block on ajax request done</description>
 		<display-name>Ajax</display-name>
 		<name>onDone</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnDoneTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.OnDoneTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-				&lt;ajax:function name="data" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+				&lt;ajax:function name="data" url="/app/ajax" execute="true"&gt;
 			    	&lt;ajax:onDone&gt;
 			    	   alert('on function done');
 			    	&lt;/ajax:onDone&gt;
@@ -186,30 +186,15 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 	
 	<tag>
-		<description>Renders block on begin of ajax request</description>
-		<display-name>Ajax</display-name>
-		<name>preCode</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.PreCodeTag</tag-class>
-		<body-content>scriptless</body-content>
-		<example>
-				&lt;ajax:function name="data" url="/app/ajax" executeOnDocumentLoad="true"&gt;
-			    	&lt;ajax:preCode&gt;
-			    	   alert('block declared as first instructions of ajax function');
-			    	&lt;/ajax:preCode&gt;
-				&lt;/ajax:function&gt;
-		</example>
-	</tag>
-
-	<tag>
 		<description>Renders success block if the ajax request run smoothly</description>
 		<display-name>Ajax</display-name>
 		<name>onSuccess</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnSuccessTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.OnSuccessTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 		
-			&lt;ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+			&lt;ajax:function name="dados" url="/app/ajax" execute="true"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
@@ -230,12 +215,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders the parameter block to be sent by ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>parameters</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.ParametersTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.ParametersTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 		
-			&lt;ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+			&lt;ajax:function name="dados" url="/app/ajax" execute="true"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
@@ -253,7 +238,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a parameter that must be sent by ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>parameter</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.ParameterTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.ParameterTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component of the name to be used as the source</description>
@@ -291,7 +276,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="input2" value="" /&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     dados();
+			     datas();
 			&lt;/html:jsEvent&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax"&gt;
@@ -313,7 +298,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a mapping of an options list to select a component</description>
 		<display-name>Ajax</display-name>
 		<name>mapOptions</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.MapOptionsTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.MapOptionsTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component name to be achieved</description>
@@ -341,7 +326,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:option value=""&gt;- - -&lt;/html:option&gt;
 			&lt;/html:select&gt;
 			
-			&lt;ajax:function name="dados" url="/app/ajax/list" executeOnDocumentLoad="true"&gt;
+			&lt;ajax:function name="dados" url="/app/ajax/list" execute="true"&gt;
 			    &lt;ajax:onSuccess&gt;
 			          &lt;ajax:mapOptions target="input2" value="id" text="nome" /&gt;
 			    &lt;/ajax:onSuccess&gt;

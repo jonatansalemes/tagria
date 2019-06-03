@@ -53,7 +53,7 @@ public class AppController {
 
 	@Path("/app/ajax/list")
 	public void ajaxList() {
-		this.result.use(Results.json()).from(pessoaRepository.listAll()).serialize();
+		this.result.use(Results.json()).withoutRoot().from(pessoaRepository.listAll()).serialize();
 	}
 
 	@Path("/app/autoComplete")

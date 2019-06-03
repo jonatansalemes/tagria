@@ -56,11 +56,10 @@
 		<module>tagria-exporter</module>
 		<module>tagria-config</module>
 		<module>tagria-tag-base</module>
-		<!-- <module>tagria-tag-ajax</module>
+		<module>tagria-tag-ajax</module>
 		<module>tagria-tag-x</module>
-		<module>tagria-tag-auth</module>
-		<module>tagria-lib</module>
-		<module>tagria-doc</module>  -->
+		<!--  <module>tagria-tag-auth</module> 
+			<module>tagria-lib</module> <module>tagria-doc</module> -->
 		<module>tagria-tag-html</module>
 		<module>tagria-library</module>
 		<module>tagria-compressor</module>
@@ -78,6 +77,11 @@
 			<artifactId>javaee-api</artifactId>
 			<version>8.0</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>template-se</artifactId>
+			<version>1.0.16</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

@@ -2,38 +2,29 @@
 package com.jslsolucoes.tagria.tag.ajax;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
+import com.jslsolucoes.template.TemplateBuilder;
 
-public class MapOptionsTag extends SimpleTagSupport {
+public class MapOptionsTag extends AbstractSimpleTagSupport {
 	private String target;
 	private String text;
 	private String value;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-
-		String id = TagUtil.getId(target, null, this);
-		String expression = "		$('#" + id
-				+ "').html('').append($(document.createElement('option')).attr('value','').text('- - -'));				"
-				+ " 	for(i=0;i < data.list.length;i++){ 																					"
-				+ options() + " 		var option= $(document.createElement('option')).attr('value',data.list[i]."
-				+ value + ").text(text.join(' - ')); " + " 		$('#" + id
-				+ "').append(option); 																				"
-				+ "		} 																													";
-		TagUtil.out(getJspContext(), expression);
-	}
-
-	private String options() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("var text = new Array();");
-		for (String token : text.split(",")) {
-			builder.append("text.push(data.list[i]." + token + ");");
+		if (rendered()) {
+			try (StringWriter stringWriter = new StringWriter()) {
+				TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "mapOptions.tpl")
+						.withData("id", idForName(target)).withData("tokens", text.split(",")).withData("value", value)
+						.withOutput(stringWriter).process();
+				FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
+				functionTag.addOnSuccess(stringWriter.toString());
+			}
 		}
-		return builder.toString();
 	}
 
 	public String getTarget() {

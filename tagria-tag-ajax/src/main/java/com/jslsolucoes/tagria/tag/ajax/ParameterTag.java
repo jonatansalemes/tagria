@@ -4,13 +4,13 @@ package com.jslsolucoes.tagria.tag.ajax;
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.tag.ajax.model.FunctionParameter;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
-public class ParameterTag extends SimpleTagSupport {
+public class ParameterTag extends AbstractSimpleTagSupport {
 
 	private String src;
 	private String type;
@@ -20,15 +20,15 @@ public class ParameterTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		ParametersTag parametersTag = (ParametersTag) findAncestorWithClass(this, ParametersTag.class);
-		parametersTag.addParameter(name, required, valueForParameter());
+		FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
+		functionTag.addFunctionParameter(new FunctionParameter(name, required, valueForParameter()));
 	}
 
 	private String valueForParameter() {
 		if (!StringUtils.isEmpty(value)) {
 			return "'" + value + "'";
 		} else {
-			return "$('#" + TagUtil.getId(src, null, this) + "')" + "." + type + "()";
+			return "$('#" + idForName(src) + "')" + "." + type + "()";
 		}
 	}
 
