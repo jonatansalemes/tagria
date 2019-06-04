@@ -1,9 +1,11 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.TextArea;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class TextareaTag extends AbstractSimpleTagSupport {
@@ -11,25 +13,23 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	private String name;
 	private String value;
 	private String placeholder;
+	private String placeholderKey;
 	private Boolean required = Boolean.FALSE;
 	private Integer rows = 4;
 	private String cssClass;
 
 	@Override
 	public void render() {
-		TextArea textarea = new TextArea();
-		textarea.attribute(Attribute.NAME, name);
-		textarea.attribute(Attribute.ROWS, rows);
-		textarea.attribute(Attribute.ID, TagUtil.getId(name, null));
-		textarea.attribute(Attribute.CLASS, "form-control shadow-sm");
+		Element textarea = textarea();
 
 		if (!StringUtils.isEmpty(cssClass)) {
 			textarea.attribute(Attribute.CLASS, cssClass);
 		}
 
-		if (!StringUtils.isEmpty(placeholder)) {
-			textarea.attribute(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
+		if (hasKeyOrLabel(placeholderKey, placeholder)) {
+			textarea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
 		}
+		
 		if (!StringUtils.isEmpty(value)) {
 			textarea.add(value);
 		}
@@ -37,7 +37,15 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 			textarea.attribute(Attribute.CLASS, "form-required");
 			textarea.attribute(Attribute.REQUIRED, "required");
 		}
-		TagUtil.out(getJspContext(), textarea);
+		out(textarea);
+	}
+
+	private Element textarea() {
+		return ElementCreator.newTextArea()
+				.attribute(Attribute.NAME, name)
+				.attribute(Attribute.ROWS, rows)
+				.attribute(Attribute.ID, idForName(name))
+				.attribute(Attribute.CLASS, "form-control shadow-sm");;
 	}
 
 	public String getName() {
@@ -86,6 +94,14 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
 	public void setCssClass(String cssClass) {
 		this.cssClass = cssClass;
+	}
+
+	public String getPlaceholderKey() {
+		return placeholderKey;
+	}
+
+	public void setPlaceholderKey(String placeholderKey) {
+		this.placeholderKey = placeholderKey;
 	}
 
 }

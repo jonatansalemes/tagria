@@ -22,6 +22,7 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 	private Boolean disabled = Boolean.FALSE;
 	private Boolean autoblock = Boolean.FALSE;
 	private String state = "primary";
+	private Boolean filled = Boolean.FALSE;
 
 	@Override
 	public void render() {
@@ -69,8 +70,12 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 
 	private Element button() {
 		return ElementCreator.newA().attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id))
-				.attribute(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm")
+				.attribute(Attribute.CLASS, buttonCssClass())
 				.attribute(Attribute.HREF, pathForUrl(url));
+	}
+	
+	private String buttonCssClass() {
+		return "btn " + ( filled ? "btn-" : "btn-outline-" + state + " shadow-sm");
 	}
 
 	public String getIcon() {
@@ -167,6 +172,14 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 
 	public void setLabelKey(String labelKey) {
 		this.labelKey = labelKey;
+	}
+
+	public Boolean getFilled() {
+		return filled;
+	}
+
+	public void setFilled(Boolean filled) {
+		this.filled = filled;
 	}
 
 }

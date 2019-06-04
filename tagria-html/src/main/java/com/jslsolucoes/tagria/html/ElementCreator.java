@@ -1,6 +1,42 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
+	
+	public static Small newSmall() {
+		return new Small();
+	}
+	
+	public static TBody newTBody() {
+		return new TBody();
+	}
+	
+	public static Caption newCaption() {
+		return new Caption();
+	}
+
+	public static Td newTd() {
+		return new Td();
+	}
+
+	public static THead newTHead() {
+		return new THead();
+	}
+
+	public static Th newTh() {
+		return new Th();
+	}
+
+	public static Tr newTr() {
+		return new Tr();
+	}
+
+	public static Table newTable() {
+		return new Table();
+	}
+
+	public static TextArea newTextArea() {
+		return new TextArea();
+	}
 
 	public static Code newCode() {
 		return new Code();

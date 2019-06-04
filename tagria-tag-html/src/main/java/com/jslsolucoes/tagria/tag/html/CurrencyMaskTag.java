@@ -1,6 +1,5 @@
 package com.jslsolucoes.tagria.tag.html;
 
-import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CurrencyMaskTag extends AbstractSimpleTagSupport {
@@ -10,8 +9,8 @@ public class CurrencyMaskTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void render() {
-
-		TagUtil.appendJs("$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
+s
+		appendJsCode("$('" + attachTo(attachToSelector, attachTo)
 				+ "').priceFormat({prefix:'',centsSeparator:',',thousandsSeparator:'.',centsLimit:2});", this);
 
 	}

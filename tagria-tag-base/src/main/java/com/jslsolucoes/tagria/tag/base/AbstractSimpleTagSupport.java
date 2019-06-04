@@ -269,14 +269,19 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public void appendJsCode(String jsCode) {
-
 		ViewJsAppender jsAppender = findAncestorWithClass(ViewJsAppender.class);
 		jsAppender.jsCode(jsCode);
-
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 		if (cloneableJsAppender != null && cloneableJsAppender.index() == 0) {
 			cloneableJsAppender.jsCode(jsCode);
 		}
+	}
+
+	public String attachTo(String attachToSelector, String attachTo) {
+		if (StringUtils.isEmpty(attachToSelector)) {
+			return "#" + idForName(attachTo);
+		}
+		return attachToSelector;
 	}
 
 	public Boolean getRendered() {

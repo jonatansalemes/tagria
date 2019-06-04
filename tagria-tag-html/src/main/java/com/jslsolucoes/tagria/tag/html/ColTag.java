@@ -1,9 +1,11 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class ColTag extends AbstractSimpleTagSupport {
@@ -16,28 +18,28 @@ public class ColTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void render() {
-		Div div = new Div();
-		div.attribute(Attribute.CLASS, "col");
+		Element col = col();
 		if (extraSmall != null) {
-			div.attribute(Attribute.CLASS, "col-" + extraSmall);
+			col.attribute(Attribute.CLASS, "col-" + extraSmall);
 		}
 		if (small != null) {
-			div.attribute(Attribute.CLASS, "col-sm-" + small);
+			col.attribute(Attribute.CLASS, "col-sm-" + small);
 		}
 		if (medium != null) {
-			div.attribute(Attribute.CLASS, "col-md-" + medium);
+			col.attribute(Attribute.CLASS, "col-md-" + medium);
 		}
 		if (large != null) {
-			div.attribute(Attribute.CLASS, "col-lg-" + large);
+			col.attribute(Attribute.CLASS, "col-lg-" + large);
 		}
-
 		if (!StringUtils.isEmpty(cssClass)) {
-			div.attribute(Attribute.CLASS, cssClass);
+			col.attribute(Attribute.CLASS, cssClass);
 		}
+		out(col);
 
-		div.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), div);
+	}
 
+	private Element col() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "col").add(bodyContent());
 	}
 
 	public Integer getExtraSmall() {
