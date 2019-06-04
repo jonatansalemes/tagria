@@ -1,32 +1,25 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.P;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CardTextTag extends AbstractSimpleTagSupport {
 
-	private String cssClass;
-
 	@Override
 	public void render() {
-		P p = new P();
-		p.attribute(Attribute.CLASS, "card-text");
+		Element cardText = cardText();
 		if (!StringUtils.isEmpty(cssClass)) {
-			p.attribute(Attribute.CLASS, cssClass);
+			cardText.attribute(Attribute.CLASS, cssClass);
 		}
-		p.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), p);
+		out(cardText);
 	}
 
-	public String getCssClass() {
-		return cssClass;
+	private Element cardText() {
+		return ElementCreator.newP().attribute(Attribute.CLASS, "card-text").add(bodyContent());
 	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
-
 }

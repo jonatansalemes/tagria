@@ -58,11 +58,11 @@
 		<module>tagria-tag-base</module>
 		<module>tagria-tag-ajax</module>
 		<module>tagria-tag-x</module>
+		<module>tagria-compressor</module>
 		<!--  <module>tagria-tag-auth</module> 
 			<module>tagria-lib</module> <module>tagria-doc</module> -->
 		<module>tagria-tag-html</module>
 		<module>tagria-library</module>
-		<module>tagria-compressor</module>
 	</modules>
 
 	<properties>

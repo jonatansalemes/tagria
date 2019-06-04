@@ -14,9 +14,7 @@ public class AlertTag extends AbstractSimpleTagSupport {
 	private Boolean visible = Boolean.TRUE;
 	private String state;
 	private String label;
-	private String key;
-	private String id;
-	private String cssClass;
+	private String labelKey;
 
 	@Override
 	public void render() {
@@ -28,11 +26,10 @@ public class AlertTag extends AbstractSimpleTagSupport {
 			alert.attribute(Attribute.CLASS, "collapse");
 		}
 		if (dismissible) {
-			alert.attribute(Attribute.CLASS, "alert-dismissible");
-			alert.add(close());
+			alert.attribute(Attribute.CLASS, "alert-dismissible").add(close());
 		}
-		if (hasKeyOrLabel(key, label)) {
-			alert.add(keyOrLabel(key, label));
+		if (hasKeyOrLabel(labelKey, label)) {
+			alert.add(keyOrLabel(labelKey, label));
 		} else {
 			alert.add(bodyContent());
 		}
@@ -93,19 +90,13 @@ public class AlertTag extends AbstractSimpleTagSupport {
 		this.visible = visible;
 	}
 
-	public String getCssClass() {
-		return cssClass;
+	public String getLabelKey() {
+		return labelKey;
 	}
 
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
+	
 }

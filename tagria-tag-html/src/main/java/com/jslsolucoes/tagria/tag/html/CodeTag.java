@@ -1,20 +1,27 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import com.jslsolucoes.tagria.html.Code;
-import com.jslsolucoes.tagria.html.Pre;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CodeTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void render() {
-		Pre pre = new Pre();
-		Code code = new Code();
-		code.add(TagUtil.getBody(getJspBody()).replaceAll(">", "&gt;").replaceAll("<", "&lt;").replaceAll("\n", "</br>")
-				.replaceAll("    ", "&nbsp;&nbsp;&nbsp;&nbsp;"));
-		pre.add(code);
-		TagUtil.out(getJspContext(), pre);
+		out(pre());
+	}
+
+	private Element pre() {
+		return ElementCreator.newPre().add(code());
+	}
+
+	private Element code() {
+		return ElementCreator.newCode().add(bodyContentEscape());
+	}
+
+	private String bodyContentEscape() {
+		return bodyContent().replaceAll(">", "&gt;").replaceAll("<", "&lt;").replaceAll("\n", "</br>")
+				.replaceAll("    ", "&nbsp;&nbsp;&nbsp;&nbsp;");
 	}
 }

@@ -3,26 +3,22 @@ package com.jslsolucoes.tagria.tag.html;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;
+import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
-import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class ButtonTag extends AbstractSimpleTagSupport {
 
-	private String id;
 	private String type;
 	private String url = "#";
 	private String icon;
 	private String title;
-	private String keyTitle;
+	private String titleKey;
 	private Boolean dismiss = Boolean.FALSE;
 	private String label;
-	private String key;
+	private String labelKey;
 	private String target = "_self";
-
-	private String cssClass;
 	private Boolean disabled = Boolean.FALSE;
 	private Boolean autoblock = Boolean.FALSE;
 	private String state = "primary";
@@ -30,12 +26,10 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 	@Override
 	public void render() {
 
-		A button = ElementCreator.newA();
+		Element button = button();
 		if (!StringUtils.isEmpty(type)) {
 			button.attribute(Attribute.DATA_TYPE, type);
 		}
-		button.attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id)).attribute(Attribute.CLASS,
-				"btn btn-outline-" + state + " shadow-sm");
 
 		if (!StringUtils.isEmpty(cssClass)) {
 			button.attribute(Attribute.CLASS, cssClass);
@@ -45,24 +39,20 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 			button.attribute(Attribute.CLASS, "disabled");
 		}
 
-		if (hasKeyOrLabel(keyTitle, title)) {
-			button.attribute(Attribute.TITLE, keyOrLabel(keyTitle, title));
+		if (hasKeyOrLabel(titleKey, title)) {
+			button.attribute(Attribute.TITLE, keyOrLabel(titleKey, title));
 		}
 
 		if (dismiss) {
 			button.attribute(Attribute.DATA_DISMISS, "modal");
 		}
 
-		button.attribute(Attribute.HREF, pathForUrl(url));
-
 		if (!StringUtils.isEmpty(icon)) {
-			Span span = new Span();
-			span.attribute(Attribute.CLASS, "fas fa-" + icon);
-			button.add(span);
+			button.add(icon());
 		}
 
-		if (hasKeyOrLabel(key, label)) {
-			button.add(" ").add(keyOrLabel(key, label));
+		if (hasKeyOrLabel(labelKey, label)) {
+			button.add(" ").add(keyOrLabel(labelKey, label));
 		}
 
 		if (autoblock) {
@@ -71,6 +61,16 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 		}
 
 		out(button);
+	}
+
+	private Element icon() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
+	}
+
+	private Element button() {
+		return ElementCreator.newA().attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm")
+				.attribute(Attribute.HREF, pathForUrl(url));
 	}
 
 	public String getIcon() {
@@ -105,14 +105,6 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 		this.target = target;
 	}
 
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -145,14 +137,6 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 		this.url = url;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public Boolean getDismiss() {
 		return dismiss;
 	}
@@ -169,20 +153,20 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 		this.autoblock = autoblock;
 	}
 
-	public String getKey() {
-		return key;
+	public String getTitleKey() {
+		return titleKey;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setTitleKey(String titleKey) {
+		this.titleKey = titleKey;
 	}
 
-	public String getKeyTitle() {
-		return keyTitle;
+	public String getLabelKey() {
+		return labelKey;
 	}
 
-	public void setKeyTitle(String keyTitle) {
-		this.keyTitle = keyTitle;
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

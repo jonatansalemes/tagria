@@ -1,53 +1,49 @@
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.H5;
-import com.jslsolucoes.tagria.html.P;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CarouselItemTag extends AbstractSimpleTagSupport {
 
 	private String label;
+	private String labelKey;
 	private String description;
+	private String descriptionKey;
 	private Boolean active = Boolean.FALSE;
-	
 
 	@Override
 	public void render() {
-		
-			Div div = new Div();
-			div.attribute(Attribute.CLASS, "carousel-item");
-
-			if (active) {
-				div.attribute(Attribute.CLASS, "active");
-			}
-
-			div.add(TagUtil.getBody(getJspBody()));
-
-			if (!StringUtils.isEmpty(label)) {
-				Div caption = new Div();
-				caption.attribute(Attribute.CLASS, "carousel-caption d-none d-md-block");
-
-				H5 h5 = new H5();
-				h5.add(TagUtil.getLocalized(label, getJspContext()));
-				caption.add(h5);
-
-				if (!StringUtils.isEmpty(description)) {
-					P p = new P();
-					p.add(TagUtil.getLocalized(description, getJspContext()));
-					caption.add(p);
-				}
-
-				div.add(caption);
-			}
-			TagUtil.out(getJspContext(), div);
+		Element carouselItem = carouselItem();
+		if (active) {
+			carouselItem.attribute(Attribute.CLASS, "active");
 		}
+		if (hasKeyOrLabel(labelKey, label)) {
+			Element carouselCaption = carouselCaption();
+			if (hasKeyOrLabel(descriptionKey, description)) {
+				carouselCaption.add(descriptionLabel());
+			}
+			carouselItem.add(carouselCaption);
+		}
+		out(carouselItem);
+	}
+
+	private Element descriptionLabel() {
+		return ElementCreator.newP().add(keyOrLabel(descriptionKey, description));
+	}
+
+	private Element carouselCaptionLabel() {
+		return ElementCreator.newH5().add(keyOrLabel(labelKey, label));
+	}
+
+	private Element carouselCaption() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-caption d-none d-md-block")
+				.add(carouselCaptionLabel());
+	}
+
+	private Element carouselItem() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-item").add(bodyContent());
 	}
 
 	public String getLabel() {
@@ -80,6 +76,22 @@ public class CarouselItemTag extends AbstractSimpleTagSupport {
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
+	}
+
+	public String getDescriptionKey() {
+		return descriptionKey;
+	}
+
+	public void setDescriptionKey(String descriptionKey) {
+		this.descriptionKey = descriptionKey;
 	}
 
 }

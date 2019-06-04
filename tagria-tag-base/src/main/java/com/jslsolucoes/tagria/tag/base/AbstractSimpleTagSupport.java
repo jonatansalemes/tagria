@@ -39,7 +39,9 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractSimpleTagSupport.class);
 	private Map<String, String> attributes = new WeakHashMap<String, String>();
-	private Boolean rendered = Boolean.TRUE;
+	protected Boolean rendered = Boolean.TRUE;
+	protected String cssClass;
+	protected String id;
 
 	private JspWriter writer() {
 		return getJspContext().getOut();
@@ -212,7 +214,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 				+ image + "?ver=" + version();
 	}
 
-	public String getPathForStatic(String src, Boolean cdn) {
+	public String pathForStatic(String src, Boolean cdn) {
 		if (cdn) {
 			return pathForStatic(src);
 		} else {
@@ -283,5 +285,21 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public String getCssClass() {
+		return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

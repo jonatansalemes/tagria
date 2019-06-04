@@ -1,15 +1,47 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
-	
+
+	public static Code newCode() {
+		return new Code();
+	}
+
+	public static Pre newPre() {
+		return new Pre();
+	}
+
+	public static Hr newHr() {
+		return new Hr();
+	}
+
+	public static H1 newH1() {
+		return new H1();
+	}
+
+	public static H2 newH2() {
+		return new H2();
+	}
+
+	public static H3 newH3() {
+		return new H3();
+	}
+
+	public static H5 newH5() {
+		return new H5();
+	}
+
 	public static A newA() {
 		return new A();
+	}
+
+	public static P newP() {
+		return new P();
 	}
 
 	public static Html newHtml() {
 		return new Html();
 	}
-	
+
 	public static Span newSpan() {
 		return new Span();
 	}

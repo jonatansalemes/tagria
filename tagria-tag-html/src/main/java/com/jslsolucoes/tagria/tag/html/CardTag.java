@@ -1,38 +1,33 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CardTag extends AbstractSimpleTagSupport {
 
 	private String state = "default";
-	private String id;
-	
 	private Boolean visible = Boolean.TRUE;
-	private String cssClass;
 
 	@Override
 	public void render() {
-		
-			Div div = new Div();
-			div.attribute(Attribute.ID, TagUtil.getId(id, this));
-			div.attribute(Attribute.CLASS, "card bg-" + state);
-			if (!StringUtils.isEmpty(cssClass)) {
-				div.attribute(Attribute.CLASS, cssClass);
-			}
-			div.add(TagUtil.getBody(getJspBody()));
-			if (!visible) {
-				div.attribute(Attribute.CLASS, "collapse");
-			}
-			TagUtil.out(getJspContext(), div);
+		Element card = card();
+		if (!StringUtils.isEmpty(cssClass)) {
+			card.attribute(Attribute.CLASS, cssClass);
 		}
+		if (!visible) {
+			card.attribute(Attribute.CLASS, "collapse");
+		}
+		out(card);
+	}
+
+	private Element card() {
+		return ElementCreator.newDiv().attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.CLASS, "card bg-" + state).add(bodyContent());
 	}
 
 	public String getState() {
@@ -43,22 +38,6 @@ public class CardTag extends AbstractSimpleTagSupport {
 		this.state = state;
 	}
 
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public Boolean getVisible() {
 		return visible;
 	}
@@ -67,11 +46,4 @@ public class CardTag extends AbstractSimpleTagSupport {
 		this.visible = visible;
 	}
 
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
 }

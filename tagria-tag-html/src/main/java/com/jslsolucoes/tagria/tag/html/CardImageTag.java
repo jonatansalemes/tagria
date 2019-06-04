@@ -1,39 +1,36 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Img;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CardImageTag extends AbstractSimpleTagSupport {
 
 	private String alt;
+	private String altKey;
 	private String url;
 	private Boolean cdn = true;
-	
 	private Integer height;
 	private Integer width;
 
 	@Override
 	public void render() {
-		
-			Img img = new Img();
-			img.attribute(Attribute.CLASS, "card-img-top");
-			img.attribute(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-			img.attribute(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
-			if (width != null) {
-				img.attribute(Attribute.WIDTH, width);
-			}
-			if (height != null) {
-				img.attribute(Attribute.HEIGHT, height);
-			}
-			TagUtil.out(getJspContext(), img);
+		Element cardImage = cardImage() ;
+		if (width != null) {
+			cardImage.attribute(Attribute.WIDTH, width);
 		}
+		if (height != null) {
+			cardImage.attribute(Attribute.HEIGHT, height);
+		}
+		out(cardImage);
+	}
+
+	private Element cardImage() {
+		return ElementCreator.newImg().attribute(Attribute.CLASS, "card-img-top")
+		.attribute(Attribute.SRC, pathForStatic(url, cdn))
+		.attribute(Attribute.ALT, keyOrLabel(altKey,alt));
 	}
 
 	public Integer getHeight() {
@@ -76,11 +73,13 @@ public class CardImageTag extends AbstractSimpleTagSupport {
 		this.url = url;
 	}
 
-	public Boolean getRendered() {
-		return rendered;
+	public String getAltKey() {
+		return altKey;
 	}
 
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
+	public void setAltKey(String altKey) {
+		this.altKey = altKey;
 	}
+
+	
 }
