@@ -18,6 +18,7 @@ import java.util.WeakHashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -47,7 +48,15 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	private String bodyContent;
 
 	private JspWriter writer() {
-		return getJspContext().getOut();
+		return jspContext().getOut();
+	}
+	
+	private JspContext jspContext() {
+		return getJspContext();
+	}
+	
+	public void setAttribute(String name,Object value) {
+		jspContext().setAttribute(name, value);
 	}
 
 	private void out(String value) {
@@ -123,7 +132,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public PageContext pageContext() {
-		return (PageContext) getJspContext();
+		return (PageContext) jspContext();
 	}
 
 	public HttpSession httpSession() {

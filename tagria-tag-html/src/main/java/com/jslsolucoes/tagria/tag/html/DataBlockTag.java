@@ -1,13 +1,10 @@
-
 package com.jslsolucoes.tagria.tag.html;
 
 import java.util.Collection;
 
-import javax.servlet.jsp.JspContext;
-
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 @SuppressWarnings({ "rawtypes" })
@@ -21,31 +18,33 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 	private Integer large;
 
 	@Override
-	public void render() {
-		JspContext jspContext = getJspContext();
-		Div row = new Div();
-		row.attribute(Attribute.CLASS, "row");
+	public Element render() {
+		return div();
+	}
+
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "row");
 		for (Object object : data) {
-			jspContext.setAttribute(var, object);
-			Div col = new Div();
-			col.attribute(Attribute.CLASS, "mt-3");
-			col.attribute(Attribute.CLASS, "col-xs-" + extraSmall);
-
-			if (small != null) {
-				col.attribute(Attribute.CLASS, "col-sm-" + small);
-			}
-			if (medium != null) {
-				col.attribute(Attribute.CLASS, "col-md-" + medium);
-			}
-			if (large != null) {
-				col.attribute(Attribute.CLASS, "col-lg-" + large);
-			}
-			col.add(TagUtil.getBody(getJspBody()));
-			row.add(col);
+			setAttribute(var, object);
+			div.add(col());
 		}
-		jspContext.setAttribute(var, null);
+		setAttribute(var, null);
+		return div;
+	}
 
-		TagUtil.out(getJspContext(), row);
+	private Element col() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "mt-3")
+				.attribute(Attribute.CLASS, "col-xs-" + extraSmall).add(bodyContent());
+		if (small != null) {
+			div.attribute(Attribute.CLASS, "col-sm-" + small);
+		}
+		if (medium != null) {
+			div.attribute(Attribute.CLASS, "col-md-" + medium);
+		}
+		if (large != null) {
+			div.attribute(Attribute.CLASS, "col-lg-" + large);
+		}
+		return div;
 	}
 
 	public String getVar() {
