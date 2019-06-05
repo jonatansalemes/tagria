@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
+import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.tag.ajax.model.FunctionParameter;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 import com.jslsolucoes.template.TemplateBuilder;
@@ -24,19 +25,19 @@ public class FunctionTag extends AbstractSimpleTagSupport {
 	private List<FunctionParameter> data = new ArrayList<FunctionParameter>();
 
 	@Override
-	public void render() {
-		flushBodyContent();
+	public Element render() {
 		try (StringWriter stringWriter = new StringWriter()) {
 			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "function.tpl")
 					.withData("name", name).withData("url", pathForUrl(url)).withData("dataType", dataType)
 					.withData("data", data).withData("onSuccess", onSuccess).withData("onDone", onDone)
 					.withOutput(stringWriter).process();
 			appendJsCode(stringWriter.toString());
+			if (execute) {
+				appendJsCode(name + "();");
+			}
+			return empty();
 		} catch (IOException e) {
 			throw new TagriaRuntimeException(e);
-		}
-		if (execute) {
-			appendJsCode(name + "();");
 		}
 	}
 

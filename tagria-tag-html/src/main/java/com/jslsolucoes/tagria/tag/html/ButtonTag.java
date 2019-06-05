@@ -25,9 +25,18 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 	private Boolean filled = Boolean.FALSE;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return button();
+	}
 
-		Element button = button();
+	private Element icon() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
+	}
+
+	private Element button() {
+		Element button = ElementCreator.newA().attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.CLASS, buttonCssClass()).attribute(Attribute.HREF, pathForUrl(url));
+
 		if (!StringUtils.isEmpty(type)) {
 			button.attribute(Attribute.DATA_TYPE, type);
 		}
@@ -61,21 +70,11 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 					"$('#" + button.attribute(Attribute.ID) + "').click(function(){$(this).addClass('disabled');});");
 		}
 
-		out(button);
+		return button;
 	}
 
-	private Element icon() {
-		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
-	}
-
-	private Element button() {
-		return ElementCreator.newA().attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id))
-				.attribute(Attribute.CLASS, buttonCssClass())
-				.attribute(Attribute.HREF, pathForUrl(url));
-	}
-	
 	private String buttonCssClass() {
-		return "btn " + ( filled ? "btn-" : "btn-outline-" + state + " shadow-sm");
+		return "btn " + (filled ? "btn-" : "btn-outline-" + state + " shadow-sm");
 	}
 
 	public String getIcon() {

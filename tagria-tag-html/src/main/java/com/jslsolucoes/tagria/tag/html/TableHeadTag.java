@@ -1,23 +1,28 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import com.jslsolucoes.tagria.html.Th;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class TableHeadTag extends AbstractSimpleTagSupport {
 
 	private String label;
+	private String labelKey;
 
 	@Override
 	public void render() {
-		Th th = new Th();
-		if (!StringUtils.isEmpty(label)) {
-			th.add(TagUtil.getLocalized(label, getJspContext()));
+		Element th = th();
+		if (hasKeyOrLabel(labelKey, label)) {
+			th.add(keyOrLabel(labelKey, label));
 		} else {
-			th.add(TagUtil.getBody(getJspBody()));
+			th.add(bodyContent());
 		}
-		TagUtil.out(getJspContext(), th);
+		out(th);
+	}
+
+	private Element th() {
+		return ElementCreator.newTh();
 	}
 
 	public String getLabel() {
@@ -26,6 +31,14 @@ public class TableHeadTag extends AbstractSimpleTagSupport {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

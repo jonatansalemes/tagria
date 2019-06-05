@@ -30,10 +30,5 @@
 			<artifactId>tagria-tag-ajax</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.jslsolucoes</groupId>
-			<artifactId>tagria-tag-x</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 </project>

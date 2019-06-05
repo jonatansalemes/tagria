@@ -13,17 +13,17 @@ public class BlockTag extends AbstractSimpleTagSupport {
 	private String align;
 
 	@Override
-	public void render() {
-		Element block = block();
-		if (!StringUtils.isEmpty(align)) {
-			block.attribute(Attribute.CLASS, "text-" + align);
-		}
-		block.add(bodyContent());
-		out(block);
+	public Element render() {
+		return div();
 	}
 
-	public Element block() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "mt-" + margin + " mb-" + margin + " clearfix");
+	public Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "mt-" + margin + " mb-" + margin + " clearfix")
+				.add(bodyContent());
+		if (!StringUtils.isEmpty(align)) {
+			div.attribute(Attribute.CLASS, "text-" + align);
+		}
+		return div;
 	}
 
 	public Integer getMargin() {

@@ -16,20 +16,20 @@ public class CarouselImageTag extends AbstractSimpleTagSupport {
 	private Integer width;
 
 	@Override
-	public void render() {
-		Element carouselImg = carouselImg();
-		if (width != null) {
-			carouselImg.attribute(Attribute.WIDTH, width);
-		}
-		if (height != null) {
-			carouselImg.attribute(Attribute.HEIGHT, height);
-		}
-		out(carouselImg);
+	public Element render() {
+		return img();
 	}
 
-	private Element carouselImg() {
-		return ElementCreator.newImg().attribute(Attribute.CLASS, "d-block w-100")
+	private Element img() {
+		Element img = ElementCreator.newImg().attribute(Attribute.CLASS, "d-block w-100")
 				.attribute(Attribute.SRC, pathForStatic(url, cdn)).attribute(Attribute.ALT, keyOrLabel(altKey, alt));
+		if (width != null) {
+			img.attribute(Attribute.WIDTH, width);
+		}
+		if (height != null) {
+			img.attribute(Attribute.HEIGHT, height);
+		}
+		return img;
 	}
 
 	public Integer getHeight() {

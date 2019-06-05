@@ -34,6 +34,7 @@ import com.jslsolucoes.tagria.config.TagriaConfig;
 import com.jslsolucoes.tagria.config.TagriaConfigParameter;
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 
 public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implements DynamicAttributes {
 
@@ -42,20 +43,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected Boolean rendered = Boolean.TRUE;
 	protected String cssClass;
 	protected String id;
+	private String bodyContent;
 
 	private JspWriter writer() {
 		return getJspContext().getOut();
 	}
-
-	private String version() {
-		return "3.1.0";
-	}
-
-	public Boolean rendered() {
-		return rendered != null && rendered;
-	}
-
-	public void out(String value) {
+	
+	private void out(String value) {
 		try {
 			if (!StringUtils.isEmpty(value)) {
 				writer().print(value);
@@ -65,8 +59,20 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		}
 	}
 
-	public void out(Element element) {
+	private void out(Element element) {
 		out(element.html());
+	}
+
+	private String version() {
+		return "3.1.0";
+	}
+	
+	public Element empty() {
+		return ElementCreator.newNull();
+	}
+
+	public Boolean rendered() {
+		return rendered != null && rendered;
 	}
 
 	public String idForId(String id) {
@@ -75,6 +81,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public String idForName(String name) {
 		return id(name, null);
+	}
+
+	public String id() {
+		return id(null, null);
 	}
 
 	public String id(String name, String id) {
@@ -92,12 +102,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return cloneableJsAppender != null ? "__" + cloneableJsAppender.index() : "";
 	}
 
-	public abstract void render();
+	public abstract Element render();
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered()) {
-			render();
+			acquireBodyContent();
+			out(render());
 		}
 	}
 
@@ -121,21 +132,20 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return (HttpServletResponse) pageContext().getResponse();
 	}
 
-	public void flushBodyContent() {
-		bodyContent();
-	}
-
-	public String bodyContent() {
+	private void acquireBodyContent() {
 		JspFragment jspFragment = getJspBody();
 		if (jspFragment != null) {
 			try (StringWriter body = new StringWriter()) {
 				jspFragment.invoke(body);
-				return body.toString().trim();
+				bodyContent = body.toString().trim();
 			} catch (Exception e) {
 				throw new TagriaRuntimeException(e);
 			}
 		}
-		return null;
+	}
+
+	public String bodyContent() {
+		return bodyContent;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -198,6 +208,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public String keyForLibrary(String key) {
 		return keyForLibrary(key, new Object[] {});
+	}
+
+	public String pathForBlank() {
+		return pathForUrl("/tagria/blank");
 	}
 
 	public String pathForCssOnLibrary(String css) {
@@ -270,10 +284,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public void appendJsCode(String jsCode) {
 		ViewJsAppender jsAppender = findAncestorWithClass(ViewJsAppender.class);
-		jsAppender.jsCode(jsCode);
+		jsAppender.appendJsCode(jsCode);
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 		if (cloneableJsAppender != null && cloneableJsAppender.index() == 0) {
-			cloneableJsAppender.jsCode(jsCode);
+			cloneableJsAppender.appendJsCode(jsCode);
 		}
 	}
 

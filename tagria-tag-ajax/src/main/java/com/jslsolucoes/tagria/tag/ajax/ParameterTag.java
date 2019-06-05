@@ -3,6 +3,7 @@ package com.jslsolucoes.tagria.tag.ajax;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.tag.ajax.model.FunctionParameter;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
@@ -15,9 +16,10 @@ public class ParameterTag extends AbstractSimpleTagSupport {
 	private Boolean required = Boolean.TRUE;
 
 	@Override
-	public void render() {
-		FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
-		functionTag.addFunctionParameter(new FunctionParameter(name, required, valueForParameter()));
+	public Element render() {
+		findAncestorWithClass(FunctionTag.class)
+				.addFunctionParameter(new FunctionParameter(name, required, valueForParameter()));
+		return empty();
 	}
 
 	private String valueForParameter() {

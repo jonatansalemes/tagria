@@ -8,33 +8,29 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class CarouselTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(carousel());
+	public Element render() {
+		return div(idForId(id));
 	}
 
-	private Element next() {
+	private Element aNext(String id) {
 		return ElementCreator.newA().attribute(Attribute.CLASS, "carousel-control-next")
-				.attribute(Attribute.HREF, "#" + id()).attribute(Attribute.DATA_SLIDE, "next")
+				.attribute(Attribute.HREF, "#" + id).attribute(Attribute.DATA_SLIDE, "next")
 				.add(ElementCreator.newSpan().attribute(Attribute.CLASS, "carousel-control-next-icon"));
 	}
 
-	private Element prev() {
+	private Element aPrev(String id) {
 		return ElementCreator.newA().attribute(Attribute.CLASS, "carousel-control-prev")
-				.attribute(Attribute.HREF, "#" + id()).attribute(Attribute.DATA_SLIDE, "prev")
+				.attribute(Attribute.HREF, "#" + id).attribute(Attribute.DATA_SLIDE, "prev")
 				.add(ElementCreator.newSpan().attribute(Attribute.CLASS, "carousel-control-prev-icon"));
 	}
 
-	private Element carouselInner() {
+	private Element divInner() {
 		return ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-inner").add(bodyContent());
 	}
 
-	private String id() {
-		return idForId(id);
-	}
-
-	private Element carousel() {
-		return ElementCreator.newDiv().attribute(Attribute.ID, id()).attribute(Attribute.CLASS, "carousel slide")
-				.attribute(Attribute.DATA_RIDE, "carousel").add(carouselInner()).add(prev()).add(next());
+	private Element div(String id) {
+		return ElementCreator.newDiv().attribute(Attribute.ID, id).attribute(Attribute.CLASS, "carousel slide")
+				.attribute(Attribute.DATA_RIDE, "carousel").add(divInner()).add(aPrev(id)).add(aNext(id));
 	}
 
 }

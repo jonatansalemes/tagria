@@ -9,11 +9,11 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class CardTitleTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(cardTitle());
+	public Element render() {
+		return div();
 	}
 
-	private Element cardTitle() {
+	private Element div() {
 		return ElementCreator.newH5().attribute(Attribute.CLASS, "card-title").add(bodyContent());
 	}
 

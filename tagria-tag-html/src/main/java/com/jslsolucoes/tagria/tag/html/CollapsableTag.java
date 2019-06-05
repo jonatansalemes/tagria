@@ -2,55 +2,47 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.H5;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class CollapsableTag extends AbstractSimpleTagSupport {
 
 	private String label;
+	private String labelKey;
 	private Boolean opened = Boolean.FALSE;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return div(id());
+	}
 
-		Div card = new Div();
-		card.attribute(Attribute.CLASS, "card");
-		card.attribute(Attribute.ID, TagUtil.getId(this));
+	private Element divContent(String id) {
+		return ElementCreator.newDiv().attribute(Attribute.ID, id)
+				.attribute(Attribute.CLASS, "collapse " + (opened ? "show" : "")).add(divBody());
+	}
 
-		Div cardHeader = new Div();
-		cardHeader.attribute(Attribute.CLASS, "card-header");
-		H5 h5 = new H5();
-		h5.attribute(Attribute.CLASS, "mb-0");
+	private Element divBody() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card-body").add(bodyContent());
+	}
 
-		String idTarget = TagUtil.getId(this);
-		Button button = new Button();
-		button.attribute(Attribute.CLASS, "btn btn-link");
-		button.attribute(Attribute.DATA_TOGGLE, "collapse");
-		button.attribute(Attribute.DATA_TARGET, "#" + idTarget);
-		button.attribute(Attribute.ID, TagUtil.getId(this));
-		button.add(TagUtil.getLocalized(label, getJspContext()));
-		h5.add(button);
+	private Element button(String id) {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-link")
+				.attribute(Attribute.DATA_TOGGLE, "collapse").attribute(Attribute.DATA_TARGET, "#" + id)
+				.attribute(Attribute.ID, id()).add(keyOrLabel(labelKey, label));
+	}
 
-		cardHeader.add(h5);
+	private Element h5Header(String id) {
+		return ElementCreator.newH5().attribute(Attribute.CLASS, "mb-0").add(button(id));
+	}
 
-		card.add(cardHeader);
+	private Element divHeader(String id) {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card-header").add(h5Header(id));
+	}
 
-		Div content = new Div();
-		content.attribute(Attribute.ID, idTarget);
-		content.attribute(Attribute.CLASS, "collapse " + (opened ? "show" : ""));
-
-		Div cardBody = new Div();
-		cardBody.attribute(Attribute.CLASS, "card-body");
-		cardBody.add(TagUtil.getBody(getJspBody()));
-
-		content.add(cardBody);
-		card.add(content);
-
-		TagUtil.out(getJspContext(), card);
-
+	private Element div(String id) {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card").attribute(Attribute.ID, id).add(divHeader(id))
+				.add(divContent(id));
 	}
 
 	public String getLabel() {
@@ -67,6 +59,14 @@ public class CollapsableTag extends AbstractSimpleTagSupport {
 
 	public void setOpened(Boolean opened) {
 		this.opened = opened;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

@@ -9,11 +9,11 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class CardFooterTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(cardFooter());
+	public Element render() {
+		return div();
 	}
 
-	private Element cardFooter() {
+	private Element div() {
 		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card-footer").add(bodyContent());
 	}
 

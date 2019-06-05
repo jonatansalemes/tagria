@@ -20,32 +20,28 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void render() {
-		Element textarea = textarea();
-
-		if (!StringUtils.isEmpty(cssClass)) {
-			textarea.attribute(Attribute.CLASS, cssClass);
-		}
-
-		if (hasKeyOrLabel(placeholderKey, placeholder)) {
-			textarea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
-		}
-		
-		if (!StringUtils.isEmpty(value)) {
-			textarea.add(value);
-		}
-		if (required) {
-			textarea.attribute(Attribute.CLASS, "form-required");
-			textarea.attribute(Attribute.REQUIRED, "required");
-		}
-		out(textarea);
+		out(textarea());
 	}
 
 	private Element textarea() {
-		return ElementCreator.newTextArea()
-				.attribute(Attribute.NAME, name)
-				.attribute(Attribute.ROWS, rows)
-				.attribute(Attribute.ID, idForName(name))
-				.attribute(Attribute.CLASS, "form-control shadow-sm");;
+		Element textArea = ElementCreator.newTextArea().attribute(Attribute.NAME, name).attribute(Attribute.ROWS, rows)
+				.attribute(Attribute.ID, idForName(name)).attribute(Attribute.CLASS, "form-control shadow-sm");
+		if (!StringUtils.isEmpty(cssClass)) {
+			textArea.attribute(Attribute.CLASS, cssClass);
+		}
+
+		if (hasKeyOrLabel(placeholderKey, placeholder)) {
+			textArea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
+		}
+
+		if (!StringUtils.isEmpty(value)) {
+			textArea.add(value);
+		}
+		if (required) {
+			textArea.attribute(Attribute.CLASS, "form-required");
+			textArea.attribute(Attribute.REQUIRED, "required");
+		}
+		return textArea;
 	}
 
 	public String getName() {

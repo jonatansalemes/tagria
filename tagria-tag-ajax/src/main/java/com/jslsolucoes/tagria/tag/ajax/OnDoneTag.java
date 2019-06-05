@@ -1,13 +1,14 @@
 package com.jslsolucoes.tagria.tag.ajax;
 
+import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class OnDoneTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
-		functionTag.setOnDone(bodyContent());
+	public Element render() {
+		findAncestorWithClass(FunctionTag.class).setOnDone(bodyContent());
+		return empty();
 	}
 
 }

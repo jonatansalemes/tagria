@@ -8,8 +8,8 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class CodeTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(pre());
+	public Element render() {
+		return pre();
 	}
 
 	private Element pre() {

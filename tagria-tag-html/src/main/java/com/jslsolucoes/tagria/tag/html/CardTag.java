@@ -14,20 +14,20 @@ public class CardTag extends AbstractSimpleTagSupport {
 	private Boolean visible = Boolean.TRUE;
 
 	@Override
-	public void render() {
-		Element card = card();
-		if (!StringUtils.isEmpty(cssClass)) {
-			card.attribute(Attribute.CLASS, cssClass);
-		}
-		if (!visible) {
-			card.attribute(Attribute.CLASS, "collapse");
-		}
-		out(card);
+	public Element render() {
+		return div();
 	}
 
-	private Element card() {
-		return ElementCreator.newDiv().attribute(Attribute.ID, idForId(id))
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.ID, idForId(id))
 				.attribute(Attribute.CLASS, "card bg-" + state).add(bodyContent());
+		if (!StringUtils.isEmpty(cssClass)) {
+			div.attribute(Attribute.CLASS, cssClass);
+		}
+		if (!visible) {
+			div.attribute(Attribute.CLASS, "collapse");
+		}
+		return div;
 	}
 
 	public String getState() {

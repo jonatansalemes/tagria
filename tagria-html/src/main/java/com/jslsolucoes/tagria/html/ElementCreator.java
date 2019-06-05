@@ -2,14 +2,30 @@ package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
 	
+	public static Null newNull() {
+		return new Null();
+	}
+
+	public static Ul newUl() {
+		return new Ul();
+	}
+
+	public static Li newLi() {
+		return new Li();
+	}
+
+	public static Iframe newIframe() {
+		return new Iframe();
+	}
+
 	public static Small newSmall() {
 		return new Small();
 	}
-	
+
 	public static TBody newTBody() {
 		return new TBody();
 	}
-	
+
 	public static Caption newCaption() {
 		return new Caption();
 	}

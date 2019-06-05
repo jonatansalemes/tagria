@@ -2,8 +2,8 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.THead;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class TableHeaderTag extends AbstractSimpleTagSupport {
@@ -13,18 +13,18 @@ public class TableHeaderTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void render() {
-		THead thead = new THead();
-
+		Element thead = thead();
 		if (dark) {
 			thead.attribute(Attribute.CLASS, "thead-dark");
 		}
-
 		if (light) {
 			thead.attribute(Attribute.CLASS, "thead-light");
 		}
+		out(thead);
+	}
 
-		thead.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), thead);
+	private Element thead() {
+		return ElementCreator.newTHead().add(bodyContent());
 	}
 
 	public Boolean getDark() {

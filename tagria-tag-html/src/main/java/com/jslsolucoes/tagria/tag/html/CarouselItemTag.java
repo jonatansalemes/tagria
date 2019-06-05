@@ -14,36 +14,36 @@ public class CarouselItemTag extends AbstractSimpleTagSupport {
 	private Boolean active = Boolean.FALSE;
 
 	@Override
-	public void render() {
-		Element carouselItem = carouselItem();
-		if (active) {
-			carouselItem.attribute(Attribute.CLASS, "active");
-		}
-		if (hasKeyOrLabel(labelKey, label)) {
-			Element carouselCaption = carouselCaption();
-			if (hasKeyOrLabel(descriptionKey, description)) {
-				carouselCaption.add(descriptionLabel());
-			}
-			carouselItem.add(carouselCaption);
-		}
-		out(carouselItem);
+	public Element render() {
+		return div();
 	}
 
-	private Element descriptionLabel() {
+	private Element p() {
 		return ElementCreator.newP().add(keyOrLabel(descriptionKey, description));
 	}
 
-	private Element carouselCaptionLabel() {
+	private Element h5() {
 		return ElementCreator.newH5().add(keyOrLabel(labelKey, label));
 	}
 
-	private Element carouselCaption() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-caption d-none d-md-block")
-				.add(carouselCaptionLabel());
+	private Element divCaption() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-caption d-none d-md-block")
+				.add(h5());
+		if (hasKeyOrLabel(descriptionKey, description)) {
+			div.add(p());
+		}
+		return div;
 	}
 
-	private Element carouselItem() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-item").add(bodyContent());
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "carousel-item").add(bodyContent());
+		if (active) {
+			div.attribute(Attribute.CLASS, "active");
+		}
+		if (hasKeyOrLabel(labelKey, label)) {
+			div.add(divCaption());
+		}
+		return div;
 	}
 
 	public String getLabel() {

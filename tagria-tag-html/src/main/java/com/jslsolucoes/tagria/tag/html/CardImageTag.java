@@ -16,21 +16,20 @@ public class CardImageTag extends AbstractSimpleTagSupport {
 	private Integer width;
 
 	@Override
-	public void render() {
-		Element cardImage = cardImage() ;
-		if (width != null) {
-			cardImage.attribute(Attribute.WIDTH, width);
-		}
-		if (height != null) {
-			cardImage.attribute(Attribute.HEIGHT, height);
-		}
-		out(cardImage);
+	public Element render() {
+		return img();
 	}
 
-	private Element cardImage() {
-		return ElementCreator.newImg().attribute(Attribute.CLASS, "card-img-top")
-		.attribute(Attribute.SRC, pathForStatic(url, cdn))
-		.attribute(Attribute.ALT, keyOrLabel(altKey,alt));
+	private Element img() {
+		Element img = ElementCreator.newImg().attribute(Attribute.CLASS, "card-img-top")
+				.attribute(Attribute.SRC, pathForStatic(url, cdn)).attribute(Attribute.ALT, keyOrLabel(altKey, alt));
+		if (width != null) {
+			img.attribute(Attribute.WIDTH, width);
+		}
+		if (height != null) {
+			img.attribute(Attribute.HEIGHT, height);
+		}
+		return img;
 	}
 
 	public Integer getHeight() {
@@ -81,5 +80,4 @@ public class CardImageTag extends AbstractSimpleTagSupport {
 		this.altKey = altKey;
 	}
 
-	
 }

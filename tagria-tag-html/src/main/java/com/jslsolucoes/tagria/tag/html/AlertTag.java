@@ -17,28 +17,28 @@ public class AlertTag extends AbstractSimpleTagSupport {
 	private String labelKey;
 
 	@Override
-	public void render() {
-		Element alert = alert();
-		if (!StringUtils.isEmpty(cssClass)) {
-			alert.attribute(Attribute.CLASS, cssClass);
-		}
-		if (!visible) {
-			alert.attribute(Attribute.CLASS, "collapse");
-		}
-		if (dismissible) {
-			alert.attribute(Attribute.CLASS, "alert-dismissible").add(close());
-		}
-		if (hasKeyOrLabel(labelKey, label)) {
-			alert.add(keyOrLabel(labelKey, label));
-		} else {
-			alert.add(bodyContent());
-		}
-		out(alert);
+	public Element render() {
+		return div();
 	}
 
-	private Element alert() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-" + state + " shadow-sm")
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-" + state + " shadow-sm")
 				.attribute(Attribute.ROLE, "alert").attribute(Attribute.ID, idForId(id));
+		if (!StringUtils.isEmpty(cssClass)) {
+			div.attribute(Attribute.CLASS, cssClass);
+		}
+		if (!visible) {
+			div.attribute(Attribute.CLASS, "collapse");
+		}
+		if (dismissible) {
+			div.attribute(Attribute.CLASS, "alert-dismissible").add(close());
+		}
+		if (hasKeyOrLabel(labelKey, label)) {
+			div.add(keyOrLabel(labelKey, label));
+		} else {
+			div.add(bodyContent());
+		}
+		return div;
 	}
 
 	private Element close() {

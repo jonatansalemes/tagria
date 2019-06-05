@@ -2,5 +2,5 @@ package com.jslsolucoes.tagria.tag.base;
 
 public interface JsAppender {
 
-	public void jsCode(String jsCode);
+	public void appendJsCode(String jsCode);
 }

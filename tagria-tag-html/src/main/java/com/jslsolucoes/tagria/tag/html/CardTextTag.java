@@ -11,15 +11,15 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class CardTextTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		Element cardText = cardText();
-		if (!StringUtils.isEmpty(cssClass)) {
-			cardText.attribute(Attribute.CLASS, cssClass);
-		}
-		out(cardText);
+	public Element render() {
+		return p();
 	}
 
-	private Element cardText() {
-		return ElementCreator.newP().attribute(Attribute.CLASS, "card-text").add(bodyContent());
+	private Element p() {
+		Element p = ElementCreator.newP().attribute(Attribute.CLASS, "card-text").add(bodyContent());
+		if (!StringUtils.isEmpty(cssClass)) {
+			p.attribute(Attribute.CLASS, cssClass);
+		}
+		return p;
 	}
 }

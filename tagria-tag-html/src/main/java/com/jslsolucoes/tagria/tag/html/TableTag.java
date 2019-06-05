@@ -2,8 +2,8 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Table;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class TableTag extends AbstractSimpleTagSupport {
@@ -16,8 +16,7 @@ public class TableTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void render() {
-		Table table = new Table();
-		table.attribute(Attribute.CLASS, "table");
+		Element table = table();
 
 		if (stripe) {
 			table.attribute(Attribute.CLASS, "table-striped");
@@ -39,8 +38,11 @@ public class TableTag extends AbstractSimpleTagSupport {
 			table.attribute(Attribute.CLASS, "table-bordered");
 		}
 
-		table.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), table);
+		out(table);
+	}
+
+	public Element table() {
+		return ElementCreator.newTable().attribute(Attribute.CLASS, "table").add(bodyContent());
 	}
 
 	public Boolean getStripe() {
