@@ -11,11 +11,11 @@ public class IconTag extends AbstractSimpleTagSupport {
 	private String icon;
 
 	@Override
-	public void render() {
-		out(icon());
+	public Element render() {
+		return span();
 	}
 
-	private Element icon() {
+	private Element span() {
 		return ElementCreator.newSpan().attribute(Attribute.ID, idForId(id)).attribute(Attribute.CLASS,
 				"fas fa-" + icon);
 	}

@@ -7,8 +7,8 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class H1Tag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(h1());
+	public Element render() {
+		return h1();
 	}
 
 	private Element h1() {

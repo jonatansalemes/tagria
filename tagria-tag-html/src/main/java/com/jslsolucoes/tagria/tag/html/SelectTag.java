@@ -124,7 +124,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 		body.attribute(Attribute.CLASS, "modal-body");
 
 		Div inputContainer = new Div();
-		Input  input = new Input();
+		Input input = new Input();
 		input.attribute(Attribute.TYPE, "text");
 		input.attribute(Attribute.AUTOCOMPLETE, "off");
 		input.attribute(Attribute.CLASS, "form-control shadow-sm select-search-input");

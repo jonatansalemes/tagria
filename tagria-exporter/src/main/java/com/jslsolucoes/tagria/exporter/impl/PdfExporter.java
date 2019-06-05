@@ -69,8 +69,8 @@ public class PdfExporter implements Exporter {
 		for (Header header : table.getHeaders()) {
 			pdfPTable.addCell(createCell(header.getContent(), header.getAlign()));
 		}
-		for(Row row : table.getRows()) {
-			for(Column column : row.getColumns()) {
+		for (Row row : table.getRows()) {
+			for (Column column : row.getColumns()) {
 				pdfPTable.addCell(createCell(column.getContent(), column.getAlign()));
 			}
 		}

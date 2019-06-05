@@ -4,50 +4,44 @@ package com.jslsolucoes.tagria.tag.html;
 import java.util.Collection;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.DataList;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 @SuppressWarnings("rawtypes")
 public class DataListTag extends AbstractSimpleTagSupport {
 
-	private String id;
 	private Collection data;
 	private Map map;
 	private String var;
 	private Boolean fixed = Boolean.FALSE;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return dataList();
+	}
 
-		DataList datalist = new DataList();
-		datalist.attribute(Attribute.ID, TagUtil.getId(id, this));
+	private Element dataList() {
+		Element dataList = ElementCreator.newDataList().attribute(Attribute.ID, idForId(id));
 		if (fixed) {
-			datalist.add(TagUtil.getBody(getJspBody()));
-		}
-		if (!CollectionUtils.isEmpty(data)) {
+			dataList.add(bodyContent());
+		} else if (!CollectionUtils.isEmpty(data)) {
 			for (Object item : data) {
 				getJspContext().setAttribute(var, item);
-				datalist.add(TagUtil.getBody(getJspBody()));
+				dataList.add(bodyContent());
 			}
 			getJspContext().setAttribute(var, null);
 		} else if (map != null) {
 			for (Object entry : map.entrySet()) {
 				getJspContext().setAttribute(var, entry);
-				datalist.add(TagUtil.getBody(getJspBody()));
+				dataList.add(bodyContent());
 			}
 			getJspContext().setAttribute(var, null);
 		}
-		TagUtil.out(getJspContext(), datalist);
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+		return dataList;
 	}
 
 	public Collection getData() {

@@ -1,51 +1,31 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Li;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class ListGroupItemTag extends AbstractSimpleTagSupport {
 
-	
-	private String cssClass;
 	private String state;
 
 	@Override
-	public void render() {
-		
-			Li li = new Li();
-			li.attribute(Attribute.CLASS, "list-group-item");
-			if (!StringUtils.isEmpty(cssClass)) {
-				li.attribute(Attribute.CLASS, cssClass);
-			}
-			if (!StringUtils.isEmpty(state)) {
-				li.attribute(Attribute.CLASS, "list-group-item-" + state);
-			}
-			li.add(TagUtil.getBody(getJspBody()));
-			TagUtil.out(getJspContext(), li);
+	public Element render() {
+		return li();
+	}
+
+	private Element li() {
+		Element li = ElementCreator.newLi().attribute(Attribute.CLASS, "list-group-item").add(bodyContent());
+		if (!StringUtils.isEmpty(cssClass)) {
+			li.attribute(Attribute.CLASS, cssClass);
 		}
-	}
-
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
-	}
-
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
+		if (!StringUtils.isEmpty(state)) {
+			li.attribute(Attribute.CLASS, "list-group-item-" + state);
+		}
+		return li;
 	}
 
 	public String getState() {

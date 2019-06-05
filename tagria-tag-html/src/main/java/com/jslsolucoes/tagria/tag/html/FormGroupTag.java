@@ -17,41 +17,42 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 	private String forElement;
 	private String label;
 	private Boolean required = Boolean.FALSE;
-	
+
 	private Boolean visible = Boolean.TRUE;
 	private String id;
 
 	@Override
 	public void render() {
-		
-			Div div = new Div();
-			div.attribute(Attribute.CLASS, "form-group");
 
-			if (!visible) {
-				div.attribute(Attribute.CLASS, "collapse");
-			}
+		Div div = new Div();
+		div.attribute(Attribute.CLASS, "form-group");
 
-			div.attribute(Attribute.ID, TagUtil.getId(id, this));
-
-			if (!StringUtils.isEmpty(label)) {
-				Label title = new Label();
-				if (!StringUtils.isEmpty(forElement)) {
-					title.attribute(Attribute.FOR, TagUtil.getId(forElement, null, this));
-				}
-				title.add(TagUtil.getLocalized(label, getJspContext()));
-
-				if (required) {
-					Span span = new Span();
-					span.attribute(Attribute.CLASS, "text-danger");
-					span.add(" * ");
-					title.add(span);
-				}
-				div.add(title);
-			}
-
-			div.add(TagUtil.getBody(getJspBody()));
-			TagUtil.out(getJspContext(), div);
+		if (!visible) {
+			div.attribute(Attribute.CLASS, "collapse");
 		}
+
+		div.attribute(Attribute.ID, TagUtil.getId(id, this));
+
+		if (!StringUtils.isEmpty(label)) {
+			Label title = new Label();
+			if (!StringUtils.isEmpty(forElement)) {
+				title.attribute(Attribute.FOR, TagUtil.getId(forElement, null, this));
+			}
+			title.add(TagUtil.getLocalized(label, getJspContext()));
+
+			if (required) {
+				Span span = new Span();
+				span.attribute(Attribute.CLASS, "text-danger");
+				span.add(" * ");
+				title.add(span);
+			}
+			div.add(title);
+		}
+
+		div.add(TagUtil.getBody(getJspBody()));
+		TagUtil.out(getJspContext(), div);
+	}
+
 	}
 
 	public String getLabel() {

@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -48,7 +49,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	private JspWriter writer() {
 		return getJspContext().getOut();
 	}
-	
+
 	private void out(String value) {
 		try {
 			if (!StringUtils.isEmpty(value)) {
@@ -65,10 +66,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	private String version() {
 		return "3.1.0";
-	}
-	
-	public Element empty() {
-		return ElementCreator.newNull();
 	}
 
 	public Boolean rendered() {
@@ -102,13 +99,26 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return cloneableJsAppender != null ? "__" + cloneableJsAppender.index() : "";
 	}
 
-	public abstract Element render();
+	public void bypass() {
+
+	}
+
+	public List<Element> renders() {
+		return Arrays.asList(render());
+	}
+
+	public Element render() {
+		return ElementCreator.newNull();
+	}
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered()) {
 			acquireBodyContent();
-			out(render());
+			bypass();
+			for (Element element : renders()) {
+				out(element);
+			}
 		}
 	}
 

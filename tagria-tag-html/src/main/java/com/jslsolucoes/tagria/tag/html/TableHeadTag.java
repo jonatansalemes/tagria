@@ -11,18 +11,18 @@ public class TableHeadTag extends AbstractSimpleTagSupport {
 	private String labelKey;
 
 	@Override
-	public void render() {
-		Element th = th();
+	public Element render() {
+		return th();
+	}
+
+	private Element th() {
+		Element th = ElementCreator.newTh();
 		if (hasKeyOrLabel(labelKey, label)) {
 			th.add(keyOrLabel(labelKey, label));
 		} else {
 			th.add(bodyContent());
 		}
-		out(th);
-	}
-
-	private Element th() {
-		return ElementCreator.newTh();
+		return th;
 	}
 
 	public String getLabel() {

@@ -15,9 +15,12 @@ public class TableTag extends AbstractSimpleTagSupport {
 	private Boolean border = Boolean.FALSE;
 
 	@Override
-	public void render() {
-		Element table = table();
+	public Element render() {
+		return table();
+	}
 
+	public Element table() {
+		Element table = ElementCreator.newTable().attribute(Attribute.CLASS, "table").add(bodyContent());
 		if (stripe) {
 			table.attribute(Attribute.CLASS, "table-striped");
 		}
@@ -37,12 +40,7 @@ public class TableTag extends AbstractSimpleTagSupport {
 		if (border) {
 			table.attribute(Attribute.CLASS, "table-bordered");
 		}
-
-		out(table);
-	}
-
-	public Element table() {
-		return ElementCreator.newTable().attribute(Attribute.CLASS, "table").add(bodyContent());
+		return table;
 	}
 
 	public Boolean getStripe() {

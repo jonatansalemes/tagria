@@ -1,8 +1,8 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class RecaptchaTag extends AbstractSimpleTagSupport {
@@ -10,12 +10,13 @@ public class RecaptchaTag extends AbstractSimpleTagSupport {
 	private String siteKey;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return div();
+	}
 
-		Div div = new Div();
-		div.attribute(Attribute.CLASS, "g-recaptcha");
-		div.attribute(Attribute.DATA_SITEKEY, siteKey);
-		TagUtil.out(getJspContext(), div);
+	private Element div() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "g-recaptcha").attribute(Attribute.DATA_SITEKEY,
+				siteKey);
 	}
 
 	public String getSiteKey() {

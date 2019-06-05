@@ -20,60 +20,60 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	private String validation;
 	private String label;
 	private String toolbar;
-	
+
 	private Boolean multipart = Boolean.FALSE;
 	private String target = "_self";
 
 	@Override
 	public void render() {
-		
 
-			Div container = new Div();
-			container.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm");
+		Div container = new Div();
+		container.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm");
 
-			Form form = new Form();
-			form.attribute(Attribute.NOVALIDATE, "novalidate");
-			if (!StringUtils.isEmpty(name)) {
-				form.attribute(Attribute.NAME, name);
-			}
-			form.attribute(Attribute.TARGET, target);
-			form.attribute(Attribute.ID, TagUtil.getId(this));
-			form.attribute(Attribute.METHOD, method);
-			form.attribute(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
-			if (multipart) {
-				form.attribute(Attribute.ENCTYPE, "multipart/form-data");
-			}
-
-			if (!StringUtils.isEmpty(label)) {
-				Div title = new Div();
-				title.attribute(Attribute.CLASS, "text-center");
-				H2 h2 = new H2();
-				h2.attribute(Attribute.CLASS, "text-secondary");
-				h2.add(TagUtil.getLocalized(getLabel(), getJspContext()));
-				title.add(h2);
-				form.add(title);
-			}
-
-			Div errors = new Div();
-			errors.attribute(Attribute.CLASS, "collapse form-error");
-			errors.add("&nbsp;");
-
-			form.add(errors);
-			form.add(TagUtil.getBody(getJspBody()));
-			if (toolbar != null) {
-				form.add(toolbar);
-			}
-
-			container.add(form);
-
-			TagUtil.out(getJspContext(), container);
-
-			TagUtil.appendJs("$('#" + form.attribute(Attribute.ID) + "').form({validation:'"
-					+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
-					+ "',invalid:{email : '" + TagUtil.getLocalizedForLib("form.email.invalid", getJspContext())
-					+ "',max:'" + TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) + "',min:'"
-					+ TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) + "'}});", this);
+		Form form = new Form();
+		form.attribute(Attribute.NOVALIDATE, "novalidate");
+		if (!StringUtils.isEmpty(name)) {
+			form.attribute(Attribute.NAME, name);
 		}
+		form.attribute(Attribute.TARGET, target);
+		form.attribute(Attribute.ID, TagUtil.getId(this));
+		form.attribute(Attribute.METHOD, method);
+		form.attribute(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
+		if (multipart) {
+			form.attribute(Attribute.ENCTYPE, "multipart/form-data");
+		}
+
+		if (!StringUtils.isEmpty(label)) {
+			Div title = new Div();
+			title.attribute(Attribute.CLASS, "text-center");
+			H2 h2 = new H2();
+			h2.attribute(Attribute.CLASS, "text-secondary");
+			h2.add(TagUtil.getLocalized(getLabel(), getJspContext()));
+			title.add(h2);
+			form.add(title);
+		}
+
+		Div errors = new Div();
+		errors.attribute(Attribute.CLASS, "collapse form-error");
+		errors.add("&nbsp;");
+
+		form.add(errors);
+		form.add(TagUtil.getBody(getJspBody()));
+		if (toolbar != null) {
+			form.add(toolbar);
+		}
+
+		container.add(form);
+
+		TagUtil.out(getJspContext(), container);
+
+		TagUtil.appendJs("$('#" + form.attribute(Attribute.ID) + "').form({validation:'"
+				+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
+				+ "',invalid:{email : '" + TagUtil.getLocalizedForLib("form.email.invalid", getJspContext()) + "',max:'"
+				+ TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) + "',min:'"
+				+ TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) + "'}});", this);
+	}
+
 	}
 
 	public String getMethod() {

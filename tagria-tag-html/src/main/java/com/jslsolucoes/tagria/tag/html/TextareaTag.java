@@ -16,11 +16,10 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	private String placeholderKey;
 	private Boolean required = Boolean.FALSE;
 	private Integer rows = 4;
-	private String cssClass;
 
 	@Override
-	public void render() {
-		out(textarea());
+	public Element render() {
+		return textarea();
 	}
 
 	private Element textarea() {
@@ -82,14 +81,6 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
 	public void setRows(Integer rows) {
 		this.rows = rows;
-	}
-
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
 	}
 
 	public String getPlaceholderKey() {

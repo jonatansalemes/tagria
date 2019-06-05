@@ -18,5 +18,5 @@ public class CData extends AbstractElement {
 	public String html() {
 		return value;
 	}
-	
+
 }

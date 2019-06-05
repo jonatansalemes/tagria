@@ -104,8 +104,8 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 
 		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
 		String afterRemoveFunction = (!StringUtils.isEmpty(afterRemove) ? afterRemove + "();" : "");
-		TagUtil.appendJs("$('#" + container.attribute(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
-				+ ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
+		TagUtil.appendJs("$('#" + container.attribute(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:"
+				+ empty + ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
 				+ afterRemoveFunction + "}});", this);
 
 	}

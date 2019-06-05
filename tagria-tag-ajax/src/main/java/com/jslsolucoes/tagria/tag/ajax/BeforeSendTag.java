@@ -1,14 +1,12 @@
 package com.jslsolucoes.tagria.tag.ajax;
 
-import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class BeforeSendTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public Element render() {
+	public void bypass() {
 		findAncestorWithClass(FunctionTag.class).setBeforeSend(bodyContent());
-		return empty();
 	}
 
 }

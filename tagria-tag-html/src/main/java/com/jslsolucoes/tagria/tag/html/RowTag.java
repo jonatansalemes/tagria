@@ -1,9 +1,11 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class RowTag extends AbstractSimpleTagSupport {
@@ -11,15 +13,16 @@ public class RowTag extends AbstractSimpleTagSupport {
 	private String cssClass;
 
 	@Override
-	public void render() {
-		Div div = new Div();
-		div.attribute(Attribute.CLASS, "row");
+	public Element render() {
+		return div();
+	}
 
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "row").add(bodyContent());
 		if (!StringUtils.isEmpty(cssClass)) {
 			div.attribute(Attribute.CLASS, cssClass);
 		}
-		div.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), div);
+		return div;
 	}
 
 	public String getCssClass() {

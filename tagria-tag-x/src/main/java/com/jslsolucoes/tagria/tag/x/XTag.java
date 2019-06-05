@@ -23,7 +23,7 @@ public class XTag {
 	private XTag() {
 
 	}
-	
+
 	public static String urlEncode(String content) throws UnsupportedEncodingException {
 		return URLEncoder.encode(content, "UTF-8");
 	}

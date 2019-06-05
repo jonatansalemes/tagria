@@ -1,31 +1,25 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Small;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class SmallTag extends AbstractSimpleTagSupport {
 
-	private String cssClass;
-
 	@Override
-	public void render() {
-		Small small = new Small();
+	public Element render() {
+		return small();
+	}
+
+	private Element small() {
+		Element small = ElementCreator.newSmall().add(bodyContent());
 		if (!StringUtils.isEmpty(cssClass)) {
 			small.attribute(Attribute.CLASS, cssClass);
 		}
-		small.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), small);
+		return small;
 	}
-
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
-
 }

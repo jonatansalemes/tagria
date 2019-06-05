@@ -7,8 +7,8 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class H3Tag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(h3());
+	public Element render() {
+		return h3();
 	}
 
 	private Element h3() {

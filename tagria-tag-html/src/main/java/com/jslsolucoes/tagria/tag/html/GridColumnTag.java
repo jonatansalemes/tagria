@@ -20,7 +20,7 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 	private Boolean collapsable = Boolean.FALSE;
 	private Boolean exportable = Boolean.FALSE;
 	private String align = "left";
-	
+
 	private String state;
 	private String hideOnViewport;
 	private String formatType;
@@ -29,70 +29,70 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 
 	@Override
 	public void render() {
-		
 
-			String body = TagUtil.getBody(getJspBody());
+		String body = TagUtil.getBody(getJspBody());
 
-			if (collapsable || booleanType) {
-				align = "center";
-			}
-
-			GridTag grid = TagUtil.findAncestorWithClass(this, GridTag.class);
-
-			Th th = new Th();
-			th.attribute(Attribute.CLASS, "text-" + align);
-			if (!StringUtils.isEmpty(hideOnViewport)) {
-				th.attribute(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
-			}
-
-			if (exportable) {
-				th.attribute(Attribute.CLASS, "grid-column-exportable");
-			}
-			if (!StringUtils.isEmpty(label)) {
-				th.add(TagUtil.getLocalized(label, getJspContext()));
-			}
-			grid.addTh(th);
-
-			Td td = new Td();
-			td.attribute(Attribute.CLASS, "text-" + align);
-			td.attribute(Attribute.CLASS, "v-align-middle");
-
-			if (!StringUtils.isEmpty(state)) {
-				td.attribute(Attribute.CLASS, "bg-" + state);
-			}
-
-			if (!StringUtils.isEmpty(hideOnViewport)) {
-				td.attribute(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
-			}
-
-			if (exportable) {
-				td.attribute(Attribute.CLASS, "grid-column-exportable");
-			}
-			if (!StringUtils.isEmpty(body)) {
-				Div container = new Div();
-				if (collapsable) {
-					td.attribute(Attribute.CLASS, "grid-column-collapsable");
-					Span icon = new Span();
-					icon.attribute(Attribute.CLASS, "fas fa-search");
-					td.add(icon);
-					container.attribute(Attribute.CLASS, "collapse grid-column-collapsable-content");
-				}
-
-				if (!StringUtils.isEmpty(formatType)) {
-					container.add(TagUtil.format(formatType, formatMatch, formatReplace, body, getJspContext()));
-				} else if (booleanType) {
-					if ("1".equals(body) || "true".equals(body)) {
-						Span icon = new Span();
-						icon.attribute(Attribute.CLASS, "fas fa-check");
-						container.add(icon);
-					}
-				} else {
-					container.add(body);
-				}
-				td.add(container);
-			}
-			TagUtil.out(getJspContext(), td);
+		if (collapsable || booleanType) {
+			align = "center";
 		}
+
+		GridTag grid = TagUtil.findAncestorWithClass(this, GridTag.class);
+
+		Th th = new Th();
+		th.attribute(Attribute.CLASS, "text-" + align);
+		if (!StringUtils.isEmpty(hideOnViewport)) {
+			th.attribute(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
+		}
+
+		if (exportable) {
+			th.attribute(Attribute.CLASS, "grid-column-exportable");
+		}
+		if (!StringUtils.isEmpty(label)) {
+			th.add(TagUtil.getLocalized(label, getJspContext()));
+		}
+		grid.addTh(th);
+
+		Td td = new Td();
+		td.attribute(Attribute.CLASS, "text-" + align);
+		td.attribute(Attribute.CLASS, "v-align-middle");
+
+		if (!StringUtils.isEmpty(state)) {
+			td.attribute(Attribute.CLASS, "bg-" + state);
+		}
+
+		if (!StringUtils.isEmpty(hideOnViewport)) {
+			td.attribute(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
+		}
+
+		if (exportable) {
+			td.attribute(Attribute.CLASS, "grid-column-exportable");
+		}
+		if (!StringUtils.isEmpty(body)) {
+			Div container = new Div();
+			if (collapsable) {
+				td.attribute(Attribute.CLASS, "grid-column-collapsable");
+				Span icon = new Span();
+				icon.attribute(Attribute.CLASS, "fas fa-search");
+				td.add(icon);
+				container.attribute(Attribute.CLASS, "collapse grid-column-collapsable-content");
+			}
+
+			if (!StringUtils.isEmpty(formatType)) {
+				container.add(TagUtil.format(formatType, formatMatch, formatReplace, body, getJspContext()));
+			} else if (booleanType) {
+				if ("1".equals(body) || "true".equals(body)) {
+					Span icon = new Span();
+					icon.attribute(Attribute.CLASS, "fas fa-check");
+					container.add(icon);
+				}
+			} else {
+				container.add(body);
+			}
+			td.add(container);
+		}
+		TagUtil.out(getJspContext(), td);
+	}
+
 	}
 
 	public String getLabel() {

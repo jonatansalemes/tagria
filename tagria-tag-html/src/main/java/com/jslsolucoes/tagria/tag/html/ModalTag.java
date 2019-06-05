@@ -22,78 +22,77 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	private Boolean closeable = Boolean.TRUE;
 	private Boolean centered = Boolean.FALSE;
 	private Boolean open = Boolean.FALSE;
-	
+
 	private String toolbar;
 	private String size;
 
 	@Override
 	public void render() {
-		
-			Div modal = new Div();
-			modal.attribute(Attribute.CLASS, "modal fade");
-			modal.attribute(Attribute.ID, TagUtil.getId(id, this));
 
-			if (!closeable) {
-				modal.attribute(Attribute.DATA_KEYBOARD, "false");
-				modal.attribute(Attribute.DATA_BACKDROP, "static");
-			}
+		Div modal = new Div();
+		modal.attribute(Attribute.CLASS, "modal fade");
+		modal.attribute(Attribute.ID, TagUtil.getId(id, this));
 
-			Div dialog = new Div();
-			dialog.attribute(Attribute.CLASS, "modal-dialog");
-			if (!StringUtils.isEmpty(size)) {
-				dialog.attribute(Attribute.CLASS, "modal-" + size);
-			}
-			if (centered) {
-				dialog.attribute(Attribute.CLASS, "modal-dialog-centered");
-			}
-
-			Div content = new Div();
-			content.attribute(Attribute.CLASS, "modal-content");
-
-			Div header = new Div();
-			header.attribute(Attribute.CLASS, "modal-header");
-
-			H4 h4 = new H4();
-			h4.attribute(Attribute.CLASS, "modal-title");
-			h4.add(TagUtil.getLocalized(label, getJspContext()));
-			header.add(h4);
-
-			if (closeable) {
-				Button close = new Button();
-				close.attribute(Attribute.CLASS, "close");
-				close.attribute(Attribute.DATA_DISMISS, "modal");
-				close.add(new Span().add("&times;"));
-				header.add(close);
-			}
-
-			content.add(header);
-
-			Div body = new Div();
-			body.attribute(Attribute.CLASS, "modal-body");
-			body.add(TagUtil.getBody(getJspBody()));
-			content.add(body);
-
-			if (!StringUtils.isEmpty(toolbar)) {
-				Div footer = new Div();
-				footer.attribute(Attribute.CLASS, "modal-footer");
-				footer.add(toolbar);
-				content.add(footer);
-			}
-
-			dialog.add(content);
-			modal.add(dialog);
-			TagUtil.out(getJspContext(), modal);
-
-			TagUtil.appendJs(
-					"$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
-							+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(Attribute.ID) + "');",
-					this);
-
-			if (open != null && open) {
-				TagUtil.appendJs("$('#" + modal.attribute(Attribute.ID) + "').modal('show')", this);
-
-			}
+		if (!closeable) {
+			modal.attribute(Attribute.DATA_KEYBOARD, "false");
+			modal.attribute(Attribute.DATA_BACKDROP, "static");
 		}
+
+		Div dialog = new Div();
+		dialog.attribute(Attribute.CLASS, "modal-dialog");
+		if (!StringUtils.isEmpty(size)) {
+			dialog.attribute(Attribute.CLASS, "modal-" + size);
+		}
+		if (centered) {
+			dialog.attribute(Attribute.CLASS, "modal-dialog-centered");
+		}
+
+		Div content = new Div();
+		content.attribute(Attribute.CLASS, "modal-content");
+
+		Div header = new Div();
+		header.attribute(Attribute.CLASS, "modal-header");
+
+		H4 h4 = new H4();
+		h4.attribute(Attribute.CLASS, "modal-title");
+		h4.add(TagUtil.getLocalized(label, getJspContext()));
+		header.add(h4);
+
+		if (closeable) {
+			Button close = new Button();
+			close.attribute(Attribute.CLASS, "close");
+			close.attribute(Attribute.DATA_DISMISS, "modal");
+			close.add(new Span().add("&times;"));
+			header.add(close);
+		}
+
+		content.add(header);
+
+		Div body = new Div();
+		body.attribute(Attribute.CLASS, "modal-body");
+		body.add(TagUtil.getBody(getJspBody()));
+		content.add(body);
+
+		if (!StringUtils.isEmpty(toolbar)) {
+			Div footer = new Div();
+			footer.attribute(Attribute.CLASS, "modal-footer");
+			footer.add(toolbar);
+			content.add(footer);
+		}
+
+		dialog.add(content);
+		modal.add(dialog);
+		TagUtil.out(getJspContext(), modal);
+
+		TagUtil.appendJs("$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
+				+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(Attribute.ID) + "');", this);
+
+		if (open != null && open) {
+			TagUtil.appendJs("$('#" + modal.attribute(Attribute.ID) + "').modal('show')", this);
+
+		}
+	}
+
 	}
 
 	public String getId() {

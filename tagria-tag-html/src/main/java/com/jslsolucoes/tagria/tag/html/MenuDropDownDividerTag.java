@@ -2,17 +2,19 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class MenuDropDownDividerTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		Div div = new Div();
-		div.attribute(Attribute.CLASS, "dropdown-divider");
-		TagUtil.out(getJspContext(), div);
+	public Element render() {
+		return div();
+	}
+
+	private Element div() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown-divider");
 	}
 
 }

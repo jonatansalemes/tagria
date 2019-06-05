@@ -17,11 +17,9 @@ public class TabTag extends AbstractSimpleTagSupport {
 	private Boolean reloadOnSelect = Boolean.TRUE;
 
 	@Override
-	public void render() {
-		TabPanelTag tabPanelTag = findAncestorWithClass(TabPanelTag.class);
+	public void bypass() {
 		String id = id();
-		tabPanelTag.addLi(li(id));
-		tabPanelTag.addDiv(div(id));
+		findAncestorWithClass(TabPanelTag.class).li(li(id)).div(div(id));
 	}
 
 	private Element div(String id) {

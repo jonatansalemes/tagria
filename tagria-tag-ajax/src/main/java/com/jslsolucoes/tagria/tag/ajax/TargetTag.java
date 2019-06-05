@@ -3,7 +3,6 @@ package com.jslsolucoes.tagria.tag.ajax;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class TargetTag extends AbstractSimpleTagSupport {
@@ -13,9 +12,8 @@ public class TargetTag extends AbstractSimpleTagSupport {
 	private String value;
 
 	@Override
-	public Element render() {
+	public void bypass() {
 		findAncestorWithClass(FunctionTag.class).addOnSuccess(jsCode());
-		return empty();
 	}
 
 	private String jsCode() {

@@ -33,9 +33,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	}
 
 	@Override
-	public void render() {
-		out(docTypeHtml5());
-		out(html());
+	public List<Element> renders() {
+		return Arrays.asList(docTypeHtml5(), html());
 	}
 
 	private String lang() {
@@ -78,13 +77,13 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 				.attribute(Attribute.HREF, pathForUrl("/favicon.ico"));
 	}
 
-	private Element noScriptBody() {
+	private Element divNoScript() {
 		return ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-danger")
 				.add(keyForLibrary("app.no.script"));
 	}
 
 	private Element noScript() {
-		return ElementCreator.newNoScript().add(noScriptBody());
+		return ElementCreator.newNoScript().add(divNoScript());
 	}
 
 	private Element metaDescription() {
@@ -147,7 +146,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 		return ElementCreator.newScript().attribute(Attribute.SRC, pathForJavascriptOnLibrary("tagria-ui.js"));
 	}
 
-	private String docTypeHtml5() {
+	private Element docTypeHtml5() {
 		return ElementCreator.newDocTypeHtml5();
 	}
 

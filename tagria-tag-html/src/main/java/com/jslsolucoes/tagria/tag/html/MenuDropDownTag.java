@@ -1,44 +1,32 @@
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.Li;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class MenuDropDownTag extends AbstractSimpleTagSupport {
 
-	private String id;
 	private String label;
-	
+	private String labelKey;
 
 	@Override
-	public void render() {
-		
-			Li li = new Li();
-			li.attribute(Attribute.CLASS, "nav-item dropdown");
+	public Element render() {
+		return li();
+	}
 
-			A a = new A();
-			a.attribute(Attribute.HREF, "#");
-			a.attribute(Attribute.ID, TagUtil.getId(id, this));
-			a.attribute(Attribute.CLASS, "nav-link dropdown-toggle");
-			a.attribute(Attribute.DATA_TOGGLE, "dropdown");
-			a.add(TagUtil.getLocalized(label, getJspContext()));
+	private Element li() {
+		return ElementCreator.newLi().attribute(Attribute.CLASS, "nav-item dropdown").add(a()).add(div());
+	}
 
-			li.add(a);
+	private Element div() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown-menu").add(bodyContent());
+	}
 
-			Div div = new Div();
-			div.attribute(Attribute.CLASS, "dropdown-menu");
-			div.add(TagUtil.getBody(getJspBody()));
-			li.add(div);
-
-			TagUtil.out(getJspContext(), li);
-		}
+	private Element a() {
+		return ElementCreator.newA().attribute(Attribute.HREF, "#").attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.CLASS, "nav-link dropdown-toggle").attribute(Attribute.DATA_TOGGLE, "dropdown")
+				.add(keyOrLabel(labelKey, label));
 	}
 
 	public String getLabel() {
@@ -49,19 +37,12 @@ public class MenuDropDownTag extends AbstractSimpleTagSupport {
 		this.label = label;
 	}
 
-	public Boolean getRendered() {
-		return rendered;
+	public String getLabelKey() {
+		return labelKey;
 	}
 
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 }

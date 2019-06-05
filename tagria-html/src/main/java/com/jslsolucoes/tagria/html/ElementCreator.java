@@ -1,7 +1,19 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
-	
+
+	public static DataList newDataList() {
+		return new DataList();
+	}
+
+	public static Nav newNav() {
+		return new Nav();
+	}
+
+	public static CData newCData(String value) {
+		return new CData(value);
+	}
+
 	public static Null newNull() {
 		return new Null();
 	}
@@ -142,7 +154,7 @@ public class ElementCreator {
 		return new NoScript();
 	}
 
-	public static String newDocTypeHtml5() {
-		return DocType.HTML5.definition();
+	public static CData newDocTypeHtml5() {
+		return new CData(DocType.HTML5.definition());
 	}
 }

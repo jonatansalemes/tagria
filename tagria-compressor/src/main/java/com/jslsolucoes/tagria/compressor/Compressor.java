@@ -125,7 +125,7 @@ public class Compressor {
 		if (!folder.exists()) {
 			Files.createDirectories(folder.toPath());
 		}
-		Files.copy(file.toPath(), folder.toPath().resolve(file.getName()),StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(file.toPath(), folder.toPath().resolve(file.getName()), StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	private void writeStringToFile(File file, String content, String charset)

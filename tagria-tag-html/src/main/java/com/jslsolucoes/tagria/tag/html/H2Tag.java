@@ -8,8 +8,8 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class H2Tag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(h2());
+	public Element render() {
+		return h2();
 	}
 
 	private Element h2() {

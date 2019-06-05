@@ -8,8 +8,8 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class HrTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		out(hr());
+	public Element render() {
+		return hr();
 	}
 
 	private Element hr() {

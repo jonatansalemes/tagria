@@ -1,46 +1,50 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
+import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class DropDownItemTag extends AbstractSimpleTagSupport {
 
-	private String id;
 	private String url = "#";
 	private String label;
+	private String labelKey;
 	private String target = "_self";
-	
+
 	private String icon;
 
 	@Override
-	public void render() {
-		
-			A a = new A();
-			a.attribute(Attribute.ID, TagUtil.getId(id, this));
-			a.attribute(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-			a.attribute(Attribute.TARGET, target);
-			a.attribute(Attribute.CLASS, "dropdown-item");
+	public Element render() {
+		return a();
+	}
 
-			if (!StringUtils.isEmpty(icon)) {
-				a.add(new Span().attribute(Attribute.CLASS, "fas fa-" + icon));
-				a.add(" ");
-			}
+	private Element a() {
+		Element a = ElementCreator.newA().attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET, target)
+				.attribute(Attribute.CLASS, "dropdown-item");
 
-			if (!StringUtils.isEmpty(label)) {
-				a.add(TagUtil.getLocalized(label, getJspContext()));
-			} else {
-				a.add(TagUtil.getBody(getJspBody()));
-			}
-			TagUtil.out(getJspContext(), a);
+		if (!StringUtils.isEmpty(icon)) {
+			a.add(span()).add(cdata());
 		}
+
+		if (hasKeyOrLabel(labelKey, label)) {
+			a.add(keyOrLabel(labelKey, label));
+		} else {
+			a.add(bodyContent());
+		}
+		return a;
+	}
+
+	private Element span() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
+	}
+
+	private Element cdata() {
+		return ElementCreator.newCData(" ");
 	}
 
 	public String getLabel() {
@@ -57,14 +61,6 @@ public class DropDownItemTag extends AbstractSimpleTagSupport {
 
 	public void setTarget(String target) {
 		this.target = target;
-	}
-
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
 	}
 
 	public String getIcon() {
@@ -89,6 +85,14 @@ public class DropDownItemTag extends AbstractSimpleTagSupport {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

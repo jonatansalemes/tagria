@@ -98,5 +98,4 @@ public class AlertTag extends AbstractSimpleTagSupport {
 		this.labelKey = labelKey;
 	}
 
-	
 }

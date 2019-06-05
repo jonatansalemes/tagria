@@ -12,6 +12,7 @@ public abstract class AbstractElement implements Element {
 	private List<Element> elements = new ArrayList<>();
 	private Map<String, String> attributes = new HashMap<>();
 
+	
 	public Element add(String html) {
 		return add(new CData(html));
 	}
@@ -50,7 +51,7 @@ public abstract class AbstractElement implements Element {
 		attributes.put(attributeName, newAttributeValue);
 		return this;
 	}
-	
+
 	public String attribute(Attribute attribute) {
 		return attribute(attribute.getName());
 	}
@@ -78,7 +79,7 @@ public abstract class AbstractElement implements Element {
 		}
 		return html.toString();
 	}
-	
+
 	public Boolean closeOnEmpty() {
 		return false;
 	}

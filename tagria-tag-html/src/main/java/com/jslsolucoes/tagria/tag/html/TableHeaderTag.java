@@ -12,19 +12,19 @@ public class TableHeaderTag extends AbstractSimpleTagSupport {
 	private Boolean light = Boolean.FALSE;
 
 	@Override
-	public void render() {
-		Element thead = thead();
+	public Element render() {
+		return thead();
+	}
+
+	private Element thead() {
+		Element thead = ElementCreator.newTHead().add(bodyContent());
 		if (dark) {
 			thead.attribute(Attribute.CLASS, "thead-dark");
 		}
 		if (light) {
 			thead.attribute(Attribute.CLASS, "thead-light");
 		}
-		out(thead);
-	}
-
-	private Element thead() {
-		return ElementCreator.newTHead().add(bodyContent());
+		return thead;
 	}
 
 	public Boolean getDark() {

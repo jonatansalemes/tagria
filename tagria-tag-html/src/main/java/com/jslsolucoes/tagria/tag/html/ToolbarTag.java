@@ -6,8 +6,7 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class ToolbarTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		Toolbar toolbar = findAncestorWithClass(Toolbar.class);
-		toolbar.bodyContent(bodyContent());
+	public void bypass() {
+		findAncestorWithClass(Toolbar.class).bodyContent(bodyContent());
 	}
 }

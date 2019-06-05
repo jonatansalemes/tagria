@@ -11,8 +11,8 @@ public class TableLineTag extends AbstractSimpleTagSupport {
 	private String state = "default";
 
 	@Override
-	public void render() {
-		out(tr());
+	public Element render() {
+		return tr();
 	}
 
 	private Element tr() {

@@ -14,9 +14,13 @@ public class TableColumnTag extends AbstractSimpleTagSupport {
 	private String labelKey;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return td();
+	}
 
-		Element td = td();
+	private Element td() {
+
+		Element td = ElementCreator.newTd().attribute(Attribute.CLASS, "bg-" + state);
 		if (colspan != null) {
 			td.attribute(Attribute.COLSPAN, colspan);
 		}
@@ -25,11 +29,7 @@ public class TableColumnTag extends AbstractSimpleTagSupport {
 		} else {
 			td.add(bodyContent());
 		}
-		out(td);
-	}
-
-	private Element td() {
-		return ElementCreator.newTd().attribute(Attribute.CLASS, "bg-" + state);
+		return td;
 	}
 
 	public Integer getColspan() {

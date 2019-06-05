@@ -11,16 +11,16 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class DivTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void render() {
-		Element div = div();
-		if (!StringUtils.isEmpty(cssClass)) {
-			div.attribute(Attribute.CLASS, cssClass);
-		}
-		out(div);
+	public Element render() {
+		return div();
 	}
 
 	private Element div() {
-		return ElementCreator.newDiv().attribute(Attribute.ID, idForId(id)).add(bodyContent());
+		Element div = ElementCreator.newDiv().attribute(Attribute.ID, idForId(id)).add(bodyContent());
+		if (!StringUtils.isEmpty(cssClass)) {
+			div.attribute(Attribute.CLASS, cssClass);
+		}
+		return div;
 	}
 
 }

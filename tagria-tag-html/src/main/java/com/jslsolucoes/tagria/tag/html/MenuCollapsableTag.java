@@ -1,9 +1,8 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.Ul;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class MenuCollapsableTag extends AbstractSimpleTagSupport {
@@ -11,17 +10,17 @@ public class MenuCollapsableTag extends AbstractSimpleTagSupport {
 	private String id;
 
 	@Override
-	public void render() {
-		Div div = new Div();
-		div.attribute(Attribute.ID, TagUtil.getId(id, this));
-		div.attribute(Attribute.CLASS, "collapse navbar-collapse");
+	public Element render() {
+		return div();
+	}
 
-		Ul ul = new Ul();
-		ul.attribute(Attribute.CLASS, "navbar-nav mr-auto");
-		ul.add(TagUtil.getBody(getJspBody()));
-		div.add(ul);
+	private Element div() {
+		return ElementCreator.newDiv().attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.CLASS, "collapse navbar-collapse").add(ul());
+	}
 
-		TagUtil.out(getJspContext(), div);
+	private Element ul() {
+		return ElementCreator.newUl().attribute(Attribute.CLASS, "navbar-nav mr-auto").add(bodyContent());
 	}
 
 	public String getId() {

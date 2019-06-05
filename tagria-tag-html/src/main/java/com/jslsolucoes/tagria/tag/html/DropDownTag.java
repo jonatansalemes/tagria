@@ -1,49 +1,42 @@
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class DropDownTag extends AbstractSimpleTagSupport {
 
 	private String id;
 	private String label;
-	
+	private String labelKey;
 	private String state = "primary";
 	private String size;
 
 	@Override
-	public void render() {
-		
-			Div dropDown = new Div();
-			dropDown.attribute(Attribute.CLASS, "dropdown");
+	public Element render() {
+		return div();
+	}
 
-			Button button = new Button();
-			button.attribute(Attribute.TYPE, "button");
-			button.attribute(Attribute.ID, TagUtil.getId(id, this));
-			button.attribute(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm dropdown-toggle");
-			button.attribute(Attribute.DATA_TOGGLE, "dropdown");
-			if (!StringUtils.isEmpty(size)) {
-				button.attribute(Attribute.CLASS, "btn-" + size);
-			}
+	private Element div() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown").add(button()).add(divDropDown());
+	}
 
-			button.add(TagUtil.getLocalized(label, getJspContext()));
+	private Element divDropDown() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown-menu").add(bodyContent());
+	}
 
-			dropDown.add(button);
-
-			Div div = new Div();
-			div.attribute(Attribute.CLASS, "dropdown-menu");
-			div.add(TagUtil.getBody(getJspBody()));
-			dropDown.add(div);
-
-			TagUtil.out(getJspContext(), dropDown);
+	private Element button() {
+		Element button = ElementCreator.newButton().attribute(Attribute.TYPE, "button")
+				.attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm dropdown-toggle")
+				.attribute(Attribute.DATA_TOGGLE, "dropdown").add(keyOrLabel(labelKey, label));
+		if (!StringUtils.isEmpty(size)) {
+			button.attribute(Attribute.CLASS, "btn-" + size);
 		}
+		return button;
 	}
 
 	public String getLabel() {
@@ -84,5 +77,13 @@ public class DropDownTag extends AbstractSimpleTagSupport {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 }

@@ -1,50 +1,49 @@
 package com.jslsolucoes.tagria.tag.html;
 
-import java.io.IOException;
+import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Li;
-import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class MenuLinkTag extends AbstractSimpleTagSupport {
 
 	private String url = "#";
 	private String label;
+	private String labelKey;
 	private String target = "_self";
 	private String icon;
-	private String id;
-	
 
 	@Override
-	public void render() {
-		
+	public Element render() {
+		return li();
+	}
 
-			A a = new A();
-			a.attribute(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-			a.attribute(Attribute.TARGET, target);
-			a.attribute(Attribute.ID, TagUtil.getId(id, this));
-			a.attribute(Attribute.CLASS, "nav-link");
+	private Element span() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
+	}
 
-			if (!StringUtils.isEmpty(icon)) {
-				a.add(new Span().attribute(Attribute.CLASS, "fas fa-" + icon));
-				a.add(" ");
-			}
-
-			if (!StringUtils.isEmpty(label)) {
-				a.add(TagUtil.getLocalized(label, getJspContext()));
-			} else {
-				a.add(TagUtil.getBody(getJspBody()));
-			}
-			Li li = new Li();
-			li.attribute(Attribute.CLASS, "nav-item");
-			li.add(a);
-			TagUtil.out(getJspContext(), li);
+	private Element a() {
+		Element a = ElementCreator.newA().attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET, target)
+				.attribute(Attribute.ID, idForId(id)).attribute(Attribute.CLASS, "nav-link");
+		if (!StringUtils.isEmpty(icon)) {
+			a.add(span()).add(cdata());
 		}
+		if (hasKeyOrLabel(labelKey, label)) {
+			a.add(keyOrLabel(labelKey, label));
+		} else {
+			a.add(bodyContent());
+		}
+		return a;
+	}
+
+	private Element cdata() {
+		return ElementCreator.newCData(" ");
+	}
+
+	private Element li() {
+		return ElementCreator.newLi().attribute(Attribute.CLASS, "nav-item").add(a());
 	}
 
 	public String getUrl() {
@@ -87,11 +86,11 @@ public class MenuLinkTag extends AbstractSimpleTagSupport {
 		this.rendered = rendered;
 	}
 
-	public String getId() {
-		return id;
+	public String getLabelKey() {
+		return labelKey;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 }

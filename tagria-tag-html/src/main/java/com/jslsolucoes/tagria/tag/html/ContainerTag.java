@@ -11,8 +11,8 @@ public class ContainerTag extends AbstractSimpleTagSupport {
 	private Boolean fluid = Boolean.FALSE;
 
 	@Override
-	public void render() {
-		out(container());
+	public Element render() {
+		return container();
 	}
 
 	private Element container() {

@@ -1,14 +1,17 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Img;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class ImageTag extends AbstractSimpleTagSupport {
 
 	private String alt;
+	private String altKey;
 	private String shape;
 	private Integer height;
 	private String url;
@@ -18,9 +21,14 @@ public class ImageTag extends AbstractSimpleTagSupport {
 	private Boolean responsive = true;
 
 	@Override
-	public void render() {
+	public Element render() {
 
-		Img img = new Img();
+		return img();
+	}
+
+	private Element img() {
+		Element img = ElementCreator.newImg().attribute(Attribute.SRC, pathForStatic(url, cdn)).attribute(Attribute.ALT,
+				keyOrLabel(altKey, alt));
 		if (responsive) {
 			img.attribute(Attribute.CLASS, "img-responsive");
 		}
@@ -30,15 +38,13 @@ public class ImageTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(cssClass)) {
 			img.attribute(Attribute.CLASS, cssClass);
 		}
-		img.attribute(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-		img.attribute(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
 		if (width != null) {
 			img.attribute(Attribute.WIDTH, width);
 		}
 		if (height != null) {
 			img.attribute(Attribute.HEIGHT, height);
 		}
-		TagUtil.out(getJspContext(), img);
+		return img;
 	}
 
 	public String getAlt() {
@@ -103,5 +109,13 @@ public class ImageTag extends AbstractSimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getAltKey() {
+		return altKey;
+	}
+
+	public void setAltKey(String altKey) {
+		this.altKey = altKey;
 	}
 }

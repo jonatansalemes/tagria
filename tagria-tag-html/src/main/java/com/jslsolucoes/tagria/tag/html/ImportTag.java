@@ -1,10 +1,10 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Link;
-import com.jslsolucoes.tagria.html.Script;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class ImportTag extends AbstractSimpleTagSupport {
@@ -13,19 +13,22 @@ public class ImportTag extends AbstractSimpleTagSupport {
 	private String url;
 
 	@Override
-	public void render() {
-
+	public Element render() {
 		if ("css".equals(type)) {
-			Link link = new Link();
-			link.attribute(Attribute.REL, "stylesheet");
-			link.attribute(Attribute.TYPE, "text/css");
-			link.attribute(Attribute.HREF, TagUtil.getPathForStatic(getJspContext(), url));
-			TagUtil.out(getJspContext(), link);
+			return link();
 		} else if ("js".equals(type)) {
-			Script script = new Script();
-			script.attribute(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url));
-			TagUtil.out(getJspContext(), script);
+			return script();
 		}
+		throw new TagriaRuntimeException("Type " + type + " is not supported. Options: js,css");
+	}
+
+	private Element script() {
+		return ElementCreator.newScript().attribute(Attribute.SRC, pathForStatic(url));
+	}
+
+	private Element link() {
+		return ElementCreator.newLink().attribute(Attribute.REL, "stylesheet").attribute(Attribute.TYPE, "text/css")
+				.attribute(Attribute.HREF, pathForStatic(url));
 	}
 
 	public String getType() {

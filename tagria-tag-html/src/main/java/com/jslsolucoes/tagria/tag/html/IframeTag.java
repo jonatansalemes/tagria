@@ -1,30 +1,32 @@
 
 package com.jslsolucoes.tagria.tag.html;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Iframe;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 
 public class IframeTag extends AbstractSimpleTagSupport {
 
 	private String name;
-	private String id;
 	private String url;
-	private String cssClass;
 
 	@Override
-	public void render() {
-		Iframe iframe = new Iframe();
-		iframe.attribute(Attribute.CLASS, "iframe");
+	public Element render() {
+		return iframe();
+	}
+
+	private Element iframe() {
+		Element iframe = ElementCreator.newIframe().attribute(Attribute.CLASS, "iframe").attribute(Attribute.NAME, name)
+				.attribute(Attribute.ID, id(name, id)).attribute(Attribute.SRC, pathForUrl(url));
 		if (!StringUtils.isEmpty(cssClass)) {
 			iframe.attribute(Attribute.CLASS, cssClass);
 		}
-		iframe.attribute(Attribute.NAME, name);
-		iframe.attribute(Attribute.ID, TagUtil.getId(name, id, this));
-		iframe.attribute(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));
-		TagUtil.out(getJspContext(), iframe);
-		TagUtil.appendJs("$('#" + iframe.attribute(Attribute.ID) + "').iframe();", this);
+		appendJsCode("$('#" + iframe.attribute(Attribute.ID) + "').iframe();");
+		return iframe;
+
 	}
 
 	public String getName() {
@@ -35,14 +37,6 @@ public class IframeTag extends AbstractSimpleTagSupport {
 		this.name = name;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getUrl() {
 		return url;
 	}
@@ -51,11 +45,4 @@ public class IframeTag extends AbstractSimpleTagSupport {
 		this.url = url;
 	}
 
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
 }

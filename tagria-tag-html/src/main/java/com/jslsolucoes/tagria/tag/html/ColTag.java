@@ -17,8 +17,12 @@ public class ColTag extends AbstractSimpleTagSupport {
 	private String cssClass;
 
 	@Override
-	public void render() {
-		Element col = col();
+	public Element render() {
+		return col();
+	}
+
+	private Element col() {
+		Element col = ElementCreator.newDiv().attribute(Attribute.CLASS, "col").add(bodyContent());
 		if (extraSmall != null) {
 			col.attribute(Attribute.CLASS, "col-" + extraSmall);
 		}
@@ -34,12 +38,7 @@ public class ColTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(cssClass)) {
 			col.attribute(Attribute.CLASS, cssClass);
 		}
-		out(col);
-
-	}
-
-	private Element col() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "col").add(bodyContent());
+		return col;
 	}
 
 	public Integer getExtraSmall() {

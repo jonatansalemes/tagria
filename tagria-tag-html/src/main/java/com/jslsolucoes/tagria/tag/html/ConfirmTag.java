@@ -81,10 +81,8 @@ public class ConfirmTag extends AbstractSimpleTagSupport {
 		modal.add(dialog);
 		TagUtil.out(getJspContext(), modal);
 
-		TagUtil.appendJs(
-				"$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
-						+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(Attribute.ID) + "');",
-				this);
+		TagUtil.appendJs("$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
+				+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(Attribute.ID) + "');", this);
 	}
 
 	public String getLabel() {

@@ -15,9 +15,8 @@ public class TabPanelTag extends AbstractSimpleTagSupport {
 	private List<Element> divs = new ArrayList<>();
 
 	@Override
-	public void render() {
-		flushBodyContent();
-		out(div());
+	public Element render() {
+		return div();
 	}
 
 	private Element div() {
@@ -34,12 +33,14 @@ public class TabPanelTag extends AbstractSimpleTagSupport {
 		return ElementCreator.newUl().attribute(Attribute.CLASS, "nav nav-tabs").add(lis);
 	}
 
-	public void addLi(Element element) {
+	public TabPanelTag li(Element element) {
 		lis.add(element);
+		return this;
 	}
 
-	public void addDiv(Element element) {
+	public TabPanelTag div(Element element) {
 		divs.add(element);
+		return this;
 	}
 
 }
