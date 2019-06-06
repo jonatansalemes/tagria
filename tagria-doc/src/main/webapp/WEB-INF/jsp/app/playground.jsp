@@ -100,5 +100,7 @@
 	
 	<html:icon icon="search"></html:icon>
 	
+	<html:iframe url="/app/welcome" name="ifr1"></html:iframe>
+	
 	
 </html:view>

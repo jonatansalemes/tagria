@@ -43,6 +43,7 @@ public class AuthRulesTag extends AbstractSimpleTagSupport {
 	}
 
 	private Boolean allowed() {
+		flushBodyContent();
 		Authorizer authorizer = authorizer();
 		HttpServletRequest httpServletRequest = httpServletRequest();
 		HttpServletResponse httpServletResponse = httpServletResponse();

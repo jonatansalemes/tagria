@@ -24,6 +24,7 @@ public class FunctionTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void bypass() {
+		flushBodyContent();
 		try (StringWriter stringWriter = new StringWriter()) {
 			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "function.tpl")
 					.withData("name", name).withData("url", pathForUrl(url)).withData("dataType", dataType)

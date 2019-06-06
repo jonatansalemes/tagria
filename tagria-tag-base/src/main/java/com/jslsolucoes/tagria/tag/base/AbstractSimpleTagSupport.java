@@ -109,7 +109,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public void bypass() {
-
+		
 	}
 
 	public List<Element> renders() {
@@ -122,7 +122,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		flushBodyContent();
 		if (rendered()) {
 			bypass();
 			for (Element element : renders()) {
@@ -154,8 +153,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	private JspFragment jspbody() {
 		return getJspBody();
 	}
-
-	private void flushBodyContent() {
+	
+	public void flushBodyContent() {
 		bodyContent();
 	}
 
