@@ -15,7 +15,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a view . This view must be declared ONLY ONCE and main tag used throughout view</description>
 		<display-name>Misc</display-name>
 		<name>view</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ViewTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ViewTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates if javascript must be minified. Default:true</description>
@@ -51,7 +51,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a menu dropdown divider</description>
 		<display-name>Misc</display-name>
 		<name>dropDownDivider</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.DropDownDividerTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DropDownDividerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:dropDown label="List"&gt;
@@ -66,7 +66,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a dropdown item list</description>
 		<display-name>Misc</display-name>
 		<name>dropDownItem</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.DropDownItemTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DropDownItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -119,7 +119,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a dropdown list</description>
 		<display-name>Misc</display-name>
 		<name>dropDown</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.DropDownTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DropDownTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -165,7 +165,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a carousel</description>
 		<display-name>Carousel</display-name>
 		<name>carousel</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CarouselTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CarouselTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for carousel</description>
@@ -188,7 +188,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a carousel item</description>
 		<display-name>Carousel</display-name>
 		<name>carouselItem</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CarouselItemTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CarouselItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label of carousel item</description>
@@ -230,7 +230,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an carousel image</description>
 		<display-name>Carousel</display-name>
 		<name>carouselImage</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CarouselImageTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CarouselImageTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the height component</description>
@@ -282,7 +282,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a jumbotron</description>
 		<display-name>Misc</display-name>
 		<name>jumbotron</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.JumbotronTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.JumbotronTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:jumbotron&gt; &lt;html:h1&gt; Header &lt;/html:h1&gt; &lt;/html:jumbotron&gt; </example>
@@ -292,7 +292,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a mask in currency format for a particular input</description>
 		<display-name>Mask</display-name>
 		<name>currencyMask</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CurrencyMaskTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CurrencyMaskTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component name to attach currency mask</description>
@@ -316,7 +316,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders event on mask after any key press</description>
 		<display-name>Mask</display-name>
 		<name>maskOnKeyPress</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MaskTagOnKeyPress</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MaskOnKeyPressTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:input name="teste"/&gt;
@@ -333,7 +333,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a h1</description>
 		<display-name>Html</display-name>
 		<name>h1</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.H1Tag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.H1Tag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:h1&gt; Cabecalho &lt;/html:h1&gt; </example>
@@ -343,7 +343,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a menu link</description>
 		<display-name>Menu</display-name>
 		<name>menuLink</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuLinkTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuLinkTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the icon to be used. available list https://fontawesome.com/icons</description>
@@ -396,7 +396,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a h3</description>
 		<display-name>Html</display-name>
 		<name>h3</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.H3Tag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.H3Tag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:h3&gt; Cabecalho &lt;/html:h3&gt; </example>
@@ -406,7 +406,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a block with top and bottom spacing</description>
 		<display-name>Misc</display-name>
 		<name>block</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.BlockTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.BlockTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered . Default : true</description>
@@ -436,7 +436,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a data list component</description>
 		<display-name>Input</display-name>
 		<name>dataList</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.DataListTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DataListTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -472,9 +472,31 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:input name="dl" list="myDatalist1"/&gt;
 			&lt;html:dataList id="myDatalist1" data="${ persons }" var="person"&gt;
-				&lt;html:option value="${ person.id }"&gt;
+				&lt;html:dataListOption value="${ person.id }"&gt;
 					${ person.name }
-				&lt;/html:option&gt;
+				&lt;/html:dataListOption&gt;
+			&lt;/html:dataList&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders an option of data list</description>
+		<display-name>Input</display-name>
+		<name>dataListOption</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DataListOptionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the value of the component</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="dl" list="myDatalist1"/&gt;
+			&lt;html:dataList id="myDatalist1" data="${ persons }" var="person"&gt;
+				&lt;html:dataListOption value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:dataListOption&gt;
 			&lt;/html:dataList&gt; </example>
 	</tag>
 
@@ -483,7 +505,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a google recaptcha</description>
 		<display-name>Misc</display-name>
 		<name>recaptcha</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.RecaptchaTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.RecaptchaTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the site key available in google account developer for recaptcha</description>
@@ -502,7 +524,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a data block iteration</description>
 		<display-name>Layout</display-name>
 		<name>dataBlock</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.DataBlockTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DataBlockTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the collection to be iterated by the component</description>
@@ -555,7 +577,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a select box</description>
 		<display-name>Input</display-name>
 		<name>select</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.SelectTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.SelectTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -624,7 +646,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an option of a select box</description>
 		<display-name>Input</display-name>
 		<name>option</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.OptionTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.OptionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the value of the component</description>
@@ -645,7 +667,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an textarea</description>
 		<display-name>Input</display-name>
 		<name>textarea</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TextareaTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TextareaTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component name</description>
@@ -692,7 +714,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a detail table</description>
 		<display-name>Detail table</display-name>
 		<name>multipleFormGroup</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MultipleFormGroupTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MultipleFormGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -713,7 +735,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates the name of the variable java (com.jslsolucoes.tagria.tag.html.VarStatus) to be made available the index of iteration.  </description>
+			<description>It indicates the name of the variable java (com.jslsolucoes.tagria.tag.html.tag.VarStatus) to be made available the index of iteration.  </description>
 			<name>varStatus</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -754,7 +776,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an icon</description>
 		<display-name>Image</display-name>
 		<name>icon</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.IconTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.IconTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the icon to be used. available list https://fontawesome.com/icons</description>
@@ -782,7 +804,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a table</description>
 		<display-name>Table</display-name>
 		<name>table</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the table should be striped rows. Default : false</description>
@@ -831,7 +853,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a line of a table</description>
 		<display-name>Table</display-name>
 		<name>tableLine</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableLineTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableLineTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
@@ -862,7 +884,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a table column</description>
 		<display-name>Table</display-name>
 		<name>tableColumn</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableColumnTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableColumnTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the column state. Default: default. Options: success, danger, info, default, primary</description>
@@ -900,7 +922,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a table caption</description>
 		<display-name>Table</display-name>
 		<name>tableCaption</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableCaptionTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableCaptionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a label for column content</description>
@@ -928,7 +950,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a table body</description>
 		<display-name>Table</display-name>
 		<name>tableBody</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableBodyTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableBodyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:table&gt;
@@ -950,7 +972,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a table</description>
 		<display-name>Table</display-name>
 		<name>tableHeader</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableHeaderTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
 
 		<attribute>
@@ -980,7 +1002,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a table head</description>
 		<display-name>Table</display-name>
 		<name>tableHead</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TableHeadTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TableHeadTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a label for column head content</description>
@@ -1005,7 +1027,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a card</description>
 		<display-name>Card</display-name>
 		<name>card</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a css class to the component</description>
@@ -1054,7 +1076,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an card image</description>
 		<display-name>Card</display-name>
 		<name>cardImage</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardImageTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardImageTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates if the component should be rendered. Default : true</description>
@@ -1105,7 +1127,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a title on the card</description>
 		<display-name>Card</display-name>
 		<name>cardTitle</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardTitleTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardTitleTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
@@ -1122,7 +1144,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a text on the card</description>
 		<display-name>Card</display-name>
 		<name>cardText</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardTextTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardTextTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a css class to the component</description>
@@ -1145,7 +1167,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a card header</description>
 		<display-name>Card</display-name>
 		<name>cardHeader</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardHeaderTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
@@ -1163,7 +1185,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders the body card</description>
 		<display-name>Card</display-name>
 		<name>cardBody</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardBodyTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardBodyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
@@ -1181,7 +1203,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders the footer card</description>
 		<display-name>Card</display-name>
 		<name>cardFooter</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CardFooterTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CardFooterTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
@@ -1203,7 +1225,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a component with collapsable effect</description>
 		<display-name>Misc</display-name>
 		<name>collapsable</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CollapsableTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CollapsableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the label to be used in collapsable</description>
@@ -1234,7 +1256,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a panel tabs</description>
 		<display-name>Tab</display-name>
 		<name>tabPanel</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TabPanelTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TabPanelTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:tabPanel&gt;
@@ -1249,7 +1271,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a single tab</description>
 		<display-name>Tab</display-name>
 		<name>tab</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.TabTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.TabTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the tab should be initiated selected</description>
@@ -1295,7 +1317,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a modal confirmation</description>
 		<display-name>Misc</display-name>
 		<name>confirm</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ConfirmTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ConfirmTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the label of the title modal</description>
@@ -1338,7 +1360,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a h2</description>
 		<display-name>Html</display-name>
 		<name>h2</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.H2Tag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.H2Tag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:h2&gt; Header &lt;/html:h2&gt; </example>
@@ -1348,7 +1370,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a horizontal line</description>
 		<display-name>Html</display-name>
 		<name>hr</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.HrTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.HrTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:hr/&gt; </example>
@@ -1358,7 +1380,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a small</description>
 		<display-name>Html</display-name>
 		<name>small</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.SmallTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.SmallTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a CSS class to the component</description>
@@ -1374,7 +1396,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Format values</description>
 		<display-name>Misc</display-name>
 		<name>format</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.FormatTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.FormatTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a type format in which the value must be converted. Options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
@@ -1403,7 +1425,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a paragraf</description>
 		<display-name>Html</display-name>
 		<name>p</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.PTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.PTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
@@ -1419,7 +1441,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a source block of a particular language without executing it</description>
 		<display-name>Misc</display-name>
 		<name>code</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.CodeTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CodeTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:code&gt;
@@ -1435,7 +1457,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a triggered event for a given component</description>
 		<display-name>Javascript</display-name>
 		<name>jsEvent</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.JsEventTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.JsEventTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component name to be achieved</description>
@@ -1474,7 +1496,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a modal block</description>
 		<display-name>Misc</display-name>
 		<name>modal</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ModalTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ModalTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the size of modal. Default none. Options: xl,sm,lg</description>
@@ -1548,7 +1570,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a main container block with a standard margin</description>
 		<display-name>Layout</display-name>
 		<name>container</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ContainerTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ContainerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether a container must be responsive to the screen 100%</description>
@@ -1573,7 +1595,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an alert box</description>
 		<display-name>Misc</display-name>
 		<name>alert</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.AlertTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.AlertTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -1630,7 +1652,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a form</description>
 		<display-name>Form</display-name>
 		<name>form</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.FormTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.FormTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the action of submission</description>
@@ -1701,7 +1723,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a component grouping in the form</description>
 		<display-name>Form</display-name>
 		<name>formGroup</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.FormGroupTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.FormGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label of the group</description>
@@ -1754,7 +1776,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a line of columns of subdivision (divided into 12 sections combined with the col tag)</description>
 		<display-name>Form</display-name>
 		<name>row</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.RowTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.RowTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a CSS class to the component</description>
@@ -1781,7 +1803,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a column within a row</description>
 		<display-name>Form</display-name>
 		<name>col</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ColTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ColTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
@@ -1833,7 +1855,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an input</description>
 		<display-name>Input</display-name>
 		<name>input</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.InputTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.InputTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates a data list to attach on input</description>
@@ -1965,7 +1987,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a div</description>
 		<display-name>Layout</display-name>
 		<name>div</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.DivTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.DivTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component&#39;s id</description>
@@ -1995,7 +2017,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders importing a js file or css</description>
 		<display-name>Misc</display-name>
 		<name>import</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ImportTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ImportTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the type of file to be imported. Options: js, css</description>
@@ -2020,7 +2042,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an image</description>
 		<display-name>Image</display-name>
 		<name>img</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ImageTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ImageTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the label if the component can not be loaded</description>
@@ -2082,7 +2104,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a link</description>
 		<display-name>Html</display-name>
 		<name>link</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.LinkTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.LinkTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the url component</description>
@@ -2116,7 +2138,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an iframe</description>
 		<display-name>Misc</display-name>
 		<name>iframe</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.IframeTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.IframeTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the name of the iframe</description>
@@ -2152,7 +2174,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a dropdown menu</description>
 		<display-name>Menu</display-name>
 		<name>menuDropDown</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuDropDownTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuDropDownTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -2193,7 +2215,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a menu item on dropdown</description>
 		<display-name>Menu</display-name>
 		<name>menuDropDownItem</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuDropDownItemTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuDropDownItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id for the component</description>
@@ -2251,7 +2273,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a menu collapsable content group</description>
 		<display-name>Menu</display-name>
 		<name>menuCollapsable</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuCollapsableTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuCollapsableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the id of menu block to be collapsed</description>
@@ -2277,7 +2299,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a menu collapse group</description>
 		<display-name>Menu</display-name>
 		<name>menuCollapse</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuCollapseTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuCollapseTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component name that triggers the menu group</description>
@@ -2315,7 +2337,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a horizontal menu</description>
 		<display-name>Menu</display-name>
 		<name>menu</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be fixed. Default none. Options : top,bottom</description>
@@ -2343,7 +2365,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a logo in the navigation menu in text format</description>
 		<display-name>Menu</display-name>
 		<name>menuBrand</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuBrandTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuBrandTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the URL to be called by clicking on the logo</description>
@@ -2368,7 +2390,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a grid</description>
 		<display-name>Grid</display-name>
 		<name>grid</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.GridTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.GridTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the collection to be iterated by the component</description>
@@ -2459,7 +2481,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a grid column</description>
 		<display-name>Grid</display-name>
 		<name>gridColumn</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.GridColumnTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.GridColumnTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the label component</description>
@@ -2524,7 +2546,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a button</description>
 		<display-name>Button</display-name>
 		<name>button</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ButtonTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ButtonTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the status of the button. Default: default. Options: default, primary, danger, info, success</description>
@@ -2612,7 +2634,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a toolbar for the component (Available for grid, form, card and modal)</description>
 		<display-name>Misc</display-name>
 		<name>toolbar</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ToolbarTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ToolbarTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered</description>
@@ -2639,7 +2661,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a menu dropdown divider</description>
 		<display-name>Menu</display-name>
 		<name>menuDropDownDivider</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MenuDropDownDividerTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuDropDownDividerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:menu&gt;
@@ -2656,7 +2678,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a javascript block</description>
 		<display-name>Javascript</display-name>
 		<name>jsCode</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.JsCodeTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.JsCodeTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true.</description>
@@ -2677,7 +2699,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a list</description>
 		<display-name>Groupments</display-name>
 		<name>listGroup</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ListGroupTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
@@ -2706,7 +2728,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a list item</description>
 		<display-name>Groupments</display-name>
 		<name>listGroupItem</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ListGroupItemTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ListGroupItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
@@ -2741,7 +2763,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a mask on a particular component</description>
 		<display-name>Mask</display-name>
 		<name>mask</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.MaskTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MaskTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the mask to be used</description>
@@ -2772,7 +2794,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a cluster of buttons</description>
 		<display-name>Button</display-name>
 		<name>buttonGroup</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.ButtonGroupTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ButtonGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:buttonGroup&gt;

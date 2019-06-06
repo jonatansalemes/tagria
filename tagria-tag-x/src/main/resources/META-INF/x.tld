@@ -13,67 +13,67 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.XTagsd"
 
 	<function>
 		<name>urlEncode</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String urlEncode(java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>equals</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.Boolean equals(java.lang.String,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>concat</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String concat(java.lang.String,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>concat2</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String concat(java.lang.String,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>concat3</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String concat(java.lang.String,java.lang.String,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>concat4</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String concat(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>concat5</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String concat(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>length</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.Integer length(java.lang.Long)</function-signature>
 	</function>
 	<function>
 		<name>fullStackTrace</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String fullStackTrace(java.lang.Exception)</function-signature>
 	</function>
 	<function>
 		<name>join</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String join(java.util.Collection,java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>lineBreak</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String lineBreak(java.lang.String)</function-signature>
 	</function>
 	<function>
 		<name>format</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String format(java.lang.String,java.lang.Object)</function-signature>
 	</function>
 	<function>
 		<name>truncate</name>
-		<function-class>com.jslsolucoes.tagria.tag.x.XTag</function-class>
+		<function-class>com.jslsolucoes.tagria.tag.x.tag.XTag</function-class>
 		<function-signature>java.lang.String truncate(java.lang.String,java.lang.Integer)</function-signature>
 	</function>
 	

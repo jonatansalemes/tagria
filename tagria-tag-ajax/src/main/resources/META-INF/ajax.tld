@@ -14,7 +14,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an ajax function</description>
 		<display-name>Ajax</display-name>
 		<name>function</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.FunctionTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.FunctionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the type of return expected by ajax request. Default: json. Options: xml, json, script, html, jsonp, text</description>
@@ -74,7 +74,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders writing in a particular component</description>
 		<display-name>Ajax</display-name>
 		<name>target</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.TargetTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.TargetTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates which attribute of the object must be used</description>
@@ -136,7 +136,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders the error block if they occur in ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>onError</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.OnErrorTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.OnErrorTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;ajax:function name="dados" url="/app/url/nao/existe" execute="true"&gt;
@@ -157,7 +157,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders before send block on ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>beforeSend</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.BeforeSendTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.BeforeSendTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 				&lt;ajax:function name="data" url="/app/ajax" execute="true"&gt;
@@ -174,7 +174,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders block on ajax request done</description>
 		<display-name>Ajax</display-name>
 		<name>onDone</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.OnDoneTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.OnDoneTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 				&lt;ajax:function name="data" url="/app/ajax" execute="true"&gt;
@@ -189,7 +189,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders success block if the ajax request run smoothly</description>
 		<display-name>Ajax</display-name>
 		<name>onSuccess</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.OnSuccessTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.OnSuccessTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:input name="input1" value="Valor 0"/&gt;
@@ -215,7 +215,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders the parameter block to be sent by ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>parameters</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.ParametersTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.ParametersTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:input name="input1" value="Valor 0"/&gt;
@@ -238,7 +238,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a parameter that must be sent by ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>parameter</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.ParameterTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.ParameterTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component of the name to be used as the source</description>
@@ -298,7 +298,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders a mapping of an options list to select a component</description>
 		<display-name>Ajax</display-name>
 		<name>mapOptions</name>
-		<tag-class>com.jslsolucoes.tagria.tag.ajax.MapOptionsTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.MapOptionsTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the component name to be achieved</description>

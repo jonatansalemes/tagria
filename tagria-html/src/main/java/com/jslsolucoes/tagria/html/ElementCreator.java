@@ -1,6 +1,10 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
+	
+	public static Option newOption() {
+		return new Option();
+	}
 
 	public static DataList newDataList() {
 		return new DataList();

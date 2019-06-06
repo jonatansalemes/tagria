@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.jslsolucoes.tagria.tag.x.tag.XTag;
+
 public class XTagTest {
 
 	@Test
