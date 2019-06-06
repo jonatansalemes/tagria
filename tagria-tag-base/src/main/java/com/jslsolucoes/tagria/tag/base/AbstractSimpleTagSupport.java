@@ -46,7 +46,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected Boolean rendered = Boolean.TRUE;
 	protected String cssClass;
 	protected String id;
-	private String bodyContent = "";
 
 	private JspWriter writer() {
 		return jspContext().getOut();
@@ -123,7 +122,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		acquireBodyContent();
+		flushBodyContent();
 		if (rendered()) {
 			bypass();
 			for (Element element : renders()) {
@@ -156,20 +155,21 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return getJspBody();
 	}
 
-	private void acquireBodyContent() {
+	private void flushBodyContent() {
+		bodyContent();
+	}
+
+	public String bodyContent() {
 		JspFragment jspFragment = jspbody();
 		if (jspFragment != null) {
 			try (StringWriter stringWriter = new StringWriter()) {
 				jspFragment.invoke(stringWriter);
-				this.bodyContent = stringWriter.toString().trim();
+				return stringWriter.toString().trim();
 			} catch (Exception e) {
 				throw new TagriaRuntimeException(e);
 			}
 		}
-	}
-
-	public String bodyContent() {
-		return bodyContent;
+		return null;
 	}
 
 	public <T> T findAncestorWithClass(Class<T> ancestorClass) {

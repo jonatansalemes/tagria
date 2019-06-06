@@ -33,7 +33,7 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element col() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "mt-3")
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "col mt-3")
 				.attribute(Attribute.CLASS, "col-xs-" + extraSmall).add(bodyContent());
 		if (small != null) {
 			div.attribute(Attribute.CLASS, "col-sm-" + small);

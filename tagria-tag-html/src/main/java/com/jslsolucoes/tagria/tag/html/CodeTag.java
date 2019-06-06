@@ -21,7 +21,6 @@ public class CodeTag extends AbstractSimpleTagSupport {
 	}
 
 	private String bodyContentEscape() {
-		return bodyContent().replaceAll(">", "&gt;").replaceAll("<", "&lt;").replaceAll("\n", "</br>")
-				.replaceAll("    ", "&nbsp;&nbsp;&nbsp;&nbsp;");
+		return bodyContent().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 	}
 }
