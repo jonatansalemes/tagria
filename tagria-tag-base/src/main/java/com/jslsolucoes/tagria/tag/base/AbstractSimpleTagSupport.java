@@ -123,8 +123,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	@Override
 	public void doTag() throws JspException, IOException {
+		acquireBodyContent();
 		if (rendered()) {
-			acquireBodyContent();
 			bypass();
 			for (Element element : renders()) {
 				out(element);

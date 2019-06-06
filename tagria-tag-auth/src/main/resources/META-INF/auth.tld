@@ -13,34 +13,23 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders an auth integration checking for existent rule</description>
 		<display-name>Auth</display-name>
-		<name>check</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.auth.CheckTag</tag-class>
+		<name>rules</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.auth.AuthRulesTag</tag-class>
 		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates the uri to be checked on integration</description>
-			<name>uri</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the http method of uri. Default GET. Option GET,POST,PUT,DELETE </description>
-			<name>method</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
 		<example>
-			&lt;auth:check uri="/my/uri" method="GET"&gt;
+			&lt;auth:rules&gt;
+				 &lt;auth:rule uri="/my/uri" method="GET"/&gt;
+				 &lt;auth:rule uri="/my/uri2" method="POST"/&gt;
 			     &lt;html:input name="input1" value="Valor 0"/&gt;
-			&lt;/auth:check&gt;
+			&lt;/auth:rules&gt;
 		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders an auth integration checking for existent rule</description>
 		<display-name>Auth</display-name>
-		<name>checkRule</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.auth.CheckRuleTag</tag-class>
+		<name>rule</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.auth.AuthRuleTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the uri to be checked on integration</description>
@@ -55,13 +44,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
 		<example>
-			&lt;auth:check&gt;
-				 &lt;auth:checkRule uri="/my/uri" method="GET"/&gt;
-				 &lt;auth:checkRule uri="/my/uri2" method="POST"/&gt;
+			&lt;auth:rules&gt;
+				 &lt;auth:rule uri="/my/uri" method="GET"/&gt;
+				 &lt;auth:rule uri="/my/uri2" method="POST"/&gt;
 			     &lt;html:input name="input1" value="Valor 0"/&gt;
-			&lt;/auth:check&gt;
+			&lt;/auth:rules&gt;
 		</example>
 	</tag>
 	

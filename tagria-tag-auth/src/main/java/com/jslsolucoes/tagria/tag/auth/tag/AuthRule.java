@@ -1,4 +1,4 @@
-package com.jslsolucoes.tagria.tag.auth.model;
+package com.jslsolucoes.tagria.tag.auth.tag;
 
 public class AuthRule {
 
