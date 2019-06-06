@@ -14,7 +14,7 @@ public class ParameterTag extends AbstractSimpleTagSupport {
 	private Boolean required = Boolean.TRUE;
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		findAncestorWithClass(FunctionTag.class)
 				.addFunctionParameter(new FunctionParameter(name, required, valueForParameter()));
 	}

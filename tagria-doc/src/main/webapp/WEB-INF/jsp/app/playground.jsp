@@ -7,18 +7,18 @@
 			<ajax:parameter name="p1" value="v1"></ajax:parameter>
 		</ajax:parameters>
 		<ajax:onSuccess>
-			alert('On Success');
+			console.log('On Success');
 			<ajax:mapOptions value="id" target="t1" text="name"/>
 			<ajax:target type="html" target="t2" value="1"></ajax:target>
 		</ajax:onSuccess>
 		<ajax:onError>
-			alert('On Error');
+			console.log('On Error');
 		</ajax:onError>
 		<ajax:onDone>
-			alert('On Done');
+			console.log('On Done');
 		</ajax:onDone>
 		<ajax:beforeSend>
-			alert('Before Send');
+			console.log('Before Send');
 		</ajax:beforeSend>
 	</ajax:function>
 
@@ -102,5 +102,12 @@
 	
 	<html:iframe url="/app/welcome" name="ifr1"></html:iframe>
 	
+	<html:textarea name="teste">
+		Olá 
+		senhores
+		com salto
+		de
+		linha
+	</html:textarea>
 	
 </html:view>

@@ -5,7 +5,7 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class OnDoneTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		findAncestorWithClass(FunctionTag.class).setOnDone(bodyContent());
 	}
 

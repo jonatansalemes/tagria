@@ -26,6 +26,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	private String key;
 	private String cssClass = "body-default";
 	private Boolean minifyJs = Boolean.TRUE;
+	private Boolean minifyHtml = Boolean.TRUE;
 	private List<String> jsScripts = new ArrayList<>();
 
 	public void appendJavascriptCode(String jsCode) {
@@ -55,7 +56,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	}
 
 	private Element body() {
-		return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(bodyContent())
+		return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(minifyHtml(bodyContent()))
 				.add(ajaxLoading()).add(tagriaCss()).add(recaptchaJs()).add(tagriaJs()).add(appJs());
 	}
 
@@ -112,6 +113,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 
 	private String jsCodeForUrlBase() {
 		return "URL_BASE='" + pathForUrl("") + "';";
+	}
+	
+	private String minifyHtml(String html) {
+		if(minifyHtml) {
+			return html.replaceAll("(<.*?>)(\n|\r|\t|\\s)+(<.*?>)","$1$3");
+		} else {
+			return html;
+		}
 	}
 
 	private String minifyJs(String jsCode) {
@@ -183,6 +192,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 
 	public void setMinifyJs(Boolean minifyJs) {
 		this.minifyJs = minifyJs;
+	}
+
+	public Boolean getMinifyHtml() {
+		return minifyHtml;
+	}
+
+	public void setMinifyHtml(Boolean minifyHtml) {
+		this.minifyHtml = minifyHtml;
 	}
 
 }

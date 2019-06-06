@@ -5,7 +5,7 @@ import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
 public class BeforeSendTag extends AbstractSimpleTagSupport {
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		findAncestorWithClass(FunctionTag.class).setBeforeSend(bodyContent());
 	}
 

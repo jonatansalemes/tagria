@@ -10,7 +10,7 @@ public class JsEventTag extends AbstractSimpleTagSupport {
 	private String attachToSelector;
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		appendJsCode(
 				"$('" + attachTo(attachToSelector, attachTo) + "')." + event + "(function(){" + bodyContent() + "});");
 	}

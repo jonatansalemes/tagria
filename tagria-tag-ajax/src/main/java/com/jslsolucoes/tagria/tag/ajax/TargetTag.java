@@ -12,7 +12,7 @@ public class TargetTag extends AbstractSimpleTagSupport {
 	private String value;
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		findAncestorWithClass(FunctionTag.class).addOnSuccess(jsCode());
 	}
 

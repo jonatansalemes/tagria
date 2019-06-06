@@ -23,8 +23,7 @@ public class FunctionTag extends AbstractSimpleTagSupport {
 	private List<FunctionParameter> data = new ArrayList<FunctionParameter>();
 
 	@Override
-	public void bypass() {
-		flushBodyContent();
+	public void renderOnVoid() {
 		try (StringWriter stringWriter = new StringWriter()) {
 			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "function.tpl")
 					.withData("name", name).withData("url", pathForUrl(url)).withData("dataType", dataType)
@@ -39,6 +38,11 @@ public class FunctionTag extends AbstractSimpleTagSupport {
 		} catch (IOException e) {
 			throw new TagriaRuntimeException(e);
 		}
+	}
+	
+	@Override
+	public Boolean flush() {
+		return true;
 	}
 
 	public String getDataType() {

@@ -12,7 +12,7 @@ public class MaskTag extends AbstractSimpleTagSupport {
 	private String onKeyPress;
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		String placeholder = mask.replaceAll("([0-9]|[A-Za-z]|#)", "_");
 		appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').mask('" + mask + "',{placeholder: '"
 				+ placeholder + "',reverse:" + reverse + ",onKeyPress:function(value,e,field,options){" + onKeyPress

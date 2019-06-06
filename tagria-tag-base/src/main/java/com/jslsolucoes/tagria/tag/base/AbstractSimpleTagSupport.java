@@ -46,6 +46,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected Boolean rendered = Boolean.TRUE;
 	protected String cssClass;
 	protected String id;
+	
+	private String version() {
+		return "3.1.0.1";
+	}
 
 	private JspWriter writer() {
 		return jspContext().getOut();
@@ -73,9 +77,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		out(element.html());
 	}
 
-	private String version() {
-		return "3.1.0";
-	}
+	
 
 	public Boolean rendered() {
 		return rendered != null && rendered;
@@ -108,8 +110,12 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return cloneableJsAppender != null ? "__" + cloneableJsAppender.index() : "";
 	}
 
-	public void bypass() {
+	public void renderOnVoid() {
 		
+	}
+	
+	public Boolean flush() {
+		return false;
 	}
 
 	public List<Element> renders() {
@@ -122,8 +128,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	@Override
 	public void doTag() throws JspException, IOException {
+		if(flush()) {
+			flushBodyContent();
+		}
 		if (rendered()) {
-			bypass();
+			renderOnVoid();
 			for (Element element : renders()) {
 				out(element);
 			}
@@ -154,7 +163,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return getJspBody();
 	}
 	
-	public void flushBodyContent() {
+	private void flushBodyContent() {
 		bodyContent();
 	}
 

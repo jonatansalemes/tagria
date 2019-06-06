@@ -8,7 +8,7 @@ public class CurrencyMaskTag extends AbstractSimpleTagSupport {
 	private String attachToSelector;
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		appendJsCode("$('" + attachTo(attachToSelector, attachTo)
 				+ "').priceFormat({prefix:'',centsSeparator:',',thousandsSeparator:'.',centsLimit:2});");
 	}

@@ -28,6 +28,11 @@ public class AuthRulesTag extends AbstractSimpleTagSupport {
 	public Boolean rendered() {
 		return super.rendered() && allowed();
 	}
+	
+	@Override
+	public Boolean flush() {
+		return true;
+	}
 
 	public void add(AuthRule authRule) {
 		authRules.add(authRule);
@@ -43,7 +48,6 @@ public class AuthRulesTag extends AbstractSimpleTagSupport {
 	}
 
 	private Boolean allowed() {
-		flushBodyContent();
 		Authorizer authorizer = authorizer();
 		HttpServletRequest httpServletRequest = httpServletRequest();
 		HttpServletResponse httpServletResponse = httpServletResponse();

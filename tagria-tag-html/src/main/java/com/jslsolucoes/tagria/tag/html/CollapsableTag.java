@@ -41,7 +41,7 @@ public class CollapsableTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div(String id) {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card").attribute(Attribute.ID, id).add(divHeader(id))
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card").attribute(Attribute.ID, id()).add(divHeader(id))
 				.add(divContent(id));
 	}
 

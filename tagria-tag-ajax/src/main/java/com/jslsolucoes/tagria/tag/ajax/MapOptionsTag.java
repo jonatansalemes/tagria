@@ -14,7 +14,7 @@ public class MapOptionsTag extends AbstractSimpleTagSupport {
 	private String value;
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		try (StringWriter stringWriter = new StringWriter()) {
 			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "mapOptions.tpl")
 					.withData("id", idForName(target)).withData("tokens", text.split(",")).withData("value", value)

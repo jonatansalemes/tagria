@@ -8,7 +8,7 @@ public class AuthRuleTag extends AbstractSimpleTagSupport {
 	private String method = "GET";
 
 	@Override
-	public void bypass() {
+	public void renderOnVoid() {
 		findAncestorWithClass(AuthRulesTag.class).add(new AuthRule(uri, method));
 	}
 
