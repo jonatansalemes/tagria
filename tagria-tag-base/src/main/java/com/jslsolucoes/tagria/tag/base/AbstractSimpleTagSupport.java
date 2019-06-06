@@ -33,6 +33,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.jslsolucoes.tagria.config.TagriaConfig;
 import com.jslsolucoes.tagria.config.TagriaConfigParameter;
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
@@ -46,6 +48,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected Boolean rendered = Boolean.TRUE;
 	protected String cssClass;
 	protected String id;
+	private static final Cache<String,String> cache = CacheBuilder.newBuilder().build();
 	
 	private String version() {
 		return "3.1.0.1";
