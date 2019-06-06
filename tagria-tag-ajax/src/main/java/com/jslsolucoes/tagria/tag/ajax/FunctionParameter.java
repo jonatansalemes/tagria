@@ -1,4 +1,4 @@
-package com.jslsolucoes.tagria.tag.ajax.model;
+package com.jslsolucoes.tagria.tag.ajax;
 
 public class FunctionParameter {
 	private String name;
