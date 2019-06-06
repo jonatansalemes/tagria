@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html;
+package junit;
 
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Option;

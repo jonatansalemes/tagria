@@ -1,5 +1,14 @@
 
 package com.jslsolucoes.tagria.doc.generator;
+
+public class DocGenerator {
+
+	public static void main(String[] args){
+		
+	}
+}
+
+
 /*
 import java.io.File;
 import java.io.IOException;

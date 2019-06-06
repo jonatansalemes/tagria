@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html;
+package junit;
 
 import java.util.Collection;
 import java.util.Map;

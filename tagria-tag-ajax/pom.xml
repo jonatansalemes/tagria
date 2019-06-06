@@ -15,5 +15,10 @@
 			<artifactId>tagria-tag-base</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>template-se</artifactId>
+			<version>1.0.16</version>
+		</dependency>
 	</dependencies>
 </project>

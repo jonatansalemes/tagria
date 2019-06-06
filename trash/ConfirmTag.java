@@ -1,4 +1,4 @@
-package com.jslsolucoes.tagria.tag.html;
+package junit;
 
 import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;

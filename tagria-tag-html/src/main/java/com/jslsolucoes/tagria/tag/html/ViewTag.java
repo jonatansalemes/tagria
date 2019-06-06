@@ -2,17 +2,20 @@
 package com.jslsolucoes.tagria.tag.html;
 
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+/*
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.jscomp.SourceFile;
+*/
 import com.jslsolucoes.tagria.config.TagriaConfigParameter;
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;
@@ -28,7 +31,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	private Boolean minifyJs = Boolean.TRUE;
 	private List<String> jsScripts = new ArrayList<>();
 
-	public void jsCode(String jsCode) {
+	public void appendJavascriptCode(String jsCode) {
 		this.jsScripts.add(jsCode);
 	}
 
@@ -115,6 +118,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 	}
 
 	private String minifyJs(String jsCode) {
+		/*
 		if (minifyJs) {
 			Compiler compiler = new Compiler();
 			CompilerOptions options = new CompilerOptions();
@@ -123,8 +127,9 @@ public class ViewTag extends AbstractSimpleTagSupport implements ViewJsAppender 
 			compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
 			return compiler.toSource();
 		} else {
+		*/
 			return jsCode;
-		}
+		//}
 	}
 
 	private Element appJs() {

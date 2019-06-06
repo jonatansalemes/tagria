@@ -19,6 +19,12 @@
 			<groupId>com.jslsolucoes</groupId>
 			<artifactId>tagria-compressor</artifactId>
 			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.javascript</groupId>
+					<artifactId>closure-compiler</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
@@ -36,8 +42,8 @@
 			<version>4.5.5</version>
 		</dependency>
 	</dependencies>
-	
-	
+
+
 	<build>
 		<plugins>
 			<plugin>

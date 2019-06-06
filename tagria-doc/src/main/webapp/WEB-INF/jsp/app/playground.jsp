@@ -1,7 +1,6 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
-	Its works
-	
+	<html:alert state="success">Works</html:alert>
 	<ajax:function url="/app/ajax/list" name="works" execute="true">
 		<ajax:parameters>
 			<ajax:parameter name="p1" value="v1"></ajax:parameter>
@@ -20,7 +19,5 @@
 		<ajax:beforeSend>
 			alert('Before Send');
 		</ajax:beforeSend>
-	
 	</ajax:function>
-	
 </html:view>

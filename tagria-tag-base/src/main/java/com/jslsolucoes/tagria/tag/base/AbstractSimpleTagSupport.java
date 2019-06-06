@@ -27,6 +27,7 @@ import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -45,17 +46,17 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected Boolean rendered = Boolean.TRUE;
 	protected String cssClass;
 	protected String id;
-	private String bodyContent;
+	private String bodyContent = "";
 
 	private JspWriter writer() {
 		return jspContext().getOut();
 	}
-	
+
 	private JspContext jspContext() {
 		return getJspContext();
 	}
-	
-	public void setAttribute(String name,Object value) {
+
+	public void setAttribute(String name, Object value) {
 		jspContext().setAttribute(name, value);
 	}
 
@@ -151,12 +152,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return (HttpServletResponse) pageContext().getResponse();
 	}
 
+	private JspFragment jspbody() {
+		return getJspBody();
+	}
+
 	private void acquireBodyContent() {
-		JspFragment jspFragment = getJspBody();
+		JspFragment jspFragment = jspbody();
 		if (jspFragment != null) {
-			try (StringWriter body = new StringWriter()) {
-				jspFragment.invoke(body);
-				bodyContent = body.toString().trim();
+			try (StringWriter stringWriter = new StringWriter()) {
+				jspFragment.invoke(stringWriter);
+				this.bodyContent = stringWriter.toString().trim();
 			} catch (Exception e) {
 				throw new TagriaRuntimeException(e);
 			}
@@ -167,9 +172,30 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		return bodyContent;
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T> T findAncestorWithClass(Class<T> ancestorClass) {
-		return (T) SimpleTagSupport.findAncestorWithClass(this, ancestorClass);
+		List<T> ancestors = findAncestorsWithClass(ancestorClass);
+		if (!CollectionUtils.isEmpty(ancestors)) {
+			return ancestors.get(0);
+		}
+		return null;
+	}
+
+	public <T> List<T> findAncestorsWithClass(Class<T> ancestorClass) {
+		return findAncestorsWithAssignable(this, ancestorClass);
+	}
+
+	@SuppressWarnings("unchecked")
+	private <T> List<T> findAncestorsWithAssignable(SimpleTagSupport simpleTagSupport, Class<T> ancestorClass) {
+		List<T> ancestors = new ArrayList<T>();
+		if (ancestorClass.isAssignableFrom(simpleTagSupport.getClass())) {
+			ancestors.add((T) simpleTagSupport);
+		} else {
+			SimpleTagSupport simpleTagSupportParent = (SimpleTagSupport) simpleTagSupport.getParent();
+			if (simpleTagSupportParent != null) {
+				ancestors.addAll(findAncestorsWithAssignable(simpleTagSupportParent, ancestorClass));
+			}
+		}
+		return ancestors;
 	}
 
 	@Override
@@ -303,10 +329,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public void appendJsCode(String jsCode) {
 		ViewJsAppender jsAppender = findAncestorWithClass(ViewJsAppender.class);
-		jsAppender.appendJsCode(jsCode);
+		jsAppender.appendJavascriptCode(jsCode);
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 		if (cloneableJsAppender != null && cloneableJsAppender.index() == 0) {
-			cloneableJsAppender.appendJsCode(jsCode);
+			cloneableJsAppender.appendJavascriptCode(jsCode);
 		}
 	}
 

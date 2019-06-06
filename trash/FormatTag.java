@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html;
+package junit;
 
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
