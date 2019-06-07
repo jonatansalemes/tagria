@@ -1,79 +1,82 @@
 
 package com.jslsolucoes.tagria.tag.html.tag;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.Form;
-import com.jslsolucoes.tagria.html.H2;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class FormTag extends SimpleTagSupport implements Toolballer {
+public class FormTag extends AbstractSimpleTagSupport {
 
 	private String method = "post";
 	private String action = "#";
 	private String name;
 	private String validation;
 	private String label;
-	private String toolbar;
-
+	private String labelKey;
+	private Element toolbar;
 	private Boolean multipart = Boolean.FALSE;
 	private String target = "_self";
 
 	@Override
-	public void render() {
+	public Element render() {
+		return div();
+	}
 
-		Div container = new Div();
-		container.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm");
+	private Element div() {
+		Element div = ElementCreator.newDiv()
+				.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm").add(form());
+		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').form({validation:'"
+				+ (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "") + "',invalid:{email : '"
+				+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid") + "',min:'"
+				+ keyForLibrary("form.min.invalid") + "'}});");
+		return div;
+	}
 
-		Form form = new Form();
-		form.attribute(Attribute.NOVALIDATE, "novalidate");
+	private Element form() {
+		Element form = ElementCreator.newForm().attribute(Attribute.NOVALIDATE, "novalidate")
+				.attribute(Attribute.TARGET, target).attribute(Attribute.ID, id()).attribute(Attribute.METHOD, method)
+				.attribute(Attribute.ACTION, pathForUrl(action));
 		if (!StringUtils.isEmpty(name)) {
 			form.attribute(Attribute.NAME, name);
 		}
-		form.attribute(Attribute.TARGET, target);
-		form.attribute(Attribute.ID, TagUtil.getId(this));
-		form.attribute(Attribute.METHOD, method);
-		form.attribute(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
 		if (multipart) {
 			form.attribute(Attribute.ENCTYPE, "multipart/form-data");
 		}
 
-		if (!StringUtils.isEmpty(label)) {
-			Div title = new Div();
-			title.attribute(Attribute.CLASS, "text-center");
-			H2 h2 = new H2();
-			h2.attribute(Attribute.CLASS, "text-secondary");
-			h2.add(TagUtil.getLocalized(getLabel(), getJspContext()));
-			title.add(h2);
-			form.add(title);
+		if (hasKeyOrLabel(labelKey, label)) {
+			form.add(divTitle());
 		}
 
-		Div errors = new Div();
-		errors.attribute(Attribute.CLASS, "collapse form-error");
-		errors.add("&nbsp;");
+		form.add(divErrors()).add(bodyContent());
 
-		form.add(errors);
-		form.add(TagUtil.getBody(getJspBody()));
 		if (toolbar != null) {
-			form.add(toolbar);
+			form.add(divToolbar());
 		}
 
-		container.add(form);
-
-		TagUtil.out(getJspContext(), container);
-
-		TagUtil.appendJs("$('#" + form.attribute(Attribute.ID) + "').form({validation:'"
-				+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
-				+ "',invalid:{email : '" + TagUtil.getLocalizedForLib("form.email.invalid", getJspContext()) + "',max:'"
-				+ TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) + "',min:'"
-				+ TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) + "'}});", this);
+		return form;
+	}
+	
+	public void setToolbar(Element toolbar) {
+		this.toolbar = toolbar;
+	}
+	
+	private Element divToolbar() {
+		return ElementCreator.newDiv().add(toolbar);
 	}
 
+	private Element divErrors() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "collapse form-error").add("&nbsp;");
+	}
+
+	private Element divTitle() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center").add(h2());
+	}
+
+	private Element h2() {
+		return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary").add(keyOrLabel(labelKey, label));
 	}
 
 	public String getMethod() {
@@ -108,19 +111,6 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 		this.label = label;
 	}
 
-	@Override
-	public void setToolbar(String html) {
-		this.toolbar = html;
-	}
-
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
-	}
-
 	public Boolean getMultipart() {
 		return multipart;
 	}
@@ -143,5 +133,13 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setTarget(String target) {
 		this.target = target;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 }

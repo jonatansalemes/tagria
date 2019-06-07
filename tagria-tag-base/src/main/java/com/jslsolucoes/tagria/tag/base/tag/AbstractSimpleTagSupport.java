@@ -44,7 +44,7 @@ import com.jslsolucoes.tagria.tag.base.GlobalJsAppender;
 public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implements DynamicAttributes {
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractSimpleTagSupport.class);
-	private Map<String, String> attributes = new WeakHashMap<String, String>();
+	protected Map<String, String> attributes = new WeakHashMap<String, String>();
 	protected Boolean rendered = Boolean.TRUE;
 	protected String cssClass;
 	protected String id;

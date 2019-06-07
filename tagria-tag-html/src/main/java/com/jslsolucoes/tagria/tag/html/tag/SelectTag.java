@@ -5,23 +5,16 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.H4;
-import com.jslsolucoes.tagria.html.Input;
-import com.jslsolucoes.tagria.html.Option;
-import com.jslsolucoes.tagria.html.Select;
-import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 @SuppressWarnings("rawtypes")
 public class SelectTag extends AbstractSimpleTagSupport {
 
-	private String id;
 	private Collection data;
 	private Map map;
 	private String name;
@@ -29,24 +22,44 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	private String var;
 	private Boolean required = Boolean.FALSE;
 	private Boolean fixed = Boolean.FALSE;
-	private String cssClass;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return div();
+	}
 
-		Div container = new Div();
-		container.attribute(Attribute.ID, TagUtil.getId(this));
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.ID, id()).add(divRow()).add(divModal());
+		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').select();");
+		return div;
+	}
 
-		Div row = new Div();
-		row.attribute(Attribute.CLASS, "row");
+	private Element divRow() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "row").add(divCol1()).add(divCol2());
+	}
 
-		Div col1 = new Div();
-		col1.attribute(Attribute.CLASS, "col col-11");
+	private Element divCol2() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-1").add(a());
 
-		Select select = new Select();
-		select.attribute(Attribute.ID, TagUtil.getId(name, id, this));
-		select.attribute(Attribute.NAME, name);
-		select.add(new Option().attribute(Attribute.VALUE, "").add("- - -"));
+	}
+
+	private Element a() {
+		return ElementCreator.newA()
+				.attribute(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm")
+				.attribute(Attribute.HREF, "#").add(span());
+	}
+
+	private Element span() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-search");
+	}
+
+	private Element divCol1() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(select());
+	}
+
+	private Element select() {
+		Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
+				.attribute(Attribute.NAME, name).add(option());
 		if (required) {
 			select.attribute(Attribute.CLASS, "form-required");
 			select.attribute(Attribute.REQUIRED, "required");
@@ -58,92 +71,78 @@ public class SelectTag extends AbstractSimpleTagSupport {
 		}
 
 		if (fixed) {
-			select.add(TagUtil.getBody(getJspBody()));
+			select.add(bodyContent());
 		}
 		if (!CollectionUtils.isEmpty(data)) {
 			for (Object item : data) {
-				getJspContext().setAttribute(var, item);
-				select.add(TagUtil.getBody(getJspBody()));
+				setAttribute(var, item);
+				select.add(bodyContent());
 			}
 			getJspContext().setAttribute(var, null);
 		} else if (map != null) {
 			for (Object entry : map.entrySet()) {
-				getJspContext().setAttribute(var, entry);
-				select.add(TagUtil.getBody(getJspBody()));
+				setAttribute(var, entry);
+				select.add(bodyContent());
 			}
-			getJspContext().setAttribute(var, null);
+			setAttribute(var, null);
 		}
-		col1.add(select);
-		row.add(col1);
-
-		Div col2 = new Div();
-		col2.attribute(Attribute.CLASS, "col col-1");
-
-		Span span = new Span();
-		span.attribute(Attribute.CLASS, "fas fa-search");
-		A a = new A();
-		a.attribute(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm");
-		a.attribute(Attribute.HREF, "#");
-		a.add(span);
-		col2.add(a);
-		row.add(col2);
-
-		container.add(row);
-		container.add(modal());
-
-		TagUtil.out(getJspContext(), container);
-		TagUtil.appendJs("$('#" + container.attribute(Attribute.ID) + "').select();", this);
+		return select;
 	}
 
-	public Div modal() {
-		Div modal = new Div();
-		modal.attribute(Attribute.CLASS, "modal fade");
-		modal.attribute(Attribute.ID, TagUtil.getId(id, this));
+	private Element option() {
+		return ElementCreator.newOption().attribute(Attribute.VALUE, "").add("- - -");
+	}
 
-		Div dialog = new Div();
-		dialog.attribute(Attribute.CLASS, "modal-dialog modal-dialog-centered");
+	public Element divModal() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade").attribute(Attribute.ID, idForId(id))
+				.add(divModalDialog());
+	}
 
-		Div content = new Div();
-		content.attribute(Attribute.CLASS, "modal-content");
+	private Element divModalBody() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body").add(divInput()).add(divSearch());
+	}
 
-		Div header = new Div();
-		header.attribute(Attribute.CLASS, "modal-header");
+	private Element divSearch() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "select-search-container");
+	}
 
-		H4 h4 = new H4();
-		h4.attribute(Attribute.CLASS, "modal-title");
-		h4.add(TagUtil.getLocalizedForLib("select.search.title", getJspContext()));
-		header.add(h4);
+	private Element divInput() {
+		return ElementCreator.newDiv().add(input());
+	}
 
-		Button close = new Button();
-		close.attribute(Attribute.CLASS, "close");
-		close.attribute(Attribute.DATA_DISMISS, "modal");
-		close.add(new Span().add("&times;"));
-		header.add(close);
+	private Element input() {
+		return ElementCreator.newInput().attribute(Attribute.TYPE, "text").attribute(Attribute.AUTOCOMPLETE, "off")
+				.attribute(Attribute.CLASS, "form-control shadow-sm select-search-input")
+				.attribute(Attribute.PLACEHOLDER, keyForLibrary("select.search.input"))
+				.attribute(Attribute.AUTOFOCUS, "autofocus");
+	}
 
-		content.add(header);
+	private Element divModalHeader() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header").add(h4()).add(button());
+	}
 
-		Div body = new Div();
-		body.attribute(Attribute.CLASS, "modal-body");
+	private Element button() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
+				.add(spanTimes());
+	}
 
-		Div inputContainer = new Div();
-		Input input = new Input();
-		input.attribute(Attribute.TYPE, "text");
-		input.attribute(Attribute.AUTOCOMPLETE, "off");
-		input.attribute(Attribute.CLASS, "form-control shadow-sm select-search-input");
-		input.attribute(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("select.search.input", getJspContext()));
-		input.attribute(Attribute.AUTOFOCUS, "autofocus");
-		inputContainer.add(input);
-		body.add(inputContainer);
+	private Element spanTimes() {
+		return ElementCreator.newSpan().add("&times;");
+	}
 
-		Div searchContainer = new Div();
-		searchContainer.attribute(Attribute.CLASS, "select-search-container");
-		body.add(searchContainer);
+	private Element h4() {
+		return ElementCreator.newH4().attribute(Attribute.CLASS, "modal-title")
+				.add(keyForLibrary("select.search.title"));
+	}
 
-		content.add(body);
+	private Element divModalContent() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-content").add(divModalHeader())
+				.add(divModalBody());
+	}
 
-		dialog.add(content);
-		modal.add(dialog);
-		return modal;
+	private Element divModalDialog() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-dialog-centered")
+				.add(divModalContent());
 	}
 
 	public Collection getData() {
@@ -186,14 +185,6 @@ public class SelectTag extends AbstractSimpleTagSupport {
 		this.required = required;
 	}
 
-	public String getCssClass() {
-		return cssClass;
-	}
-
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
-
 	public Map getMap() {
 		return map;
 	}
@@ -208,14 +199,6 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
 	public void setFixed(Boolean fixed) {
 		this.fixed = fixed;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 }

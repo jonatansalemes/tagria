@@ -1,106 +1,97 @@
 
 package com.jslsolucoes.tagria.tag.html.tag;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.H4;
-import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class ModalTag extends SimpleTagSupport implements Toolballer {
+public class ModalTag extends AbstractSimpleTagSupport {
 
-	private String id;
 	private String label;
+	private String labelKey;
 	private String attachTo;
 	private String attachToSelector;
 	private Boolean closeable = Boolean.TRUE;
 	private Boolean centered = Boolean.FALSE;
 	private Boolean open = Boolean.FALSE;
-
-	private String toolbar;
+	private Element toolbar;
 	private String size;
 
 	@Override
-	public void render() {
+	public Element render() {
+		return div();
+	}
 
-		Div modal = new Div();
-		modal.attribute(Attribute.CLASS, "modal fade");
-		modal.attribute(Attribute.ID, TagUtil.getId(id, this));
-
+	private Element div() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade")
+				.attribute(Attribute.ID, idForId(id)).add(divDialog());
 		if (!closeable) {
-			modal.attribute(Attribute.DATA_KEYBOARD, "false");
-			modal.attribute(Attribute.DATA_BACKDROP, "static");
+			div.attribute(Attribute.DATA_KEYBOARD, "false");
+			div.attribute(Attribute.DATA_BACKDROP, "static");
 		}
-
-		Div dialog = new Div();
-		dialog.attribute(Attribute.CLASS, "modal-dialog");
-		if (!StringUtils.isEmpty(size)) {
-			dialog.attribute(Attribute.CLASS, "modal-" + size);
-		}
-		if (centered) {
-			dialog.attribute(Attribute.CLASS, "modal-dialog-centered");
-		}
-
-		Div content = new Div();
-		content.attribute(Attribute.CLASS, "modal-content");
-
-		Div header = new Div();
-		header.attribute(Attribute.CLASS, "modal-header");
-
-		H4 h4 = new H4();
-		h4.attribute(Attribute.CLASS, "modal-title");
-		h4.add(TagUtil.getLocalized(label, getJspContext()));
-		header.add(h4);
-
-		if (closeable) {
-			Button close = new Button();
-			close.attribute(Attribute.CLASS, "close");
-			close.attribute(Attribute.DATA_DISMISS, "modal");
-			close.add(new Span().add("&times;"));
-			header.add(close);
-		}
-
-		content.add(header);
-
-		Div body = new Div();
-		body.attribute(Attribute.CLASS, "modal-body");
-		body.add(TagUtil.getBody(getJspBody()));
-		content.add(body);
-
-		if (!StringUtils.isEmpty(toolbar)) {
-			Div footer = new Div();
-			footer.attribute(Attribute.CLASS, "modal-footer");
-			footer.add(toolbar);
-			content.add(footer);
-		}
-
-		dialog.add(content);
-		modal.add(dialog);
-		TagUtil.out(getJspContext(), modal);
-
-		TagUtil.appendJs("$('" + TagUtil.attachTo(attachToSelector, attachTo, this)
-				+ "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(Attribute.ID) + "');", this);
+		appendJsCode("$('" + attachTo(attachToSelector, attachTo)
+				+ "').attr('data-toggle','modal').attr('data-target','#" + div.attribute(Attribute.ID) + "');");
 
 		if (open != null && open) {
-			TagUtil.appendJs("$('#" + modal.attribute(Attribute.ID) + "').modal('show')", this);
-
+			appendJsCode("$('#" + div.attribute(Attribute.ID) + "').modal('show')");
 		}
+		return div;
 	}
 
+	private Element divDialog() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog").add(divModalContent());
+		if (!StringUtils.isEmpty(size)) {
+			div.attribute(Attribute.CLASS, "modal-" + size);
+		}
+		if (centered) {
+			div.attribute(Attribute.CLASS, "modal-dialog-centered");
+		}
+		return div;
 	}
 
-	public String getId() {
-		return id;
+	private Element divModalContent() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-content").add(divModalHeader())
+				.add(divModalBody());
+		if (toolbar != null) {
+			div.add(divModalFooter());
+		}
+		return div;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	private Element divModalFooter() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-footer").add(toolbar);
+	}
+
+	private Element divModalHeader() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header").add(h4());
+		if (closeable) {
+			div.add(button());
+		}
+		return div;
+	}
+
+	private Element button() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
+				.add(span());
+	}
+
+	private Element span() {
+		return ElementCreator.newSpan().add("&times;");
+	}
+
+	private Element h4() {
+		return ElementCreator.newH4().attribute(Attribute.CLASS, "modal-title").add(keyOrLabel(labelKey, label));
+	}
+
+	private Element divModalBody() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body").add(bodyContent());
+	}
+
+	public void setToolbar(Element toolbar) {
+		this.toolbar = toolbar;
 	}
 
 	public String getLabel() {
@@ -119,11 +110,6 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 		this.attachTo = attachTo;
 	}
 
-	@Override
-	public void setToolbar(String html) {
-		this.toolbar = html;
-	}
-
 	public Boolean getCloseable() {
 		return closeable;
 	}
@@ -138,14 +124,6 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	public void setOpen(Boolean open) {
 		this.open = open;
-	}
-
-	public Boolean getRendered() {
-		return rendered;
-	}
-
-	public void setRendered(Boolean rendered) {
-		this.rendered = rendered;
 	}
 
 	public String getAttachToSelector() {
@@ -170,6 +148,14 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	public void setCentered(Boolean centered) {
 		this.centered = centered;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

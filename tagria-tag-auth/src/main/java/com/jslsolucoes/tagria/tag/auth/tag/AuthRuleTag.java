@@ -1,6 +1,6 @@
 package com.jslsolucoes.tagria.tag.auth.tag;
 
-import com.jslsolucoes.tagria.tag.base.AbstractSimpleTagSupport;
+import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class AuthRuleTag extends AbstractSimpleTagSupport {
 

@@ -1,18 +1,16 @@
 
 package com.jslsolucoes.tagria.tag.html.tag;
 
-import java.util.Map;
-import java.util.WeakHashMap;
-
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.DynamicAttributes;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Input;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class InputTag extends SimpleTagSupport implements Formattabler, DynamicAttributes {
+public class InputTag extends AbstractSimpleTagSupport implements DynamicAttributes {
 
 	private Boolean checked;
 	private String name;
@@ -20,34 +18,31 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 	private String pattern;
 	private String type = "text";
 	private String placeholder;
+	private String placeholderKey;
 	private String accept;
 	private Boolean multiple = Boolean.FALSE;
 	private Boolean required = Boolean.FALSE;
 	private Boolean disabled = Boolean.FALSE;
 	private Boolean focus = Boolean.FALSE;
-	private String id;
 	private String title;
+	private String titleKey;
 	private Integer maxLength;
-	private String cssClass;
 	private Integer max;
 	private Integer min;
 	private Integer step;
 	private String list;
 	private Boolean autocomplete = Boolean.FALSE;
-	private String formatType;
-	private String formatMatch;
-	private String formatReplace;
-	private Map<String, String> attributes = new WeakHashMap<String, String>();
 
 	@Override
-	public void render() {
+	public Element render() {
+		return input();
 
-		TagUtil.flushBody(getJspBody());
+	}
 
-		Input input = new Input();
-		input.attribute(Attribute.TYPE, type);
-		input.attribute(Attribute.NAME, name);
-		input.attribute(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
+	private Element input() {
+
+		Element input = ElementCreator.newInput().attribute(Attribute.TYPE, type).attribute(Attribute.NAME, name)
+				.attribute(Attribute.ID, id(name, id)).attribute(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
 
 		attributes.entrySet().forEach(entry -> {
 			input.attribute(entry.getKey(), entry.getValue());
@@ -76,7 +71,6 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 			input.attribute(Attribute.ACCEPT, accept);
 		}
 
-		input.attribute(Attribute.ID, TagUtil.getId(name, id, this));
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
 			input.attribute(Attribute.CLASS, "form-control shadow-sm");
 		}
@@ -85,23 +79,20 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 			input.attribute(Attribute.AUTOFOCUS, "autofocus");
 		}
 
-		if (!StringUtils.isEmpty(title)) {
-			input.attribute(Attribute.TITLE, TagUtil.getLocalized(title, getJspContext()));
+		if (hasKeyOrLabel(titleKey, title)) {
+			input.attribute(Attribute.TITLE, keyOrLabel(titleKey, title));
 		}
 
 		if (maxLength != null) {
 			input.attribute(Attribute.MAXLENGTH, maxLength);
 		}
-		if (!StringUtils.isEmpty(placeholder)) {
-			input.attribute(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
-		}
 
-		if (!StringUtils.isEmpty(formatType)) {
-			value = TagUtil.format(formatType, formatMatch, formatReplace, value, getJspContext());
+		if (hasKeyOrLabel(placeholderKey, placeholder)) {
+			input.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
 		}
 
 		if (!StringUtils.isEmpty(value)) {
-			input.attribute(Attribute.VALUE, TagUtil.getLocalized(value, getJspContext()));
+			input.attribute(Attribute.VALUE, value);
 		}
 		if (!StringUtils.isEmpty(pattern)) {
 			input.attribute(Attribute.PATTERN, pattern);
@@ -123,7 +114,7 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 			input.attribute(Attribute.CLASS, cssClass);
 		}
 
-		TagUtil.out(getJspContext(), input);
+		return input;
 	}
 
 	public String getName() {
@@ -278,21 +269,6 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 		this.autocomplete = autocomplete;
 	}
 
-	@Override
-	public void setFormatType(String formatType) {
-		this.formatType = formatType;
-	}
-
-	@Override
-	public void setFormatMatch(String formatMatch) {
-		this.formatMatch = formatMatch;
-	}
-
-	@Override
-	public void setFormatReplace(String formatReplace) {
-		this.formatReplace = formatReplace;
-	}
-
 	public Integer getStep() {
 		return step;
 	}
@@ -301,13 +277,20 @@ public class InputTag extends SimpleTagSupport implements Formattabler, DynamicA
 		this.step = step;
 	}
 
-	@Override
-	public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
-		if (!localName.startsWith("data-")) {
-			throw new RuntimeException(
-					"Dynamic attributes must start with data- . Eg.  data-id=\"1\",data-url=\"/start\" ... ");
-		}
-		attributes.put(localName, value.toString());
+	public String getTitleKey() {
+		return titleKey;
+	}
+
+	public void setTitleKey(String titleKey) {
+		this.titleKey = titleKey;
+	}
+
+	public String getPlaceholderKey() {
+		return placeholderKey;
+	}
+
+	public void setPlaceholderKey(String placeholderKey) {
+		this.placeholderKey = placeholderKey;
 	}
 
 }

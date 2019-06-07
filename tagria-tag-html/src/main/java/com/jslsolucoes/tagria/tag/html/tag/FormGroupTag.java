@@ -1,58 +1,56 @@
 
 package com.jslsolucoes.tagria.tag.html.tag;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.Label;
-import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class FormGroupTag extends AbstractSimpleTagSupport {
 
 	private String forElement;
 	private String label;
+	private String labelKey;
 	private Boolean required = Boolean.FALSE;
-
 	private Boolean visible = Boolean.TRUE;
-	private String id;
+	
 
 	@Override
-	public void render() {
+	public Element render() {
+		return div();
+	}
 
-		Div div = new Div();
-		div.attribute(Attribute.CLASS, "form-group");
-
+	private Element div() {
+		Element div =  ElementCreator.newDiv().attribute(Attribute.CLASS, "form-group")
+				.attribute(Attribute.ID, idForId(id));
 		if (!visible) {
 			div.attribute(Attribute.CLASS, "collapse");
 		}
 
-		div.attribute(Attribute.ID, TagUtil.getId(id, this));
-
-		if (!StringUtils.isEmpty(label)) {
-			Label title = new Label();
-			if (!StringUtils.isEmpty(forElement)) {
-				title.attribute(Attribute.FOR, TagUtil.getId(forElement, null, this));
-			}
-			title.add(TagUtil.getLocalized(label, getJspContext()));
-
-			if (required) {
-				Span span = new Span();
-				span.attribute(Attribute.CLASS, "text-danger");
-				span.add(" * ");
-				title.add(span);
-			}
-			div.add(title);
+		if (hasKeyOrLabel(labelKey, label)) {
+			div.add(label());
 		}
-
-		div.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), div);
+		div.add(bodyContent());
+		return div;
 	}
 
+	private Element label() {
+		Element label = ElementCreator.newLabel().add(keyOrLabel(labelKey, this.label));
+		if (!StringUtils.isEmpty(forElement)) {
+			label.attribute(Attribute.FOR, idForId(forElement));
+		}
+		if (required) {
+			label.add(span());
+		}
+		return label;
+	}
+	
+	private Element span() {
+		return ElementCreator.newSpan()
+		.attribute(Attribute.CLASS, "text-danger")
+		.add(" * ");
 	}
 
 	public String getLabel() {
@@ -87,13 +85,6 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 		this.rendered = rendered;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public Boolean getVisible() {
 		return visible;
@@ -101,5 +92,13 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 }
