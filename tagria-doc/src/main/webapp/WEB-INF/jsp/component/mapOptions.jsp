@@ -3,7 +3,7 @@
 				<html:option value="">- - -</html:option>
 			</html:select>
 			
-			<ajax:function name="dados" url="/app/ajax/list" executeOnDocumentLoad="true">
+			<ajax:function name="dados" url="/app/ajax/list" execute="true">
 			    <ajax:onSuccess>
 			          <ajax:mapOptions target="input2" value="id" text="nome" />
 			    </ajax:onSuccess>
@@ -16,7 +16,7 @@
 				&lt;html:option value=""&gt;- - -&lt;/html:option&gt;
 			&lt;/html:select&gt;
 			
-			&lt;ajax:function name="dados" url="/app/ajax/list" executeOnDocumentLoad="true"&gt;
+			&lt;ajax:function name="dados" url="/app/ajax/list" execute="true"&gt;
 			    &lt;ajax:onSuccess&gt;
 			          &lt;ajax:mapOptions target="input2" value="id" text="nome" /&gt;
 			    &lt;/ajax:onSuccess&gt;

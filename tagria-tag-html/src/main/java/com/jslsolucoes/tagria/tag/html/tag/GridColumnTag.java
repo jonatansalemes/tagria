@@ -5,10 +5,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.html.Td;
 import com.jslsolucoes.tagria.html.Th;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class GridColumnTag extends AbstractSimpleTagSupport {
@@ -20,32 +20,26 @@ public class GridColumnTag extends AbstractSimpleTagSupport {
 	private Boolean exportable = Boolean.FALSE;
 	private String align = "left";
 	private String state;
-	private String hideOnViewport;
-	
-	
 
 	@Override
-	public void render() {
+	public Element render() {
 
-		String body = TagUtil.getBody(getJspBody());
+		String body = bodyContent();
 
 		if (collapsable || booleanType) {
 			align = "center";
 		}
 
-		GridTag grid = TagUtil.findAncestorWithClass(this, GridTag.class);
+		GridTag grid = findAncestorWithClass(GridTag.class);
 
 		Th th = new Th();
 		th.attribute(Attribute.CLASS, "text-" + align);
-		if (!StringUtils.isEmpty(hideOnViewport)) {
-			th.attribute(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
-		}
 
 		if (exportable) {
 			th.attribute(Attribute.CLASS, "grid-column-exportable");
 		}
-		if (!StringUtils.isEmpty(label)) {
-			th.add(TagUtil.getLocalized(label, getJspContext()));
+		if (hasKeyOrLabel(labelKey, label)) {
+			th.add(keyOrLabel(labelKey, label));
 		}
 		grid.addTh(th);
 
@@ -55,10 +49,6 @@ public class GridColumnTag extends AbstractSimpleTagSupport {
 
 		if (!StringUtils.isEmpty(state)) {
 			td.attribute(Attribute.CLASS, "bg-" + state);
-		}
-
-		if (!StringUtils.isEmpty(hideOnViewport)) {
-			td.attribute(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
 		}
 
 		if (exportable) {
@@ -74,9 +64,7 @@ public class GridColumnTag extends AbstractSimpleTagSupport {
 				container.attribute(Attribute.CLASS, "collapse grid-column-collapsable-content");
 			}
 
-			if (!StringUtils.isEmpty(formatType)) {
-				container.add(TagUtil.format(formatType, formatMatch, formatReplace, body, getJspContext()));
-			} else if (booleanType) {
+			if (booleanType) {
 				if ("1".equals(body) || "true".equals(body)) {
 					Span icon = new Span();
 					icon.attribute(Attribute.CLASS, "fas fa-check");
@@ -87,9 +75,7 @@ public class GridColumnTag extends AbstractSimpleTagSupport {
 			}
 			td.add(container);
 		}
-		TagUtil.out(getJspContext(), td);
-	
-
+		return td;
 	}
 
 	public String getLabel() {
@@ -140,35 +126,12 @@ public class GridColumnTag extends AbstractSimpleTagSupport {
 		this.state = state;
 	}
 
-	public String getHideOnViewport() {
-		return hideOnViewport;
-	}
-
-	public void setHideOnViewport(String hideOnViewport) {
-		this.hideOnViewport = hideOnViewport;
-	}
-
 	public Boolean getCollapsable() {
 		return collapsable;
 	}
 
 	public void setCollapsable(Boolean collapsable) {
 		this.collapsable = collapsable;
-	}
-
-	@Override
-	public void setFormatType(String formatType) {
-		this.formatType = formatType;
-	}
-
-	@Override
-	public void setFormatMatch(String formatMatch) {
-		this.formatMatch = formatMatch;
-	}
-
-	@Override
-	public void setFormatReplace(String formatReplace) {
-		this.formatReplace = formatReplace;
 	}
 
 	public String getLabelKey() {

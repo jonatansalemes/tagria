@@ -4,7 +4,7 @@
 			<html:input name="input2" disabled="true"/>
 			
 			<html:jsEvent attachTo="input1" event="blur">
-			     dados();
+			     datas();
 			</html:jsEvent>
 		
 			<ajax:function name="dados" url="/app/ajax">
@@ -25,7 +25,7 @@
 			&lt;html:input name="input2" disabled="true"/&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     dados();
+			     datas();
 			&lt;/html:jsEvent&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax"&gt;

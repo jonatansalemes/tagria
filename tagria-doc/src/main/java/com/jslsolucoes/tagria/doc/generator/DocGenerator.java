@@ -1,15 +1,6 @@
 
 package com.jslsolucoes.tagria.doc.generator;
 
-public class DocGenerator {
-
-	public static void main(String[] args){
-		
-	}
-}
-
-
-/*
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 
 import com.thoughtworks.xstream.XStream;
@@ -37,9 +28,9 @@ public class DocGenerator {
 		Map<String, List<Tag>> groupments = new HashMap<>();
 
 		String html = FileUtils
-				.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/html.tld"), CHARSET);
+				.readFileToString(new File(workspace + "/tagria-tag-html/src/main/resources/META-INF/html.tld"), CHARSET);
 		String ajax = FileUtils
-				.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/ajax.tld"), CHARSET);
+				.readFileToString(new File(workspace + "/tagria-tag-ajax/src/main/resources/META-INF/ajax.tld"), CHARSET);
 		XStream xStream = new XStream();
 		xStream.processAnnotations(Taglib.class);
 		Taglib taglibForHtml = (Taglib) xStream.fromXML(html);
@@ -147,4 +138,4 @@ public class DocGenerator {
 
 	}
 }
-*/
+

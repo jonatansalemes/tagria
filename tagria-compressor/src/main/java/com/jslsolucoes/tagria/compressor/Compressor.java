@@ -3,9 +3,6 @@ package com.jslsolucoes.tagria.compressor;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -14,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,10 +49,10 @@ public class Compressor {
 
 		List<String> contents = new ArrayList<>();
 		for (String file : files) {
-			contents.add(readFileToString(new File(new File(source, "js"), file), CHARSET));
+			contents.add(FileUtils.readFileToString(new File(new File(source, "js"), file), CHARSET));
 		}
 		String content = StringUtils.join(contents, "\n");
-		writeStringToFile(new File(new File(destination, "js"), "tagria-ui.js"),
+		FileUtils.writeStringToFile(new File(new File(destination, "js"), "tagria-ui.js"),
 				compress ? minifyJs(content, CompilationLevel.SIMPLE_OPTIMIZATIONS) : content, CHARSET);
 		logger.info("JS COMPRESSED");
 	}
@@ -83,7 +81,7 @@ public class Compressor {
 			Stream.concat(Arrays.asList(baseFolder.listFiles()).stream(),
 					Arrays.asList(themeFolder.listFiles()).stream()).forEach(file -> {
 						try {
-							copyFileToDirectory(file,
+							FileUtils.copyFileToDirectory(file,
 									new File(new File(new File(destination, resource), THEME), theme));
 						} catch (Exception exception) {
 							throw new TagriaRuntimeException(exception);
@@ -115,26 +113,11 @@ public class Compressor {
 							Arrays.asList(new File(root, theme).listFiles()).stream())
 					.map(file -> normalizeCssFile(file, theme)).collect(Collectors.toList()), "\n");
 
-			writeStringToFile(new File(new File(new File(new File(destination, "css"), THEME), theme), "tagria-ui.css"),
+			FileUtils.writeStringToFile(
+					new File(new File(new File(new File(destination, "css"), THEME), theme), "tagria-ui.css"),
 					compress ? minifyCss(content) : content, CHARSET);
 			logger.info("CSS THEME %s COMPRESSED", theme);
 		}
-	}
-
-	private void copyFileToDirectory(File file, File folder) throws IOException {
-		if (!folder.exists()) {
-			Files.createDirectories(folder.toPath());
-		}
-		Files.copy(file.toPath(), folder.toPath().resolve(file.getName()), StandardCopyOption.REPLACE_EXISTING);
-	}
-
-	private void writeStringToFile(File file, String content, String charset)
-			throws UnsupportedEncodingException, IOException {
-		Files.write(file.toPath(), content.getBytes(charset));
-	}
-
-	private String readFileToString(File file, String charset) throws UnsupportedEncodingException, IOException {
-		return new String(Files.readAllBytes(file.toPath()), charset);
 	}
 
 	private String minifyCss(String code) throws IOException {
@@ -143,7 +126,7 @@ public class Compressor {
 
 	private String normalizeCssFile(File cssFile, String theme) {
 		try {
-			String normalized = readFileToString(cssFile, CHARSET).replaceAll("\\$\\{theme\\}", theme);
+			String normalized = FileUtils.readFileToString(cssFile, CHARSET).replaceAll("\\$\\{theme\\}", theme);
 			Set<String> extensions = new HashSet<>();
 			extensions.add("png");
 			extensions.add("gif");

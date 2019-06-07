@@ -2,7 +2,6 @@ package com.jslsolucoes.tagria.tag.base.tag;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -322,17 +321,21 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		}
 	}
 
-	public String queryString(List<String> excludesParams) throws UnsupportedEncodingException {
-		HttpServletRequest httpServletRequest = httpServletRequest();
-		List<String> queryString = new ArrayList<>();
-		Enumeration<String> en = httpServletRequest.getParameterNames();
-		while (en.hasMoreElements()) {
-			String paramName = en.nextElement();
-			if (!excludesParams.contains(paramName))
-				queryString
-						.add(paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
+	public String queryString(List<String> excludesParams) {
+		try {
+			HttpServletRequest httpServletRequest = httpServletRequest();
+			List<String> queryString = new ArrayList<>();
+			Enumeration<String> en = httpServletRequest.getParameterNames();
+			while (en.hasMoreElements()) {
+				String paramName = en.nextElement();
+				if (!excludesParams.contains(paramName))
+					queryString
+							.add(paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
+			}
+			return StringUtils.join(queryString, '&');
+		} catch (Exception e) {
+			throw new TagriaRuntimeException(e);
 		}
-		return StringUtils.join(queryString, '&');
 	}
 
 	public void appendJsCode(String jsCode) {

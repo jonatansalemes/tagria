@@ -1,7 +1,7 @@
 <%@include file="../app/taglibs.jsp"%>										<html:view title="{title}">																	<html:card>																									<html:cardHeader>															onSuccess							</html:cardHeader>																						<html:cardBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renders success block if the ajax request run smoothly																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:alert state="info" label="{tag.empty.attributes}"></html:alert>																																	</html:tab>																									<html:tab label="{demo}">																						
 			<html:input name="input1" value="Valor 0"/>
 		
-			<ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true">
+			<ajax:function name="dados" url="/app/ajax" execute="true">
 				<ajax:parameters>
 					<ajax:parameter name="input1" src="input1" type="val" />
 				</ajax:parameters>
@@ -18,7 +18,7 @@
 																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 		
-			&lt;ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true"&gt;
+			&lt;ajax:function name="dados" url="/app/ajax" execute="true"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
