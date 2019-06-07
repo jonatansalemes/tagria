@@ -6,7 +6,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 	<description>Tagria Auth library</description>
 	<display-name>Tagria Auth</display-name>
-	<tlib-version>3</tlib-version>
+	<tlib-version>4.0</tlib-version>
 	<short-name>auth</short-name>
 	<uri>http://tagria.jslsolucoes.com/tags/auth</uri>
 

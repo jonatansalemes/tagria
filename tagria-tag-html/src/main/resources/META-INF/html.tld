@@ -7,7 +7,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 	<description>Tagria html library</description>
 	<display-name>Tagria html library</display-name>
-	<tlib-version>3</tlib-version>
+	<tlib-version>4.0</tlib-version>
 	<short-name>html</short-name>
 	<uri>http://tagria.jslsolucoes.com/tags/html</uri>
 

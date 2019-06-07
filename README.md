@@ -86,7 +86,7 @@ Add maven dependency to your project :
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.10&lt;/version&gt;
+	&lt;version&gt;4.0.0&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
@@ -98,9 +98,9 @@ Create an jsp for example index.jsp and import directives
 &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
 &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %&gt;
 &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %&gt;
-&lt;%@ taglib  uri="http://tagrialib.jslsolucoes.com/tags/html" prefix="html"%&gt;
-&lt;%@ taglib  uri="http://tagrialib.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
-&lt;%@ taglib  uri="http://tagrialib.jslsolucoes.com/tags/x" prefix="x"%&gt;
+&lt;%@ taglib  uri="http://tagria.jslsolucoes.com/tags/html" prefix="html"%&gt;
+&lt;%@ taglib  uri="http://tagria.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
+&lt;%@ taglib  uri="http://tagria.jslsolucoes.com/tags/x" prefix="x"%&gt;
 &lt;html:view title="My title"&gt;
 	&lt;html:alert state="info"&gt;
 		My firts view	
