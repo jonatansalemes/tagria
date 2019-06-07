@@ -1,10 +1,7 @@
 
 package com.jslsolucoes.tagria.tag.html.tag;
 
-import java.io.IOException;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Div;
@@ -12,20 +9,20 @@ import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.html.Td;
 import com.jslsolucoes.tagria.html.Th;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
+import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class GridColumnTag extends SimpleTagSupport implements Formattabler {
+public class GridColumnTag extends AbstractSimpleTagSupport {
 
 	private String label;
+	private String labelKey;
 	private Boolean booleanType = Boolean.FALSE;
 	private Boolean collapsable = Boolean.FALSE;
 	private Boolean exportable = Boolean.FALSE;
 	private String align = "left";
-
 	private String state;
 	private String hideOnViewport;
-	private String formatType;
-	private String formatMatch;
-	private String formatReplace;
+	
+	
 
 	@Override
 	public void render() {
@@ -91,7 +88,7 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 			td.add(container);
 		}
 		TagUtil.out(getJspContext(), td);
-	}
+	
 
 	}
 
@@ -172,6 +169,14 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 	@Override
 	public void setFormatReplace(String formatReplace) {
 		this.formatReplace = formatReplace;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

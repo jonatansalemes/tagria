@@ -1314,10 +1314,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 
 	<tag>
-		<description>Renders a modal confirmation</description>
+		<description>Renders a dialog modal confirmation</description>
 		<display-name>Misc</display-name>
-		<name>confirm</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ConfirmTag</tag-class>
+		<name>confirmDialog</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ConfirmDialogTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the label of the title modal</description>

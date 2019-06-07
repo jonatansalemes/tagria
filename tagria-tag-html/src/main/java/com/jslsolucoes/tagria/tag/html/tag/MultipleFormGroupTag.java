@@ -1,23 +1,15 @@
 
 package com.jslsolucoes.tagria.tag.html.tag;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import javax.servlet.jsp.JspContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.H4;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.html.Script;
-import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.html.TextArea;
-import com.jslsolucoes.tagria.html.Th;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 import com.jslsolucoes.tagria.tag.html.VarStatus;
 
@@ -27,116 +19,117 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 	private Collection data;
 	private String var;
 	private String label;
-	private List<HtmlTag> ths = new ArrayList<>();
+	private String labelKey;
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
 	private String afterRemove;
 	private String varStatus;
-	private VarStatus varStatusObject;
+	private VarStatus varStatusObject = new VarStatus();
 	private Script script = new Script();
 
 	@Override
-	public void render() {
+	public Element render() {
 
-		varStatusObject = new VarStatus();
-		Div container = new Div();
-		container.attribute(Attribute.ID, TagUtil.getId(this));
-		container.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container");
-
-		TextArea templateForScript = new TextArea();
-		templateForScript.attribute(Attribute.CLASS, "d-none fg-template-script");
-		templateForScript.add(script);
-		container.add(templateForScript);
-
-		TextArea template = new TextArea();
-		template.attribute(Attribute.CLASS, "d-none fg-template");
-		container.add(template);
-
-		Div toolbar = new Div();
-		toolbar.attribute(Attribute.CLASS, "p-2");
-
-		Div buttonGroup = new Div();
-		buttonGroup.attribute(Attribute.CLASS, "float-left clear-both");
-		Button button = new Button();
-		button.attribute(Attribute.TYPE, "button");
-		button.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus");
-		button.add(new Span().attribute(Attribute.CLASS, "fas fa-plus"));
-		buttonGroup.add(button);
-		toolbar.add(buttonGroup);
-
-		if (!StringUtils.isEmpty(label)) {
-			Div title = new Div();
-			title.attribute(Attribute.CLASS, "text-center");
-			H4 h4 = new H4();
-			h4.attribute(Attribute.CLASS, "text-secondary");
-			h4.add(TagUtil.getLocalized(getLabel(), getJspContext()));
-			title.add(h4);
-			toolbar.add(title);
-		}
-
-		container.add(toolbar);
-
-		Div content = new Div();
-		content.attribute(Attribute.CLASS, "fg-content");
-
-		if (!CollectionUtils.isEmpty(data)) {
-
-			JspContext jspContext = getJspContext();
-			for (Object object : data) {
-				jspContext.setAttribute(var, object);
-				if (!StringUtils.isEmpty(varStatus)) {
-					jspContext.setAttribute(varStatus, varStatusObject);
-				}
-				content.add(formGroup(TagUtil.getBody(getJspBody())));
-				varStatusObject.increment();
-			}
-			if (!StringUtils.isEmpty(varStatus)) {
-				jspContext.setAttribute(varStatus, null);
-			}
-			jspContext.setAttribute(var, null);
-		} else {
-			for (int i = 0; i < (atLeast > 0 ? atLeast : 1); i++) {
-				content.add(formGroup(TagUtil.getBody(getJspBody())));
-			}
-		}
-		container.add(content);
-
-		TagUtil.out(getJspContext(), container);
+		Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+				.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container")
+				.add(textAreaScript()).add(textAreaHtml()).add(divToolbar()).add(divContent());
 
 		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
 		String afterRemoveFunction = (!StringUtils.isEmpty(afterRemove) ? afterRemove + "();" : "");
-		TagUtil.appendJs("$('#" + container.attribute(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:"
-				+ empty + ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
-				+ afterRemoveFunction + "}});", this);
+		appendJsCode("$('#" + container.attribute(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
+				+ ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
+				+ afterRemoveFunction + "}});");
 
+		return container;
 	}
 
-	private HtmlTag formGroup(String content) {
-
-		Div row = new Div();
-		row.attribute(Attribute.CLASS, "row fg-row border rounded text-secondary mt-3 mb-3 p-3");
-
-		Div col1 = new Div();
-		col1.attribute(Attribute.CLASS, "col col-11");
-		col1.add(new Div().add(content));
-
-		Div col2 = new Div();
-		col2.attribute(Attribute.CLASS, "col col-1 my-auto");
-		col2.add(remove());
-
-		row.add(col1);
-		row.add(col2);
-
-		return row;
+	private Element divContent() {
+		Element content = ElementCreator.newDiv().attribute(Attribute.CLASS, "fg-content");
+		if (!CollectionUtils.isEmpty(data)) {
+			for (Object object : data) {
+				setAttribute(var, object);
+				if (!StringUtils.isEmpty(varStatus)) {
+					setAttribute(varStatus, varStatusObject);
+				}
+				content.add(formGroup(bodyContent()));
+				varStatusObject.increment();
+			}
+			if (!StringUtils.isEmpty(varStatus)) {
+				setAttribute(varStatus, null);
+			}
+			setAttribute(var, null);
+		} else {
+			for (int i = 0; i < (atLeast > 0 ? atLeast : 1); i++) {
+				content.add(formGroup(bodyContent()));
+			}
+		}
+		return content;
 	}
 
-	private HtmlTag remove() {
-		Button minus = new Button();
-		minus.attribute(Attribute.ID, TagUtil.getId(this));
-		minus.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus");
-		minus.add(new Span().attribute(Attribute.CLASS, "fas fa-minus"));
-		return minus;
+	private Element divToolbar() {
+		Element toolbar = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2").add(divButtonGroupToolbar());
+		if (hasKeyOrLabel(labelKey, label)) {
+			toolbar.add(divTitle());
+		}
+		return toolbar;
+	}
+
+	private Element divTitle() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center").add(h4());
+	}
+
+	private Element h4() {
+		return ElementCreator.newH4().attribute(Attribute.CLASS, "text-secondary").add(keyOrLabel(labelKey, label));
+	}
+
+	private Element divButtonGroupToolbar() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-left clear-both").add(buttonPlus());
+	}
+
+	private Element buttonPlus() {
+		return ElementCreator.newButton().attribute(Attribute.TYPE, "button")
+				.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus").add(spanPlus());
+	}
+
+	private Element spanPlus() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-plus");
+	}
+
+	private Element textAreaHtml() {
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template");
+	}
+
+	private Element textAreaScript() {
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template-script").add(script);
+	}
+
+	private Element formGroup(String bodyContent) {
+		return divRow(bodyContent);
+	}
+
+	private Element divCol1(String bodyContent) {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11")
+				.add(ElementCreator.newDiv().add(bodyContent));
+	}
+
+	private Element divCol2() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-1 my-auto").add(buttonRemove());
+	}
+
+	private Element divRow(String bodyContent) {
+		return ElementCreator.newDiv()
+				.attribute(Attribute.CLASS, "row fg-row border rounded text-secondary mt-3 mb-3 p-3")
+				.add(divCol1(bodyContent)).add(divCol2());
+	}
+
+	private Element buttonRemove() {
+		return ElementCreator.newButton().attribute(Attribute.ID, id())
+				.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus").add(spanMinus());
+	}
+
+	private Element spanMinus() {
+		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-minus");
 	}
 
 	public String getLabel() {
@@ -145,18 +138,6 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public List<HtmlTag> getThs() {
-		return ths;
-	}
-
-	public void setThs(List<HtmlTag> ths) {
-		this.ths = ths;
-	}
-
-	public void add(Th th) {
-		ths.add(th);
 	}
 
 	public Collection getData() {
@@ -229,6 +210,14 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 
 	public void setScript(Script script) {
 		this.script = script;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }
