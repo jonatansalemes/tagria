@@ -11,9 +11,10 @@ public class CardImageTag extends AbstractSimpleTagSupport {
 	private String alt;
 	private String altKey;
 	private String url;
-	private Boolean cdn = true;
+	private Boolean cdn = Boolean.TRUE;
 	private Integer height;
 	private Integer width;
+	private Boolean responsive = Boolean.FALSE;
 
 	@Override
 	public Element render() {
@@ -21,13 +22,13 @@ public class CardImageTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element img() {
-		Element img = ElementCreator.newImg().attribute(Attribute.CLASS, "card-img-top")
-				.attribute(Attribute.SRC, pathForStatic(url, cdn)).attribute(Attribute.ALT, keyOrLabel(altKey, alt));
-		if (width != null) {
-			img.attribute(Attribute.WIDTH, width);
+		Element img = ElementCreator.newImg().attribute(Attribute.SRC, pathForStatic(url, cdn))
+				.attribute(Attribute.WIDTH, width).attribute(Attribute.HEIGHT, height);
+		if (hasKeyOrLabel(altKey, alt)) {
+			img.attribute(Attribute.ALT, keyOrLabel(altKey, alt));
 		}
-		if (height != null) {
-			img.attribute(Attribute.HEIGHT, height);
+		if(responsive) {
+			img.attribute(Attribute.CLASS,"card-img-top");
 		}
 		return img;
 	}
@@ -78,6 +79,14 @@ public class CardImageTag extends AbstractSimpleTagSupport {
 
 	public void setAltKey(String altKey) {
 		this.altKey = altKey;
+	}
+
+	public Boolean getResponsive() {
+		return responsive;
+	}
+
+	public void setResponsive(Boolean responsive) {
+		this.responsive = responsive;
 	}
 
 }

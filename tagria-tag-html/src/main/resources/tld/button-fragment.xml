@@ -1,0 +1,120 @@
+	<tag>
+		<description>Renders a button</description>
+		<display-name>Button</display-name>
+		<name>button</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.button.ButtonTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the status of the button. Default: default. Options: default, primary, danger, info, success</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the type of button. Default: button. Options: button, submit</description>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component linked to dismiss button. Default false. Options: true,false</description>
+			<name>dismiss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the if button is full filled. Default false. Options: true,false</description>
+			<name>filled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the url to be performed by the component</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the icon to be used by the component. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component&#39;s id</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n) component</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component target. Default: _self. Options: _blank, _newtab, _parent, nomedoiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title button</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title key(i18n) button</description>
+			<name>titleKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be blocked after click . Default : false</description>
+			<name>autoblock</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be disabled. Default: false.</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+		   &lt;html:button label="My button" icon="search" /&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a set of buttons</description>
+		<display-name>Button</display-name>
+		<name>button-group</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.button.ButtonGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+		    &lt;html:button-group&gt;
+				&lt;html:button label="My button 1" icon="search" id="btn1" /&gt;
+				&lt;html:button label="My button 2" icon="plus" state="danger" filled="true"  /&gt;
+			&lt;/html:button-group&gt;
+		</example>
+	</tag>

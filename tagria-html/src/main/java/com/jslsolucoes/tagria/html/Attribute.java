@@ -12,7 +12,7 @@ public enum Attribute {
 	NOVALIDATE("novalidate"), ONSUBMIT("onsubmit"), PLACEHOLDER("placeholder"), PATTERN("pattern"), REL("rel"),
 	ROLE("role"), REQUIRED("required"), ROWS("rows"), SRC("src"), SELECTED("selected"), STYLE("style"), TYPE("type"),
 	TITLE("title"), TARGET("target"), VALUE("value"), XMLNS("xmlns"), WIDTH("width"), DATA_SITEKEY("data-sitekey"),
-	DATA_RIDE("data-ride"), LIST("list"), DATA_SLIDE("data-slide"), STEP("step"), DATA_SRC("data-src");
+	DATA_RIDE("data-ride"), LIST("list"), DATA_SLIDE("data-slide"), STEP("step"), DATA_SRC("data-src"), DATA_SHOW("data-show");
 
 	private String name;
 

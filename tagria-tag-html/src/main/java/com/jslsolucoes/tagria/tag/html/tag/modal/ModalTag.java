@@ -10,14 +10,11 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class ModalTag extends AbstractSimpleTagSupport {
 
-	private String label;
-	private String labelKey;
 	private String attachTo;
 	private String attachToSelector;
 	private Boolean closeable = Boolean.TRUE;
 	private Boolean centered = Boolean.FALSE;
 	private Boolean open = Boolean.FALSE;
-	private Element toolbar;
 	private String size;
 
 	@Override
@@ -35,10 +32,14 @@ public class ModalTag extends AbstractSimpleTagSupport {
 		appendJsCode("$('" + attachTo(attachToSelector, attachTo)
 				+ "').attr('data-toggle','modal').attr('data-target','#" + div.attribute(Attribute.ID) + "');");
 
-		if (open != null && open) {
+		if (open()) {
 			appendJsCode("$('#" + div.attribute(Attribute.ID) + "').modal('show')");
 		}
 		return div;
+	}
+
+	private Boolean open() {
+		return open != null && open;
 	}
 
 	private Element divDialog() {
@@ -53,53 +54,7 @@ public class ModalTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element divModalContent() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-content").add(divModalHeader())
-				.add(divModalBody());
-		if (toolbar != null) {
-			div.add(divModalFooter());
-		}
-		return div;
-	}
-
-	private Element divModalFooter() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-footer").add(toolbar);
-	}
-
-	private Element divModalHeader() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header").add(h4());
-		if (closeable) {
-			div.add(button());
-		}
-		return div;
-	}
-
-	private Element button() {
-		return ElementCreator.newButton().attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
-				.add(span());
-	}
-
-	private Element span() {
-		return ElementCreator.newSpan().add("&times;");
-	}
-
-	private Element h4() {
-		return ElementCreator.newH4().attribute(Attribute.CLASS, "modal-title").add(keyOrLabel(labelKey, label));
-	}
-
-	private Element divModalBody() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body").add(bodyContent());
-	}
-
-	public void setToolbar(Element toolbar) {
-		this.toolbar = toolbar;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-content").add(bodyContent());
 	}
 
 	public String getAttachTo() {
@@ -148,14 +103,6 @@ public class ModalTag extends AbstractSimpleTagSupport {
 
 	public void setCentered(Boolean centered) {
 		this.centered = centered;
-	}
-
-	public String getLabelKey() {
-		return labelKey;
-	}
-
-	public void setLabelKey(String labelKey) {
-		this.labelKey = labelKey;
 	}
 
 }

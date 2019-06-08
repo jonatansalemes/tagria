@@ -27,7 +27,18 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:tabs&gt;
+				&lt;html:tabs-header&gt;
+					&lt;html:tabs-tab active="true" label="my tab 1" id="tab1"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 2" id="tab2"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 3" id="tab3"&gt;&lt;/html:tabs-tab&gt;
+				&lt;/html:tabs-header&gt;
+				&lt;html:tabs-body&gt;
+					&lt;html:tabs-content active="true" contentOf="tab1"&gt; My content 1&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab2"&gt; My content 2&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab3"&gt; My content 3&lt;/html:tabs-content&gt;
+				&lt;/html:tabs-body&gt;
+			&lt;/html:tabs&gt;
 		</example>
 	</tag>
 	
@@ -38,7 +49,18 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsBodyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:tabs&gt;
+				&lt;html:tabs-header&gt;
+					&lt;html:tabs-tab active="true" label="my tab 1" id="tab1"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 2" id="tab2"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 3" id="tab3"&gt;&lt;/html:tabs-tab&gt;
+				&lt;/html:tabs-header&gt;
+				&lt;html:tabs-body&gt;
+					&lt;html:tabs-content active="true" contentOf="tab1"&gt; My content 1&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab2"&gt; My content 2&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab3"&gt; My content 3&lt;/html:tabs-content&gt;
+				&lt;/html:tabs-body&gt;
+			&lt;/html:tabs&gt;
 		</example>
 	</tag>
 	
@@ -68,7 +90,18 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:tabs&gt;
+				&lt;html:tabs-header&gt;
+					&lt;html:tabs-tab active="true" label="my tab 1" id="tab1"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 2" id="tab2"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 3" id="tab3"&gt;&lt;/html:tabs-tab&gt;
+				&lt;/html:tabs-header&gt;
+				&lt;html:tabs-body&gt;
+					&lt;html:tabs-content active="true" contentOf="tab1"&gt; My content 1&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab2"&gt; My content 2&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab3"&gt; My content 3&lt;/html:tabs-content&gt;
+				&lt;/html:tabs-body&gt;
+			&lt;/html:tabs&gt;
 		</example>
 	</tag>
 
@@ -79,14 +112,14 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsTabTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates id of tab head</description>
+			<description>It indicates id of tab</description>
 			<name>id</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the tab should be initiated selected</description>
+			<description>It indicates tab activation on load component</description>
 			<name>active</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
@@ -98,7 +131,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the label (i18n) of the tab</description>
+			<description>Indicates the label key (i18n) of the tab</description>
 			<name>labelKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -116,6 +149,17 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:tabs&gt;
+				&lt;html:tabs-header&gt;
+					&lt;html:tabs-tab active="true" label="my tab 1" id="tab1"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 2" id="tab2"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 3" id="tab3"&gt;&lt;/html:tabs-tab&gt;
+				&lt;/html:tabs-header&gt;
+				&lt;html:tabs-body&gt;
+					&lt;html:tabs-content active="true" contentOf="tab1"&gt; My content 1&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab2"&gt; My content 2&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab3"&gt; My content 3&lt;/html:tabs-content&gt;
+				&lt;/html:tabs-body&gt;
+			&lt;/html:tabs&gt;
 		</example>
 	</tag>

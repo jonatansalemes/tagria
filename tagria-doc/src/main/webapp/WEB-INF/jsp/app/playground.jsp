@@ -28,5 +28,40 @@
 			<html:tabs-content contentOf="tab3"> My content 3</html:tabs-content>
 		</html:tabs-body>
 	</html:tabs>
+	
+	<html:button-group>
+		<html:button label="My button" icon="search" id="btn1" />
+		<html:button label="My button 2" icon="plus" state="danger" filled="true" />
+	</html:button-group>
+	
+	<html:modal attachToSelector="#btn1">
+		<html:modal-header label="My modal title"></html:modal-header>
+		<html:modal-body>
+			Here is my component
+		</html:modal-body>
+		<html:modal-footer>
+			My footer
+		</html:modal-footer>
+	</html:modal>
+	
+	
+	<html:card>
+		<html:card-image url="/image/person.png" width="32" height="32" responsive="false"></html:card-image>
+		<html:card-header>
+			My header
+		</html:card-header>
+		<html:card-body>
+			<html:card-title>My title</html:card-title>
+			<html:card-sub-title>My subtitle</html:card-sub-title>
+			<html:card-text>My text</html:card-text>
+			<html:card-link label="My link 1" url="#"></html:card-link>
+		</html:card-body>
+		<html:card-footer>
+			My footer
+		</html:card-footer>
+		
+	</html:card>
+	
+	
 
 </html:view>

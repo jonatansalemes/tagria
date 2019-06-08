@@ -74,7 +74,7 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 	}
 
 	private String buttonCssClass() {
-		return "btn " + (filled ? "btn-" : "btn-outline-" + state + " shadow-sm");
+		return "btn " + (filled ? "btn-" : "btn-outline-") + state + " shadow-sm";
 	}
 
 	public String getIcon() {

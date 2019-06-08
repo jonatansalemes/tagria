@@ -1,19 +1,23 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
-	
+
+	public static H6 newH6() {
+		return new H6();
+	}
+
 	public static Label newLabel() {
 		return new Label();
 	}
-	
+
 	public static Form newForm() {
 		return new Form();
 	}
-	
+
 	public static Select newSelect() {
 		return new Select();
 	}
-	
+
 	public static Option newOption() {
 		return new Option();
 	}
@@ -105,7 +109,7 @@ public class ElementCreator {
 	public static H3 newH3() {
 		return new H3();
 	}
-	
+
 	public static H4 newH4() {
 		return new H4();
 	}
