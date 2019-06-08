@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html.tag.misc;
+package com.jslsolucoes.tagria.tag.html.tag;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +22,8 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppender {
 
-	private String title = "";
-	private String key;
+	private String title;
+	private String titleKey;
 	private String cssClass = "body-default";
 	private Boolean minifyJs = Boolean.TRUE;
 	private Boolean minifyHtml = Boolean.TRUE;
@@ -70,7 +70,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	}
 
 	private String titleForApplication() {
-		return (!StringUtils.isEmpty(key) ? keyForApplication(key) : title);
+		return (hasKeyOrLabel(titleKey, title) ? keyOrLabel(titleKey, title) : "");
 	}
 
 	private Element favicon() {
@@ -200,6 +200,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
 	public void setMinifyHtml(Boolean minifyHtml) {
 		this.minifyHtml = minifyHtml;
+	}
+
+	public String getTitleKey() {
+		return titleKey;
+	}
+
+	public void setTitleKey(String titleKey) {
+		this.titleKey = titleKey;
 	}
 
 }

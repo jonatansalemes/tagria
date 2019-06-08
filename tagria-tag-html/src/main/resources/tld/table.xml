@@ -1,0 +1,219 @@
+	<tag>
+		<description>Renders a table</description>
+		<display-name>Table</display-name>
+		<name>table</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the table should be striped rows. Default : false</description>
+			<name>stripe</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the table should be dark theme. Default : false</description>
+			<name>dark</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the table should be hovered rows. Default : false</description>
+			<name>hover</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the table should be small size. Default : false</description>
+			<name>small</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the table should be bordered. Default : false</description>
+			<name>border</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableBody&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableBody&gt;
+			&lt;/html:table&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a line of a table</description>
+		<display-name>Table</display-name>
+		<name>tableLine</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableLineTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the table line state. Default: default. Options: success, danger, info, default, primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableBody&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+					&lt;html:tableLine state="danger"&gt;
+						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableBody&gt;
+			&lt;/html:table&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a table column</description>
+		<display-name>Table</display-name>
+		<name>tableColumn</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableColumnTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the column state. Default: default. Options: success, danger, info, default, primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a label for column content</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns that this column should fill</description>
+			<name>colspan</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableBody&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
+						&lt;html:tableColumn state="info"&gt;Value 2&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn colspan="2">Value colspan 3&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableBody&gt;
+			&lt;/html:table&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a table caption</description>
+		<display-name>Table</display-name>
+		<name>tableCaption</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableCaptionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a label for column content</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableCaption&gt;
+					Caption
+				&lt;/html:tableCaption&gt;
+				&lt;html:tableBody&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+					&lt;html:tableLine state="danger"&gt;
+						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableBody&gt;
+			&lt;/html:table&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a table body</description>
+		<display-name>Table</display-name>
+		<name>tableBody</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableCaption&gt;
+					Caption
+				&lt;/html:tableCaption&gt;
+				&lt;html:tableBody&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+					&lt;html:tableLine state="danger"&gt;
+						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableBody&gt;
+			&lt;/html:table&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a table</description>
+		<display-name>Table</display-name>
+		<name>tableHeader</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+	
+		<attribute>
+			<description>It indicates whether the table header should be dark theme. Default : false</description>
+			<name>dark</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the table header should be light theme. Default : false</description>
+			<name>light</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+	
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableHeader light="true"&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableHead&gt;Head 1&lt;/html:tableHead&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableHeader&gt;
+			&lt;/html:table&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a table head</description>
+		<display-name>Table</display-name>
+		<name>tableHead</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableHeadTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a label for column head content</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableHeader light="dark"&gt;
+					&lt;html:tableLine&gt;
+						&lt;html:tableHead label="Head 1"/&gt;
+					&lt;/html:tableLine&gt;
+				&lt;/html:tableHeader&gt;
+			&lt;/html:table&gt; </example>
+	</tag>

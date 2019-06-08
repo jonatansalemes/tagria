@@ -46,6 +46,7 @@
 				<version>1.6.0</version>
 				<executions>
 					<execution>
+						<id>step1</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>java</goal>
@@ -58,6 +59,22 @@
 								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
 								<argument>false</argument>
 								<argument>${project.version}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>step2</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<includeProjectDependencies>true</includeProjectDependencies>
+							<mainClass>com.jslsolucoes.tagria.tag.html.MetaDataBuilder</mainClass>
+							<arguments>
+								<argument>${project.basedir}/src/main/resources/tld</argument>
+								<argument>${project.basedir}/src/main/resources/META-INF/html.tld</argument>
+								<argument>${project.build.directory}/classes/META-INF/html.tld</argument>
 							</arguments>
 						</configuration>
 					</execution>
@@ -81,6 +98,7 @@
 						<exclude>**/css/theme/default/theme.css</exclude>
 						<exclude>**/css/theme/default/form.group.css</exclude>
 						<exclude>**/css/theme/default/select.css</exclude>
+						<exclude>tld/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
