@@ -59,7 +59,6 @@
 		<html:card-footer>
 			My footer
 		</html:card-footer>
-		
 	</html:card>
 	
 	

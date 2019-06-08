@@ -34,9 +34,22 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
-
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 
@@ -98,7 +111,21 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 
@@ -121,7 +148,21 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 	
@@ -144,7 +185,21 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 
@@ -173,7 +228,21 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 
@@ -184,7 +253,21 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.card.CardHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 
@@ -195,7 +278,21 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.card.CardBodyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 	
@@ -230,7 +327,21 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
 
@@ -241,6 +352,20 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.card.CardFooterTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:card&gt;
+				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
+				&lt;html:card-header&gt;
+					My header
+				&lt;/html:card-header&gt;
+				&lt;html:card-body&gt;
+					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
+					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
+					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
+					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
+				&lt;/html:card-body&gt;
+				&lt;html:card-footer&gt;
+					My footer
+				&lt;/html:card-footer&gt;
+			&lt;/html:card&gt;
 		</example>
 	</tag>
