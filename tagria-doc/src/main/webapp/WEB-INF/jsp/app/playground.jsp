@@ -14,5 +14,19 @@
 			</html:tr>
 		</html:tbody>
 	</html:table>
-	
+
+
+	<html:tabs>
+		<html:tabs-header>
+			<html:tabs-tab active="true" label="my tab 1" id="tab1"></html:tabs-tab>
+			<html:tabs-tab label="my tab 2" id="tab2"></html:tabs-tab>
+			<html:tabs-tab label="my tab 3" id="tab3"></html:tabs-tab>
+		</html:tabs-header>
+		<html:tabs-body>
+			<html:tabs-content active="true" contentOf="tab1"> My content 1</html:tabs-content>
+			<html:tabs-content contentOf="tab2"> My content 2</html:tabs-content>
+			<html:tabs-content contentOf="tab3"> My content 3</html:tabs-content>
+		</html:tabs-body>
+	</html:tabs>
+
 </html:view>

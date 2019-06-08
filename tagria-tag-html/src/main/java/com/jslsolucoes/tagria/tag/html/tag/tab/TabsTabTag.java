@@ -5,7 +5,7 @@ import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class TabsHead extends AbstractSimpleTagSupport {
+public class TabsTabTag extends AbstractSimpleTagSupport {
 	
 	private String label;
 	private String labelKey;
