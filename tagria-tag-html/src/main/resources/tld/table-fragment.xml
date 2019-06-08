@@ -35,22 +35,31 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableBody&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt; </example>
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
+					Caption
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders a line of a table</description>
 		<display-name>Table</display-name>
-		<name>tableLine</name>
+		<name>tr</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableLineTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -66,22 +75,31 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableBody&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-					&lt;html:tableLine state="danger"&gt;
-						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt; </example>
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
+					Caption
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders a table column</description>
 		<display-name>Table</display-name>
-		<name>tableColumn</name>
+		<name>td</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableColumnTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -97,29 +115,43 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a label (i18n) for column content</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the number of columns that this column should fill</description>
 			<name>colspan</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
 		</attribute>
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableBody&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
-						&lt;html:tableColumn state="info"&gt;Value 2&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn colspan="2">Value colspan 3&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt; </example>
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
+					Caption
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders a table caption</description>
 		<display-name>Table</display-name>
-		<name>tableCaption</name>
+		<name>caption</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableCaptionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -129,47 +161,59 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableCaption&gt;
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
 					Caption
-				&lt;/html:tableCaption&gt;
-				&lt;html:tableBody&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-					&lt;html:tableLine state="danger"&gt;
-						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt; </example>
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders a table body</description>
 		<display-name>Table</display-name>
-		<name>tableBody</name>
+		<name>tbody</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableBodyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableCaption&gt;
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
 					Caption
-				&lt;/html:tableCaption&gt;
-				&lt;html:tableBody&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableColumn&gt;Column 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-					&lt;html:tableLine state="danger"&gt;
-						&lt;html:tableColumn&gt;Value 1&lt;/html:tableColumn&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableBody&gt;
-			&lt;/html:table&gt; </example>
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>
 	
 	<tag>
-		<description>Renders a table</description>
+		<description>Renders table head</description>
 		<display-name>Table</display-name>
-		<name>tableHeader</name>
+		<name>thead</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
 	
@@ -187,19 +231,31 @@
 		</attribute>
 	
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableHeader light="true"&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableHead&gt;Head 1&lt;/html:tableHead&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableHeader&gt;
-			&lt;/html:table&gt; </example>
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
+					Caption
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>
 	
 	<tag>
-		<description>Renders a table head</description>
+		<description>Renders a th</description>
 		<display-name>Table</display-name>
-		<name>tableHead</name>
+		<name>th</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableHeadTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -208,12 +264,30 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates a label (i18n) for column head content</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
-			&lt;html:table&gt;
-				&lt;html:tableHeader light="dark"&gt;
-					&lt;html:tableLine&gt;
-						&lt;html:tableHead label="Head 1"/&gt;
-					&lt;/html:tableLine&gt;
-				&lt;/html:tableHeader&gt;
-			&lt;/html:table&gt; </example>
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
+					Caption
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+			&lt;/html:table&gt; 
+		</example>
 	</tag>

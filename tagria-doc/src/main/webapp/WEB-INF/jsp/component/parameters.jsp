@@ -6,7 +6,7 @@
 					<ajax:parameter name="input1" src="input1" type="val" />
 				</ajax:parameters>
 			    <ajax:onSuccess>
-			    	    /*Nesse trecho est√° disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
+			    	    /*Nesse trecho est· disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
 			    </ajax:onSuccess>
 			    <ajax:onError>
 			          
@@ -20,7 +20,7 @@
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
 			    &lt;ajax:onSuccess&gt;
-			    	    /*Nesse trecho est√° disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
+			    	    /*Nesse trecho est· disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
 			    &lt;/ajax:onSuccess&gt;
 			    &lt;ajax:onError&gt;
 			          

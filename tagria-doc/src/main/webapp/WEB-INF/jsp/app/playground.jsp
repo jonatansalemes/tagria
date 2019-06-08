@@ -3,16 +3,16 @@
 
 
 	<html:table dark="true" hover="true" stripe="true">
-		<html:tableHeader light="dark">
-			<html:tableLine>
-				<html:tableHead label="My label"></html:tableHead>
-			</html:tableLine>
-		</html:tableHeader>
-		<html:tableBody>
-			<html:tableLine>
-				<html:tableColumn state="info"> hello </html:tableColumn>
-			</html:tableLine>
-		</html:tableBody>
+		<html:thead light="dark">
+			<html:tr>
+				<html:th label="My label"></html:th>
+			</html:tr>
+		</html:thead>
+		<html:tbody>
+			<html:tr>
+				<html:td state="info"> hello </html:td>
+			</html:tr>
+		</html:tbody>
 	</html:table>
 	
 </html:view>

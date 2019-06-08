@@ -4,7 +4,7 @@
 			    	      
 			    </ajax:onSuccess>
 			    <ajax:onError>
-			           /*Nesse trecho est√° disponivel as variaveis javascript ( jqXHR jqXHR, String textStatus, String errorThrown )*/
+			           /*Nesse trecho est· disponivel as variaveis javascript ( jqXHR jqXHR, String textStatus, String errorThrown )*/
 			           alert(textStatus);
 			           alert(errorThrown);
 			           alert(jqXHR);
@@ -16,7 +16,7 @@
 			    	      
 			    &lt;/ajax:onSuccess&gt;
 			    &lt;ajax:onError&gt;
-			           /*Nesse trecho est√° disponivel as variaveis javascript ( jqXHR jqXHR, String textStatus, String errorThrown )*/
+			           /*Nesse trecho est· disponivel as variaveis javascript ( jqXHR jqXHR, String textStatus, String errorThrown )*/
 			           alert(textStatus);
 			           alert(errorThrown);
 			           alert(jqXHR);
