@@ -391,6 +391,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the align of text inside block. Default: left . Options: left,center,right </description>
 			<name>align</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2076,6 +2082,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the component must follow a set on the properties cdn</description>
 			<name>cdn</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2405,6 +2417,24 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the menu should be dark theme. Default : false</description>
+			<name>dark</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the menu should be light theme. Default : false</description>
+			<name>light</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:menu&gt;
 				&lt;html:menuCollapse attachToSelector="#block1"&gt;
@@ -2624,6 +2654,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the component linked to dismiss button. Default false. Options: true,false</description>
 			<name>dismiss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the button back is full filled or not. Default false. Options: true,false</description>
+			<name>filled</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
