@@ -31,7 +31,7 @@
 	
 	<html:button-group>
 		<html:button label="My button" icon="search" id="btn1" />
-		<html:button label="My button 2" icon="plus" state="danger" filled="true" />
+		<html:button label="My button 2" icon="plus" id="btn2" state="danger" filled="true" />
 	</html:button-group>
 	
 	<html:modal attachToSelector="#btn1">
@@ -60,6 +60,21 @@
 			My footer
 		</html:card-footer>
 	</html:card>
+	
+	<html:list-group>
+		<html:list-group-item>Item 1</html:list-group-item>
+		<html:list-group-item>Item 2</html:list-group-item>
+		<html:list-group-item>Item 3</html:list-group-item>
+	</html:list-group>
+	
+	<html:js-code>
+		console.log('js code as component');
+	</html:js-code>
+	
+	<html:js-event event="click" attachToSelector="#btn2">
+		console.log('btn 2 clicked');
+	</html:js-event>
+	
 	
 	
 

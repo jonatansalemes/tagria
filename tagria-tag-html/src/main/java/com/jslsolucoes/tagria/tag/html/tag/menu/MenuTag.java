@@ -11,6 +11,8 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 public class MenuTag extends AbstractSimpleTagSupport {
 
 	private String fixed;
+	private Boolean dark = Boolean.FALSE;
+	private Boolean light = Boolean.FALSE;
 
 	@Override
 	public Element render() {
@@ -18,12 +20,17 @@ public class MenuTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element nav() {
+		String navBarClass = navBarClass();
 		Element nav = ElementCreator.newNav()
-				.attribute(Attribute.CLASS, "navbar navbar-expand-lg navbar-light bg-light").add(bodyContent());
+				.attribute(Attribute.CLASS, "navbar navbar-expand-lg navbar-"+navBarClass+" bg-"+navBarClass).add(bodyContent());
 		if (!StringUtils.isEmpty(fixed)) {
 			nav.attribute(Attribute.CLASS, "fixed-" + fixed);
 		}
 		return nav;
+	}
+
+	private String navBarClass() {
+		return light ? "light" : dark ? "dark" : "light";
 	}
 
 	public String getFixed() {
@@ -32,5 +39,21 @@ public class MenuTag extends AbstractSimpleTagSupport {
 
 	public void setFixed(String fixed) {
 		this.fixed = fixed;
+	}
+	
+	public Boolean getDark() {
+		return dark;
+	}
+
+	public void setDark(Boolean dark) {
+		this.dark = dark;
+	}
+
+	public Boolean getLight() {
+		return light;
+	}
+
+	public void setLight(Boolean light) {
+		this.light = light;
 	}
 }

@@ -1,0 +1,71 @@
+	<tag>
+		<description>Renders a list</description>
+		<display-name>Groupments</display-name>
+		<name>list-group</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.list.group.ListGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:list-group&gt;
+				&lt;html:list-group-item&gt;
+					Item 1
+				&lt;/html:list-group-item&gt;
+				&lt;html:list-group-item&gt;
+					Item 2
+				&lt;/html:list-group-item&gt;
+				&lt;html:list-group-item&gt;
+					Item 3
+				&lt;/html:list-group-item&gt;
+			&lt;/html:list-group&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a list item</description>
+		<display-name>Groupments</display-name>
+		<name>list-group-item</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.list.group.ListGroupItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the state where the item should be rendered. Default: none. Options: primary, secondary, light, dark, warning, success, danger, info</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:list-group&gt;
+				&lt;html:list-group-item&gt;
+					Item 1
+				&lt;/html:list-group-item&gt;
+				&lt;html:list-group-item&gt;
+					Item 2
+				&lt;/html:list-group-item&gt;
+				&lt;html:list-group-item&gt;
+					Item 3
+				&lt;/html:list-group-item&gt;
+			&lt;/html:list-group&gt; 
+		</example>
+	</tag>

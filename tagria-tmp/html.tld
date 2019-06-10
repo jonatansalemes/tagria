@@ -989,44 +989,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 	</tag>
 
-	<tag>
-		<description>Renders a triggered event for a given component</description>
-		<display-name>Javascript</display-name>
-		<name>jsEvent</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.JsEventTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates the component name to be achieved</description>
-			<name>attachTo</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the component selector that triggers the event</description>
-			<name>attachToSelector</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the javascript event to be fired</description>
-			<name>event</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component should be rendered. Default : true</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<example>
-			&lt;html:input name="input1" placeholder="Focus in and focus out" /&gt;
-			
-			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			    alert('blur');
-			&lt;/html:jsEvent&gt; </example>
-	</tag>
+	
 
 	
 
@@ -2138,90 +2101,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:menu&gt; </example>
 	</tag>
 
-	<tag>
-		<description>Renders a javascript block</description>
-		<display-name>Javascript</display-name>
-		<name>jsCode</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.JsCodeTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>It indicates whether the component should be rendered. Default : true.</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<example>
-			&lt;html:jsCode&gt;
-				test();
-				function test(){
-					alert('oi');
-				}
-			&lt;/html:jsCode&gt; </example>
-	</tag>
+	
 
-	<tag>
-		<description>Renders a list</description>
-		<display-name>Groupments</display-name>
-		<name>listGroup</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ListGroupTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>It indicates whether the component should be rendered. Default : true</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates a CSS class to the component</description>
-			<name>cssClass</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<example>
-			&lt;html:listGroup&gt;
-				&lt;html:listGroupItem&gt;
-					Item 1
-				&lt;/html:listGroupItem&gt;
-				&lt;html:listGroupItem&gt;
-					Item 2
-				&lt;/html:listGroupItem&gt;
-			&lt;/html:listGroup&gt; </example>
-	</tag>
-
-	<tag>
-		<description>Renders a list item</description>
-		<display-name>Groupments</display-name>
-		<name>listGroupItem</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ListGroupItemTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>It indicates whether the component should be rendered. Default : true</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates a CSS class to the component</description>
-			<name>cssClass</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates the state where the item should be rendered. Default: none. Options: primary, secondary, light, dark, warning, success, danger, info</description>
-			<name>state</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<example>
-			&lt;html:listGroup&gt;
-				&lt;html:listGroupItem&gt;
-					Item 1
-				&lt;/html:listGroupItem&gt;
-				&lt;html:listGroupItem&gt;
-					Item 2
-				&lt;/html:listGroupItem&gt;
-			&lt;/html:listGroup&gt; </example>
-	</tag>
+	
 
 	<tag>
 		<description>Renders a mask on a particular component</description>
