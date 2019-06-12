@@ -3,7 +3,7 @@
 
 	<html:menu dark="true">
 		<html:menu-brand label="my brand" url="/app/playground"></html:menu-brand>
-		<html:menu-collapse attachToSelector="#block1"/>
+		<html:menu-collapse attachToSelector="#block1" />
 		<html:menu-collapsable id="block1">
 			<html:menu-dropdown label="Menu">
 				<html:menu-dropdown-item label="Item 1" url="#" />
@@ -11,7 +11,7 @@
 				<html:menu-dropdown-item label="Item 2" target="_blank" url="#" />
 				<html:menu-dropdown-item icon="trash" label="Item 3" url="#" />
 			</html:menu-dropdown>
-			<html:menu-link label="My link" url="#"/>
+			<html:menu-link label="My link" url="#" />
 		</html:menu-collapsable>
 	</html:menu>
 
@@ -85,11 +85,11 @@
 		</html:card-footer>
 	</html:card>
 
-	<html:list-group>
-		<html:list-group-item>Item 1</html:list-group-item>
-		<html:list-group-item>Item 2</html:list-group-item>
-		<html:list-group-item>Item 3</html:list-group-item>
-	</html:list-group>
+	<html:listgroup>
+		<html:listgroup-item>Item 1</html:listgroup-item>
+		<html:listgroup-item>Item 2</html:listgroup-item>
+		<html:listgroup-item>Item 3</html:listgroup-item>
+	</html:listgroup>
 
 	<html:js-code>
 		console.log('js code as component');
@@ -148,5 +148,72 @@
 	<html:img url="/image/person.png" alt="logo" responsive="true" />
 	<html:icon icon="cog" />
 
+	<html:div>
+		Div tag
+	</html:div>
+
+	<html:block>
+		Block tag
+	</html:block>
+
+	<html:data-block extraSmall="12" medium="4" small="4" large="1"
+		data="${ persons }" var="person">
+		<html:alert state="success">
+			${ person.name }
+		</html:alert>
+	</html:data-block>
+
+
+	<html:row>
+		<html:col extraSmall="3">
+			<html:input required="true" name="field4" />
+			<html:mask mask="99/99/9999" attachTo="field4">
+				<html:mask-on-keypress>
+					 console.log($(field[0]).attr('id'));
+				</html:mask-on-keypress>
+			</html:mask>
+		</html:col>
+		<html:col extraSmall="9">
+			<html:input name="field5" />
+			<html:mask-currency attachTo="field5"></html:mask-currency>
+		</html:col>
+	</html:row>
+
+	<html:container>
+		<html:alert state="info">
+			Component inside container
+		</html:alert>
+	</html:container>
+
+	<html:h1>
+		H1 header
+	</html:h1>
+
+	<html:h2>
+		H2 header 
+	</html:h2>
+
+	<html:h3>
+		H3 header 
+	</html:h3>
+
+	<html:small>
+		small text
+	</html:small>
+
+	<html:p>
+		Paragraph 
+	</html:p>
+
+	<html:code>
+		private class Java {
+			private String id;
+			private String name;
+		}
+	</html:code>
+
+	<html:link label="My link" url="#" />
+
+	<html:iframe url="/app/welcome" name="content" />
 
 </html:view>

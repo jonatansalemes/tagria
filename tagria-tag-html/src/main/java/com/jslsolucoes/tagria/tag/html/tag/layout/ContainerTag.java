@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html.tag.misc;
+package com.jslsolucoes.tagria.tag.html.tag.layout;
 
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;

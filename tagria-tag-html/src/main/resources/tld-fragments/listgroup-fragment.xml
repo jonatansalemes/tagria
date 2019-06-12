@@ -2,7 +2,7 @@
 	<tag>
 		<description>Renders a list</description>
 		<display-name>Groupments</display-name>
-		<name>list-group</name>
+		<name>listgroup</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.list.group.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -35,7 +35,7 @@
 	<tag>
 		<description>Renders a list item</description>
 		<display-name>Groupments</display-name>
-		<name>list-group-item</name>
+		<name>listgroup-item</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.list.group.ListGroupItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
