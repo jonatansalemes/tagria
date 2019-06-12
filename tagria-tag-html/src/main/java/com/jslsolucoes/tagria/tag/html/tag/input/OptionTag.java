@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html.tag.phtml;
+package com.jslsolucoes.tagria.tag.html.tag.input;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

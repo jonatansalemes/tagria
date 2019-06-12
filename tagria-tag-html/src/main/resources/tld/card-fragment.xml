@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a card</description>
 		<display-name>Card</display-name>
@@ -369,3 +370,4 @@
 			&lt;/html:card&gt;
 		</example>
 	</tag>
+</fragment>

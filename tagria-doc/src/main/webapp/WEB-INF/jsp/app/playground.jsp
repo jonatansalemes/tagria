@@ -13,6 +13,14 @@
 				<html:td state="info"> hello </html:td>
 			</html:tr>
 		</html:tbody>
+		<html:tfoot>
+			<html:tr>
+				<html:td>Foot 1</html:td>
+			</html:tr>
+			<html:tr state="danger">
+				<html:td>Foot value 1</html:td>
+			</html:tr>
+		</html:tfoot>
 	</html:table>
 
 
@@ -28,12 +36,13 @@
 			<html:tabs-content contentOf="tab3"> My content 3</html:tabs-content>
 		</html:tabs-body>
 	</html:tabs>
-	
+
 	<html:button-group>
 		<html:button label="My button" icon="search" id="btn1" />
-		<html:button label="My button 2" icon="plus" id="btn2" state="danger" filled="true" />
+		<html:button label="My button 2" icon="plus" id="btn2" state="danger"
+			filled="true" />
 	</html:button-group>
-	
+
 	<html:modal attachToSelector="#btn1">
 		<html:modal-header label="My modal title"></html:modal-header>
 		<html:modal-body>
@@ -43,10 +52,11 @@
 			My footer
 		</html:modal-footer>
 	</html:modal>
-	
-	
+
+
 	<html:card>
-		<html:card-image url="/image/person.png" width="32" height="32" responsive="false"></html:card-image>
+		<html:card-image url="/image/person.png" width="32" height="32"
+			responsive="false"></html:card-image>
 		<html:card-header>
 			My header
 		</html:card-header>
@@ -60,22 +70,67 @@
 			My footer
 		</html:card-footer>
 	</html:card>
-	
+
 	<html:list-group>
 		<html:list-group-item>Item 1</html:list-group-item>
 		<html:list-group-item>Item 2</html:list-group-item>
 		<html:list-group-item>Item 3</html:list-group-item>
 	</html:list-group>
-	
+
 	<html:js-code>
 		console.log('js code as component');
 	</html:js-code>
-	
+
 	<html:js-event event="click" attachToSelector="#btn2">
 		console.log('btn 2 clicked');
 	</html:js-event>
-	
-	
-	
+
+	<html:carousel>
+		<html:carousel-item active="true" label="Item 1"
+			description="Description 1">
+			<html:carousel-image
+				url="https://solutionsreview.com/content-management/files/2017/08/Sungard-AS-Launches-Sovereign-Cloud-Consulting-and-Services.jpg"
+				width="800" height="400" alt="logo" />
+		</html:carousel-item>
+		<html:carousel-item label="Item 2" description="Description 2">
+			<html:carousel-image
+				url="https://www.milesweb.com/blog/wp-content/uploads/2017/12/cloud-computing-in-iot-800x400.jpg"
+				width="800" height="400" alt="logo" />
+		</html:carousel-item>
+	</html:carousel>
+
+	<html:dropdown label="List">
+		<html:dropdown-item label="Item 1" url="#" />
+		<html:dropdown-divider />
+		<html:dropdown-item label="Item 2" target="_blank" url="#" />
+		<html:dropdown-item icon="trash" label="Item 3" url="#" />
+	</html:dropdown>
+
+	<html:form action="/app/submit">
+		<html:form-header label="My title" />
+
+		<html:form-body>
+			<html:form-group label="Field 1" required="true">
+				<html:input required="true" name="field1" />
+			</html:form-group>
+			<html:form-group label="Field 2">
+				<html:input name="field2" />
+			</html:form-group>
+			<html:form-group-multiple label="Fields group">
+				<html:input name="fields3[]" />
+				<html:js-event attachTo="fields3[]" event="blur">
+					console.log($(this).val());
+				</html:js-event>
+			</html:form-group-multiple>
+		</html:form-body>
+
+		<html:form-footer>
+			<html:button state="primary" type="submit" label="Label for submit" />
+		</html:form-footer>
+	</html:form>
+
+	<html:img url="/image/person.png" alt="logo" responsive="true" />
+	<html:icon icon="cog" />
+
 
 </html:view>

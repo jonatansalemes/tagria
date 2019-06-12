@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a table</description>
 		<display-name>Table</display-name>
@@ -52,6 +53,14 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
@@ -92,6 +101,14 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
@@ -144,6 +161,14 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
@@ -178,6 +203,14 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
@@ -206,6 +239,14 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
@@ -248,6 +289,51 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
+			&lt;/html:table&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders table head</description>
+		<display-name>Table</display-name>
+		<name>tfoot</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+	
+		<example>
+			&lt;html:table dark="true" hover="true" stripe="true&gt;
+				&lt;html:caption&gt;
+					Caption
+				&lt;/html:caption&gt;
+				&lt;html:thead light="true"&gt;
+					&lt;html:tr&gt;
+						&lt;html:th&gt;Head 1&lt;/html:th&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:thead&gt;
+				&lt;html:tbody&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Column 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
@@ -288,6 +374,15 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
 		</example>
 	</tag>
+</fragment>

@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html.tag.phtml;
+package com.jslsolucoes.tagria.tag.html.tag.input;
 
 import java.util.Collection;
 import java.util.Map;
@@ -78,7 +78,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 				setAttribute(var, item);
 				select.add(bodyContent());
 			}
-			getJspContext().setAttribute(var, null);
+			setAttribute(var, null);
 		} else if (map != null) {
 			for (Object entry : map.entrySet()) {
 				setAttribute(var, entry);

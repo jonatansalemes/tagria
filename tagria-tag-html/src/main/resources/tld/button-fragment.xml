@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a button</description>
 		<display-name>Button</display-name>
@@ -118,3 +119,4 @@
 			&lt;/html:button-group&gt;
 		</example>
 	</tag>
+</fragment>

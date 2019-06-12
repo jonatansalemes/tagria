@@ -5,7 +5,7 @@ import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class FormHeader extends AbstractSimpleTagSupport {
+public class FormHeaderTag extends AbstractSimpleTagSupport {
 
 	
 	private String label;

@@ -1,0 +1,129 @@
+<fragment>
+	<tag>
+		<description>Renders a menu dropdown divider</description>
+		<display-name>DropDown</display-name>
+		<name>dropdown-divider</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.dropdown.DropDownDividerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:dropdown label="List"&gt;
+				&lt;html:dropdown-item label="Item 1" url="#"/&gt;
+				&lt;html:dropdown-divider/&gt;
+				&lt;html:dropdown-item label="Item 2" target="_blank" url="#"/&gt;
+				&lt;html:dropdown-item icon="trash" label="Item 3" url="#"/&gt;
+			&lt;/html:dropdown&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a dropdown item list</description>
+		<display-name>DropDown</display-name>
+		<name>dropdown-item</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.dropdown.DropDownItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the icon to be used in the menu icon. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label key (i18n) to be used</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:dropdown label="List"&gt;
+				&lt;html:dropdown-item label="Item 1" url="#"/&gt;
+				&lt;html:dropdown-divider/&gt;
+				&lt;html:dropdown-item label="Item 2" target="_blank" url="#"/&gt;
+				&lt;html:dropdown-item icon="trash" label="Item 3" url="#"/&gt;
+			&lt;/html:dropdown&gt; 
+		</example>
+	</tag>
+
+
+
+	<tag>
+		<description>Renders a dropdown list</description>
+		<display-name>DropDown</display-name>
+		<name>dropdown</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.dropdown.DropDownTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the size of dropdown. Default none. Options: xl,sm,lg</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dropdown state. Default: default. Options: success, danger, info, default, primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used in dropdown root</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label key (i18n) to be used in dropdown root</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:dropdown label="List"&gt;
+				&lt;html:dropdown-item label="Item 1" url="#"/&gt;
+				&lt;html:dropdown-divider/&gt;
+				&lt;html:dropdown-item label="Item 2" target="_blank" url="#"/&gt;
+				&lt;html:dropdown-item icon="trash" label="Item 3" url="#"/&gt;
+			&lt;/html:dropdown&gt; 
+		</example>
+	</tag>
+</fragment>

@@ -19,7 +19,7 @@ public class MetaDataBuilder {
 		String metaData = FileUtils.listFiles(metadataFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE).stream()
 				.map(file -> {
 					try {
-						return FileUtils.readFileToString(file, charset);
+						return FileUtils.readFileToString(file, charset).replaceAll("<\\/?fragment>","");
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}

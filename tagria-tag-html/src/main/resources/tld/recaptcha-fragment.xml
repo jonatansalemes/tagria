@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a google recaptcha</description>
 		<display-name>Misc</display-name>
@@ -17,3 +18,4 @@
 			&lt;/html:recaptcha&gt; 
 		</example>
 	</tag>
+</fragment>

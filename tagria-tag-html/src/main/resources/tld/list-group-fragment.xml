@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a list</description>
 		<display-name>Groupments</display-name>
@@ -69,3 +70,4 @@
 			&lt;/html:list-group&gt; 
 		</example>
 	</tag>
+</fragment>

@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html.tag.drop.down;
+package com.jslsolucoes.tagria.tag.html.tag.dropdown;
 
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;

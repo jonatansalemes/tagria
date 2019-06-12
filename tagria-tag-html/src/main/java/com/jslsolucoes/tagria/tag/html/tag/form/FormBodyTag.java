@@ -4,7 +4,7 @@ import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class FormBody extends AbstractSimpleTagSupport {
+public class FormBodyTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public Element render() {

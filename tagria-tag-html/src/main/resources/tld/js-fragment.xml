@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a javascript code</description>
 		<display-name>Javascript</display-name>
@@ -57,3 +58,4 @@
 			&lt;/html:s-event&gt; 
 		</example>
 	</tag>
+</fragment>

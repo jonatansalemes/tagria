@@ -1,7 +1,10 @@
 
 package com.jslsolucoes.tagria.tag.html.tag.form;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -9,12 +12,12 @@ import org.apache.commons.lang3.StringUtils;
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
-import com.jslsolucoes.tagria.html.Script;
+import com.jslsolucoes.tagria.tag.base.CloneableJsAppender;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 import com.jslsolucoes.tagria.tag.html.VarStatus;
 
 @SuppressWarnings("rawtypes")
-public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
+public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements CloneableJsAppender {
 
 	private Collection data;
 	private String var;
@@ -26,11 +29,14 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 	private String afterRemove;
 	private String varStatus;
 	private VarStatus varStatusObject = new VarStatus();
-	private Script script = new Script();
+	private List<String> jsScripts = new ArrayList<>();
 
 	@Override
 	public Element render() {
+		return div();
+	}
 
+	private Element div() {
 		Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
 				.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container")
 				.add(textAreaScript()).add(textAreaHtml()).add(divToolbar()).add(divContent());
@@ -101,7 +107,11 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element textAreaScript() {
-		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template-script").add(script);
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template-script").add(jsTemplate());
+	}
+
+	private String jsTemplate() {
+		return jsScripts.stream().collect(Collectors.joining());
 	}
 
 	private Element formGroup(String bodyContent) {
@@ -204,20 +214,22 @@ public class MultipleFormGroupTag extends AbstractSimpleTagSupport {
 		this.afterRemove = afterRemove;
 	}
 
-	public Script getScript() {
-		return script;
-	}
-
-	public void setScript(Script script) {
-		this.script = script;
-	}
-
 	public String getLabelKey() {
 		return labelKey;
 	}
 
 	public void setLabelKey(String labelKey) {
 		this.labelKey = labelKey;
+	}
+
+	@Override
+	public void appendJavascriptCode(String jsCode) {
+		this.jsScripts.add(jsCode);
+	}
+
+	@Override
+	public Integer index() {
+		return varStatusObject.getIndex();
 	}
 
 }

@@ -1,3 +1,4 @@
+<fragment>
 	<tag>
 		<description>Renders a modal block</description>
 		<display-name>Modal</display-name>
@@ -149,3 +150,4 @@
 			&lt;/html:modal&gt;
 		</example>
 	</tag>
+</fragment>

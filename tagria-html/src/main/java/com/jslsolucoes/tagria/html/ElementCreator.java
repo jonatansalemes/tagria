@@ -1,6 +1,10 @@
 package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
+	
+	public static TFoot newTFoot() {
+		return new TFoot();
+	}
 
 	public static H6 newH6() {
 		return new H6();

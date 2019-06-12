@@ -1,0 +1,363 @@
+<fragment>
+	<tag>
+		<description>Renders a data list component</description>
+		<display-name>Input</display-name>
+		<name>datalist</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.DataListTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the collection to be iterated in component</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the map to be iterated in component</description>
+			<name>map</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Map</type>
+		</attribute>
+		<attribute>
+			<description>Indicates that component has fixed options</description>
+			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="dl" list="myDatalist1"/&gt;
+			&lt;html:dataList id="myDatalist1" data="${ persons }" var="person"&gt;
+				&lt;html:dataListOption value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:dataListOption&gt;
+			&lt;/html:dataList&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders an option of data list</description>
+		<display-name>Input</display-name>
+		<name>datalist-option</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.DataListOptionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the value of the component</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="dl" list="myDatalist1"/&gt;
+			&lt;html:datalist id="myDatalist1" data="${ persons }" var="person"&gt;
+				&lt;html:datalist-option value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:dataListOption&gt;
+			&lt;/html:datalist&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a select box</description>
+		<display-name>Input</display-name>
+		<name>select</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.SelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the collection to be iterated in component</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the map to be iterated in component</description>
+			<name>map</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Map</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component form is mandatory in form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates that component has fixed options</description>
+			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the value selected in the component</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:select name="select1" data="${ persons }" var="person"&gt;
+				&lt;html:option value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:option&gt;
+			&lt;/html:select&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders an option of a select box</description>
+		<display-name>Input</display-name>
+		<name>option</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.OptionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the value of the component</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:select name="select1" data="${ persons }" var="person"&gt;
+				&lt;html:option value="${ person.id }"&gt;
+					${ person.name }
+				&lt;/html:option&gt;
+			&lt;/html:select&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders an textarea</description>
+		<display-name>Input</display-name>
+		<name>textarea</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.TextareaTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder for textarea</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder key (i18n) for textarea</description>
+			<name>placeholderKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the value of the component</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component is required in the form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of component lines</description>
+			<name>rows</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:textarea name="textarea1" rows="3"/&gt; 
+		</example>
+	</tag>
+
+	
+
+	<tag>
+		<description>Renders an input</description>
+		<display-name>Input</display-name>
+		<name>input</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.InputTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a data list to attach on input</description>
+			<name>list</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a title for the component</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a title key (i18n) for the component</description>
+			<name>titleKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the type of input. Default: text. Options: button, checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week</description>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component&#39;s id</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder for input</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder key (i18n) for textarea</description>
+			<name>placeholderKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the value of the component</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should gain the cursor focus</description>
+			<name>focus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Defines if input allow autocomplete previous input date.Default false</description>
+			<name>autocomplete</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component is required within a form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the pattern to be followed in a particular field</description>
+			<name>pattern</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be disabled. Default: false</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the maximum number of characters to be filled</description>
+			<name>maxLength</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the maximun number accepted</description>
+			<name>max</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the minimum number accepted</description>
+			<name>min</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the step increment number</description>
+			<name>step</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if (radio, checkbox) if the component should be marked</description>
+			<name>checked</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component supports multiple inputs</description>
+			<name>multiple</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates which extensions supported in the case (file)</description>
+			<name>accept</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
+		<example>
+			&lt;html:input name="field1"/&gt; 
+		</example>
+	</tag>
+</fragment>

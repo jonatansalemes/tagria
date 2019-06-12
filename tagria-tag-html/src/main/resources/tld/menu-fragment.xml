@@ -1,0 +1,287 @@
+<fragment>
+<tag>
+		<description>Renders a menu link</description>
+		<display-name>Menu</display-name>
+		<name>menuLink</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuLinkTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the icon to be used. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of menu link</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuLink label="Menu Link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a dropdown menu</description>
+		<display-name>Menu</display-name>
+		<name>menuDropDown</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuDropDownTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used in dropdown root</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renders a menu item on dropdown</description>
+		<display-name>Menu</display-name>
+		<name>menuDropDownItem</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuDropDownItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the icon to be used in the menu icon. available list https://fontawesome.com/icons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renders a menu collapsable content group</description>
+		<display-name>Menu</display-name>
+		<name>menuCollapsable</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuCollapsableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id of menu block to be collapsed</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				
+					&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+					&lt;/html:menuCollapse&gt;
+				
+				&lt;html:menuCollapsable id="block1"&gt;
+					menu components
+				&lt;/html:menuCollapsable&gt;
+				
+			&lt;/html:menu&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renders a menu collapse group</description>
+		<display-name>Menu</display-name>
+		<name>menuCollapse</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuCollapseTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name that triggers the menu group</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the menu group</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				
+					&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+					&lt;/html:menuCollapse&gt;
+				
+				&lt;html:menuCollapsable id="block1"&gt;
+					menu components
+				&lt;/html:menuCollapsable&gt;
+				
+			&lt;/html:menu&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renders a horizontal menu</description>
+		<display-name>Menu</display-name>
+		<name>menu</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be fixed. Default none. Options : top,bottom</description>
+			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+				&lt;/html:menuCollapse&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropDown label="Menu"&gt;
+						&lt;html:menuDropDownItem label="Item 1" url="#"/&gt;
+						&lt;html:menuDropDownDivider/&gt;
+						&lt;html:menuDropDownItem label="Item 2" target="_blank" url="#"/&gt;
+						&lt;html:menuDropDownItem icon="trash" label="Item 3" url="#"/&gt;
+					&lt;/html:menuDropDown&gt;
+				&lt;/html:menuCollapsable&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renders a logo in the navigation menu in text format</description>
+		<display-name>Menu</display-name>
+		<name>menuBrand</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuBrandTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the URL to be called by clicking on the logo</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used in brand logo</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuBrand label="Meu titulo" url="#"/&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a menu dropdown divider</description>
+		<display-name>Menu</display-name>
+		<name>menuDropDownDivider</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.MenuDropDownDividerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuDropDown label="Menu"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" url="#"/&gt;
+					&lt;html:menuItem label="Item 3" url="#"/&gt;
+				&lt;/html:menuDropDown&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
+</fragment>
