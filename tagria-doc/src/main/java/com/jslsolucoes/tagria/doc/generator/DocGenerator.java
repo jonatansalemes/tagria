@@ -123,17 +123,17 @@ public class DocGenerator {
 			});
 		}
 
-		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:list-group>");
+		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:listgroup>");
 		for (String key : new TreeSet<String>(groupments.keySet())) {
 			menu.append("<html:listgroup-item><html:collapsable label=\"" + key + "\"><html:listgroup>");
 			for (Tag tag : groupments.get(key)) {
-				menu.append("<html:listgroup-item><html:link label=\"" + StringUtils.capitalize(tag.getName())
+				menu.append("<html:listgroup-item><html:link label=\"" + tag.getName()
 						+ "\" target=\"conteudo\" url=\"/component/" + tag.getName()
 						+ "\"></html:link></html:listgroup-item>");
 			}
 			menu.append("</html:listgroup></html:collapsable></html:listgroup-item>");
 		}
-		menu.append("</html:list-group></html:div>");
+		menu.append("</html:listgroup></html:div>");
 
 		File home = new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/app/index.jsp");
 		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home, CHARSET)

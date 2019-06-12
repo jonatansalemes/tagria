@@ -1,7 +1,7 @@
 <fragment>
 	<tag>
 		<description>Renders a panel tabs</description>
-		<display-name>Tab</display-name>
+		<display-name>Tabs</display-name>
 		<name>tabs</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsTag</tag-class>
 		<body-content>scriptless</body-content>
@@ -23,7 +23,7 @@
 	
 	<tag>
 		<description>Renders a panel header tabs</description>
-		<display-name>Tab</display-name>
+		<display-name>Tabs</display-name>
 		<name>tabs-header</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
@@ -45,7 +45,7 @@
 	
 	<tag>
 		<description>Renders a panel body tabs</description>
-		<display-name>Tab</display-name>
+		<display-name>Tabs</display-name>
 		<name>tabs-body</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsBodyTag</tag-class>
 		<body-content>scriptless</body-content>
@@ -67,7 +67,7 @@
 	
 	<tag>
 		<description>Renders a tab content</description>
-		<display-name>Tab</display-name>
+		<display-name>Tabs</display-name>
 		<name>tabs-content</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsContentTag</tag-class>
 		<body-content>scriptless</body-content>
@@ -108,7 +108,7 @@
 
 	<tag>
 		<description>Renders a tab head</description>
-		<display-name>Tab</display-name>
+		<display-name>Tabs</display-name>
 		<name>tabs-tab</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsTabTag</tag-class>
 		<body-content>scriptless</body-content>

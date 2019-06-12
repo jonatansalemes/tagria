@@ -4,10 +4,12 @@
 				<html:datalist-option value="${ person.id }">
 					${ person.name }
 				</html:datalist-option>
-			</html:datalist> 										</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
+			</html:datalist>
+												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:input name="dl" list="myDatalist1"/&gt;
 			&lt;html:datalist id="myDatalist1" data="\${ persons }" var="person"&gt;
 				&lt;html:datalist-option value="\${ person.id }"&gt;
 					\${ person.name }
 				&lt;/html:datalist-option&gt;
-			&lt;/html:datalist&gt; &lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			
+			&lt;/html:datalist&gt;
+		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			

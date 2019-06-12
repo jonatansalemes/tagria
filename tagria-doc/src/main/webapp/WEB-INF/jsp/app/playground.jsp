@@ -1,6 +1,20 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
 
+
+
+	<html:grid>
+		<html:grid-header>
+			Header
+		</html:grid-header>
+		<html:grid-body>
+			Body
+		</html:grid-body>
+		<html:grid-footer>
+			Footer
+		</html:grid-footer>
+	</html:grid>
+
 	<html:import url="/css/example.css" type="css"></html:import>
 	<html:import url="/js/example.js" type="js"></html:import>
 
@@ -208,7 +222,7 @@
 		Paragraph 
 	</html:p>
 
-<html:code>
+	<html:code>
 private class Java {
 	private String id;
 	private String name;
@@ -227,33 +241,36 @@ private class Java {
 			${ person.name }
 		</html:datalist-option>
 	</html:datalist>
-			
+
 	<html:select name="select1" data="${ persons }" var="person">
 		<html:option value="${ person.id }">
 			${ person.name }
 		</html:option>
-	</html:select> 
-			
+	</html:select>
+
 	<html:textarea name="textarea1" rows="3">
 		My textarea
 		with
 		new
 		line
-	</html:textarea> 
-	
+	</html:textarea>
+
 	<html:jumbotron>
 		<html:h1>
 			Header
-		</html:h1> 
-	</html:jumbotron> 
-			
+		</html:h1>
+	</html:jumbotron>
+
 	<html:collapsable label="Label 1">
 		Components
 	</html:collapsable>
 	
 	My date <html:format type="datetime">${ dateTime}</html:format>
-	
-	<html:button id="btn3" label="Confirm that ?" url="#"/>
-	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3"/>
-	
+
+	<html:button id="btn3" label="Confirm that ?" url="#" />
+	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3" />
+
+
+
+
 </html:view>

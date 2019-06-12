@@ -3,155 +3,44 @@
 		<description>Renders a grid</description>
 		<display-name>Grid</display-name>
 		<name>grid</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.GridTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridTag</tag-class>
 		<body-content>scriptless</body-content>
-		<attribute>
-			<description>It indicates the collection to be iterated by the component</description>
-			<name>data</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Collection</type>
-		</attribute>
-		<attribute>
-			<description>It indicates the name of the variable java to be made available the object of iteration</description>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates the name of the variable to be available to current iteration</description>
-			<name>varStatus</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the label component</description>
-			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the total number of records in component</description>
-			<name>totalResults</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-			<description>It indicates the default number of results per page. Default: 60. Options: 20,40,60,80,100</description>
-			<name>resultsPerPage</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component should be search feature. Default: false</description>
-			<name>search</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component should be paginated. Default: true</description>
-			<name>paginate</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component should be export feature. Default: true</description>
-			<name>export</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the url component a ser utilizada caso haja paginação</description>
-			<name>url</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component should be rendered</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the component title when there are no lines available</description>
-			<name>noRowText</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
 		<example>
-			&lt;html:grid label="Persons" url="/component/grid" data="${ persons }" var="person" noRowText="No records found"&gt;
-				&lt;html:gridColumn label="Identification" exportable="true"&gt;
-					${ person.id }
-				&lt;/html:gridColumn&gt;
-				&lt;html:gridColumn label="Name" exportable="true"&gt;
-					${ person.name }
-				&lt;/html:gridColumn&gt;
-			&lt;/html:grid&gt; </example>
+			
+		</example>
 	</tag>
-
+	
 	<tag>
-		<description>Renders a grid column</description>
+		<description>Renders a grid header</description>
 		<display-name>Grid</display-name>
-		<name>gridColumn</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.GridColumnTag</tag-class>
+		<name>grid-header</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates the label component</description>
-			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Collection</type>
-		</attribute>
-		<attribute>
-			<description>Indicates whether the component value is of type boolean</description>
-			<name>booleanType</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the column should be collapsable</description>
-			<name>collapsable</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the column should be exported</description>
-			<name>exportable</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the alignment of the content. Default: left. Options: left, center, right</description>
-			<name>align</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates where hide column depending of viewport. Options: xs,md,lg,sm</description>
-			<name>hideOnViewport</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates whether the component should be rendered</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the component state. Default: default. Options: danger, info, success, default</description>
-			<name>state</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
 		<example>
-			&lt;html:grid label="Pessoas" url="/component/grid" data="${ pessoas }" var="pessoa" noRowText="Não há pessoas disponíveis"&gt;
-				&lt;html:gridColumn label="Identificação" exportable="true"&gt;
-					${ pessoa.id }
-				&lt;/html:gridColumn&gt;
-				&lt;html:gridColumn label="Nome" exportable="true"&gt;
-					${ pessoa.nome }
-				&lt;/html:gridColumn&gt;
-			&lt;/html:grid&gt; </example>
+			
+		</example>
 	</tag>
+	
+	<tag>
+		<description>Renders a grid body</description>
+		<display-name>Grid</display-name>
+		<name>grid-body</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a grid footer</description>
+		<display-name>Grid</display-name>
+		<name>grid-footer</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			
+		</example>
+	</tag>
+	
 </fragment>
