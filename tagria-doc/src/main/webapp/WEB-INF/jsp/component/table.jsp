@@ -1,5 +1,5 @@
-<%@include file="../app/taglibs.jsp"%>										<html:view title="{title}">																	<html:card>																									<html:cardHeader>															table							</html:cardHeader>																						<html:cardBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renders a table																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:table stripe="true" hover="true"><html:tableHeader light="true"><html:tableLine><html:tableHead><fmt:message key="tag.attribute"/></html:tableHead><html:tableHead><fmt:message key="tag.required"/></html:tableHead><html:tableHead><fmt:message key="tag.type"/></html:tableHead><html:tableHead><fmt:message key="tag.description"/></html:tableHead></html:tableLine></html:tableHeader><html:tableBody><html:tableLine><html:tableColumn>stripe</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>It indicates whether the table should be striped rows. Default : false</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>dark</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>It indicates whether the table should be dark theme. Default : false</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>hover</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>It indicates whether the table should be hovered rows. Default : false</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>small</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>It indicates whether the table should be small size. Default : false</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>border</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>It indicates whether the table should be bordered. Default : false</html:tableColumn></html:tableLine></html:tableBody></html:table>																																	</html:tab>																									<html:tab label="{demo}">																						
-			<html:table dark="true" hover="true" stripe="true>
+<%@include file="../app/taglibs.jsp"%>																							<html:view title="{title}">																													<html:card>																														<html:card-header>																				table							</html:card-header>																											<html:card-body>																												<html:tabs>																														<html:tabs-header>																												<html:tabs-tab active="true" labelKey="about" id="tab1"></html:tabs-tab> 												<html:tabs-tab labelKey="attributes" id="tab2"></html:tabs-tab> 														<html:tabs-tab labelKey="demo" id="tab3"></html:tabs-tab> 																<html:tabs-tab labelKey="source" id="tab4"></html:tabs-tab> 														</html:tabs-header> 																										<html:tabs-body> 																												<html:tabs-content active="true" contentOf="tab1">																			<html:alert state="warning">													Renders a table											</html:alert>																											</html:tabs-content>																										<html:tabs-content contentOf="tab2">												<html:table stripe="true" hover="true"><html:thead light="true"><html:tr><html:th><fmt:message key="tag.attribute"/></html:th><html:th><fmt:message key="tag.required"/></html:th><html:th><fmt:message key="tag.type"/></html:th><html:th><fmt:message key="tag.description"/></html:th></html:tr></html:thead><html:tbody><html:tr><html:td>stripe</html:td><html:td>false</html:td><html:td>java.lang.Boolean</html:td><html:td>It indicates whether the table should be striped rows. Default : false</html:td></html:tr><html:tr><html:td>dark</html:td><html:td>false</html:td><html:td>java.lang.Boolean</html:td><html:td>It indicates whether the table should be dark theme. Default : false</html:td></html:tr><html:tr><html:td>hover</html:td><html:td>false</html:td><html:td>java.lang.Boolean</html:td><html:td>It indicates whether the table should be hovered rows. Default : false</html:td></html:tr><html:tr><html:td>small</html:td><html:td>false</html:td><html:td>java.lang.Boolean</html:td><html:td>It indicates whether the table should be small size. Default : false</html:td></html:tr><html:tr><html:td>border</html:td><html:td>false</html:td><html:td>java.lang.Boolean</html:td><html:td>It indicates whether the table should be bordered. Default : false</html:td></html:tr></html:tbody></html:table>										</html:tabs-content>																								<html:tabs-content contentOf="tab3">										
+			<html:table dark="true" hover="true" stripe="true">
 				<html:caption>
 					Caption
 				</html:caption>
@@ -16,9 +16,17 @@
 						<html:td>Value 1</html:td>
 					</html:tr>
 				</html:tbody>
+				<html:tfoot>
+					<html:tr>
+						<html:td>Foot 1</html:td>
+					</html:tr>
+					<html:tr state="danger">
+						<html:td>Foot value 1</html:td>
+					</html:tr>
+				</html:tfoot>
 			</html:table> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
-			&lt;html:table dark="true" hover="true" stripe="true&gt;
+												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
+			&lt;html:table dark="true" hover="true" stripe="true"&gt;
 				&lt;html:caption&gt;
 					Caption
 				&lt;/html:caption&gt;
@@ -35,5 +43,13 @@
 						&lt;html:td&gt;Value 1&lt;/html:td&gt;
 					&lt;/html:tr&gt;
 				&lt;/html:tbody&gt;
+				&lt;html:tfoot&gt;
+					&lt;html:tr&gt;
+						&lt;html:td&gt;Foot 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+					&lt;html:tr state="danger"&gt;
+						&lt;html:td&gt;Foot value 1&lt;/html:td&gt;
+					&lt;/html:tr&gt;
+				&lt;/html:tfoot&gt;
 			&lt;/html:table&gt; 
-		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:cardBody>																						</html:card>																							</html:view>																			
+		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			

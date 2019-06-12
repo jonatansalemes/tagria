@@ -48,63 +48,66 @@ public class DocGenerator {
 			groupments.get(tag.getGroup()).add(tag);
 
 			StringBuilder template = new StringBuilder(
-					"<%@include file=\"../app/taglibs.jsp\"%>										"
-							+ "<html:view title=\"{title}\">											"
-							+ "						<html:card>																		"
-							+ "							<html:cardHeader>															"
+					"<%@include file=\"../app/taglibs.jsp\"%>																							"
+							+ "<html:view title=\"{title}\">																							"
+							+ "						<html:card>																							"
+							+ "							<html:card-header>																				"
 							+ 									tag.getName()
-							+ "							</html:cardHeader>															"
-							+ "							<html:cardBody>																"
-							+ "								<html:tabPanel>																"
-							+ "									<html:tab label=\"{about}\" active=\"true\">							"
-							+ "										<html:alert state=\"warning\">										"
-							+ "										     	" + tag.getDescription()
-							+ "									"
-							+ "										</html:alert>														"
-							+ "									</html:tab>																"
-							+ "									<html:tab label=\"{attributes}\">										");
+							+ "							</html:card-header>																				"
+							+ "							<html:card-body>																				"
+							+ "								<html:tabs>																					"
+							+ "									<html:tabs-header>																		"
+							+ "										<html:tabs-tab active=\"true\" labelKey=\"about\" id=\"tab1\"></html:tabs-tab> 		"
+							+ "										<html:tabs-tab labelKey=\"attributes\" id=\"tab2\"></html:tabs-tab> 				"
+							+ "										<html:tabs-tab labelKey=\"demo\" id=\"tab3\"></html:tabs-tab> 						"
+							+ "										<html:tabs-tab labelKey=\"source\" id=\"tab4\"></html:tabs-tab> 					"
+							+ "									</html:tabs-header> 																	"
+							+ "									<html:tabs-body> 																		"
+							+ "										<html:tabs-content active=\"true\" contentOf=\"tab1\">								"
+							+ "											<html:alert state=\"warning\">													"
+																			+ tag.getDescription()
+							+ "											</html:alert>																	"
+							+ "										</html:tabs-content>																"
+							+ "										<html:tabs-content contentOf=\"tab2\">												");
 
 			if (CollectionUtils.isEmpty(tag.getAttributes())) {
-				template.append("<html:alert state=\"info\" label=\"{tag.empty.attributes}\"></html:alert>");
+				template.append("<html:alert state=\"info\" labelKey=\"tag.empty.attributes\"></html:alert>");
 			} else {
 
-				template.append("<html:table stripe=\"true\" hover=\"true\"><html:tableHeader light=\"true\"><html:tableLine>"
-						+ "<html:tableHead><fmt:message key=\"tag.attribute\"/></html:tableHead>"
-						+ "<html:tableHead><fmt:message key=\"tag.required\"/></html:tableHead>"
-						+ "<html:tableHead><fmt:message key=\"tag.type\"/></html:tableHead>"
-						+ "<html:tableHead><fmt:message key=\"tag.description\"/></html:tableHead>"
-						+ "</html:tableLine></html:tableHeader><html:tableBody>");
+				template.append("<html:table stripe=\"true\" hover=\"true\"><html:thead light=\"true\"><html:tr>"
+						+ "<html:th><fmt:message key=\"tag.attribute\"/></html:th>"
+						+ "<html:th><fmt:message key=\"tag.required\"/></html:th>"
+						+ "<html:th><fmt:message key=\"tag.type\"/></html:th>"
+						+ "<html:th><fmt:message key=\"tag.description\"/></html:th>"
+						+ "</html:tr></html:thead><html:tbody>");
 
 				for (Attribute attribute : tag.getAttributes()) {
 
-					template.append("<html:tableLine>" + "<html:tableColumn>" + attribute.getName()
-							+ "</html:tableColumn>" + "<html:tableColumn>"
-							+ (attribute.getRequired() == null ? false : true) + "</html:tableColumn>"
-							+ "<html:tableColumn>" + attribute.getType() + "</html:tableColumn>" + "<html:tableColumn>"
-							+ attribute.getDescription() + "</html:tableColumn>" +
+					template.append("<html:tr>" + "<html:td>" + attribute.getName()
+							+ "</html:td>" + "<html:td>"
+							+ (attribute.getRequired() == null ? false : true) + "</html:td>"
+							+ "<html:td>" + attribute.getType() + "</html:td>" + "<html:td>"
+							+ attribute.getDescription() + "</html:td>" +
 
-							"</html:tableLine>");
+							"</html:tr>");
 				}
 
-				template.append("</html:tableBody></html:table>");
+				template.append("</html:tbody></html:table>");
 			}
 
-			template.append(
-					"																								"
-							+ "									</html:tab>																"
-							+ "									<html:tab label=\"{demo}\">												"
-							+ "										" + tag.getExample()
-							+ "														"
-							+ "									</html:tab>																"
-							+ "									<html:tab label=\"{source}\">											"
-							+ "										<html:code>															"
-							+ "											&lt;html:view&gt;" + tag.getExampleEscaped()
-							+ "&lt;/html:view&gt;											"
-							+ "										</html:code>														"
-							+ "									</html:tab>																"
-							+ "								</html:tabPanel>															"
-							+ "							</html:cardBody>																"
-							+ "						</html:card>																		"
+			template.append(  "										</html:tabs-content>														"
+							+ "										<html:tabs-content contentOf=\"tab3\">										"
+																		+ tag.getExample()
+							+ "										</html:tabs-content>														"
+							+ "										<html:tabs-content contentOf=\"tab4\">										"
+							+ "											<html:code>																"
+							+ "												&lt;html:view&gt;" + tag.getExampleEscaped()+ "&lt;/html:view&gt;	"
+							+ "											</html:code>															"
+							+ "										</html:tabs-content>														"
+							+ "									</html:tabs-body> 																"
+							+ "								</html:tabs>																		"
+							+ "							</html:card-body>																		"
+							+ "						</html:card>																				"
 							+ "					</html:view>																			");
 			FileUtils.writeStringToFile(
 					new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/component/" + tag.getName() + ".jsp"),
@@ -120,17 +123,17 @@ public class DocGenerator {
 			});
 		}
 
-		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:listGroup>");
+		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:list-group>");
 		for (String key : new TreeSet<String>(groupments.keySet())) {
-			menu.append("<html:listGroupItem><html:collapsable label=\"" + key + "\"><html:listGroup>");
+			menu.append("<html:list-group-item><html:collapsable label=\"" + key + "\"><html:list-group>");
 			for (Tag tag : groupments.get(key)) {
-				menu.append("<html:listGroupItem><html:link label=\"" + StringUtils.capitalize(tag.getName())
+				menu.append("<html:list-group-item><html:link label=\"" + StringUtils.capitalize(tag.getName())
 						+ "\" target=\"conteudo\" url=\"/component/" + tag.getName()
-						+ "\"></html:link></html:listGroupItem>");
+						+ "\"></html:link></html:list-group-item>");
 			}
-			menu.append("</html:listGroup></html:collapsable></html:listGroupItem>");
+			menu.append("</html:list-group></html:collapsable></html:list-group-item>");
 		}
-		menu.append("</html:listGroup></html:div>");
+		menu.append("</html:list-group></html:div>");
 
 		File home = new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/app/index.jsp");
 		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home, CHARSET)
