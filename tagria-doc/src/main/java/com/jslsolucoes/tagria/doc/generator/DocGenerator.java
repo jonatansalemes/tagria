@@ -125,13 +125,13 @@ public class DocGenerator {
 
 		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:list-group>");
 		for (String key : new TreeSet<String>(groupments.keySet())) {
-			menu.append("<html:list-group-item><html:collapsable label=\"" + key + "\"><html:list-group>");
+			menu.append("<html:listgroup-item><html:collapsable label=\"" + key + "\"><html:listgroup>");
 			for (Tag tag : groupments.get(key)) {
-				menu.append("<html:list-group-item><html:link label=\"" + StringUtils.capitalize(tag.getName())
+				menu.append("<html:listgroup-item><html:link label=\"" + StringUtils.capitalize(tag.getName())
 						+ "\" target=\"conteudo\" url=\"/component/" + tag.getName()
-						+ "\"></html:link></html:list-group-item>");
+						+ "\"></html:link></html:listgroup-item>");
 			}
-			menu.append("</html:list-group></html:collapsable></html:list-group-item>");
+			menu.append("</html:listgroup></html:collapsable></html:listgroup-item>");
 		}
 		menu.append("</html:list-group></html:div>");
 

@@ -14,6 +14,10 @@ public class FormatTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public Element render() {
+		return cData();
+	}
+	
+	private Element cData() {
 		return ElementCreator.newCData(XTag.format(type, match, replace, bodyContent(), locale()));
 	}
 

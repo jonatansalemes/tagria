@@ -1,0 +1,3 @@
+* verify grid component
+* think about format component
+* review tree components flushing

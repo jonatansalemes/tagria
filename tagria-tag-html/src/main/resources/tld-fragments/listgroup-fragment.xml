@@ -3,7 +3,7 @@
 		<description>Renders a list</description>
 		<display-name>Groupments</display-name>
 		<name>listgroup</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.list.group.ListGroupTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.listgroup.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
@@ -36,7 +36,7 @@
 		<description>Renders a list item</description>
 		<display-name>Groupments</display-name>
 		<name>listgroup-item</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.list.group.ListGroupItemTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.listgroup.ListGroupItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>

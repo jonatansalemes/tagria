@@ -17,7 +17,7 @@
 		<description>Renders a component with collapsable effect</description>
 		<display-name>Misc</display-name>
 		<name>collapsable</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.CollapsableTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.misc.CollapsableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates the label to be used in collapsable</description>
@@ -170,7 +170,7 @@
 	<tag>
 		<description>Renders a dialog modal confirmation</description>
 		<display-name>Misc</display-name>
-		<name>confirmDialog</name>
+		<name>confirm</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.misc.ConfirmDialogTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -205,9 +205,7 @@
 		</attribute>
 		<example>
 		    &lt;html:button id="btn1" label="Confirm that ?"/&gt;
-			&lt;html:confirm url="#" label="Titulo do modal" attachToSelector="#btn1"&gt;
-								
-			&lt;/html:confirm&gt;
+			&lt;html:confirm url="#" label="Titulo do modal" attachToSelector="#btn1"/&gt;
 		</example>
 	</tag>
 </fragment>

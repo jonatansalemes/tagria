@@ -18,10 +18,14 @@ public class ConfirmDialogTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public Element render() {
-		Element modal = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade").attribute(Attribute.ID, id())
+		return divModal();
+	}
+	
+	private Element divModal() {
+		String id = id();
+		appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').attr('data-toggle','modal').attr('data-target','#" + id + "');");
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade").attribute(Attribute.ID, id)
 				.add(divModalDialog());
-		appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').attr('data-toggle','modal').attr('data-target','#" + modal.attribute(Attribute.ID) + "');");
-		return modal;
 	}
 
 	private Element divModalDialog() {

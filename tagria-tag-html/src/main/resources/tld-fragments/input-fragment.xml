@@ -42,7 +42,8 @@
 				&lt;html:datalist-option value="${ person.id }"&gt;
 					${ person.name }
 				&lt;/html:datalist-option&gt;
-			&lt;/html:datalist&gt; </example>
+			&lt;/html:datalist&gt;
+		</example>
 	</tag>
 	
 	<tag>

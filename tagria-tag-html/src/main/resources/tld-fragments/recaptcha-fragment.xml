@@ -3,7 +3,7 @@
 		<description>Renders a google recaptcha</description>
 		<display-name>Misc</display-name>
 		<name>recaptcha</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.RecaptchaTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.recaptcha.RecaptchaTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the site key available in google account developer for recaptcha</description>

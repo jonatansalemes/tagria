@@ -1,6 +1,9 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
 
+	<html:import url="/css/example.css" type="css"></html:import>
+	<html:import url="/js/example.js" type="js"></html:import>
+
 	<html:menu dark="true">
 		<html:menu-brand label="my brand" url="/app/playground"></html:menu-brand>
 		<html:menu-collapse attachToSelector="#block1" />
@@ -156,7 +159,7 @@
 		Block tag
 	</html:block>
 
-	<html:data-block extraSmall="12" medium="4" small="4" large="1"
+	<html:data-block extraSmall="12" medium="4" small="4" large="4"
 		data="${ persons }" var="person">
 		<html:alert state="success">
 			${ person.name }
@@ -205,15 +208,52 @@
 		Paragraph 
 	</html:p>
 
-	<html:code>
-		private class Java {
-			private String id;
-			private String name;
-		}
-	</html:code>
+<html:code>
+private class Java {
+	private String id;
+	private String name;
+}
+</html:code>
 
 	<html:link label="My link" url="#" />
 
 	<html:iframe url="/app/welcome" name="content" />
 
+	<html:recaptcha siteKey="fdaf9dsj9j" />
+
+	<html:input name="dl" list="myDatalist1" />
+	<html:datalist id="myDatalist1" data="${ persons }" var="person">
+		<html:datalist-option value="${ person.id }">
+			${ person.name }
+		</html:datalist-option>
+	</html:datalist>
+			
+	<html:select name="select1" data="${ persons }" var="person">
+		<html:option value="${ person.id }">
+			${ person.name }
+		</html:option>
+	</html:select> 
+			
+	<html:textarea name="textarea1" rows="3">
+		My textarea
+		with
+		new
+		line
+	</html:textarea> 
+	
+	<html:jumbotron>
+		<html:h1>
+			Header
+		</html:h1> 
+	</html:jumbotron> 
+			
+	<html:collapsable label="Label 1">
+		Components
+	</html:collapsable>
+	
+	My date <html:format type="datetime">${ dateTime}</html:format>
+	
+	<html:button id="btn3" label="Confirm that ?" url="#"/>
+	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3"/>
+	
 </html:view>

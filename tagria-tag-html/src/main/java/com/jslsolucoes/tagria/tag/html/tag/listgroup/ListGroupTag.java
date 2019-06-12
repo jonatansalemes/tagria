@@ -1,5 +1,5 @@
 
-package com.jslsolucoes.tagria.tag.html.tag.list.group;
+package com.jslsolucoes.tagria.tag.html.tag.listgroup;
 
 import org.apache.commons.lang3.StringUtils;
 
