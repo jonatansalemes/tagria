@@ -30,29 +30,26 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	private String varStatus;
 	private VarStatus varStatusObject = new VarStatus();
 	private List<String> jsScripts = new ArrayList<>();
-
+	
 	@Override
 	public Element render() {
 		return div();
 	}
 	
-	@Override
-	public Boolean flush() {
-		return true;
-	}
-	
 	private Element div() {
-		Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+		String id = id();
+		Element div = ElementCreator.newDiv().attribute(Attribute.ID, id)
 				.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container")
-				.add(textAreaScript()).add(textAreaHtml()).add(divToolbar()).add(divContent());
+				.add(divToolbar()).add(divContent())
+				.add(textAreaHtml()).add(textAreaScript());
 
 		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
 		String afterRemoveFunction = (!StringUtils.isEmpty(afterRemove) ? afterRemove + "();" : "");
-		appendJsCode("$('#" + container.attribute(Attribute.ID) + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
+		appendJsCode("$('#" + id + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
 				+ ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
 				+ afterRemoveFunction + "}});");
 
-		return container;
+		return div;
 	}
 
 	private Element divContent() {
@@ -63,7 +60,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 				if (!StringUtils.isEmpty(varStatus)) {
 					setAttribute(varStatus, varStatusObject);
 				}
-				content.add(formGroup(bodyContent()));
+				content.add(divFormGroup(bodyContent()));
 				varStatusObject.increment();
 			}
 			if (!StringUtils.isEmpty(varStatus)) {
@@ -72,7 +69,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 			setAttribute(var, null);
 		} else {
 			for (int i = 0; i < (atLeast > 0 ? atLeast : 1); i++) {
-				content.add(formGroup(bodyContent()));
+				content.add(divFormGroup(bodyContent()));
 			}
 		}
 		return content;
@@ -108,18 +105,18 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	}
 
 	private Element textAreaHtml() {
-		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-nones fg-template");
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template");
 	}
 
 	private Element textAreaScript() {
-		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-nones fg-template-script").add(jsTemplate());
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template-script").add(scriptTemplate());
 	}
 
-	private String jsTemplate() {
-		return jsScripts.stream().collect(Collectors.joining());
+	private Element scriptTemplate() {
+		return ElementCreator.newScript().add(jsScripts.stream().collect(Collectors.joining()));
 	}
 
-	private Element formGroup(String bodyContent) {
+	private Element divFormGroup(String bodyContent) {
 		return divRow(bodyContent);
 	}
 
@@ -229,13 +226,11 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
 	@Override
 	public void appendJavascriptCode(String jsCode) {
-		System.out.println("add jsCode" + jsCode);
 		this.jsScripts.add(jsCode);
 	}
 
 	@Override
 	public Integer index() {
-		System.out.println("index => " + varStatusObject.getIndex());
 		return varStatusObject.getIndex();
 	}
 

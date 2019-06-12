@@ -105,8 +105,15 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	private String complementForMultipleFormGroup() {
+		logger.debug("Looking for id complement...");
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
-		return cloneableJsAppender != null ? "__" + cloneableJsAppender.index() : "";
+		if(cloneableJsAppender != null) {
+			logger.debug("Its children of CloneableJsAppender");
+			return "__" + cloneableJsAppender.index();
+		} else {
+			logger.debug("Its not children of CloneableJsAppender");
+			return "";
+		}
 	}
 
 	public void renderOnVoid() {
@@ -188,13 +195,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public <T> List<T> findAncestorsWithClass(Class<T> ancestorClass) {
-		return findAncestorsWithAssignable(this, ancestorClass);
+		logger.debug("Find ancestors of {} looking for {}",getClass(),ancestorClass);
+		return findAncestorsWithAssignable((SimpleTagSupport)getParent(), ancestorClass);
 	}
 
 	@SuppressWarnings("unchecked")
 	private <T> List<T> findAncestorsWithAssignable(SimpleTagSupport simpleTagSupport, Class<T> ancestorClass) {
+		logger.debug("Ancestor {}",simpleTagSupport.getClass());
 		List<T> ancestors = new ArrayList<T>();
 		if (ancestorClass.isAssignableFrom(simpleTagSupport.getClass())) {
+			logger.debug("Ancestor {} is match of {}",simpleTagSupport.getClass(),ancestorClass);
 			ancestors.add((T) simpleTagSupport);
 		} else {
 			SimpleTagSupport simpleTagSupportParent = (SimpleTagSupport) simpleTagSupport.getParent();
@@ -339,11 +349,17 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public void appendJsCode(String jsCode) {
+		logger.debug("trying append jsCode {}",jsCode);
 		GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 		globalJsAppender.appendJavascriptCode(jsCode);
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
-		if (cloneableJsAppender != null && cloneableJsAppender.index() == 0) {
-			cloneableJsAppender.appendJavascriptCode(jsCode);
+		if (cloneableJsAppender != null) {
+			logger.debug("Its children of CloneableJsAppender");
+			if(cloneableJsAppender.index() == 0) {
+				cloneableJsAppender.appendJavascriptCode(jsCode);
+			}
+		} else {
+			logger.debug("Its not children of CloneableJsAppender");
 		}
 	}
 

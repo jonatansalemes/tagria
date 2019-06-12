@@ -257,7 +257,6 @@
 		<name>thead</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.table.TableHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
-	
 		<attribute>
 			<description>It indicates whether the table header should be dark theme. Default : false</description>
 			<name>dark</name>

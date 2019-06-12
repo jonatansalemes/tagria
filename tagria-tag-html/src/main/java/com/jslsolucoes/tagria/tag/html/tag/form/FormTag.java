@@ -23,18 +23,14 @@ public class FormTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		Element div = ElementCreator.newDiv()
+		return ElementCreator.newDiv()
 				.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm").add(form());
-		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').form({validation:'"
-				+ (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "") + "',invalid:{email : '"
-				+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid") + "',min:'"
-				+ keyForLibrary("form.min.invalid") + "'}});");
-		return div;
 	}
 
 	private Element form() {
+		String id = id();
 		Element form = ElementCreator.newForm().attribute(Attribute.NOVALIDATE, "novalidate")
-				.attribute(Attribute.TARGET, target).attribute(Attribute.ID, id()).attribute(Attribute.METHOD, method)
+				.attribute(Attribute.TARGET, target).attribute(Attribute.ID,id).attribute(Attribute.METHOD, method)
 				.attribute(Attribute.ACTION, pathForUrl(action)).add(divErrors()).add(bodyContent());
 		if (!StringUtils.isEmpty(name)) {
 			form.attribute(Attribute.NAME, name);
@@ -42,6 +38,10 @@ public class FormTag extends AbstractSimpleTagSupport {
 		if (multipart) {
 			form.attribute(Attribute.ENCTYPE, "multipart/form-data");
 		}
+		appendJsCode("$('#" + id + "').form({validation:'"
+				+ (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "") + "',invalid:{email : '"
+				+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid") + "',min:'"
+				+ keyForLibrary("form.min.invalid") + "'}});");
 		return form;
 	}
 

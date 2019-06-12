@@ -1,6 +1,20 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
 
+	<html:menu dark="true">
+		<html:menu-brand label="my brand" url="/app/playground"></html:menu-brand>
+		<html:menu-collapse attachToSelector="#block1"/>
+		<html:menu-collapsable id="block1">
+			<html:menu-dropdown label="Menu">
+				<html:menu-dropdown-item label="Item 1" url="#" />
+				<html:menu-dropdown-divider />
+				<html:menu-dropdown-item label="Item 2" target="_blank" url="#" />
+				<html:menu-dropdown-item icon="trash" label="Item 3" url="#" />
+			</html:menu-dropdown>
+			<html:menu-link label="My link" url="#"/>
+		</html:menu-collapsable>
+	</html:menu>
+
 
 	<html:table dark="true" hover="true" stripe="true">
 		<html:thead light="dark">
@@ -106,7 +120,7 @@
 		<html:dropdown-item icon="trash" label="Item 3" url="#" />
 	</html:dropdown>
 
-	<html:form action="/app/submit">
+	<html:form action="#">
 		<html:form-header label="My title" />
 
 		<html:form-body>
@@ -116,9 +130,11 @@
 			<html:form-group label="Field 2">
 				<html:input name="field2" />
 			</html:form-group>
-			<html:form-group-multiple label="Fields group">
-				<html:input name="fields3[]" />
-				<html:js-event attachTo="fields3[]" event="blur">
+			<html:form-group-multiple label="Groups 1" data="${ persons }"
+				var="person" atLeast="1">
+				<html:input name="fields3[]" required="true"
+					value="${ person.name }" />
+				<html:js-event event="blur" attachTo="fields3[]">
 					console.log($(this).val());
 				</html:js-event>
 			</html:form-group-multiple>
