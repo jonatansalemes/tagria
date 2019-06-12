@@ -35,7 +35,12 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	public Element render() {
 		return div();
 	}
-
+	
+	@Override
+	public Boolean flush() {
+		return true;
+	}
+	
 	private Element div() {
 		Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
 				.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container")
@@ -103,11 +108,11 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	}
 
 	private Element textAreaHtml() {
-		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template");
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-nones fg-template");
 	}
 
 	private Element textAreaScript() {
-		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-none fg-template-script").add(jsTemplate());
+		return ElementCreator.newTextArea().attribute(Attribute.CLASS, "d-nones fg-template-script").add(jsTemplate());
 	}
 
 	private String jsTemplate() {
@@ -224,11 +229,13 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
 	@Override
 	public void appendJavascriptCode(String jsCode) {
+		System.out.println("add jsCode" + jsCode);
 		this.jsScripts.add(jsCode);
 	}
 
 	@Override
 	public Integer index() {
+		System.out.println("index => " + varStatusObject.getIndex());
 		return varStatusObject.getIndex();
 	}
 
