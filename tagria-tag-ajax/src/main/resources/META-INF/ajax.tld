@@ -135,7 +135,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders the error block if they occur in ajax request</description>
 		<display-name>Ajax</display-name>
-		<name>onError</name>
+		<name>on-error</name>
 		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.OnErrorTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
@@ -156,7 +156,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders before send block on ajax request</description>
 		<display-name>Ajax</display-name>
-		<name>beforeSend</name>
+		<name>on-before-send</name>
 		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.BeforeSendTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
@@ -173,7 +173,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders block on ajax request done</description>
 		<display-name>Ajax</display-name>
-		<name>onDone</name>
+		<name>on-done</name>
 		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.OnDoneTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
@@ -188,7 +188,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders success block if the ajax request run smoothly</description>
 		<display-name>Ajax</display-name>
-		<name>onSuccess</name>
+		<name>on-success</name>
 		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.OnSuccessTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
@@ -297,7 +297,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tag>
 		<description>Renders a mapping of an options list to select a component</description>
 		<display-name>Ajax</display-name>
-		<name>mapOptions</name>
+		<name>map-options</name>
 		<tag-class>com.jslsolucoes.tagria.tag.ajax.tag.MapOptionsTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
