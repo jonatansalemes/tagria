@@ -5,13 +5,14 @@ import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class GridHeaderTag extends AbstractSimpleTagSupport {
+public class GridBodyFooterTag extends AbstractSimpleTagSupport {
 
 	public Element render() {
-		return div();
+		return tfoot();
 	}
 
-	private Element div() {
-		return ElementCreator.newDiv().add(bodyContent());
+	private Element tfoot() {
+		return ElementCreator.newTFoot().add(bodyContent());
 	}
+
 }

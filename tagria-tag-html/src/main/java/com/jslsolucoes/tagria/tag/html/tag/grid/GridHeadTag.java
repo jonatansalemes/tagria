@@ -30,4 +30,36 @@ public class GridHeadTag extends AbstractSimpleTagSupport {
 		return th;
 	}
 
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
+	}
+
+	public String getAlign() {
+		return align;
+	}
+
+	public void setAlign(String align) {
+		this.align = align;
+	}
+
+	public Boolean getExportable() {
+		return exportable;
+	}
+
+	public void setExportable(Boolean exportable) {
+		this.exportable = exportable;
+	}
+
 }

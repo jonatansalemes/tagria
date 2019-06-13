@@ -8,11 +8,14 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 public class GridBodyTag extends AbstractSimpleTagSupport {
 
 	public Element render() {
-		return tbody();
+		return div();
+	}
+	
+	private Element div() {
+		return ElementCreator.newDiv().add(table());
 	}
 
-	private Element tbody() {
-		return ElementCreator.newTBody().add(bodyContent());
+	private Element table() {
+		return ElementCreator.newTable().add(bodyContent());
 	}
-
 }

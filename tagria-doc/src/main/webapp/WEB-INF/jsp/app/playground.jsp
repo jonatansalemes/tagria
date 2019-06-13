@@ -5,15 +5,27 @@
 
 	<html:grid>
 		<html:grid-header>
-			
+			Header
 		</html:grid-header>
 		<html:grid-body>
 			<html:grid-body-header>
-				<html:grid-header-th>Column 1</html:grid-header-th>
+				<html:grid-head>Name</html:grid-head>
+				<html:grid-head>Like choco</html:grid-head>
+				<html:grid-head>Birthdate</html:grid-head>
 			</html:grid-body-header>
-			<html:grid-body-content>
-				<html:grid-column></html:grid-column>
-			</html:grid-body-content>
+			<html:grid-body-data var="person" data="${ persons }">
+				<html:grid-data>
+					${ person.name }
+				</html:grid-data>
+				<html:grid-data booleanType="true">
+					${ person.likeChocolate }
+				</html:grid-data>
+				<html:grid-data collapsable="true">
+					<html:format type="datetime">
+						${ person.birthDate }
+					</html:format> 
+				</html:grid-data>
+			</html:grid-body-data>
 		</html:grid-body>
 		<html:grid-footer>
 			Footer
@@ -39,24 +51,30 @@
 
 
 	<html:table dark="true" hover="true" stripe="true">
-		<html:thead light="dark">
-			<html:tr>
-				<html:th label="My label"></html:th>
-			</html:tr>
-		</html:thead>
-		<html:tbody>
-			<html:tr>
-				<html:td state="info"> hello </html:td>
-			</html:tr>
-		</html:tbody>
-		<html:tfoot>
-			<html:tr>
-				<html:td>Foot 1</html:td>
-			</html:tr>
-			<html:tr state="danger">
-				<html:td>Foot value 1</html:td>
-			</html:tr>
-		</html:tfoot>
+		<html:table-caption>
+			Caption
+		</html:table-caption>
+		<html:table-header light="true">
+			<html:table-row>
+				<html:table-head>Head 1</html:table-head>
+			</html:table-row>
+		</html:table-header>
+		<html:table-body>
+			<html:table-row>
+				<html:table-data>Column 1</html:table-data>
+			</html:table-row>
+			<html:table-row state="danger">
+				<html:table-data>Value 1</html:table-data>
+			</html:table-row>
+		</html:table-body>
+		<html:table-footer>
+			<html:table-row>
+				<html:table-data>Foot 1</html:table-data>
+			</html:table-row>
+			<html:table-row state="danger">
+				<html:table-data>Foot value 1</html:table-data>
+			</html:table-row>
+		</html:table-footer>
 	</html:table>
 
 

@@ -24,7 +24,7 @@
 	<tag>
 		<description>Renders a grid header column</description>
 		<display-name>Grid</display-name>
-		<name>grid-header-th</name>
+		<name>grid-head</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridHeadTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -62,6 +62,112 @@
 		<name>grid-body</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridBodyTag</tag-class>
 		<body-content>scriptless</body-content>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a grid body header</description>
+		<display-name>Grid</display-name>
+		<name>grid-body-header</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridBodyHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a grid body dataset</description>
+		<display-name>Grid</display-name>
+		<name>grid-body-data</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridBodyDataTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the collection to be iterated by the component</description>
+			<name>data</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable to be available to current iteration</description>
+			<name>varStatus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component title when there are no rows</description>
+			<name>noRowText</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component title key (i18n) when there are no rows</description>
+			<name>noRowTextKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a grid body footer</description>
+		<display-name>Grid</display-name>
+		<name>grid-body-footer</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridBodyFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a grid data column</description>
+		<display-name>Grid</display-name>
+		<name>grid-data</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridDataTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the alignment of the content. Default: left. Options: left, center, right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component state. Default: default. Options: danger, info, success, default</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component value is of type boolean. Default false</description>
+			<name>booleanType</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the column should be collapsable. Default false</description>
+			<name>collapsable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the column should be exported. Default false</description>
+			<name>exportable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			
 		</example>
