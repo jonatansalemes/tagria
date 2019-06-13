@@ -22,6 +22,41 @@
 	</tag>
 	
 	<tag>
+		<description>Renders a grid header column</description>
+		<display-name>Grid</display-name>
+		<name>grid-header-th</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridHeadTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the column should be exported</description>
+			<name>exportable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the alignment of the content. Default: left. Options: left, center, right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n) component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a grid body</description>
 		<display-name>Grid</display-name>
 		<name>grid-body</name>

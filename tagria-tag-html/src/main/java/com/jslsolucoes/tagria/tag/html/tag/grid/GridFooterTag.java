@@ -8,7 +8,10 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 public class GridFooterTag extends AbstractSimpleTagSupport {
 
 	public Element render() {
-		return ElementCreator.newDiv().add(bodyContent());
+		return tfoot();
 	}
 
+	private Element tfoot() {
+		return ElementCreator.newTFoot().add(bodyContent());
+	}
 }

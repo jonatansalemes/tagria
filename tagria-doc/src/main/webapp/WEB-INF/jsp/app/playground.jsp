@@ -5,10 +5,15 @@
 
 	<html:grid>
 		<html:grid-header>
-			Header
+			
 		</html:grid-header>
 		<html:grid-body>
-			Body
+			<html:grid-body-header>
+				<html:grid-header-th>Column 1</html:grid-header-th>
+			</html:grid-body-header>
+			<html:grid-body-content>
+				<html:grid-column></html:grid-column>
+			</html:grid-body-content>
 		</html:grid-body>
 		<html:grid-footer>
 			Footer
