@@ -7,7 +7,7 @@ import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class GridDataTag extends AbstractSimpleTagSupport {
+public class GridColumnDataTag extends AbstractSimpleTagSupport {
 
 	private String align = "left";
 	private String state;

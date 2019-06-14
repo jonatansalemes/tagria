@@ -8,10 +8,15 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 public class GridHeaderTag extends AbstractSimpleTagSupport {
 
 	public Element render() {
-		return div();
+		return thead();
 	}
 
-	private Element div() {
-		return ElementCreator.newDiv().add(bodyContent());
+	private Element thead() {
+		return ElementCreator.newTHead().add(tr());
 	}
+
+	private Element tr() {
+		return ElementCreator.newTr().add(bodyContent());
+	}
+
 }

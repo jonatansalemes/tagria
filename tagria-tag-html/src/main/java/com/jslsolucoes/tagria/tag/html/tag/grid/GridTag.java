@@ -1,10 +1,8 @@
 
 package com.jslsolucoes.tagria.tag.html.tag.grid;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +14,7 @@ import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Button;
 import com.jslsolucoes.tagria.html.Div;
 import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.html.Form;
 import com.jslsolucoes.tagria.html.H2;
 import com.jslsolucoes.tagria.html.H5;
@@ -23,15 +22,9 @@ import com.jslsolucoes.tagria.html.Input;
 import com.jslsolucoes.tagria.html.Li;
 import com.jslsolucoes.tagria.html.Nav;
 import com.jslsolucoes.tagria.html.Span;
-import com.jslsolucoes.tagria.html.TBody;
-import com.jslsolucoes.tagria.html.THead;
-import com.jslsolucoes.tagria.html.Table;
-import com.jslsolucoes.tagria.html.Th;
-import com.jslsolucoes.tagria.html.Tr;
 import com.jslsolucoes.tagria.html.Ul;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-@SuppressWarnings({ "rawtypes" })
 public class GridTag extends AbstractSimpleTagSupport {
 
 	private String var;
@@ -41,8 +34,7 @@ public class GridTag extends AbstractSimpleTagSupport {
 	private Boolean paginate = Boolean.FALSE;
 	private String label;
 	private String labelKey;
-	private Collection data;
-	private List<Element> ths = new ArrayList<>();
+	private Collection<Object> data;
 	private Integer resultsPerPage = 60;
 	private Integer totalResults;
 	private String toolbar;
@@ -135,33 +127,10 @@ public class GridTag extends AbstractSimpleTagSupport {
 				clearfix2.add(divForSearch);
 			}
 
-			Table table = new Table();
-			table.attribute(Attribute.CLASS, "table table-striped table-hover table-light");
+			Element table = ElementCreator.newTable().attribute(Attribute.CLASS, "table table-striped table-hover table-light")
+						.add(bodyContent());
 
-			THead thead = new THead();
-			Tr tr = new Tr();
-			thead.add(tr);
-			tr.add(this.ths);
-			table.add(thead);
-
-			TBody tbody = new TBody();
-			int index = 0;
-			for (Object row : data) {
-				getJspContext().setAttribute(var, row);
-				if (!StringUtils.isEmpty(varStatus)) {
-					getJspContext().setAttribute(varStatus, index);
-				}
-				Tr line = new Tr();
-				line.add(bodyContent());
-				tbody.add(line);
-				index++;
-			}
-			getJspContext().setAttribute(var, null);
-			if (!StringUtils.isEmpty(varStatus)) {
-				getJspContext().setAttribute(varStatus, null);
-			}
-
-			table.add(tbody);
+		
 			container.add(table);
 
 			if (paginate) {
@@ -283,11 +252,11 @@ public class GridTag extends AbstractSimpleTagSupport {
 		return container;
 	}
 
-	public Collection getData() {
+	public Collection<Object> getData() {
 		return data;
 	}
 
-	public void setData(Collection data) {
+	public void setData(Collection<Object> data) {
 		this.data = data;
 	}
 
@@ -299,18 +268,7 @@ public class GridTag extends AbstractSimpleTagSupport {
 		this.var = var;
 	}
 
-	public List<Element> getThs() {
-		return ths;
-	}
-
-	public void setThs(List<Element> ths) {
-		this.ths = ths;
-	}
-
-	public void addTh(Th th) {
-		ths.add(th);
-	}
-
+	
 	public String getLabel() {
 		return label;
 	}

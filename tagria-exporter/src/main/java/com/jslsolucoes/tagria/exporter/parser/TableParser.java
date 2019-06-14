@@ -1,7 +1,10 @@
 package com.jslsolucoes.tagria.exporter.parser;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.exporter.parser.model.Table;
 
 public class TableParser {
@@ -18,7 +21,21 @@ public class TableParser {
 	}
 
 	public Table parse() {
-		Gson gson = new GsonBuilder().create();
-		return gson.fromJson(json, Table.class);
+		try {
+			ObjectMapper objectMapper = objectMapper();
+			return objectMapper.readValue(json, Table.class);
+		} catch (Exception e) {
+			throw new TagriaRuntimeException(e);
+		}
+	}
+
+	private ObjectMapper objectMapper() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.setSerializationInclusion(Include.NON_EMPTY);
+		objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		objectMapper.configure(SerializationFeature.INDENT_OUTPUT, false);
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		return objectMapper;
 	}
 }

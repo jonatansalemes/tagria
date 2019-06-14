@@ -2,14 +2,14 @@
 <html:view title="Playground">
 
 
-	<html:grid var="person" data="${ persons }">
+	<html:grid var="person" data="${ persons }" export="true" paginate="true">
 		<html:grid-header>
-			<html:grid-column label="Column 1"></html:grid-column>
+			<html:grid-column label="Column 1" align="left"></html:grid-column>
 		</html:grid-header>
 		<html:grid-body>
-			<html:grid-data>
+			<html:grid-column-data align="right">
 				${ person.name }
-			</html:grid-data>
+			</html:grid-column-data>
 		</html:grid-body>
 	</html:grid>
 	

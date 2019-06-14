@@ -1,10 +1,11 @@
-package com.jslsolucoes.tagria.exporter.servlet;
+package com.jslsolucoes.tagria.library.servlet;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,29 +26,31 @@ import com.jslsolucoes.tagria.exporter.impl.XmlExporter;
 public class TagriaExporter extends HttpServlet {
 
 	private static Logger logger = LoggerFactory.getLogger(TagriaExporter.class);
-
-	private List<Exporter> exporters() {
-		return Arrays.asList(new CsvExporter(), new ExcelExporter(), new PdfExporter(), new XmlExporter());
-	}
+	private static List<Exporter> exporters = Arrays.asList(new CsvExporter(), new ExcelExporter(), new PdfExporter(), new XmlExporter());
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
 			throws ServletException, IOException {
-		OutputStream outputStream = response.getOutputStream();
+		OutputStream outputStream = httpServletResponse.getOutputStream();
 		try {
-			String json = request.getParameter("json");
-			String type = request.getParameter("type");
-			response.setHeader("Content-Disposition", "attachment; filename=data." + type);
-			for (Exporter exporter : exporters()) {
+			String json = httpServletRequest.getParameter("json");
+			String type = httpServletRequest.getParameter("type");
+			httpServletResponse.setHeader("Content-Disposition", "attachment; filename=data." + type);
+			for (Exporter exporter : exporters) {
 				if (exporter.accepts(type)) {
-					response.setContentType(exporter.contentType());
+					httpServletResponse.setContentType(exporter.contentType());
 					outputStream.write(exporter.export(json));
 					outputStream.flush();
 				}
 			}
 		} catch (Exception exception) {
 			logger.error("Could not export data", exception);
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		logger.debug("Tagria exporter is up ...");
 	}
 }

@@ -26,13 +26,61 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the component title when there are no rows</description>
+			<description>Indicates the label component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the total number of records in component</description>
+			<name>totalResults</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the default number of results per page. Default: 60. Options: 20,40,60,80,100</description>
+			<name>resultsPerPage</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be search feature. Default: false</description>
+			<name>search</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be paginated. Default: true</description>
+			<name>paginate</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be export feature. Default: true</description>
+			<name>export</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the url component a ser utilizada caso haja paginação</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component title when there are no lines available</description>
 			<name>noRowText</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the component title key (i18n) when there are no rows</description>
+			<description>Indicates the component title key (i18n) when there are no lines available</description>
 			<name>noRowTextKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -57,7 +105,7 @@
 		<description>Renders a grid header column</description>
 		<display-name>Grid</display-name>
 		<name>grid-column</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridHeadTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridColumnTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the column should be exported</description>
@@ -113,8 +161,8 @@
 	<tag>
 		<description>Renders a grid data column</description>
 		<display-name>Grid</display-name>
-		<name>grid-data</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridDataTag</tag-class>
+		<name>grid-column-data</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridColumnDataTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the alignment of the content. Default: left. Options: left, center, right</description>
