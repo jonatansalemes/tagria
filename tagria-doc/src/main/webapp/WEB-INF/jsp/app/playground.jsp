@@ -4,10 +4,10 @@
 
 	<html:grid var="person" data="${ persons }" export="true" paginate="true">
 		<html:grid-header>
-			<html:grid-column label="Column 1" align="left"></html:grid-column>
+			<html:grid-column label="Column 1" align="left" exportable="true"></html:grid-column>
 		</html:grid-header>
 		<html:grid-body>
-			<html:grid-column-data align="right">
+			<html:grid-column-data align="right" exportable="true">
 				${ person.name }
 			</html:grid-column-data>
 		</html:grid-body>

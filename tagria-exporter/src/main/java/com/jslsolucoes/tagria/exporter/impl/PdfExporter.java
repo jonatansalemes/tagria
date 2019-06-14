@@ -11,7 +11,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
-import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Column;
 import com.jslsolucoes.tagria.exporter.parser.model.Header;
 import com.jslsolucoes.tagria.exporter.parser.model.Row;
@@ -46,8 +45,7 @@ public class PdfExporter implements Exporter {
 	}
 
 	@Override
-	public byte[] export(String json) {
-		Table table = TableParser.newParser().withJson(json).parse();
+	public byte[] export(Table table) {
 		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
 			Document document = new Document();
 			PdfWriter pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);

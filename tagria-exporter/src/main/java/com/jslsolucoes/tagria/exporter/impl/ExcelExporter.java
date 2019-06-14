@@ -2,20 +2,18 @@
 package com.jslsolucoes.tagria.exporter.impl;
 
 import java.io.ByteArrayOutputStream;
-
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
-import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Column;
 import com.jslsolucoes.tagria.exporter.parser.model.Header;
 import com.jslsolucoes.tagria.exporter.parser.model.Table;
@@ -29,8 +27,9 @@ public class ExcelExporter implements Exporter {
 	}
 
 	private void createCell(Row row, String content, String align) {
+		Integer cellIndex = row.getLastCellNum() == -1 ? 0 : row.getLastCellNum() + 1;
 		CellStyle cellStyle = cellStyle(align, row.getSheet().getWorkbook());
-		Cell cell = row.createCell(row.getLastCellNum());
+		Cell cell = row.createCell(cellIndex);
 		cell.setCellValue(content);
 		cell.setCellStyle(cellStyle);
 	}
@@ -48,10 +47,9 @@ public class ExcelExporter implements Exporter {
 	}
 
 	@Override
-	public byte[] export(String json) {
-		Table table = TableParser.newParser().withJson(json).parse();
+	public byte[] export(Table table) {
 		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-			try (Workbook workbook = new HSSFWorkbook()) {
+			try (Workbook workbook = new XSSFWorkbook()) {
 				Sheet sheet = workbook.createSheet("data");
 				Row headerRow = createRow(sheet);
 				for (Header header : table.getHeaders()) {
@@ -78,6 +76,6 @@ public class ExcelExporter implements Exporter {
 
 	@Override
 	public Boolean accepts(String mediaType) {
-		return "xls".equals(mediaType);
+		return "xlsx".equals(mediaType);
 	}
 }

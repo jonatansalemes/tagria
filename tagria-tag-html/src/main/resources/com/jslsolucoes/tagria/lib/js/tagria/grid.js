@@ -78,7 +78,7 @@
 			});
 			
 			$('.grid-export-excel',grid).on('click.grid',function(){
-				self._export('xls');
+				self._export('xlsx');
 			});
 		},
 		_export : function(type) {
@@ -93,15 +93,15 @@
 			var self = this;
 			var grid = self.element;
 			
-			var header = new Array();
+			var headers = new Array();
 			$('table:first > thead > tr > th:visible.grid-column-exportable',grid).each(function(){
-				header.push({
+				headers.push({
 					align : ($(this).hasClass('text-left') ? 'left' : $(this).hasClass('text-right') ? 'right' : 'center'),
 					content : $.trim($(this).text())
 				});
 			});
 			
-			var body = new Array();
+			var columns = new Array();
 			$('table:first > tbody > tr:visible',grid).each(function(){
 				var column = new Array();
 				$('td:visible.grid-column-exportable',this).each(function(){
@@ -110,9 +110,14 @@
 						content : $.trim($(this).text())
 					});
 				});
-				body.push({columns : column});
+				columns.push({columns : column});
 			});
-			return "{ title : '"+$('.panel-heading',grid).text()+"', headers : "+JSON.stringify(header)+", rows : "+JSON.stringify(body)+"}";
+			
+			return JSON.stringify({ 
+				title :  $('.panel-heading',grid).text(),
+				headers : headers,
+				rows : columns
+			});
 		}
 	});
 })(jQuery);

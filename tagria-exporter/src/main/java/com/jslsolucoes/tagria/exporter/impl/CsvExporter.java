@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
-import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Header;
 import com.jslsolucoes.tagria.exporter.parser.model.Row;
 import com.jslsolucoes.tagria.exporter.parser.model.Table;
@@ -32,8 +31,7 @@ public class CsvExporter implements Exporter {
 	}
 
 	@Override
-	public byte[] export(String json) {
-		Table table = TableParser.newParser().withJson(json).parse();
+	public byte[] export(Table table) {
 		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
 			byteArrayOutputStream.write(header(table.getHeaders()));
 			byteArrayOutputStream.write(newLine());
