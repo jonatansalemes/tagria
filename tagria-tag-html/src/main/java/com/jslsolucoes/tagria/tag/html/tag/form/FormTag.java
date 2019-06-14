@@ -16,6 +16,8 @@ public class FormTag extends AbstractSimpleTagSupport {
 	private String validation;
 	private Boolean multipart = Boolean.FALSE;
 	private String target = "_self";
+	private String label;
+	private String labelKey;
 
 	@Override
 	public Element render() {
@@ -26,12 +28,30 @@ public class FormTag extends AbstractSimpleTagSupport {
 		return ElementCreator.newDiv()
 				.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm").add(form());
 	}
+	
+	private Element divBody() {
+		return ElementCreator.newDiv().add(bodyContent());
+	}
+	
+	private Element divHeader() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center").add(h2());
+	}
+	
+	private Element h2() {
+		return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary").add(keyOrLabel(labelKey, label));
+	}
 
 	private Element form() {
 		String id = id();
 		Element form = ElementCreator.newForm().attribute(Attribute.NOVALIDATE, "novalidate")
 				.attribute(Attribute.TARGET, target).attribute(Attribute.ID,id).attribute(Attribute.METHOD, method)
-				.attribute(Attribute.ACTION, pathForUrl(action)).add(divErrors()).add(bodyContent());
+				.attribute(Attribute.ACTION, pathForUrl(action)).add(divErrors());
+			
+		if(hasKeyOrLabel(labelKey, label)) {
+			form.add(divHeader());
+		}
+	
+		form.add(divBody());
 		if (!StringUtils.isEmpty(name)) {
 			form.attribute(Attribute.NAME, name);
 		}
@@ -95,6 +115,22 @@ public class FormTag extends AbstractSimpleTagSupport {
 
 	public void setTarget(String target) {
 		this.target = target;
+	}
+	
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

@@ -6,7 +6,7 @@ import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class GridHeadTag extends AbstractSimpleTagSupport {
+public class GridColumnTag extends AbstractSimpleTagSupport {
 
 	private String label;
 	private String labelKey;

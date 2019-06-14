@@ -12,6 +12,18 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the label of the form</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the localize (i18n) label key of the form</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the target of submission. Default : _self. Options : _blank,_self,_parent,_top,iframe</description>
 			<name>target</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -48,11 +60,7 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:form action="#"&gt;
-			
-				&lt;html:form-header label="My title"&gt;
-				
-				&lt;/html:form-header&gt;
+			&lt;html:form action="#" label="My title"&gt;
 			
 				&lt;html:form-body&gt;
 					&lt;html:form-group label="Field 1" required="true"&gt;
@@ -66,47 +74,20 @@
 					&lt;/html:form-group-multiple&gt;
 				&lt;/html:form-body&gt;
 					
-				&lt;html:form-footer&gt;
+				&lt;html:form-toolbar&gt;
 				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
-				&lt;/html:form-footer&gt;
+				&lt;/html:form-toolbar&gt;
 			&lt;/html:form&gt; 
 		</example>
 	</tag>
 	
-	<tag>
-		<description>Renders a form header on the form component</description>
-		<display-name>Form</display-name>
-		<name>form-header</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.form.FormHeaderTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>It indicates whether the component should be rendered</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the label of the form</description>
-			<name>label</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the localize (i18n) label key of the form</description>
-			<name>labelKey</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<example>
-			
-		</example>
-	</tag>
+	
 	
 	<tag>
 		<description>Renders a form footer on the form component</description>
 		<display-name>Form</display-name>
-		<name>form-footer</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.form.FormFooterTag</tag-class>
+		<name>form-toolbar</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.tag.form.FormToolbarTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be rendered</description>
@@ -119,24 +100,6 @@
 		</example>
 	</tag>
 	
-	<tag>
-		<description>Renders a form body on the form component</description>
-		<display-name>Form</display-name>
-		<name>form-body</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.tag.form.FormBodyTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>It indicates whether the component should be rendered</description>
-			<name>rendered</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<example>
-			
-		</example>
-	</tag>
-	
-
 	<tag>
 		<description>Renders a component grouping in the form</description>
 		<display-name>Form</display-name>

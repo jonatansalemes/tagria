@@ -2,35 +2,18 @@
 <html:view title="Playground">
 
 
-
-	<html:grid>
+	<html:grid var="person" data="${ persons }">
 		<html:grid-header>
-			Header
+			<html:grid-column label="Column 1"></html:grid-column>
 		</html:grid-header>
 		<html:grid-body>
-			<html:grid-body-header>
-				<html:grid-head>Name</html:grid-head>
-				<html:grid-head>Like choco</html:grid-head>
-				<html:grid-head>Birthdate</html:grid-head>
-			</html:grid-body-header>
-			<html:grid-body-data var="person" data="${ persons }">
-				<html:grid-data>
-					${ person.name }
-				</html:grid-data>
-				<html:grid-data booleanType="true">
-					${ person.likeChocolate }
-				</html:grid-data>
-				<html:grid-data collapsable="true">
-					<html:format type="datetime">
-						${ person.birthDate }
-					</html:format> 
-				</html:grid-data>
-			</html:grid-body-data>
+			<html:grid-data>
+				${ person.name }
+			</html:grid-data>
 		</html:grid-body>
-		<html:grid-footer>
-			Footer
-		</html:grid-footer>
 	</html:grid>
+	
+	
 
 	<html:import url="/css/example.css" type="css"></html:import>
 	<html:import url="/js/example.js" type="js"></html:import>
@@ -160,10 +143,8 @@
 		<html:dropdown-item icon="trash" label="Item 3" url="#" />
 	</html:dropdown>
 
-	<html:form action="#">
-		<html:form-header label="My title" />
-
-		<html:form-body>
+	<html:form action="#" label="My title">
+		
 			<html:form-group label="Field 1" required="true">
 				<html:input required="true" name="field1" />
 			</html:form-group>
@@ -178,11 +159,11 @@
 					console.log($(this).val());
 				</html:js-event>
 			</html:form-group-multiple>
-		</html:form-body>
+		
 
-		<html:form-footer>
+		<html:form-toolbar>
 			<html:button state="primary" type="submit" label="Label for submit" />
-		</html:form-footer>
+		</html:form-toolbar>
 	</html:form>
 
 	<html:img url="/image/person.png" alt="logo" responsive="true" />
