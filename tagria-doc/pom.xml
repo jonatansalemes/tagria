@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
@@ -7,7 +9,7 @@
 	</parent>
 	<artifactId>tagria-doc</artifactId>
 	<packaging>war</packaging>
- 
+
 	<dependencies>
 		<dependency>
 			<groupId>br.com.caelum</groupId>
@@ -18,13 +20,17 @@
 					<groupId>com.google.guava</groupId>
 					<artifactId>guava</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
 			<artifactId>tagria-library</artifactId>
 			<version>${project.version}</version>
-		</dependency>	
+		</dependency>
 	</dependencies>
 
 	<build>

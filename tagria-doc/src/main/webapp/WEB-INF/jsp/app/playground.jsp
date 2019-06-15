@@ -1,6 +1,28 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
 
+
+	<ajax:function url="/app/ajax/list" name="ajaxPersons" execute="true">
+		<ajax:parameters>
+			<ajax:parameter name="param1" value="1"></ajax:parameter>
+		</ajax:parameters>
+		
+		<ajax:on-success>
+			console.log('success');
+			<ajax:map-options value="id" target="ajaxSelect" text="name"></ajax:map-options>
+		</ajax:on-success>
+		<ajax:on-error>
+			console.log('error');
+		</ajax:on-error>
+		<ajax:on-done>
+			console.log('done');
+		</ajax:on-done>
+	</ajax:function>
+	
+	<html:select name="ajaxSelect">
+		<html:option value="">---</html:option>
+	</html:select>
+
 	<html:css-code>
 		.mystyle {
 			background-color:   red;

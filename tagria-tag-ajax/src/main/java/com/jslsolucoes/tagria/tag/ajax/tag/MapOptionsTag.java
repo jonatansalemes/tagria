@@ -19,8 +19,7 @@ public class MapOptionsTag extends AbstractSimpleTagSupport {
 			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "mapOptions.tpl")
 					.withData("id", idForName(target)).withData("tokens", text.split(",")).withData("value", value)
 					.withOutput(stringWriter).process();
-			FunctionTag functionTag = findAncestorWithClass(FunctionTag.class);
-			functionTag.addOnSuccess(stringWriter.toString());
+			findAncestorWithClass(FunctionTag.class).addOnSuccess(stringWriter.toString());
 		} catch (IOException e) {
 			throw new TagriaRuntimeException(e);
 		}

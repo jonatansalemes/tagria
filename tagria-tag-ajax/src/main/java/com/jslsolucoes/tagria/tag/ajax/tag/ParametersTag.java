@@ -5,4 +5,8 @@ import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class ParametersTag extends AbstractSimpleTagSupport {
 
+	@Override
+	public Boolean flush() {
+		return true;
+	}
 }
