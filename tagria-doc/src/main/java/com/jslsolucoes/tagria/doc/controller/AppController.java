@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import com.jslsolucoes.tagria.doc.repository.PersonRepository;
 
 import br.com.caelum.vraptor.Controller;
@@ -39,6 +41,7 @@ public class AppController {
 		this.result.include("persons", pessoaRepository.listAll(3));
 		this.result.include("totalResults",3);
 		this.result.include("dateTime" , LocalDateTime.now());
+		this.result.include("descriptions",RandomStringUtils.randomNumeric(14));
 		this.result.include("myValue",12345L);
 	}
 

@@ -17,17 +17,24 @@ import com.jslsolucoes.tagria.config.TagriaConfigParameter;
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
+import com.jslsolucoes.tagria.tag.base.GlobalCssAppender;
 import com.jslsolucoes.tagria.tag.base.GlobalJsAppender;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
-public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppender {
+public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppender, GlobalCssAppender {
 
 	private String title;
 	private String titleKey;
 	private String cssClass = "body-default";
 	private Boolean minifyJs = Boolean.TRUE;
 	private Boolean minifyHtml = Boolean.TRUE;
+	private Boolean minifyCss = Boolean.TRUE;
 	private List<String> jsScripts = new ArrayList<>();
+	private List<String> cssScripts = new ArrayList<>();
+
+	public void appendCssCode(String cssCode) {
+		this.cssScripts.add(cssCode);
+	}
 
 	public void appendJavascriptCode(String jsCode) {
 		this.jsScripts.add(jsCode);
@@ -56,8 +63,11 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	}
 
 	private Element body() {
-		return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(minifyHtml(bodyContent()))
-				.add(ajaxLoading()).add(tagriaCss()).add(recaptchaJs()).add(tagriaJs()).add(appJs());
+		return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript())
+				.add(minifyHtml(bodyContent())).add(ajaxLoading()).add(tagriaCss())
+				.add(appCss())
+				.add(recaptchaJs()).add(tagriaJs())
+				.add(appJs());
 	}
 
 	private Element head() {
@@ -115,9 +125,17 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 		return "URL_BASE='" + pathForUrl("") + "';";
 	}
 	
+	private String minifyCss(String cssCode) {
+		if (minifyCss) {
+			return cssCode.replaceAll("(\n|\r|\t|\\s{2,})","").replaceAll(" \\{","{").replaceAll(" ,", ",").replaceAll(": ",":").replaceAll(", ",",");
+		} else {
+			return cssCode;
+		}
+	}
+
 	private String minifyHtml(String html) {
-		if(minifyHtml) {
-			return html.replaceAll("(<.*?>)(\n|\r|\t|\\s)+(<.*?>)","$1$3");
+		if (minifyHtml) {
+			return html.replaceAll("(<.*?>)(\n|\r|\t|\\s)+(<.*?>)", "$1$3");
 		} else {
 			return html;
 		}
@@ -135,11 +153,19 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 			return jsCode;
 		}
 	}
+	
+	private Element appCss() {
+		return ElementCreator.newStyle().add(minifyCss(componentCss()));
+	}
 
 	private Element appJs() {
 		String appJs = minifyJs(Arrays.asList(jsCodeForUrlBase(), jsCodeForAjaxAnimation(), componentJs()).stream()
 				.collect(Collectors.joining()));
 		return ElementCreator.newScript().add(appJs);
+	}
+	
+	private String componentCss() {
+		return cssScripts.stream().collect(Collectors.joining());
 	}
 
 	private String componentJs() {
@@ -208,6 +234,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
 	public void setTitleKey(String titleKey) {
 		this.titleKey = titleKey;
+	}
+
+	public Boolean getMinifyCss() {
+		return minifyCss;
+	}
+
+	public void setMinifyCss(Boolean minifyCss) {
+		this.minifyCss = minifyCss;
 	}
 
 }

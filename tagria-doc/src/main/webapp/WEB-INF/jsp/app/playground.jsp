@@ -1,6 +1,18 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
 
+	<html:css-code>
+		.mystyle {
+			background-color:   red;
+		}
+		.mystyle2 {
+			color: white;
+		}
+	</html:css-code>	
+	
+	<html:div cssClass="mystyle mystyle2">
+		styled div ${ descriptions }
+	</html:div>
 
 	<html:grid var="person" data="${ persons }" label="My grid">
 	
@@ -9,7 +21,7 @@
 		<html:grid-search/>
 		
 		<html:grid-toolbar>
-			<html:alert state="danger">my toolbar</html:alert>
+			<html:alert state="danger">my toolbars</html:alert>
 		</html:grid-toolbar>
 	
 		<html:grid-header>

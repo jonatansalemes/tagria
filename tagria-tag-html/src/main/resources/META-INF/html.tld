@@ -18,7 +18,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.ViewTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates if javascript must be minified. Default:true</description>
+			<description>It indicates if inline javascript must be minified. Default:true</description>
 			<name>minifyJs</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
@@ -26,6 +26,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>It indicates if html must be minified. Default:true</description>
 			<name>minifyHtml</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if inline css must be minified. Default:true</description>
+			<name>minifyCss</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>

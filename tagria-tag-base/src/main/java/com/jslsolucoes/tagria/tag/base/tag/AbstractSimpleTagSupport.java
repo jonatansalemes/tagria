@@ -38,6 +38,7 @@ import com.jslsolucoes.tagria.exception.TagriaRuntimeException;
 import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.CloneableJsAppender;
+import com.jslsolucoes.tagria.tag.base.GlobalCssAppender;
 import com.jslsolucoes.tagria.tag.base.GlobalJsAppender;
 
 public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implements DynamicAttributes {
@@ -346,6 +347,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		} catch (Exception e) {
 			throw new TagriaRuntimeException(e);
 		}
+	}
+	
+	public void appendCssCode(String cssCode) {
+		GlobalCssAppender globalCssAppender = findAncestorWithClass(GlobalCssAppender.class);
+		globalCssAppender.appendCssCode(cssCode);
 	}
 
 	public void appendJsCode(String jsCode) {

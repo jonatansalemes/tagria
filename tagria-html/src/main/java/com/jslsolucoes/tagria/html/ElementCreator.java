@@ -2,6 +2,10 @@ package com.jslsolucoes.tagria.html;
 
 public class ElementCreator {
 	
+	public static Style newStyle() {
+		return new Style();
+	}
+	
 	public static TFoot newTFoot() {
 		return new TFoot();
 	}
