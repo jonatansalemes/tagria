@@ -18,6 +18,7 @@ public class MenuCollapseTag extends AbstractSimpleTagSupport {
 	private Element button() {
 		return ElementCreator.newButton().attribute(Attribute.ID, idForId(id)).attribute(Attribute.TYPE, "button")
 				.attribute(Attribute.CLASS, "navbar-toggler").attribute(Attribute.DATA_TOGGLE, "collapse")
+				.attribute(Attribute.ARIA_LABEL,"menu")
 				.attribute(Attribute.DATA_TARGET, attachTo(attachToSelector, attachTo)).add(span());
 	}
 

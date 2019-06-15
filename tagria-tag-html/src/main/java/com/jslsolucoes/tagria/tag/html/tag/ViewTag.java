@@ -193,7 +193,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	private Element loadingImage() {
 		return ElementCreator.newImg().attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif"))
 				.attribute(Attribute.WIDTH, 100).attribute(Attribute.HEIGHT, 100)
-				.attribute(Attribute.CLASS, "mx-auto d-block").attribute(Attribute.ALT, "loading");
+				.attribute(Attribute.CLASS, "mx-auto d-block lazyload").attribute(Attribute.ALT, "loading");
 	}
 
 	public String getTitle() {

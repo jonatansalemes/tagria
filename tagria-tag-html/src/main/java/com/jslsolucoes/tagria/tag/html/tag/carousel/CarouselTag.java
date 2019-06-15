@@ -15,12 +15,14 @@ public class CarouselTag extends AbstractSimpleTagSupport {
 	private Element aNext(String id) {
 		return ElementCreator.newA().attribute(Attribute.CLASS, "carousel-control-next")
 				.attribute(Attribute.HREF, "#" + id).attribute(Attribute.DATA_SLIDE, "next")
+				.attribute(Attribute.ARIA_LABEL,keyForLibrary("carousel.next"))
 				.add(ElementCreator.newSpan().attribute(Attribute.CLASS, "carousel-control-next-icon"));
 	}
 
 	private Element aPrev(String id) {
 		return ElementCreator.newA().attribute(Attribute.CLASS, "carousel-control-prev")
 				.attribute(Attribute.HREF, "#" + id).attribute(Attribute.DATA_SLIDE, "prev")
+				.attribute(Attribute.ARIA_LABEL,keyForLibrary("carousel.prev"))
 				.add(ElementCreator.newSpan().attribute(Attribute.CLASS, "carousel-control-prev-icon"));
 	}
 

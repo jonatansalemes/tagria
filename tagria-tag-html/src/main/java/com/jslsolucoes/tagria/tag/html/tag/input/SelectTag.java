@@ -46,7 +46,9 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	private Element a() {
 		return ElementCreator.newA()
 				.attribute(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm")
-				.attribute(Attribute.HREF, "#").add(span());
+				.attribute(Attribute.HREF, "#")
+				.attribute(Attribute.ARIA_LABEL, keyForLibrary("select.search.button"))
+				.add(span());
 	}
 
 	private Element span() {
@@ -59,6 +61,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
 	private Element select() {
 		Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
+				.attribute(Attribute.ARIA_LABEL,"select")
 				.attribute(Attribute.NAME, name).add(option());
 		if (required) {
 			select.attribute(Attribute.CLASS, "form-required");

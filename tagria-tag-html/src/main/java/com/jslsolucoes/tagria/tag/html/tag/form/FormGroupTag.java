@@ -39,7 +39,7 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 	private Element label() {
 		Element label = ElementCreator.newLabel().add(keyOrLabel(labelKey, this.label));
 		if (!StringUtils.isEmpty(forElement)) {
-			label.attribute(Attribute.FOR, idForId(forElement));
+			label.attribute(Attribute.FOR, idForName(forElement));
 		}
 		if (required) {
 			label.add(span());

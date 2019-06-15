@@ -42,6 +42,7 @@ public class InputTag extends AbstractSimpleTagSupport implements DynamicAttribu
 	private Element input() {
 
 		Element input = ElementCreator.newInput().attribute(Attribute.TYPE, type).attribute(Attribute.NAME, name)
+				.attribute(Attribute.ARIA_LABEL,"input")
 				.attribute(Attribute.ID, id(name, id)).attribute(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
 
 		attributes.entrySet().forEach(entry -> {

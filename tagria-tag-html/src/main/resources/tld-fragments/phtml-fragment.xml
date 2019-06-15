@@ -162,6 +162,18 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>Indicates the title of iframe</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title key (i18n) of iframe</description>
+			<name>titleKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:iframe url="/app/welcome" name="content"/&gt;
 		</example>

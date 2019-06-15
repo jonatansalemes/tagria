@@ -12,6 +12,8 @@ public class IframeTag extends AbstractSimpleTagSupport {
 
 	private String name;
 	private String url;
+	private String title;
+	private String titleKey;
 
 	@Override
 	public Element render() {
@@ -24,6 +26,11 @@ public class IframeTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(cssClass)) {
 			iframe.attribute(Attribute.CLASS, cssClass);
 		}
+
+		if (hasKeyOrLabel(titleKey, title)) {
+			iframe.attribute(Attribute.TITLE, keyOrLabel(titleKey, title));
+		}
+
 		appendJsCode("$('#" + iframe.attribute(Attribute.ID) + "').iframe();");
 		return iframe;
 
@@ -43,6 +50,22 @@ public class IframeTag extends AbstractSimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getTitleKey() {
+		return titleKey;
+	}
+
+	public void setTitleKey(String titleKey) {
+		this.titleKey = titleKey;
 	}
 
 }

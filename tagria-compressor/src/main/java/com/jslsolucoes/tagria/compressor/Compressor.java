@@ -43,9 +43,9 @@ public class Compressor {
 
 	public void compressJs() throws IOException {
 		String[] files = new String[] { "jquery/jquery.js", "jquery/ui/jquery.ui.js", "tagria/form.js",
-				"tagria/mask.js", "tagria/currency.mask.js", "fontawesome/all.js", "tagria/iframe.js", "tagria/grid.js",
-				"tagria/tabs.js", "tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js",
-				"tagria/select.js" };
+				"tagria/mask.js", "tagria/currency.mask.js", "fontawesome/all.js", "lazysizes/lazysizes.js",
+				"tagria/iframe.js", "tagria/grid.js", "tagria/tabs.js", "tagria/form.group.js", "popper/popper.js",
+				"bootstrap/bootstrap.js", "tagria/select.js" };
 
 		List<String> contents = new ArrayList<>();
 		for (String file : files) {
@@ -121,7 +121,7 @@ public class Compressor {
 	}
 
 	private String minifyCss(String code) throws IOException {
-		return code.replaceAll("(\n|\t|\r| {2,})", "");
+		return code.replaceAll("(\n|\r|\t|\\s{2,})","").replaceAll(" \\{","{").replaceAll(" ,", ",").replaceAll(": ",":").replaceAll(", ",",");
 	}
 
 	private String normalizeCssFile(File cssFile, String theme) {

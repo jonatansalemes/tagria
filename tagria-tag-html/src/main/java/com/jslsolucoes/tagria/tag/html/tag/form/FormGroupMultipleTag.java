@@ -96,6 +96,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
 	private Element buttonPlus() {
 		return ElementCreator.newButton().attribute(Attribute.TYPE, "button")
+				.attribute(Attribute.ARIA_LABEL,keyForLibrary("form.group.plus"))
 				.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus").add(spanPlus());
 	}
 
@@ -136,6 +137,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
 	private Element buttonRemove() {
 		return ElementCreator.newButton().attribute(Attribute.ID, id())
+				.attribute(Attribute.ARIA_LABEL,keyForLibrary("form.group.minus"))
 				.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus").add(spanMinus());
 	}
 

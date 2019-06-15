@@ -144,7 +144,7 @@
 
 	<html:card>
 		<html:card-image url="/image/person.png" width="32" height="32"
-			responsive="false"></html:card-image>
+			responsive="false" alt="logo"></html:card-image>
 		<html:card-header>
 			My header
 		</html:card-header>
@@ -196,10 +196,10 @@
 
 	<html:form action="#" label="My title">
 		
-			<html:form-group label="Field 1" required="true">
+			<html:form-group label="Field 1" required="true" forElement="field1">
 				<html:input required="true" name="field1" />
 			</html:form-group>
-			<html:form-group label="Field 2">
+			<html:form-group label="Field 2" forElement="field2">
 				<html:input name="field2" />
 			</html:form-group>
 			<html:form-group-multiple label="Groups 1" data="${ persons }"
@@ -286,7 +286,7 @@ private class Java {
 
 	<html:link label="My link" url="#" />
 
-	<html:iframe url="/app/welcome" name="content" />
+	<html:iframe url="/app/welcome" name="content" title="My iframe title" />
 
 	<html:recaptcha siteKey="fdaf9dsj9j" />
 
