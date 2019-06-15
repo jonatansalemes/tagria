@@ -2,13 +2,30 @@
 <html:view title="Playground">
 
 
-	<html:grid var="person" data="${ persons }" export="true" paginate="true">
+	<html:grid var="person" data="${ persons }" label="My grid">
+	
+		<html:grid-export/>
+		<html:grid-paginate totalResults="${ totalResults }"></html:grid-paginate>
+		<html:grid-search/>
+		
+		<html:grid-toolbar>
+			<html:alert state="danger">my toolbar</html:alert>
+		</html:grid-toolbar>
+	
 		<html:grid-header>
 			<html:grid-column label="Column 1" align="left" exportable="true"></html:grid-column>
+			<html:grid-column label="Column 2" align="center" exportable="true"></html:grid-column>
+			<html:grid-column label="Column 3" align="center" exportable="true"></html:grid-column>
 		</html:grid-header>
 		<html:grid-body>
 			<html:grid-column-data align="right" exportable="true">
 				${ person.name }
+			</html:grid-column-data>
+			<html:grid-column-data align="center" exportable="true" booleanType="true">
+				${ person.likeChocolate }
+			</html:grid-column-data>
+			<html:grid-column-data align="center" exportable="true" collapsable="true">
+				${ person.cpf }
 			</html:grid-column-data>
 		</html:grid-body>
 	</html:grid>

@@ -37,6 +37,7 @@ public class AppController {
 	public void playground() {
 		this.result.include("booleanValue",Boolean.TRUE);
 		this.result.include("persons", pessoaRepository.listAll(3));
+		this.result.include("totalResults",3);
 		this.result.include("dateTime" , LocalDateTime.now());
 		this.result.include("myValue",12345L);
 	}
