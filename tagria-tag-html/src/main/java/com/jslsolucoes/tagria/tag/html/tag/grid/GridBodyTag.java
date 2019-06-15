@@ -17,13 +17,11 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element tbody() {
-		
 		GridTag gridTag = findAncestorWithClass(GridTag.class);
 		Collection<Object> data = gridTag.getData();
 		String var = gridTag.getVar();
 		String varStatus = gridTag.getVarStatus();
 		VarStatus varStatusObject = new VarStatus();
-		
 		Element tbody = ElementCreator.newTBody();
 		for (Object row : data) {
 			setAttribute(var, row);

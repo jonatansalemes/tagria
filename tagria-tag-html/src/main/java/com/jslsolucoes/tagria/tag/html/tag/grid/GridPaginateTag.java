@@ -1,15 +1,11 @@
 package com.jslsolucoes.tagria.tag.html.tag.grid;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
-import com.jslsolucoes.tagria.html.A;
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.html.H5;
-import com.jslsolucoes.tagria.html.Li;
-import com.jslsolucoes.tagria.html.Nav;
-import com.jslsolucoes.tagria.html.Ul;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class GridPaginateTag extends AbstractSimpleTagSupport {
@@ -19,85 +15,108 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void renderOnVoid() {
+		findAncestorWithClass(GridTag.class).setPaginate(divPaginate());
+	}
 
-		Div clearfix = new Div();
-		clearfix.attribute(Attribute.CLASS, "clearfix");
+	private Element divPaginate() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "clearfix").add(divDisplay()).add(divNavigation())
+				.add(divNavigationDropdown());
+	}
 
-		HttpServletRequest request = httpServletRequest();
-		Integer page = (request.getParameter("page") != null ? Integer.valueOf(request.getParameter("page")) : 1);
-		Integer resultsPerPage = (request.getParameter("resultsPerPage") != null
-				? Integer.valueOf(request.getParameter("resultsPerPage"))
+	private Element divNavigationDropdown() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-right m-2").add(divDropdown());
+	}
+
+	private Element divDropdown() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown dropup")
+				.attribute(Attribute.TITLE, keyForLibrary("grid.results.per.page")).add(buttonDropdown())
+				.add(divDropdownMenu());
+	}
+
+	private Element divDropdownMenu() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown-menu");
+		for (Integer resultsPerPage : Arrays.asList(20, 40, 60, 80, 100)) {
+			div.add(aDropDown(resultsPerPage));
+		}
+		return div;
+	}
+
+	private Element aDropDown(Integer resultsPerPage) {
+		Element a = ElementCreator.newA().attribute(Attribute.HREF, "#")
+				.attribute(Attribute.CLASS, "dropdown-item grid-results-per-page-item").add(resultsPerPage.toString());
+		if (resultsPerPage == this.resultsPerPage) {
+			a.attribute(Attribute.CLASS, "active");
+		}
+		return a;
+	}
+
+	private Element buttonDropdown() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-default dropdown-toggle")
+				.attribute(Attribute.DATA_TOGGLE, "dropdown").add(String.valueOf(resultsPerPage));
+	}
+
+	private Element divNavigation() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-right m-2").add(navPaginate());
+	}
+
+	private Element navPaginate() {
+		return ElementCreator.newNav().attribute(Attribute.CLASS, "float-left").add(ulPaginate());
+	}
+
+	private Element ulPaginate() {
+		Integer currentPage = currentPage();
+		Element ul = ElementCreator.newUl().attribute(Attribute.CLASS, "pagination");
+		for (int i = 1; i <= totalOfPages(); i++) {
+			ul.add(liPaginate(currentPage, i));
+		}
+		return ul;
+	}
+
+	private Element liPaginate(Integer currentPage, Integer page) {
+		Element li = ElementCreator.newLi().attribute(Attribute.CLASS, "page-item grid-paginate-item")
+				.add(aPaginate(page));
+		if (currentPage == page) {
+			li.attribute(Attribute.CLASS, "active");
+		}
+		return li;
+	}
+
+	private Element aPaginate(Integer page) {
+		return ElementCreator.newA().attribute(Attribute.HREF, "#").attribute(Attribute.CLASS, "page-link")
+				.add(page.toString());
+	}
+
+	private Integer totalOfPages() {
+		return (int) Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
+	}
+
+	private Element divDisplay() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-left m-2")
+				.add(new H5().add(keyForLibrary("grid.page.viewing", startOfResults(), endOfResults(), totalResults)));
+	}
+
+	private Integer startOfResults() {
+		return (endOfResults() + 1) - resultsPerPage();
+	}
+
+	private Integer endOfResults() {
+		Integer endOfResults = currentPage() * resultsPerPage;
+		if (endOfResults >= totalResults) {
+			endOfResults = totalResults;
+		}
+		return endOfResults;
+	}
+
+	private Integer resultsPerPage() {
+		return (httpServletRequest().getParameter("resultsPerPage") != null
+				? Integer.valueOf(httpServletRequest().getParameter("resultsPerPage"))
 				: this.resultsPerPage);
+	}
 
-		Integer toResult = page * resultsPerPage;
-		Integer fromResult = (toResult + 1) - resultsPerPage;
-		if (toResult >= totalResults) {
-			toResult = totalResults;
-		}
-
-		Div display = new Div();
-		display.attribute(Attribute.CLASS, "float-left m-2");
-		display.add(new H5().add(keyForLibrary("grid.page.viewing", fromResult, toResult, totalResults)));
-		clearfix.add(display);
-
-		Integer totalOfPages = (int) Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
-
-		Div pagination = new Div();
-		pagination.attribute(Attribute.CLASS, "float-right m-2");
-		Nav nav = new Nav();
-		nav.attribute(Attribute.CLASS, "float-left");
-		Ul ul = new Ul();
-		ul.attribute(Attribute.CLASS, "pagination");
-		for (int i = 1; i <= totalOfPages; i++) {
-			Li li = new Li();
-			li.attribute(Attribute.CLASS, "page-item grid-paginate-item");
-			if (i == page) {
-				li.attribute(Attribute.CLASS, "active");
-			}
-			A a = new A();
-			a.attribute(Attribute.HREF, "#");
-			a.attribute(Attribute.CLASS, "page-link");
-			a.add(String.valueOf(i));
-			li.add(a);
-			ul.add(li);
-		}
-		nav.add(ul);
-		pagination.add(nav);
-		clearfix.add(pagination);
-
-		Div divForResultsPerPage = new Div();
-		divForResultsPerPage.attribute(Attribute.CLASS, "float-right m-2");
-
-		Div dropdown = new Div();
-		dropdown.attribute(Attribute.CLASS, "dropdown dropup");
-		dropdown.attribute(Attribute.TITLE, keyForLibrary("grid.results.per.page"));
-
-		Button button = new Button();
-		button.attribute(Attribute.CLASS, "btn btn-default dropdown-toggle");
-		button.attribute(Attribute.DATA_TOGGLE, "dropdown");
-		button.add(String.valueOf(resultsPerPage));
-
-		dropdown.add(button);
-
-		Div results = new Div();
-		results.attribute(Attribute.CLASS, "dropdown-menu");
-		Integer iteration = 100;
-		while (iteration >= 20) {
-			A a = new A();
-			a.attribute(Attribute.HREF, "#");
-			a.attribute(Attribute.CLASS, "dropdown-item grid-results-per-page-item");
-			if (iteration == resultsPerPage) {
-				a.attribute(Attribute.CLASS, "active");
-			}
-			a.add(String.valueOf(iteration));
-			results.add(a);
-			iteration -= 20;
-		}
-		dropdown.add(results);
-		divForResultsPerPage.add(dropdown);
-		clearfix.add(divForResultsPerPage);
-
-		findAncestorWithClass(GridTag.class).setPaginate(clearfix);
+	private Integer currentPage() {
+		return (httpServletRequest().getParameter("page") != null
+				? Integer.valueOf(httpServletRequest().getParameter("page"))
+				: 1);
 	}
 
 	public Integer getResultsPerPage() {

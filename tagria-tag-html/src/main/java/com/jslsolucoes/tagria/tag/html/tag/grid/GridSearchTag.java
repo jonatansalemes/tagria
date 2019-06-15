@@ -1,21 +1,24 @@
 package com.jslsolucoes.tagria.tag.html.tag.grid;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.Input;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class GridSearchTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public void renderOnVoid() {
-		Div divForSearch = new Div();
-		divForSearch.attribute(Attribute.CLASS, "float-right m-3");
-		Input input = new Input();
-		input.attribute(Attribute.TYPE, "search");
-		input.attribute(Attribute.CLASS, "grid-search form-control");
-		input.attribute(Attribute.PLACEHOLDER, keyForLibrary("grid.search"));
-		divForSearch.add(input);
-		findAncestorWithClass(GridTag.class).setSearch(divForSearch);
+		findAncestorWithClass(GridTag.class).setSearch(divSearch());
+	}
+
+	private Element divSearch() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-right m-3").add(inputSearch());
+	}
+
+	private Element inputSearch() {
+		return ElementCreator.newInput().attribute(Attribute.TYPE, "search")
+				.attribute(Attribute.CLASS, "grid-search form-control")
+				.attribute(Attribute.PLACEHOLDER, keyForLibrary("grid.search"));
 	}
 }

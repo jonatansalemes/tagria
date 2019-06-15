@@ -1,69 +1,115 @@
 package com.jslsolucoes.tagria.tag.html.tag.grid;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Button;
-import com.jslsolucoes.tagria.html.Div;
-import com.jslsolucoes.tagria.html.Form;
-import com.jslsolucoes.tagria.html.Input;
+import com.jslsolucoes.tagria.html.Element;
+import com.jslsolucoes.tagria.html.ElementCreator;
 import com.jslsolucoes.tagria.html.Span;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class GridExportTag extends AbstractSimpleTagSupport {
 
+	private Boolean pdf = Boolean.TRUE;
+	private Boolean xlsx = Boolean.TRUE;
+	private Boolean csv = Boolean.TRUE;
+	private Boolean xml = Boolean.FALSE;
+
 	@Override
 	public void renderOnVoid() {
-		Div divForExportation = new Div();
-		divForExportation.attribute(Attribute.CLASS, "float-right m-3");
-
-		Div buttonGroup = new Div();
-		buttonGroup.attribute(Attribute.CLASS, "btn-group");
-
-		Button pdf = new Button();
-		pdf.attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-pdf");
-		pdf.attribute(Attribute.TITLE, keyForLibrary("grid.export.pdf"));
-		pdf.add(new Span().attribute(Attribute.CLASS, "fa fa-file-pdf"));
-		buttonGroup.add(pdf);
-
-		Button excel = new Button();
-		excel.attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-excel");
-		excel.attribute(Attribute.TITLE, keyForLibrary("grid.export.xls"));
-		excel.add(new Span().attribute(Attribute.CLASS, "fa fa-file-excel"));
-		buttonGroup.add(excel);
-
-		Button csv = new Button();
-		csv.attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-csv");
-		csv.attribute(Attribute.TITLE, keyForLibrary("grid.export.csv"));
-		csv.add(new Span().attribute(Attribute.CLASS, "fa fa-file-csv"));
-		buttonGroup.add(csv);
-
-		Button xml = new Button();
-		xml.attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-xml");
-		xml.attribute(Attribute.TITLE, keyForLibrary("grid.export.xml"));
-		xml.add(new Span().attribute(Attribute.CLASS, "fa fa-file-code"));
-		buttonGroup.add(xml);
-
-		divForExportation.add(buttonGroup);
-		
-		Div exporter = new Div();
-		exporter.attribute(Attribute.CLASS, "hidden");
-		Form form = new Form();
-		form.attribute(Attribute.METHOD, "post");
-		form.attribute(Attribute.TARGET, "_blank");
-		form.attribute(Attribute.CLASS, "grid-export-form");
-		form.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter"));
-		Input type = new Input();
-		type.attribute(Attribute.TYPE, "hidden");
-		type.attribute(Attribute.NAME, "type");
-		type.attribute(Attribute.CLASS, "grid-export-type");
-		form.add(type);
-		Input html = new Input();
-		html.attribute(Attribute.TYPE, "hidden");
-		html.attribute(Attribute.NAME, "json");
-		html.attribute(Attribute.CLASS, "grid-export-json");
-		form.add(html);
-		divForExportation.add(form);
-		
-		findAncestorWithClass(GridTag.class).setExport(divForExportation);
+		findAncestorWithClass(GridTag.class).setExport(divExport());
 	}
-	
+
+	private Element divExport() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-right m-3").add(formExport())
+				.add(divButtonGroup());
+	}
+
+	private Element formExport() {
+		return ElementCreator.newForm().attribute(Attribute.METHOD, "post").attribute(Attribute.TARGET, "_blank")
+				.attribute(Attribute.CLASS, "grid-export-form hidden")
+				.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter")).add(inputType()).add(inputJson());
+	}
+
+	private Element inputType() {
+		return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "type")
+				.attribute(Attribute.CLASS, "grid-export-type");
+	}
+
+	private Element inputJson() {
+		return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "json")
+				.attribute(Attribute.CLASS, "grid-export-json");
+	}
+
+	private Element divButtonGroup() {
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "btn-group");
+		if (pdf) {
+			div.add(buttonPDF());
+		}
+		if (xlsx) {
+			div.add(buttonXlsx());
+		}
+		if (csv) {
+			div.add(buttonCsv());
+		}
+		if (xml) {
+			div.add(buttonXml());
+		}
+		return div;
+	}
+
+	private Element buttonXml() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-xml")
+				.attribute(Attribute.TITLE, keyForLibrary("grid.export.xml"))
+				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-code"));
+	}
+
+	private Element buttonCsv() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-csv")
+				.attribute(Attribute.TITLE, keyForLibrary("grid.export.csv"))
+				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-csv"));
+	}
+
+	private Element buttonXlsx() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-excel")
+				.attribute(Attribute.TITLE, keyForLibrary("grid.export.xls"))
+				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-excel"));
+	}
+
+	private Element buttonPDF() {
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-pdf")
+				.attribute(Attribute.TITLE, keyForLibrary("grid.export.pdf"))
+				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-pdf"));
+	}
+
+	public Boolean getPdf() {
+		return pdf;
+	}
+
+	public void setPdf(Boolean pdf) {
+		this.pdf = pdf;
+	}
+
+	public Boolean getCsv() {
+		return csv;
+	}
+
+	public void setCsv(Boolean csv) {
+		this.csv = csv;
+	}
+
+	public Boolean getXml() {
+		return xml;
+	}
+
+	public void setXml(Boolean xml) {
+		this.xml = xml;
+	}
+
+	public Boolean getXlsx() {
+		return xlsx;
+	}
+
+	public void setXlsx(Boolean xlsx) {
+		this.xlsx = xlsx;
+	}
+
 }

@@ -101,6 +101,30 @@
 		<name>grid-export</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridExportTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates if export support pdf file. Default: true</description>
+			<name>pdf</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if export support xlsx file. Default: true</description>
+			<name>xlsx</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if export support csv file. Default: true</description>
+			<name>csv</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if export support xml file. Default: true</description>
+			<name>xml</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			
 		</example>
