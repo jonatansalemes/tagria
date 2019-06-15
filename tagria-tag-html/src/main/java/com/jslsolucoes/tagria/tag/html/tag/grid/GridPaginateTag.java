@@ -5,7 +5,6 @@ import java.util.Arrays;
 import com.jslsolucoes.tagria.html.Attribute;
 import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
-import com.jslsolucoes.tagria.html.H5;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class GridPaginateTag extends AbstractSimpleTagSupport {
@@ -91,12 +90,21 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element divDisplay() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-left m-2")
-				.add(new H5().add(keyForLibrary("grid.page.viewing", startOfResults(), endOfResults(), totalResults)));
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-left m-2").add(h5Display());
+	}
+
+	private Element h5Display() {
+		return ElementCreator.newH5()
+				.add(keyForLibrary("grid.page.viewing", startOfResults(), endOfResults(), totalResults));
 	}
 
 	private Integer startOfResults() {
-		return (endOfResults() + 1) - resultsPerPage();
+		Integer currentPage = currentPage();
+		if (currentPage == 1) {
+			return 1;
+		} else {
+			return ((currentPage - 1) * resultsPerPage()) + 1;
+		}
 	}
 
 	private Integer endOfResults() {

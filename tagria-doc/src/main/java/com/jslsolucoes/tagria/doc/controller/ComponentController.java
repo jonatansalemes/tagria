@@ -1,8 +1,11 @@
 
 package com.jslsolucoes.tagria.doc.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import com.jslsolucoes.tagria.doc.model.Person;
 import com.jslsolucoes.tagria.doc.repository.PersonRepository;
 
 import br.com.caelum.vraptor.Controller;
@@ -28,7 +31,9 @@ public class ComponentController {
 
 	@Path("{component}")
 	public void component(String component) {
-		this.result.include("persons", pessoaRepository.listAll());
+		List<Person> persons = pessoaRepository.listAll();
+		this.result.include("persons", persons);
+		this.result.include("totalResults", persons.size());
 		this.result.forwardTo("/WEB-INF/jsp/component/" + component + ".jsp");
 	}
 }

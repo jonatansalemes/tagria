@@ -7,10 +7,8 @@ import java.util.Collection;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.jslsolucoes.tagria.html.Attribute;
-import com.jslsolucoes.tagria.html.Div;
 import com.jslsolucoes.tagria.html.Element;
 import com.jslsolucoes.tagria.html.ElementCreator;
-import com.jslsolucoes.tagria.html.H2;
 import com.jslsolucoes.tagria.tag.base.tag.AbstractSimpleTagSupport;
 
 public class GridTag extends AbstractSimpleTagSupport {
@@ -35,27 +33,20 @@ public class GridTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public Element render() {
+		return divGrid();
+	}
 
-		Div container = new Div();
-		container.attribute(Attribute.CLASS, "border border-secondary rounded p-2");
-		container.attribute(Attribute.ID, id());
-
+	private Element divGrid() {
+		String id = id();
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "border border-secondary rounded p-2")
+				.attribute(Attribute.ID, id);
 		if (hasKeyOrLabel(labelKey, label)) {
-			Div title = new Div();
-			title.attribute(Attribute.CLASS, "text-center mb-3");
-			H2 h2 = new H2();
-			h2.attribute(Attribute.CLASS, "text-secondary");
-			h2.add(keyOrLabel(labelKey, label));
-			title.add(h2);
-			container.add(title);
+			div.add(divTitle());
 		}
-		
 		Element clearfix = ElementCreator.newDiv().attribute(Attribute.CLASS, "clearfix");
-		
 		if (toolbar != null) {
 			clearfix.add(toolbar);
 		}
-
 		if (!CollectionUtils.isEmpty(data)) {
 			if (export != null) {
 				clearfix.add(export);
@@ -63,36 +54,40 @@ public class GridTag extends AbstractSimpleTagSupport {
 			if (search != null) {
 				clearfix.add(search);
 			}
-			container.add(clearfix);
-			container.add(divTable());
+			div.add(clearfix).add(divTable());
 			if (paginate != null) {
-				container.add(paginate);
+				div.add(paginate);
 			}
 		} else {
-			container.add(divNoRow());
+			div.add(divNoRow());
 		}
-
 		appendJsCode(
-				"$('#" + container.attribute(Attribute.ID) + "').grid({ url : '" + pathForUrl(url) + "',queryString:'"
+				"$('#" + id + "').grid({ url : '" + pathForUrl(url) + "',queryString:'"
 						+ queryString(Arrays.asList("page", "property", "direction", "resultsPerPage")) + "'});");
-		return container;
+		return div;
 	}
-	
+
+	private Element divTitle() {
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center mb-3").add(h2Title());
+	}
+
+	private Element h2Title() {
+		return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary").add(keyOrLabel(labelKey, label));
+	}
+
 	private Element divTable() {
 		return ElementCreator.newDiv().add(table());
 	}
-	
+
 	private Element table() {
-		return ElementCreator.newTable()
-		.attribute(Attribute.CLASS, "table table-striped table-hover table-light").add(bodyContent());
+		return ElementCreator.newTable().attribute(Attribute.CLASS, "table table-striped table-hover table-light")
+				.add(bodyContent());
 	}
-	
+
 	private Element divNoRow() {
-		return ElementCreator.newDiv()
-		.attribute(Attribute.CLASS, "alert alert-info")
-		.attribute(Attribute.ROLE, "alert")
-		.add((hasKeyOrLabel(noRowTextKey, noRowText) ? keyOrLabel(noRowTextKey, noRowText)
-				: keyForLibrary("grid.no.row")));
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-info").attribute(Attribute.ROLE, "alert")
+				.add((hasKeyOrLabel(noRowTextKey, noRowText) ? keyOrLabel(noRowTextKey, noRowText)
+						: keyForLibrary("grid.no.row")));
 	}
 
 	public Collection<Object> getData() {
@@ -166,7 +161,6 @@ public class GridTag extends AbstractSimpleTagSupport {
 	public void setPaginate(Element paginate) {
 		this.paginate = paginate;
 	}
-
 
 	public Element getSearch() {
 		return search;

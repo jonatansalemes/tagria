@@ -48,7 +48,19 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 	
@@ -84,7 +96,19 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 
@@ -137,7 +161,19 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 
@@ -154,7 +190,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 
@@ -183,7 +231,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 
@@ -212,7 +272,19 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 
@@ -242,7 +314,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 	
@@ -253,7 +337,19 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.menu.MenuDropDownDividerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:menu dark="true"&gt;
+				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
+				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
+				&lt;html:menu-collapsable id="block1"&gt;
+					&lt;html:menu-dropdown label="Menu"&gt;
+						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
+						&lt;html:menu-dropdown-divider /&gt;
+						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menu-dropdown&gt;
+					&lt;html:menu-link label="My link" url="#" /&gt;
+				&lt;/html:menu-collapsable&gt;
+			&lt;/html:menu&gt;
 		</example>
 	</tag>
 </fragment>

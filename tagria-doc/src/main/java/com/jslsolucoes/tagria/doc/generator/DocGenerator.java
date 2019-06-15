@@ -51,7 +51,7 @@ public class DocGenerator {
 							+ "<html:view title=\"{title}\">																							"
 							+ "						<html:card>																							"
 							+ "							<html:card-header>																				"
-							+ 									tag.getName()
+							+ tag.getName()
 							+ "							</html:card-header>																				"
 							+ "							<html:card-body>																				"
 							+ "								<html:tabs>																					"
@@ -64,7 +64,7 @@ public class DocGenerator {
 							+ "									<html:tabs-body> 																		"
 							+ "										<html:tabs-content active=\"true\" contentOf=\"tab1\">								"
 							+ "											<html:alert state=\"warning\">													"
-																			+ tag.getDescription()
+							+ tag.getDescription()
 							+ "											</html:alert>																	"
 							+ "										</html:tabs-content>																"
 							+ "										<html:tabs-content contentOf=\"tab2\">												");
@@ -73,34 +73,28 @@ public class DocGenerator {
 				template.append("<html:alert state=\"info\" labelKey=\"tag.empty.attributes\"></html:alert>");
 			} else {
 
-				template.append("<html:table stripe=\"true\" hover=\"true\"><html:thead light=\"true\"><html:tr>"
-						+ "<html:th><fmt:message key=\"tag.attribute\"/></html:th>"
-						+ "<html:th><fmt:message key=\"tag.required\"/></html:th>"
-						+ "<html:th><fmt:message key=\"tag.type\"/></html:th>"
-						+ "<html:th><fmt:message key=\"tag.description\"/></html:th>"
-						+ "</html:tr></html:thead><html:tbody>");
-
+				template.append(
+						"<html:table stripe=\"true\" hover=\"true\"><html:table-header light=\"true\"><html:table-row><html:table-head><fmt:message key=\"tag.attribute\"/></html:table-head><html:table-head><fmt:message key=\"tag.required\"/></html:table-head><html:table-head><fmt:message key=\"tag.type\"/></html:table-head><html:table-head><fmt:message key=\"tag.description\"/></html:table-head></html:table-row></html:table-header><html:table-body>");
 				for (Attribute attribute : tag.getAttributes()) {
-
-					template.append("<html:tr>" + "<html:td>" + attribute.getName()
-							+ "</html:td>" + "<html:td>"
-							+ (attribute.getRequired() == null ? false : true) + "</html:td>"
-							+ "<html:td>" + attribute.getType() + "</html:td>" + "<html:td>"
-							+ attribute.getDescription() + "</html:td>" +
-
-							"</html:tr>");
+					template.append("<html:table-row><html:table-data>" + attribute.getName()
+							+ "</html:table-data><html:table-data>" + (attribute.getRequired() == null ? false : true)
+							+ "</html:table-data><html:table-data>" + attribute.getType()
+							+ "</html:table-data><html:table-data>" + attribute.getDescription()
+							+ "</html:table-data></html:table-row>");
 				}
 
-				template.append("</html:tbody></html:table>");
+				template.append("</html:table-body></html:table>");
 			}
 
-			template.append(  "										</html:tabs-content>														"
+			template.append(
+					"										</html:tabs-content>														"
 							+ "										<html:tabs-content contentOf=\"tab3\">										"
-																		+ tag.getExample()
+							+ tag.getExample()
 							+ "										</html:tabs-content>														"
 							+ "										<html:tabs-content contentOf=\"tab4\">										"
 							+ "											<html:code>																"
-							+ "												&lt;html:view&gt;" + tag.getExampleEscaped()+ "&lt;/html:view&gt;	"
+							+ "												&lt;html:view&gt;" + tag.getExampleEscaped()
+							+ "&lt;/html:view&gt;	"
 							+ "											</html:code>															"
 							+ "										</html:tabs-content>														"
 							+ "									</html:tabs-body> 																"
@@ -140,4 +134,3 @@ public class DocGenerator {
 
 	}
 }
-

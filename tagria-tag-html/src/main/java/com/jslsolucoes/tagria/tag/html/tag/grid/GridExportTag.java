@@ -11,7 +11,7 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 	private Boolean pdf = Boolean.TRUE;
 	private Boolean xlsx = Boolean.TRUE;
 	private Boolean csv = Boolean.TRUE;
-	private Boolean xml = Boolean.FALSE;
+	private Boolean xml = Boolean.TRUE;
 
 	@Override
 	public void renderOnVoid() {

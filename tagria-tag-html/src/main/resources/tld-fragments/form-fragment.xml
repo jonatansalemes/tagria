@@ -61,19 +61,15 @@
 		</attribute>
 		<example>
 			&lt;html:form action="#" label="My title"&gt;
-			
-				&lt;html:form-body&gt;
-					&lt;html:form-group label="Field 1" required="true"&gt;
-						&lt;html:input required="true" name="field1"/&gt;
-					&lt;/html:form-group&gt;
-					&lt;html:form-group label="Field 2"&gt;
-						&lt;html:input name="field2"/&gt;
-					&lt;/html:form-group&gt;
-					&lt;html:form-group-multiple label="Fields group"&gt;
-						&lt;html:input name="fields3[]"/&gt;
-					&lt;/html:form-group-multiple&gt;
-				&lt;/html:form-body&gt;
-					
+				&lt;html:form-group label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group-multiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:form-group-multiple&gt;				
 				&lt;html:form-toolbar&gt;
 				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
 				&lt;/html:form-toolbar&gt;
@@ -96,7 +92,20 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:form-group label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group-multiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:form-group-multiple&gt;				
+				&lt;html:form-toolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:form-toolbar&gt;
+			&lt;/html:form&gt; 
 		</example>
 	</tag>
 	
@@ -149,7 +158,20 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:form-group label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group-multiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:form-group-multiple&gt;				
+				&lt;html:form-toolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:form-toolbar&gt;
+			&lt;/html:form&gt; 
 		</example>
 	</tag>
 	
@@ -214,7 +236,20 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:form-group label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:form-group&gt;
+				&lt;html:form-group-multiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:form-group-multiple&gt;				
+				&lt;html:form-toolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:form-toolbar&gt;
+			&lt;/html:form&gt; 
 		</example>
 	</tag>
 </fragment>

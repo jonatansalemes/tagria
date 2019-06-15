@@ -56,7 +56,30 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -80,7 +103,30 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -91,7 +137,30 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridSearchTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -126,7 +195,30 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -137,7 +229,30 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridHeaderTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -172,7 +287,30 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -183,7 +321,30 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridBodyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -194,7 +355,30 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.grid.GridFooterTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -235,7 +419,30 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
@@ -252,7 +459,30 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			
+			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
+				&lt;html:grid-export/&gt;
+				&lt;html:grid-paginate totalResults="${ totalResults }"&gt;&lt;/html:grid-paginate&gt;
+				&lt;html:grid-search/&gt;
+				&lt;html:grid-toolbar&gt;
+					&lt;html:alert state="danger"&gt;my toolbar&lt;/html:alert&gt;
+				&lt;/html:grid-toolbar&gt;
+				&lt;html:grid-header&gt;
+					&lt;html:grid-column label="Column 1" align="left" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 2" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+					&lt;html:grid-column label="Column 3" align="center" exportable="true"&gt;&lt;/html:grid-column&gt;
+				&lt;/html:grid-header&gt;
+				&lt;html:grid-body&gt;
+					&lt;html:grid-column-data align="right" exportable="true"&gt;
+						${ person.name }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" booleanType="true"&gt;
+						${ person.likeChocolate }
+					&lt;/html:grid-column-data&gt;
+					&lt;html:grid-column-data align="center" exportable="true" collapsable="true"&gt;
+						${ person.cpf }
+					&lt;/html:grid-column-data&gt;
+				&lt;/html:grid-body&gt;
+			&lt;/html:grid&gt;
 		</example>
 	</tag>
 	
