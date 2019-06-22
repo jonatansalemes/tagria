@@ -31,6 +31,10 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
 		if (exportable) {
 			td.attribute(Attribute.CLASS, "grid-column-exportable");
 		}
+		
+		if (!StringUtils.isEmpty(cssClass)) {
+			td.attribute(Attribute.CLASS, cssClass);
+		}
 
 		if (collapsable) {
 			td.attribute(Attribute.CLASS, "grid-column-collapsable");

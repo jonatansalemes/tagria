@@ -223,6 +223,7 @@
 		<name>input</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.input.InputTag</tag-class>
 		<body-content>scriptless</body-content>
+		<dynamic-attributes>true</dynamic-attributes>
 		<attribute>
 			<description>It indicates a data list to attach on input</description>
 			<name>list</name>
@@ -356,7 +357,6 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;html:input name="field1"/&gt; 
 		</example>

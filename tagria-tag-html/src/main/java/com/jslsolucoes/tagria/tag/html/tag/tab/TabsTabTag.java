@@ -27,10 +27,15 @@ public class TabsTabTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element li() {
-		Element li = ElementCreator.newLi().add(link());
+		Element li = ElementCreator.newLi().add(link()).attribute(Attribute.ID,"t-" + idForId(id));
 		if (reloadOnSelect) {
 			li.attribute(Attribute.CLASS, "tab-reload-on-select nav-item");
 		}
+		
+		attributes.entrySet().forEach(entry -> {
+			li.attribute(entry.getKey(), entry.getValue());
+		});
+		
 		return li;
 	}
 	

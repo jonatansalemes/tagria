@@ -112,6 +112,7 @@
 		<name>tabs-tab</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsTabTag</tag-class>
 		<body-content>scriptless</body-content>
+		<dynamic-attributes>true</dynamic-attributes>
 		<attribute>
 			<description>It indicates id of tab</description>
 			<name>id</name>

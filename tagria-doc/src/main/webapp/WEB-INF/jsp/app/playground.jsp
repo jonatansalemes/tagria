@@ -52,13 +52,13 @@
 			<html:grid-column label="Column 3" align="center" exportable="true"></html:grid-column>
 		</html:grid-header>
 		<html:grid-body>
-			<html:grid-column-data align="right" exportable="true">
+			<html:grid-column-data align="right" exportable="true" cssClass="border border-danger">
 				${ person.name }
 			</html:grid-column-data>
-			<html:grid-column-data align="center" exportable="true" booleanType="true">
+			<html:grid-column-data align="center" exportable="true" booleanType="true" cssClass="border border-danger">
 				${ person.likeChocolate }
 			</html:grid-column-data>
-			<html:grid-column-data align="center" exportable="true" collapsable="true">
+			<html:grid-column-data align="center" exportable="true" collapsable="true" cssClass="border border-danger">
 				${ person.cpf }
 			</html:grid-column-data>
 		</html:grid-body>
@@ -114,7 +114,7 @@
 
 	<html:tabs>
 		<html:tabs-header>
-			<html:tabs-tab active="true" label="my tab 1" id="tab1"></html:tabs-tab>
+			<html:tabs-tab data-id="mytabid" active="true" label="my tab 1" id="tab1"></html:tabs-tab>
 			<html:tabs-tab label="my tab 2" id="tab2"></html:tabs-tab>
 			<html:tabs-tab label="my tab 3" id="tab3"></html:tabs-tab>
 		</html:tabs-header>
