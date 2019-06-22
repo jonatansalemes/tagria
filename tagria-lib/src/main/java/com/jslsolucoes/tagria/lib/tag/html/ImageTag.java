@@ -22,29 +22,31 @@ public class ImageTag extends SimpleTagSupport {
 	private String cssClass;
 	private Boolean cdn = true;
 	private Boolean responsive = true;
+	private Boolean rendered = Boolean.TRUE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-
-		Img img = new Img();
-		if (responsive) {
-			img.add(Attribute.CLASS, "img-responsive");
+		if (rendered != null && rendered) {
+			Img img = new Img();
+			if (responsive) {
+				img.add(Attribute.CLASS, "img-responsive");
+			}
+			if (!StringUtils.isEmpty(shape)) {
+				img.add(Attribute.CLASS, "img-" + shape);
+			}
+			if (!StringUtils.isEmpty(cssClass)) {
+				img.add(Attribute.CLASS, cssClass);
+			}
+			img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
+			img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
+			if (width != null) {
+				img.add(Attribute.WIDTH, width);
+			}
+			if (height != null) {
+				img.add(Attribute.HEIGHT, height);
+			}
+			TagUtil.out(getJspContext(), img);
 		}
-		if (!StringUtils.isEmpty(shape)) {
-			img.add(Attribute.CLASS, "img-" + shape);
-		}
-		if (!StringUtils.isEmpty(cssClass)) {
-			img.add(Attribute.CLASS, cssClass);
-		}
-		img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-		img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
-		if (width != null) {
-			img.add(Attribute.WIDTH, width);
-		} 
-		if (height != null) {
-			img.add(Attribute.HEIGHT, height);
-		}
-		TagUtil.out(getJspContext(), img);
 	}
 
 	public String getAlt() {
@@ -109,5 +111,13 @@ public class ImageTag extends SimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 }

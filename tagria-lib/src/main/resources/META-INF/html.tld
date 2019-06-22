@@ -391,6 +391,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the align of text inside block. Default: left . Options: left,center,right </description>
 			<name>align</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -599,12 +605,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.util.Map</type>
 		</attribute>
 		<attribute>
-			<description>Indicates if select support autocomplete</description>
-			<name>autocomplete</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
 			<name>required</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -613,6 +613,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates that component has fixed options</description>
 			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates that component has searchable feature</description>
+			<name>searchable</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -1269,6 +1275,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>tabPanel</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabPanelTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates a javascript function to be performed after show a tab. function signature is f(oldTab,newTab). oldTab: previous active tab, newTab: newly activated tab  </description>
+			<name>afterShow</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:tabPanel&gt;
 				&lt;html:tab label="Tab 1" active="true"&gt;
@@ -1298,6 +1310,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the components id</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the url to be incorporated into the tab. If not indicated it renders content in the component body.</description>
 			<name>url</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1315,6 +1333,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;html:tabPanel&gt;
 				&lt;html:tab label="Tab 1" active="true"&gt;
@@ -2082,6 +2101,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the component must follow a set on the properties cdn</description>
 			<name>cdn</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2411,6 +2436,24 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the menu should be dark theme. Default : false</description>
+			<name>dark</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the menu should be light theme. Default : false</description>
+			<name>light</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:menu&gt;
 				&lt;html:menuCollapse attachToSelector="#block1"&gt;
@@ -2563,6 +2606,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the column should be collapsable</description>
 			<name>collapsable</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2630,6 +2679,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the component linked to dismiss button. Default false. Options: true,false</description>
 			<name>dismiss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the button back is full filled or not. Default false. Options: true,false</description>
+			<name>filled</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>

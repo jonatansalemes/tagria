@@ -29,6 +29,7 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 	private String formatType;
 	private String formatMatch;
 	private String formatReplace;
+	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -59,6 +60,10 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 			Td td = new Td();
 			td.add(Attribute.CLASS, "text-" + align);
 			td.add(Attribute.CLASS, "v-align-middle");
+			
+			if (!StringUtils.isEmpty(cssClass)) {
+				td.add(Attribute.CLASS, cssClass);
+			}
 
 			if (!StringUtils.isEmpty(state)) {
 				td.add(Attribute.CLASS, "bg-" + state);
@@ -175,6 +180,14 @@ public class GridColumnTag extends SimpleTagSupport implements Formattabler {
 	@Override
 	public void setFormatReplace(String formatReplace) {
 		this.formatReplace = formatReplace;
+	}
+
+	public String getCssClass() {
+		return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
 	}
 
 }

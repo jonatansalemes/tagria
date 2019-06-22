@@ -16,6 +16,7 @@ public class BlockTag extends SimpleTagSupport {
 	private Boolean rendered = Boolean.TRUE;
 	private Integer margin = 3;
 	private String align;
+	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -25,6 +26,10 @@ public class BlockTag extends SimpleTagSupport {
 			
 			if(!StringUtils.isEmpty(align)) {
 				div.add(Attribute.CLASS, "text-"+align);
+			}
+			
+			if (!StringUtils.isEmpty(cssClass)) {
+				div.add(Attribute.CLASS, cssClass);
 			}
 			
 			div.add(TagUtil.getBody(getJspBody()));
@@ -54,6 +59,14 @@ public class BlockTag extends SimpleTagSupport {
 
 	public void setAlign(String align) {
 		this.align = align;
+	}
+
+	public String getCssClass() {
+		return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
 	}
 
 	

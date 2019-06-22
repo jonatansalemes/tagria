@@ -31,6 +31,7 @@ public class ButtonTag extends SimpleTagSupport {
 	private Boolean autoblock = Boolean.FALSE;
 	private Boolean auth = Boolean.FALSE;
 	private String state = "primary";
+	private Boolean filled = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -41,7 +42,7 @@ public class ButtonTag extends SimpleTagSupport {
 			}
 			a.add(Attribute.TARGET, target);
 			a.add(Attribute.ID, TagUtil.getId(id,this));
-			a.add(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm");
+			a.add(Attribute.CLASS, "btn btn-" + (filled ?  "" : "outline-") + state + " shadow-sm");
 
 			if (!StringUtils.isEmpty(cssClass)) {
 				a.add(Attribute.CLASS, cssClass);
@@ -192,5 +193,13 @@ public class ButtonTag extends SimpleTagSupport {
 
 	public void setAuth(Boolean auth) {
 		this.auth = auth;
+	}
+
+	public Boolean getFilled() {
+		return filled;
+	}
+
+	public void setFilled(Boolean filled) {
+		this.filled = filled;
 	}
 }

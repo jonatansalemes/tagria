@@ -1,12 +1,11 @@
 (function($) {
 	$.widget("tagria.tabs", {
 		options: {
-			
+			afterShow : function (oldTab,newTab) {
+				
+			}
 		},
 		_create: function() {
-			
-			console.log('create');
-			
 			var self = this;
 			var panel = self.element;
 			
@@ -19,14 +18,15 @@
 					iframe.attr('src',iframe.attr('data-url'));	
 				}
 			});
+			
+			$('a[data-toggle="tab"]',panel).on('shown.bs.tab', function (e) {
+				self.options.afterShow(e.relatedTarget.parentElement,e.target.parentElement);
+			});
 		},
 		_active: function(selector){
-			console.log(selector);
 			var self = this;
 			var panel = self.element;
 			var iframe = $(selector,panel);
-			console.log(iframe);
-			console.log(iframe.attr('data-url'));
 			iframe.attr('src',iframe.attr('data-url'));
 		}
 	});

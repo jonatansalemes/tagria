@@ -1,5 +1,5 @@
 (function($) {
-	$.widget("bs.grid", {
+	$.widget("tagria.grid", {
 		options : {
 			url : '',
 			queryString : '',

@@ -25,6 +25,9 @@ public class Tag {
 
 	@XStreamAlias("body-content")
 	private String bodyContent;
+	
+	@XStreamAlias("dynamic-attributes")
+	private Boolean dynamicAttributes;
 
 	@XStreamImplicit
 	private List<Attribute> attributes;
@@ -89,6 +92,14 @@ public class Tag {
 
 	public void setGroup(String group) {
 		this.group = group;
+	}
+
+	public Boolean getDynamicAttributes() {
+		return dynamicAttributes;
+	}
+
+	public void setDynamicAttributes(Boolean dynamicAttributes) {
+		this.dynamicAttributes = dynamicAttributes;
 	}
 
 }

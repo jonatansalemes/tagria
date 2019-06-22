@@ -86,7 +86,7 @@ Add maven dependency to your project :
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.9&lt;/version&gt;
+	&lt;version&gt;3.0.10&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
