@@ -617,6 +617,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>Indicates that component has searchable feature</description>
+			<name>searchable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the value selected in the component</description>
 			<name>value</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1269,6 +1275,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>tabPanel</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabPanelTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates a javascript function to be performed after show a tab. function signature is f(oldTab,newTab). oldTab: previous active tab, newTab: newly activated tab  </description>
+			<name>afterShow</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:tabPanel&gt;
 				&lt;html:tab label="Tab 1" active="true"&gt;
@@ -1298,6 +1310,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the components id</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the url to be incorporated into the tab. If not indicated it renders content in the component body.</description>
 			<name>url</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1315,6 +1333,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;html:tabPanel&gt;
 				&lt;html:tab label="Tab 1" active="true"&gt;
@@ -2585,6 +2604,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>booleanType</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description>It indicates whether the column should be collapsable</description>

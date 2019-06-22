@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.Element;
@@ -19,6 +21,7 @@ public class TabPanelTag extends SimpleTagSupport {
 
 	private List<Element> lis = new ArrayList<>();
 	private List<Element> divs = new ArrayList<>();
+	private String afterShow;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -40,11 +43,11 @@ public class TabPanelTag extends SimpleTagSupport {
 
 		TagUtil.out(getJspContext(), div);
 
+		String afterShowFunction = (!StringUtils.isEmpty(afterShow) ? afterShow + "(oldTab,newTab);": "");
 		Script script = new Script();
-		
-		script.add("$('#" + div.get(Attribute.ID) + "').tabs();");
+		script.add("$('#" + div.get(Attribute.ID) + "').tabs({ afterShow : function(oldTab,newTab) {"+afterShowFunction+"} });");
 		TagUtil.out(getJspContext(), script);
-
+		
 	}
 
 	public void addLi(Element element) {
@@ -69,5 +72,13 @@ public class TabPanelTag extends SimpleTagSupport {
 
 	public void setDivs(List<Element> divs) {
 		this.divs = divs;
+	}
+
+	public String getAfterShow() {
+		return afterShow;
+	}
+
+	public void setAfterShow(String afterShow) {
+		this.afterShow = afterShow;
 	}
 }

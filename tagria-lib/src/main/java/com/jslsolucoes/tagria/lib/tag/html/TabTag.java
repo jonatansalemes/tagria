@@ -2,8 +2,11 @@
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
@@ -16,24 +19,31 @@ import com.jslsolucoes.tagria.lib.html.Li;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class TabTag extends SimpleTagSupport {
+public class TabTag extends SimpleTagSupport implements DynamicAttributes {
 
 	private String label;
 	private String url;
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean active = Boolean.FALSE;
 	private Boolean reloadOnSelect = Boolean.TRUE;
+	private String id;
+	protected Map<String, String> attributes = new WeakHashMap<String, String>();
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			TabPanelTag panel = (TabPanelTag) findAncestorWithClass(this, TabPanelTag.class);
 
-			String id = TagUtil.getId(this);
+			String id = TagUtil.getId(this.id,this);
 			Li li = new Li();
 			if (reloadOnSelect) {
 				li.add(Attribute.CLASS, "tab-reload-on-select nav-item");
 			}
+			li.add(Attribute.ID,"t-" + id);
+			
+			attributes.entrySet().forEach(entry -> {
+				li.add(entry.getKey(), entry.getValue());
+			});
 			
 			A a = new A();
 			a.add(Attribute.CLASS, "nav-link");
@@ -113,6 +123,22 @@ public class TabTag extends SimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
+		if (!localName.startsWith("data-")) {
+			throw new RuntimeException("Dynamic attributes must start with data- . Eg.  data-id,data-url... ");
+		}
+		attributes.put(localName, value.toString());
 	}
 
 }

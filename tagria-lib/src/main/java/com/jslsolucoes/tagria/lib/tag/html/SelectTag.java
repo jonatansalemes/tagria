@@ -34,20 +34,14 @@ public class SelectTag extends SimpleTagSupport {
 	private String var;
 	private Boolean required = Boolean.FALSE;
 	private Boolean fixed = Boolean.FALSE;
+	private Boolean searchable = Boolean.FALSE;
 	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-
-		Div container = new Div();
-		container.add(Attribute.ID, TagUtil.getId(this));
-
-		Div row = new Div();
-		row.add(Attribute.CLASS, "row");
-
-		Div col1 = new Div();
-		col1.add(Attribute.CLASS, "col col-11");
-
+		
+		
+		
 		Select select = new Select();
 		select.add(Attribute.ID, TagUtil.getId(name, id, this));
 		select.add(Attribute.NAME, name);
@@ -78,29 +72,44 @@ public class SelectTag extends SimpleTagSupport {
 			}
 			getJspContext().setAttribute(var, null);
 		}
-		col1.add(select);
-		row.add(col1);
-
-		Div col2 = new Div();
-		col2.add(Attribute.CLASS, "col col-1");
-
-		Span span = new Span();
-		span.add(Attribute.CLASS, "fas fa-search");
-		A a = new A();
-		a.add(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm");
-		a.add(Attribute.HREF, "#");
-		a.add(span);
-		col2.add(a);
-		row.add(col2);
-
-		container.add(row);
-		container.add(modal());
-
-		TagUtil.out(getJspContext(), container);
-
-		Script script = new Script();
-		script.add("$('#" + container.get(Attribute.ID) + "').select();");
-		TagUtil.out(getJspContext(), script);
+		
+		if(searchable) {
+			Div container = new Div();
+			container.add(Attribute.ID, TagUtil.getId(this));
+	
+			Div row = new Div();
+			row.add(Attribute.CLASS, "row");
+	
+			Div col1 = new Div();
+			col1.add(Attribute.CLASS, "col col-11");
+	
+			
+			col1.add(select);
+			row.add(col1);
+	
+			Div col2 = new Div();
+			col2.add(Attribute.CLASS, "col col-1");
+	
+			Span span = new Span();
+			span.add(Attribute.CLASS, "fas fa-search");
+			A a = new A();
+			a.add(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-sm");
+			a.add(Attribute.HREF, "#");
+			a.add(span);
+			col2.add(a);
+			row.add(col2);
+	
+			container.add(row);
+			container.add(modal());
+	
+			TagUtil.out(getJspContext(), container);
+	
+			Script script = new Script();
+			script.add("$('#" + container.get(Attribute.ID) + "').select();");
+			TagUtil.out(getJspContext(), script);
+		} else {
+			TagUtil.out(getJspContext(), select);
+		}
 
 	}
 
@@ -227,6 +236,14 @@ public class SelectTag extends SimpleTagSupport {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Boolean getSearchable() {
+		return searchable;
+	}
+
+	public void setSearchable(Boolean searchable) {
+		this.searchable = searchable;
 	}
 
 }
