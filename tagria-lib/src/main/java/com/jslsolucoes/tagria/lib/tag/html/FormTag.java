@@ -30,6 +30,8 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	private Boolean border = Boolean.TRUE;
 	private String target = "_self";
 	private String cssClass;
+	private String id;
+	private String beforeSubmit;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -45,6 +47,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			if (!StringUtils.isEmpty(name)) {
 				form.add(Attribute.NAME, name);
 			}
+			form.add(Attribute.ID, TagUtil.getId(name, id, this));
 			
 			if(inline) {
 			    form.add(Attribute.CLASS, "form-inline");
@@ -55,7 +58,6 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			}
 			
 			form.add(Attribute.TARGET, target);
-			form.add(Attribute.ID, TagUtil.getId(this));
 			form.add(Attribute.METHOD, method);
 			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
 			if (multipart) {
@@ -90,12 +92,15 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			
 			script.add("$('#" + form.get(Attribute.ID) + "')"
 					+ "		.form({ 																														" 
-					+ "					validation : '" + (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "',	" 
+					+ "				validation : '" + (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "',	" 
 					+ "   				invalid : { " 
-					+ "						email : '"+ TagUtil.getLocalizedForLib("form.email.invalid", getJspContext()) 	+ "',								" 
-					+ "						max : '" + TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) 		+ "',								" 
-					+ "						min : '" + TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) 		+ "'								" 
-					+ "					}																													" 
+					+ "					email : '"+ TagUtil.getLocalizedForLib("form.email.invalid", getJspContext()) 	+ "',								" 
+					+ "					max : '" + TagUtil.getLocalizedForLib("form.max.invalid", getJspContext()) 		+ "',								" 
+					+ "					min : '" + TagUtil.getLocalizedForLib("form.min.invalid", getJspContext()) 		+ "'								" 
+					+ "				},																													"
+					+ "				beforeSubmit: function() { 												" 
+					+ 					(StringUtils.isEmpty(beforeSubmit) ? "return true;" : "return " + beforeSubmit + "();") 
+					+ " 				}														"
 					+ "		});																																");
 
 			TagUtil.out(getJspContext(), script);
@@ -193,5 +198,21 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setCssClass(String cssClass) {
 	    this.cssClass = cssClass;
+	}
+
+	public String getId() {
+	    return id;
+	}
+
+	public void setId(String id) {
+	    this.id = id;
+	}
+
+	public String getBeforeSubmit() {
+	    return beforeSubmit;
+	}
+
+	public void setBeforeSubmit(String beforeSubmit) {
+	    this.beforeSubmit = beforeSubmit;
 	}
 }

@@ -762,13 +762,13 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indicates a javascript function to be performed after insert a row. function signature is f(idx,element). idx: index of line was added, element: clone of elements declared in template  </description>
+			<description>Indicates a javascript function to be performed after insert a row. function signature is f(idx,element):void. idx: index of line was added, element: clone of elements declared in template  </description>
 			<name>afterInsert</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates a javascript function to be performed after remove a row. function signature is void f()</description>
+			<description>Indicates a javascript function to be performed after remove a row. function signature is f():void</description>
 			<name>afterRemove</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -1276,7 +1276,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabPanelTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates a javascript function to be performed after show a tab. function signature is f(oldTab,newTab). oldTab: previous active tab, newTab: newly activated tab  </description>
+			<description>Indicates a javascript function to be performed after show a tab. function signature is f(oldTab,newTab):void. oldTab: previous active tab, newTab: newly activated tab  </description>
 			<name>afterShow</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -1709,6 +1709,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>form</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.FormTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the javascript function executed before submit. Function must return true or false to proceed with submit or not. function signature is f():(true|false).</description>
+			<name>beforeSubmit</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>Indicates the action of submission</description>
 			<name>action</name>
