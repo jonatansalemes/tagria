@@ -119,7 +119,7 @@ public class SelectTag extends SimpleTagSupport {
 		modal.add(Attribute.ID, TagUtil.getId(id, this));
 
 		Div dialog = new Div();
-		dialog.add(Attribute.CLASS, "modal-dialog modal-dialog-centered");
+		dialog.add(Attribute.CLASS, "modal-dialog");
 
 		Div content = new Div();
 		content.add(Attribute.CLASS, "modal-content");

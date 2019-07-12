@@ -1752,6 +1752,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates if component has border. Default true</description>
+			<name>border</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates form to be inline. Default false</description>
+			<name>inline</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the form should have file support</description>
 			<name>multipart</name>
 			<rtexprvalue>true</rtexprvalue>

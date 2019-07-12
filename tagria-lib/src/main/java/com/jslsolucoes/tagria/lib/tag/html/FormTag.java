@@ -26,6 +26,8 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	private String toolbar;
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean multipart = Boolean.FALSE;
+	private Boolean inline = Boolean.FALSE;
+	private Boolean border = Boolean.TRUE;
 	private String target = "_self";
 
 	@Override
@@ -33,13 +35,20 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 		if (rendered != null && rendered) {
 			
 			Div container = new Div();
-			container.add(Attribute.CLASS,"border border-secondary rounded p-2 shadow-sm");
+			if(border) {
+			    container.add(Attribute.CLASS,"border border-secondary rounded p-2 shadow-sm");
+			}
 	
 			Form form = new Form();
 			form.add(Attribute.NOVALIDATE, "novalidate");
 			if (!StringUtils.isEmpty(name)) {
 				form.add(Attribute.NAME, name);
 			}
+			
+			if(inline) {
+			    form.add(Attribute.CLASS, "form-inline");
+			}
+			
 			form.add(Attribute.TARGET, target);
 			form.add(Attribute.ID, TagUtil.getId(this));
 			form.add(Attribute.METHOD, method);
@@ -155,5 +164,21 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setTarget(String target) {
 		this.target = target;
+	}
+
+	public Boolean getInline() {
+	    return inline;
+	}
+
+	public void setInline(Boolean inline) {
+	    this.inline = inline;
+	}
+
+	public Boolean getBorder() {
+	    return border;
+	}
+
+	public void setBorder(Boolean border) {
+	    this.border = border;
 	}
 }
