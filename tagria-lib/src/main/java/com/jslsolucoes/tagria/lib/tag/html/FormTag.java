@@ -29,6 +29,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	private Boolean inline = Boolean.FALSE;
 	private Boolean border = Boolean.TRUE;
 	private String target = "_self";
+	private String cssClass;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -36,7 +37,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			
 			Div container = new Div();
 			if(border) {
-			    container.add(Attribute.CLASS,"border border-secondary rounded p-2 shadow-sm");
+			    container.add(Attribute.CLASS,"p-3 border border-secondary rounded shadow-sm");
 			}
 	
 			Form form = new Form();
@@ -47,6 +48,10 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			
 			if(inline) {
 			    form.add(Attribute.CLASS, "form-inline");
+			}
+			
+			if (!StringUtils.isEmpty(cssClass)) {
+			    form.add(Attribute.CLASS, cssClass);
 			}
 			
 			form.add(Attribute.TARGET, target);
@@ -180,5 +185,13 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setBorder(Boolean border) {
 	    this.border = border;
+	}
+
+	public String getCssClass() {
+	    return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+	    this.cssClass = cssClass;
 	}
 }
