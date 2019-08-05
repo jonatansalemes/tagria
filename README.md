@@ -80,13 +80,13 @@ The demo and documentation about components of tagria is hosted in :
 <hr/>
 Quick start installation and configuration : 
 
-Add maven dependency to your project :
+Add maven dependency to your project : <a href='https://mvnrepository.com/artifact/com.jslsolucoes/tagria-lib' target='_blank'>check for versions here</a>
 <pre>
 	<code>
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.12&lt;/version&gt;
+	&lt;version&gt;latest-version&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
