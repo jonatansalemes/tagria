@@ -13,6 +13,7 @@ public class DatePickerTag extends SimpleTagSupport {
 
 	private String attachTo;
 	private Integer min;
+	private Integer max;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -89,6 +90,9 @@ public class DatePickerTag extends SimpleTagSupport {
 		if (min != null) {
 			builder.append(",minDate:'" + min + "d'");
 		}
+		if (max != null) {
+			builder.append(",maxDate:'+" + max + "d'");
+		}
 		builder.append(TagUtil.getBody(getJspBody()));
 		builder.append("}); });");
 
@@ -113,6 +117,14 @@ public class DatePickerTag extends SimpleTagSupport {
 
 	public void setMin(Integer min) {
 		this.min = min;
+	}
+
+	public Integer getMax() {
+		return max;
+	}
+
+	public void setMax(Integer max) {
+		this.max = max;
 	}
 
 }

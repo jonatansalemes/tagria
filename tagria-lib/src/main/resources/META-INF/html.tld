@@ -480,9 +480,15 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
 		</attribute>
+		<attribute>
+			<description>Indicates the maximum day for date choice</description>
+			<name>max</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
 		<example>
 			&lt;html:input name="input1" placeholder="Date birth" /&gt;
-			&lt;html:datePicker attachTo="input1" min="0"/&gt; </example>
+			&lt;html:datePicker attachTo="input1" min="0" max="3"/&gt; </example>
 	</tag>
 
 	<tag>
