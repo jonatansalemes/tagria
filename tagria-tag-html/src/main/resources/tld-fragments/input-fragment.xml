@@ -112,6 +112,12 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>Indicates that component has searchable feature</description>
+			<name>searchable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the value selected in the component</description>
 			<name>value</name>
 			<rtexprvalue>true</rtexprvalue>

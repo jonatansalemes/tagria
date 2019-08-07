@@ -3,14 +3,14 @@ package com.jslsolucoes.tagria.html;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 public abstract class AbstractElement implements Element {
 
 	private List<Element> elements = new ArrayList<>();
-	private Map<String, String> attributes = new HashMap<>();
+	private Map<String, String> attributes = new WeakHashMap<>();
 
 	
 	public Element add(String html) {

@@ -22,10 +22,15 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	private String var;
 	private Boolean required = Boolean.FALSE;
 	private Boolean fixed = Boolean.FALSE;
+	private Boolean searchable = Boolean.FALSE;
 
 	@Override
 	public Element render() {
-		return div();
+		if(searchable) {
+			return div();
+		} else {
+			return select();
+		}
 	}
 
 	private Element div() {
@@ -202,6 +207,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
 	public void setFixed(Boolean fixed) {
 		this.fixed = fixed;
+	}
+
+	public Boolean getSearchable() {
+		return searchable;
+	}
+
+	public void setSearchable(Boolean searchable) {
+		this.searchable = searchable;
 	}
 
 }
