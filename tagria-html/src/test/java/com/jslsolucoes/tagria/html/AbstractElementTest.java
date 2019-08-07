@@ -15,7 +15,7 @@ public class AbstractElementTest {
 	public void htmlChain() {
 		Element element = ElementCreator.newInput().attribute(Attribute.NAME, "car")
 				.attribute(Attribute.CLASS, "form-control").attribute(Attribute.CLASS, "required");
-		Assert.assertEquals("<input name=\"car\" class=\"form-control required\"/>", element.html());
+		Assert.assertEquals("<input class=\"form-control required\" name=\"car\"/>", element.html());
 	}
 
 	@Test
