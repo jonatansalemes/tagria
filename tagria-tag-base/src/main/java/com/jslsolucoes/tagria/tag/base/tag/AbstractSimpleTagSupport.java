@@ -50,7 +50,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected String id;
 
 	private String version() {
-		return "4.0.0.7";
+		return "4.0.0.8";
 	}
 
 	private JspWriter writer() {
@@ -367,6 +367,17 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		} else {
 			logger.debug("Its not children of CloneableJsAppender");
 		}
+	}
+	
+	public void appendCssScript(String url) {
+		GlobalCssAppender globalCssAppender = findAncestorWithClass(GlobalCssAppender.class);
+		globalCssAppender.appendCssScript(pathForStatic(url));
+	}
+
+	public void appendJsScript(String url) {
+		logger.debug("trying append js script {}",url);
+		GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
+		globalJsAppender.appendJavascriptScript(pathForStatic(url));
 	}
 
 	public String attachTo(String attachToSelector, String attachTo) {

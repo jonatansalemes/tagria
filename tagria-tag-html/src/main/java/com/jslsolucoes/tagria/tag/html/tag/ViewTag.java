@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Streams;
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
@@ -32,12 +33,27 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	private List<String> jsScripts = new ArrayList<>();
 	private List<String> cssScripts = new ArrayList<>();
 
+	private List<String> jsScriptsForImport = new ArrayList<>();
+	private List<String> cssScriptsForImport = new ArrayList<>();
+
+	@Override
 	public void appendCssCode(String cssCode) {
 		this.cssScripts.add(cssCode);
 	}
 
+	@Override
 	public void appendJavascriptCode(String jsCode) {
 		this.jsScripts.add(jsCode);
+	}
+
+	@Override
+	public void appendJavascriptScript(String url) {
+		this.jsScriptsForImport.add(url);
+	}
+
+	@Override
+	public void appendCssScript(String url) {
+		this.cssScriptsForImport.add(url);
 	}
 
 	@Override
@@ -63,11 +79,17 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	}
 
 	private Element body() {
-		return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript())
-				.add(minifyHtml(bodyContent())).add(ajaxLoading()).add(tagriaCss())
-				.add(appCss())
-				.add(recaptchaJs()).add(tagriaJs())
-				.add(appJs());
+		Element body = ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript())
+				.add(minifyHtml(bodyContent())).add(ajaxLoading());
+		for (Element cssScriptForImport : cssScriptsForImport()) {
+			body.add(cssScriptForImport);
+		}
+		body.add(appCss());
+		for (Element jsScriptForImport : jsScriptsForImport()) {
+			body.add(jsScriptForImport);
+		}
+		body.add(appJs());
+		return body;
 	}
 
 	private Element head() {
@@ -112,11 +134,6 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 				"text/html;charset=" + propertyValue(TagriaConfigParameter.ENCODING));
 	}
 
-	private Element recaptchaJs() {
-		return ElementCreator.newScript().attribute(Attribute.REL,"preload").attribute(Attribute.SRC,
-				pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()));
-	}
-
 	private String jsCodeForAjaxAnimation() {
 		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
 	}
@@ -124,10 +141,11 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	private String jsCodeForUrlBase() {
 		return "URL_BASE='" + pathForUrl("") + "';";
 	}
-	
+
 	private String minifyCss(String cssCode) {
 		if (minifyCss) {
-			return cssCode.replaceAll("(\n|\r|\t|\\s{2,})","").replaceAll(" \\{","{").replaceAll(" ,", ",").replaceAll(": ",":").replaceAll(", ",",");
+			return cssCode.replaceAll("(\n|\r|\t|\\s{2,})", "").replaceAll(" \\{", "{").replaceAll(" ,", ",")
+					.replaceAll(": ", ":").replaceAll(", ", ",");
 		} else {
 			return cssCode;
 		}
@@ -153,32 +171,41 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 			return jsCode;
 		}
 	}
-	
+
 	private Element appCss() {
-		return ElementCreator.newStyle().add(minifyCss(componentCss()));
+		return ElementCreator.newStyle().add(minifyCss(cssScripts()));
 	}
 
 	private Element appJs() {
-		String appJs = minifyJs(Arrays.asList(jsCodeForUrlBase(), jsCodeForAjaxAnimation(), componentJs()).stream()
+		String appJs = minifyJs(Arrays.asList(jsCodeForUrlBase(), jsCodeForAjaxAnimation(), jsScripts()).stream()
 				.collect(Collectors.joining()));
 		return ElementCreator.newScript().add(appJs);
 	}
-	
-	private String componentCss() {
+
+	private String cssScripts() {
 		return cssScripts.stream().collect(Collectors.joining());
 	}
 
-	private String componentJs() {
+	private String jsScripts() {
 		return jsScripts.stream().collect(Collectors.joining());
 	}
 
-	private Element tagriaCss() {
-		return ElementCreator.newLink().attribute(Attribute.REL, "stylesheet").attribute(Attribute.TYPE, "text/css")
-				.attribute(Attribute.HREF, pathForCssOnLibrary("tagria-ui.css"));
+	private List<Element> jsScriptsForImport() {
+		return Streams
+				.concat(Arrays.asList(pathForJavascriptOnLibrary("tagria-ui.js"),
+						pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang())).stream(),
+						jsScriptsForImport.stream())
+				.map(jsScriptForImport -> ElementCreator.newScript().attribute(Attribute.REL, "preload")
+						.attribute(Attribute.SRC, jsScriptForImport))
+				.collect(Collectors.toList());
 	}
 
-	private Element tagriaJs() {
-		return ElementCreator.newScript().attribute(Attribute.REL,"preload").attribute(Attribute.SRC, pathForJavascriptOnLibrary("tagria-ui.js"));
+	private List<Element> cssScriptsForImport() {
+		return Streams
+				.concat(Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream(), cssScriptsForImport.stream())
+				.map(cssScriptForImport -> ElementCreator.newLink().attribute(Attribute.REL, "stylesheet")
+						.attribute(Attribute.TYPE, "text/css").attribute(Attribute.HREF, cssScriptForImport))
+				.collect(Collectors.toList());
 	}
 
 	private Element docTypeHtml5() {
