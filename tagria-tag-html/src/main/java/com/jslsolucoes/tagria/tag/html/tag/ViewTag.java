@@ -113,7 +113,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	}
 
 	private Element recaptchaJs() {
-		return ElementCreator.newScript().attribute(Attribute.SRC,
+		return ElementCreator.newScript().attribute(Attribute.REL,"preload").attribute(Attribute.SRC,
 				pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()));
 	}
 
@@ -178,7 +178,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	}
 
 	private Element tagriaJs() {
-		return ElementCreator.newScript().attribute(Attribute.SRC, pathForJavascriptOnLibrary("tagria-ui.js"));
+		return ElementCreator.newScript().attribute(Attribute.REL,"preload").attribute(Attribute.SRC, pathForJavascriptOnLibrary("tagria-ui.js"));
 	}
 
 	private Element docTypeHtml5() {

@@ -24,7 +24,7 @@ public class ConfirmDialogTag extends AbstractSimpleTagSupport {
 	private Element divModal() {
 		String id = id();
 		appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').attr('data-toggle','modal').attr('data-target','#" + id + "');");
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade").attribute(Attribute.ID, id)
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal animated bounceIn").attribute(Attribute.ID, id)
 				.add(divModalDialog());
 	}
 

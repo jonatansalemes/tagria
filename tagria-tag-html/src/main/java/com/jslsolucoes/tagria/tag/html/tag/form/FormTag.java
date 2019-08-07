@@ -28,7 +28,7 @@ public class FormTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		Element div = ElementCreator.newDiv().add(form());
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "animated bounceIn").add(form());
 		if (border) {
 			div.attribute(Attribute.CLASS, "p-3 border border-secondary rounded shadow-sm");
 		}

@@ -71,8 +71,7 @@
 
 
 
-	<html:import url="/css/example.css" type="css"></html:import>
-	<html:import url="/js/example.js" type="js"></html:import>
+	
 
 	<html:menu dark="true">
 		<html:menu-brand label="my brand" url="/app/playground"></html:menu-brand>
@@ -352,6 +351,8 @@ private class Java {
 	<html:button id="btn3" label="Confirm that ?" url="#" />
 	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3" />
 
+    <html:import url="/css/example.css" type="css"></html:import>
+	<html:import url="/js/example.js" type="js"></html:import>
 
 
 
