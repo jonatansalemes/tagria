@@ -6,6 +6,9 @@
 				email : 'Invalid email',
 				max : 'Must not be greater than',
 				min : 'Must not be less than'
+			},
+			beforeSubmit: function() {
+				return true;
 			}
 		},
 		_create: function() {
@@ -100,13 +103,15 @@
 		},
         _submit : function() {
         	var self = this;
-        	var form = this.element;
-        	$('.disabled',form).attr('disabled',false);
-        	
-        	if(form.attr('target') != '_self' || !$('form').attr('action').indexOf('javascript:')){
-        		self._unblock();
+        	if(self.options.beforeSubmit()){
+	        	var form = this.element;
+	        	$('.disabled',form).attr('disabled',false);
+	        	
+	        	if(form.attr('target') != '_self' || !$('form').attr('action').indexOf('javascript:')){
+	        		self._unblock();
+	        	}
+	        	self.element[0].submit();
         	}
-        	self.element[0].submit();
         },
 		_hasRequiredFieldBlank: function() {
 			 var self = this;

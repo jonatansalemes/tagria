@@ -27,8 +27,8 @@ public class InputTag extends AbstractSimpleTagSupport implements DynamicAttribu
 	private String title;
 	private String titleKey;
 	private Integer maxLength;
-	private Integer max;
-	private Integer min;
+	private String max;
+	private String min;
 	private Integer step;
 	private String list;
 	private Boolean autocomplete = Boolean.FALSE;
@@ -238,19 +238,19 @@ public class InputTag extends AbstractSimpleTagSupport implements DynamicAttribu
 		this.accept = accept;
 	}
 
-	public Integer getMax() {
+	public String getMax() {
 		return max;
 	}
 
-	public void setMax(Integer max) {
+	public void setMax(String max) {
 		this.max = max;
 	}
 
-	public Integer getMin() {
+	public String getMin() {
 		return min;
 	}
 
-	public void setMin(Integer min) {
+	public void setMin(String min) {
 		this.min = min;
 	}
 

@@ -26,6 +26,9 @@ public class MenuTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(fixed)) {
 			nav.attribute(Attribute.CLASS, "fixed-" + fixed);
 		}
+		if (!StringUtils.isEmpty(cssClass)) {
+			nav.attribute(Attribute.CLASS, cssClass);
+		}
 		return nav;
 	}
 

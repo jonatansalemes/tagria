@@ -2,11 +2,13 @@
 <html:view title="Playground">
 
 
+	<html:input name="" type="date" min="1984-12-23" max="2000-01-01"></html:input>
+
 	<ajax:function url="/app/ajax/list" name="ajaxPersons" execute="true">
 		<ajax:parameters>
 			<ajax:parameter name="param1" value="1"></ajax:parameter>
 		</ajax:parameters>
-		
+
 		<ajax:on-success>
 			console.log('success');
 			<ajax:map-options value="id" target="ajaxSelect" text="name"></ajax:map-options>
@@ -18,7 +20,7 @@
 			console.log('done');
 		</ajax:on-done>
 	</ajax:function>
-	
+
 	<html:select name="ajaxSelect">
 		<html:option value="">---</html:option>
 	</html:select>
@@ -30,41 +32,44 @@
 		.mystyle2 {
 			color: white;
 		}
-	</html:css-code>	
-	
+	</html:css-code>
+
 	<html:div cssClass="mystyle mystyle2">
 		styled div ${ descriptions }
 	</html:div>
 
 	<html:grid var="person" data="${ persons }" label="My grid">
-	
-		<html:grid-export/>
+
+		<html:grid-export />
 		<html:grid-paginate totalResults="${ totalResults }"></html:grid-paginate>
-		<html:grid-search/>
-		
+		<html:grid-search />
+
 		<html:grid-toolbar>
 			<html:alert state="danger">my toolbars</html:alert>
 		</html:grid-toolbar>
-	
+
 		<html:grid-header>
 			<html:grid-column label="Column 1" align="left" exportable="true"></html:grid-column>
 			<html:grid-column label="Column 2" align="center" exportable="true"></html:grid-column>
 			<html:grid-column label="Column 3" align="center" exportable="true"></html:grid-column>
 		</html:grid-header>
 		<html:grid-body>
-			<html:grid-column-data align="right" exportable="true" cssClass="border border-danger">
+			<html:grid-column-data align="right" exportable="true"
+				cssClass="border border-danger">
 				${ person.name }
 			</html:grid-column-data>
-			<html:grid-column-data align="center" exportable="true" booleanType="true" cssClass="border border-danger">
+			<html:grid-column-data align="center" exportable="true"
+				booleanType="true" cssClass="border border-danger">
 				${ person.likeChocolate }
 			</html:grid-column-data>
-			<html:grid-column-data align="center" exportable="true" collapsable="true" cssClass="border border-danger">
+			<html:grid-column-data align="center" exportable="true"
+				collapsable="true" cssClass="border border-danger">
 				${ person.cpf }
 			</html:grid-column-data>
 		</html:grid-body>
 	</html:grid>
-	
-	
+
+
 
 	<html:import url="/css/example.css" type="css"></html:import>
 	<html:import url="/js/example.js" type="js"></html:import>
@@ -112,9 +117,10 @@
 	</html:table>
 
 
-	<html:tabs>
+	<html:tabs afterShow="myFunction">
 		<html:tabs-header>
-			<html:tabs-tab data-id="mytabid" active="true" label="my tab 1" id="tab1"></html:tabs-tab>
+			<html:tabs-tab data-id="mytabid" active="true" label="my tab 1"
+				id="tab1"></html:tabs-tab>
 			<html:tabs-tab label="my tab 2" id="tab2"></html:tabs-tab>
 			<html:tabs-tab label="my tab 3" id="tab3"></html:tabs-tab>
 		</html:tabs-header>
@@ -167,6 +173,26 @@
 
 	<html:js-code>
 		console.log('js code as component');
+		
+		
+		function myFunction(oldTab,newTab){
+			console.log(oldTab);
+			console.log(newTab);
+		}
+		
+		function beforeSubmitMyForm() {
+			console.log('before submit event canceled');
+			return false;
+		}
+		
+		function afterInsertMultipleFormGroup(idx,element) {
+			console.log('after insert row ' + idx +  '=>' + element);
+		}
+		
+		function afterRemoveMultipleFormGroup() {
+			console.log('after remove row ');
+		}
+		
 	</html:js-code>
 
 	<html:js-event event="click" attachToSelector="#btn2">
@@ -194,23 +220,24 @@
 		<html:dropdown-item icon="trash" label="Item 3" url="#" />
 	</html:dropdown>
 
-	<html:form action="#" label="My title">
-		
-			<html:form-group label="Field 1" required="true" forElement="field1">
-				<html:input required="true" name="field1" />
-			</html:form-group>
-			<html:form-group label="Field 2" forElement="field2">
-				<html:input name="field2" />
-			</html:form-group>
-			<html:form-group-multiple label="Groups 1" data="${ persons }"
-				var="person" atLeast="1">
-				<html:input name="fields3[]" required="true"
-					value="${ person.name }" />
-				<html:js-event event="blur" attachTo="fields3[]">
+	<html:form action="#" label="My title"
+		beforeSubmit="beforeSubmitMyForm">
+
+		<html:form-group label="Field 1" required="true" forElement="field1">
+			<html:input required="true" name="field1" />
+		</html:form-group>
+		<html:form-group label="Field 2" forElement="field2">
+			<html:input name="field2" />
+		</html:form-group>
+		<html:form-group-multiple label="Groups 1" data="${ persons }"
+			var="person" atLeast="1" afterInsert="afterInsertMultipleFormGroup"
+			afterRemove="afterRemoveMultipleFormGroup">
+			<html:input name="fields3[]" required="true" value="${ person.name }" />
+			<html:js-event event="blur" attachTo="fields3[]">
 					console.log($(this).val());
 				</html:js-event>
-			</html:form-group-multiple>
-		
+		</html:form-group-multiple>
+
 
 		<html:form-toolbar>
 			<html:button state="primary" type="submit" label="Label for submit" />

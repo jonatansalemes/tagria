@@ -328,16 +328,16 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the maximun number accepted</description>
+			<description>Indicates the maximum value for input</description>
 			<name>max</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the minimum number accepted</description>
+			<description>Indicates the minimum value for input</description>
 			<name>min</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the step increment number</description>

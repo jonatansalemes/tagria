@@ -18,6 +18,9 @@ public class FormTag extends AbstractSimpleTagSupport {
 	private String target = "_self";
 	private String label;
 	private String labelKey;
+	private Boolean inline = Boolean.FALSE;
+	private Boolean border = Boolean.TRUE;
+	private String beforeSubmit;
 
 	@Override
 	public Element render() {
@@ -25,32 +28,45 @@ public class FormTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		return ElementCreator.newDiv()
-				.attribute(Attribute.CLASS, "border border-secondary rounded p-2 shadow-sm").add(form());
+		Element div = ElementCreator.newDiv().add(form());
+		if (border) {
+			div.attribute(Attribute.CLASS, "p-3 border border-secondary rounded shadow-sm");
+		}
+		return div;
 	}
-	
+
 	private Element divBody() {
 		return ElementCreator.newDiv().add(bodyContent());
 	}
-	
+
 	private Element divHeader() {
 		return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center").add(h2());
 	}
-	
+
 	private Element h2() {
 		return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary").add(keyOrLabel(labelKey, label));
 	}
 
 	private Element form() {
-		String id = id();
+		String id = idForId(this.id);
 		Element form = ElementCreator.newForm().attribute(Attribute.NOVALIDATE, "novalidate")
-				.attribute(Attribute.TARGET, target).attribute(Attribute.ID,id).attribute(Attribute.METHOD, method)
+				.attribute(Attribute.TARGET, target).attribute(Attribute.ID, id).attribute(Attribute.METHOD, method)
 				.attribute(Attribute.ACTION, pathForUrl(action)).add(divErrors());
-			
-		if(hasKeyOrLabel(labelKey, label)) {
+		
+		
+
+		if (hasKeyOrLabel(labelKey, label)) {
 			form.add(divHeader());
 		}
-	
+		
+		if(inline) {
+		    form.attribute(Attribute.CLASS, "form-inline");
+		}
+		
+		if (!StringUtils.isEmpty(cssClass)) {
+		    form.attribute(Attribute.CLASS, cssClass);
+		}
+
 		form.add(divBody());
 		if (!StringUtils.isEmpty(name)) {
 			form.attribute(Attribute.NAME, name);
@@ -58,10 +74,11 @@ public class FormTag extends AbstractSimpleTagSupport {
 		if (multipart) {
 			form.attribute(Attribute.ENCTYPE, "multipart/form-data");
 		}
-		appendJsCode("$('#" + id + "').form({validation:'"
-				+ (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "") + "',invalid:{email : '"
-				+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid") + "',min:'"
-				+ keyForLibrary("form.min.invalid") + "'}});");
+		appendJsCode(
+				"$('#" + id + "').form({validation:'" + (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "")
+						+ "',invalid:{email : '" + keyForLibrary("form.email.invalid") + "',max:'"
+						+ keyForLibrary("form.max.invalid") + "',min:'" + keyForLibrary("form.min.invalid") + "'}," 
+													+ "beforeSubmit:function(){" + (StringUtils.isEmpty(beforeSubmit) ? "return true;" : "return " + beforeSubmit + "();") + "}});");
 		return form;
 	}
 
@@ -116,7 +133,7 @@ public class FormTag extends AbstractSimpleTagSupport {
 	public void setTarget(String target) {
 		this.target = target;
 	}
-	
+
 	public String getLabel() {
 		return label;
 	}
@@ -124,13 +141,37 @@ public class FormTag extends AbstractSimpleTagSupport {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
+
 	public String getLabelKey() {
 		return labelKey;
 	}
 
 	public void setLabelKey(String labelKey) {
 		this.labelKey = labelKey;
+	}
+
+	public Boolean getInline() {
+		return inline;
+	}
+
+	public void setInline(Boolean inline) {
+		this.inline = inline;
+	}
+
+	public Boolean getBorder() {
+		return border;
+	}
+
+	public void setBorder(Boolean border) {
+		this.border = border;
+	}
+
+	public String getBeforeSubmit() {
+		return beforeSubmit;
+	}
+
+	public void setBeforeSubmit(String beforeSubmit) {
+		this.beforeSubmit = beforeSubmit;
 	}
 
 }

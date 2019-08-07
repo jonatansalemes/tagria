@@ -23,6 +23,9 @@ public class BlockTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(align)) {
 			div.attribute(Attribute.CLASS, "text-" + align);
 		}
+		if (!StringUtils.isEmpty(cssClass)) {
+			div.attribute(Attribute.CLASS, cssClass);
+		}
 		return div;
 	}
 

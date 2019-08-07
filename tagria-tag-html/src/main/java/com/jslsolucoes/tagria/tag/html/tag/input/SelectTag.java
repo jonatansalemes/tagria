@@ -149,7 +149,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element divModalDialog() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-dialog-centered")
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog")
 				.add(divModalContent());
 	}
 

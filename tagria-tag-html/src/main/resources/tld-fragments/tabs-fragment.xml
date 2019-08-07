@@ -5,6 +5,12 @@
 		<name>tabs</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.tag.tab.TabsTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates a javascript function to be performed after show a tab. function signature is f(oldTab,newTab):void. oldTab: previous active tab, newTab: newly activated tab  </description>
+			<name>afterShow</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:tabs&gt;
 				&lt;html:tabs-header&gt;
