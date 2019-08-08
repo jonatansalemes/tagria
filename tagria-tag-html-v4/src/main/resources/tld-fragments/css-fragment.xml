@@ -1,0 +1,27 @@
+<fragment>
+	<tag>
+		<description>Renders a css code</description>
+		<display-name>Css</display-name>
+		<name>css-code</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.css.CssCodeTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true.</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:css-code&gt;
+				.mystyle {
+					background-color : red;
+				}
+			&lt;/html:css-code&gt;
+			
+			&lt;html:div cssClass="mystyle"&gt;
+				Content
+			&lt;/html:div&gt;
+			 
+		</example>
+	</tag>
+</fragment>
