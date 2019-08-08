@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.jslsolucoes.tagria.config.TagriaConfig;
 import com.jslsolucoes.tagria.config.TagriaConfigParameter;
-import com.jslsolucoes.tagria.library.servlet.HttpHeader;
+import com.jslsolucoes.tagria.library.servlet.v4.HttpHeader;
 
 public class ContentResourceHandler extends DefaultResourceHandler {
 
