@@ -29,8 +29,8 @@ public class DocGenerator {
 		String jspFolder = workspace + "/tagria-doc-v4/src/main/webapp/WEB-INF/jsp";
 		Map<String, List<Tag>> groupments = new HashMap<>();
 
-		String html = IOUtils.resourceToString("/META-INF/html.tld", Charset.forName("UTF-8"));
-		String ajax = IOUtils.resourceToString("/META-INF/ajax.tld", Charset.forName("UTF-8"));
+		String html = IOUtils.resourceToString("/META-INF/v4/html.tld", Charset.forName("UTF-8"));
+		String ajax = IOUtils.resourceToString("/META-INF/v4/ajax.tld", Charset.forName("UTF-8"));
 		XStream xStream = new XStream();
 		xStream.processAnnotations(Taglib.class);
 		Taglib taglibForHtml = (Taglib) xStream.fromXML(html);

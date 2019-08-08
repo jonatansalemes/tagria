@@ -73,8 +73,8 @@
 							<mainClass>com.jslsolucoes.tagria.tag.html.v4.MetaDataBuilder</mainClass>
 							<arguments>
 								<argument>${project.basedir}/src/main/resources/tld-fragments</argument>
-								<argument>${project.basedir}/src/main/resources/META-INF/html.tld</argument>
-								<argument>${project.build.directory}/classes/META-INF/html.tld</argument>
+								<argument>${project.basedir}/src/main/resources/META-INF/v4/html.tld</argument>
+								<argument>${project.build.directory}/classes/META-INF/v4/html.tld</argument>
 							</arguments>
 						</configuration>
 					</execution>
