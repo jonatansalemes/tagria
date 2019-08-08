@@ -50,7 +50,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected String id;
 
 	private String version() {
-		return "4.0.0.8";
+		return "4.0.0.9";
 	}
 
 	private JspWriter writer() {
@@ -278,16 +278,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public String pathForCssOnLibrary(String css) {
-		return urlBaseForStaticFile() + "/tagria/lib/css/theme/" + propertyValue(TagriaConfigParameter.SKIN) + "/" + css
+		return urlBaseForStaticFile() + "/tagria/v4/lib/css/theme/" + propertyValue(TagriaConfigParameter.SKIN) + "/" + css
 				+ "?ver=" + version();
 	}
 
 	public String pathForJavascriptOnLibrary(String js) {
-		return urlBaseForStaticFile() + "/tagria/lib/js/" + js + "?ver=" + version();
+		return urlBaseForStaticFile() + "/tagria/v4/lib/js/" + js + "?ver=" + version();
 	}
 
 	public String pathForImageOnLibrary(String image) {
-		return urlBaseForStaticFile() + "/tagria/lib/image/theme/" + propertyValue(TagriaConfigParameter.SKIN) + "/"
+		return urlBaseForStaticFile() + "/tagria/v4/lib/image/theme/" + propertyValue(TagriaConfigParameter.SKIN) + "/"
 				+ image + "?ver=" + version();
 	}
 

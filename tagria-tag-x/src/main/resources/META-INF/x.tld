@@ -6,9 +6,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.XTagsd"
 
 	<description>Tagria X library</description>
 	<display-name>Tagria X</display-name>
-	<tlib-version>3</tlib-version>
+	<tlib-version>4.0</tlib-version>
 	<short-name>x</short-name>
-	<uri>http://tagria.jslsolucoes.com/tags/x</uri>
+	<uri>http://v4.tagria.jslsolucoes.com/tags/x</uri>
 
 
 	<function>

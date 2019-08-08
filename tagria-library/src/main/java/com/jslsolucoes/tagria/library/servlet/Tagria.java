@@ -19,7 +19,7 @@ import com.jslsolucoes.tagria.library.handler.impl.LocaleResourceHandler;
 import com.jslsolucoes.tagria.library.handler.impl.NoneMatchResourceHandler;
 
 @SuppressWarnings("serial")
-@WebServlet(name = "tagria", urlPatterns = "/tagria/*", loadOnStartup = 1)
+@WebServlet(name = "tagria-v4", urlPatterns = "/tagria/v4/*", loadOnStartup = 1)
 public class Tagria extends HttpServlet {
 
 	@Override

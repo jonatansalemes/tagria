@@ -25,7 +25,7 @@ import com.jslsolucoes.tagria.exporter.parser.TableParser;
 import com.jslsolucoes.tagria.exporter.parser.model.Table;
 
 @SuppressWarnings("serial")
-@WebServlet(name = "tagria-exporter", urlPatterns = "/tagria-exporter", loadOnStartup = 1)
+@WebServlet(name = "tagria-exporter-v4", urlPatterns = "/tagria-exporter/v4", loadOnStartup = 1)
 public class TagriaExporter extends HttpServlet {
 
 	private static Logger logger = LoggerFactory.getLogger(TagriaExporter.class);

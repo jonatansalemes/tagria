@@ -8,7 +8,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<display-name>Tagria Ajax</display-name>
 	<tlib-version>4.0</tlib-version>
 	<short-name>ajax</short-name>
-	<uri>http://tagria.jslsolucoes.com/tags/ajax</uri>
+	<uri>http://v4.tagria.jslsolucoes.com/tags/ajax</uri>
 
 	<tag>
 		<description>Renders an ajax function</description>

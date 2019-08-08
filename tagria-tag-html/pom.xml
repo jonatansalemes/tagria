@@ -55,8 +55,8 @@
 							<includeProjectDependencies>true</includeProjectDependencies>
 							<mainClass>com.jslsolucoes.tagria.compressor.ResourceCompressor</mainClass>
 							<arguments>
-								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
-								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
+								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/v4/lib</argument>
+								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/v4/lib</argument>
 								<argument>true</argument>
 								<argument>${project.version}</argument>
 							</arguments>
@@ -87,8 +87,8 @@
 				<configuration>
 					<excludes>
 						<exclude>**/js/bootstrap/**</exclude>
-						<exclude>**/js/fontawesome/**</exclude>
 						<exclude>**/js/jquery/**</exclude>
+						<exclude>**/js/lazysizes/**</exclude>
 						<exclude>**/js/popper/**</exclude>
 						<exclude>**/js/tagria/**</exclude>
 						<exclude>**/image/theme/base/**</exclude>
