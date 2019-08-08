@@ -80,13 +80,13 @@ The demo and documentation about components of tagria is hosted in :
 <hr/>
 Quick start installation and configuration : 
 
-Add maven dependency to your project :
+Add maven dependency to your project : <a href='https://mvnrepository.com/artifact/com.jslsolucoes/tagria-lib-v4' target='_blank'>check for versions here</a>
 <pre>
 	<code>
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;4.0.0&lt;/version&gt;
+	&lt;version&gt;latest-version&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
@@ -95,12 +95,9 @@ Create an jsp for example index.jsp and import directives
 <pre>
 	<code>
 	
-&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
-&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %&gt;
-&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %&gt;
-&lt;%@ taglib  uri="http://tagria.jslsolucoes.com/tags/html" prefix="html"%&gt;
-&lt;%@ taglib  uri="http://tagria.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
-&lt;%@ taglib  uri="http://tagria.jslsolucoes.com/tags/x" prefix="x"%&gt;
+&lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/html" prefix="html"%&gt;
+&lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
+&lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/x" prefix="x"%&gt;
 &lt;html:view title="My title"&gt;
 	&lt;html:alert state="info"&gt;
 		My firts view	
