@@ -44,6 +44,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	private Boolean search = Boolean.FALSE;
 	private Boolean export = Boolean.FALSE;
 	private Boolean paginate = Boolean.FALSE;
+	private Integer rangeOfPaginate = 4;
 	private String label;
 	private Collection data;
 	private List<Element> ths = new ArrayList<>();
@@ -205,21 +206,17 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					
 					
 					
-					Integer rangeOfPagination = 5;
-					Integer minSizeOfPagination = rangeOfPagination * 2;
 					
-					Integer startOfPagination = page - rangeOfPagination;
+					
+					Integer startOfPagination = page - rangeOfPaginate;
 					if(startOfPagination < 1) {
 						startOfPagination = 1;
 					}
 					
-					Integer endOfPagination = page + rangeOfPagination - 1;
-					if(endOfPagination >= totalOfPages) {
+					Integer endOfPagination = page + rangeOfPaginate;
+					if(endOfPagination > totalOfPages) {
 						endOfPagination = totalOfPages;
-					} else if( endOfPagination <= minSizeOfPagination) {
-						endOfPagination = minSizeOfPagination;
-					}
-					
+					}					
 					
 					for (int i = startOfPagination; i <= endOfPagination; i++) {
 						Li li = new Li();
@@ -428,6 +425,14 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 	public void setNoRowText(String noRowText) {
 		this.noRowText = noRowText;
+	}
+
+	public Integer getRangeOfPaginate() {
+		return rangeOfPaginate;
+	}
+
+	public void setRangeOfPaginate(Integer rangeOfPaginate) {
+		this.rangeOfPaginate = rangeOfPaginate;
 	}
 
 }

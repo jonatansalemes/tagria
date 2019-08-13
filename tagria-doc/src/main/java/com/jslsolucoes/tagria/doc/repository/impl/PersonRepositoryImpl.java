@@ -51,7 +51,7 @@ public class PersonRepositoryImpl implements PersonRepository {
 
 	@Override
 	public List<Person> listAll(Integer firstResult, Integer maxResult) {
-		return listAll().subList(firstResult, firstResult + maxResult);
+		return pessoas.subList(firstResult, firstResult + maxResult);
 	}
 
 }
