@@ -202,7 +202,26 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					nav.add(Attribute.CLASS, "float-left");
 					Ul ul = new Ul();
 					ul.add(Attribute.CLASS, "pagination");
-					for (int i = 1; i <= totalOfPages; i++) {
+					
+					
+					
+					Integer rangeOfPagination = 5;
+					Integer minSizeOfPagination = rangeOfPagination * 2;
+					
+					Integer startOfPagination = page - rangeOfPagination;
+					if(startOfPagination < 1) {
+						startOfPagination = 1;
+					}
+					
+					Integer endOfPagination = page + rangeOfPagination - 1;
+					if(endOfPagination >= totalOfPages) {
+						endOfPagination = totalOfPages;
+					} else if( endOfPagination <= minSizeOfPagination) {
+						endOfPagination = minSizeOfPagination;
+					}
+					
+					
+					for (int i = startOfPagination; i <= endOfPagination; i++) {
 						Li li = new Li();
 						li.add(Attribute.CLASS, "page-item grid-paginate-item");
 						if (i == page) {
