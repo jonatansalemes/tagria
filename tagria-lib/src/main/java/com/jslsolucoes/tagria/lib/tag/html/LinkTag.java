@@ -111,7 +111,7 @@ public class LinkTag extends SimpleTagSupport implements DynamicAttributes {
 	@Override
 	public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
 		if (!localName.startsWith("data-")) {
-			throw new RuntimeException("Dynamic attributes must start with data- . Eg.  data-id,data-url... ");
+			throw new RuntimeException("Dynamic attributes must start with data- . Eg.  data-id,data-url... ." + localName + " not was recognize as property" );
 		}
 		attributes.put(localName, value.toString());
 	}
