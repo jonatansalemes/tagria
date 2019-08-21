@@ -19,6 +19,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class LinkTag extends SimpleTagSupport implements DynamicAttributes {
 
 	private String id;
+	
 	private String url;
 	private String label;
 	private String target = "_self";

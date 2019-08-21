@@ -21,7 +21,7 @@ public class IconTag extends SimpleTagSupport {
 		if (rendered != null && rendered) {
 			Span span = new Span();
 			span.add(Attribute.ID, TagUtil.getId(id,this));
-			span.add(Attribute.CLASS, "fas fa-" + icon);
+			span.add(Attribute.CLASS, "fas fa-" + icon + " fa-fw");
 			TagUtil.out(getJspContext(), span);
 		}
 	}

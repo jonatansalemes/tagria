@@ -2275,14 +2275,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.LinkTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the id for the component</description>
-			<name>id</name>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates a CSS class to the component</description>
-			<name>cssClass</name>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -3067,6 +3067,35 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:button label="Botao 1" state="primary" url="#"/&gt;
 				&lt;html:button label="Botao 3" state="danger" url="#"/&gt;
 			&lt;/html:buttonGroup&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a input group</description>
+		<display-name>Groupments</display-name>
+		<name>inputGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.InputGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the input group should append another component. Default:false</description>
+			<name>append</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the input group should prepend another component. Default:false</description>
+			<name>prepend</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:inputGroup&gt;
+				&lt;html:input type="search" name="search"
+							placeholder="{app.index.search.employee}" cssClass="w-40"/&gt;
+				&lt;html:inputGroup append="true"&gt;
+					&lt;html:button icon="search" title="Search"/&gt;
+				&lt;/html:inputGroup&gt;
+			&lt;/html:inputGroup&gt; 
+		</example>
 	</tag>
 
 </taglib>  
