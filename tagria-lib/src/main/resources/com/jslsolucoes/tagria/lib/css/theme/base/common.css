@@ -1,15 +1,47 @@
-.overflow-y-scroll {
-	overflow-y : scroll;
+html,body,#root {
+    height: 100%;
 }
 
-.mw-75 {
-	max-width: 75% !important;
+.overflow-y-scroll {
+	overflow-y : scroll;
 }
 
 .w-49 {
   	width: 49% !important;
 }
 
+.w-350px {
+    width: 350px;
+}
+
+.mw-75 {
+	max-width: 75% !important;
+}
+
 .mt-60px {
 	margin-top: 60px !important;
+}
+
+
+.h-35px {
+    height: 35px;
+}
+
+.h-70px {
+    height: 70px;
+}
+
+.flex-1-0-auto {
+    flex: 1 0 auto;
+}
+
+.bg-f8f9fc {
+    background-color: #f8f9fc;
+}
+
+.bg-4e73df-gradient {
+    background-color: #4e73df;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe));
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-size: cover;
 }

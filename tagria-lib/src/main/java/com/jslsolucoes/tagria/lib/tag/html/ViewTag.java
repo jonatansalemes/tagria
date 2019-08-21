@@ -83,12 +83,8 @@ public class ViewTag extends SimpleTagSupport {
 		ready.add(jsReady.toString());
 		head.add(ready);
 
-		Div noScriptBody = new Div();
-		noScriptBody.add(Attribute.CLASS, "alert alert-danger");
-		noScriptBody.add(TagUtil.getLocalizedForLib("app.no.script", getJspContext()));
-
 		NoScript noScript = new NoScript();
-		noScript.add(noScriptBody);
+		noScript.add(TagUtil.getLocalizedForLib("app.no.script", getJspContext()));
 		body.add(noScript);
 
 		Img img = new Img();
@@ -103,7 +99,10 @@ public class ViewTag extends SimpleTagSupport {
 		loading.add(img);
 		body.add(loading);
 
-		body.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
+		Div root = new Div();
+		root.add(Attribute.ID,"root");
+		root.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
+		body.add(root);
 		html.add(body);
 
 		TagUtil.out(getJspContext(), DocType.HTML5);

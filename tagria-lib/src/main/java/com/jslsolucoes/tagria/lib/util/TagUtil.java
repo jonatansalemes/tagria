@@ -41,7 +41,7 @@ import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
 
 public class TagUtil {
 
-	public static final String VERSION = "3.0.13.0";
+	public static final String VERSION = "3.0.14.1";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {

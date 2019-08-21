@@ -19,23 +19,25 @@ public class IframeTag extends SimpleTagSupport {
 	private String id;
 	private String url;
 	private String cssClass;
+	private Boolean autoHeight = Boolean.TRUE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		Iframe iframe = new Iframe();
-		iframe.add(Attribute.CLASS,"iframe");
+		iframe.add(Attribute.CLASS, "iframe");
 		if (!StringUtils.isEmpty(cssClass)) {
 			iframe.add(Attribute.CLASS, cssClass);
 		}
 		iframe.add(Attribute.NAME, name);
-		iframe.add(Attribute.ID, TagUtil.getId(name, id,this));
+		iframe.add(Attribute.ID, TagUtil.getId(name, id, this));
 		iframe.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));
 		TagUtil.out(getJspContext(), iframe);
 
-		Script script = new Script();
-		
-		script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
-		TagUtil.out(getJspContext(), script);
+		if (autoHeight) {
+			Script script = new Script();
+			script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
+			TagUtil.out(getJspContext(), script);
+		}
 	}
 
 	public String getName() {
@@ -68,5 +70,13 @@ public class IframeTag extends SimpleTagSupport {
 
 	public void setCssClass(String cssClass) {
 		this.cssClass = cssClass;
+	}
+
+	public Boolean getAutoHeight() {
+		return autoHeight;
+	}
+
+	public void setAutoHeight(Boolean autoHeight) {
+		this.autoHeight = autoHeight;
 	}
 }

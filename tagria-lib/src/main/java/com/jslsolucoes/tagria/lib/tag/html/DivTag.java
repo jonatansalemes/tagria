@@ -2,8 +2,11 @@
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
@@ -12,11 +15,12 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class DivTag extends SimpleTagSupport {
+public class DivTag extends SimpleTagSupport implements DynamicAttributes {
 
 	private String cssClass;
 	private String id;
 	private Boolean rendered = Boolean.TRUE;
+	protected Map<String, String> attributes = new WeakHashMap<String, String>();
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -26,6 +30,11 @@ public class DivTag extends SimpleTagSupport {
 			if (!StringUtils.isEmpty(cssClass)) {
 				div.add(Attribute.CLASS, cssClass);
 			}
+			
+			attributes.entrySet().forEach(entry -> {
+				div.add(entry.getKey(), entry.getValue());
+			});
+			
 			div.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), div);
 		}
@@ -53,6 +62,14 @@ public class DivTag extends SimpleTagSupport {
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+	
+	@Override
+	public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
+		if (!localName.startsWith("data-")) {
+			throw new RuntimeException("Dynamic attributes must start with data- . Eg.  data-id,data-url... ");
+		}
+		attributes.put(localName, value.toString());
 	}
 
 }

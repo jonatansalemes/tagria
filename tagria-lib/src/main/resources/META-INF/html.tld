@@ -11,6 +11,58 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a h4</description>
+		<display-name>html</display-name>
+		<name>h4</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H4Tag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:span&gt; content &lt;/html:span&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a span</description>
+		<display-name>html</display-name>
+		<name>span</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SpanTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:span&gt; content &lt;/html:span&gt;
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a menu dropdown divider</description>
 		<display-name>Misc</display-name>
 		<name>dropDownDivider</name>
@@ -310,8 +362,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>h1</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H1Tag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
-			&lt;html:h1&gt; Cabecalho &lt;/html:h1&gt; </example>
+			&lt;html:h1&gt; Header &lt;/html:h1&gt; </example>
 	</tag>
 	
 	<tag>
@@ -374,6 +432,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>h3</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H3Tag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:h3&gt; Cabecalho &lt;/html:h3&gt; </example>
 	</tag>
@@ -1398,6 +1462,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>h2</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H2Tag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:h2&gt; Header &lt;/html:h2&gt; </example>
 	</tag>
@@ -1408,6 +1478,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>hr</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.HrTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:hr/&gt; 
 		</example>
@@ -2092,6 +2168,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;html:div&gt;
 				Conteudo
@@ -2198,6 +2275,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.LinkTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the url component</description>
 			<name>url</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -2227,6 +2310,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 		<example>
 			&lt;html:link label="Meu link" url="#"/&gt; </example>
 	</tag>
@@ -2257,6 +2341,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>iframe</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.IframeTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the iframe should auto height itself when expanded. Default: true</description>
+			<name>autoHeight</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 			<description>Indicates the name of the iframe</description>
 			<name>name</name>
