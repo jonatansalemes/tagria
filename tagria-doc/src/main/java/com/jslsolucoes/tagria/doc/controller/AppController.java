@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.joda.time.LocalDate;
 
 import com.jslsolucoes.tagria.doc.repository.PersonRepository;
-import com.jslsolucoes.vaptor4.misc.annotation.Paginate;
-import com.jslsolucoes.vaptor4.misc.pagination.Paginator;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
@@ -20,7 +18,6 @@ public class AppController {
 
 	private Result result;
 	private PersonRepository pessoaRepository;
-	private Paginator paginator;
 	private HttpServletRequest httpServletRequest;
 
 	public AppController() {
@@ -33,6 +30,11 @@ public class AppController {
 		this.pessoaRepository = pessoaRepository;
 		this.httpServletRequest = httpServletRequest;
 	}
+	
+	@Path("/autocomplete/query")
+	public void autocomplete(String term) {
+		this.result.include("persons", pessoaRepository.listAll(10));
+	}
 
 	@Path("/")
 	public void index() {
@@ -40,7 +42,6 @@ public class AppController {
 	}
 	
 	@Path("/app/playground")
-	@Paginate
 	public void playground() {
 		
 		Integer maxResults = httpServletRequest.getParameter("resultsPerPage") == null ? 60 : Integer.valueOf(httpServletRequest.getParameter("resultsPerPage"));

@@ -25,11 +25,6 @@
 			<artifactId>tagria-lib</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.jslsolucoes</groupId>
-			<artifactId>vraptor4-misc</artifactId>
-			<version>1.0.1</version>
-		</dependency>
 	</dependencies>
 
 	<build>

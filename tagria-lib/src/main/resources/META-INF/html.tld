@@ -11,6 +11,86 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a autocomplete</description>
+		<display-name>Input</display-name>
+		<name>autocomplete</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AutoCompleteTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the name of the hidden input.</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component form is mandatory in form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the text to be show on input load.</description>
+			<name>text</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the value of the hidden input.</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates url to execute query.</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates min length of input. Default: 3</description>
+			<name>minLength</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates delay in ms to listen changes. Default: 3000</description>
+			<name>delay</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a autocomplete item</description>
+		<display-name>Input</display-name>
+		<name>autocompleteItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AutoCompleteItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates value to persist on component.</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates text to show on autocomplete select.</description>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a h4</description>
 		<display-name>html</display-name>
 		<name>h4</name>
