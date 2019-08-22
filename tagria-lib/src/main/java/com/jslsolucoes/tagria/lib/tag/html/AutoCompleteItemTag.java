@@ -18,7 +18,7 @@ public class AutoCompleteItemTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		Div div = new Div();
 		div.add(Attribute.ID, TagUtil.getId(this));
-		div.add(Attribute.CLASS,"p-2 border-top border-secondary autocomplete-item");
+		div.add(Attribute.CLASS,"autocomplete-item");
 		div.add(Attribute.DATA_VALUE,value);
 		div.add(Attribute.DATA_TEXT,text);
 		div.add(TagUtil.getBody(getJspBody()));

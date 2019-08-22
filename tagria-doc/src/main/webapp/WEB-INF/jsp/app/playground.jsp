@@ -1,6 +1,17 @@
 <%@include file="../app/taglibs.jsp"%>
 <html:view title="Playground">
-
-	<html:autocomplete url="/autocomplete/query" name="mysearch" text="text1" value="2"/>
+	
+	
+	<html:container>
+		<html:form action="/app/playground2">
+			<html:formGroup label="Auto" required="true">
+				<html:autocomplete url="/autocomplete/query" name="mysearch" required="true"/>
+			</html:formGroup>
+			<html:toolbar>
+				<html:button type="submit" label="Save"></html:button>
+			</html:toolbar>
+		</html:form>
+	</html:container>
+	
 
 </html:view>

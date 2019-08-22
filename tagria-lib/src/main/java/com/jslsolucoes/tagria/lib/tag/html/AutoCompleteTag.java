@@ -17,20 +17,25 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class AutoCompleteTag extends SimpleTagSupport {
 	
 	private String url;
-	private Integer delay = 3000;
+	private Integer delay = 1000;
 	private String name;
 	private Integer minLength = 3;
 	private String text;
 	private String value;
 	private Boolean required = Boolean.FALSE;
+	private Integer width = 500;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div container = new Div();
 		container.add(Attribute.ID, TagUtil.getId(this));
+		container.add(Attribute.CLASS,"autocomplete");
+		
+		Div inputContainer = new Div();
+		inputContainer.add(Attribute.CLASS,"d-flex justify-content-between align-items-center");
 		
 		Input input = new Input();
-		input.add(Attribute.TYPE,"search");
+		input.add(Attribute.TYPE,"text");
 		input.add(Attribute.CLASS,"form-control autocomplete-input");
 		if (required) {
 			input.add(Attribute.REQUIRED, "required");
@@ -39,11 +44,22 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		if (!StringUtils.isEmpty(text)) {
 			input.add(Attribute.VALUE, TagUtil.getLocalized(text, getJspContext()));
 		}
-		container.add(input);
+		inputContainer.add(input);
+		
+		Div spinner = new Div();
+		spinner.add(Attribute.CLASS, "ml-2 spinner-grow text-primary autocomplete-loading");
+		spinner.add(Attribute.STYLE,"display:none");
+		inputContainer.add(spinner);
+		
+		container.add(inputContainer);
 		
 		Input inputHidden = new Input();
 		inputHidden.add(Attribute.ID, TagUtil.getId(name, null, this));
 		inputHidden.add(Attribute.NAME,name);
+		if (required) {
+			inputHidden.add(Attribute.REQUIRED, "required");
+			inputHidden.add(Attribute.CLASS, "form-required");
+		}
 		if (!StringUtils.isEmpty(value)) {
 			inputHidden.add(Attribute.VALUE, TagUtil.getLocalized(value, getJspContext()));
 		}
@@ -52,7 +68,8 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		container.add(inputHidden);
 		
 		Div results = new Div();
-		results.add(Attribute.CLASS,"border border-secondary d-none autocomplete-results");
+		results.add(Attribute.CLASS,"autocomplete-results");
+		results.add(Attribute.STYLE,"width:" + width + "px");
 		container.add(results);
 		
 		TagUtil.out(getJspContext(), container);
@@ -133,6 +150,13 @@ public class AutoCompleteTag extends SimpleTagSupport {
 	}
 
 
-	
+	public Integer getWidth() {
+		return width;
+	}
+
+
+	public void setWidth(Integer width) {
+		this.width = width;
+	}
 
 }

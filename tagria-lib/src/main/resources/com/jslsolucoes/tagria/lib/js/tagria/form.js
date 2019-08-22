@@ -123,6 +123,14 @@
          			empty = true;
          		}
          	 });
+         	 
+         	 $('.autocomplete-input-hidden',form).each(function(){
+         		if($(this).hasClass('form-required') && $(this).val() == ''){
+         			$('.autocomplete-input',$(this).prev()).val('').addClass('form-has-error');
+         			empty = true;
+         		}
+         	 });
+         	 
         	 return empty;
 		},
 		_popover: function(element,content) {
