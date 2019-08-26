@@ -11,7 +11,7 @@ public class AttributeTest {
 	@Test
 	public void attributes(){
 		for(Attribute attribute : Attribute.values()){
-			Assert.assertEquals(attribute.name().toLowerCase().replaceAll("_","-"), attribute.getName());
+			Assert.assertEquals(attribute.name().toLowerCase().replaceAll("_","-"), attribute.getName().toLowerCase());
 		}
 	}
 }

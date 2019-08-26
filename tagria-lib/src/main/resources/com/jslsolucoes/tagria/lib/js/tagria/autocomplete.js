@@ -4,12 +4,16 @@
 			url : '',
 			minLength: 3,
 			delay: 1000,
-			text: ''
+			text: '',
+			width: undefined,
+			onSelect: function(item) {}
 		},
 		_create: function() {
 			var self = this;
+			var results = self._results();
+			var input = self._input();
 			self._setCurrentTerm(self.options.text);
-			self._input().keyup(function(event){
+			input.keyup(function(event){
 				if(event.keyCode === 38){
 					self._navigate('up');
 				} else if(event.keyCode === 40){
@@ -22,11 +26,19 @@
 				}
 			}).focus(function(){
 				if(self._items().length > 0){
-					self._results().show();
+					results.show();
 				}
-			}).blur(function(){
-				self._results().hide();
+			}).blur(function(event){
+				if(event.relatedTarget != results.get(0)) {
+					results.hide();
+				}		
 			});
+			
+			if(!self.options.width){
+				results.width(input.width());
+			}
+			
+			
 			setInterval(function(){
 				self._queryForTerm();
 			},self.options.delay);
@@ -67,7 +79,8 @@
 			self._setCurrentTerm(text);
 			self._input().val(text);
 			self._inputHidden().val(value);
-			self._results().hide().html('');
+			self._results().hide();
+			self.options.onSelect(item);
 		},
 		_setCurrentTerm: function(term) {
 			this.term = term;
@@ -103,7 +116,7 @@
 			var self = this;
 			var container = self.element;
 			$('.autocomplete-item',container).each(function(){
-				$(this).on('click',function(){
+				$(this).click(function(){
 					self._chooseActive($(this));
 				}).hover(function(){
 					self._clearActiveItems();

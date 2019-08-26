@@ -24,6 +24,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the autocomplete result box width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
 			<name>required</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -85,6 +91,17 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<example>
+			
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders an onSelect </description>
+		<display-name>Input</display-name>
+		<name>autocompleteOnSelect</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AutoCompleteOnSelectTag</tag-class>
+		<body-content>scriptless</body-content>
 		<example>
 			
 		</example>

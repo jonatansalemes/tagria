@@ -23,10 +23,14 @@ public class AutoCompleteTag extends SimpleTagSupport {
 	private String text;
 	private String value;
 	private Boolean required = Boolean.FALSE;
-	private Integer width = 500;
+	private Integer width;
+	private String onSelect = "";
 	
 	@Override
 	public void doTag() throws JspException, IOException {
+		
+		TagUtil.flushBody(getJspBody());
+		
 		Div container = new Div();
 		container.add(Attribute.ID, TagUtil.getId(this));
 		container.add(Attribute.CLASS,"autocomplete");
@@ -69,13 +73,16 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		
 		Div results = new Div();
 		results.add(Attribute.CLASS,"autocomplete-results");
-		results.add(Attribute.STYLE,"width:" + width + "px");
+		results.add(Attribute.TABINDEX,"0");
+		if(width != null) {
+			results.add(Attribute.STYLE,"width:" + width + "px");
+		}
 		container.add(results);
 		
 		TagUtil.out(getJspContext(), container);
 	
 		Script script = new Script();
-		script.add("$('#" + container.get(Attribute.ID) + "').autocomplete({ url : '"+TagUtil.getPathForUrl(getJspContext(), url)+"',delay : "+delay+",minLength:"+minLength+",text: '"+(!StringUtils.isEmpty(text) ? text : "")+"'  });");
+		script.add("$('#" + container.get(Attribute.ID) + "').autocomplete({ width: "+width+", onSelect: function(item) {" + onSelect + "}, url : '"+TagUtil.getPathForUrl(getJspContext(), url)+"',delay : "+delay+",minLength:"+minLength+",text: '"+(!StringUtils.isEmpty(text) ? text : "")+"'  });");
 		TagUtil.out(getJspContext(), script);
 	}
 
@@ -157,6 +164,16 @@ public class AutoCompleteTag extends SimpleTagSupport {
 
 	public void setWidth(Integer width) {
 		this.width = width;
+	}
+
+
+	public String getOnSelect() {
+		return onSelect;
+	}
+
+
+	public void setOnSelect(String onSelect) {
+		this.onSelect = onSelect;
 	}
 
 }
