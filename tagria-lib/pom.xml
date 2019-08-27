@@ -108,7 +108,7 @@
 							<arguments>
 								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
 								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
-								<argument>false</argument>
+								<argument>true</argument>
 							</arguments>
 						</configuration>
 					</execution>

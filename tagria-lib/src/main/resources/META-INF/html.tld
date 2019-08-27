@@ -24,6 +24,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates placeholder for autocomplete</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the autocomplete result box width</description>
 			<name>width</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -244,6 +250,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the id for the component</description>
 			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dropdown direction. Options: left,right,down,up. Default: down</description>
+			<name>direction</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1787,6 +1799,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>title</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if view act as fragment (without html,head,body and default resources). Default: false </description>
+			<name>asFragment</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates if ajax auto animation is loaded for view</description>

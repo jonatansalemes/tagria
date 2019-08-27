@@ -26,6 +26,7 @@ public class ViewTag extends SimpleTagSupport {
 	private String title = "-";
 	private Body body = new Body();
 	private Boolean ajaxAnimation = Boolean.TRUE;
+	private Boolean asFragment = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -104,9 +105,13 @@ public class ViewTag extends SimpleTagSupport {
 		root.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
 		body.add(root);
 		html.add(body);
-
-		TagUtil.out(getJspContext(), DocType.HTML5);
-		TagUtil.out(getJspContext(), html);
+		
+		if(!asFragment) {
+			TagUtil.out(getJspContext(), DocType.HTML5);
+			TagUtil.out(getJspContext(), html);
+		} else {
+			TagUtil.out(getJspContext(), root);
+		}
 	}
 
 	public String getTitle() {
@@ -127,5 +132,13 @@ public class ViewTag extends SimpleTagSupport {
 
 	public void setAjaxAnimation(Boolean ajaxAnimation) {
 		this.ajaxAnimation = ajaxAnimation;
+	}
+
+	public Boolean getAsFragment() {
+		return asFragment;
+	}
+
+	public void setAsFragment(Boolean asFragment) {
+		this.asFragment = asFragment;
 	}
 }

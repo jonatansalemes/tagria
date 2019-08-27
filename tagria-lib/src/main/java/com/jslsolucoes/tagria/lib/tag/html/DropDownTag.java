@@ -19,14 +19,13 @@ public class DropDownTag extends SimpleTagSupport {
 	private Boolean rendered = Boolean.TRUE;
 	private String state = "primary";
 	private String size;
+	private String direction = "down";
 
 	@Override
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div dropDown = new Div();
-			dropDown.add(Attribute.CLASS, "dropdown");
-			
-			
+			dropDown.add(Attribute.CLASS, "drop" + direction);
 
 			Button button = new Button();
 			button.add(Attribute.TYPE, "button");
@@ -89,5 +88,13 @@ public class DropDownTag extends SimpleTagSupport {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 }

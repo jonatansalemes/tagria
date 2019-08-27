@@ -6,7 +6,7 @@
 			delay: 1000,
 			text: '',
 			width: undefined,
-			onSelect: function(item) {}
+			onSelect: function(value,text) {}
 		},
 		_create: function() {
 			var self = this;
@@ -80,7 +80,7 @@
 			self._input().val(text);
 			self._inputHidden().val(value);
 			self._results().hide();
-			self.options.onSelect(item);
+			self.options.onSelect(value,text);
 		},
 		_setCurrentTerm: function(term) {
 			this.term = term;
@@ -134,7 +134,6 @@
 				self._setCurrentTerm(newTerm);
 				$.ajax({
 					type : 'get',
-					processData: false,
 					dataType : 'html',
 					beforeSend: function(jqXHR, settings) {
 						loading.show();

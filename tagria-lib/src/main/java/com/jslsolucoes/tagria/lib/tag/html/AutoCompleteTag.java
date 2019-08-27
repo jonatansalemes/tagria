@@ -21,6 +21,7 @@ public class AutoCompleteTag extends SimpleTagSupport {
 	private String name;
 	private Integer minLength = 3;
 	private String text;
+	private String placeholder;
 	private String value;
 	private Boolean required = Boolean.FALSE;
 	private Integer width;
@@ -47,6 +48,9 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		}
 		if (!StringUtils.isEmpty(text)) {
 			input.add(Attribute.VALUE, TagUtil.getLocalized(text, getJspContext()));
+		}
+		if (!StringUtils.isEmpty(placeholder)) {
+			input.add(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
 		}
 		inputContainer.add(input);
 		
@@ -82,7 +86,7 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		TagUtil.out(getJspContext(), container);
 	
 		Script script = new Script();
-		script.add("$('#" + container.get(Attribute.ID) + "').autocomplete({ width: "+width+", onSelect: function(item) {" + onSelect + "}, url : '"+TagUtil.getPathForUrl(getJspContext(), url)+"',delay : "+delay+",minLength:"+minLength+",text: '"+(!StringUtils.isEmpty(text) ? text : "")+"'  });");
+		script.add("$('#" + container.get(Attribute.ID) + "').autocomplete({ width: "+width+", onSelect: function(value,text) {" + onSelect + "}, url : '"+TagUtil.getPathForUrl(getJspContext(), url)+"',delay : "+delay+",minLength:"+minLength+",text: '"+(!StringUtils.isEmpty(text) ? text : "")+"'  });");
 		TagUtil.out(getJspContext(), script);
 	}
 
@@ -174,6 +178,16 @@ public class AutoCompleteTag extends SimpleTagSupport {
 
 	public void setOnSelect(String onSelect) {
 		this.onSelect = onSelect;
+	}
+
+
+	public String getPlaceholder() {
+		return placeholder;
+	}
+
+
+	public void setPlaceholder(String placeholder) {
+		this.placeholder = placeholder;
 	}
 
 }
