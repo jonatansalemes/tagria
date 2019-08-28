@@ -1801,6 +1801,18 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the template of the current page is on board</description>
+			<name>template</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the location where template of current page must be filled</description>
+			<name>attribute</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates if view act as fragment (without html,head,body and default resources). Default: false </description>
 			<name>asFragment</name>
 			<rtexprvalue>true</rtexprvalue>

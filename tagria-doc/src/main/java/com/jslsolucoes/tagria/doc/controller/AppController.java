@@ -35,6 +35,11 @@ public class AppController {
 	public void autocomplete(String term) {
 		this.result.include("persons", pessoaRepository.listAll(10));
 	}
+	
+	@Path("/app/template")
+	public void template() {
+		
+	}
 
 	@Path("/")
 	public void index() {

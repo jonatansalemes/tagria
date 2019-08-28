@@ -16,6 +16,8 @@ import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
+import org.apache.commons.lang.StringUtils;
+
 public class TagriaTemplateFilter implements Filter {
 
 	@Override
@@ -26,15 +28,25 @@ public class TagriaTemplateFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-		
-		HtmlResponseWrapper capturingResponseWrapper = new HtmlResponseWrapper(httpServletResponse);
-		filterChain.doFilter(request, capturingResponseWrapper);
-		
-		HtmlResponseWrapper jspResponse = new HtmlResponseWrapper(httpServletResponse);
-		request.getRequestDispatcher("template.jsp").include(request,jspResponse);
-		response.getOutputStream().write( capturingResponseWrapper.getCaptureAsString().replace("<mytag definition=\"here\"/>",jspResponse.getCaptureAsString()).getBytes("UTF-8"));
+		HtmlResponseWrapper bodyResponse = new HtmlResponseWrapper(httpServletResponse);
+		filterChain.doFilter(request, bodyResponse);
+		TemplateDefinition templateDefinition = TemplateManager.get();
+		if(!StringUtils.isEmpty(templateDefinition.getTemplate()) && !StringUtils.isEmpty(templateDefinition.getAttribute())) {
+			String template = templateDefinition.getTemplate();
+			String attribute = templateDefinition.getAttribute();
+			HtmlResponseWrapper templateResponse = new HtmlResponseWrapper(httpServletResponse);
+			request.getRequestDispatcher("/WEB-INF/jsp/app/"+templateDefinition.getTemplate()+"-template.jsp").include(request,templateResponse);
+			System.out.println("user template engine template:"+ template + ",attribute:" + attribute);
+			System.out.println("Template response " + templateResponse.getCaptureAsString());
+			System.out.println("Body response " + bodyResponse.getCaptureAsString());
+			String finalResponse = templateResponse.getCaptureAsString().trim().replace("<mytag definition=\""+attribute+"\"/>",bodyResponse.getCaptureAsString().trim());
+			System.out.println("Final response " + finalResponse);
+			response.getOutputStream().write(finalResponse.getBytes("UTF-8"));
+		} else {
+			System.out.println("not use template engine");
+			response.getOutputStream().write(bodyResponse.getCaptureAsBytes());
+		}
 	}
 
 	@Override

@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Body;
 import com.jslsolucoes.tagria.lib.html.Div;
@@ -19,6 +21,7 @@ import com.jslsolucoes.tagria.lib.html.NoScript;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Title;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
+import com.jslsolucoes.tagria.lib.servlet.TemplateManager;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ViewTag extends SimpleTagSupport {
@@ -27,6 +30,8 @@ public class ViewTag extends SimpleTagSupport {
 	private Body body = new Body();
 	private Boolean ajaxAnimation = Boolean.TRUE;
 	private Boolean asFragment = Boolean.FALSE;
+	private String template;
+	private String attribute;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -106,12 +111,19 @@ public class ViewTag extends SimpleTagSupport {
 		body.add(root);
 		html.add(body);
 		
+		if(!StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute)) {
+			asFragment = true;
+		}
+		
+		TemplateManager.template(template, attribute);
+		
 		if(!asFragment) {
 			TagUtil.out(getJspContext(), DocType.HTML5);
 			TagUtil.out(getJspContext(), html);
 		} else {
 			TagUtil.out(getJspContext(), root);
 		}
+	
 	}
 
 	public String getTitle() {
@@ -140,5 +152,21 @@ public class ViewTag extends SimpleTagSupport {
 
 	public void setAsFragment(Boolean asFragment) {
 		this.asFragment = asFragment;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+
+	public String getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
 	}
 }
