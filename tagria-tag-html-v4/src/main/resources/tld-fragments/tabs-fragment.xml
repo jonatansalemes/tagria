@@ -1,16 +1,41 @@
 <fragment>
+
+
+	<tag>
+		<description>Renders a javascript block to be performed after show tab</description>
+		<display-name>Tabs</display-name>
+		<name>tabs-on-after-show</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsOnAfterShowTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabs&gt;
+			
+				&lt;html:tabs-after-show&gt;
+					//function signature is f(oldTab,newTab):void. oldTab: previous active tab, newTab: newly activated tab
+					console.log(oldTab);
+					console.log(newTab);
+				&lt;/html:tabs-after-show&gt;
+			
+				&lt;html:tabs-header&gt;
+					&lt;html:tabs-tab active="true" label="my tab 1" id="tab1"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 2" id="tab2"&gt;&lt;/html:tabs-tab&gt;
+					&lt;html:tabs-tab label="my tab 3" id="tab3"&gt;&lt;/html:tabs-tab&gt;
+				&lt;/html:tabs-header&gt;
+				&lt;html:tabs-body&gt;
+					&lt;html:tabs-content active="true" contentOf="tab1"&gt; My content 1&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab2"&gt; My content 2&lt;/html:tabs-content&gt;
+					&lt;html:tabs-content contentOf="tab3"&gt; My content 3&lt;/html:tabs-content&gt;
+				&lt;/html:tabs-body&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+
 	<tag>
 		<description>Renders a panel tabs</description>
 		<display-name>Tabs</display-name>
 		<name>tabs</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsTag</tag-class>
 		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Indicates a javascript function to be performed after show a tab. function signature is f(oldTab,newTab):void. oldTab: previous active tab, newTab: newly activated tab  </description>
-			<name>afterShow</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
 		<example>
 			&lt;html:tabs&gt;
 				&lt;html:tabs-header&gt;

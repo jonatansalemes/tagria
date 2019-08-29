@@ -23,8 +23,8 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	private String labelKey;
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
-	private String afterInsert;
-	private String afterRemove;
+	private String onAfterInsert;
+	private String onAfterRemove;
 	private String varStatus;
 	private VarStatus varStatusObject = new VarStatus();
 	private List<String> jsScripts = new ArrayList<>();
@@ -40,13 +40,9 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 				.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container")
 				.add(divToolbar()).add(divContent())
 				.add(textAreaHtml()).add(textAreaScript());
-
-		String afterInsertFunction = (!StringUtils.isEmpty(afterInsert) ? afterInsert + "(idx,element);" : "");
-		String afterRemoveFunction = (!StringUtils.isEmpty(afterRemove) ? afterRemove + "();" : "");
 		appendJsCode("$('#" + id + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
-				+ ",afterInsert:function(idx,element){" + afterInsertFunction + " },afterRemove:function(){"
-				+ afterRemoveFunction + "}});");
-
+				+ ",afterInsert:function(idx,element){" + (!StringUtils.isEmpty(onAfterInsert) ? onAfterInsert  : "") + " },afterRemove:function(){"
+				+ (!StringUtils.isEmpty(onAfterRemove) ? onAfterRemove : "") + "}});");
 		return div;
 	}
 
@@ -184,13 +180,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 		this.empty = empty;
 	}
 
-	public String getAfterInsert() {
-		return afterInsert;
-	}
-
-	public void setAfterInsert(String afterInsert) {
-		this.afterInsert = afterInsert;
-	}
+	
 
 	public String getVarStatus() {
 		return varStatus;
@@ -206,14 +196,6 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
 	public void setVarStatusObject(VarStatus varStatusObject) {
 		this.varStatusObject = varStatusObject;
-	}
-
-	public String getAfterRemove() {
-		return afterRemove;
-	}
-
-	public void setAfterRemove(String afterRemove) {
-		this.afterRemove = afterRemove;
 	}
 
 	public String getLabelKey() {
@@ -232,6 +214,22 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	@Override
 	public Integer index() {
 		return varStatusObject.getIndex();
+	}
+
+	public String getOnAfterInsert() {
+		return onAfterInsert;
+	}
+
+	public void setOnAfterInsert(String onAfterInsert) {
+		this.onAfterInsert = onAfterInsert;
+	}
+
+	public String getOnAfterRemove() {
+		return onAfterRemove;
+	}
+
+	public void setOnAfterRemove(String onAfterRemove) {
+		this.onAfterRemove = onAfterRemove;
 	}
 
 }

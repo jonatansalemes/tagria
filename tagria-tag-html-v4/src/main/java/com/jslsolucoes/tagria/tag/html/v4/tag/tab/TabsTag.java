@@ -8,7 +8,7 @@ import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 public class TabsTag extends AbstractSimpleTagSupport {
 	
-	private String afterShow;
+	private String onAfterShow;
 
 	@Override
 	public Element render() {
@@ -17,17 +17,18 @@ public class TabsTag extends AbstractSimpleTagSupport {
 
 	private Element div() {
 		Element div = ElementCreator.newDiv().attribute(Attribute.ID, id()).add(bodyContent());
-		String afterShowFunction = (!StringUtils.isEmpty(afterShow) ? afterShow + "(oldTab,newTab);": "");
-		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').tabs({ afterShow : function(oldTab,newTab) {"+afterShowFunction+"} });");
+		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').tabs({ afterShow : function(oldTab,newTab) {"+ (!StringUtils.isEmpty(onAfterShow) ? onAfterShow : "") +"}});");
 		return div;
 	}
 
-	public String getAfterShow() {
-		return afterShow;
+	public String getOnAfterShow() {
+		return onAfterShow;
 	}
 
-	public void setAfterShow(String afterShow) {
-		this.afterShow = afterShow;
+	public void setOnAfterShow(String onAfterShow) {
+		this.onAfterShow = onAfterShow;
 	}
+
+	
 	
 }

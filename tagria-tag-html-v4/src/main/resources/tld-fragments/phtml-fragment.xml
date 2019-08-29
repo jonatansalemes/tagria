@@ -155,7 +155,7 @@
 		<example>
 			&lt;html:h4&gt;
 				H4 header 
-			&lt;/html:h3&gt; 
+			&lt;/html:h4&gt; 
 		</example>
 	</tag>
 	<tag>

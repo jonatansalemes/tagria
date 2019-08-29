@@ -116,7 +116,13 @@
 	</html:table>
 
 
-	<html:tabs afterShow="myFunction">
+	<html:tabs>
+	
+		<html:tabs-on-after-show>
+			console.log(oldTab);
+			console.log(newTab);
+		</html:tabs-on-after-show>
+	
 		<html:tabs-header>
 			<html:tabs-tab data-id="mytabid" active="true" label="my tab 1"
 				id="tab1"></html:tabs-tab>
@@ -172,23 +178,6 @@
 
 	<html:js-code>
 		console.log('js code as component');
-		
-		
-		function myFunction(oldTab,newTab){
-			console.log(oldTab);
-			console.log(newTab);
-		}
-		
-		
-		
-		function afterInsertMultipleFormGroup(idx,element) {
-			console.log('after insert row ' + idx +  '=>' + element);
-		}
-		
-		function afterRemoveMultipleFormGroup() {
-			console.log('after remove row ');
-		}
-		
 	</html:js-code>
 
 	<html:js-event event="click" attachToSelector="#btn2">
@@ -231,8 +220,17 @@
 			<html:input name="field2" />
 		</html:form-group>
 		<html:form-group-multiple label="Groups 1" data="${ persons }"
-			var="person" atLeast="1" afterInsert="afterInsertMultipleFormGroup"
-			afterRemove="afterRemoveMultipleFormGroup">
+			var="person" atLeast="1">
+			
+			
+			<html:form-group-multiple-on-after-insert>
+				console.log('after insert row ' + idx +  '=>' + element);
+			</html:form-group-multiple-on-after-insert>
+			
+			<html:form-group-multiple-on-after-remove>
+				console.log('after remove row ');
+			</html:form-group-multiple-on-after-remove>
+			
 			<html:input name="fields3[]" required="true" value="${ person.name }" />
 			<html:js-event event="blur" attachTo="fields3[]">
 					console.log($(this).val());
