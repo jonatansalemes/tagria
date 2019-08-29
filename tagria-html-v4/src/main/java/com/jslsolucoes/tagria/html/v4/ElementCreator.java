@@ -1,11 +1,15 @@
 package com.jslsolucoes.tagria.html.v4;
 
 public class ElementCreator {
-	
+
+	public static Template newTemplate() {
+		return new Template();
+	}
+
 	public static Style newStyle() {
 		return new Style();
 	}
-	
+
 	public static TFoot newTFoot() {
 		return new TFoot();
 	}

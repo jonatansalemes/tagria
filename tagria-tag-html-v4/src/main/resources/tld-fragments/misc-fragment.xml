@@ -1,4 +1,25 @@
 <fragment>
+
+
+
+	<tag>
+		<description>Renders a template attribute body</description>
+		<display-name>Misc</display-name>
+		<name>template</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TemplateTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates an attribute name placeholder to render</description>
+			<name>render</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:template render="body"/&gt;
+		</example>
+	</tag>
+
 	<tag>
 		<description>Renders a jumbotron</description>
 		<display-name>Misc</display-name>

@@ -239,9 +239,31 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		}
 		return locale;
 	}
+	
+	private TagriaConfig config() {
+		return TagriaConfig.newConfig();
+	}
+	
+
+	public String contentOfTemplate(String template) {
+		logger.debug("Requested content of template {}",template);
+		String jspPath = config().xml().getTemplates().stream()
+				.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
+				.orElseThrow(() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
+				.getPath();
+		logger.debug("Jsp path {} for template {} was found",jspPath,template);
+		HttpServletRequest httpServletRequest = httpServletRequest();
+		HttpServletResponse httpServletResponse = httpServletResponse();
+		try(TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
+			httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
+			return tagriaResponseWrapper.asString();
+		} catch (Exception e) {
+			throw new TagriaRuntimeException(e);
+		}
+	}
 
 	public String propertyValue(TagriaConfigParameter tagriaConfigParameter) {
-		return TagriaConfig.newConfig().propertyValue(tagriaConfigParameter);
+		return config().propertyValue(tagriaConfigParameter);
 	}
 
 	public Boolean hasKeyOrLabel(String key, String label) {
