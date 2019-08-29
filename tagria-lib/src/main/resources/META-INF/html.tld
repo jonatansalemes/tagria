@@ -11,6 +11,24 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 	
 	<tag>
+		<description>Renders a template attribute body</description>
+		<display-name>Template</display-name>
+		<name>template</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TemplateTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates an attribute indicate to render</description>
+			<name>render</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:template render="body"/&gt;
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a autocomplete</description>
 		<display-name>Input</display-name>
 		<name>autocomplete</name>

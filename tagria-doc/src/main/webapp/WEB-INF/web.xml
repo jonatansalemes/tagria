@@ -34,6 +34,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 	
+	<!-- 
 	<filter>
 		<filter-name>tagria-template</filter-name>
 		<filter-class>com.jslsolucoes.tagria.lib.servlet.TagriaTemplateFilter</filter-class>
@@ -45,6 +46,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+	 -->
 	
 	<servlet>
 		<servlet-name>tagria</servlet-name>

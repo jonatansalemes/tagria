@@ -3,7 +3,5 @@
 	<html:alert state="info">
 		This is my master template
 	</html:alert>
-	
-	<mytag definition="body"/>
-	
+	<html:template render="body"/>
 </html:view>

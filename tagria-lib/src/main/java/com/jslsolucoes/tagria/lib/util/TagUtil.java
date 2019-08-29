@@ -25,6 +25,8 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
@@ -35,9 +37,11 @@ import com.jslsolucoes.tagria.lib.auth.Auth;
 import com.jslsolucoes.tagria.lib.html.Element;
 import com.jslsolucoes.tagria.lib.servlet.Tagria;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
+import com.jslsolucoes.tagria.lib.servlet.TagriaResponseWrapper;
 import com.jslsolucoes.tagria.lib.tag.auth.CheckRule;
 import com.jslsolucoes.tagria.lib.tag.html.MultipleFormGroupTag;
 import com.jslsolucoes.tagria.lib.tag.x.StringUtil;
+import com.jslsolucoes.tagria.lib.xml.TagriaXML;
 
 public class TagUtil {
 
@@ -46,6 +50,41 @@ public class TagUtil {
 
 	private TagUtil() {
 
+	}
+
+	private static TagriaXML xml() {
+		try {
+			InputStream props = TagUtil.class.getResourceAsStream("/tagrialib.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(TagriaXML.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			return ((TagriaXML) unmarshaller.unmarshal(props));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static String templateOfDefinition(JspContext jspContext, String template) {
+		
+		System.out.println(xml().getTemplates());
+		
+		String pathForTemplate = xml().getTemplates().stream()
+				.filter(templateDefinition -> template.equals(templateDefinition.getName())).findFirst()
+				.orElseThrow(() -> new RuntimeException("Could not find template " + template + " on definitions "))
+				.getPath();
+		return jspContent(jspContext, pathForTemplate);
+	}
+
+	public static String jspContent(JspContext jspContext, String path) {
+		try {
+			HttpServletRequest httpServletRequest = TagUtil.httpServletRequest(jspContext);
+			HttpServletResponse httpServletResponse = TagUtil.httpServletResponse(jspContext);
+			TagriaResponseWrapper templateResponse = new TagriaResponseWrapper(httpServletResponse);
+			httpServletRequest.getRequestDispatcher(path).include(httpServletRequest, templateResponse);
+			templateResponse.close();
+			return templateResponse.asString();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static PageContext pageContext(JspContext jspContext) {
@@ -93,7 +132,7 @@ public class TagUtil {
 	public static String format(String type, String match, String replace, String value, JspContext jspContext) {
 		return StringUtil.format(type, match, replace, value, locale(jspContext));
 	}
-	
+
 	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {
 		String idForComponent = "par_" + RandomStringUtils.randomAlphanumeric(20);
 		if (!StringUtils.isEmpty(id)) {
@@ -289,4 +328,5 @@ public class TagUtil {
 	public static String getPathForLocale(JspContext jspContext) {
 		return getPathForUrl(jspContext, "/tagria/locale");
 	}
+
 }

@@ -21,7 +21,6 @@ import com.jslsolucoes.tagria.lib.html.NoScript;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Title;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
-import com.jslsolucoes.tagria.lib.servlet.TemplateManager;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ViewTag extends SimpleTagSupport {
@@ -35,9 +34,9 @@ public class ViewTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		String lang = TagUtil.localization(getJspContext());
-		
+
 		Html html = new Html();
 		html.add(Attribute.XMLNS, "http://www.w3.org/1999/xhtml");
 		html.add(Attribute.LANG, lang);
@@ -58,17 +57,18 @@ public class ViewTag extends SimpleTagSupport {
 		viewport.add(Attribute.CONTENT, "width=device-width, initial-scale=1");
 
 		head.add(viewport);
-		
+
 		Link css = new Link();
 		css.add(Attribute.REL, "stylesheet");
 		css.add(Attribute.TYPE, "text/css");
 		css.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
 		head.add(css);
-		
+
 		Script recaptcha = new Script();
-		recaptcha.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
+		recaptcha.add(Attribute.SRC,
+				TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
 		head.add(recaptcha);
-		
+
 		Script js = new Script();
 		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
 		head.add(js);
@@ -81,9 +81,9 @@ public class ViewTag extends SimpleTagSupport {
 
 		StringBuilder jsReady = new StringBuilder();
 		jsReady.append("URL_BASE='" + TagUtil.getPathForUrl(getJspContext(), "") + "';");
-		if(ajaxAnimation) {
+		if (ajaxAnimation) {
 			jsReady.append(
-				"$(document).ajaxStart(function(){ $('.ajax-loading').fadeIn(); }).ajaxStop(function(){ $('.ajax-loading').fadeOut(); });");
+					"$(document).ajaxStart(function(){ $('.ajax-loading').fadeIn(); }).ajaxStop(function(){ $('.ajax-loading').fadeOut(); });");
 		}
 		Script ready = new Script();
 		ready.add(jsReady.toString());
@@ -98,32 +98,32 @@ public class ViewTag extends SimpleTagSupport {
 		img.add(Attribute.WIDTH, 100);
 		img.add(Attribute.HEIGHT, 100);
 		img.add(Attribute.CLASS, "mx-auto d-block");
-		img.add(Attribute.ALT,"loading");
-		
+		img.add(Attribute.ALT, "loading");
+
 		Div loading = new Div();
 		loading.add(Attribute.CLASS, "fixed-top collapse ajax-loading");
 		loading.add(img);
 		body.add(loading);
 
 		Div root = new Div();
-		root.add(Attribute.ID,"root");
+		root.add(Attribute.ID, "root");
 		root.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
 		body.add(root);
 		html.add(body);
-		
-		if(!StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute)) {
-			asFragment = true;
-		}
-		
-		TemplateManager.template(template, attribute);
-		
-		if(!asFragment) {
-			TagUtil.out(getJspContext(), DocType.HTML5);
-			TagUtil.out(getJspContext(), html);
+
+		if (!StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute)) {
+			TagUtil.out(getJspContext(),
+					TagUtil.templateOfDefinition(getJspContext(),template)
+							.replace("<template render=\"" + attribute + "\"/>", root.getHtml()));
 		} else {
-			TagUtil.out(getJspContext(), root);
+			if (!asFragment) {
+				TagUtil.out(getJspContext(), DocType.HTML5);
+				TagUtil.out(getJspContext(), html);
+			} else {
+				TagUtil.out(getJspContext(), root);
+			}
 		}
-	
+
 	}
 
 	public String getTitle() {
