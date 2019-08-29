@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Streams;
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
@@ -25,10 +25,11 @@ import com.jslsolucoes.tagria.tag.base.v4.GlobalCssAppender;
 import com.jslsolucoes.tagria.tag.base.v4.GlobalJsAppender;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
+@SuppressWarnings("unchecked")
 public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppender, GlobalCssAppender {
 
 	private static final Logger logger = LoggerFactory.getLogger(ViewTag.class);
-	
+
 	private String title;
 	private String titleKey;
 	private String cssClass = "body-default";
@@ -62,58 +63,66 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	public void appendCssScript(String url) {
 		this.cssScriptsForImport.add(url);
 	}
-
+	
 	@Override
 	public List<Element> renders() {
 		if (isTemplatePartial()) {
-			logger.debug("is partial template..");
-			return Arrays.asList(template());
+			return partial();
 		} else {
 			if (!asFragment) {
-				return Arrays.asList(docTypeHtml5(), html());
+				return full();
 			} else {
-				return Arrays.asList(fragment());
+				return fragment();
 			}
 		}
+	}
+	
+	private List<Element> concat(Element... elements){
+		return Arrays.asList(elements);
+	}
+	
+	private List<Element> concat(List<Element>... lists){
+		return Stream.of(lists)
+				.flatMap(x -> x.stream()).collect(Collectors.toList());
 	}
 
 	private boolean isTemplatePartial() {
 		return !StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute);
 	}
 
-	private Element template() {
+	private List<Element> partial() {
 		String templateContent = contentOfTemplate(template);
-		String partialContent = fragment().html();
-		String partialTag = partial().html();
-		
-		logger.debug("template content {}, partial content {}, partial tag {}",templateContent,partialContent,partialTag);
-		
-		if(StringUtils.isEmpty(templateContent)) {
-			throw new TagriaRuntimeException("Content of template "+template+ " cannot be empty");
-		} else if(!templateContent.contains(partialTag)) {
-			throw new TagriaRuntimeException("Template "+template+ " must define tag " + partialTag + " is somewhere");
+		String partialContent = asHtml(fragment());
+		String partialTag = asHtml(partialTag());
+		logger.debug("template content {}, partial content {}, partial tag {}", templateContent, partialContent,partialTag);
+		if (StringUtils.isEmpty(templateContent)) {
+			throw new TagriaRuntimeException("Content of template " + template + " cannot be empty");
+		} else if (!templateContent.contains(partialTag)) {
+			throw new TagriaRuntimeException(
+					"Template " + template + " must define tag " + partialTag + " is somewhere");
 		}
-		
-		return ElementCreator.newCData(templateContent.replace(partialTag, partialContent));
+		return Arrays.asList(ElementCreator.newCData(templateContent.replace(partialTag, partialContent)));
+	}
+	
+	private String asHtml(Element element) {
+		return asHtml(Arrays.asList(element));
+	}
+	
+	private String asHtml(List<Element> elements) {
+		return elements.stream().map(element-> element.html()).collect(Collectors.joining());
 	}
 
-	private Element partial() {
+	private Element partialTag() {
 		return ElementCreator.newTemplate().attribute("render", attribute);
 	}
 
-	private Element fragment() {
-		Element divRoot = divRoot();
-		for (String cssScriptForImport : this.cssScriptsForImport) {
-			divRoot.add(ElementCreator.newLink().attribute(Attribute.REL, "stylesheet")
-					.attribute(Attribute.TYPE, "text/css").attribute(Attribute.HREF, cssScriptForImport));
-		}
-		divRoot.add(ElementCreator.newStyle().add(minifyCss(cssScripts())));
-		for (String jsScriptForImport : this.jsScriptsForImport) {
-			divRoot.add(ElementCreator.newScript().attribute(Attribute.REL, "preload").attribute(Attribute.SRC,
-					jsScriptForImport));
-		}
-		divRoot.add(ElementCreator.newScript().add(minifyJs(jsScripts())));
-		return divRoot;
+	private List<Element> full() {
+		return concat(docTypeHtml5(), html());
+	}
+	
+	private List<Element> fragment() {
+		return concat(appHtml(),appCssScriptsForImport(), appCss(),
+				appJsScriptsForImport(), appJs());
 	}
 
 	private String lang() {
@@ -136,19 +145,18 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	private Element body() {
 		Element body = ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(divRoot())
 				.add(ajaxLoading());
-		for (Element cssScriptForImport : cssScriptsForImport()) {
-			body.add(cssScriptForImport);
+		List<Element> elements = Stream
+				.of(tagriaCssScriptsForImport(), appCssScriptsForImport(), appCss(), tagriaJsScriptsForImport(),
+						appJsScriptsForImport(), tagriaJs(), appJs())
+				.flatMap(x -> x.stream()).collect(Collectors.toList());
+		for (Element element : elements) {
+			body.add(element);
 		}
-		body.add(appCss());
-		for (Element jsScriptForImport : jsScriptsForImport()) {
-			body.add(jsScriptForImport);
-		}
-		body.add(appJs());
 		return body;
 	}
 
 	private Element divRoot() {
-		return ElementCreator.newDiv().attribute(Attribute.ID, "root").add(minifyHtml(bodyContent()));
+		return ElementCreator.newDiv().attribute(Attribute.ID, "root").add(appHtml());
 	}
 
 	private Element head() {
@@ -218,22 +226,35 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 		}
 	}
 
-	private Element appCss() {
-		return ElementCreator.newStyle().add(minifyCss(cssScripts()));
+	private List<Element> appCss() {
+		return Arrays.asList(ElementCreator.newStyle().add(minifyCss(cssScripts())));
 	}
 
-	private String jsCodeForAjaxAnimation() {
-		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
+	private List<Element> appJs() {
+		return Arrays.asList(ElementCreator.newScript().add(minifyJs(jsScripts())));
 	}
 
-	private String jsCodeForUrlBase() {
-		return "URL_BASE='" + pathForUrl("") + "';";
+	private List<Element> appHtml() {
+		return Arrays.asList(ElementCreator.newCData(minifyHtml(bodyContent())));
 	}
 
-	private Element appJs() {
-		String appJs = minifyJs(Arrays.asList(jsCodeForUrlBase(), jsCodeForAjaxAnimation(), jsScripts()).stream()
-				.collect(Collectors.joining()));
-		return ElementCreator.newScript().add(appJs);
+	private List<Element> appJsScriptsForImport() {
+		return jsScriptsForImport.stream().map(jsScriptForImport -> script(jsScriptForImport))
+				.collect(Collectors.toList());
+	}
+
+	private List<Element> appCssScriptsForImport() {
+		return cssScriptsForImport.stream().map(cssScriptForImport -> style(cssScriptForImport))
+				.collect(Collectors.toList());
+	}
+
+	private Element style(String href) {
+		return ElementCreator.newLink().attribute(Attribute.REL, "stylesheet").attribute(Attribute.TYPE, "text/css")
+				.attribute(Attribute.HREF, href);
+	}
+
+	private Element script(String src) {
+		return ElementCreator.newScript().attribute(Attribute.REL, "preload").attribute(Attribute.SRC, src);
 	}
 
 	private String cssScripts() {
@@ -244,22 +265,33 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 		return jsScripts.stream().collect(Collectors.joining());
 	}
 
-	private List<Element> jsScriptsForImport() {
-		return Streams
-				.concat(Arrays.asList(pathForJavascriptOnLibrary("tagria-ui.js"),
-						pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang())).stream(),
-						jsScriptsForImport.stream())
-				.map(jsScriptForImport -> ElementCreator.newScript().attribute(Attribute.REL, "preload")
-						.attribute(Attribute.SRC, jsScriptForImport))
-				.collect(Collectors.toList());
+	private List<Element> tagriaJsScriptsForImport() {
+		return Arrays
+				.asList(pathForJavascriptOnLibrary("tagria-ui.js"),
+						pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()))
+				.stream().map(jsScriptForImport -> script(jsScriptForImport)).collect(Collectors.toList());
 	}
 
-	private List<Element> cssScriptsForImport() {
-		return Streams
-				.concat(Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream(), cssScriptsForImport.stream())
-				.map(cssScriptForImport -> ElementCreator.newLink().attribute(Attribute.REL, "stylesheet")
-						.attribute(Attribute.TYPE, "text/css").attribute(Attribute.HREF, cssScriptForImport))
-				.collect(Collectors.toList());
+	private List<Element> tagriaCssScriptsForImport() {
+		return Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream()
+				.map(cssScriptForImport -> style(cssScriptForImport)).collect(Collectors.toList());
+	}
+
+	private List<Element> tagriaJs() {
+		return Arrays.asList(ElementCreator.newScript().add(minifyJs(tagriaJsScripts())));
+	}
+
+	private String tagriaJsScripts() {
+		return Arrays.asList(tagriaJsCodeForAjaxAnimation(), tagriaJsCodeForUrlBase()).stream()
+				.collect(Collectors.joining(""));
+	}
+
+	private String tagriaJsCodeForAjaxAnimation() {
+		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
+	}
+
+	private String tagriaJsCodeForUrlBase() {
+		return "URL_BASE='" + pathForUrl("") + "';";
 	}
 
 	private Element docTypeHtml5() {
