@@ -3,6 +3,7 @@
 
 	<html:input name="mydate"></html:input>
 	<html:datePicker attachTo="mydate" min="1" max="2"></html:datePicker>
+	<html:tooltip attachTo="mydate">My tooltip</html:tooltip>
 
 	<ajax:function url="/app/ajax/list" name="ajaxPersons" execute="true">
 		<ajax:parameters>

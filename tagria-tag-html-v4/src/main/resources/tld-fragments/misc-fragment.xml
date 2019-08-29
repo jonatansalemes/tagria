@@ -1,6 +1,46 @@
 <fragment>
 
-
+	<tag>
+		<description>Renders a tooltip</description>
+		<display-name>Misc</display-name>
+		<name>tooltip</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TooltipTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name that triggers the tooltip</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the tooltip</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label for the component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label key (i18n) for the component</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates tooltip placement. Options: top,bottom,left,right. Default: top</description>
+			<name>placement</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:input name="field1"/&gt;
+		    &lt;html:tooltip attachTo="field1" label="label for input"/&gt;
+		</example>
+	</tag>
 
 	<tag>
 		<description>Renders a template attribute body</description>
