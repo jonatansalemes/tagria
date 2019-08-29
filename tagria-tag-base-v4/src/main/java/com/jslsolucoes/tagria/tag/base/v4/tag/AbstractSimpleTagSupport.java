@@ -64,8 +64,25 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	public void setAttribute(String name, Object value) {
 		jspContext().setAttribute(name, value);
 	}
+	
+	public String contentOfTemplate(String template) {
+		logger.debug("Requested content of template {}",template);
+		String jspPath = config().xml().getTemplates().stream()
+				.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
+				.orElseThrow(() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
+				.getPath();
+		logger.debug("Jsp path {} for template {} was found",jspPath,template);
+		HttpServletRequest httpServletRequest = httpServletRequest();
+		HttpServletResponse httpServletResponse = httpServletResponse();
+		try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
+			httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
+			return tagriaResponseWrapper.asString();
+		} catch (Exception e) {
+			throw new TagriaRuntimeException(e);
+		}
+	}
 
-	private void out(String value) {
+	public void out(String value) {
 		try {
 			if (!StringUtils.isEmpty(value)) {
 				writer().print(value);
@@ -75,8 +92,29 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		}
 	}
 
-	private void out(Element element) {
+	public void out(Element element) {
 		out(element.html());
+	}
+	
+	public List<Element> renders() {
+		return Arrays.asList(render());
+	}
+
+	public Element render() {
+		return ElementCreator.newNull();
+	}
+
+	@Override
+	public void doTag() throws JspException, IOException {
+		if (flush()) {
+			flushBodyContent();
+		}
+		if (rendered()) {
+			renderOnVoid();
+			for (Element element : renders()) {
+				out(element);
+			}
+		}
 	}
 
 	public Boolean rendered() {
@@ -123,27 +161,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
 	public Boolean flush() {
 		return false;
-	}
-
-	public List<Element> renders() {
-		return Arrays.asList(render());
-	}
-
-	public Element render() {
-		return ElementCreator.newNull();
-	}
-
-	@Override
-	public void doTag() throws JspException, IOException {
-		if (flush()) {
-			flushBodyContent();
-		}
-		if (rendered()) {
-			renderOnVoid();
-			for (Element element : renders()) {
-				out(element);
-			}
-		}
 	}
 
 	public PageContext pageContext() {
@@ -242,24 +259,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	
 	private TagriaConfig config() {
 		return TagriaConfig.newConfig();
-	}
-	
-
-	public String contentOfTemplate(String template) {
-		logger.debug("Requested content of template {}",template);
-		String jspPath = config().xml().getTemplates().stream()
-				.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
-				.orElseThrow(() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
-				.getPath();
-		logger.debug("Jsp path {} for template {} was found",jspPath,template);
-		HttpServletRequest httpServletRequest = httpServletRequest();
-		HttpServletResponse httpServletResponse = httpServletResponse();
-		try(TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
-			httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
-			return tagriaResponseWrapper.asString();
-		} catch (Exception e) {
-			throw new TagriaRuntimeException(e);
-		}
 	}
 
 	public String propertyValue(TagriaConfigParameter tagriaConfigParameter) {

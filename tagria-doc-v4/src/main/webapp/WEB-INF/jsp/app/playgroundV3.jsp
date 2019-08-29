@@ -1,4 +1,4 @@
-<%@include file="../app/taglibs.jsp"%>
+<%@include file="taglibs.jsp"%>
 <html2:view title="Playground">
 
 	<html2:alert state="danger">

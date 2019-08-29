@@ -69,6 +69,8 @@
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>github</project.scm.id>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<maven.source.skip>true</maven.source.skip>
 	</properties>
 
 	<dependencies>

@@ -1,4 +1,4 @@
-<%@include file="../app/taglibs.jsp"%>
+<%@include file="taglibs.jsp"%>
 <html:view titleKey="title">
 	<html:alert state="info">
 		Header

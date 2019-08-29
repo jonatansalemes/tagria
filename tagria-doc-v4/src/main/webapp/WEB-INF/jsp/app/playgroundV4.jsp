@@ -1,4 +1,4 @@
-<%@include file="../app/taglibs.jsp"%>
+<%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
 	<html:input name="mydate"></html:input>
