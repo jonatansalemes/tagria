@@ -16,7 +16,7 @@ public class IconTag extends AbstractSimpleTagSupport {
 
 	private Element span() {
 		return ElementCreator.newSpan().attribute(Attribute.ID, idForId(id)).attribute(Attribute.CLASS,
-				"fas fa-" + icon);
+				"fas fa-" + icon + " fa-fw");
 	}
 
 	public String getIcon() {

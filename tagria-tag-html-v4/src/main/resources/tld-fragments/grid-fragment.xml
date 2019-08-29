@@ -102,6 +102,12 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
 		</attribute>
+		<attribute>
+			<description>It indicates the size of pagination block on the left and right from the current page. Default: 4</description>
+			<name>range</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
 		<example>
 			&lt;html:grid var="person" data="${ persons }" label="My grid"&gt;
 				&lt;html:grid-export/&gt;

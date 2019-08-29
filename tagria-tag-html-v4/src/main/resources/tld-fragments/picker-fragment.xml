@@ -1,0 +1,37 @@
+<fragment>
+	<tag>
+		<description>Renders a datePicker for a input</description>
+		<display-name>Picker</display-name>
+		<name>datePicker</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.picker.DatePickerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component that triggers the date picker</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the date picker</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the minimum day for date choice</description>
+			<name>min</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the maximum day for date choice</description>
+			<name>max</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" placeholder="Date birth" /&gt;
+			&lt;html:datePicker attachTo="input1" min="0" max="3"/&gt; 
+		</example>
+	</tag>
+</fragment>

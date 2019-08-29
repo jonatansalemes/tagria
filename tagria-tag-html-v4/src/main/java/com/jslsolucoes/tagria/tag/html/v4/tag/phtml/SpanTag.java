@@ -1,34 +1,35 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.phtml;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.html.v4.H3;
+import com.jslsolucoes.tagria.html.v4.Span;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
-public class H3Tag extends AbstractSimpleTagSupport {
-
+public class SpanTag extends AbstractSimpleTagSupport {
+	
 	private String label;
 	private String labelKey;
 
 	@Override
 	public Element render() {
-		return h3();
+		return span();
 	}
 
-	private Element h3() {
-		H3 h3 = ElementCreator.newH3();
+	private Element span() {
+		Span span = ElementCreator.newSpan();
 		if (hasKeyOrLabel(labelKey, label)) {
-			h3.add(keyOrLabel(labelKey, label));
+			span.add(keyOrLabel(labelKey, label));
 		} else {
-			h3.add(bodyContent());
+			span.add(bodyContent());
 		}
 		
 		if (!StringUtils.isEmpty(cssClass)) {
-			h3.attribute(Attribute.CLASS, cssClass);
+			span.attribute(Attribute.CLASS, cssClass);
 		}
 		
-		return h3;
+		return span;
 	}
 	
 	public String getLabel() {
@@ -46,4 +47,5 @@ public class H3Tag extends AbstractSimpleTagSupport {
 	public void setLabelKey(String labelKey) {
 		this.labelKey = labelKey;
 	}
+
 }

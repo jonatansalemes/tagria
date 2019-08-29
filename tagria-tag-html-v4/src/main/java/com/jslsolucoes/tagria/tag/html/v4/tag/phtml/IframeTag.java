@@ -13,6 +13,7 @@ public class IframeTag extends AbstractSimpleTagSupport {
 	private String url;
 	private String title;
 	private String titleKey;
+	private Boolean autoHeight = Boolean.TRUE;
 
 	@Override
 	public Element render() {
@@ -30,9 +31,11 @@ public class IframeTag extends AbstractSimpleTagSupport {
 			iframe.attribute(Attribute.TITLE, keyOrLabel(titleKey, title));
 		}
 
-		appendJsCode("$('#" + iframe.attribute(Attribute.ID) + "').iframe();");
+		if (autoHeight) {
+			appendJsCode("$('#" + iframe.attribute(Attribute.ID) + "').iframe();");
+		}
+		
 		return iframe;
-
 	}
 
 	public String getName() {
@@ -65,6 +68,14 @@ public class IframeTag extends AbstractSimpleTagSupport {
 
 	public void setTitleKey(String titleKey) {
 		this.titleKey = titleKey;
+	}
+
+	public Boolean getAutoHeight() {
+		return autoHeight;
+	}
+
+	public void setAutoHeight(Boolean autoHeight) {
+		this.autoHeight = autoHeight;
 	}
 
 }

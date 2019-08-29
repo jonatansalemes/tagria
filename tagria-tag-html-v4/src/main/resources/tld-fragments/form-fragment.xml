@@ -1,4 +1,25 @@
 <fragment>
+
+
+	<tag>
+		<description>Renders a before submit block</description>
+		<display-name>Form</display-name>
+		<name>form-on-before-submit</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormOnBeforeSubmitTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:form-on-before-submit&gt;
+				    //function signature is f():boolean (true to continue submit and false to cancel submit)
+				    
+				    //do some checking here
+					return true;
+				&lt;/html:form-on-before-submit&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
+
 	<tag>
 		<description>Renders a form</description>
 		<display-name>Form</display-name>

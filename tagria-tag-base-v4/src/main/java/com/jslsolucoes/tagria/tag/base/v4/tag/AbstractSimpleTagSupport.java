@@ -50,7 +50,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	protected String id;
 
 	private String version() {
-		return "4.0.0.11";
+		return "4.0.0.12";
 	}
 
 	private JspWriter writer() {
@@ -215,11 +215,18 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		}
 		return ancestors;
 	}
+	
+	public Element applyDynamicAttributesOn(Element element) {
+		attributes.entrySet().forEach(entry -> {
+			element.attribute(entry.getKey(), entry.getValue());
+		});
+		return element;
+	}
 
 	@Override
 	public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
 		if (!localName.startsWith("data-")) {
-			throw new TagriaRuntimeException("Dynamic attributes must start with data- . Eg.  data-id,data-url... ");
+			throw new TagriaRuntimeException("Dynamic attributes must start with data-*. Eg: data-id, data-url ." + localName + " not was recognize as property");
 		}
 		attributes.put(localName, value.toString());
 	}

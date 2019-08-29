@@ -1,6 +1,8 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.phtml;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -18,13 +20,19 @@ public class LinkTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element a() {
-		Element a = ElementCreator.newA().attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET,
-				target);
+		Element a = applyDynamicAttributesOn(ElementCreator.newA())
+				.attribute(Attribute.ID, idForId(id))
+				.attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET,target);
 		if (hasKeyOrLabel(labelKey, label)) {
 			a.add(keyOrLabel(labelKey, label));
 		} else {
 			a.add(bodyContent());
 		}
+		
+		if (!StringUtils.isEmpty(cssClass)) {
+			a.attribute(Attribute.CLASS, cssClass);
+		}
+		
 		return a;
 	}
 

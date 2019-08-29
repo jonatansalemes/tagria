@@ -13,6 +13,7 @@ public class DropDownTag extends AbstractSimpleTagSupport {
 	private String labelKey;
 	private String state = "primary";
 	private String size;
+	private String direction = "down";
 
 	@Override
 	public Element render() {
@@ -20,7 +21,7 @@ public class DropDownTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown").add(button()).add(divDropDown());
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "drop" + direction).add(button()).add(divDropDown());
 	}
 
 	private Element divDropDown() {
@@ -84,5 +85,13 @@ public class DropDownTag extends AbstractSimpleTagSupport {
 
 	public void setLabelKey(String labelKey) {
 		this.labelKey = labelKey;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 }

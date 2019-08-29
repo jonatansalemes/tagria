@@ -88,6 +88,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the dropdown direction. Options: left,right,down,up. Default: down</description>
+			<name>direction</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the size of dropdown. Default none. Options: xl,sm,lg</description>
 			<name>size</name>
 			<rtexprvalue>true</rtexprvalue>

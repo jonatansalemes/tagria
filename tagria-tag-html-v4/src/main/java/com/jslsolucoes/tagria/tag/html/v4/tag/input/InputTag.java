@@ -26,8 +26,8 @@ public class InputTag extends AbstractSimpleTagSupport implements DynamicAttribu
 	private String title;
 	private String titleKey;
 	private Integer maxLength;
-	private String max;
-	private String min;
+	private Integer max;
+	private Integer min;
 	private Integer step;
 	private String list;
 	private Boolean autocomplete = Boolean.FALSE;
@@ -40,13 +40,9 @@ public class InputTag extends AbstractSimpleTagSupport implements DynamicAttribu
 
 	private Element input() {
 
-		Element input = ElementCreator.newInput().attribute(Attribute.TYPE, type).attribute(Attribute.NAME, name)
+		Element input = applyDynamicAttributesOn(ElementCreator.newInput()).attribute(Attribute.TYPE, type).attribute(Attribute.NAME, name)
 				.attribute(Attribute.ARIA_LABEL,"input")
 				.attribute(Attribute.ID, id(name, id)).attribute(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
-
-		attributes.entrySet().forEach(entry -> {
-			input.attribute(entry.getKey(), entry.getValue());
-		});
 
 		if (step != null) {
 			input.attribute(Attribute.STEP, step);
@@ -237,19 +233,19 @@ public class InputTag extends AbstractSimpleTagSupport implements DynamicAttribu
 		this.accept = accept;
 	}
 
-	public String getMax() {
+	public Integer getMax() {
 		return max;
 	}
 
-	public void setMax(String max) {
+	public void setMax(Integer max) {
 		this.max = max;
 	}
 
-	public String getMin() {
+	public Integer getMin() {
 		return min;
 	}
 
-	public void setMin(String min) {
+	public void setMin(Integer min) {
 		this.min = min;
 	}
 

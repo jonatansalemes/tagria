@@ -15,7 +15,8 @@ public class DivTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.ID, idForId(id)).add(bodyContent());
+		Element div = applyDynamicAttributesOn(ElementCreator.newDiv())
+					.attribute(Attribute.ID, idForId(id)).add(bodyContent());
 		if (!StringUtils.isEmpty(cssClass)) {
 			div.attribute(Attribute.CLASS, cssClass);
 		}

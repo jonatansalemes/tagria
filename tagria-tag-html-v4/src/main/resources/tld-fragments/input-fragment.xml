@@ -1,4 +1,34 @@
 <fragment>
+
+	<tag>
+		<description>Renders a input group</description>
+		<display-name>Input</display-name>
+		<name>input-group</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.InputGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the input group should append another component. Default:false</description>
+			<name>append</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the input group should prepend another component. Default:false</description>
+			<name>prepend</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:input-group&gt;
+				&lt;html:input type="search" name="search"/&gt;
+				&lt;html:input-group append="true"&gt;
+					&lt;html:button icon="search" title="Search"/&gt;
+				&lt;/html:input-group&gt;
+			&lt;/html:input-group&gt; 
+		</example>
+	</tag>
+
+
 	<tag>
 		<description>Renders a data list component</description>
 		<display-name>Input</display-name>
@@ -331,13 +361,13 @@
 			<description>Indicates the maximum value for input</description>
 			<name>max</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the minimum value for input</description>
 			<name>min</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the step increment number</description>

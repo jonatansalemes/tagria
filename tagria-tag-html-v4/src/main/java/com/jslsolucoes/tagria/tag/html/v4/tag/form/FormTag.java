@@ -19,7 +19,7 @@ public class FormTag extends AbstractSimpleTagSupport {
 	private String labelKey;
 	private Boolean inline = Boolean.FALSE;
 	private Boolean border = Boolean.TRUE;
-	private String beforeSubmit;
+	private String onBeforeSubmit;
 
 	@Override
 	public Element render() {
@@ -77,7 +77,7 @@ public class FormTag extends AbstractSimpleTagSupport {
 				"$('#" + id + "').form({validation:'" + (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "")
 						+ "',invalid:{email : '" + keyForLibrary("form.email.invalid") + "',max:'"
 						+ keyForLibrary("form.max.invalid") + "',min:'" + keyForLibrary("form.min.invalid") + "'}," 
-													+ "beforeSubmit:function(){" + (StringUtils.isEmpty(beforeSubmit) ? "return true;" : "return " + beforeSubmit + "();") + "}});");
+													+ "beforeSubmit:function(){" + (StringUtils.isEmpty(onBeforeSubmit) ? "return true;" : onBeforeSubmit) + "}});");
 		return form;
 	}
 
@@ -165,12 +165,14 @@ public class FormTag extends AbstractSimpleTagSupport {
 		this.border = border;
 	}
 
-	public String getBeforeSubmit() {
-		return beforeSubmit;
+	public String getOnBeforeSubmit() {
+		return onBeforeSubmit;
 	}
 
-	public void setBeforeSubmit(String beforeSubmit) {
-		this.beforeSubmit = beforeSubmit;
+	public void setOnBeforeSubmit(String onBeforeSubmit) {
+		this.onBeforeSubmit = onBeforeSubmit;
 	}
+
+	
 
 }

@@ -30,9 +30,9 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	private Boolean minifyJs = Boolean.TRUE;
 	private Boolean minifyHtml = Boolean.TRUE;
 	private Boolean minifyCss = Boolean.TRUE;
+	private Boolean asFragment = Boolean.FALSE;
 	private List<String> jsScripts = new ArrayList<>();
 	private List<String> cssScripts = new ArrayList<>();
-
 	private List<String> jsScriptsForImport = new ArrayList<>();
 	private List<String> cssScriptsForImport = new ArrayList<>();
 
@@ -58,7 +58,26 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
 	@Override
 	public List<Element> renders() {
-		return Arrays.asList(docTypeHtml5(), html());
+		if(!asFragment) {
+			return Arrays.asList(docTypeHtml5(), html());
+		} else {
+			return Arrays.asList(fragment());
+		}
+	}
+	
+	private Element fragment() {
+		Element divRoot = divRoot();
+		for(String cssScriptForImport: this.cssScriptsForImport) {
+			divRoot.add(ElementCreator.newLink().attribute(Attribute.REL, "stylesheet")
+					.attribute(Attribute.TYPE, "text/css").attribute(Attribute.HREF, cssScriptForImport));
+		}
+		divRoot.add(ElementCreator.newStyle().add(minifyCss(cssScripts())));
+		for(String jsScriptForImport: this.jsScriptsForImport) {
+			divRoot.add(ElementCreator.newScript().attribute(Attribute.REL, "preload")
+					.attribute(Attribute.SRC, jsScriptForImport));
+		}
+		divRoot.add(ElementCreator.newScript().add(minifyJs(jsScripts())));
+		return divRoot;
 	}
 
 	private String lang() {
@@ -80,7 +99,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
 	private Element body() {
 		Element body = ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript())
-				.add(minifyHtml(bodyContent())).add(ajaxLoading());
+				.add(divRoot()).add(ajaxLoading());
 		for (Element cssScriptForImport : cssScriptsForImport()) {
 			body.add(cssScriptForImport);
 		}
@@ -90,6 +109,10 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 		}
 		body.add(appJs());
 		return body;
+	}
+
+	private Element divRoot() {
+		return ElementCreator.newDiv().attribute(Attribute.ID,"root").add(minifyHtml(bodyContent()));
 	}
 
 	private Element head() {
@@ -110,13 +133,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 				.attribute(Attribute.HREF, pathForUrl("/favicon.ico"));
 	}
 
-	private Element divNoScript() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-danger")
-				.add(keyForLibrary("app.no.script"));
-	}
-
 	private Element noScript() {
-		return ElementCreator.newNoScript().add(divNoScript());
+		return ElementCreator.newNoScript().add(keyForLibrary("app.no.script"));
 	}
 
 	private Element metaDescription() {
@@ -134,13 +152,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 				"text/html;charset=" + propertyValue(TagriaConfigParameter.ENCODING));
 	}
 
-	private String jsCodeForAjaxAnimation() {
-		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
-	}
 
-	private String jsCodeForUrlBase() {
-		return "URL_BASE='" + pathForUrl("") + "';";
-	}
 
 	private String minifyCss(String cssCode) {
 		if (minifyCss) {
@@ -174,6 +186,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
 	private Element appCss() {
 		return ElementCreator.newStyle().add(minifyCss(cssScripts()));
+	}
+	
+	private String jsCodeForAjaxAnimation() {
+		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
+	}
+
+	private String jsCodeForUrlBase() {
+		return "URL_BASE='" + pathForUrl("") + "';";
 	}
 
 	private Element appJs() {
@@ -269,6 +289,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
 	public void setMinifyCss(Boolean minifyCss) {
 		this.minifyCss = minifyCss;
+	}
+
+	public Boolean getAsFragment() {
+		return asFragment;
+	}
+
+	public void setAsFragment(Boolean asFragment) {
+		this.asFragment = asFragment;
 	}
 
 }

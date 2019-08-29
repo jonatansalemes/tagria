@@ -36,6 +36,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if view act as fragment (without html,head,body and default resources). Default: false </description>
+			<name>asFragment</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the title of the current page</description>
 			<name>title</name>
 			<rtexprvalue>true</rtexprvalue>

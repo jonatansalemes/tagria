@@ -169,6 +169,7 @@
 		<name>div</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.DivTag</tag-class>
 		<body-content>scriptless</body-content>
+		<dynamic-attributes>true</dynamic-attributes>
 		<attribute>
 			<description>Indicates the components id</description>
 			<name>id</name>

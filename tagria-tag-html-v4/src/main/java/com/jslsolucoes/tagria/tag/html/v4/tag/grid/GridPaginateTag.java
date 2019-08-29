@@ -10,6 +10,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 
 	private Integer resultsPerPage = 60;
 	private Integer totalResults;
+	private Integer range = 4;
 
 	@Override
 	public void renderOnVoid() {
@@ -62,9 +63,22 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element ulPaginate() {
+		
 		Integer currentPage = currentPage();
+		Integer totalOfPages = totalOfPages();
+		
+		Integer startOfPagination = currentPage - range;
+		if(startOfPagination < 1) {
+			startOfPagination = 1;
+		}
+		
+		Integer endOfPagination = currentPage + range;
+		if(endOfPagination > totalOfPages) {
+			endOfPagination = totalOfPages;
+		}
+		
 		Element ul = ElementCreator.newUl().attribute(Attribute.CLASS, "pagination");
-		for (int i = 1; i <= totalOfPages(); i++) {
+		for (int i = startOfPagination; i <= totalOfPages(); i++) {
 			ul.add(liPaginate(currentPage, i));
 		}
 		return ul;
@@ -140,5 +154,13 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 
 	public void setTotalResults(Integer totalResults) {
 		this.totalResults = totalResults;
+	}
+
+	public Integer getRange() {
+		return range;
+	}
+
+	public void setRange(Integer range) {
+		this.range = range;
 	}
 }
