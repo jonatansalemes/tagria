@@ -1,5 +1,5 @@
 <%@include file="taglibs.jsp"%>
-<html:view title="Playground" asFragment="true">
+<html:view title="Playground">
 
 	<html:input name="mydate"></html:input>
 	<html:datePicker attachTo="mydate" min="1" max="2"></html:datePicker>

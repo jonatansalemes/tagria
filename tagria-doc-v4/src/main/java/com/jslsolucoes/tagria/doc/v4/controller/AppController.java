@@ -17,71 +17,47 @@ import br.com.caelum.vraptor.view.Results;
 @Controller
 public class AppController {
 
-	private Result result;
-	private PersonRepository pessoaRepository;
+    private Result result;
+    private PersonRepository pessoaRepository;
 
-	public AppController() {
+    public AppController() {
 
-	}
+    }
 
-	@Inject
-	public AppController(Result result, PersonRepository pessoaRepository) {
-		this.result = result;
-		this.pessoaRepository = pessoaRepository;
-	}
+    @Inject
+    public AppController(Result result, PersonRepository pessoaRepository) {
+	this.result = result;
+	this.pessoaRepository = pessoaRepository;
+    }
 
-	@Path("/")
-	public void index() {
+    @Path("/")
+    public void index() {
 
-	}
-	
-	@Path("/app/masterTemplate")
-	public void masterTemplate() {
-		
-	}
-	
-	@Path("/app/template")
-	public void template() {
-		
-	}
+    }
 
-	@Path("/app/playground/v4")
-	public void playgroundV4() {
-		defaultsForPlayground();
-	}
+    @Path("/app/playground")
+    public void playground() {
+	this.result.include("booleanValue", Boolean.TRUE);
+	this.result.include("persons", pessoaRepository.listAll(3));
+	this.result.include("totalResults", 3);
+	this.result.include("dateTime", LocalDateTime.now());
+	this.result.include("descriptions", RandomStringUtils.randomNumeric(14));
+	this.result.include("myValue", 12345L);
+    }
 
-	@Path("/app/playground/v3")
-	public void playgroundV3() {
-		defaultsForPlayground();
-	}
+    @Path("/app/ajax")
+    public void ajax(String input1) {
+	this.result.use(Results.json()).from(input1, "field").serialize();
+    }
 
-	private void defaultsForPlayground() {
-		this.result.include("booleanValue", Boolean.TRUE);
-		this.result.include("persons", pessoaRepository.listAll(3));
-		this.result.include("totalResults", 3);
-		this.result.include("dateTime", LocalDateTime.now());
-		this.result.include("descriptions", RandomStringUtils.randomNumeric(14));
-		this.result.include("myValue", 12345L);
-	}
+    @Path("/app/ajax/list")
+    public void ajaxList() {
+	this.result.use(Results.json()).withoutRoot().from(pessoaRepository.listAll()).serialize();
+    }
 
-	@Path("/app/welcome")
-	public void welcome() {
-
-	}
-
-	@Path("/app/ajax")
-	public void ajax(String input1) {
-		this.result.use(Results.json()).from(input1, "field").serialize();
-	}
-
-	@Path("/app/ajax/list")
-	public void ajaxList() {
-		this.result.use(Results.json()).withoutRoot().from(pessoaRepository.listAll()).serialize();
-	}
-
-	@Path("/app/autoComplete")
-	public void autoComplete() {
-		this.result.use(Results.json()).from(pessoaRepository.listAll()).serialize();
-	}
+    @Path("/app/autoComplete")
+    public void autoComplete() {
+	this.result.use(Results.json()).from(pessoaRepository.listAll()).serialize();
+    }
 
 }

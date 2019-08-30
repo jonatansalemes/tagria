@@ -48,8 +48,8 @@ public class DocGenerator {
 			groupments.get(tag.getGroup()).add(tag);
 
 			StringBuilder template = new StringBuilder(
-					"<%@include file=\"../app/taglibs.jsp\"%>																							"
-							+ "<html:view title=\"{title}\">																							"
+					"<%@include file=\"../app/taglibs.jsp\"  %>																							"
+							+ "<html:view title=\"{title}\" template=\"master\" attribute=\"body\">																							"
 							+ "						<html:card>																							"
 							+ "							<html:card-header>																				"
 							+ tag.getName()
@@ -122,14 +122,14 @@ public class DocGenerator {
 			menu.append("<html:listgroup-item><html:collapsable label=\"" + key + "\"><html:listgroup>");
 			for (Tag tag : groupments.get(key)) {
 				menu.append("<html:listgroup-item><html:link label=\"" + tag.getName()
-						+ "\" target=\"conteudo\" url=\"/component/" + tag.getName()
+						+ "\" url=\"/component/" + tag.getName()
 						+ "\"></html:link></html:listgroup-item>");
 			}
 			menu.append("</html:listgroup></html:collapsable></html:listgroup-item>");
 		}
 		menu.append("</html:listgroup></html:div>");
 
-		File home = new File(jspFolder + "/app/index.jsp");
+		File home = new File(jspFolder + "/app/template.jsp");
 		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home, CHARSET)
 				.replaceAll("<html:div cssClass=\"menu\">[\\s\\S]*?</html:div>", menu.toString()), CHARSET);
 

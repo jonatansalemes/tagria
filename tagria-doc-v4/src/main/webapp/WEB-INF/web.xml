@@ -55,14 +55,4 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<url-pattern>/tagria-exporter/v4</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>tagria</servlet-name>
-		<servlet-class>com.jslsolucoes.tagria.lib.servlet.Tagria</servlet-class>
-	</servlet>
-	
-	 <servlet-mapping>
-		<servlet-name>tagria</servlet-name>
-		<url-pattern>/tagria/*</url-pattern>
-	</servlet-mapping>
-	
 </web-app>

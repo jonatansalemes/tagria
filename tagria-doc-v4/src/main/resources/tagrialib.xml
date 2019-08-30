@@ -3,6 +3,6 @@
 
 <tagrialib>
 	<templates>
-		<template name="master" path="/WEB-INF/jsp/app/masterTemplate.jsp" />
+		<template name="master" path="/WEB-INF/jsp/app/template.jsp" />
 	</templates>
 </tagrialib> 

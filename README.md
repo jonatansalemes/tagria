@@ -85,7 +85,7 @@ Add latest maven dependency to your project : <a href='https://mvnrepository.com
 	<code>
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
-	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
+	&lt;artifactId&gt;tagria-lib-v4&lt;/artifactId&gt;
 	&lt;version&gt;latest-version&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
