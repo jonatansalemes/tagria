@@ -92,8 +92,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	if (StringUtils.isEmpty(templateContent)) {
 	    throw new TagriaRuntimeException("Content of template " + template + " cannot be empty");
 	} else if (!templateContent.contains(partialTag)) {
-	    throw new TagriaRuntimeException(
-		    "Template " + template + " must define tag " + partialTag + " somewhere");
+	    throw new TagriaRuntimeException("Template " + template + " must define tag " + partialTag + " somewhere");
 	}
 	return concat(Arrays.asList(ElementCreator.newCData(templateContent.replace(partialTag, partialContent))),
 		appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs());
