@@ -51,21 +51,21 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 			
-			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     datas();
-			&lt;/html:jsEvent&gt;
+			&lt;html:js-event attachTo="input1" event="blur"&gt;
+			     checkForUrl();
+			&lt;/html:js-event&gt;
 		
-			&lt;ajax:function name="dados" url="/app/ajax"&gt;
+			&lt;ajax:function name="checkForUrl" url="/app/ajax"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
-			           /*Nesse trecho está disponivel as variaveis javascript ( Anything data, String textStatus, jqXHR jqXHR )*/
-			           alert('O valor enviado foi' + data.field);
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;ajax:on-success&gt;
+			           //function signature is f(data,textStatus,jqXHR):void. data: result data response, textStatus: status response text,jqXHR: ajax request object  */
+			           alert('Value was sent' + data.field);
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			           
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		</example>
 	</tag>
@@ -113,20 +113,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 			&lt;html:input name="input2" disabled="true"/&gt;
 			
-			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     datas();
-			&lt;/html:jsEvent&gt;
+			&lt;html:js-event attachTo="input1" event="blur"&gt;
+			     checkForUrl();
+			&lt;/html:js-event&gt;
 		
-			&lt;ajax:function name="dados" url="/app/ajax"&gt;
+			&lt;ajax:function name="checkForUrl" url="/app/ajax"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
+			    &lt;ajax:on-success&gt;
 			          &lt;ajax:target type="val" data="field" target="input2"/&gt;
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			           
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		
 		</example>
@@ -139,16 +139,16 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.tag.ajax.v4.tag.OnErrorTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;ajax:function name="dados" url="/app/url/nao/existe" execute="true"&gt;
-			    &lt;ajax:onSuccess&gt;
+			&lt;ajax:function name="checkForUrl" url="/app/url/not/found" execute="true"&gt;
+			    &lt;ajax:on-success&gt;
 			    	      
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
-			           /*Nesse trecho está disponivel as variaveis javascript ( jqXHR jqXHR, String textStatus, String errorThrown )*/
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
+			           //function signature is f(jqXHR,textStatus,errorThrown):void. jqXHR: ajax request object,textStatus: status response text,errorThrown: error response text  */
 			           alert(textStatus);
 			           alert(errorThrown);
 			           alert(jqXHR);
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function>
 		</example>
 	</tag>
@@ -161,11 +161,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 				&lt;ajax:function name="data" url="/app/ajax" execute="true"&gt;
-			    &lt;ajax:beforeSend&gt;
-			    	    /* Available javascript variables ( jqXHR jqXHR, Object settings )*/
+			    &lt;ajax:on-before-send&gt;
+			    	   //function signature is f(jqXHR,settings):void. jqXHR: ajax request object,settings: ajax settings object  */
 			           alert(settings);
 			           alert(jqXHR);
-			    &lt;/ajax:beforeSend&gt;
+			    &lt;/ajax:on-before-send&gt;
 			&lt;/ajax:function&gt;
 		</example>
 	</tag>
@@ -178,9 +178,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 				&lt;ajax:function name="data" url="/app/ajax" execute="true"&gt;
-			    	&lt;ajax:onDone&gt;
+			    	&lt;ajax:on-done&gt;
 			    	   alert('on function done');
-			    	&lt;/ajax:onDone&gt;
+			    	&lt;/ajax:on-done&gt;
 				&lt;/ajax:function&gt;
 		</example>
 	</tag>
@@ -198,15 +198,15 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
-			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
+			    &lt;ajax:on-success&gt;
+			    	   //function signature is f(data,textStatus,jqXHR):void. data: result data response, textStatus: status response text,jqXHR: ajax request object  */
 			           alert(textStatus);
 			           alert(data);
 			           alert(jqXHR);
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			          
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		</example>
 	</tag>
@@ -224,12 +224,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
+			    &lt;ajax:on-success&gt;
 			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			          
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		</example>
 	</tag>
@@ -275,21 +275,21 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 			&lt;html:input name="input2" value="" /&gt;
 			
-			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			&lt;html:js-event attachTo="input1" event="blur"&gt;
 			     datas();
-			&lt;/html:jsEvent&gt;
+			&lt;/html:js-event&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 					&lt;ajax:parameter name="input2" src="input2" type="val" required="false" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
-			          alert('Executada');
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;ajax:on-success&gt;
+			          console.log('success');
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			           
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		</example>
 	</tag>
@@ -327,12 +327,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:select&gt;
 			
 			&lt;ajax:function name="dados" url="/app/ajax/list" execute="true"&gt;
-			    &lt;ajax:onSuccess&gt;
-			          &lt;ajax:mapOptions target="input2" value="id" text="nome" /&gt;
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;ajax:on-success&gt;
+			          &lt;ajax:map-options target="input2" value="id" text="nome" /&gt;
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			           
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		</example>
 	</tag>

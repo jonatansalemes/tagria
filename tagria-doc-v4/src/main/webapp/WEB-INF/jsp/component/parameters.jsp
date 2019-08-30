@@ -5,12 +5,12 @@
 				<ajax:parameters>
 					<ajax:parameter name="input1" src="input1" type="val" />
 				</ajax:parameters>
-			    <ajax:onSuccess>
+			    <ajax:on-success>
 			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
-			    </ajax:onSuccess>
-			    <ajax:onError>
+			    </ajax:on-success>
+			    <ajax:on-error>
 			          
-			    </ajax:onError>
+			    </ajax:on-error>
 			</ajax:function>
 												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:input name="input1" value="Valor 0"/&gt;
@@ -19,11 +19,11 @@
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
+			    &lt;ajax:on-success&gt;
 			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			          
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			

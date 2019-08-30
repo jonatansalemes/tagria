@@ -4,12 +4,12 @@
 			</html:select>
 			
 			<ajax:function name="dados" url="/app/ajax/list" execute="true">
-			    <ajax:onSuccess>
-			          <ajax:mapOptions target="input2" value="id" text="nome" />
-			    </ajax:onSuccess>
-			    <ajax:onError>
+			    <ajax:on-success>
+			          <ajax:map-options target="input2" value="id" text="nome" />
+			    </ajax:on-success>
+			    <ajax:on-error>
 			           
-			    </ajax:onError>
+			    </ajax:on-error>
 			</ajax:function>
 												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:select name="input2"&gt;
@@ -17,11 +17,11 @@
 			&lt;/html:select&gt;
 			
 			&lt;ajax:function name="dados" url="/app/ajax/list" execute="true"&gt;
-			    &lt;ajax:onSuccess&gt;
-			          &lt;ajax:mapOptions target="input2" value="id" text="nome" /&gt;
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;ajax:on-success&gt;
+			          &lt;ajax:map-options target="input2" value="id" text="nome" /&gt;
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			           
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			

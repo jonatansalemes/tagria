@@ -2,40 +2,40 @@
 			<html:input name="input1" value="Valor 0"/>
 			<html:input name="input2" value="" />
 			
-			<html:jsEvent attachTo="input1" event="blur">
+			<html:js-event attachTo="input1" event="blur">
 			     datas();
-			</html:jsEvent>
+			</html:js-event>
 		
 			<ajax:function name="dados" url="/app/ajax">
 				<ajax:parameters>
 					<ajax:parameter name="input1" src="input1" type="val" />
 					<ajax:parameter name="input2" src="input2" type="val" required="false" />
 				</ajax:parameters>
-			    <ajax:onSuccess>
-			          alert('Executada');
-			    </ajax:onSuccess>
-			    <ajax:onError>
+			    <ajax:on-success>
+			          console.log('success');
+			    </ajax:on-success>
+			    <ajax:on-error>
 			           
-			    </ajax:onError>
+			    </ajax:on-error>
 			</ajax:function>
 												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 			&lt;html:input name="input2" value="" /&gt;
 			
-			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			&lt;html:js-event attachTo="input1" event="blur"&gt;
 			     datas();
-			&lt;/html:jsEvent&gt;
+			&lt;/html:js-event&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 					&lt;ajax:parameter name="input2" src="input2" type="val" required="false" /&gt;
 				&lt;/ajax:parameters&gt;
-			    &lt;ajax:onSuccess&gt;
-			          alert('Executada');
-			    &lt;/ajax:onSuccess&gt;
-			    &lt;ajax:onError&gt;
+			    &lt;ajax:on-success&gt;
+			          console.log('success');
+			    &lt;/ajax:on-success&gt;
+			    &lt;ajax:on-error&gt;
 			           
-			    &lt;/ajax:onError&gt;
+			    &lt;/ajax:on-error&gt;
 			&lt;/ajax:function&gt;
 		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			
