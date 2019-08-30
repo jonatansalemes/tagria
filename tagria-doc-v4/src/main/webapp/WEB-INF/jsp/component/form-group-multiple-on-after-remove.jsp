@@ -2,10 +2,10 @@
 			<html:form action="#" label="My title">
 			
 				<html:form-group-multiple label="Fields group">
-					<html:form-group-multiple-after-remove>
+					<html:form-group-multiple-on-after-remove>
 					    //function signature is f():void      
 					    
-					</html:form-group-multiple-after-remove>
+					</html:form-group-multiple-on-after-remove>
 					<html:input name="fields3[]"/>
 				</html:form-group-multiple>	
 				<html:form-toolbar>
@@ -16,10 +16,10 @@
 			&lt;html:form action="#" label="My title"&gt;
 			
 				&lt;html:form-group-multiple label="Fields group"&gt;
-					&lt;html:form-group-multiple-after-remove&gt;
+					&lt;html:form-group-multiple-on-after-remove&gt;
 					    //function signature is f():void      
 					    
-					&lt;/html:form-group-multiple-after-remove&gt;
+					&lt;/html:form-group-multiple-on-after-remove&gt;
 					&lt;html:input name="fields3[]"/&gt;
 				&lt;/html:form-group-multiple&gt;	
 				&lt;html:form-toolbar&gt;

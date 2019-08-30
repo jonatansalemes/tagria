@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
@@ -28,357 +26,353 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 @SuppressWarnings("unchecked")
 public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppender, GlobalCssAppender {
 
-	private static final Logger logger = LoggerFactory.getLogger(ViewTag.class);
+    private String title;
+    private String titleKey;
+    private String cssClass = "body-default";
+    private Boolean minifyJs = Boolean.TRUE;
+    private Boolean minifyHtml = Boolean.TRUE;
+    private Boolean minifyCss = Boolean.TRUE;
+    private Boolean asFragment = Boolean.FALSE;
+    private String template;
+    private String attribute;
+    private List<String> jsScripts = new ArrayList<>();
+    private List<String> cssScripts = new ArrayList<>();
+    private List<String> jsScriptsForImport = new ArrayList<>();
+    private List<String> cssScriptsForImport = new ArrayList<>();
 
-	private String title;
-	private String titleKey;
-	private String cssClass = "body-default";
-	private Boolean minifyJs = Boolean.TRUE;
-	private Boolean minifyHtml = Boolean.TRUE;
-	private Boolean minifyCss = Boolean.TRUE;
-	private Boolean asFragment = Boolean.FALSE;
-	private String template;
-	private String attribute;
-	private List<String> jsScripts = new ArrayList<>();
-	private List<String> cssScripts = new ArrayList<>();
-	private List<String> jsScriptsForImport = new ArrayList<>();
-	private List<String> cssScriptsForImport = new ArrayList<>();
+    @Override
+    public void appendCssCode(String cssCode) {
+	this.cssScripts.add(cssCode);
+    }
 
-	@Override
-	public void appendCssCode(String cssCode) {
-		this.cssScripts.add(cssCode);
-	}
+    @Override
+    public void appendJavascriptCode(String jsCode) {
+	this.jsScripts.add(jsCode);
+    }
 
-	@Override
-	public void appendJavascriptCode(String jsCode) {
-		this.jsScripts.add(jsCode);
-	}
+    @Override
+    public void appendJavascriptScript(String url) {
+	this.jsScriptsForImport.add(url);
+    }
 
-	@Override
-	public void appendJavascriptScript(String url) {
-		this.jsScriptsForImport.add(url);
-	}
+    @Override
+    public void appendCssScript(String url) {
+	this.cssScriptsForImport.add(url);
+    }
 
-	@Override
-	public void appendCssScript(String url) {
-		this.cssScriptsForImport.add(url);
+    @Override
+    public List<Element> renders() {
+	if (isTemplatePartial()) {
+	    return partial();
+	} else {
+	    if (!asFragment) {
+		return full();
+	    } else {
+		return fragment();
+	    }
 	}
-	
-	@Override
-	public List<Element> renders() {
-		if (isTemplatePartial()) {
-			return partial();
-		} else {
-			if (!asFragment) {
-				return full();
-			} else {
-				return fragment();
-			}
-		}
-	}
-	
-	private List<Element> concat(Element... elements){
-		return Arrays.asList(elements);
-	}
-	
-	private List<Element> concat(List<Element>... lists){
-		return Stream.of(lists)
-				.flatMap(x -> x.stream()).collect(Collectors.toList());
-	}
+    }
 
-	private boolean isTemplatePartial() {
-		return !StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute);
-	}
+    private List<Element> concat(Element... elements) {
+	return Arrays.asList(elements);
+    }
 
-	private List<Element> partial() {
-		String templateContent = contentOfTemplate(template);
-		String partialContent = asHtml(fragment());
-		String partialTag = asHtml(partialTag());
-		logger.debug("template content {}, partial content {}, partial tag {}", templateContent, partialContent,partialTag);
-		if (StringUtils.isEmpty(templateContent)) {
-			throw new TagriaRuntimeException("Content of template " + template + " cannot be empty");
-		} else if (!templateContent.contains(partialTag)) {
-			throw new TagriaRuntimeException(
-					"Template " + template + " must define tag " + partialTag + " is somewhere");
-		}
-		return Arrays.asList(ElementCreator.newCData(templateContent.replace(partialTag, partialContent)));
-	}
-	
-	private String asHtml(Element element) {
-		return asHtml(Arrays.asList(element));
-	}
-	
-	private String asHtml(List<Element> elements) {
-		return elements.stream().map(element-> element.html()).collect(Collectors.joining());
-	}
+    private List<Element> concat(List<Element>... lists) {
+	return Stream.of(lists).flatMap(x -> x.stream()).collect(Collectors.toList());
+    }
 
-	private Element partialTag() {
-		return ElementCreator.newTemplate().attribute("render", attribute);
-	}
+    private boolean isTemplatePartial() {
+	return !StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute);
+    }
 
-	private List<Element> full() {
-		return concat(docTypeHtml5(), html());
+    private List<Element> partial() {
+	String templateContent = contentOfTemplate(template);
+	String partialContent = asHtml(appHtml());
+	String partialTag = asHtml(partialTag());
+	if (StringUtils.isEmpty(templateContent)) {
+	    throw new TagriaRuntimeException("Content of template " + template + " cannot be empty");
+	} else if (!templateContent.contains(partialTag)) {
+	    throw new TagriaRuntimeException(
+		    "Template " + template + " must define tag " + partialTag + " somewhere");
 	}
-	
-	private List<Element> fragment() {
-		return concat(appHtml(),appCssScriptsForImport(), appCss(),
-				appJsScriptsForImport(), appJs());
-	}
+	return concat(Arrays.asList(ElementCreator.newCData(templateContent.replace(partialTag, partialContent))),
+		appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs());
+    }
 
-	private String lang() {
-		return language().concat(country());
-	}
+    private String asHtml(Element element) {
+	return asHtml(Arrays.asList(element));
+    }
 
-	private String language() {
-		return locale().getLanguage();
-	}
+    private String asHtml(List<Element> elements) {
+	return elements.stream().map(element -> element.html()).collect(Collectors.joining());
+    }
 
-	private String country() {
-		return (!StringUtils.isEmpty(locale().getCountry()) ? "-" + locale().getCountry() : "");
-	}
+    private Element partialTag() {
+	return ElementCreator.newTemplate().attribute("render", attribute);
+    }
 
-	private Element html() {
-		return ElementCreator.newHtml().attribute(Attribute.XMLNS, "http://www.w3.org/1999/xhtml")
-				.attribute(Attribute.LANG, lang()).add(head()).add(body());
-	}
+    private List<Element> full() {
+	return concat(docTypeHtml5(), html());
+    }
 
-	private Element body() {
-		Element body = ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(divRoot())
-				.add(ajaxLoading());
-		List<Element> elements = Stream
-				.of(tagriaCssScriptsForImport(), appCssScriptsForImport(), appCss(), tagriaJsScriptsForImport(),
-						appJsScriptsForImport(), tagriaJs(), appJs())
-				.flatMap(x -> x.stream()).collect(Collectors.toList());
-		for (Element element : elements) {
-			body.add(element);
-		}
-		return body;
-	}
+    private List<Element> fragment() {
+	return concat(appHtml(), appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs());
+    }
 
-	private Element divRoot() {
-		return ElementCreator.newDiv().attribute(Attribute.ID, "root").add(appHtml());
-	}
+    private String lang() {
+	return language().concat(country());
+    }
 
-	private Element head() {
-		return ElementCreator.newHead().add(title()).add(metaContentType()).add(metaViewPort()).add(metaDescription())
-				.add(favicon());
-	}
+    private String language() {
+	return locale().getLanguage();
+    }
 
-	private Element title() {
-		return ElementCreator.newTitle().add(titleForApplication());
-	}
+    private String country() {
+	return (!StringUtils.isEmpty(locale().getCountry()) ? "-" + locale().getCountry() : "");
+    }
 
-	private String titleForApplication() {
-		return (hasKeyOrLabel(titleKey, title) ? keyOrLabel(titleKey, title) : "");
-	}
+    private Element html() {
+	return ElementCreator.newHtml().attribute(Attribute.XMLNS, "http://www.w3.org/1999/xhtml")
+		.attribute(Attribute.LANG, lang()).add(head()).add(body());
+    }
 
-	private Element favicon() {
-		return ElementCreator.newLink().attribute(Attribute.REL, "icon").attribute(Attribute.TYPE, "image/x-icon")
-				.attribute(Attribute.HREF, pathForUrl("/favicon.ico"));
+    private Element body() {
+	Element body = ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(divRoot())
+		.add(ajaxLoading());
+	List<Element> elements = Stream
+		.of(tagriaCssScriptsForImport(), appCssScriptsForImport(), appCss(), tagriaJsScriptsForImport(),
+			appJsScriptsForImport(), tagriaJs(), appJs())
+		.flatMap(x -> x.stream()).collect(Collectors.toList());
+	for (Element element : elements) {
+	    body.add(element);
 	}
+	return body;
+    }
 
-	private Element noScript() {
-		return ElementCreator.newNoScript().add(keyForLibrary("app.no.script"));
-	}
+    private Element divRoot() {
+	return ElementCreator.newDiv().attribute(Attribute.ID, "root").add(appHtml());
+    }
 
-	private Element metaDescription() {
-		return ElementCreator.newMeta().attribute(Attribute.NAME, "description").attribute(Attribute.CONTENT,
-				titleForApplication());
-	}
+    private Element head() {
+	return ElementCreator.newHead().add(title()).add(metaContentType()).add(metaViewPort()).add(metaDescription())
+		.add(favicon());
+    }
 
-	private Element metaViewPort() {
-		return ElementCreator.newMeta().attribute(Attribute.NAME, "viewport").attribute(Attribute.CONTENT,
-				"width=device-width, initial-scale=1");
-	}
+    private Element title() {
+	return ElementCreator.newTitle().add(titleForApplication());
+    }
 
-	private Element metaContentType() {
-		return ElementCreator.newMeta().attribute(Attribute.HTTP_EQUIV, "content-type").attribute(Attribute.CONTENT,
-				"text/html;charset=" + propertyValue(TagriaConfigParameter.ENCODING));
-	}
+    private String titleForApplication() {
+	return (hasKeyOrLabel(titleKey, title) ? keyOrLabel(titleKey, title) : "");
+    }
 
-	private String minifyCss(String cssCode) {
-		if (minifyCss) {
-			return cssCode.replaceAll("(\n|\r|\t|\\s{2,})", "").replaceAll(" \\{", "{").replaceAll(" ,", ",")
-					.replaceAll(": ", ":").replaceAll(", ", ",");
-		} else {
-			return cssCode;
-		}
-	}
+    private Element favicon() {
+	return ElementCreator.newLink().attribute(Attribute.REL, "icon").attribute(Attribute.TYPE, "image/x-icon")
+		.attribute(Attribute.HREF, pathForUrl("/favicon.ico"));
+    }
 
-	private String minifyHtml(String html) {
-		if (minifyHtml) {
-			return html.replaceAll("(<.*?>)(\n|\r|\t|\\s)+(<.*?>)", "$1$3");
-		} else {
-			return html;
-		}
-	}
+    private Element noScript() {
+	return ElementCreator.newNoScript().add(keyForLibrary("app.no.script"));
+    }
 
-	private String minifyJs(String jsCode) {
-		if (minifyJs) {
-			Compiler compiler = new Compiler();
-			CompilerOptions options = new CompilerOptions();
-			CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-			options.setLanguageIn(LanguageMode.ECMASCRIPT5);
-			compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
-			return compiler.toSource();
-		} else {
-			return jsCode;
-		}
-	}
+    private Element metaDescription() {
+	return ElementCreator.newMeta().attribute(Attribute.NAME, "description").attribute(Attribute.CONTENT,
+		titleForApplication());
+    }
 
-	private List<Element> appCss() {
-		return Arrays.asList(ElementCreator.newStyle().add(minifyCss(cssScripts())));
-	}
+    private Element metaViewPort() {
+	return ElementCreator.newMeta().attribute(Attribute.NAME, "viewport").attribute(Attribute.CONTENT,
+		"width=device-width, initial-scale=1");
+    }
 
-	private List<Element> appJs() {
-		return Arrays.asList(ElementCreator.newScript().add(minifyJs(jsScripts())));
-	}
+    private Element metaContentType() {
+	return ElementCreator.newMeta().attribute(Attribute.HTTP_EQUIV, "content-type").attribute(Attribute.CONTENT,
+		"text/html;charset=" + propertyValue(TagriaConfigParameter.ENCODING));
+    }
 
-	private List<Element> appHtml() {
-		return Arrays.asList(ElementCreator.newCData(minifyHtml(bodyContent())));
+    private String minifyCss(String cssCode) {
+	if (minifyCss) {
+	    return cssCode.replaceAll("(\n|\r|\t|\\s{2,})", "").replaceAll(" \\{", "{").replaceAll(" ,", ",")
+		    .replaceAll(": ", ":").replaceAll(", ", ",");
+	} else {
+	    return cssCode;
 	}
+    }
 
-	private List<Element> appJsScriptsForImport() {
-		return jsScriptsForImport.stream().map(jsScriptForImport -> script(jsScriptForImport))
-				.collect(Collectors.toList());
+    private String minifyHtml(String html) {
+	if (minifyHtml) {
+	    return html.replaceAll("(<.*?>)(\n|\r|\t|\\s)+(<.*?>)", "$1$3");
+	} else {
+	    return html;
 	}
+    }
 
-	private List<Element> appCssScriptsForImport() {
-		return cssScriptsForImport.stream().map(cssScriptForImport -> style(cssScriptForImport))
-				.collect(Collectors.toList());
+    private String minifyJs(String jsCode) {
+	if (minifyJs) {
+	    Compiler compiler = new Compiler();
+	    CompilerOptions options = new CompilerOptions();
+	    CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
+	    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+	    compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
+	    return compiler.toSource();
+	} else {
+	    return jsCode;
 	}
+    }
 
-	private Element style(String href) {
-		return ElementCreator.newLink().attribute(Attribute.REL, "stylesheet").attribute(Attribute.TYPE, "text/css")
-				.attribute(Attribute.HREF, href);
-	}
+    private List<Element> appCss() {
+	return Arrays.asList(ElementCreator.newStyle().add(minifyCss(cssScripts())));
+    }
 
-	private Element script(String src) {
-		return ElementCreator.newScript().attribute(Attribute.REL, "preload").attribute(Attribute.SRC, src);
-	}
+    private List<Element> appJs() {
+	return Arrays.asList(ElementCreator.newScript().add(minifyJs(jsScripts())));
+    }
 
-	private String cssScripts() {
-		return cssScripts.stream().collect(Collectors.joining());
-	}
+    private List<Element> appHtml() {
+	return Arrays.asList(ElementCreator.newCData(minifyHtml(bodyContent())));
+    }
 
-	private String jsScripts() {
-		return jsScripts.stream().collect(Collectors.joining());
-	}
+    private List<Element> appJsScriptsForImport() {
+	return jsScriptsForImport.stream().map(jsScriptForImport -> script(jsScriptForImport))
+		.collect(Collectors.toList());
+    }
 
-	private List<Element> tagriaJsScriptsForImport() {
-		return Arrays
-				.asList(pathForJavascriptOnLibrary("tagria-ui.js"),
-						pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()))
-				.stream().map(jsScriptForImport -> script(jsScriptForImport)).collect(Collectors.toList());
-	}
+    private List<Element> appCssScriptsForImport() {
+	return cssScriptsForImport.stream().map(cssScriptForImport -> style(cssScriptForImport))
+		.collect(Collectors.toList());
+    }
 
-	private List<Element> tagriaCssScriptsForImport() {
-		return Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream()
-				.map(cssScriptForImport -> style(cssScriptForImport)).collect(Collectors.toList());
-	}
+    private Element style(String href) {
+	return ElementCreator.newLink().attribute(Attribute.REL, "stylesheet").attribute(Attribute.TYPE, "text/css")
+		.attribute(Attribute.HREF, href);
+    }
 
-	private List<Element> tagriaJs() {
-		return Arrays.asList(ElementCreator.newScript().add(minifyJs(tagriaJsScripts())));
-	}
+    private Element script(String src) {
+	return ElementCreator.newScript().attribute(Attribute.REL, "preload").attribute(Attribute.SRC, src);
+    }
 
-	private String tagriaJsScripts() {
-		return Arrays.asList(tagriaJsCodeForAjaxAnimation(), tagriaJsCodeForUrlBase()).stream()
-				.collect(Collectors.joining(""));
-	}
+    private String cssScripts() {
+	return cssScripts.stream().collect(Collectors.joining());
+    }
 
-	private String tagriaJsCodeForAjaxAnimation() {
-		return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
-	}
+    private String jsScripts() {
+	return jsScripts.stream().collect(Collectors.joining());
+    }
 
-	private String tagriaJsCodeForUrlBase() {
-		return "URL_BASE='" + pathForUrl("") + "';";
-	}
+    private List<Element> tagriaJsScriptsForImport() {
+	return Arrays
+		.asList(pathForJavascriptOnLibrary("tagria-ui.js"),
+			pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()))
+		.stream().map(jsScriptForImport -> script(jsScriptForImport)).collect(Collectors.toList());
+    }
 
-	private Element docTypeHtml5() {
-		return ElementCreator.newDocTypeHtml5();
-	}
+    private List<Element> tagriaCssScriptsForImport() {
+	return Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream()
+		.map(cssScriptForImport -> style(cssScriptForImport)).collect(Collectors.toList());
+    }
 
-	private Element ajaxLoading() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "fixed-top collapse ajax-loading")
-				.add(loadingImage());
-	}
+    private List<Element> tagriaJs() {
+	return Arrays.asList(ElementCreator.newScript().add(minifyJs(tagriaJsScripts())));
+    }
 
-	private Element loadingImage() {
-		return ElementCreator.newImg().attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif"))
-				.attribute(Attribute.WIDTH, 100).attribute(Attribute.HEIGHT, 100)
-				.attribute(Attribute.CLASS, "mx-auto d-block lazyload").attribute(Attribute.ALT, "loading");
-	}
+    private String tagriaJsScripts() {
+	return Arrays.asList(tagriaJsCodeForAjaxAnimation(), tagriaJsCodeForUrlBase()).stream()
+		.collect(Collectors.joining(""));
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    private String tagriaJsCodeForAjaxAnimation() {
+	return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private String tagriaJsCodeForUrlBase() {
+	return "URL_BASE='" + pathForUrl("") + "';";
+    }
 
-	public String getCssClass() {
-		return cssClass;
-	}
+    private Element docTypeHtml5() {
+	return ElementCreator.newDocTypeHtml5();
+    }
 
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
+    private Element ajaxLoading() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "fixed-top collapse ajax-loading")
+		.add(loadingImage());
+    }
 
-	public Boolean getMinifyJs() {
-		return minifyJs;
-	}
+    private Element loadingImage() {
+	return ElementCreator.newImg().attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif"))
+		.attribute(Attribute.WIDTH, 100).attribute(Attribute.HEIGHT, 100)
+		.attribute(Attribute.CLASS, "mx-auto d-block lazyload").attribute(Attribute.ALT, "loading");
+    }
 
-	public void setMinifyJs(Boolean minifyJs) {
-		this.minifyJs = minifyJs;
-	}
+    public String getTitle() {
+	return title;
+    }
 
-	public Boolean getMinifyHtml() {
-		return minifyHtml;
-	}
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-	public void setMinifyHtml(Boolean minifyHtml) {
-		this.minifyHtml = minifyHtml;
-	}
+    public String getCssClass() {
+	return cssClass;
+    }
 
-	public String getTitleKey() {
-		return titleKey;
-	}
+    public void setCssClass(String cssClass) {
+	this.cssClass = cssClass;
+    }
 
-	public void setTitleKey(String titleKey) {
-		this.titleKey = titleKey;
-	}
+    public Boolean getMinifyJs() {
+	return minifyJs;
+    }
 
-	public Boolean getMinifyCss() {
-		return minifyCss;
-	}
+    public void setMinifyJs(Boolean minifyJs) {
+	this.minifyJs = minifyJs;
+    }
 
-	public void setMinifyCss(Boolean minifyCss) {
-		this.minifyCss = minifyCss;
-	}
+    public Boolean getMinifyHtml() {
+	return minifyHtml;
+    }
 
-	public Boolean getAsFragment() {
-		return asFragment;
-	}
+    public void setMinifyHtml(Boolean minifyHtml) {
+	this.minifyHtml = minifyHtml;
+    }
 
-	public void setAsFragment(Boolean asFragment) {
-		this.asFragment = asFragment;
-	}
+    public String getTitleKey() {
+	return titleKey;
+    }
 
-	public String getTemplate() {
-		return template;
-	}
+    public void setTitleKey(String titleKey) {
+	this.titleKey = titleKey;
+    }
 
-	public void setTemplate(String template) {
-		this.template = template;
-	}
+    public Boolean getMinifyCss() {
+	return minifyCss;
+    }
 
-	public String getAttribute() {
-		return attribute;
-	}
+    public void setMinifyCss(Boolean minifyCss) {
+	this.minifyCss = minifyCss;
+    }
 
-	public void setAttribute(String attribute) {
-		this.attribute = attribute;
-	}
+    public Boolean getAsFragment() {
+	return asFragment;
+    }
+
+    public void setAsFragment(Boolean asFragment) {
+	this.asFragment = asFragment;
+    }
+
+    public String getTemplate() {
+	return template;
+    }
+
+    public void setTemplate(String template) {
+	this.template = template;
+    }
+
+    public String getAttribute() {
+	return attribute;
+    }
+
+    public void setAttribute(String attribute) {
+	this.attribute = attribute;
+    }
 
 }

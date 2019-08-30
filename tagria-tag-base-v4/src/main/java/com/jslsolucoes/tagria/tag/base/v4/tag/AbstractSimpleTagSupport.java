@@ -66,12 +66,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	
 	public String contentOfTemplate(String template) {
-		logger.debug("Requested content of template {}",template);
 		String jspPath = config().xml().getTemplates().stream()
 				.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
 				.orElseThrow(() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
 				.getPath();
-		logger.debug("Jsp path {} for template {} was found",jspPath,template);
 		HttpServletRequest httpServletRequest = httpServletRequest();
 		HttpServletResponse httpServletResponse = httpServletResponse();
 		try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
@@ -144,13 +142,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	private String complementForMultipleFormGroup() {
-		logger.debug("Looking for id complement...");
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 		if(cloneableJsAppender != null) {
-			logger.debug("Its children of CloneableJsAppender");
 			return "__" + cloneableJsAppender.index();
 		} else {
-			logger.debug("Its not children of CloneableJsAppender");
 			return "";
 		}
 	}
@@ -213,16 +208,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public <T> List<T> findAncestorsWithClass(Class<T> ancestorClass) {
-		logger.debug("Find ancestors of {} looking for {}",getClass(),ancestorClass);
 		return findAncestorsWithAssignable((SimpleTagSupport)getParent(), ancestorClass);
 	}
 
 	@SuppressWarnings("unchecked")
 	private <T> List<T> findAncestorsWithAssignable(SimpleTagSupport simpleTagSupport, Class<T> ancestorClass) {
-		logger.debug("Ancestor {}",simpleTagSupport.getClass());
 		List<T> ancestors = new ArrayList<T>();
 		if (ancestorClass.isAssignableFrom(simpleTagSupport.getClass())) {
-			logger.debug("Ancestor {} is match of {}",simpleTagSupport.getClass(),ancestorClass);
 			ancestors.add((T) simpleTagSupport);
 		} else {
 			SimpleTagSupport simpleTagSupportParent = (SimpleTagSupport) simpleTagSupport.getParent();
@@ -383,17 +375,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public void appendJsCode(String jsCode) {
-		logger.debug("trying append jsCode {}",jsCode);
 		GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 		globalJsAppender.appendJavascriptCode(jsCode);
 		CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 		if (cloneableJsAppender != null) {
-			logger.debug("Its children of CloneableJsAppender");
 			if(cloneableJsAppender.index() == 0) {
 				cloneableJsAppender.appendJavascriptCode(jsCode);
 			}
-		} else {
-			logger.debug("Its not children of CloneableJsAppender");
 		}
 	}
 	
@@ -403,7 +391,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 
 	public void appendJsScript(String url) {
-		logger.debug("trying append js script {}",url);
 		GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 		globalJsAppender.appendJavascriptScript(pathForStatic(url));
 	}

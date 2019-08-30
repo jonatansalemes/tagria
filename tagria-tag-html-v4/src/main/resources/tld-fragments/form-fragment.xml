@@ -11,10 +11,10 @@
 			&lt;html:form action="#" label="My title"&gt;
 			
 				&lt;html:form-group-multiple label="Fields group"&gt;
-					&lt;html:form-group-multiple-after-remove&gt;
+					&lt;html:form-group-multiple-on-after-remove&gt;
 					    //function signature is f():void      
 					    
-					&lt;/html:form-group-multiple-after-remove&gt;
+					&lt;/html:form-group-multiple-on-after-remove&gt;
 					&lt;html:input name="fields3[]"/&gt;
 				&lt;/html:form-group-multiple&gt;	
 				&lt;html:form-toolbar&gt;
@@ -33,11 +33,11 @@
 		<example>
 			&lt;html:form action="#" label="My title"&gt;
 				&lt;html:form-group-multiple label="Fields group"&gt;
-					&lt;html:form-group-multiple-after-insert&gt;
+					&lt;html:form-group-multiple-on-after-insert&gt;
 					    //function signature is f(idx,element):void. idx: index of line was added, element: clone of elements declared in template      
 					    console.log(idx);
 					    console.log(element);
-					&lt;/html:form-group-multiple-after-insert&gt;
+					&lt;/html:form-group-multiple-on-after-insert&gt;
 					&lt;html:input name="fields3[]"/&gt;
 				&lt;/html:form-group-multiple&gt;	
 				&lt;html:form-toolbar&gt;
