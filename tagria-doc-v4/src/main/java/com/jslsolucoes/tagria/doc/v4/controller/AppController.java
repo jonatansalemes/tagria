@@ -55,9 +55,9 @@ public class AppController {
 	this.result.use(Results.json()).withoutRoot().from(pessoaRepository.listAll()).serialize();
     }
 
-    @Path("/app/autoComplete")
-    public void autoComplete() {
-	this.result.use(Results.json()).from(pessoaRepository.listAll()).serialize();
+    @Path("/app/autocomplete")
+    public void autocomplete() {
+	
     }
 
 }

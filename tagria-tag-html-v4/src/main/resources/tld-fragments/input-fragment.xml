@@ -1,10 +1,142 @@
 <fragment>
 
 	<tag>
+		<description>Renders a autocomplete</description>
+		<display-name>Input</display-name>
+		<name>autocomplete</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.AutoCompleteTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the name of the hidden input.</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder for autocomplete</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates placeholder key (i18n) for autocomplete</description>
+			<name>placeholderKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the autocomplete result box width</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component form is mandatory in form</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the text to be show on input load.</description>
+			<name>text</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the text key (i18n) to be show on input load.</description>
+			<name>textKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the value of the hidden input.</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates url to execute query.</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates min length of input. Default: 3</description>
+			<name>minLength</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates delay in ms to listen changes. Default: 1000</description>
+			<name>delay</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:autocomplete url="/app/autocomplete" name="myautocomplete"&gt;
+				&lt;html:autocomplete-on-select&gt;
+					console.log(value);
+					console.log(text);
+				&lt;/html:autocomplete-on-select&gt;
+			&lt;/html:autocomplete&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a autocomplete item. View must be set as fragment in this case</description>
+		<display-name>Input</display-name>
+		<name>autocomplete-item</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.AutoCompleteItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates value to persist on component.</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates text to show on autocomplete select.</description>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:autocomplete-item value="1" text="text 1"&gt;
+				My item 1
+			&lt;/html:autocomplete-item&gt;
+			&lt;html:autocomplete-item value="2" text="text 2"&gt;
+				My item 2
+			&lt;/html:autocomplete-item&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders an onSelect </description>
+		<display-name>Input</display-name>
+		<name>autocomplete-on-select</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.AutoCompleteOnSelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:autocomplete url="/app/autocomplete" name="myautocomplete"&gt;
+				&lt;html:autocomplete-on-select&gt;
+					//function signature is f(value,text):void. value: value of item selected, text: text of item selected      
+					console.log(value);
+					console.log(text);
+				&lt;/html:autocomplete-on-select&gt;
+			&lt;/html:autocomplete&gt;
+		</example>
+	</tag>
+
+
+	<tag>
 		<description>Renders a input group</description>
 		<display-name>Input</display-name>
 		<name>input-group</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.InputGroupTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.InputGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the input group should append another component. Default:false</description>

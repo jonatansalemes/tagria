@@ -1,6 +1,15 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+
+	<html:autocomplete url="/app/autocomplete" name="myautocomplete">
+		<html:autocomplete-on-select>
+			console.log(value);
+			console.log(text);
+		</html:autocomplete-on-select>
+	</html:autocomplete>
+
+
 	<html:input name="mydate"></html:input>
 	<html:datePicker attachTo="mydate" min="1" max="2"></html:datePicker>
 	<html:tooltip attachTo="mydate">My tooltip</html:tooltip>
@@ -319,7 +328,7 @@ private class Java {
 
 	<html:link label="My link" url="#" />
 
-	<html:iframe url="/app/welcome" name="content" title="My iframe title" />
+	<html:iframe url="/" name="content" title="My iframe title" />
 
 	<html:recaptcha siteKey="fdaf9dsj9j" />
 
