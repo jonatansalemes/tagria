@@ -2,7 +2,7 @@
 	<tag>
 		<description>Renders a list</description>
 		<display-name>Groupments</display-name>
-		<name>listgroup</name>
+		<name>listGroup</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.listgroup.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -18,24 +18,24 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:list-group&gt;
-				&lt;html:list-group-item&gt;
+			&lt;html:listGroup&gt;
+				&lt;html:listGroupItem&gt;
 					Item 1
-				&lt;/html:list-group-item&gt;
-				&lt;html:list-group-item&gt;
+				&lt;/html:listGroupItem&gt;
+				&lt;html:listGroupItem&gt;
 					Item 2
-				&lt;/html:list-group-item&gt;
-				&lt;html:list-group-item&gt;
+				&lt;/html:listGroupItem&gt;
+				&lt;html:listGroupItem&gt;
 					Item 3
-				&lt;/html:list-group-item&gt;
-			&lt;/html:list-group&gt; 
+				&lt;/html:listGroupItem&gt;
+			&lt;/html:listGroup&gt; 
 		</example>
 	</tag>
 
 	<tag>
 		<description>Renders a list item</description>
 		<display-name>Groupments</display-name>
-		<name>listgroup-item</name>
+		<name>listGroupItem</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.listgroup.ListGroupItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -57,17 +57,17 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:list-group&gt;
-				&lt;html:list-group-item&gt;
+			&lt;html:listGroup&gt;
+				&lt;html:listGroupItem&gt;
 					Item 1
-				&lt;/html:list-group-item&gt;
-				&lt;html:list-group-item&gt;
+				&lt;/html:listGroupItem&gt;
+				&lt;html:listGroupItem&gt;
 					Item 2
-				&lt;/html:list-group-item&gt;
-				&lt;html:list-group-item&gt;
+				&lt;/html:listGroupItem&gt;
+				&lt;html:listGroupItem&gt;
 					Item 3
-				&lt;/html:list-group-item&gt;
-			&lt;/html:list-group&gt; 
+				&lt;/html:listGroupItem&gt;
+			&lt;/html:listGroup&gt; 
 		</example>
 	</tag>
 </fragment>

@@ -1,33 +1,33 @@
-<%@include file="../app/taglibs.jsp"  %>																							<html:view title="{title}" template="master" attribute="body">																													<html:card>																														<html:card-header>																				card							</html:card-header>																											<html:card-body>																												<html:tabs>																														<html:tabs-header>																												<html:tabs-tab active="true" labelKey="about" id="tab1"></html:tabs-tab> 												<html:tabs-tab labelKey="attributes" id="tab2"></html:tabs-tab> 														<html:tabs-tab labelKey="demo" id="tab3"></html:tabs-tab> 																<html:tabs-tab labelKey="source" id="tab4"></html:tabs-tab> 														</html:tabs-header> 																										<html:tabs-body> 																												<html:tabs-content active="true" contentOf="tab1">																			<html:alert state="warning">													Renders a card											</html:alert>																											</html:tabs-content>																										<html:tabs-content contentOf="tab2">												<html:table stripe="true" hover="true"><html:table-header light="true"><html:table-row><html:table-head><fmt:message key="tag.attribute"/></html:table-head><html:table-head><fmt:message key="tag.required"/></html:table-head><html:table-head><fmt:message key="tag.type"/></html:table-head><html:table-head><fmt:message key="tag.description"/></html:table-head></html:table-row></html:table-header><html:table-body><html:table-row><html:table-data>cssClass</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.String</html:table-data><html:table-data>It indicates a css class to the component</html:table-data></html:table-row><html:table-row><html:table-data>state</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.String</html:table-data><html:table-data>Indicates the card state. Default: primary. Options: success, danger, info, default, primary</html:table-data></html:table-row><html:table-row><html:table-data>visible</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.Boolean</html:table-data><html:table-data>It indicates whether the component should be visible. Default : true</html:table-data></html:table-row><html:table-row><html:table-data>id</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.String</html:table-data><html:table-data>Indicates the id for card component</html:table-data></html:table-row><html:table-row><html:table-data>rendered</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.Boolean</html:table-data><html:table-data>It indicates whether the component should be rendered. Default : true</html:table-data></html:table-row></html:table-body></html:table>										</html:tabs-content>																								<html:tabs-content contentOf="tab3">										
+<%@include file="../app/taglibs.jsp"  %>																							<html:view title="{title}" template="master" attribute="body">																													<html:card>																														<html:cardHeader>																				card							</html:cardHeader>																											<html:cardBody>																												<html:tabs>																														<html:tabsHeader>																												<html:tabsTab active="true" labelKey="about" id="tab1"></html:tabsTab> 												<html:tabsTab labelKey="attributes" id="tab2"></html:tabsTab> 														<html:tabsTab labelKey="demo" id="tab3"></html:tabsTab> 																<html:tabsTab labelKey="source" id="tab4"></html:tabsTab> 														</html:tabsHeader> 																										<html:tabsBody> 																												<html:tabsContent active="true" contentOf="tab1">																			<html:alert state="warning">													Renders a card											</html:alert>																											</html:tabsContent>																										<html:tabsContent contentOf="tab2">												<html:table stripe="true" hover="true"><html:tableHeader light="true"><html:tableRow><html:tableHead><fmt:message key="tag.attribute"/></html:tableHead><html:tableHead><fmt:message key="tag.required"/></html:tableHead><html:tableHead><fmt:message key="tag.type"/></html:tableHead><html:tableHead><fmt:message key="tag.description"/></html:tableHead></html:tableRow></html:tableHeader><html:tableBody><html:tableRow><html:tableData>cssClass</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.String</html:tableData><html:tableData>It indicates a css class to the component</html:tableData></html:tableRow><html:tableRow><html:tableData>state</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.String</html:tableData><html:tableData>Indicates the card state. Default: primary. Options: success, danger, info, default, primary</html:tableData></html:tableRow><html:tableRow><html:tableData>visible</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.Boolean</html:tableData><html:tableData>It indicates whether the component should be visible. Default : true</html:tableData></html:tableRow><html:tableRow><html:tableData>id</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.String</html:tableData><html:tableData>Indicates the id for card component</html:tableData></html:tableRow><html:tableRow><html:tableData>rendered</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.Boolean</html:tableData><html:tableData>It indicates whether the component should be rendered. Default : true</html:tableData></html:tableRow></html:tableBody></html:table>										</html:tabsContent>																								<html:tabsContent contentOf="tab3">										
 			<html:card>
-				<html:card-image url="/image/person.png" width="32" height="32" responsive="false"></html:card-image>
-				<html:card-header>
+				<html:cardImage url="/image/person.png" width="32" height="32" responsive="false"></html:cardImage>
+				<html:cardHeader>
 					My header
-				</html:card-header>
-				<html:card-body>
-					<html:card-title>My title</html:card-title>
-					<html:card-sub-title>My subtitle</html:card-sub-title>
-					<html:card-text>My text</html:card-text>
-					<html:card-link label="My link 1" url="#"></html:card-link>
-				</html:card-body>
-				<html:card-footer>
+				</html:cardHeader>
+				<html:cardBody>
+					<html:cardTitle>My title</html:cardTitle>
+					<html:cardSubTitle>My subtitle</html:cardSubTitle>
+					<html:cardText>My text</html:cardText>
+					<html:cardLink label="My link 1" url="#"></html:cardLink>
+				</html:cardBody>
+				<html:cardFooter>
 					My footer
-				</html:card-footer>
+				</html:cardFooter>
 			</html:card>
-												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
+												</html:tabsContent>																								<html:tabsContent contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:card&gt;
-				&lt;html:card-image url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:card-image&gt;
-				&lt;html:card-header&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
 					My header
-				&lt;/html:card-header&gt;
-				&lt;html:card-body&gt;
-					&lt;html:card-title&gt;My title&lt;/html:card-title&gt;
-					&lt;html:card-sub-title&gt;My subtitle&lt;/html:card-sub-title&gt;
-					&lt;html:card-text&gt;My text&lt;/html:card-text&gt;
-					&lt;html:card-link label="My link 1" url="#"&gt;&lt;/html:card-link&gt;
-				&lt;/html:card-body&gt;
-				&lt;html:card-footer&gt;
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
 					My footer
-				&lt;/html:card-footer&gt;
+				&lt;/html:cardFooter&gt;
 			&lt;/html:card&gt;
-		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			
+		&lt;/html:view&gt;												</html:code>																									</html:tabsContent>																							</html:tabsBody> 																								</html:tabs>																									</html:cardBody>																								</html:card>																									</html:view>																			

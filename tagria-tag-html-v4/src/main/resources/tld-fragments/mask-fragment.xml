@@ -34,17 +34,17 @@
 	<tag>
 		<description>Renders event on mask after any key press</description>
 		<display-name>Mask</display-name>
-		<name>mask-on-keypress</name>
+		<name>maskOnKeypress</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.mask.MaskOnKeyPressTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:input name="teste"/&gt;
 			&lt;html:mask mask="(00) 0000-00000" attachTo="teste"&gt;
-				&lt;html:mask-on-keypress&gt;
+				&lt;html:maskOnKeypress&gt;
 				    var masks = ['(00) 0000-00000', '(00) 00000-0000'];
 					mask = (value.length > 14) ? masks[1] : masks[0];
 					$('#'+$(field[0]).attr('id')).mask(mask,options);
-				&lt;/html:mask-on-keypress&gt;
+				&lt;/html:maskOnKeypress&gt;
 			&lt;/html:mask&gt; 
 		</example>
 	</tag>
@@ -52,7 +52,7 @@
 	<tag>
 		<description>Renders a mask in currency format for a particular input</description>
 		<display-name>Mask</display-name>
-		<name>mask-currency</name>
+		<name>maskCurrency</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.mask.MaskCurrencyTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -70,7 +70,7 @@
 		</attribute>
 		<example>
 			&lt;html:input name="teste" value="0" format="currency"/&gt;
-			&lt;html:mask-currency attachTo="teste"/&gt; 
+			&lt;html:maskCurrency attachTo="teste"/&gt; 
 		</example>
 	</tag>
 </fragment>

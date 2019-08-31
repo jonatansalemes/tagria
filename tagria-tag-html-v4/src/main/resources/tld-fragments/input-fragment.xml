@@ -1,9 +1,9 @@
 <fragment>
 
 	<tag>
-		<description>Renders a autocomplete</description>
+		<description>Renders a autoComplete</description>
 		<display-name>Input</display-name>
-		<name>autocomplete</name>
+		<name>autoComplete</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.AutoCompleteTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -14,19 +14,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates placeholder for autocomplete</description>
-			<name>placeholder</name>
+			<description>Indicates placeHolder for autoComplete</description>
+			<name>placeHolder</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates placeholder key (i18n) for autocomplete</description>
-			<name>placeholderKey</name>
+			<description>Indicates placeHolder key (i18n) for autoComplete</description>
+			<name>placeHolderKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the autocomplete result box width</description>
+			<description>Indicates the autoComplete result box width</description>
 			<name>width</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
@@ -75,19 +75,19 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<example>
-			&lt;html:autocomplete url="/app/autocomplete" name="myautocomplete"&gt;
-				&lt;html:autocomplete-on-select&gt;
+			&lt;html:autoComplete url="/app/autoComplete" name="myautoComplete"&gt;
+				&lt;html:autoCompleteOnSelect&gt;
 					console.log(value);
 					console.log(text);
-				&lt;/html:autocomplete-on-select&gt;
-			&lt;/html:autocomplete&gt;
+				&lt;/html:autoCompleteOnSelect&gt;
+			&lt;/html:autoComplete&gt;
 		</example>
 	</tag>
 	
 	<tag>
-		<description>Renders a autocomplete item. View must be set as fragment in this case</description>
+		<description>Renders a autoComplete item. View must be set as fragment in this case</description>
 		<display-name>Input</display-name>
-		<name>autocomplete-item</name>
+		<name>autoCompleteItem</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.AutoCompleteItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -98,36 +98,36 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates text to show on autocomplete select.</description>
+			<description>It indicates text to show on autoComplete select.</description>
 			<name>text</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:autocomplete-item value="1" text="text 1"&gt;
+			&lt;html:autoCompleteItem value="1" text="text 1"&gt;
 				My item 1
-			&lt;/html:autocomplete-item&gt;
-			&lt;html:autocomplete-item value="2" text="text 2"&gt;
+			&lt;/html:autoCompleteItem&gt;
+			&lt;html:autoCompleteItem value="2" text="text 2"&gt;
 				My item 2
-			&lt;/html:autocomplete-item&gt;
+			&lt;/html:autoCompleteItem&gt;
 		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders an onSelect </description>
 		<display-name>Input</display-name>
-		<name>autocomplete-on-select</name>
+		<name>autoCompleteOnSelect</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.AutoCompleteOnSelectTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;html:autocomplete url="/app/autocomplete" name="myautocomplete"&gt;
-				&lt;html:autocomplete-on-select&gt;
-					//function signature is f(value,text):void. value: value of item selected, text: text of item selected      
+			&lt;html:autoComplete url="/app/autoComplete" name="myautoComplete"&gt;
+				&lt;html:autoCompleteOnSelect&gt;
+					/* function signature is f(value,text):void. value: value of item selected, text: text of item selected */      
 					console.log(value);
 					console.log(text);
-				&lt;/html:autocomplete-on-select&gt;
-			&lt;/html:autocomplete&gt;
+				&lt;/html:autoCompleteOnSelect&gt;
+			&lt;/html:autoComplete&gt;
 		</example>
 	</tag>
 
@@ -135,7 +135,7 @@
 	<tag>
 		<description>Renders a input group</description>
 		<display-name>Input</display-name>
-		<name>input-group</name>
+		<name>inputGroup</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.InputGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -151,12 +151,12 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:input-group&gt;
+			&lt;html:inputGroup&gt;
 				&lt;html:input type="search" name="search"/&gt;
-				&lt;html:input-group append="true"&gt;
+				&lt;html:inputGroup append="true"&gt;
 					&lt;html:button icon="search" title="Search"/&gt;
-				&lt;/html:input-group&gt;
-			&lt;/html:input-group&gt; 
+				&lt;/html:inputGroup&gt;
+			&lt;/html:inputGroup&gt; 
 		</example>
 	</tag>
 
@@ -164,7 +164,7 @@
 	<tag>
 		<description>Renders a data list component</description>
 		<display-name>Input</display-name>
-		<name>datalist</name>
+		<name>dataList</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.DataListTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -200,18 +200,18 @@
 		</attribute>
 		<example>
 			&lt;html:input name="dl" list="myDatalist1"/&gt;
-			&lt;html:datalist id="myDatalist1" data="${ persons }" var="person"&gt;
-				&lt;html:datalist-option value="${ person.id }"&gt;
+			&lt;html:dataList id="myDatalist1" data="${ persons }" var="person"&gt;
+				&lt;html:dataListOption value="${ person.id }"&gt;
 					${ person.name }
-				&lt;/html:datalist-option&gt;
-			&lt;/html:datalist&gt;
+				&lt;/html:dataListOption&gt;
+			&lt;/html:dataList&gt;
 		</example>
 	</tag>
 	
 	<tag>
 		<description>Renders an option of data list</description>
 		<display-name>Input</display-name>
-		<name>datalist-option</name>
+		<name>dataListOption</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.DataListOptionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -223,11 +223,11 @@
 		</attribute>
 		<example>
 			&lt;html:input name="dl" list="myDatalist1"/&gt;
-			&lt;html:datalist id="myDatalist1" data="${ persons }" var="person"&gt;
-				&lt;html:datalist-option value="${ person.id }"&gt;
+			&lt;html:dataList id="myDatalist1" data="${ persons }" var="person"&gt;
+				&lt;html:dataListOption value="${ person.id }"&gt;
 					${ person.name }
-				&lt;/html:datalist-option&gt;
-			&lt;/html:datalist&gt; 
+				&lt;/html:dataListOption&gt;
+			&lt;/html:dataList&gt; 
 		</example>
 	</tag>
 	
@@ -343,14 +343,14 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates placeholder for textarea</description>
-			<name>placeholder</name>
+			<description>Indicates placeHolder for textarea</description>
+			<name>placeHolder</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates placeholder key (i18n) for textarea</description>
-			<name>placeholderKey</name>
+			<description>Indicates placeHolder key (i18n) for textarea</description>
+			<name>placeHolderKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -436,14 +436,14 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates placeholder for input</description>
-			<name>placeholder</name>
+			<description>Indicates placeHolder for input</description>
+			<name>placeHolder</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates placeholder key (i18n) for textarea</description>
-			<name>placeholderKey</name>
+			<description>Indicates placeHolder key (i18n) for textarea</description>
+			<name>placeHolderKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -460,8 +460,8 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Defines if input allow autocomplete previous input date.Default false</description>
-			<name>autocomplete</name>
+			<description>Defines if input allow autoComplete previous input date.Default false</description>
+			<name>autoComplete</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>

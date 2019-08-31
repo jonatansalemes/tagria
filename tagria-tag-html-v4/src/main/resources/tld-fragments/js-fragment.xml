@@ -2,7 +2,7 @@
 	<tag>
 		<description>Renders a javascript code</description>
 		<display-name>Javascript</display-name>
-		<name>js-code</name>
+		<name>jsCode</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.js.JsCodeTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -12,18 +12,18 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:js-code&gt;
+			&lt;html:jsCode&gt;
 				function test(){
 					console.log('hi');
 				}
 				test();
-			&lt;/html:js-code&gt; 
+			&lt;/html:jsCode&gt; 
 		</example>
 	</tag>
 	<tag>
 		<description>Renders a triggered event for a given component</description>
 		<display-name>Javascript</display-name>
-		<name>js-event</name>
+		<name>jsEvent</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.js.JsEventTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -53,9 +53,9 @@
 		</attribute>
 		<example>
 			&lt;html:input name="input1" placeholder="Focus in and focus out" /&gt;
-			&lt;html:js-event attachTo="input1" event="blur"&gt;
+			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
 			    console.log('blur');
-			&lt;/html:js-event&gt; 
+			&lt;/html:jsEvent&gt; 
 		</example>
 	</tag>
 </fragment>

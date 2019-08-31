@@ -14,8 +14,8 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
     private Integer minLength = 3;
     private String text;
     private String textKey;
-    private String placeholder;
-    private String placeholderKey;
+    private String placeHolder;
+    private String placeHolderKey;
     private String value;
     private Boolean required = Boolean.FALSE;
     private Integer width;
@@ -46,8 +46,8 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	if (hasKeyOrLabel(textKey, text)) {
 	    input.attribute(Attribute.VALUE, keyOrLabel(textKey, text));
 	}
-	if (hasKeyOrLabel(placeholderKey, placeholder)) {
-	    input.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
+	if (hasKeyOrLabel(placeHolderKey, placeHolder)) {
+	    input.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeHolderKey, placeHolder));
 	}
 	return input;
     }
@@ -162,13 +162,7 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	this.onSelect = onSelect;
     }
 
-    public String getPlaceholder() {
-	return placeholder;
-    }
-
-    public void setPlaceholder(String placeholder) {
-	this.placeholder = placeholder;
-    }
+   
 
     public String getTextKey() {
 	return textKey;
@@ -178,12 +172,22 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	this.textKey = textKey;
     }
 
-    public String getPlaceholderKey() {
-	return placeholderKey;
+    public String getPlaceHolder() {
+	return placeHolder;
     }
 
-    public void setPlaceholderKey(String placeholderKey) {
-	this.placeholderKey = placeholderKey;
+    public void setPlaceHolder(String placeHolder) {
+	this.placeHolder = placeHolder;
     }
+
+    public String getPlaceHolderKey() {
+	return placeHolderKey;
+    }
+
+    public void setPlaceHolderKey(String placeHolderKey) {
+	this.placeHolderKey = placeHolderKey;
+    }
+
+    
 
 }

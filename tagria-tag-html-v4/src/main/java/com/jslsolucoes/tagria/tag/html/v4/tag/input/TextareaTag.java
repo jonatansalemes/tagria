@@ -11,8 +11,8 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
 	private String name;
 	private String value;
-	private String placeholder;
-	private String placeholderKey;
+	private String placeHolder;
+	private String placeHolderKey;
 	private Boolean required = Boolean.FALSE;
 	private Integer rows = 4;
 
@@ -29,8 +29,8 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 			textArea.attribute(Attribute.CLASS, cssClass);
 		}
 
-		if (hasKeyOrLabel(placeholderKey, placeholder)) {
-			textArea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
+		if (hasKeyOrLabel(placeHolderKey, placeHolder)) {
+			textArea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeHolderKey, placeHolder));
 		}
 
 		if (!StringUtils.isEmpty(value)) {
@@ -53,13 +53,7 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 		this.name = name;
 	}
 
-	public String getPlaceholder() {
-		return placeholder;
-	}
-
-	public void setPlaceholder(String placeholder) {
-		this.placeholder = placeholder;
-	}
+	
 
 	public Boolean getRequired() {
 		return required;
@@ -85,12 +79,22 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 		this.rows = rows;
 	}
 
-	public String getPlaceholderKey() {
-		return placeholderKey;
+	public String getPlaceHolder() {
+	    return placeHolder;
 	}
 
-	public void setPlaceholderKey(String placeholderKey) {
-		this.placeholderKey = placeholderKey;
+	public void setPlaceHolder(String placeHolder) {
+	    this.placeHolder = placeHolder;
 	}
+
+	public String getPlaceHolderKey() {
+	    return placeHolderKey;
+	}
+
+	public void setPlaceHolderKey(String placeHolderKey) {
+	    this.placeHolderKey = placeHolderKey;
+	}
+
+	
 
 }

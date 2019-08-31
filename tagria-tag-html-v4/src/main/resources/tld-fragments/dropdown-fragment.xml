@@ -1,24 +1,24 @@
 <fragment>
 	<tag>
-		<description>Renders a menu dropdown divider</description>
+		<description>Renders a menu dropDown divider</description>
 		<display-name>DropDown</display-name>
-		<name>dropdown-divider</name>
+		<name>dropDownDivider</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.dropdown.DropDownDividerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;html:dropdown label="List"&gt;
-				&lt;html:dropdown-item label="Item 1" url="#"/&gt;
-				&lt;html:dropdown-divider/&gt;
-				&lt;html:dropdown-item label="Item 2" target="_blank" url="#"/&gt;
-				&lt;html:dropdown-item icon="trash" label="Item 3" url="#"/&gt;
-			&lt;/html:dropdown&gt; 
+			&lt;html:dropDown label="List"&gt;
+				&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+				&lt;html:dropDownDivider/&gt;
+				&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+				&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+			&lt;/html:dropDown&gt; 
 		</example>
 	</tag>
 
 	<tag>
-		<description>Renders a dropdown item list</description>
+		<description>Renders a dropDown item list</description>
 		<display-name>DropDown</display-name>
-		<name>dropdown-item</name>
+		<name>dropDownItem</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.dropdown.DropDownItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -64,21 +64,21 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:dropdown label="List"&gt;
-				&lt;html:dropdown-item label="Item 1" url="#"/&gt;
-				&lt;html:dropdown-divider/&gt;
-				&lt;html:dropdown-item label="Item 2" target="_blank" url="#"/&gt;
-				&lt;html:dropdown-item icon="trash" label="Item 3" url="#"/&gt;
-			&lt;/html:dropdown&gt; 
+			&lt;html:dropDown label="List"&gt;
+				&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+				&lt;html:dropDownDivider/&gt;
+				&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+				&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+			&lt;/html:dropDown&gt; 
 		</example>
 	</tag>
 
 
 
 	<tag>
-		<description>Renders a dropdown list</description>
+		<description>Renders a dropDown list</description>
 		<display-name>DropDown</display-name>
-		<name>dropdown</name>
+		<name>dropDown</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.dropdown.DropDownTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -88,31 +88,31 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the dropdown direction. Options: left,right,down,up. Default: down</description>
+			<description>Indicates the dropDown direction. Options: left,right,down,up. Default: down</description>
 			<name>direction</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the size of dropdown. Default none. Options: xl,sm,lg</description>
+			<description>Indicates the size of dropDown. Default none. Options: xl,sm,lg</description>
 			<name>size</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the dropdown state. Default: default. Options: success, danger, info, default, primary</description>
+			<description>Indicates the dropDown state. Default: default. Options: success, danger, info, default, primary</description>
 			<name>state</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates the label to be used in dropdown root</description>
+			<description>It indicates the label to be used in dropDown root</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates the label key (i18n) to be used in dropdown root</description>
+			<description>It indicates the label key (i18n) to be used in dropDown root</description>
 			<name>labelKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -124,12 +124,12 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:dropdown label="List"&gt;
-				&lt;html:dropdown-item label="Item 1" url="#"/&gt;
-				&lt;html:dropdown-divider/&gt;
-				&lt;html:dropdown-item label="Item 2" target="_blank" url="#"/&gt;
-				&lt;html:dropdown-item icon="trash" label="Item 3" url="#"/&gt;
-			&lt;/html:dropdown&gt; 
+			&lt;html:dropDown label="List"&gt;
+				&lt;html:dropDownItem label="Item 1" url="#"/&gt;
+				&lt;html:dropDownDivider/&gt;
+				&lt;html:dropDownItem label="Item 2" target="_blank" url="#"/&gt;
+				&lt;html:dropDownItem icon="trash" label="Item 3" url="#"/&gt;
+			&lt;/html:dropDown&gt; 
 		</example>
 	</tag>
 </fragment>

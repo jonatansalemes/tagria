@@ -51,56 +51,56 @@ public class DocGenerator {
 					"<%@include file=\"../app/taglibs.jsp\"  %>																							"
 							+ "<html:view title=\"{title}\" template=\"master\" attribute=\"body\">																							"
 							+ "						<html:card>																							"
-							+ "							<html:card-header>																				"
+							+ "							<html:cardHeader>																				"
 							+ tag.getName()
-							+ "							</html:card-header>																				"
-							+ "							<html:card-body>																				"
+							+ "							</html:cardHeader>																				"
+							+ "							<html:cardBody>																				"
 							+ "								<html:tabs>																					"
-							+ "									<html:tabs-header>																		"
-							+ "										<html:tabs-tab active=\"true\" labelKey=\"about\" id=\"tab1\"></html:tabs-tab> 		"
-							+ "										<html:tabs-tab labelKey=\"attributes\" id=\"tab2\"></html:tabs-tab> 				"
-							+ "										<html:tabs-tab labelKey=\"demo\" id=\"tab3\"></html:tabs-tab> 						"
-							+ "										<html:tabs-tab labelKey=\"source\" id=\"tab4\"></html:tabs-tab> 					"
-							+ "									</html:tabs-header> 																	"
-							+ "									<html:tabs-body> 																		"
-							+ "										<html:tabs-content active=\"true\" contentOf=\"tab1\">								"
+							+ "									<html:tabsHeader>																		"
+							+ "										<html:tabsTab active=\"true\" labelKey=\"about\" id=\"tab1\"></html:tabsTab> 		"
+							+ "										<html:tabsTab labelKey=\"attributes\" id=\"tab2\"></html:tabsTab> 				"
+							+ "										<html:tabsTab labelKey=\"demo\" id=\"tab3\"></html:tabsTab> 						"
+							+ "										<html:tabsTab labelKey=\"source\" id=\"tab4\"></html:tabsTab> 					"
+							+ "									</html:tabsHeader> 																	"
+							+ "									<html:tabsBody> 																		"
+							+ "										<html:tabsContent active=\"true\" contentOf=\"tab1\">								"
 							+ "											<html:alert state=\"warning\">													"
 							+ tag.getDescription()
 							+ "											</html:alert>																	"
-							+ "										</html:tabs-content>																"
-							+ "										<html:tabs-content contentOf=\"tab2\">												");
+							+ "										</html:tabsContent>																"
+							+ "										<html:tabsContent contentOf=\"tab2\">												");
 
 			if (CollectionUtils.isEmpty(tag.getAttributes())) {
 				template.append("<html:alert state=\"info\" labelKey=\"tag.empty.attributes\"></html:alert>");
 			} else {
 
 				template.append(
-						"<html:table stripe=\"true\" hover=\"true\"><html:table-header light=\"true\"><html:table-row><html:table-head><fmt:message key=\"tag.attribute\"/></html:table-head><html:table-head><fmt:message key=\"tag.required\"/></html:table-head><html:table-head><fmt:message key=\"tag.type\"/></html:table-head><html:table-head><fmt:message key=\"tag.description\"/></html:table-head></html:table-row></html:table-header><html:table-body>");
+						"<html:table stripe=\"true\" hover=\"true\"><html:tableHeader light=\"true\"><html:tableRow><html:tableHead><fmt:message key=\"tag.attribute\"/></html:tableHead><html:tableHead><fmt:message key=\"tag.required\"/></html:tableHead><html:tableHead><fmt:message key=\"tag.type\"/></html:tableHead><html:tableHead><fmt:message key=\"tag.description\"/></html:tableHead></html:tableRow></html:tableHeader><html:tableBody>");
 				for (Attribute attribute : tag.getAttributes()) {
-					template.append("<html:table-row><html:table-data>" + attribute.getName()
-							+ "</html:table-data><html:table-data>" + (attribute.getRequired() == null ? false : true)
-							+ "</html:table-data><html:table-data>" + attribute.getType()
-							+ "</html:table-data><html:table-data>" + attribute.getDescription()
-							+ "</html:table-data></html:table-row>");
+					template.append("<html:tableRow><html:tableData>" + attribute.getName()
+							+ "</html:tableData><html:tableData>" + (attribute.getRequired() == null ? false : true)
+							+ "</html:tableData><html:tableData>" + attribute.getType()
+							+ "</html:tableData><html:tableData>" + attribute.getDescription()
+							+ "</html:tableData></html:tableRow>");
 				}
 
-				template.append("</html:table-body></html:table>");
+				template.append("</html:tableBody></html:table>");
 			}
 
 			template.append(
-					"										</html:tabs-content>														"
-							+ "										<html:tabs-content contentOf=\"tab3\">										"
+					"										</html:tabsContent>														"
+							+ "										<html:tabsContent contentOf=\"tab3\">										"
 							+ tag.getExample()
-							+ "										</html:tabs-content>														"
-							+ "										<html:tabs-content contentOf=\"tab4\">										"
+							+ "										</html:tabsContent>														"
+							+ "										<html:tabsContent contentOf=\"tab4\">										"
 							+ "											<html:code>																"
 							+ "												&lt;html:view&gt;" + tag.getExampleEscaped()
 							+ "&lt;/html:view&gt;	"
 							+ "											</html:code>															"
-							+ "										</html:tabs-content>														"
-							+ "									</html:tabs-body> 																"
+							+ "										</html:tabsContent>														"
+							+ "									</html:tabsBody> 																"
 							+ "								</html:tabs>																		"
-							+ "							</html:card-body>																		"
+							+ "							</html:cardBody>																		"
 							+ "						</html:card>																				"
 							+ "					</html:view>																			");
 			FileUtils.writeStringToFile(
@@ -117,17 +117,17 @@ public class DocGenerator {
 			});
 		}
 
-		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:listgroup>");
+		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:listGroup>");
 		for (String key : new TreeSet<String>(groupments.keySet())) {
-			menu.append("<html:listgroup-item><html:collapsable label=\"" + key + "\"><html:listgroup>");
+			menu.append("<html:listGroupItem><html:collapsable label=\"" + key + "\"><html:listGroup>");
 			for (Tag tag : groupments.get(key)) {
-				menu.append("<html:listgroup-item><html:link label=\"" + tag.getName()
+				menu.append("<html:listGroupItem><html:link label=\"" + tag.getName()
 						+ "\" url=\"/component/" + tag.getName()
-						+ "\"></html:link></html:listgroup-item>");
+						+ "\"></html:link></html:listGroupItem>");
 			}
-			menu.append("</html:listgroup></html:collapsable></html:listgroup-item>");
+			menu.append("</html:listGroup></html:collapsable></html:listGroupItem>");
 		}
-		menu.append("</html:listgroup></html:div>");
+		menu.append("</html:listGroup></html:div>");
 
 		File home = new File(jspFolder + "/app/template.jsp");
 		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home, CHARSET)

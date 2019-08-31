@@ -14,8 +14,8 @@ public class InputTag extends AbstractSimpleTagSupport {
 	private String value;
 	private String pattern;
 	private String type = "text";
-	private String placeholder;
-	private String placeholderKey;
+	private String placeHolder;
+	private String placeHolderKey;
 	private String accept;
 	private Boolean multiple = Boolean.FALSE;
 	private Boolean required = Boolean.FALSE;
@@ -28,7 +28,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 	private Integer min;
 	private Integer step;
 	private String list;
-	private Boolean autocomplete = Boolean.FALSE;
+	private Boolean autoComplete = Boolean.FALSE;
 
 	@Override
 	public Element render() {
@@ -40,7 +40,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 
 		Element input = applyDynamicAttributesOn(ElementCreator.newInput()).attribute(Attribute.TYPE, type).attribute(Attribute.NAME, name)
 				.attribute(Attribute.ARIA_LABEL,"input")
-				.attribute(Attribute.ID, id(name, id)).attribute(Attribute.AUTOCOMPLETE, (autocomplete ? "on" : "off"));
+				.attribute(Attribute.ID, id(name, id)).attribute(Attribute.AUTOCOMPLETE, (autoComplete ? "on" : "off"));
 
 		if (step != null) {
 			input.attribute(Attribute.STEP, step);
@@ -81,8 +81,8 @@ public class InputTag extends AbstractSimpleTagSupport {
 			input.attribute(Attribute.MAXLENGTH, maxLength);
 		}
 
-		if (hasKeyOrLabel(placeholderKey, placeholder)) {
-			input.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeholderKey, placeholder));
+		if (hasKeyOrLabel(placeHolderKey, placeHolder)) {
+			input.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeHolderKey, placeHolder));
 		}
 
 		if (!StringUtils.isEmpty(value)) {
@@ -127,13 +127,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 		this.type = type;
 	}
 
-	public String getPlaceholder() {
-		return placeholder;
-	}
-
-	public void setPlaceholder(String placeholder) {
-		this.placeholder = placeholder;
-	}
+	
 
 	public Boolean getRequired() {
 		return required;
@@ -255,13 +249,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 		this.list = list;
 	}
 
-	public Boolean getAutocomplete() {
-		return autocomplete;
-	}
-
-	public void setAutocomplete(Boolean autocomplete) {
-		this.autocomplete = autocomplete;
-	}
+	
 
 	public Integer getStep() {
 		return step;
@@ -279,12 +267,30 @@ public class InputTag extends AbstractSimpleTagSupport {
 		this.titleKey = titleKey;
 	}
 
-	public String getPlaceholderKey() {
-		return placeholderKey;
+	
+
+	public Boolean getAutoComplete() {
+	    return autoComplete;
 	}
 
-	public void setPlaceholderKey(String placeholderKey) {
-		this.placeholderKey = placeholderKey;
+	public void setAutoComplete(Boolean autoComplete) {
+	    this.autoComplete = autoComplete;
+	}
+
+	public String getPlaceHolder() {
+	    return placeHolder;
+	}
+
+	public void setPlaceHolder(String placeHolder) {
+	    this.placeHolder = placeHolder;
+	}
+
+	public String getPlaceHolderKey() {
+	    return placeHolderKey;
+	}
+
+	public void setPlaceHolderKey(String placeHolderKey) {
+	    this.placeHolderKey = placeHolderKey;
 	}
 
 }

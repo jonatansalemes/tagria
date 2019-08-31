@@ -1,29 +1,29 @@
-<%@include file="../app/taglibs.jsp"  %>																							<html:view title="{title}" template="master" attribute="body">																													<html:card>																														<html:card-header>																				menu							</html:card-header>																											<html:card-body>																												<html:tabs>																														<html:tabs-header>																												<html:tabs-tab active="true" labelKey="about" id="tab1"></html:tabs-tab> 												<html:tabs-tab labelKey="attributes" id="tab2"></html:tabs-tab> 														<html:tabs-tab labelKey="demo" id="tab3"></html:tabs-tab> 																<html:tabs-tab labelKey="source" id="tab4"></html:tabs-tab> 														</html:tabs-header> 																										<html:tabs-body> 																												<html:tabs-content active="true" contentOf="tab1">																			<html:alert state="warning">													Renders a horizontal menu											</html:alert>																											</html:tabs-content>																										<html:tabs-content contentOf="tab2">												<html:table stripe="true" hover="true"><html:table-header light="true"><html:table-row><html:table-head><fmt:message key="tag.attribute"/></html:table-head><html:table-head><fmt:message key="tag.required"/></html:table-head><html:table-head><fmt:message key="tag.type"/></html:table-head><html:table-head><fmt:message key="tag.description"/></html:table-head></html:table-row></html:table-header><html:table-body><html:table-row><html:table-data>fixed</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.String</html:table-data><html:table-data>It indicates whether the component should be fixed. Default none. Options : top,bottom</html:table-data></html:table-row><html:table-row><html:table-data>dark</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.Boolean</html:table-data><html:table-data>It indicates whether the menu should be dark theme. Default : false</html:table-data></html:table-row><html:table-row><html:table-data>light</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.Boolean</html:table-data><html:table-data>It indicates whether the menu should be light theme. Default : true</html:table-data></html:table-row><html:table-row><html:table-data>cssClass</html:table-data><html:table-data>false</html:table-data><html:table-data>java.lang.String</html:table-data><html:table-data>It indicates a css class to the component</html:table-data></html:table-row></html:table-body></html:table>										</html:tabs-content>																								<html:tabs-content contentOf="tab3">										
+<%@include file="../app/taglibs.jsp"  %>																							<html:view title="{title}" template="master" attribute="body">																													<html:card>																														<html:cardHeader>																				menu							</html:cardHeader>																											<html:cardBody>																												<html:tabs>																														<html:tabsHeader>																												<html:tabsTab active="true" labelKey="about" id="tab1"></html:tabsTab> 												<html:tabsTab labelKey="attributes" id="tab2"></html:tabsTab> 														<html:tabsTab labelKey="demo" id="tab3"></html:tabsTab> 																<html:tabsTab labelKey="source" id="tab4"></html:tabsTab> 														</html:tabsHeader> 																										<html:tabsBody> 																												<html:tabsContent active="true" contentOf="tab1">																			<html:alert state="warning">													Renders a horizontal menu											</html:alert>																											</html:tabsContent>																										<html:tabsContent contentOf="tab2">												<html:table stripe="true" hover="true"><html:tableHeader light="true"><html:tableRow><html:tableHead><fmt:message key="tag.attribute"/></html:tableHead><html:tableHead><fmt:message key="tag.required"/></html:tableHead><html:tableHead><fmt:message key="tag.type"/></html:tableHead><html:tableHead><fmt:message key="tag.description"/></html:tableHead></html:tableRow></html:tableHeader><html:tableBody><html:tableRow><html:tableData>fixed</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.String</html:tableData><html:tableData>It indicates whether the component should be fixed. Default none. Options : top,bottom</html:tableData></html:tableRow><html:tableRow><html:tableData>dark</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.Boolean</html:tableData><html:tableData>It indicates whether the menu should be dark theme. Default : false</html:tableData></html:tableRow><html:tableRow><html:tableData>light</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.Boolean</html:tableData><html:tableData>It indicates whether the menu should be light theme. Default : true</html:tableData></html:tableRow><html:tableRow><html:tableData>cssClass</html:tableData><html:tableData>false</html:tableData><html:tableData>java.lang.String</html:tableData><html:tableData>It indicates a css class to the component</html:tableData></html:tableRow></html:tableBody></html:table>										</html:tabsContent>																								<html:tabsContent contentOf="tab3">										
 			<html:menu dark="true">
-				<html:menu-brand label="my brand" url="/app/playground"></html:menu-brand>
-				<html:menu-collapse attachToSelector="#block1" />
-				<html:menu-collapsable id="block1">
-					<html:menu-dropdown label="Menu">
-						<html:menu-dropdown-item label="Item 1" url="#" />
-						<html:menu-dropdown-divider />
-						<html:menu-dropdown-item label="Item 2" target="_blank" url="#" />
-						<html:menu-dropdown-item icon="trash" label="Item 3" url="#" />
-					</html:menu-dropdown>
-					<html:menu-link label="My link" url="#" />
-				</html:menu-collapsable>
+				<html:menuBrand label="my brand" url="/app/playground"></html:menuBrand>
+				<html:menuCollapse attachToSelector="#block1" />
+				<html:menuCollapsable id="block1">
+					<html:menuDropdown label="Menu">
+						<html:menuDropdownItem label="Item 1" url="#" />
+						<html:menuDropdownDivider />
+						<html:menuDropdownItem label="Item 2" target="_blank" url="#" />
+						<html:menuDropdownItem icon="trash" label="Item 3" url="#" />
+					</html:menuDropdown>
+					<html:menuLink label="My link" url="#" />
+				</html:menuCollapsable>
 			</html:menu>
-												</html:tabs-content>																								<html:tabs-content contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
+												</html:tabsContent>																								<html:tabsContent contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
-		&lt;/html:view&gt;												</html:code>																									</html:tabs-content>																							</html:tabs-body> 																								</html:tabs>																									</html:card-body>																								</html:card>																									</html:view>																			
+		&lt;/html:view&gt;												</html:code>																									</html:tabsContent>																							</html:tabsBody> 																								</html:tabs>																									</html:cardBody>																								</html:card>																									</html:view>																			

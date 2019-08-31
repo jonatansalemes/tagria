@@ -1,52 +1,50 @@
 
 package com.jslsolucoes.tagria.tag.ajax.v4.tag;
 
-import java.io.IOException;
-import java.io.StringWriter;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
-import com.jslsolucoes.template.TemplateBuilder;
 
 public class MapOptionsTag extends AbstractSimpleTagSupport {
-	private String target;
-	private String text;
-	private String value;
+    private String target;
+    private String text;
+    private String value;
 
-	@Override
-	public void renderOnVoid() {
-		try (StringWriter stringWriter = new StringWriter()) {
-			TemplateBuilder.newBuilder().withClasspathTemplate("template-ajax-tag", "mapOptions.tpl")
-					.withData("id", idForName(target)).withData("tokens", text.split(",")).withData("value", value)
-					.withOutput(stringWriter).process();
-			findAncestorWithClass(FunctionTag.class).addOnSuccess(stringWriter.toString());
-		} catch (IOException e) {
-			throw new TagriaRuntimeException(e);
-		}
-	}
+    @Override
+    public void renderOnVoid() {
+	String id = idForName(target);
+	String onSuccess = "var defaultOption = $(document.createElement('option')).attr('value','').text('- - -');$('#"
+		+ id + "').html('').append(defaultOption);for(i=0;i < data.length; i++) {var text = new Array();"
+		+ Arrays.asList(text.split(",")).stream().map(text -> "text.push(data[i]." + text + ");").collect(
+			Collectors.joining())
+		+ "var option= $(document.createElement('option')).attr('value',data[i]." + value
+		+ ").text(text.join(' - '));$('#" + id + "').append(option);}";
+	findAncestorWithClass(FunctionTag.class).addOnSuccess(onSuccess);
+    }
 
-	public String getTarget() {
-		return target;
-	}
+    public String getTarget() {
+	return target;
+    }
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+    public void setTarget(String target) {
+	this.target = target;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getText() {
+	return text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setText(String text) {
+	this.text = text;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public String getValue() {
+	return value;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public void setValue(String value) {
+	this.value = value;
+    }
 
 }

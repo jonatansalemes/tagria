@@ -20,7 +20,7 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 	private String labelKey;
 	private String target = "_self";
 	private Boolean disabled = Boolean.FALSE;
-	private Boolean autoblock = Boolean.FALSE;
+	private Boolean autoBlock = Boolean.FALSE;
 	private String state = "primary";
 	private Boolean filled = Boolean.FALSE;
 
@@ -65,7 +65,7 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 			button.add(" ").add(keyOrLabel(labelKey, label));
 		}
 
-		if (autoblock) {
+		if (autoBlock) {
 			appendJsCode(
 					"$('#" + button.attribute(Attribute.ID) + "').click(function(){$(this).addClass('disabled');});");
 		}
@@ -149,13 +149,7 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 		this.dismiss = dismiss;
 	}
 
-	public Boolean getAutoblock() {
-		return autoblock;
-	}
-
-	public void setAutoblock(Boolean autoblock) {
-		this.autoblock = autoblock;
-	}
+	
 
 	public String getTitleKey() {
 		return titleKey;
@@ -179,6 +173,14 @@ public class ButtonTag extends AbstractSimpleTagSupport {
 
 	public void setFilled(Boolean filled) {
 		this.filled = filled;
+	}
+
+	public Boolean getAutoBlock() {
+	    return autoBlock;
+	}
+
+	public void setAutoBlock(Boolean autoBlock) {
+	    this.autoBlock = autoBlock;
 	}
 
 }

@@ -13,12 +13,12 @@
 		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carousel-item active="true" label="Item 1" description="Description 1"&gt;
-					&lt;html:carousel-image url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
-				&lt;/html:carousel-item&gt;
-				&lt;html:carousel-item label="Item 2" description="Description 2"&gt;
-					&lt;html:carousel-image url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
-				&lt;/html:carousel-item&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
 			&lt;/html:carousel&gt; 
 		</example>
 	</tag>
@@ -26,7 +26,7 @@
 	<tag>
 		<description>Renders a carousel item</description>
 		<display-name>Carousel</display-name>
-		<name>carousel-item</name>
+		<name>carouselItem</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.carousel.CarouselItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -67,12 +67,12 @@
 		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carousel-item active="true" label="Item 1" description="Description 1"&gt;
-					&lt;html:carousel-image url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
-				&lt;/html:carousel-item&gt;
-				&lt;html:carousel-item label="Item 2" description="Description 2"&gt;
-					&lt;html:carousel-image url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
-				&lt;/html:carousel-item&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
 			&lt;/html:carousel&gt; 
 		</example>
 	</tag>
@@ -81,7 +81,7 @@
 	<tag>
 		<description>Renders an carousel image</description>
 		<display-name>Carousel</display-name>
-		<name>carousel-image</name>
+		<name>carouselImage</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.carousel.CarouselImageTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -129,12 +129,12 @@
 		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carousel-item active="true" label="Item 1" description="Description 1"&gt;
-					&lt;html:carousel-image url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
-				&lt;/html:carousel-item&gt;
-				&lt;html:carousel-item label="Item 2" description="Description 2"&gt;
-					&lt;html:carousel-image url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
-				&lt;/html:carousel-item&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:carouselImage url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;/html:carouselItem&gt;
 			&lt;/html:carousel&gt; 
 		</example>
 	</tag>

@@ -2,7 +2,7 @@
 	<tag>
 		<description>Renders a menu link</description>
 		<display-name>Menu</display-name>
-		<name>menu-link</name>
+		<name>menuLink</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuLinkTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -49,17 +49,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -67,7 +67,7 @@
 	<tag>
 		<description>Renders a dropdown menu</description>
 		<display-name>Menu</display-name>
-		<name>menu-dropdown</name>
+		<name>menuDropdown</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuDropDownTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -97,17 +97,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -115,7 +115,7 @@
 	<tag>
 		<description>Renders a menu item on dropdown</description>
 		<display-name>Menu</display-name>
-		<name>menu-dropdown-item</name>
+		<name>menuDropdownItem</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuDropDownItemTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -162,17 +162,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -180,7 +180,7 @@
 	<tag>
 		<description>Renders a menu collapsable content group</description>
 		<display-name>Menu</display-name>
-		<name>menu-collapsable</name>
+		<name>menuCollapsable</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuCollapsableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -191,17 +191,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -209,7 +209,7 @@
 	<tag>
 		<description>Renders a menu collapse group</description>
 		<display-name>Menu</display-name>
-		<name>menu-collapse</name>
+		<name>menuCollapse</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuCollapseTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -232,17 +232,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -279,17 +279,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -297,7 +297,7 @@
 	<tag>
 		<description>Renders a logo in the navigation menu in text format</description>
 		<display-name>Menu</display-name>
-		<name>menu-brand</name>
+		<name>menuBrand</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuBrandTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -321,17 +321,17 @@
 		</attribute>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>
@@ -339,22 +339,22 @@
 	<tag>
 		<description>Renders a menu dropdown divider</description>
 		<display-name>Menu</display-name>
-		<name>menu-dropdown-divider</name>
+		<name>menuDropdownDivider</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.menu.MenuDropDownDividerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:menu dark="true"&gt;
-				&lt;html:menu-brand label="my brand" url="/app/playground"&gt;&lt;/html:menu-brand&gt;
-				&lt;html:menu-collapse attachToSelector="#block1" /&gt;
-				&lt;html:menu-collapsable id="block1"&gt;
-					&lt;html:menu-dropdown label="Menu"&gt;
-						&lt;html:menu-dropdown-item label="Item 1" url="#" /&gt;
-						&lt;html:menu-dropdown-divider /&gt;
-						&lt;html:menu-dropdown-item label="Item 2" target="_blank" url="#" /&gt;
-						&lt;html:menu-dropdown-item icon="trash" label="Item 3" url="#" /&gt;
-					&lt;/html:menu-dropdown&gt;
-					&lt;html:menu-link label="My link" url="#" /&gt;
-				&lt;/html:menu-collapsable&gt;
+				&lt;html:menuBrand label="my brand" url="/app/playground"&gt;&lt;/html:menuBrand&gt;
+				&lt;html:menuCollapse attachToSelector="#block1" /&gt;
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuDropdown label="Menu"&gt;
+						&lt;html:menuDropdownItem label="Item 1" url="#" /&gt;
+						&lt;html:menuDropdownDivider /&gt;
+						&lt;html:menuDropdownItem label="Item 2" target="_blank" url="#" /&gt;
+						&lt;html:menuDropdownItem icon="trash" label="Item 3" url="#" /&gt;
+					&lt;/html:menuDropdown&gt;
+					&lt;html:menuLink label="My link" url="#" /&gt;
+				&lt;/html:menuCollapsable&gt;
 			&lt;/html:menu&gt;
 		</example>
 	</tag>

@@ -2,7 +2,7 @@
 	<tag>
 		<description>Renders a css code</description>
 		<display-name>Css</display-name>
-		<name>css-code</name>
+		<name>cssCode</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.css.CssCodeTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -12,11 +12,11 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:css-code&gt;
+			&lt;html:cssCode&gt;
 				.mystyle {
 					background-color : red;
 				}
-			&lt;/html:css-code&gt;
+			&lt;/html:cssCode&gt;
 			
 			&lt;html:div cssClass="mystyle"&gt;
 				Content

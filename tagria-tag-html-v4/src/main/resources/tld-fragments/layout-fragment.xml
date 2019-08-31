@@ -33,7 +33,7 @@
 	<tag>
 		<description>Renders a data block iteration</description>
 		<display-name>Layout</display-name>
-		<name>data-block</name>
+		<name>dataBlock</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.DataBlockTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
@@ -76,11 +76,11 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<example>
-			&lt;html:data-block extraSmall="12" medium="4" small="4" large="1" data="${ persons }" var="person"&gt;
+			&lt;html:dataBlock extraSmall="12" medium="4" small="4" large="1" data="${ persons }" var="person"&gt;
 				&lt;html:alert state="success"&gt;
 					${ person.name }
 				&lt;/html:alert&gt;
-			&lt;/html:data-block&gt; 
+			&lt;/html:dataBlock&gt; 
 		</example>
 	</tag>
 	
@@ -98,7 +98,7 @@
 		</attribute>
 		<example>
 			&lt;html:form action="#"&gt;
-				&lt;html:form-group forElement="field1" label="Field 1" required="true"&gt;
+				&lt;html:formGroup forElement="field1" label="Field 1" required="true"&gt;
 					&lt;html:row&gt;
 						&lt;html:col extraSmall="6"&gt;
 							&lt;html:input required="true" name="field1"/&gt;
@@ -107,7 +107,7 @@
 							&lt;html:input name="field2"/&gt;
 						&lt;/html:col&gt;
 					&lt;/html:row>
-				&lt;/html:form-group&gt;
+				&lt;/html:formGroup&gt;
 			&lt;/html:form&gt; 
 		</example>
 	</tag>

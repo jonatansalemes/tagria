@@ -30,7 +30,7 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<example>
-			&lt;html:input name="input1" placeholder="Date birth" /&gt;
+			&lt;html:input name="input1" placeHolder="Date birth" /&gt;
 			&lt;html:datePicker attachTo="input1" min="0" max="3"/&gt; 
 		</example>
 	</tag>

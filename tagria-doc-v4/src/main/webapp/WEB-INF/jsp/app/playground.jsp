@@ -2,12 +2,12 @@
 <html:view title="Playground">
 
 
-	<html:autocomplete url="/app/autocomplete" name="myautocomplete">
-		<html:autocomplete-on-select>
+	<html:autoComplete url="/app/autoComplete" name="myautoComplete">
+		<html:autoCompleteOnSelect>
 			console.log(value);
 			console.log(text);
-		</html:autocomplete-on-select>
-	</html:autocomplete>
+		</html:autoCompleteOnSelect>
+	</html:autoComplete>
 
 
 	<html:input name="mydate"></html:input>
@@ -19,30 +19,30 @@
 			<ajax:parameter name="param1" value="1"></ajax:parameter>
 		</ajax:parameters>
 
-		<ajax:on-success>
+		<ajax:onSuccess>
 			console.log('success');
-			<ajax:map-options value="id" target="ajaxSelect" text="name"></ajax:map-options>
-		</ajax:on-success>
-		<ajax:on-error>
+			<ajax:mapOptions value="id" target="ajaxSelect" text="name"></ajax:mapOptions>
+		</ajax:onSuccess>
+		<ajax:onError>
 			console.log('error');
-		</ajax:on-error>
-		<ajax:on-done>
+		</ajax:onError>
+		<ajax:onDone>
 			console.log('done');
-		</ajax:on-done>
+		</ajax:onDone>
 	</ajax:function>
 
 	<html:select name="ajaxSelect" searchable="true">
 		<html:option value="">---</html:option>
 	</html:select>
 
-	<html:css-code>
+	<html:cssCode>
 		.mystyle {
 			background-color:   red;
 		}
 		.mystyle2 {
 			color: white;
 		}
-	</html:css-code>
+	</html:cssCode>
 
 	<html:div cssClass="mystyle mystyle2">
 		styled div ${ descriptions }
@@ -50,33 +50,33 @@
 
 	<html:grid var="person" data="${ persons }" label="My grid" url="/app/playground/v4">
 
-		<html:grid-export />
-		<html:grid-paginate totalResults="200"></html:grid-paginate>
-		<html:grid-search />
+		<html:gridExport />
+		<html:gridPaginate totalResults="200"/>
+		<html:gridSearch />
 
-		<html:grid-toolbar>
+		<html:gridToolbar>
 			<html:alert state="danger">my toolbars</html:alert>
-		</html:grid-toolbar>
+		</html:gridToolbar>
 
-		<html:grid-header>
-			<html:grid-column label="Column 1" align="left" exportable="true"></html:grid-column>
-			<html:grid-column label="Column 2" align="center" exportable="true"></html:grid-column>
-			<html:grid-column label="Column 3" align="center" exportable="true"></html:grid-column>
-		</html:grid-header>
-		<html:grid-body>
-			<html:grid-column-data align="right" exportable="true"
+		<html:gridHeader>
+			<html:gridColumn label="Column 1" align="left" exportable="true"></html:gridColumn>
+			<html:gridColumn label="Column 2" align="center" exportable="true"></html:gridColumn>
+			<html:gridColumn label="Column 3" align="center" exportable="true"></html:gridColumn>
+		</html:gridHeader>
+		<html:gridBody>
+			<html:gridColumnData align="right" exportable="true"
 				cssClass="border border-danger">
 				${ person.name }
-			</html:grid-column-data>
-			<html:grid-column-data align="center" exportable="true"
+			</html:gridColumnData>
+			<html:gridColumnData align="center" exportable="true"
 				booleanType="true" cssClass="border border-danger">
 				${ person.likeChocolate }
-			</html:grid-column-data>
-			<html:grid-column-data align="center" exportable="true"
+			</html:gridColumnData>
+			<html:gridColumnData align="center" exportable="true"
 				collapsable="true" cssClass="border border-danger">
 				${ person.cpf }
-			</html:grid-column-data>
-		</html:grid-body>
+			</html:gridColumnData>
+		</html:gridBody>
 	</html:grid>
 
 
@@ -84,173 +84,173 @@
 
 
 	<html:menu dark="true">
-		<html:menu-brand label="my brand" url="/app/playground"></html:menu-brand>
-		<html:menu-collapse attachToSelector="#block1" />
-		<html:menu-collapsable id="block1">
-			<html:menu-dropdown label="Menu">
-				<html:menu-dropdown-item label="Item 1" url="#" />
-				<html:menu-dropdown-divider />
-				<html:menu-dropdown-item label="Item 2" target="_blank" url="#" />
-				<html:menu-dropdown-item icon="trash" label="Item 3" url="#" />
-			</html:menu-dropdown>
-			<html:menu-link label="My link" url="#" />
-		</html:menu-collapsable>
+		<html:menuBrand label="my brand" url="/app/playground"></html:menuBrand>
+		<html:menuCollapse attachToSelector="#block1" />
+		<html:menuCollapsable id="block1">
+			<html:menuDropdown label="Menu">
+				<html:menuDropdownItem label="Item 1" url="#" />
+				<html:menuDropdownDivider />
+				<html:menuDropdownItem label="Item 2" target="_blank" url="#" />
+				<html:menuDropdownItem icon="trash" label="Item 3" url="#" />
+			</html:menuDropdown>
+			<html:menuLink label="My link" url="#" />
+		</html:menuCollapsable>
 	</html:menu>
 
 
 	<html:table dark="true" hover="true" stripe="true">
-		<html:table-caption>
+		<html:tableCaption>
 			Caption
-		</html:table-caption>
-		<html:table-header light="true">
-			<html:table-row>
-				<html:table-head>Head 1</html:table-head>
-			</html:table-row>
-		</html:table-header>
-		<html:table-body>
-			<html:table-row>
-				<html:table-data>Column 1</html:table-data>
-			</html:table-row>
-			<html:table-row state="danger">
-				<html:table-data>Value 1</html:table-data>
-			</html:table-row>
-		</html:table-body>
-		<html:table-footer>
-			<html:table-row>
-				<html:table-data>Foot 1</html:table-data>
-			</html:table-row>
-			<html:table-row state="danger">
-				<html:table-data>Foot value 1</html:table-data>
-			</html:table-row>
-		</html:table-footer>
+		</html:tableCaption>
+		<html:tableHeader light="true">
+			<html:tableRow>
+				<html:tableHead>Head 1</html:tableHead>
+			</html:tableRow>
+		</html:tableHeader>
+		<html:tableBody>
+			<html:tableRow>
+				<html:tableData>Column 1</html:tableData>
+			</html:tableRow>
+			<html:tableRow state="danger">
+				<html:tableData>Value 1</html:tableData>
+			</html:tableRow>
+		</html:tableBody>
+		<html:tableFooter>
+			<html:tableRow>
+				<html:tableData>Foot 1</html:tableData>
+			</html:tableRow>
+			<html:tableRow state="danger">
+				<html:tableData>Foot value 1</html:tableData>
+			</html:tableRow>
+		</html:tableFooter>
 	</html:table>
 
 
 	<html:tabs>
 	
-		<html:tabs-on-after-show>
+		<html:tabsOnAfterShow>
 			console.log(oldTab);
 			console.log(newTab);
-		</html:tabs-on-after-show>
+		</html:tabsOnAfterShow>
 	
-		<html:tabs-header>
-			<html:tabs-tab data-id="mytabid" active="true" label="my tab 1"
-				id="tab1"></html:tabs-tab>
-			<html:tabs-tab label="my tab 2" id="tab2"></html:tabs-tab>
-			<html:tabs-tab label="my tab 3" id="tab3"></html:tabs-tab>
-		</html:tabs-header>
-		<html:tabs-body>
-			<html:tabs-content active="true" contentOf="tab1"> My content 1</html:tabs-content>
-			<html:tabs-content contentOf="tab2"> My content 2</html:tabs-content>
-			<html:tabs-content contentOf="tab3"> My content 3</html:tabs-content>
-		</html:tabs-body>
+		<html:tabsHeader>
+			<html:tabsTab data-id="mytabid" active="true" label="my tab 1"
+				id="tab1"></html:tabsTab>
+			<html:tabsTab label="my tab 2" id="tab2"></html:tabsTab>
+			<html:tabsTab label="my tab 3" id="tab3"></html:tabsTab>
+		</html:tabsHeader>
+		<html:tabsBody>
+			<html:tabsContent active="true" contentOf="tab1"> My content 1</html:tabsContent>
+			<html:tabsContent contentOf="tab2"> My content 2</html:tabsContent>
+			<html:tabsContent contentOf="tab3"> My content 3</html:tabsContent>
+		</html:tabsBody>
 	</html:tabs>
 
-	<html:button-group>
+	<html:buttonGroup>
 		<html:button label="My button" icon="search" id="btn1" />
 		<html:button label="My button 2" icon="plus" id="btn2" state="danger"
 			filled="true" />
-	</html:button-group>
+	</html:buttonGroup>
 
 	<html:modal attachToSelector="#btn1">
-		<html:modal-header label="My modal title"></html:modal-header>
-		<html:modal-body>
+		<html:modalHeader label="My modal title"></html:modalHeader>
+		<html:modalBody>
 			Here is my component
-		</html:modal-body>
-		<html:modal-footer>
+		</html:modalBody>
+		<html:modalFooter>
 			My footer
-		</html:modal-footer>
+		</html:modalFooter>
 	</html:modal>
 
 
 	<html:card>
-		<html:card-image url="/image/person.png" width="32" height="32"
-			responsive="false" alt="logo"></html:card-image>
-		<html:card-header>
+		<html:cardImage url="/image/person.png" width="32" height="32"
+			responsive="false" alt="logo"></html:cardImage>
+		<html:cardHeader>
 			My header
-		</html:card-header>
-		<html:card-body>
-			<html:card-title>My title</html:card-title>
-			<html:card-sub-title>My subtitle</html:card-sub-title>
-			<html:card-text>My text</html:card-text>
-			<html:card-link label="My link 1" url="#"></html:card-link>
-		</html:card-body>
-		<html:card-footer>
+		</html:cardHeader>
+		<html:cardBody>
+			<html:cardTitle>My title</html:cardTitle>
+			<html:cardSubTitle>My subtitle</html:cardSubTitle>
+			<html:cardText>My text</html:cardText>
+			<html:cardLink label="My link 1" url="#"></html:cardLink>
+		</html:cardBody>
+		<html:cardFooter>
 			My footer
-		</html:card-footer>
+		</html:cardFooter>
 	</html:card>
 
-	<html:listgroup>
-		<html:listgroup-item>Item 1</html:listgroup-item>
-		<html:listgroup-item>Item 2</html:listgroup-item>
-		<html:listgroup-item>Item 3</html:listgroup-item>
-	</html:listgroup>
+	<html:listGroup>
+		<html:listGroupItem>Item 1</html:listGroupItem>
+		<html:listGroupItem>Item 2</html:listGroupItem>
+		<html:listGroupItem>Item 3</html:listGroupItem>
+	</html:listGroup>
 
-	<html:js-code>
+	<html:jsCode>
 		console.log('js code as component');
-	</html:js-code>
+	</html:jsCode>
 
-	<html:js-event event="click" attachToSelector="#btn2">
+	<html:jsEvent event="click" attachToSelector="#btn2">
 		console.log('btn 2 clicked');
-	</html:js-event>
+	</html:jsEvent>
 
 	<html:carousel>
-		<html:carousel-item active="true" label="Item 1"
+		<html:carouselItem active="true" label="Item 1"
 			description="Description 1">
-			<html:carousel-image
+			<html:carouselImage
 				url="https://solutionsreview.com/content-management/files/2017/08/Sungard-AS-Launches-Sovereign-Cloud-Consulting-and-Services.jpg"
 				width="800" height="400" alt="logo" />
-		</html:carousel-item>
-		<html:carousel-item label="Item 2" description="Description 2">
-			<html:carousel-image
+		</html:carouselItem>
+		<html:carouselItem label="Item 2" description="Description 2">
+			<html:carouselImage
 				url="https://www.milesweb.com/blog/wp-content/uploads/2017/12/cloud-computing-in-iot-800x400.jpg"
 				width="800" height="400" alt="logo" />
-		</html:carousel-item>
+		</html:carouselItem>
 	</html:carousel>
 
-	<html:dropdown label="List">
-		<html:dropdown-item label="Item 1" url="#" />
-		<html:dropdown-divider />
-		<html:dropdown-item label="Item 2" target="_blank" url="#" />
-		<html:dropdown-item icon="trash" label="Item 3" url="#" />
-	</html:dropdown>
+	<html:dropDown label="List">
+		<html:dropDownItem label="Item 1" url="#" />
+		<html:dropDownDivider />
+		<html:dropDownItem label="Item 2" target="_blank" url="#" />
+		<html:dropDownItem icon="trash" label="Item 3" url="#" />
+	</html:dropDown>
 
 	<html:form action="#" label="My title">
 	
-		<html:form-on-before-submit>
+		<html:formOnBeforeSubmit>
 			console.log('before submit event canceled');
 			return false;
-		</html:form-on-before-submit>
+		</html:formOnBeforeSubmit>
 	
 
-		<html:form-group label="Field 1" required="true" forElement="field1">
+		<html:formGroup label="Field 1" required="true" forElement="field1">
 			<html:input required="true" name="field1" />
-		</html:form-group>
-		<html:form-group label="Field 2" forElement="field2">
+		</html:formGroup>
+		<html:formGroup label="Field 2" forElement="field2">
 			<html:input name="field2" />
-		</html:form-group>
-		<html:form-group-multiple label="Groups 1" data="${ persons }"
+		</html:formGroup>
+		<html:formGroupMultiple label="Groups 1" data="${ persons }"
 			var="person" atLeast="1">
 			
 			
-			<html:form-group-multiple-on-after-insert>
+			<html:formGroupMultipleOnAfterInsert>
 				console.log('after insert row ' + idx +  '=>' + element);
-			</html:form-group-multiple-on-after-insert>
+			</html:formGroupMultipleOnAfterInsert>
 			
-			<html:form-group-multiple-on-after-remove>
+			<html:formGroupMultipleOnAfterRemove>
 				console.log('after remove row ');
-			</html:form-group-multiple-on-after-remove>
+			</html:formGroupMultipleOnAfterRemove>
 			
 			<html:input name="fields3[]" required="true" value="${ person.name }" />
-			<html:js-event event="blur" attachTo="fields3[]">
+			<html:jsEvent event="blur" attachTo="fields3[]">
 					console.log($(this).val());
-				</html:js-event>
-		</html:form-group-multiple>
+				</html:jsEvent>
+		</html:formGroupMultiple>
 
 
-		<html:form-toolbar>
+		<html:formToolbar>
 			<html:button state="primary" type="submit" label="Label for submit" />
-		</html:form-toolbar>
+		</html:formToolbar>
 	</html:form>
 
 	<html:img url="/image/person.png" alt="logo" responsive="true" />
@@ -264,26 +264,26 @@
 		Block tag
 	</html:block>
 
-	<html:data-block extraSmall="12" medium="4" small="4" large="4"
+	<html:dataBlock extraSmall="12" medium="4" small="4" large="4"
 		data="${ persons }" var="person">
 		<html:alert state="success">
 			${ person.name }
 		</html:alert>
-	</html:data-block>
+	</html:dataBlock>
 
 
 	<html:row>
 		<html:col extraSmall="3">
 			<html:input required="true" name="field4" />
 			<html:mask mask="99/99/9999" attachTo="field4">
-				<html:mask-on-keypress>
+				<html:maskOnKeypress>
 					 console.log($(field[0]).attr('id'));
-				</html:mask-on-keypress>
+				</html:maskOnKeypress>
 			</html:mask>
 		</html:col>
 		<html:col extraSmall="9">
 			<html:input name="field5" />
-			<html:mask-currency attachTo="field5"></html:mask-currency>
+			<html:maskCurrency attachTo="field5"></html:maskCurrency>
 		</html:col>
 	</html:row>
 
@@ -333,11 +333,11 @@ private class Java {
 	<html:recaptcha siteKey="fdaf9dsj9j" />
 
 	<html:input name="dl" list="myDatalist1" />
-	<html:datalist id="myDatalist1" data="${ persons }" var="person">
-		<html:datalist-option value="${ person.id }">
+	<html:dataList id="myDatalist1" data="${ persons }" var="person">
+		<html:dataListOption value="${ person.id }">
 			${ person.name }
-		</html:datalist-option>
-	</html:datalist>
+		</html:dataListOption>
+	</html:dataList>
 
 	<html:select name="select1" data="${ persons }" var="person">
 		<html:option value="${ person.id }">
