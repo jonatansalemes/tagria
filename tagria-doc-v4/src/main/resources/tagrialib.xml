@@ -2,5 +2,6 @@
 <tagrialib>
 	<templates>
 		<template name="master" path="/WEB-INF/jsp/app/template.jsp" />
+		<template name="master2" path="/WEB-INF/jsp/app/template2.jsp" />
 	</templates>
 </tagrialib> 

@@ -59,5 +59,10 @@ public class AppController {
     public void autoComplete() {
 	
     }
+    
+    @Path("/app/templateBody")
+    public void templateBody() {
+	
+    }
 
 }

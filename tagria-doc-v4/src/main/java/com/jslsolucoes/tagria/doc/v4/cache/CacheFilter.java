@@ -16,6 +16,7 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.TagriaResponseWrapper;
 
 public class CacheFilter implements Filter {
 
+    private final static Boolean CACHE_RESOURCE = Boolean.FALSE;
     private Cache<String,byte[]> cache = CacheBuilder.newBuilder().build();
     
     @Override
@@ -30,7 +31,7 @@ public class CacheFilter implements Filter {
 	    try(TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
 		filterChain.doFilter(httpServletRequest, tagriaResponseWrapper);
 		response = tagriaResponseWrapper.asBytes();
-		cache.put(key,response);
+		if(CACHE_RESOURCE) cache.put(key,response);
 	    }
 	} else {
 	    System.out.println("Key " + key + " found on cache,using it");

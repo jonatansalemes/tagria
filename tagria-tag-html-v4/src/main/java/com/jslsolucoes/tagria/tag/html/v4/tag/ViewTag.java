@@ -4,6 +4,8 @@ package com.jslsolucoes.tagria.tag.html.v4.tag;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,7 +36,6 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private Boolean minifyCss = Boolean.TRUE;
     private Boolean asFragment = Boolean.FALSE;
     private String template;
-    private String attribute;
     private List<String> jsScripts = new ArrayList<>();
     private List<String> cssScripts = new ArrayList<>();
     private List<String> jsScriptsForImport = new ArrayList<>();
@@ -82,32 +83,31 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private boolean isTemplatePartial() {
-	return !StringUtils.isEmpty(template) && !StringUtils.isEmpty(attribute);
+	return !StringUtils.isEmpty(template);
     }
 
     private List<Element> partial() {
 	String templateContent = contentOfTemplate(template);
 	String partialContent = asHtml(appHtml());
-	String partialTag = asHtml(partialTag());
 	if (StringUtils.isEmpty(templateContent)) {
 	    throw new TagriaRuntimeException("Content of template " + template + " cannot be empty");
-	} else if (!templateContent.contains(partialTag)) {
-	    throw new TagriaRuntimeException("Template " + template + " must define tag " + partialTag + " somewhere");
 	}
-	return concat(Arrays.asList(ElementCreator.newCData(templateContent.replace(partialTag, partialContent))),
-		appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs());
+	Matcher matcher = Pattern.compile("<template data-render=\"(.*?)\">(.*?)<\\/template>",Pattern.DOTALL).matcher(partialContent);
+	while (matcher.find()) {
+	    String render = matcher.group(1);
+	    String renderContent = matcher.group(2);
+	    templateContent = templateContent.replace(templateTag(render), renderContent);
+	}
+	return concat(Arrays.asList(ElementCreator.newCData(templateContent)), appCssScriptsForImport(), appCss(),
+		appJsScriptsForImport(), appJs());
     }
 
-    private String asHtml(Element element) {
-	return asHtml(Arrays.asList(element));
+    private String templateTag(String render) {
+	return ElementCreator.newTemplate().attribute(Attribute.DATA_RENDER, render).html();
     }
 
     private String asHtml(List<Element> elements) {
 	return elements.stream().map(element -> element.html()).collect(Collectors.joining());
-    }
-
-    private Element partialTag() {
-	return ElementCreator.newTemplate().attribute("render", attribute);
     }
 
     private List<Element> full() {
@@ -364,14 +364,6 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     public void setTemplate(String template) {
 	this.template = template;
-    }
-
-    public String getAttribute() {
-	return attribute;
-    }
-
-    public void setAttribute(String attribute) {
-	this.attribute = attribute;
     }
 
 }

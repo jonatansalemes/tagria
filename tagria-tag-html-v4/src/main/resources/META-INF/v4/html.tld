@@ -48,12 +48,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the attribute location where template of current page must be rendered</description>
-			<name>attribute</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>Indicates the title of the current page</description>
 			<name>title</name>
 			<rtexprvalue>true</rtexprvalue>
