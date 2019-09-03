@@ -49,7 +49,8 @@ public class DocGenerator {
 
 			StringBuilder template = new StringBuilder(
 					"<%@include file=\"../app/taglibs.jsp\"  %>																							"
-							+ "<html:view title=\"{title}\" template=\"master\" attribute=\"body\">																							"
+							+ "<html:view title=\"{title}\" template=\"master\">"
+							+ "					<html:template render=\"body\">																							"
 							+ "						<html:card>																							"
 							+ "							<html:cardHeader>																				"
 							+ tag.getName()
@@ -102,6 +103,7 @@ public class DocGenerator {
 							+ "								</html:tabs>																		"
 							+ "							</html:cardBody>																		"
 							+ "						</html:card>																				"
+							+ "					    </html:template> 																		"	
 							+ "					</html:view>																			");
 			FileUtils.writeStringToFile(
 					new File(jspFolder + "/component/" + tag.getName() + ".jsp"),
