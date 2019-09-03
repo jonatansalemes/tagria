@@ -87,23 +87,39 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> partial() {
-	String templateContent = contentOfTemplate(template);
+	String templateContent = contentOfTemplate(template).replace("</body></html>","");
 	String partialContent = asHtml(appHtml());
 	if (StringUtils.isEmpty(templateContent)) {
 	    throw new TagriaRuntimeException("Content of template " + template + " cannot be empty");
 	}
-	Matcher matcher = Pattern.compile("<template data-render=\"(.*?)\">(.*?)<\\/template>",Pattern.DOTALL).matcher(partialContent);
+	Matcher matcher = templatePattern().matcher(templateContent);
 	while (matcher.find()) {
-	    String render = matcher.group(1);
-	    String renderContent = matcher.group(2);
-	    templateContent = templateContent.replace(templateTag(render), renderContent);
+	    String templateAttribute = matcher.group(1);
+	    String templateAttributeDefaultContent = matcher.group(2);
+	    String templateAttributeContent = templateAttributeContent(templateAttribute, partialContent,templateAttributeDefaultContent);
+	    templateContent = templatePattern(templateAttribute).matcher(templateContent)
+		    .replaceAll(templateAttributeContent);
 	}
 	return concat(Arrays.asList(ElementCreator.newCData(templateContent)), appCssScriptsForImport(), appCss(),
-		appJsScriptsForImport(), appJs());
+		appJsScriptsForImport(), appJs(),Arrays.asList(ElementCreator.newCData("</body></html>")));
     }
 
-    private String templateTag(String render) {
-	return ElementCreator.newTemplate().attribute(Attribute.DATA_RENDER, render).html();
+    private String templateAttributeContent(String templateAttribute, String viewContent,
+	    String templateAttributeDefaultContent) {
+	Matcher matcher = templatePattern(templateAttribute).matcher(viewContent);
+	if (matcher.find()) {
+	    return matcher.group(2);
+	} else {
+	    return templateAttributeDefaultContent;
+	}
+    }
+
+    private Pattern templatePattern() {
+	return templatePattern(".*?");
+    }
+
+    private Pattern templatePattern(String render) {
+	return Pattern.compile("<template data-render=\"(" + render + ")\">(.*?)</template>", Pattern.DOTALL);
     }
 
     private String asHtml(List<Element> elements) {
@@ -136,16 +152,9 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element body() {
-	Element body = ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(divRoot())
-		.add(ajaxLoading());
-	List<Element> elements = Stream
-		.of(tagriaCssScriptsForImport(), appCssScriptsForImport(), appCss(), tagriaJsScriptsForImport(),
-			appJsScriptsForImport(), tagriaJs(), appJs())
-		.flatMap(x -> x.stream()).collect(Collectors.toList());
-	for (Element element : elements) {
-	    body.add(element);
-	}
-	return body;
+	return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(divRoot())
+		.add(ajaxLoading()).add(concat(tagriaCssScriptsForImport(), appCssScriptsForImport(), appCss(), tagriaJsScriptsForImport(),
+			appJsScriptsForImport(), tagriaJs(), appJs()));
     }
 
     private Element divRoot() {
@@ -297,7 +306,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element loadingImage() {
-	return ElementCreator.newImg().attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif"))
+	return ElementCreator.newImg().attribute(Attribute.SRC,"#").attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif"))
 		.attribute(Attribute.WIDTH, 100).attribute(Attribute.HEIGHT, 100)
 		.attribute(Attribute.CLASS, "mx-auto d-block lazyload").attribute(Attribute.ALT, "loading");
     }
