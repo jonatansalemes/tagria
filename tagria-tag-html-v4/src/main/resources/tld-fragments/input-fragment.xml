@@ -32,6 +32,12 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the autoComplete result box max height</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
 			<name>required</name>
 			<rtexprvalue>true</rtexprvalue>

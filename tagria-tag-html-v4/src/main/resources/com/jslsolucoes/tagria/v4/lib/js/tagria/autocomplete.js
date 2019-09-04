@@ -5,15 +5,13 @@
 			minLength: 3,
 			delay: 1000,
 			text: '',
-			width: undefined,
 			onSelect: function(value,text) {}
 		},
 		_create: function() {
 			var self = this;
 			var results = self._results();
-			var input = self._input();
 			self._setCurrentTerm(self.options.text);
-			input.keyup(function(event){
+			self._input().keyup(function(event){
 				if(event.keyCode === 38){
 					self._navigate('up');
 				} else if(event.keyCode === 40){
@@ -33,11 +31,6 @@
 					results.hide();
 				}		
 			});
-			
-			if(!self.options.width){
-				results.width(input.width());
-			}
-			
 			
 			setInterval(function(){
 				self._queryForTerm();

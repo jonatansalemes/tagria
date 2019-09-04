@@ -18,7 +18,8 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
     private String placeHolderKey;
     private String value;
     private Boolean required = Boolean.FALSE;
-    private Integer width;
+    private Integer width = 400;
+    private Integer height = 300;
     private String onSelect;
 
     @Override
@@ -29,9 +30,8 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
     @Override
     public Element render() {
 	Element div = div();
-	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').autocomplete({ width: " + width
-		+ ", onSelect: function(value,text) {" + onSelect + "}, url : '"
-		+ pathForUrl(url) + "',delay : " + delay + ",minLength:" + minLength
+	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').autocomplete({ onSelect: function(value,text) {"
+		+ onSelect + "}, url : '" + pathForUrl(url) + "',delay : " + delay + ",minLength:" + minLength
 		+ ",text: '" + (hasKeyOrLabel(textKey, text) ? keyOrLabel(textKey, text) : "") + "'  });");
 	return div;
     }
@@ -68,12 +68,9 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
     }
 
     private Element results() {
-	Element results = ElementCreator.newDiv().attribute(Attribute.CLASS, "autocomplete-results")
-		.attribute(Attribute.TABINDEX, "0");
-	if (width != null) {
-	    results.attribute(Attribute.STYLE, "width:" + width + "px");
-	}
-	return results;
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "autocomplete-results")
+		.attribute(Attribute.TABINDEX, "0").attribute(Attribute.STYLE, "width:" + width + "px")
+		.attribute(Attribute.STYLE, "max-height:" + height + "px");
     }
 
     private Element inputHidden() {
@@ -162,8 +159,6 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	this.onSelect = onSelect;
     }
 
-   
-
     public String getTextKey() {
 	return textKey;
     }
@@ -188,6 +183,12 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	this.placeHolderKey = placeHolderKey;
     }
 
-    
+    public Integer getHeight() {
+	return height;
+    }
+
+    public void setHeight(Integer height) {
+	this.height = height;
+    }
 
 }

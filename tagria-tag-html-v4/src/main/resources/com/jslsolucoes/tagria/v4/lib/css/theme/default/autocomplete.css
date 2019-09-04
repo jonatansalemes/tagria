@@ -3,7 +3,6 @@
 	padding: 0.5rem !important;
 	border-radius: 0.25rem;
 	border: 1px solid #ced4da;
-	max-height: 500px;
     overflow-y: scroll;
     position: absolute;
     z-index: 3;
