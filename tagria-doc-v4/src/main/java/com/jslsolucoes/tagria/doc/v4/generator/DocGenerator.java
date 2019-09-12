@@ -31,13 +31,16 @@ public class DocGenerator {
 
 		String html = IOUtils.resourceToString("/META-INF/v4/html.tld", Charset.forName("UTF-8"));
 		String ajax = IOUtils.resourceToString("/META-INF/v4/ajax.tld", Charset.forName("UTF-8"));
+		String auth = IOUtils.resourceToString("/META-INF/v4/auth.tld", Charset.forName("UTF-8"));
 		XStream xStream = new XStream();
 		xStream.processAnnotations(Taglib.class);
 		Taglib taglibForHtml = (Taglib) xStream.fromXML(html);
 		Taglib taglibForAjax = (Taglib) xStream.fromXML(ajax);
+		Taglib taglibForAuth = (Taglib) xStream.fromXML(auth);
 		List<Tag> tags = new ArrayList<Tag>();
 		tags.addAll(taglibForHtml.getTags());
 		tags.addAll(taglibForAjax.getTags());
+		tags.addAll(taglibForAuth.getTags());
 
 		for (Tag tag : tags) {
 
@@ -119,17 +122,15 @@ public class DocGenerator {
 			});
 		}
 
-		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:listGroup>");
+		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\">");
 		for (String key : new TreeSet<String>(groupments.keySet())) {
-			menu.append("<html:listGroupItem><html:collapsable label=\"" + key + "\"><html:listGroup>");
+			menu.append("<html:collapsable cssClass=\"mt-3 mb-3\" label=\"" + key + "\"><html:listGroup>");
 			for (Tag tag : groupments.get(key)) {
-				menu.append("<html:listGroupItem><html:link label=\"" + tag.getName()
-						+ "\" url=\"/component/" + tag.getName()
-						+ "\"></html:link></html:listGroupItem>");
+				menu.append("<html:listGroupItem><html:link label=\"" + tag.getName() + "\" url=\"/component/" + tag.getName() + "\"/></html:listGroupItem>");
 			}
-			menu.append("</html:listGroup></html:collapsable></html:listGroupItem>");
+			menu.append("</html:listGroup></html:collapsable>");
 		}
-		menu.append("</html:listGroup></html:div>");
+		menu.append("</html:div>");
 
 		File home = new File(jspFolder + "/app/template.jsp");
 		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home, CHARSET)

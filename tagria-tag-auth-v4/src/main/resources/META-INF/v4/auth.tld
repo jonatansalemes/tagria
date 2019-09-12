@@ -36,9 +36,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-				 &lt;auth:rule uri="/my/uri" method="GET"&gt;
+				 &lt;auth:rule uri="/my/uri" httpMethod="GET"&gt;
 			     	&lt;html:input name="input1" value="Valor 0"/&gt;
-			     &lt;auth:rule/&gt;
+			     &lt;/auth:rule&gt;
 		</example>
 	</tag>
 	

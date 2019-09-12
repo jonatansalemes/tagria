@@ -1,6 +1,84 @@
 <fragment>
 
 	<tag>
+		<description>Renders a header</description>
+		<display-name>Html</display-name>
+		<name>header</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.phtml.HeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:header&gt;
+				Header
+			&lt;/html:header&gt;
+		</example>
+	</tag>
+	
+	
+	<tag>
+		<description>Renders an aside</description>
+		<display-name>Html</display-name>
+		<name>aside</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.phtml.AsideTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:aside&gt;
+				Aside
+			&lt;/html:aside&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a main</description>
+		<display-name>Html</display-name>
+		<name>main</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.phtml.MainTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:main&gt;
+				Main
+			&lt;/html:main&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a footer</description>
+		<display-name>Html</display-name>
+		<name>footer</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.phtml.FooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:footer&gt;
+				Main
+			&lt;/html:footer&gt;
+		</example>
+	</tag>
+
+
+	<tag>
 		<description>Renders a span</description>
 		<display-name>Html</display-name>
 		<name>span</name>

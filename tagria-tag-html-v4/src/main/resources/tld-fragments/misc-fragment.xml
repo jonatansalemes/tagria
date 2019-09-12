@@ -88,7 +88,13 @@
 		</attribute>
 		<attribute>
 			<description>It indicates the label key (i18n) to be used in collapsable</description>
-			<name>label</name>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>

@@ -13,7 +13,7 @@ public class TooltipTag extends AbstractSimpleTagSupport {
 	@Override
 	public void renderOnVoid() {
 		appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').attr('data-placement','"+placement+"').attr('data-toggle','tooltip').attr('title','"
-				+ (hasKeyOrLabel(label, labelKey) ? keyOrLabel(label, labelKey) : bodyContent()) + "').tooltip();");
+				+ (hasKeyOrLabel(labelKey, label) ? keyOrLabel(labelKey, label) : bodyContent()) + "').tooltip();");
 	}
 
 	public String getAttachTo() {

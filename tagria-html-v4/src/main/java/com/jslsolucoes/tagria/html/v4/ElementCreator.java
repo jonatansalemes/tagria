@@ -2,195 +2,211 @@ package com.jslsolucoes.tagria.html.v4;
 
 public class ElementCreator {
 
-	public static Template newTemplate() {
-		return new Template();
-	}
+    public static Aside newAside() {
+	return new Aside();
+    }
 
-	public static Style newStyle() {
-		return new Style();
-	}
+    public static Footer newFooter() {
+	return new Footer();
+    }
 
-	public static TFoot newTFoot() {
-		return new TFoot();
-	}
+    public static Header newHeader() {
+	return new Header();
+    }
 
-	public static H6 newH6() {
-		return new H6();
-	}
+    public static Main newMain() {
+	return new Main();
+    }
 
-	public static Label newLabel() {
-		return new Label();
-	}
+    public static Template newTemplate() {
+	return new Template();
+    }
 
-	public static Form newForm() {
-		return new Form();
-	}
+    public static Style newStyle() {
+	return new Style();
+    }
 
-	public static Select newSelect() {
-		return new Select();
-	}
+    public static TFoot newTFoot() {
+	return new TFoot();
+    }
 
-	public static Option newOption() {
-		return new Option();
-	}
+    public static H6 newH6() {
+	return new H6();
+    }
 
-	public static DataList newDataList() {
-		return new DataList();
-	}
+    public static Label newLabel() {
+	return new Label();
+    }
 
-	public static Nav newNav() {
-		return new Nav();
-	}
+    public static Form newForm() {
+	return new Form();
+    }
 
-	public static CData newCData(String value) {
-		return new CData(value);
-	}
+    public static Select newSelect() {
+	return new Select();
+    }
 
-	public static Null newNull() {
-		return new Null();
-	}
+    public static Option newOption() {
+	return new Option();
+    }
 
-	public static Ul newUl() {
-		return new Ul();
-	}
+    public static DataList newDataList() {
+	return new DataList();
+    }
 
-	public static Li newLi() {
-		return new Li();
-	}
+    public static Nav newNav() {
+	return new Nav();
+    }
 
-	public static Iframe newIframe() {
-		return new Iframe();
-	}
+    public static CData newCData(String value) {
+	return new CData(value);
+    }
 
-	public static Small newSmall() {
-		return new Small();
-	}
+    public static Null newNull() {
+	return new Null();
+    }
 
-	public static TBody newTBody() {
-		return new TBody();
-	}
+    public static Ul newUl() {
+	return new Ul();
+    }
 
-	public static Caption newCaption() {
-		return new Caption();
-	}
+    public static Li newLi() {
+	return new Li();
+    }
 
-	public static Td newTd() {
-		return new Td();
-	}
+    public static Iframe newIframe() {
+	return new Iframe();
+    }
 
-	public static THead newTHead() {
-		return new THead();
-	}
+    public static Small newSmall() {
+	return new Small();
+    }
 
-	public static Th newTh() {
-		return new Th();
-	}
+    public static TBody newTBody() {
+	return new TBody();
+    }
 
-	public static Tr newTr() {
-		return new Tr();
-	}
+    public static Caption newCaption() {
+	return new Caption();
+    }
 
-	public static Table newTable() {
-		return new Table();
-	}
+    public static Td newTd() {
+	return new Td();
+    }
 
-	public static TextArea newTextArea() {
-		return new TextArea();
-	}
+    public static THead newTHead() {
+	return new THead();
+    }
 
-	public static Code newCode() {
-		return new Code();
-	}
+    public static Th newTh() {
+	return new Th();
+    }
 
-	public static Pre newPre() {
-		return new Pre();
-	}
+    public static Tr newTr() {
+	return new Tr();
+    }
 
-	public static Hr newHr() {
-		return new Hr();
-	}
+    public static Table newTable() {
+	return new Table();
+    }
 
-	public static H1 newH1() {
-		return new H1();
-	}
+    public static TextArea newTextArea() {
+	return new TextArea();
+    }
 
-	public static H2 newH2() {
-		return new H2();
-	}
+    public static Code newCode() {
+	return new Code();
+    }
 
-	public static H3 newH3() {
-		return new H3();
-	}
+    public static Pre newPre() {
+	return new Pre();
+    }
 
-	public static H4 newH4() {
-		return new H4();
-	}
+    public static Hr newHr() {
+	return new Hr();
+    }
 
-	public static H5 newH5() {
-		return new H5();
-	}
+    public static H1 newH1() {
+	return new H1();
+    }
 
-	public static A newA() {
-		return new A();
-	}
+    public static H2 newH2() {
+	return new H2();
+    }
 
-	public static P newP() {
-		return new P();
-	}
+    public static H3 newH3() {
+	return new H3();
+    }
 
-	public static Html newHtml() {
-		return new Html();
-	}
+    public static H4 newH4() {
+	return new H4();
+    }
 
-	public static Span newSpan() {
-		return new Span();
-	}
+    public static H5 newH5() {
+	return new H5();
+    }
 
-	public static Body newBody() {
-		return new Body();
-	}
+    public static A newA() {
+	return new A();
+    }
 
-	public static Input newInput() {
-		return new Input();
-	}
+    public static P newP() {
+	return new P();
+    }
 
-	public static Div newDiv() {
-		return new Div();
-	}
+    public static Html newHtml() {
+	return new Html();
+    }
 
-	public static Button newButton() {
-		return new Button();
-	}
+    public static Span newSpan() {
+	return new Span();
+    }
 
-	public static Script newScript() {
-		return new Script();
-	}
+    public static Body newBody() {
+	return new Body();
+    }
 
-	public static Img newImg() {
-		return new Img();
-	}
+    public static Input newInput() {
+	return new Input();
+    }
 
-	public static Meta newMeta() {
-		return new Meta();
-	}
+    public static Div newDiv() {
+	return new Div();
+    }
 
-	public static Link newLink() {
-		return new Link();
-	}
+    public static Button newButton() {
+	return new Button();
+    }
 
-	public static Head newHead() {
-		return new Head();
-	}
+    public static Script newScript() {
+	return new Script();
+    }
 
-	public static Title newTitle() {
-		return new Title();
-	}
+    public static Img newImg() {
+	return new Img();
+    }
 
-	public static NoScript newNoScript() {
-		return new NoScript();
-	}
+    public static Meta newMeta() {
+	return new Meta();
+    }
 
-	public static CData newDocTypeHtml5() {
-		return new CData(DocType.HTML5.definition());
-	}
+    public static Link newLink() {
+	return new Link();
+    }
+
+    public static Head newHead() {
+	return new Head();
+    }
+
+    public static Title newTitle() {
+	return new Title();
+    }
+
+    public static NoScript newNoScript() {
+	return new NoScript();
+    }
+
+    public static CData newDocTypeHtml5() {
+	return new CData(DocType.HTML5.definition());
+    }
 }

@@ -1,6 +1,8 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.misc;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -40,8 +42,13 @@ public class CollapsableTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div(String id) {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "card").attribute(Attribute.ID, id()).add(divHeader(id))
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "card")
+				.attribute(Attribute.ID, id()).add(divHeader(id))
 				.add(divContent(id));
+		if (!StringUtils.isEmpty(cssClass)) {
+		    div.attribute(Attribute.CLASS, cssClass);
+		}
+		return div;
 	}
 
 	public String getLabel() {

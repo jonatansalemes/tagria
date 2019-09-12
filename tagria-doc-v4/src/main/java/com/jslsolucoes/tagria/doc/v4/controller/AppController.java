@@ -34,11 +34,6 @@ public class AppController {
     public void index() {
 
     }
-    
-    @Path("/app/other")
-    public void other() {
-	
-    }
 
     @Path("/app/playground")
     public void playground() {
