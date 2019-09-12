@@ -9,21 +9,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tlib-version>4.0</tlib-version>
 	<short-name>auth</short-name>
 	<uri>http://v4.tagria.jslsolucoes.com/tags/auth</uri>
-
-	<tag>
-		<description>Renders an auth integration checking for existent rule</description>
-		<display-name>Auth</display-name>
-		<name>rules</name>
-		<tag-class>com.jslsolucoes.tagria.tag.auth.v4.tag.AuthRulesTag</tag-class>
-		<body-content>scriptless</body-content>
-		<example>
-			&lt;auth:rules&gt;
-				 &lt;auth:rule uri="/my/uri" method="GET"/&gt;
-				 &lt;auth:rule uri="/my/uri2" method="POST"/&gt;
-			     &lt;html:input name="input1" value="Valor 0"/&gt;
-			&lt;/auth:rules&gt;
-		</example>
-	</tag>
 	
 	<tag>
 		<description>Renders an auth integration checking for existent rule</description>
@@ -40,16 +25,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<attribute>
 			<description>Indicates the http method of uri. Default GET. Option GET,POST,PUT,DELETE </description>
-			<name>method</name>
+			<name>httpMethod</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
-			&lt;auth:rules&gt;
-				 &lt;auth:rule uri="/my/uri" method="GET"/&gt;
-				 &lt;auth:rule uri="/my/uri2" method="POST"/&gt;
-			     &lt;html:input name="input1" value="Valor 0"/&gt;
-			&lt;/auth:rules&gt;
+				 &lt;auth:rule uri="/my/uri" method="GET"&gt;
+			     	&lt;html:input name="input1" value="Valor 0"/&gt;
+			     &lt;auth:rule/&gt;
 		</example>
 	</tag>
 	

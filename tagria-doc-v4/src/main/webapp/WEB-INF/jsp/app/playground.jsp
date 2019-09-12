@@ -1,10 +1,13 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
-	<auth:rules>
-		<auth:rule uri="/app/myrule" method="get"/>
-		Will be rendered
-	</auth:rules>
+
+	<auth:rule uri="/pessoa3" httpMethod="get">
+		<html:button label="This button will not render" icon="search"
+			id="btn3" url="/pessoa" />
+	</auth:rule>
+
+
 
 	<html:autoComplete url="/app/autoComplete" name="myautoComplete">
 		<html:autoCompleteOnSelect>
@@ -52,10 +55,11 @@
 		styled div ${ descriptions }
 	</html:div>
 
-	<html:grid var="person" data="${ persons }" label="My grid" url="/app/playground/v4">
+	<html:grid var="person" data="${ persons }" label="My grid"
+		url="/app/playground/v4">
 
 		<html:gridExport />
-		<html:gridPaginate totalResults="200"/>
+		<html:gridPaginate totalResults="200" />
 		<html:gridSearch />
 
 		<html:gridToolbar>
@@ -131,12 +135,12 @@
 
 
 	<html:tabs>
-	
+
 		<html:tabsOnAfterShow>
 			console.log(oldTab);
 			console.log(newTab);
 		</html:tabsOnAfterShow>
-	
+
 		<html:tabsHeader>
 			<html:tabsTab data-id="mytabid" active="true" label="my tab 1"
 				id="tab1"></html:tabsTab>
@@ -220,12 +224,12 @@
 	</html:dropDown>
 
 	<html:form action="#" label="My title">
-	
+
 		<html:formOnBeforeSubmit>
 			console.log('before submit event canceled');
 			return false;
 		</html:formOnBeforeSubmit>
-	
+
 
 		<html:formGroup label="Field 1" required="true" forElement="field1">
 			<html:input required="true" name="field1" />
@@ -235,16 +239,16 @@
 		</html:formGroup>
 		<html:formGroupMultiple label="Groups 1" data="${ persons }"
 			var="person" atLeast="1">
-			
-			
+
+
 			<html:formGroupMultipleOnAfterInsert>
 				console.log('after insert row ' + idx +  '=>' + element);
 			</html:formGroupMultipleOnAfterInsert>
-			
+
 			<html:formGroupMultipleOnAfterRemove>
 				console.log('after remove row ');
 			</html:formGroupMultipleOnAfterRemove>
-			
+
 			<html:input name="fields3[]" required="true" value="${ person.name }" />
 			<html:jsEvent event="blur" attachTo="fields3[]">
 					console.log($(this).val());
@@ -308,7 +312,7 @@
 	<html:h3>
 		H3 header 
 	</html:h3>
-	
+
 	<html:h4>
 		H3 header 
 	</html:h4>
@@ -320,7 +324,7 @@
 	<html:p>
 		Paragraph 
 	</html:p>
-	
+
 	<html:span>Span</html:span>
 
 	<html:code>

@@ -10,177 +10,175 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class ButtonTag extends AbstractSimpleTagSupport {
 
-	private String type;
-	private String url = "#";
-	private String icon;
-	private String title;
-	private String titleKey;
-	private Boolean dismiss = Boolean.FALSE;
-	private String label;
-	private String labelKey;
-	private String target = "_self";
-	private Boolean disabled = Boolean.FALSE;
-	private Boolean autoBlock = Boolean.FALSE;
-	private String state = "primary";
-	private Boolean filled = Boolean.FALSE;
+    private String type;
+    private String url = "#";
+    private String icon;
+    private String title;
+    private String titleKey;
+    private Boolean dismiss = Boolean.FALSE;
+    private String label;
+    private String labelKey;
+    private String target = "_self";
+    private Boolean disabled = Boolean.FALSE;
+    private Boolean autoBlock = Boolean.FALSE;
+    private String state = "primary";
+    private Boolean filled = Boolean.FALSE;
 
-	@Override
-	public Element render() {
-		return button();
+    @Override
+    public Element render() {
+	return button();
+    }
+
+    private Element icon() {
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
+    }
+
+    private Element button() {
+	Element button = ElementCreator.newA().attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id))
+		.attribute(Attribute.CLASS, buttonCssClass()).attribute(Attribute.HREF, pathForUrl(url));
+
+	if (!StringUtils.isEmpty(type)) {
+	    button.attribute(Attribute.DATA_TYPE, type);
 	}
 
-	private Element icon() {
-		return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-" + icon);
+	if (!StringUtils.isEmpty(cssClass)) {
+	    button.attribute(Attribute.CLASS, cssClass);
 	}
 
-	private Element button() {
-		Element button = ElementCreator.newA().attribute(Attribute.TARGET, target).attribute(Attribute.ID, idForId(id))
-				.attribute(Attribute.CLASS, buttonCssClass()).attribute(Attribute.HREF, pathForUrl(url));
-
-		if (!StringUtils.isEmpty(type)) {
-			button.attribute(Attribute.DATA_TYPE, type);
-		}
-
-		if (!StringUtils.isEmpty(cssClass)) {
-			button.attribute(Attribute.CLASS, cssClass);
-		}
-
-		if (disabled) {
-			button.attribute(Attribute.CLASS, "disabled");
-		}
-
-		if (hasKeyOrLabel(titleKey, title)) {
-			button.attribute(Attribute.TITLE, keyOrLabel(titleKey, title));
-		}
-
-		if (dismiss) {
-			button.attribute(Attribute.DATA_DISMISS, "modal");
-		}
-
-		if (!StringUtils.isEmpty(icon)) {
-			button.add(icon());
-		}
-
-		if (hasKeyOrLabel(labelKey, label)) {
-			button.add(" ").add(keyOrLabel(labelKey, label));
-		}
-
-		if (autoBlock) {
-			appendJsCode(
-					"$('#" + button.attribute(Attribute.ID) + "').click(function(){$(this).addClass('disabled');});");
-		}
-
-		return button;
+	if (disabled) {
+	    button.attribute(Attribute.CLASS, "disabled");
 	}
 
-	private String buttonCssClass() {
-		return "btn " + (filled ? "btn-" : "btn-outline-") + state + " shadow-sm";
+	if (hasKeyOrLabel(titleKey, title)) {
+	    button.attribute(Attribute.TITLE, keyOrLabel(titleKey, title));
 	}
 
-	public String getIcon() {
-		return icon;
+	if (dismiss) {
+	    button.attribute(Attribute.DATA_DISMISS, "modal");
 	}
 
-	public void setIcon(String icon) {
-		this.icon = icon;
+	if (!StringUtils.isEmpty(icon)) {
+	    button.add(icon());
 	}
 
-	public String getTitle() {
-		return title;
+	if (hasKeyOrLabel(labelKey, label)) {
+	    button.add(" ").add(keyOrLabel(labelKey, label));
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	if (autoBlock) {
+	    appendJsCode(
+		    "$('#" + button.attribute(Attribute.ID) + "').click(function(){$(this).addClass('disabled');});");
 	}
 
-	public String getLabel() {
-		return label;
-	}
+	return button;
+    }
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    private String buttonCssClass() {
+	return "btn " + (filled ? "btn-" : "btn-outline-") + state + " shadow-sm";
+    }
 
-	public String getTarget() {
-		return target;
-	}
+    public String getIcon() {
+	return icon;
+    }
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+    public void setIcon(String icon) {
+	this.icon = icon;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getTitle() {
+	return title;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-	public Boolean getDisabled() {
-		return disabled;
-	}
+    public String getLabel() {
+	return label;
+    }
 
-	public void setDisabled(Boolean disabled) {
-		this.disabled = disabled;
-	}
+    public void setLabel(String label) {
+	this.label = label;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public String getTarget() {
+	return target;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setTarget(String target) {
+	this.target = target;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getType() {
+	return type;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setType(String type) {
+	this.type = type;
+    }
 
-	public Boolean getDismiss() {
-		return dismiss;
-	}
+    public Boolean getDisabled() {
+	return disabled;
+    }
 
-	public void setDismiss(Boolean dismiss) {
-		this.dismiss = dismiss;
-	}
+    public void setDisabled(Boolean disabled) {
+	this.disabled = disabled;
+    }
 
-	
+    public String getState() {
+	return state;
+    }
 
-	public String getTitleKey() {
-		return titleKey;
-	}
+    public void setState(String state) {
+	this.state = state;
+    }
 
-	public void setTitleKey(String titleKey) {
-		this.titleKey = titleKey;
-	}
+    public String getUrl() {
+	return url;
+    }
 
-	public String getLabelKey() {
-		return labelKey;
-	}
+    public void setUrl(String url) {
+	this.url = url;
+    }
 
-	public void setLabelKey(String labelKey) {
-		this.labelKey = labelKey;
-	}
+    public Boolean getDismiss() {
+	return dismiss;
+    }
 
-	public Boolean getFilled() {
-		return filled;
-	}
+    public void setDismiss(Boolean dismiss) {
+	this.dismiss = dismiss;
+    }
 
-	public void setFilled(Boolean filled) {
-		this.filled = filled;
-	}
+    public String getTitleKey() {
+	return titleKey;
+    }
 
-	public Boolean getAutoBlock() {
-	    return autoBlock;
-	}
+    public void setTitleKey(String titleKey) {
+	this.titleKey = titleKey;
+    }
 
-	public void setAutoBlock(Boolean autoBlock) {
-	    this.autoBlock = autoBlock;
-	}
+    public String getLabelKey() {
+	return labelKey;
+    }
+
+    public void setLabelKey(String labelKey) {
+	this.labelKey = labelKey;
+    }
+
+    public Boolean getFilled() {
+	return filled;
+    }
+
+    public void setFilled(Boolean filled) {
+	this.filled = filled;
+    }
+
+    public Boolean getAutoBlock() {
+	return autoBlock;
+    }
+
+    public void setAutoBlock(Boolean autoBlock) {
+	this.autoBlock = autoBlock;
+    }
 
 }

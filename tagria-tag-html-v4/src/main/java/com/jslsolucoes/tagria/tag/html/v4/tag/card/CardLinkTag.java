@@ -61,5 +61,4 @@ public class CardLinkTag extends AbstractSimpleTagSupport {
 	public void setLabelKey(String labelKey) {
 		this.labelKey = labelKey;
 	}
-
 }
