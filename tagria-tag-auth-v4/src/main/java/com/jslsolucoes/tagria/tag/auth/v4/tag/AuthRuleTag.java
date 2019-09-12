@@ -12,4 +12,20 @@ public class AuthRuleTag extends AbstractSimpleTagSupport {
 		findAncestorWithClass(AuthRulesTag.class).add(new AuthRule(uri, method));
 	}
 
+	public String getUri() {
+	    return uri;
+	}
+
+	public void setUri(String uri) {
+	    this.uri = uri;
+	}
+
+	public String getMethod() {
+	    return method;
+	}
+
+	public void setMethod(String method) {
+	    this.method = method;
+	}
+
 }

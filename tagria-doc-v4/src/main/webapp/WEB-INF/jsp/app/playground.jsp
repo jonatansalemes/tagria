@@ -1,6 +1,10 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+	<auth:rules>
+		<auth:rule uri="/app/myrule" method="get"/>
+		Will be rendered
+	</auth:rules>
 
 	<html:autoComplete url="/app/autoComplete" name="myautoComplete">
 		<html:autoCompleteOnSelect>

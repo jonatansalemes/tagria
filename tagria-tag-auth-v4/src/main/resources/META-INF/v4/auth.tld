@@ -14,7 +14,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an auth integration checking for existent rule</description>
 		<display-name>Auth</display-name>
 		<name>rules</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.auth.v4.AuthRulesTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.auth.v4.tag.AuthRulesTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;auth:rules&gt;
@@ -29,7 +29,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<description>Renders an auth integration checking for existent rule</description>
 		<display-name>Auth</display-name>
 		<name>rule</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.auth.v4.AuthRuleTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.auth.v4.tag.AuthRuleTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the uri to be checked on integration</description>

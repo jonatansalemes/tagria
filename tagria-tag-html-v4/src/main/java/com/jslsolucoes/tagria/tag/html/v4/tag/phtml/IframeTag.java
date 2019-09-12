@@ -13,7 +13,7 @@ public class IframeTag extends AbstractSimpleTagSupport {
 	private String url;
 	private String title;
 	private String titleKey;
-	private Boolean autoHeight = Boolean.TRUE;
+	private Boolean autoHeight = Boolean.FALSE;
 
 	@Override
 	public Element render() {

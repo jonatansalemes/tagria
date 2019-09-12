@@ -3,7 +3,7 @@ package com.jslsolucoes.tagria.config.v4;
 
 public enum TagriaConfigParameter {
 	CDN_ENABLED("cdn.enabled", "false"), ENCODING("encoding", "utf-8"), CDN_URL("cdn.url"), SKIN("skin", "default"),
-	LOCALE("locale", "en"), AUTH_CLASS("auth.class", "com.jslsolucoes.tagria.tag.auth.DefaultTagriaAuth");
+	LOCALE("locale", "en"), AUTH_CLASS("auth.class", "com.jslsolucoes.tagria.tag.auth.v4.DefaultAuthorizer");
 	private String name;
 	private String defaultValue;
 
