@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>tagria-doc-v4</display-name>
+	
+	<context-param>
+	    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+	    <param-value>messages</param-value>
+  	</context-param>
+	
+	<context-param>
+		<param-name>br.com.caelum.vraptor.encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>br.com.caelum.vraptor.packages</param-name>
+		<param-value>br.com.caelum.vraptor.converter.l10n</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>cache</filter-name>
+		<filter-class>com.jslsolucoes.tagria.doc.v4.cache.CacheFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>cache</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>vraptor</filter-name>
+		<filter-class>br.com.caelum.vraptor.VRaptor</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>vraptor</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	
+	
+	<servlet>
+		<servlet-name>tagria-v4</servlet-name>
+		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.Tagria</servlet-class>
+	</servlet>
+	
+	 <servlet-mapping>
+		<servlet-name>tagria-v4</servlet-name>
+		<url-pattern>/tagria/v4/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>tagria-exporter-v4</servlet-name>
+		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.TagriaExporter</servlet-class>
+	</servlet>
+	
+	 <servlet-mapping>
+		<servlet-name>tagria-exporter-v4</servlet-name>
+		<url-pattern>/tagria-exporter/v4</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

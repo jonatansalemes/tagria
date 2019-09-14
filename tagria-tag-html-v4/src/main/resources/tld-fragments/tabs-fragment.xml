@@ -1,0 +1,199 @@
+<fragment>
+
+
+	<tag>
+		<description>Renders a javascript block to be performed after show tab</description>
+		<display-name>Tabs</display-name>
+		<name>tabsOnAfterShow</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsOnAfterShowTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabs&gt;
+			
+				&lt;html:tabsOnAfterShow&gt;
+					/* function signature is f(oldTab,newTab):void. oldTab: previous active tab, newTab: newly activated tab */
+					console.log(oldTab);
+					console.log(newTab);
+				&lt;/html:tabsOnAfterShow&gt;
+			
+				&lt;html:tabsHeader&gt;
+					&lt;html:tabsTab active="true" label="my tab 1" id="etab1"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 2" id="tab2"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 3" id="tab3"&gt;&lt;/html:tabsTab&gt;
+				&lt;/html:tabsHeader&gt;
+				&lt;html:tabsBody&gt;
+					&lt;html:tabsContent active="true" contentOf="etab1"&gt; My content 1&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab2"&gt; My content 2&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab3"&gt; My content 3&lt;/html:tabsContent&gt;
+				&lt;/html:tabsBody&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a panel tabs</description>
+		<display-name>Tabs</display-name>
+		<name>tabs</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabs&gt;
+				&lt;html:tabsHeader&gt;
+					&lt;html:tabsTab active="true" label="my tab 1" id="etab1"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 2" id="tab2"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 3" id="tab3"&gt;&lt;/html:tabsTab&gt;
+				&lt;/html:tabsHeader&gt;
+				&lt;html:tabsBody&gt;
+					&lt;html:tabsContent active="true" contentOf="etab1"&gt; My content 1&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab2"&gt; My content 2&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab3"&gt; My content 3&lt;/html:tabsContent&gt;
+				&lt;/html:tabsBody&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a panel header tabs</description>
+		<display-name>Tabs</display-name>
+		<name>tabsHeader</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabs&gt;
+				&lt;html:tabsHeader&gt;
+					&lt;html:tabsTab active="true" label="my tab 1" id="etab1"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 2" id="tab2"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 3" id="tab3"&gt;&lt;/html:tabsTab&gt;
+				&lt;/html:tabsHeader&gt;
+				&lt;html:tabsBody&gt;
+					&lt;html:tabsContent active="true" contentOf="etab1"&gt; My content 1&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab2"&gt; My content 2&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab3"&gt; My content 3&lt;/html:tabsContent&gt;
+				&lt;/html:tabsBody&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a panel body tabs</description>
+		<display-name>Tabs</display-name>
+		<name>tabsBody</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabs&gt;
+				&lt;html:tabsHeader&gt;
+					&lt;html:tabsTab active="true" label="my tab 1" id="etab1"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 2" id="tab2"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 3" id="tab3"&gt;&lt;/html:tabsTab&gt;
+				&lt;/html:tabsHeader&gt;
+				&lt;html:tabsBody&gt;
+					&lt;html:tabsContent active="true" contentOf="etab1"&gt; My content 1&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab2"&gt; My content 2&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab3"&gt; My content 3&lt;/html:tabsContent&gt;
+				&lt;/html:tabsBody&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a tab content</description>
+		<display-name>Tabs</display-name>
+		<name>tabsContent</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsContentTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the tab should be initiated selected</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the link between tab head and content</description>
+			<name>contentOf</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the url to be incorporated into the tab. If not indicated it renders content in the component body.</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:tabs&gt;
+				&lt;html:tabsHeader&gt;
+					&lt;html:tabsTab active="true" label="my tab 1" id="etab1"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 2" id="tab2"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 3" id="tab3"&gt;&lt;/html:tabsTab&gt;
+				&lt;/html:tabsHeader&gt;
+				&lt;html:tabsBody&gt;
+					&lt;html:tabsContent active="true" contentOf="etab1"&gt; My content 1&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab2"&gt; My content 2&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab3"&gt; My content 3&lt;/html:tabsContent&gt;
+				&lt;/html:tabsBody&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a tab head</description>
+		<display-name>Tabs</display-name>
+		<name>tabsTab</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.tab.TabsTabTag</tag-class>
+		<body-content>scriptless</body-content>
+		<dynamic-attributes>true</dynamic-attributes>
+		<attribute>
+			<description>It indicates id of tab</description>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates tab activation on load component</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label of the tab</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n) of the tab</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the tab should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the tab should be recharged to clicar.Default: true.</description>
+			<name>reloadOnSelect</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:tabs&gt;
+				&lt;html:tabsHeader&gt;
+					&lt;html:tabsTab active="true" label="my tab 1" id="etab1"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 2" id="tab2"&gt;&lt;/html:tabsTab&gt;
+					&lt;html:tabsTab label="my tab 3" id="tab3"&gt;&lt;/html:tabsTab&gt;
+				&lt;/html:tabsHeader&gt;
+				&lt;html:tabsBody&gt;
+					&lt;html:tabsContent active="true" contentOf="etab1"&gt; My content 1&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab2"&gt; My content 2&lt;/html:tabsContent&gt;
+					&lt;html:tabsContent contentOf="tab3"&gt; My content 3&lt;/html:tabsContent&gt;
+				&lt;/html:tabsBody&gt;
+			&lt;/html:tabs&gt;
+		</example>
+	</tag>
+</fragment>

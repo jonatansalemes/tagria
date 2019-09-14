@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>Tagria html library</description>
+	<display-name>Tagria html library</display-name>
+	<tlib-version>4.0</tlib-version>
+	<short-name>html</short-name>
+	<uri>http://v4.tagria.jslsolucoes.com/tags/html</uri>
+	
+	<tag>
+		<description>Renders a view . This view must be declared ONLY ONCE and main tag used throughout view</description>
+		<display-name>Misc</display-name>
+		<name>view</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.ViewTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates if inline javascript must be minified. Default:true</description>
+			<name>minifyJs</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if html must be minified. Default:true</description>
+			<name>minifyHtml</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if inline css must be minified. Default:true</description>
+			<name>minifyCss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if view act as fragment (without html,head,body and default resources). Default: false </description>
+			<name>asFragment</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the template that will render</description>
+			<name>template</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title of the current page</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the localized (i18n) key of title for the current page</description>
+			<name>titleKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the body css class</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:view&gt;
+				All Components
+			&lt;/html:view&gt; </example>
+	</tag>
+
+	<!-- <template/> -->
+
+</taglib>  

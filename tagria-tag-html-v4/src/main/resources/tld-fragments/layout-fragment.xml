@@ -1,0 +1,224 @@
+<fragment>
+	<tag>
+		<description>Renders a block with top and bottom spacing</description>
+		<display-name>Layout</display-name>
+		<name>block</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.BlockTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the align of text inside block. Default: left . Options: left,center,right </description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates size of margin top and left . Default : 3. Options: 1-5</description>
+			<name>margin</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:block margin="3"&gt;
+				Block component
+			&lt;/html:block&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a data block iteration</description>
+		<display-name>Layout</display-name>
+		<name>dataBlock</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.DataBlockTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the collection to be iterated by the component</description>
+			<name>data</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
+			<name>extraSmall</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to small viewport. Options: 1 to 12</description>
+			<name>small</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to medium viewport. Options: 1 to 12</description>
+			<name>medium</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to large viewport. Options: 1 to 12</description>
+			<name>large</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:dataBlock extraSmall="12" medium="4" small="4" large="1" data="${ persons }" var="person"&gt;
+				&lt;html:alert state="success"&gt;
+					${ person.name }
+				&lt;/html:alert&gt;
+			&lt;/html:dataBlock&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a line of columns of subdivision (divided into 12 sections combined with the col tag)</description>
+		<display-name>Layout</display-name>
+		<name>row</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.RowTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroup forElement="field1" label="Field 1" required="true"&gt;
+					&lt;html:row&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input required="true" name="field1"/&gt;
+						&lt;/html:col&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input name="field2"/&gt;
+						&lt;/html:col&gt;
+					&lt;/html:row>
+				&lt;/html:formGroup&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a column within a row</description>
+		<display-name>Layout</display-name>
+		<name>col</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.ColTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
+			<name>extraSmall</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to small viewport. Options: 1 to 12</description>
+			<name>small</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to medium viewport. Options: 1 to 12</description>
+			<name>medium</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to large viewport. Options: 1 to 12</description>
+			<name>large</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:row&gt;
+				&lt;html:col extraSmall="3"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:col&gt;
+				&lt;html:col extraSmall="9"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:col&gt;
+			&lt;/html:row&gt;
+		</example>
+	</tag>
+
+	
+
+	<tag>
+		<description>Renders a div</description>
+		<display-name>Layout</display-name>
+		<name>div</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.DivTag</tag-class>
+		<body-content>scriptless</body-content>
+		<dynamic-attributes>true</dynamic-attributes>
+		<attribute>
+			<description>Indicates the components id</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true.</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:div&gt;
+				Content
+			&lt;/html:div&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a main container block with a standard margin</description>
+		<display-name>Layout</display-name>
+		<name>container</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.ContainerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether a container must be responsive to the screen 100%</description>
+			<name>fluid</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>	
+			&lt;html:alert state="info"&gt;
+				Component outside container
+			&lt;/html:alert&gt;
+			
+			&lt;html:container&gt;
+				&lt;html:alert state="info"&gt;
+					Component inside container
+				&lt;/html:alert&gt;
+			&lt;/html:container&gt;
+		</example>
+	</tag>
+	
+	
+</fragment>

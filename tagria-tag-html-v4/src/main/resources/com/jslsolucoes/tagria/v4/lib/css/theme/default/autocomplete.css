@@ -1,0 +1,21 @@
+.autocomplete-results {
+	display: none;
+	padding: 0.5rem !important;
+	border-radius: 0.25rem;
+	border: 1px solid #ced4da;
+    overflow-y: scroll;
+    position: absolute;
+    z-index: 3;
+    background-color: white;
+}
+
+.autocomplete-item {
+	padding: 0.5rem !important;
+	cursor:pointer;
+	border-bottom: 1px solid #ced4da;
+}
+
+.autocomplete-item-active {
+	background-color: #f8f9fa;
+	border-radius: 0.25rem;
+}

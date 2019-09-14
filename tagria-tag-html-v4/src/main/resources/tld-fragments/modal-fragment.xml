@@ -1,0 +1,153 @@
+<fragment>
+	<tag>
+		<description>Renders a modal block</description>
+		<display-name>Modal</display-name>
+		<name>modal</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.modal.ModalTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the size of modal. Default none. Options: xl,sm,lg</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the modal id for direct manipulation of events</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name that triggers the modal screen</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the modal screen</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if modal can be closeable. Default : true. Options : true,false</description>
+			<name>closeable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if modal is vertically centered. Default : false. Options : true,false</description>
+			<name>centered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component is opened on load. Default : false. Options : true,false</description>
+			<name>open</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+		    &lt;html:buttonGroup&gt;
+				&lt;html:button label="My button" icon="search" id="btn1" /&gt;
+			&lt;/html:buttonGroup&gt;
+			
+			&lt;html:modal attachToSelector="#btn1"&gt;
+				&lt;html:modalHeader label="My modal title"&gt;&lt;/html:modalHeader&gt;
+				&lt;html:modalBody&gt;
+					Here is my component
+				&lt;/html:modalBody&gt;
+				&lt;html:modalFooter&gt;
+					My footer
+				&lt;/html:modalFooter&gt;
+			&lt;/html:modal&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a modal header</description>
+		<display-name>Modal</display-name>
+		<name>modalHeader</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.modal.ModalHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label of the modal header</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n) of the modal header</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:buttonGroup&gt;
+				&lt;html:button label="My button" icon="search" id="btn1" /&gt;
+			&lt;/html:buttonGroup&gt;
+			
+			&lt;html:modal attachToSelector="#btn1"&gt;
+				&lt;html:modalHeader label="My modal title"&gt;&lt;/html:modalHeader&gt;
+				&lt;html:modalBody&gt;
+					Here is my component
+				&lt;/html:modalBody&gt;
+				&lt;html:modalFooter&gt;
+					My footer
+				&lt;/html:modalFooter&gt;
+			&lt;/html:modal&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a modal footer</description>
+		<display-name>Modal</display-name>
+		<name>modalFooter</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.modal.ModalFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+		    &lt;html:buttonGroup&gt;
+				&lt;html:button label="My button" icon="search" id="btn1" /&gt;
+			&lt;/html:buttonGroup&gt;
+			
+			&lt;html:modal attachToSelector="#btn1"&gt;
+				&lt;html:modalHeader label="My modal title"&gt;&lt;/html:modalHeader&gt;
+				&lt;html:modalBody&gt;
+					Here is my component
+				&lt;/html:modalBody&gt;
+				&lt;html:modalFooter&gt;
+					My footer
+				&lt;/html:modalFooter&gt;
+			&lt;/html:modal&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a modal footer</description>
+		<display-name>Modal</display-name>
+		<name>modalBody</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.modal.ModalBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+		    &lt;html:buttonGroup&gt;
+				&lt;html:button label="My button" icon="search" id="btn1" /&gt;
+			&lt;/html:buttonGroup&gt;
+			
+			&lt;html:modal attachToSelector="#btn1"&gt;
+				&lt;html:modalHeader label="My modal title"&gt;&lt;/html:modalHeader&gt;
+				&lt;html:modalBody&gt;
+					Here is my component
+				&lt;/html:modalBody&gt;
+				&lt;html:modalFooter&gt;
+					My footer
+				&lt;/html:modalFooter&gt;
+			&lt;/html:modal&gt;
+		</example>
+	</tag>
+</fragment>
