@@ -98,6 +98,7 @@ Create an jsp for example index.jsp and import directives
 &lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/html" prefix="html"%&gt;
 &lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
 &lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/x" prefix="x"%&gt;
+&lt;%@ taglib uri="http://v4.tagria.jslsolucoes.com/tags/auth" prefix="auth"%&gt;
 &lt;html:view title="My title"&gt;
 	&lt;html:alert state="info"&gt;
 		My firts view	
