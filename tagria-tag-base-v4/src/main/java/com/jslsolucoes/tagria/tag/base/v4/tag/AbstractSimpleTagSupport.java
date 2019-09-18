@@ -33,7 +33,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
-import com.jslsolucoes.tagria.config.v4.TagriaConfigParameter;
+import com.jslsolucoes.tagria.config.v4.xml.TagriaCdnXML;
+import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.formatter.v4.DataFormatter;
 import com.jslsolucoes.tagria.html.v4.Element;
@@ -71,7 +72,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String contentOfTemplate(String template) {
-	String jspPath = config().xml().getTemplates().stream()
+	String jspPath = xml().getTemplates().stream()
 		.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
@@ -249,19 +250,15 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     public Locale locale() {
 	HttpSession httpSession = httpSession();
-	Locale locale = Locale.forLanguageTag(propertyValue(TagriaConfigParameter.LOCALE));
+	Locale locale = Locale.forLanguageTag(xml().getLocale());
 	if (Config.get(httpSession, Config.FMT_LOCALE) != null) {
 	    locale = (Locale) Config.get(httpSession, Config.FMT_LOCALE);
 	}
 	return locale;
     }
 
-    private TagriaConfig config() {
-	return TagriaConfig.newConfig();
-    }
-
-    public String propertyValue(TagriaConfigParameter tagriaConfigParameter) {
-	return config().propertyValue(tagriaConfigParameter);
+    public TagriaXML xml() {
+	return TagriaConfig.newConfig().xml();
     }
 
     public Boolean hasKeyOrLabel(String key, String label) {
@@ -305,7 +302,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String pathForCssOnLibrary(String css) {
-	return urlBaseForStaticFile() + "/tagria/v4/lib/css/theme/" + propertyValue(TagriaConfigParameter.SKIN) + "/"
+	return urlBaseForStaticFile() + "/tagria/v4/lib/css/theme/" + xml().getSkin() + "/"
 		+ css + "?ver=" + version();
     }
 
@@ -314,7 +311,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String pathForImageOnLibrary(String image) {
-	return urlBaseForStaticFile() + "/tagria/v4/lib/image/theme/" + propertyValue(TagriaConfigParameter.SKIN) + "/"
+	return urlBaseForStaticFile() + "/tagria/v4/lib/image/theme/" + xml().getSkin() + "/"
 		+ image + "?ver=" + version();
     }
 
@@ -344,9 +341,9 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String urlBaseForStaticFile() {
-	return propertyValue(TagriaConfigParameter.CDN_URL) != null
-		&& Boolean.valueOf(propertyValue(TagriaConfigParameter.CDN_ENABLED))
-			? httpScheme() + "://" + propertyValue(TagriaConfigParameter.CDN_URL)
+	TagriaCdnXML tagriaCdnXML = xml().getCdn();
+	return tagriaCdnXML.getEnabled()
+			? httpScheme() + "://" + tagriaCdnXML.getUrl()
 			: contextPath();
     }
 

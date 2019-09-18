@@ -5,23 +5,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "formatter")
+@XmlRootElement(name = "auth")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaFormatterXML {
-
-    
-    private String name;
+public class TagriaAuthXml {
 
     @XmlElement(name="class")
-    private String clazz;
-
-    public String getName() {
-	return name;
-    }
-
-    public void setName(String name) {
-	this.name = name;
-    }
+    private String clazz = "com.jslsolucoes.tagria.tag.auth.v4.DefaultAuthorizer";
 
     public String getClazz() {
 	return clazz;
@@ -30,5 +19,4 @@ public class TagriaFormatterXML {
     public void setClazz(String clazz) {
 	this.clazz = clazz;
     }
-
 }

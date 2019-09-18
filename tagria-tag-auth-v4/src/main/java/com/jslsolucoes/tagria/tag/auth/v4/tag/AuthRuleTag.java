@@ -1,7 +1,5 @@
 package com.jslsolucoes.tagria.tag.auth.v4.tag;
 
-import com.jslsolucoes.tagria.config.v4.TagriaConfig;
-import com.jslsolucoes.tagria.config.v4.TagriaConfigParameter;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -29,8 +27,7 @@ public class AuthRuleTag extends AbstractSimpleTagSupport {
 
     private Authorizer authorizer() {
 	try {
-	    return (Authorizer) Class.forName(TagriaConfig.newConfig().propertyValue(TagriaConfigParameter.AUTH_CLASS))
-		    .newInstance();
+	    return (Authorizer) Class.forName(xml().getAuth().getClazz()).newInstance();
 	} catch (Exception e) {
 	    throw new TagriaRuntimeException(e);
 	}
@@ -51,7 +48,5 @@ public class AuthRuleTag extends AbstractSimpleTagSupport {
     public void setHttpMethod(String httpMethod) {
 	this.httpMethod = httpMethod;
     }
-
-   
 
 }

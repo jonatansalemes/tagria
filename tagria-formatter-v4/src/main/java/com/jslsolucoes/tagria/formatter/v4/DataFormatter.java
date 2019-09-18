@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.config.v4.xml.TagriaFormatterXML;
@@ -17,6 +19,7 @@ import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 public class DataFormatter {
 
     private List<Formatter> formatters;
+    private static final Logger logger = LoggerFactory.getLogger(DataFormatter.class);
 
     private DataFormatter() {
 	formatters = formatters();
@@ -47,19 +50,23 @@ public class DataFormatter {
 		    throw new TagriaRuntimeException(e);
 		}
 	    }
+	} else {
+	    logger.debug("Customs formatters not found on xml...");
 	}
 	return formatters;
     }
 
     public String format(String type, String value, Locale locale) {
-	if (StringUtils.isEmpty(value)) {
-	    return value;
-	} else {
+	if (!StringUtils.isEmpty(value)) {
 	    for (Formatter formatter : formatters) {
 		if (formatter.accepts(type)) {
-		    return formatter.format(type, value, locale);
+		    
+		    logger.debug(" type {} accepted by {}, value {}, locale {}",type,formatter,value,locale);
+		    return formatter.format(type, value.trim(), locale);
+		} else {
+		    logger.debug(" type {} not accepted by {}",type,formatter);
 		}
-	    }
+	    } 
 	}
 	return value;
     }

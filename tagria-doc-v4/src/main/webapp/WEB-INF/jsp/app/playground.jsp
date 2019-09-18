@@ -7,7 +7,11 @@
 			id="btn3" url="/pessoa" />
 	</auth:rule>
 
-	<html:input name="ipt1" formatter="datetime" value="${ dateTime}"/>
+	<html:input name="ipt1" formatter="cpf" value="${ cpf }"/>
+	
+	My date <html:format formatter="datetime">${ dateTime }</html:format>
+	My cpf <html:format formatter="cpf">${ cpf }</html:format>
+	My custom formatter  <html:format formatter="matriculaSap">${ cpf }</html:format>
 
 	<html:autoComplete url="/app/autoComplete" name="myautoComplete">
 		<html:autoCompleteOnSelect>
@@ -369,7 +373,7 @@ private class Java {
 		Components
 	</html:collapsable>
 
-	My date <html:format formatter="datetime">${ dateTime}</html:format>
+	
 
 	<html:button id="btn3" label="Confirm that ?" url="#" />
 	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3" />

@@ -16,7 +16,6 @@ import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.jscomp.SourceFile;
-import com.jslsolucoes.tagria.config.v4.TagriaConfigParameter;
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -200,7 +199,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private Element metaContentType() {
 	return ElementCreator.newMeta().attribute(Attribute.HTTP_EQUIV, "content-type").attribute(Attribute.CONTENT,
-		"text/html;charset=" + propertyValue(TagriaConfigParameter.ENCODING));
+		"text/html;charset=" + xml().getEncoding());
     }
 
     private String minifyCss(String cssCode) {

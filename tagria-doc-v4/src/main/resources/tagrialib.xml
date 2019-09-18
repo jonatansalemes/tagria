@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <tagrialib>
 	<templates>
-		<template name="master" path="/WEB-INF/jsp/app/template.jsp" />
+		<template>
+			<name>master</name>
+			<path>/WEB-INF/jsp/app/template.jsp</path>
+		</template>
 	</templates>
 	<formatters>
-		<format name="myformatter" clazz="com.jslsolucoes.tagria.doc.v4.formatter.MyFormatter" />
+		<formatter>
+			<name>matriculaSap</name>
+			<class>com.jslsolucoes.tagria.doc.v4.formatter.MyFormatter</class>
+		</formatter>
 	</formatters>
+	<cdn>
+		<enabled>false</enabled>
+		<url>d35ckkxcy33ron.cloudfront.net</url>
+	</cdn>
+	<encoding>UTF-8</encoding>
+	<skin>default</skin>
+	<locale>pt-BR</locale>
+	<auth>
+		<class>com.jslsolucoes.tagria.tag.auth.v4.DefaultAuthorizer</class>
+	</auth>
 </tagrialib> 

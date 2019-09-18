@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
-import com.jslsolucoes.tagria.config.v4.TagriaConfigParameter;
+import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
 import com.jslsolucoes.tagria.lib.v4.servlet.HttpHeader;
 
 public class ContentResourceHandler extends DefaultResourceHandler {
@@ -44,7 +44,7 @@ public class ContentResourceHandler extends DefaultResourceHandler {
 
     private void setCharset() {
 	httpServletResponse
-		.setCharacterEncoding(TagriaConfig.newConfig().propertyValue(TagriaConfigParameter.ENCODING));
+		.setCharacterEncoding(xml().getEncoding());
     }
 
     private void setContent() {
@@ -63,9 +63,13 @@ public class ContentResourceHandler extends DefaultResourceHandler {
 	    httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	}
     }
+    
+    private TagriaXML xml() {
+	return TagriaConfig.newConfig().xml();
+    }
 
     private void setAllowOrigin() {
-	if (Boolean.valueOf(TagriaConfig.newConfig().propertyValue(TagriaConfigParameter.CDN_ENABLED))) {
+	if (xml().getCdn().getEnabled()) {
 	    httpServletResponse.setHeader(HttpHeader.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 	}
     }

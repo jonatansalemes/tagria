@@ -43,6 +43,7 @@ public class AppController {
 	this.result.include("dateTime", LocalDateTime.now());
 	this.result.include("descriptions", RandomStringUtils.randomNumeric(14));
 	this.result.include("myValue", 12345L);
+	this.result.include("cpf", 7137389090L);
     }
 
     @Path("/app/ajax")

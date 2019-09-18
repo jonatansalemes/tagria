@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class DateTimeFormatter implements Formatter {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class DateTimeFormatter implements Formatter {
+    
+    private static final Logger logger = LoggerFactory.getLogger(DateTimeFormatter.class);
+    
     @Override
     public String format(String type, String value, Locale locale) {
 	DateFormat dateFormat = DateFormat.getDateTimeInstance();
@@ -24,11 +29,14 @@ public class DateTimeFormatter implements Formatter {
 	patterns.add("yyyy-MM-dd HH:mm:ss");
 	patterns.add("yyyy-MM-dd");
 	patterns.add("E MMM dd HH:mm:ss zzz yyyy");
+	patterns.add("MMM dd, yyyy hh:mm:ss a");
+
 	for (String cpattern : patterns) {
 	    try {
+		logger.debug("pattern {} match with value {}, formatting ...",cpattern,value);
 		return dateFormat.format(new SimpleDateFormat(cpattern, Locale.ENGLISH).parse(value));
 	    } catch (ParseException pe) {
-		// Try another format
+		logger.debug("pattern {} does not match with value {}",cpattern,value);
 	    }
 	}
 	return value;

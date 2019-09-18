@@ -27,16 +27,13 @@ public class CacheFilter implements Filter {
 	String key = httpServletRequest.getRequestURI();
 	byte[] response = cache.getIfPresent(key);
 	if(response == null) {
-	    System.out.println("Key " + key + " not found on cache");
 	    try(TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
 		filterChain.doFilter(httpServletRequest, tagriaResponseWrapper);
 		response = tagriaResponseWrapper.asBytes();
 		if(CACHE_RESOURCE) cache.put(key,response);
 	    }
-	} else {
-	    System.out.println("Key " + key + " found on cache,using it");
 	}
-	 httpServletResponse.getOutputStream().write(response);
+	httpServletResponse.getOutputStream().write(response);
     }
 
 }
