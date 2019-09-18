@@ -29,6 +29,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 	private Integer step;
 	private String list;
 	private Boolean autoComplete = Boolean.FALSE;
+	private String formatter;
 
 	@Override
 	public Element render() {
@@ -86,7 +87,10 @@ public class InputTag extends AbstractSimpleTagSupport {
 		}
 
 		if (!StringUtils.isEmpty(value)) {
-			input.attribute(Attribute.VALUE, value);
+		    	if(!StringUtils.isEmpty(formatter)) {
+		    	    value = format(formatter, value);
+		    	}
+		    	input.attribute(Attribute.VALUE, value);
 		}
 		if (!StringUtils.isEmpty(pattern)) {
 			input.attribute(Attribute.PATTERN, pattern);
@@ -291,6 +295,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 
 	public void setPlaceHolderKey(String placeHolderKey) {
 	    this.placeHolderKey = placeHolderKey;
+	}
+
+	public String getFormatter() {
+	    return formatter;
+	}
+
+	public void setFormatter(String formatter) {
+	    this.formatter = formatter;
 	}
 
 }

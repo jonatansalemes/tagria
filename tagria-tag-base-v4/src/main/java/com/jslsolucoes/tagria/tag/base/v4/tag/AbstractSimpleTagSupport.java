@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.config.v4.TagriaConfigParameter;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
+import com.jslsolucoes.tagria.formatter.v4.DataFormatter;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.CloneableJsAppender;
@@ -59,6 +60,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     private JspContext jspContext() {
 	return getJspContext();
+    }
+
+    public String format(String type, String value) {
+	return DataFormatter.newInstance().format(type, value, locale());
     }
 
     public void setAttribute(String name, Object value) {

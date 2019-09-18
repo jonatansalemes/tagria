@@ -15,7 +15,7 @@
 					<html:gridColumnData align="right" exportable="true">
 						${ person.name }
 					</html:gridColumnData>
-					<html:gridColumnData align="center" exportable="true" booleanType="true">
+					<html:gridColumnData align="center" exportable="true" >
 						${ person.likeChocolate }
 					</html:gridColumnData>
 					<html:gridColumnData align="center" exportable="true" collapsable="true">
@@ -40,7 +40,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						\${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						\${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;

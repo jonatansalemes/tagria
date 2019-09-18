@@ -51,6 +51,7 @@
 	</scm>
 
 	<modules>
+		<module>tagria-formatter-v4</module>
 		<module>tagria-exception-v4</module>
 		<module>tagria-exporter-v4</module>
 		<module>tagria-compressor-v4</module>

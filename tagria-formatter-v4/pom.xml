@@ -7,14 +7,19 @@
 		<artifactId>tagria-v4</artifactId>
 		<version>4.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>tagria-tag-x-v4</artifactId>
-	
+	<artifactId>tagria-formatter-v4</artifactId>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
-			<artifactId>tagria-formatter-v4</artifactId>
+			<artifactId>tagria-config-v4</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>tagria-exception-v4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
-
 </project>

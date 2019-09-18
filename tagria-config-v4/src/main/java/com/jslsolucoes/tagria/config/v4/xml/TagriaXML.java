@@ -8,19 +8,32 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="tagrialib")
+@XmlRootElement(name = "tagrialib")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TagriaXML {
 
-	@XmlElementWrapper(name="templates")
-    @XmlElement(name="template")
-	private List<TagriaTemplateXML> templates;
+    @XmlElementWrapper(name = "templates")
+    @XmlElement(name = "template")
+    private List<TagriaTemplateXML> templates;
 
-	public List<TagriaTemplateXML> getTemplates() {
-		return templates;
-	}
+    @XmlElementWrapper(name = "formatters")
+    @XmlElement(name = "formatter")
+    private List<TagriaFormatterXML> formatters;
 
-	public void setTemplates(List<TagriaTemplateXML> templates) {
-		this.templates = templates;
-	}
+    public List<TagriaTemplateXML> getTemplates() {
+	return templates;
+    }
+
+    public void setTemplates(List<TagriaTemplateXML> templates) {
+	this.templates = templates;
+    }
+
+    public List<TagriaFormatterXML> getFormatters() {
+	return formatters;
+    }
+
+    public void setFormatters(List<TagriaFormatterXML> formatters) {
+	this.formatters = formatters;
+    }
+
 }

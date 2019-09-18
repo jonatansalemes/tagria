@@ -7,7 +7,7 @@
 			id="btn3" url="/pessoa" />
 	</auth:rule>
 
-
+	<html:input name="ipt1" formatter="datetime" value="${ dateTime}"/>
 
 	<html:autoComplete url="/app/autoComplete" name="myautoComplete">
 		<html:autoCompleteOnSelect>
@@ -73,11 +73,10 @@
 		</html:gridHeader>
 		<html:gridBody>
 			<html:gridColumnData align="right" exportable="true"
-				cssClass="border border-danger">
+				cssClass="border border-danger" formatter="datetime">
 				${ person.name }
 			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true"
-				booleanType="true" cssClass="border border-danger">
+			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger">
 				${ person.likeChocolate }
 			</html:gridColumnData>
 			<html:gridColumnData align="center" exportable="true"
@@ -370,7 +369,7 @@ private class Java {
 		Components
 	</html:collapsable>
 
-	My date <html:format type="datetime">${ dateTime}</html:format>
+	My date <html:format formatter="datetime">${ dateTime}</html:format>
 
 	<html:button id="btn3" label="Confirm that ?" url="#" />
 	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3" />

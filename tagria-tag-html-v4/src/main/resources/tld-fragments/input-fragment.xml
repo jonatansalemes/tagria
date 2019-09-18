@@ -405,6 +405,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a type format in which the value must be converted. Default options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
+			<name>formatter</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates a CSS class to the component</description>
 			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
