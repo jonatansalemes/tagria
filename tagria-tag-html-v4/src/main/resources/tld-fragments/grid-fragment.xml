@@ -72,7 +72,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -125,7 +125,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -159,7 +159,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -217,7 +217,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -251,7 +251,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -309,7 +309,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -343,7 +343,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -377,7 +377,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -395,6 +395,12 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.grid.GridColumnDataTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates a type format in which the value must be converted. Default options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
+			<name>formatter</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the alignment of the content. Default: left. Options: left, center, right</description>
 			<name>align</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -405,12 +411,6 @@
 			<name>state</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates whether the component value is of type boolean. Default false</description>
-			<name>booleanType</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>It indicates a css class to the component</description>
@@ -447,7 +447,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;
@@ -487,7 +487,7 @@
 					&lt;html:gridColumnData align="right" exportable="true"&gt;
 						${ person.name }
 					&lt;/html:gridColumnData&gt;
-					&lt;html:gridColumnData align="center" exportable="true" booleanType="true"&gt;
+					&lt;html:gridColumnData align="center" exportable="true" &gt;
 						${ person.likeChocolate }
 					&lt;/html:gridColumnData&gt;
 					&lt;html:gridColumnData align="center" exportable="true" collapsable="true"&gt;

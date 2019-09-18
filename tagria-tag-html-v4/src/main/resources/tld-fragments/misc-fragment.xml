@@ -123,26 +123,14 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.FormatTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates a type format in which the value must be converted. Options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
-			<name>type</name>
+			<description>It indicates a type format in which the value must be converted. Default options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
+			<name>formatter</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<attribute>
-			<description>It indicates a match regular expression value</description>
-			<name>match</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>It indicates a replace regular expression value</description>
-			<name>replace</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
 		<example>
-			&lt;html:format type="currency"&gt;
+			&lt;html:format formatter="currency"&gt;
 				${ myValue}
 			&lt;/html:format&gt;
 		</example>

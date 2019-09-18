@@ -3,4 +3,7 @@
 	<templates>
 		<template name="master" path="/WEB-INF/jsp/app/template.jsp" />
 	</templates>
+	<formatters>
+		<format name="myformatter" clazz="com.jslsolucoes.tagria.doc.v4.formatter.MyFormatter" />
+	</formatters>
 </tagrialib> 
