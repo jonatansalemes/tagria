@@ -67,7 +67,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 		}
 
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
-			input.attribute(Attribute.CLASS, "form-control shadow-xl");
+			input.attribute(Attribute.CLASS, "form-control");
 		}
 
 		if (focus) {

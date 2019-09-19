@@ -1,7 +1,35 @@
-.form-group > label {
+.form-group {
 	position: relative;
-	top: 20px;
-	left: 20px;
-	padding:5px;
-	background: white;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+	position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    transition: transform .2s ease-out,color .2s ease-out;
+    transform-origin: 0 100%;
+    transform: translateY(12px);
+    cursor: text;
+    color: #757575;
+}
+
+.form-group label.active {
+    transform: translateY(-14px) scale(.8);
+}
+.form-group label.active {
+    font-size: 1rem;
+}
+
+.form-control {
+	box-sizing: content-box;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+    outline: 0;
+    box-shadow: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }

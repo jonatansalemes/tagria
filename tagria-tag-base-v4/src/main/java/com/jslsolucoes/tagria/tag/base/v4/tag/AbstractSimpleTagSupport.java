@@ -52,7 +52,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected String id;
 
     private String version() {
-	return "4.0.0.18";
+	return "4.0.0.19";
     }
 
     private JspWriter writer() {
