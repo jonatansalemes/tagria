@@ -21,7 +21,7 @@ public class AlertTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-" + state + " shadow-sm")
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "alert alert-" + state + " shadow-xl")
 				.attribute(Attribute.ROLE, "alert").attribute(Attribute.ID, idForId(id));
 		if (!StringUtils.isEmpty(cssClass)) {
 			div.attribute(Attribute.CLASS, cssClass);

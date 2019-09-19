@@ -31,7 +31,7 @@ public class DropDownTag extends AbstractSimpleTagSupport {
 	private Element button() {
 		Element button = ElementCreator.newButton().attribute(Attribute.TYPE, "button")
 				.attribute(Attribute.ID, idForId(id))
-				.attribute(Attribute.CLASS, "btn btn-outline-" + state + " shadow-sm dropdown-toggle")
+				.attribute(Attribute.CLASS, "btn btn-outline-" + state + " shadow-xl dropdown-toggle")
 				.attribute(Attribute.DATA_TOGGLE, "dropdown").add(keyOrLabel(labelKey, label));
 		if (!StringUtils.isEmpty(size)) {
 			button.attribute(Attribute.CLASS, "btn-" + size);

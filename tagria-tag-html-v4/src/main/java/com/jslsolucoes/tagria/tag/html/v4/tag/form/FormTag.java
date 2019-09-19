@@ -18,7 +18,6 @@ public class FormTag extends AbstractSimpleTagSupport {
 	private String label;
 	private String labelKey;
 	private Boolean inline = Boolean.FALSE;
-	private Boolean border = Boolean.TRUE;
 	private String onBeforeSubmit;
 
 	@Override
@@ -27,9 +26,9 @@ public class FormTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "animated bounceIn").add(form());
-		if (border) {
-			div.attribute(Attribute.CLASS, "p-3 border border-secondary rounded shadow-sm");
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2 shadow-xl rounded bg-white").add(form());
+		if (!StringUtils.isEmpty(cssClass)) {
+			div.attribute(Attribute.CLASS,cssClass);
 		}
 		return div;
 	}
@@ -155,14 +154,6 @@ public class FormTag extends AbstractSimpleTagSupport {
 
 	public void setInline(Boolean inline) {
 		this.inline = inline;
-	}
-
-	public Boolean getBorder() {
-		return border;
-	}
-
-	public void setBorder(Boolean border) {
-		this.border = border;
 	}
 
 	public String getOnBeforeSubmit() {

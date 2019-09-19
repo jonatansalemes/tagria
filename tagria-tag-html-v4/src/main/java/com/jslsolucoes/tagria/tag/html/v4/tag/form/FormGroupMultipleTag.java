@@ -37,7 +37,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	private Element div() {
 		String id = id();
 		Element div = ElementCreator.newDiv().attribute(Attribute.ID, id)
-				.attribute(Attribute.CLASS, "form-group border border-secondary rounded p-2 shadow-sm fg-container")
+				.attribute(Attribute.CLASS, "form-group p-2 shadow-xl rounded bg-white fg-container")
 				.add(divToolbar()).add(divContent())
 				.add(textAreaHtml()).add(textAreaScript());
 		appendJsCode("$('#" + id + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
@@ -92,7 +92,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	private Element buttonPlus() {
 		return ElementCreator.newButton().attribute(Attribute.TYPE, "button")
 				.attribute(Attribute.ARIA_LABEL,keyForLibrary("form.group.plus"))
-				.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus").add(spanPlus());
+				.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus shadow-xl").add(spanPlus());
 	}
 
 	private Element spanPlus() {
@@ -126,14 +126,14 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
 	private Element divRow(String bodyContent) {
 		return ElementCreator.newDiv()
-				.attribute(Attribute.CLASS, "row fg-row border rounded text-secondary mt-3 mb-3 p-3")
+				.attribute(Attribute.CLASS, "row fg-row shadow-xl rounded mt-3 mb-3 p-3")
 				.add(divCol1(bodyContent)).add(divCol2());
 	}
 
 	private Element buttonRemove() {
 		return ElementCreator.newButton().attribute(Attribute.ID, id())
 				.attribute(Attribute.ARIA_LABEL,keyForLibrary("form.group.minus"))
-				.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus").add(spanMinus());
+				.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus shadow-xl").add(spanMinus());
 	}
 
 	private Element spanMinus() {

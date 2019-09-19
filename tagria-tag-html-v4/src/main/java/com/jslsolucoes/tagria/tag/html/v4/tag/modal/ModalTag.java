@@ -22,7 +22,7 @@ public class ModalTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal animated bounceIn")
+		Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade")
 				.attribute(Attribute.ID, idForId(id)).add(divDialog());
 		if (!closeable) {
 			div.attribute(Attribute.DATA_KEYBOARD, "false");

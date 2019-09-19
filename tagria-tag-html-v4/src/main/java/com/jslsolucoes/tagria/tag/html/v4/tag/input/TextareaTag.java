@@ -24,7 +24,7 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	private Element textarea() {
 		Element textArea = ElementCreator.newTextArea().attribute(Attribute.NAME, name).attribute(Attribute.ROWS, rows)
 				.attribute(Attribute.ARIA_LABEL,"textarea")
-				.attribute(Attribute.ID, idForName(name)).attribute(Attribute.CLASS, "form-control shadow-sm");
+				.attribute(Attribute.ID, idForName(name)).attribute(Attribute.CLASS, "form-control shadow-xl");
 		if (!StringUtils.isEmpty(cssClass)) {
 			textArea.attribute(Attribute.CLASS, cssClass);
 		}

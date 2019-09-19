@@ -2,6 +2,45 @@
 <html:view title="Playground">
 
 
+	<html:form action="#" label="My title">
+
+		<html:formOnBeforeSubmit>
+			console.log('before submit event canceled');
+			return false;
+		</html:formOnBeforeSubmit>
+
+
+		<html:formGroup label="Field 1" required="true" forElement="field1">
+			<html:input required="true" name="field1" />
+		</html:formGroup>
+		<html:formGroup label="Field 2" forElement="field2">
+			<html:input name="field2" disabled="true" />
+		</html:formGroup>
+		<html:formGroupMultiple label="Groups 1" data="${ persons }"
+			var="person" atLeast="1">
+
+
+			<html:formGroupMultipleOnAfterInsert>
+				console.log('after insert row ' + idx +  '=>' + element);
+			</html:formGroupMultipleOnAfterInsert>
+
+			<html:formGroupMultipleOnAfterRemove>
+				console.log('after remove row ');
+			</html:formGroupMultipleOnAfterRemove>
+
+			<html:input name="fields3[]" required="true" value="${ person.name }" />
+			<html:jsEvent event="blur" attachTo="fields3[]">
+					console.log($(this).val());
+				</html:jsEvent>
+		</html:formGroupMultiple>
+
+
+		<html:formToolbar>
+			<html:button state="primary" type="submit" label="Label for submit" />
+		</html:formToolbar>
+	</html:form>
+
+
 	<auth:rule uri="/pessoa3" httpMethod="get">
 		<html:button label="This button will not render" icon="search"
 			id="btn3" url="/pessoa" />
@@ -226,43 +265,7 @@
 		<html:dropDownItem icon="trash" label="Item 3" url="#" />
 	</html:dropDown>
 
-	<html:form action="#" label="My title">
-
-		<html:formOnBeforeSubmit>
-			console.log('before submit event canceled');
-			return false;
-		</html:formOnBeforeSubmit>
-
-
-		<html:formGroup label="Field 1" required="true" forElement="field1">
-			<html:input required="true" name="field1" />
-		</html:formGroup>
-		<html:formGroup label="Field 2" forElement="field2">
-			<html:input name="field2" />
-		</html:formGroup>
-		<html:formGroupMultiple label="Groups 1" data="${ persons }"
-			var="person" atLeast="1">
-
-
-			<html:formGroupMultipleOnAfterInsert>
-				console.log('after insert row ' + idx +  '=>' + element);
-			</html:formGroupMultipleOnAfterInsert>
-
-			<html:formGroupMultipleOnAfterRemove>
-				console.log('after remove row ');
-			</html:formGroupMultipleOnAfterRemove>
-
-			<html:input name="fields3[]" required="true" value="${ person.name }" />
-			<html:jsEvent event="blur" attachTo="fields3[]">
-					console.log($(this).val());
-				</html:jsEvent>
-		</html:formGroupMultiple>
-
-
-		<html:formToolbar>
-			<html:button state="primary" type="submit" label="Label for submit" />
-		</html:formToolbar>
-	</html:form>
+	
 
 	<html:img url="/image/person.png" alt="logo" responsive="true" />
 	<html:icon icon="cog" />

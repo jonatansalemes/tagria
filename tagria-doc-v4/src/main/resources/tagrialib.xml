@@ -20,6 +20,6 @@
 	<skin>default</skin>
 	<locale>pt-BR</locale>
 	<auth>
-		<class>com.jslsolucoes.tagria.tag.auth.v4.DefaultAuthorizer</class>
+		<class>com.jslsolucoes.tagria.doc.v4.auth.FalseAuthorizer</class>
 	</auth>
 </tagrialib> 

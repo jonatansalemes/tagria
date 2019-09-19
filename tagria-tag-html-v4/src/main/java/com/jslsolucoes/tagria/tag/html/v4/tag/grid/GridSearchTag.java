@@ -17,7 +17,7 @@ public class GridSearchTag extends AbstractSimpleTagSupport {
 
 	private Element inputSearch() {
 		return ElementCreator.newInput().attribute(Attribute.TYPE, "search")
-				.attribute(Attribute.CLASS, "grid-search form-control")
+				.attribute(Attribute.CLASS, "grid-search form-control shadow-xl")
 				.attribute(Attribute.ARIA_LABEL,keyForLibrary("grid.search"))
 				.attribute(Attribute.PLACEHOLDER, keyForLibrary("grid.search"));
 	}
