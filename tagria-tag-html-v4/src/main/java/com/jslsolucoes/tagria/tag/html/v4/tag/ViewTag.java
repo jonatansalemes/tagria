@@ -288,12 +288,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private String tagriaJsScripts() {
-	return Arrays.asList(tagriaJsCodeForAjaxAnimation(), tagriaJsCodeForUrlBase()).stream()
+	return Arrays.asList(tagriaJsCodeForUrlBase()).stream()
 		.collect(Collectors.joining(""));
-    }
-
-    private String tagriaJsCodeForAjaxAnimation() {
-	return "$(document).ajaxStart(function(){$('.ajax-loading').fadeIn();}).ajaxStop(function(){$('.ajax-loading').fadeOut();});";
     }
 
     private String tagriaJsCodeForUrlBase() {
