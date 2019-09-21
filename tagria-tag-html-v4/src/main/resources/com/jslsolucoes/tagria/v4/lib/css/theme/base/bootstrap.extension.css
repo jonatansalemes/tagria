@@ -1,5 +1,6 @@
 .form-group {
-	position: relative;
+	margin-bottom: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .form-group label {
@@ -8,8 +9,7 @@
     left: 0;
     transition: transform .2s ease-out,color .2s ease-out;
     transform-origin: 0 100%;
-    transform: translateY(10px)
-               translateX(10px) ;
+    transform: translate(12px,8px);
     cursor: text;
 }
 
@@ -24,11 +24,22 @@
 }
 
 .form-control:focus {
-	width:100%;
-  	border-color: #80bdff;
+  	border-color: #007bff;
 }
 
-.form-group label.active {
-    transform: translateY(-20px);
-    color: #80bdff;
+.form-control::placeholder {
+    opacity: 0;
+}
+
+.form-control:focus::placeholder {
+  	opacity: 1;
+}
+
+.form-control:focus + label {
+  transform: translate(10px,-30px);
+  color:#007bff;
+}
+
+.form-control:not(:placeholder-shown) + label {
+  transform: translate(10px,-30px);
 }

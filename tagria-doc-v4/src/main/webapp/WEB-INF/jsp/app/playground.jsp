@@ -11,10 +11,10 @@
 
 
 		<html:formGroup label="Field 1" required="true" forElement="field1">
-			<html:input required="true" name="field1" />
+			<html:input required="true" name="field1" placeHolder="holder1"/>
 		</html:formGroup>
 		<html:formGroup label="Field 2" forElement="field2">
-			<html:input name="field2" disabled="true" />
+			<html:input name="field2" disabled="true" placeHolder="holder2" value="value1"/>
 		</html:formGroup>
 		<html:formGroupMultiple label="Groups 1" data="${ persons }"
 			var="person" atLeast="1">
