@@ -1,7 +1,12 @@
+.form-group {
+   position:relative;
+   height:70px;
+}
 
 .form-group label {
+   position:absolute;
    transition: transform .2s ease-out,color .2s ease-out;
-   transform: translate(10px,40px);
+   transform: translate(0px,-30px);
 }
 
 .form-control,.form-control:focus {
@@ -27,10 +32,10 @@
 }
 
 .form-control:focus + label {
-  transform: translate(0px,0px);
+  transform: translate(0px,-60px);
   color:#007bff;
 }
 
 .form-control:not(:placeholder-shown) + label {
-  transform: translate(0px,0px);
+  transform: translate(0px,-60px);
 }
