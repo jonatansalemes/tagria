@@ -10,7 +10,12 @@
 
 .form-control:focus {
   	background-color: transparent;
-    border-color: #ced4da;
+    border-bottom: 1px solid #0d7ffb;
     outline: 0;
     box-shadow: none;
+}
+
+
+.form-group.is-focused label {
+	color: #0d7ffb;
 }
