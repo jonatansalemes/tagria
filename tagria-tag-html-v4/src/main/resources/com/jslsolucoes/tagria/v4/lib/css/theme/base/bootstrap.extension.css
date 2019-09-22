@@ -1,13 +1,16 @@
-.form-control,.form-control:focus {
+.form-control {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #ced4da;
     border-radius: 0;
     outline: 0;
     box-shadow: none;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: 0.8s ease all;
 }
 
 .form-control:focus {
-  	border-color: #007bff;
+  	background-color: transparent;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
 }
