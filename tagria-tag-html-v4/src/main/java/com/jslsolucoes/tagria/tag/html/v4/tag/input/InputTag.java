@@ -111,6 +111,8 @@ public class InputTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(cssClass)) {
 			input.attribute(Attribute.CLASS, cssClass);
 		}
+		
+		appendJsCode("$('#" + input.attribute(Attribute.ID) + "').input();");
 
 		return input;
 	}

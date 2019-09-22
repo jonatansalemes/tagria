@@ -6,8 +6,14 @@
 		_create: function() {
 			var self = this;
 			var input = self.element;
-			input.on('focus',function(){
-				$('label[for="'+input.attr('id')+'"]').addClass('active');
+			$(input).focus(function(){
+				if($(this).parent().hasClass('form-group')){
+					$(this).parent().addClass('is-focused');
+				}
+			}).blur(function(){
+				if($(this).parent().hasClass('form-group')){
+					$(this).parent().removeClass('is-focused');
+				}
 			});
 		}
 	});
