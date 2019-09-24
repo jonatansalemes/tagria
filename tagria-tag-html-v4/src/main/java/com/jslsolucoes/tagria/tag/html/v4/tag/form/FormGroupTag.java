@@ -27,10 +27,10 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 		if (!visible) {
 			div.attribute(Attribute.CLASS, "collapse");
 		}
+		div.add(bodyContent());
 		if (hasKeyOrLabel(labelKey, label)) {
 			div.add(label());
 		}
-		div.add(bodyContent());
 		return div;
 	}
 

@@ -67,7 +67,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 		}
 
 		if (!"checkbox".equals(type) && !"radio".equals(type)) {
-			input.attribute(Attribute.CLASS, "form-control");
+			input.attribute(Attribute.CLASS, "form-control shadow-xl");
 		}
 
 		if (focus) {
@@ -90,8 +90,11 @@ public class InputTag extends AbstractSimpleTagSupport {
 		    	if(!StringUtils.isEmpty(formatter)) {
 		    	    value = format(formatter, value);
 		    	}
-		    	input.attribute(Attribute.VALUE, value);
+		    	input.attribute(Attribute.VALUE, value).attribute(Attribute.CLASS, "is-not-empty");
+		} else {
+		    input.attribute(Attribute.CLASS, "is-empty");
 		}
+		
 		if (!StringUtils.isEmpty(pattern)) {
 			input.attribute(Attribute.PATTERN, pattern);
 		}

@@ -14,6 +14,12 @@
 				if($(this).parent().hasClass('form-group')){
 					$(this).parent().removeClass('is-focused');
 				}
+			}).keyup(function(){
+				if($(this).val() !== ''){
+					$(this).removeClass('is-empty').addClass('is-not-empty');
+				} else {
+					$(this).removeClass('is-not-empty').addClass('is-empty');
+				}
 			});
 		}
 	});
