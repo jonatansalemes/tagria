@@ -103,7 +103,7 @@
 			var template = $('.fg-template',detail).val().replace(new RegExp('__0','g'),'__' + currentIndex);
 			var clone = $(template);
 			$(':input:not(:button,:checkbox,:radio,.notClean)',clone).each(function(){
-				$(this).val('');
+				$(this).removeClass('is-not-empty').addClass('is-empty').val('');
 			});
 			
 			$(':checkbox,:radio',clone).each(function(){

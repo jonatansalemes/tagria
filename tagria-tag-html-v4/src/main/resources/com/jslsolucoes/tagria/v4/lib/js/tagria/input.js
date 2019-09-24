@@ -16,7 +16,7 @@
 				}
 			}).keyup(function(){
 				if($(this).val() !== ''){
-					$(this).removeClass('is-empty').addClass('is-not-empty');
+					$(this).removeClass('is-empty').removeClass('form-has-error').addClass('is-not-empty');
 				} else {
 					$(this).removeClass('is-not-empty').addClass('is-empty');
 				}

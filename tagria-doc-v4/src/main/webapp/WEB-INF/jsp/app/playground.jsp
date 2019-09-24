@@ -9,10 +9,21 @@
 			return false;
 		</html:formOnBeforeSubmit>
 
-
-		<html:formGroup label="Field 1" required="true" forElement="field1">
-			<html:input required="true" name="field1" placeHolder="holder1"/>
+		<html:formGroup>
+			<html:row>
+				<html:col extraSmall="6">
+					<html:formGroup label="Field 1" required="true" forElement="field1">
+						<html:input required="true" name="field1" placeHolder="holder1"/>
+					</html:formGroup>
+				</html:col>
+				<html:col extraSmall="6">
+					<html:formGroup label="Field 3" required="true" forElement="field3">
+						<html:input required="true" name="field3" placeHolder="holder3"/>
+					</html:formGroup>
+				</html:col>
+			</html:row>
 		</html:formGroup>
+		
 		<html:formGroup label="Field 2" forElement="field2">
 			<html:input name="field2" disabled="true" placeHolder="holder2" value="value1"/>
 		</html:formGroup>
@@ -27,7 +38,7 @@
 			<html:formGroupMultipleOnAfterRemove>
 				console.log('after remove row ');
 			</html:formGroupMultipleOnAfterRemove>
-
+			
 			<html:input name="fields3[]" required="true" value="${ person.name }" />
 			<html:jsEvent event="blur" attachTo="fields3[]">
 					console.log($(this).val());
