@@ -335,6 +335,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the label key (i18n)</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the component should be rendered</description>
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>

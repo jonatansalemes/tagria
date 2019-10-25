@@ -208,7 +208,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		throw new TagriaRuntimeException(e);
 	    }
 	}
-	return null;
+	return "";
     }
 
     public <T> T findAncestorWithClass(Class<T> ancestorClass) {
@@ -277,9 +277,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    return keyForApplication(key);
 	} else if (!StringUtils.isEmpty(label)) {
 	    return label;
-	} else {
-	    return null;
 	}
+	return "";
     }
 
     private String keyFor(String key, String bundle, Object... args) {
@@ -288,7 +287,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
 	    logger.warn("could not find key resource", e);
-	    return '!' + key + '!';
+	    return "!" + key + "!";
 	}
     }
 
