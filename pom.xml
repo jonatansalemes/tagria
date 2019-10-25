@@ -64,6 +64,7 @@
 		<module>tagria-tag-html-v4</module>
 		<module>tagria-lib-v4</module>
 		<module>tagria-doc-v4</module>
+		<module>tagria-spring-v4</module>
 	</modules>
 
 	<properties>

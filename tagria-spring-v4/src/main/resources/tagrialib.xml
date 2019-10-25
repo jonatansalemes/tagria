@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<tagrialib>
+	<templates>
+		<template>
+			<name>master</name>
+			<path>/WEB-INF/jsp/app/template.jsp</path>
+		</template>
+	</templates>
+	<locale>pt-BR</locale>
+</tagrialib> 
