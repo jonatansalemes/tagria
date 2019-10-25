@@ -54,7 +54,7 @@
 		</html:main>
 		<html:footer cssClass="bg-white border-top border p-2 d-flex align-items-center justify-content-center">
 			<html:div>
-				Developed by JSL Solucoes LTDA
+				<html:span labelKey="app.dev.by" />
 			</html:div>
 		</html:footer>
 	</html:div>

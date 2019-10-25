@@ -72,6 +72,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String contentOfTemplate(String template) {
+	String encoding = encoding();
 	String jspPath = xml().getTemplates().stream()
 		.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
 		.orElseThrow(
@@ -79,12 +80,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.getPath();
 	HttpServletRequest httpServletRequest = httpServletRequest();
 	HttpServletResponse httpServletResponse = httpServletResponse();
-	try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)) {
+	try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse,encoding)) {
 	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
-	    return tagriaResponseWrapper.asString();
+	    return new String(tagriaResponseWrapper.asString().getBytes(encoding));
 	} catch (Exception e) {
 	    throw new TagriaRuntimeException(e);
 	}
+    }
+    
+    public String encoding() {
+	return xml().getEncoding();
     }
 
     public void out(String value) {
@@ -256,6 +261,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	return locale;
     }
+    
+    
 
     public TagriaXML xml() {
 	return TagriaConfig.newConfig().xml();

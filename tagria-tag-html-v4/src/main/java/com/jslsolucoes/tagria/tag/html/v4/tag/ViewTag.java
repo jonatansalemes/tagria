@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
@@ -38,6 +40,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private List<String> cssScripts = new ArrayList<>();
     private List<String> jsScriptsForImport = new ArrayList<>();
     private List<String> cssScriptsForImport = new ArrayList<>();
+    private static final Logger logger = LoggerFactory.getLogger(ViewTag.class);
 
     @Override
     public void appendCssCode(String cssCode) {
@@ -88,6 +91,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	String templateContent = contentOfTemplate(template);
 	String currentContent = asHtml(appHtml());
 	String finalContent = recursiveSubstitution(templateContent,currentContent).replace("<!-- template -->",asHtml(concat(appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs())));
+	logger.debug("Final content {}",finalContent);
 	return Arrays.asList(ElementCreator.newCData(finalContent));
     }
 
@@ -199,7 +203,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private Element metaContentType() {
 	return ElementCreator.newMeta().attribute(Attribute.HTTP_EQUIV, "content-type").attribute(Attribute.CONTENT,
-		"text/html;charset=" + xml().getEncoding());
+		"text/html;charset=" + encoding());
     }
 
     private String minifyCss(String cssCode) {

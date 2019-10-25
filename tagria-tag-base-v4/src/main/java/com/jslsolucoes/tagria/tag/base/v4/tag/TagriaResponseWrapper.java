@@ -19,9 +19,12 @@ public class TagriaResponseWrapper extends HttpServletResponseWrapper implements
 	private final ByteArrayOutputStream byteArrayOutputStream;
 	private ServletOutputStream servletOutputStream;
 	private PrintWriter printWriter;
+	private String encoding;
 
-	public TagriaResponseWrapper(HttpServletResponse response) {
+	public TagriaResponseWrapper(HttpServletResponse response,String encoding) {
 		super(response);
+		this.encoding = encoding;
+		logger.debug("Encoding to accepts {}",this.encoding);
 		byteArrayOutputStream = new ByteArrayOutputStream(response.getBufferSize());
 	}
 
@@ -68,7 +71,7 @@ public class TagriaResponseWrapper extends HttpServletResponseWrapper implements
 			throw new IllegalStateException("getOutputStream() has already been called on this response.");
 		}
 		if (printWriter == null) {
-			printWriter = new PrintWriter(new OutputStreamWriter(byteArrayOutputStream, getCharacterEncoding()));
+			printWriter = new PrintWriter(new OutputStreamWriter(byteArrayOutputStream,encoding));
 		}
 		return printWriter;
 	}
@@ -89,7 +92,7 @@ public class TagriaResponseWrapper extends HttpServletResponseWrapper implements
 	}
 
 	public String asString() throws IOException {
-		return new String(asBytes(), getCharacterEncoding());
+		return new String(asBytes(), encoding);
 	}
 
 	public void close() {

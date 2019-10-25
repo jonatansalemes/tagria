@@ -27,7 +27,7 @@ public class CacheFilter implements Filter {
 	String key = httpServletRequest.getRequestURI();
 	byte[] response = cache.getIfPresent(key);
 	if(response == null) {
-	    try(TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse)){
+	    try(TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse,"utf-8")){
 		filterChain.doFilter(httpServletRequest, tagriaResponseWrapper);
 		response = tagriaResponseWrapper.asBytes();
 		if(CACHE_RESOURCE) cache.put(key,response);
