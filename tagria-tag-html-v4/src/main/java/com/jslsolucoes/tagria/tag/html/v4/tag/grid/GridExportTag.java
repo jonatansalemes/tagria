@@ -18,7 +18,7 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element divExport() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-right m-3").add(formExport())
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(formExport())
 				.add(divButtonGroup());
 	}
 

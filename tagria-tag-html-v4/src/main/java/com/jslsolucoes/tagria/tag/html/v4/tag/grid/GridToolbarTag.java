@@ -12,6 +12,6 @@ public class GridToolbarTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element div() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-left m-3").add(bodyContent());
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(bodyContent());
 	}
 }

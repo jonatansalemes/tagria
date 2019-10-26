@@ -7,7 +7,6 @@
 		},
 		_create : function() {
 			var self = this;
-			self._collapsable();
 			self._pagination();
 			self._resultsPerPage();
 			self._exportation();
@@ -20,18 +19,6 @@
 				if(event.keyCode==13 && $(this).val()!=''){
 					window.location = self.options.url + '?search=true&term=' + encodeURIComponent($(this).val());
 				}
-			});
-		},
-		_collapsable : function (){
-			var self = this;
-			var grid = self.element;
-			$('table:first > tbody > tr > td.grid-column-collapsable',grid).on('click.grid',function(){
-				$(this).popover({
-			       content : $('.grid-column-collapsable-content:first', this).html(),
-			       html : true,
-			       placement : 'bottom',
-			       container : 'body'
-			    });
 			});
 		},
 		_pagination : function (){

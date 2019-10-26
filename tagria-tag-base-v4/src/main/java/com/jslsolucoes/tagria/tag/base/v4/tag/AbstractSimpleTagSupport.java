@@ -24,6 +24,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.JspFragment;
+import javax.servlet.jsp.tagext.JspTag;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -64,7 +65,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String format(String type, String value) {
-	return DataFormatter.newInstance().format(type, value, locale());
+	if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(value)) {
+	    return DataFormatter.newInstance().format(type, value, locale());
+	}
+	return value;
     }
 
     public void setAttribute(String name, Object value) {
@@ -80,14 +84,14 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.getPath();
 	HttpServletRequest httpServletRequest = httpServletRequest();
 	HttpServletResponse httpServletResponse = httpServletResponse();
-	try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse,encoding)) {
+	try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse, encoding)) {
 	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
 	    return new String(tagriaResponseWrapper.asString().getBytes(encoding));
 	} catch (Exception e) {
 	    throw new TagriaRuntimeException(e);
 	}
     }
-    
+
     public String encoding() {
 	return xml().getEncoding();
     }
@@ -224,17 +228,21 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     @SuppressWarnings("unchecked")
-    private <T> List<T> findAncestorsWithAssignable(SimpleTagSupport simpleTagSupport, Class<T> ancestorClass) {
+    private <T> List<T> findAncestorsWithAssignable(JspTag jspTag, Class<T> ancestorClass) {
 	List<T> ancestors = new ArrayList<T>();
-	if (ancestorClass.isAssignableFrom(simpleTagSupport.getClass())) {
-	    ancestors.add((T) simpleTagSupport);
+	if (ancestorClass.isAssignableFrom(jspTag.getClass())) {
+	    ancestors.add((T) jspTag);
 	} else {
-	    SimpleTagSupport simpleTagSupportParent = (SimpleTagSupport) simpleTagSupport.getParent();
-	    if (simpleTagSupportParent != null) {
-		ancestors.addAll(findAncestorsWithAssignable(simpleTagSupportParent, ancestorClass));
+	    JspTag jspTagtParent = parent(jspTag,ancestorClass);
+	    if (jspTagtParent != null) {
+		ancestors.addAll(findAncestorsWithAssignable(jspTagtParent, ancestorClass));
 	    }
 	}
 	return ancestors;
+    }
+
+    private JspTag parent(JspTag jspTag, Class<?> ancestorClass) {
+	return super.findAncestorWithClass(jspTag, ancestorClass);
     }
 
     public Element applyDynamicAttributesOn(Element element) {
@@ -261,8 +269,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	return locale;
     }
-    
-    
 
     public TagriaXML xml() {
 	return TagriaConfig.newConfig().xml();
@@ -308,8 +314,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String pathForCssOnLibrary(String css) {
-	return urlBaseForStaticFile() + "/tagria/v4/lib/css/theme/" + xml().getSkin() + "/"
-		+ css + "?ver=" + version();
+	return urlBaseForStaticFile() + "/tagria/v4/lib/css/theme/" + xml().getSkin() + "/" + css + "?ver=" + version();
     }
 
     public String pathForJavascriptOnLibrary(String js) {
@@ -317,8 +322,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String pathForImageOnLibrary(String image) {
-	return urlBaseForStaticFile() + "/tagria/v4/lib/image/theme/" + xml().getSkin() + "/"
-		+ image + "?ver=" + version();
+	return urlBaseForStaticFile() + "/tagria/v4/lib/image/theme/" + xml().getSkin() + "/" + image + "?ver="
+		+ version();
     }
 
     public String pathForStatic(String src, Boolean cdn) {
@@ -348,9 +353,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     private String urlBaseForStaticFile() {
 	TagriaCdnXML tagriaCdnXML = xml().getCdn();
-	return tagriaCdnXML.getEnabled()
-			? httpScheme() + "://" + tagriaCdnXML.getUrl()
-			: contextPath();
+	return tagriaCdnXML.getEnabled() ? httpScheme() + "://" + tagriaCdnXML.getUrl() : contextPath();
     }
 
     public String httpScheme() {

@@ -12,7 +12,7 @@ public class GridSearchTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element divSearch() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "float-right m-3").add(inputSearch());
+		return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(inputSearch());
 	}
 
 	private Element inputSearch() {

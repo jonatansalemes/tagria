@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
+import com.jslsolucoes.tagria.html.v4.Span;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class GridColumnDataTag extends AbstractSimpleTagSupport {
@@ -21,8 +22,7 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
     }
 
     private Element td() {
-	Element td = ElementCreator.newTd().attribute(Attribute.CLASS, "text-" + align).attribute(Attribute.CLASS,
-		"v-align-middle");
+	Element td = ElementCreator.newTd().attribute(Attribute.CLASS, "text-" + (collapsable ? "center" : align));
 
 	if (!StringUtils.isEmpty(state)) {
 	    td.attribute(Attribute.CLASS, "bg-" + state);
@@ -37,23 +37,62 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
 	}
 
 	if (collapsable) {
-	    td.attribute(Attribute.CLASS, "grid-column-collapsable");
-	    td.add(spanSearch());
+	    String id = id();
+	    td.add(button(id));
+	    td.add(divModal(id));
+	} else {
+	    td.add(divContent());
 	}
-	td.add(divContent());
 	return td;
     }
 
-    private Element divContent() {
-	Element div = ElementCreator.newDiv().add(bodyContent());
-	if (collapsable) {
-	    div.attribute(Attribute.CLASS, "collapse grid-column-collapsable-content");
-	}
-	return div;
+    private Element button(String id) {
+	return ElementCreator.newButton()
+		.attribute(Attribute.DATA_TOGGLE, "modal")
+		.attribute(Attribute.DATA_TARGET, "#"+id)
+		.attribute(Attribute.CLASS, "btn btn-outline-dark shadow-xl")
+		.add(new Span().attribute(Attribute.CLASS, "fa fa-search"));
     }
 
-    private Element spanSearch() {
-	return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-search");
+    private Element divContent() {
+	return ElementCreator.newDiv().add(format(formatter, bodyContent()));
+    }
+    
+    public Element divModal(String id) {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade").attribute(Attribute.ID, id)
+			.add(divModalDialog());
+    }
+    
+    private Element divModalDialog() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog")
+			.add(divModalContent());
+    }
+    
+    private Element divModalContent() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-content").add(divModalHeader())
+			.add(divModalBody());
+    }
+    
+    private Element divModalHeader() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header").add(h4()).add(button());
+    }
+    
+    private Element divModalBody() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body").add(divContent());
+    }
+    
+    private Element button() {
+	return ElementCreator.newButton().attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
+			.add(spanTimes());
+    }
+    
+    private Element spanTimes() {
+    	return ElementCreator.newSpan().add("&times;");
+    }
+    
+    private Element h4() {
+    	return ElementCreator.newH4().attribute(Attribute.CLASS, "modal-title")
+    			.add(keyForLibrary("grid.collapsable.show"));
     }
 
     public String getAlign() {

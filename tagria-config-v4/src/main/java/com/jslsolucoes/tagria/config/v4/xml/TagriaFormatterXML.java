@@ -10,18 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TagriaFormatterXML {
 
     
-    private String name;
-
     @XmlElement(name="class")
     private String clazz;
-
-    public String getName() {
-	return name;
-    }
-
-    public void setName(String name) {
-	this.name = name;
-    }
 
     public String getClazz() {
 	return clazz;
