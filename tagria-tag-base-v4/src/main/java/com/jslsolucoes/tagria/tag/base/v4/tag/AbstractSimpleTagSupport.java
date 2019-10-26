@@ -224,7 +224,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public <T> List<T> findAncestorsWithClass(Class<T> ancestorClass) {
-	return findAncestorsWithAssignable((SimpleTagSupport) getParent(), ancestorClass);
+	return findAncestorsWithAssignable(getParent(), ancestorClass);
     }
 
     @SuppressWarnings("unchecked")
@@ -293,7 +293,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
 	    logger.warn("could not find key resource", e);
-	    return "!" + key + "!";
+	    return "???" + key + "???";
 	}
     }
 
