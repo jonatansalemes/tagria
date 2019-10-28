@@ -312,7 +312,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String pathForBlank() {
-	return pathForUrl("/tagria/blank");
+	return pathForUrl("/tagria/v4/blank");
     }
 
     public String pathForCssOnLibrary(String css) {

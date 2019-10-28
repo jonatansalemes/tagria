@@ -15,6 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class AppController {
 
     
+    @GetMapping("/app/another")
+    public ModelAndView another() {
+	return new ModelAndView();
+    }
+
     @GetMapping("/app/playground")
     public ModelAndView playground(Model model) {
 	model.addAttribute("now",LocalDate.now());

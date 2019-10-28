@@ -13,13 +13,25 @@
 			</html:formGroup>
 			<html:formGroup>
 				<html:formGroupMultiple atLeast="1" labelKey="app.dev.by">
-					<%@include file="another.jsp" %>		
+					<html:input name="testes[]"></html:input>
+					<html:datePicker attachTo="testes[]"></html:datePicker>
 				</html:formGroupMultiple>
 			</html:formGroup>
 			<html:formToolbar>
 				<html:button type="submit" label="Send"></html:button>
 			</html:formToolbar>
 		</html:form>		
+		
+		<html:tabs>
+				<html:tabsHeader>
+					<html:tabsTab id="tab01" label="My tab" active="true" ></html:tabsTab>
+				</html:tabsHeader>
+				<html:tabsBody>
+					<html:tabsContent contentOf="tab01" active="true" url="/app/another">
+						
+					</html:tabsContent>
+				</html:tabsBody>
+			</html:tabs>
 		
 	</html:template>
 </html:view>
