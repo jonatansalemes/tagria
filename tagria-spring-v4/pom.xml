@@ -26,11 +26,6 @@
 			<artifactId>tagria-lib-v4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.jslsolucoes</groupId>
-			<artifactId>spring-converter</artifactId>
-			<version>1.0.28-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	
 	<build>
