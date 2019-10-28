@@ -288,11 +288,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String keyFor(String key, String bundle, Object... args) {
+	Locale locale = locale();
 	try {
-	    MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle(bundle, locale()).getString(key));
+	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale,getClass().getClassLoader());
+	    MessageFormat messageFormat = new MessageFormat(resourceBundle.getString(key));
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
-	    logger.warn("could not find key resource", e);
+	    logger.warn("could not find key {} resource for bundle {} locale {}",key,bundle,locale, e);
 	    return "???" + key + "???";
 	}
     }

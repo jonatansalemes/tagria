@@ -2,7 +2,11 @@
 <html:view title="Playground">
 
 
+	<html:iframe url="/" name="content" title="My iframe title" />
+
+
 	<html:form action="#" label="My title">
+
 
 		<html:formOnBeforeSubmit>
 			console.log('before submit event canceled');
@@ -130,7 +134,7 @@
 				cssClass="border border-danger" formatter="datetime">
 				${ person.name }
 			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger">
+			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger" collapsable="true">
 				${ person.likeChocolate }
 			</html:gridColumnData>
 			<html:gridColumnData align="center" exportable="true"
@@ -353,7 +357,7 @@ private class Java {
 
 	<html:link label="My link" url="#" />
 
-	<html:iframe url="/" name="content" title="My iframe title" />
+	
 
 	<html:recaptcha siteKey="fdaf9dsj9j" />
 

@@ -36,7 +36,7 @@ public class DataFormatter {
 
     private List<Formatter> defaultFormatters() {
 	return Arrays.asList(new CepFormatter(), new CnpjFormatter(), new CpfFormatter(), new CurrencyFormatter(),
-		new DateTimeFormatter(), new PhoneFormatter(), new ZipCodeFormatter());
+		new DateTimeFormatter(), new PhoneFormatter(), new ZipCodeFormatter(), new DatePickerFormatter());
     }
 
     private List<Formatter> customFormatters() {

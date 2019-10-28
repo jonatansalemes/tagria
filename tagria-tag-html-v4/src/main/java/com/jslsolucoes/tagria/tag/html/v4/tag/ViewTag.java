@@ -134,7 +134,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> fragment() {
-	return concat(appHtml(), appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs());
+	return concat(appHtml(),appCssScriptsForImport(), appCss(),tagriaJsScriptsForImport(), appJsScriptsForImport(), appJs());
     }
 
     private String lang() {
@@ -228,7 +228,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	    Compiler compiler = new Compiler();
 	    CompilerOptions options = new CompilerOptions();
 	    CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-	    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+	    options.setLanguageIn(LanguageMode.ECMASCRIPT_2019);
 	    compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
 	    return compiler.toSource();
 	} else {
@@ -297,7 +297,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private String tagriaJsCodeForUrlBase() {
-	return "URL_BASE='" + pathForUrl("") + "';";
+	return "let URL_BASE='" + pathForUrl("") + "';";
     }
 
     private Element docTypeHtml5() {

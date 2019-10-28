@@ -5,19 +5,22 @@
 	<html:cssCode>
 		.grid {
 			display:grid;
-			grid-template-columns: 20vw 80vw;
-			grid-template-rows: 70px calc(100vh - 140px) 70px;
+			grid-template-columns: 1fr 3fr;
+			grid-template-rows: 70px auto 70px;
 			grid-template-areas: "a h"
 								 "a m"
 								 "a f";
+			height: 100vh;
 		}
 		
 		header {
 			grid-area: h;
+			z-index:2;
 		}
 		
 		aside {
 			grid-area: a;
+			z-index:2;
 		}
 		
 		main {
@@ -26,6 +29,7 @@
 		
 		footer {
 			grid-area: f;
+			z-index:2;
 		}
 		
 		.bg-4e73df-gradient {
