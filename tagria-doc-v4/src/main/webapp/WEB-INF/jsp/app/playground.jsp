@@ -12,24 +12,43 @@
 			return false;
 		</html:formOnBeforeSubmit>
 
-		<html:formGroup>
-			<html:row>
-				<html:col extraSmall="6">
-					<html:formGroup label="Field 1" required="true" forElement="field1">
-						<html:input required="true" name="field1" placeHolder="holder1"/>
-					</html:formGroup>
-				</html:col>
-				<html:col extraSmall="6">
-					<html:formGroup label="Field 3" required="true" forElement="field3">
-						<html:input required="true" name="field3" placeHolder="holder3"/>
-					</html:formGroup>
-				</html:col>
-			</html:row>
-		</html:formGroup>
+		<html:formGroupRow>
+			<html:col extraSmall="6">
+				<html:formGroup label="Field 1" required="true" forElement="field1">
+					<html:input required="true" name="field1" placeHolder="holder1"/>
+				</html:formGroup>
+			</html:col>
+			<html:col extraSmall="6">
+				<html:formGroup label="Field 3" required="true" forElement="field3">
+					<html:input required="true" name="field3" placeHolder="holder3"/>
+				</html:formGroup>
+			</html:col>
+		</html:formGroupRow>
+		
+		<html:card>
+			<html:cardBody>
+				<html:formGroupRow>
+					<html:col extraSmall="6">
+						<html:formGroup label="Field 15" forElement="field15">
+							<html:input name="field15" disabled="true" placeHolder="holder15" value="value15"/>
+						</html:formGroup>
+					</html:col>
+					<html:col extraSmall="6">
+						<html:formGroup label="Field 16" forElement="field16">
+							<html:input name="field16" disabled="true" placeHolder="holder16" value="value16"/>
+						</html:formGroup>
+					</html:col>
+				</html:formGroupRow>
+			</html:cardBody>
+		</html:card>
 		
 		<html:formGroup label="Field 2" forElement="field2">
 			<html:input name="field2" disabled="true" placeHolder="holder2" value="value1"/>
 		</html:formGroup>
+		<html:formGroup label="Field 14" forElement="field14">
+			<html:input name="field14" disabled="true" placeHolder="holder14" value="value14"/>
+		</html:formGroup>
+		
 		<html:formGroupMultiple label="Groups 1" data="${ persons }"
 			var="person" atLeast="1">
 

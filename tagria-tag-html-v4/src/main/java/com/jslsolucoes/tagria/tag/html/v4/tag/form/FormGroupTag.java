@@ -18,7 +18,17 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 
 	@Override
 	public Element render() {
-		return div();
+		return row();
+	}
+	
+	private Element row() {
+	    return ElementCreator.newDiv().attribute(Attribute.CLASS, "row")
+		.add(col());
+	}
+	
+	private Element col() {
+	    return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-12")
+		.add(div());
 	}
 
 	private Element div() {

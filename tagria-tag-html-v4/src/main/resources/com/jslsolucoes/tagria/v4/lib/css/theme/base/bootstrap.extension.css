@@ -1,3 +1,9 @@
+.form-group {
+	position: relative;
+	margin-bottom: 0.5rem !important;
+	margin-top: 0.5rem !important;
+}
+
 .form-control:focus {
   background-color: #fff;
   border-color:#0d7ffb;
@@ -7,9 +13,9 @@
 
 .form-group label {
   background-color: #fff;
-  position: absolute;
-  top:0;
-  left:0;
+  position:absolute;
+  top:0px;
+  left:0px;
   transition: 0.15s ease-in-out;
   transform: translate(10px,-12px) scale(0.9);
 }
