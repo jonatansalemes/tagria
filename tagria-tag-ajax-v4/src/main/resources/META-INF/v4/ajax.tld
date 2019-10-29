@@ -9,6 +9,23 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<tlib-version>4.0</tlib-version>
 	<short-name>ajax</short-name>
 	<uri>http://v4.tagria.jslsolucoes.com/tags/ajax</uri>
+	
+	<tag>
+		<description>Renders a ajax animation spinner</description>
+		<display-name>Ajax</display-name>
+		<name>animation</name>
+		<tag-class>com.jslsolucoes.tagria.tag.ajax.v4.tag.AjaxAnimationTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;ajax:animation/&gt;
+		</example>
+	</tag>
 
 	<tag>
 		<description>Renders an ajax function</description>

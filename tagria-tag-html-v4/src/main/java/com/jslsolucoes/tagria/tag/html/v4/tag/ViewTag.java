@@ -160,7 +160,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private Element body() {
 	return ElementCreator.newBody().attribute(Attribute.CLASS, cssClass).add(noScript()).add(divRoot())
-		.add(ajaxLoading()).add(tagriaCssScriptsForImport()).add(appCssScriptsForImport()).add(appCss())
+		.add(tagriaCssScriptsForImport()).add(appCssScriptsForImport()).add(appCss())
 		.add(tagriaJsScriptsForImport()).add(appJsScriptsForImport()).add(tagriaJs()).add(appJs())
 		.add(templateComment());
     }
@@ -331,12 +331,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private String tagriaJsScripts() {
-	return Arrays.asList(tagriaJsCodeForUrlBase(), tagriaJsCodeForHideDropBackLayer()).stream()
+	return Arrays.asList(tagriaJsCodeForUrlBase()).stream()
 		.collect(Collectors.joining(""));
-    }
-
-    private String tagriaJsCodeForHideDropBackLayer() {
-	return "$(document).ready(function() { $('.drop-back-layer').hide(); });";
     }
 
     private String tagriaJsCodeForUrlBase() {
@@ -345,18 +341,6 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private Element docTypeHtml5() {
 	return ElementCreator.newDocTypeHtml5();
-    }
-
-    private Element ajaxLoading() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "fixed-top collapse ajax-loading")
-		.add(loadingImage());
-    }
-
-    private Element loadingImage() {
-	return ElementCreator.newImg().attribute(Attribute.SRC, "#")
-		.attribute(Attribute.DATA_SRC, pathForImageOnLibrary("loading.gif")).attribute(Attribute.WIDTH, 100)
-		.attribute(Attribute.HEIGHT, 100).attribute(Attribute.CLASS, "mx-auto d-block lazyload")
-		.attribute(Attribute.ALT, "loading");
     }
 
     public String getTitle() {

@@ -1,5 +1,7 @@
-$(document).ajaxStart(function() {
-	$('.ajax-loading').fadeIn();
+$(document).ready(function() { 
+	$('.drop-back-layer').hide(); 
+}).ajaxStart(function() {
+	$('.ajax-loading').show();
 }).ajaxStop(function() {
-	$('.ajax-loading').fadeOut();
+	$('.ajax-loading').hide();
 });

@@ -24,6 +24,12 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates whether the component must load lazy.Default true</description>
+			<name>lazy</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the component should be responsive</description>
 			<name>responsive</name>
 			<rtexprvalue>true</rtexprvalue>

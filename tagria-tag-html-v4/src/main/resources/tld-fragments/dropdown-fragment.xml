@@ -88,6 +88,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the dropDown direction. Options: left,right,down,up. Default: down</description>
 			<name>direction</name>
 			<rtexprvalue>true</rtexprvalue>

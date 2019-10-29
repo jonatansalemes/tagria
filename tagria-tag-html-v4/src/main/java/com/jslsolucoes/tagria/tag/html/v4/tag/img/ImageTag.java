@@ -18,6 +18,7 @@ public class ImageTag extends AbstractSimpleTagSupport {
 	private String cssClass;
 	private Boolean cdn = true;
 	private Boolean responsive = true;
+	private Boolean lazy = true;
 
 	@Override
 	public Element render() {
@@ -26,7 +27,10 @@ public class ImageTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element img() {
-		Element img = ElementCreator.newImg().attribute(Attribute.SRC, pathForStatic(url, cdn)).attribute(Attribute.ALT,
+		Element img = ElementCreator.newImg()
+						.attribute((lazy ? Attribute.DATA_SRC : Attribute.SRC), pathForStatic(url, cdn))
+						.attribute(Attribute.CLASS, (lazy ? "lazyload" : ""))
+						.attribute(Attribute.ALT,
 				keyOrLabel(altKey, alt));
 		if (responsive) {
 			img.attribute(Attribute.CLASS, "img-responsive");
@@ -116,5 +120,13 @@ public class ImageTag extends AbstractSimpleTagSupport {
 
 	public void setAltKey(String altKey) {
 		this.altKey = altKey;
+	}
+
+	public Boolean getLazy() {
+	    return lazy;
+	}
+
+	public void setLazy(Boolean lazy) {
+	    this.lazy = lazy;
 	}
 }
