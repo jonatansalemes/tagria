@@ -1,0 +1,51 @@
+.form-control:focus {
+  background-color: #fff;
+  border-color:#0d7ffb;
+  outline: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,.22);
+}
+
+.form-group label {
+  background-color: #fff;
+  position: absolute;
+  top:0;
+  left:0;
+  transition: 0.15s ease-in-out;
+  transform: translate(10px,-12px) scale(0.9);
+}
+
+.form-group > input.disabled + label {
+  background-color: #e9ecef;
+}
+
+.form-group > input.form-has-error + label {
+  color: #dc3545;
+}
+
+.form-group > input:focus + label {
+  color:#0d7ffb;
+}
+
+.form-group > select.disabled + label {
+  background-color: #e9ecef;
+}
+
+.form-group > select.form-has-error + label {
+  color: #dc3545;
+}
+
+.form-group > select:focus + label {
+  color:#0d7ffb;
+}
+
+.form-group > textarea.disabled + label {
+  background-color: #e9ecef;
+}
+
+.form-group > textarea.form-has-error + label {
+  color: #dc3545;
+}
+
+.form-group > textarea:focus + label {
+  color:#0d7ffb;
+}

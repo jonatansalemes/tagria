@@ -1,12 +1,12 @@
 (function($) {
-	$.widget("tagria.select", {
+	$.widget("tagria.textarea", {
 		options: {
 			
 		},
 		_create: function() {
 			var self = this;
-			var select = self.element;
-			$(select).change(function(){
+			var textarea = self.element;
+			$(textarea).keyup(function(){
 				if($(this).val() !== ''){
 					$(this).removeClass('form-has-error');
 				}

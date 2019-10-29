@@ -34,6 +34,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private Boolean minifyJs = Boolean.TRUE;
     private Boolean minifyHtml = Boolean.TRUE;
     private Boolean minifyCss = Boolean.TRUE;
+    private Boolean dropBack = Boolean.TRUE;
     private Boolean asFragment = Boolean.FALSE;
     private String template;
     private List<String> jsScripts = new ArrayList<>();
@@ -90,8 +91,9 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private List<Element> partial() {
 	String templateContent = contentOfTemplate(template);
 	String currentContent = asHtml(appHtml());
-	String finalContent = recursiveSubstitution(templateContent,currentContent).replace("<!-- template -->",asHtml(concat(appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs())));
-	logger.debug("Final content {}",finalContent);
+	String finalContent = recursiveSubstitution(templateContent, currentContent).replace("<!-- template -->",
+		asHtml(concat(appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs())));
+	logger.debug("Final content {}", finalContent);
 	return Arrays.asList(ElementCreator.newCData(finalContent));
     }
 
@@ -101,14 +103,15 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	    String fullContent = matcher.group();
 	    String attribute = matcher.group(2);
 	    String defaultContent = matcher.group(3);
-	    String newTemplateContent = templateContent.replace(fullContent,contentOfAttribute(attribute, defaultContent,currentContent));
+	    String newTemplateContent = templateContent.replace(fullContent,
+		    contentOfAttribute(attribute, defaultContent, currentContent));
 	    return recursiveSubstitution(newTemplateContent, currentContent);
 	} else {
 	    return templateContent;
 	}
     }
 
-    private String contentOfAttribute(String attribute,String defaultContent,String currentContent) {
+    private String contentOfAttribute(String attribute, String defaultContent, String currentContent) {
 	Matcher matcher = templatePattern(attribute).matcher(currentContent);
 	if (matcher.find()) {
 	    return matcher.group(3);
@@ -134,7 +137,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> fragment() {
-	return concat(appHtml(),appCssScriptsForImport(), appCss(),tagriaJsScriptsForImport(), appJsScriptsForImport(), appJs());
+	return concat(appHtml(), appCssScriptsForImport(), appCss(), tagriaJsScriptsForImport(),
+		appJsScriptsForImport(), appJs());
     }
 
     private String lang() {
@@ -245,11 +249,37 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> appHtml() {
-	return Arrays.asList(antiCorruptionLayer(),ElementCreator.newCData(minifyHtml(bodyContent())));
+	List<Element> elements = new ArrayList<>();
+	elements.add(antiCorruptionLayer());
+	if(dropBack) {
+	    elements.add(dropBackLayer());
+	    elements.add(dropBackLayerInlineCss());
+	}
+	elements.add(ElementCreator.newCData(minifyHtml(bodyContent())));
+	return elements;
     }
 
     private Element antiCorruptionLayer() {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "anti-corruption-layer");
+    }
+
+    private Element dropBackLayerLoading() {
+	return ElementCreator.newDiv()
+		.attribute(Attribute.CLASS, "d-flex w-100 h-100 align-items-center justify-content-center")
+		.add(spinnerLoading());
+    }
+
+    private Element spinnerLoading() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "spinner-grow text-primary")
+		.add(spinnerLoadingSpan());
+    }
+
+    private Element spinnerLoadingSpan() {
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "sr-only").add(keyForLibrary("view.loading"));
+    }
+
+    private Element dropBackLayer() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS,"drop-back-layer").add(dropBackLayerLoading());
     }
 
     private List<Element> appJsScriptsForImport() {
@@ -269,6 +299,11 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private Element script(String src) {
 	return ElementCreator.newScript().attribute(Attribute.REL, "preload").attribute(Attribute.SRC, src);
+    }
+
+    private Element dropBackLayerInlineCss() {
+	String content = ".drop-back-layer{position:absolute;top:0;left:0;z-index:2000;background-color:#000;opacity:.4;width:100%;height:100%}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}@-webkit-keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}@keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}.spinner-grow{display:inline-block;width:2rem;height:2rem;vertical-align:text-bottom;background-color:currentColor;border-radius:50%;opacity:0;-webkit-animation:spinner-grow .75s linear infinite;animation:spinner-grow .75s linear infinite}.spinner-grow-sm{width:1rem;height:1rem}.text-primary{color:#007bff!important}.d-flex{display:-ms-flexbox!important;display:flex!important}.w-100{width:100%!important}.h-100{height:100%!important}.align-items-center{-ms-flex-align:center!important;align-items:center!important}.justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}";
+	return ElementCreator.newStyle().add(content);
     }
 
     private String cssScripts() {
@@ -296,8 +331,12 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private String tagriaJsScripts() {
-	return Arrays.asList(tagriaJsCodeForUrlBase()).stream()
+	return Arrays.asList(tagriaJsCodeForUrlBase(), tagriaJsCodeForHideDropBackLayer()).stream()
 		.collect(Collectors.joining(""));
+    }
+
+    private String tagriaJsCodeForHideDropBackLayer() {
+	return "$(document).ready(function() { $('.drop-back-layer').hide(); });";
     }
 
     private String tagriaJsCodeForUrlBase() {
@@ -382,6 +421,14 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     public void setTemplate(String template) {
 	this.template = template;
+    }
+
+    public Boolean getDropBack() {
+	return dropBack;
+    }
+
+    public void setDropBack(Boolean dropBack) {
+	this.dropBack = dropBack;
     }
 
 }

@@ -24,6 +24,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates if drop back layer must be activated. Default:true</description>
+			<name>dropBack</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates if html must be minified. Default:true</description>
 			<name>minifyHtml</name>
 			<rtexprvalue>true</rtexprvalue>

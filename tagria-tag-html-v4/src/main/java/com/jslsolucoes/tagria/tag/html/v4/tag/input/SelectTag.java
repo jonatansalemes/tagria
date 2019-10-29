@@ -34,7 +34,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
 	private Element div() {
 		Element div = ElementCreator.newDiv().attribute(Attribute.ID, id()).add(divRow()).add(divModal());
-		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').select();");
+		appendJsCode("$('#" + div.attribute(Attribute.ID) + "').searchableSelect();");
 		return div;
 	}
 
@@ -93,6 +93,9 @@ public class SelectTag extends AbstractSimpleTagSupport {
 			}
 			setAttribute(var, null);
 		}
+		
+		appendJsCode("$('#"+select.attribute(Attribute.ID)+"').select();");
+		
 		return select;
 	}
 

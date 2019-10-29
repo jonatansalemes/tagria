@@ -43,7 +43,9 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	    textArea.attribute(Attribute.CLASS, "form-required");
 	    textArea.attribute(Attribute.REQUIRED, "required");
 	}
-
+	
+	appendJsCode("$('#"+textArea.attribute(Attribute.ID)+"').textarea();");
+	
 	return textArea;
     }
 

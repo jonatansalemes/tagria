@@ -2,8 +2,7 @@
 <html:view title="Playground">
 
 
-	<html:iframe url="/" name="content" title="My iframe title" />
-
+	
 
 	<html:form action="#" label="My title">
 
@@ -398,6 +397,9 @@ private class Java {
 
 	<html:import url="/css/example.css" type="css"></html:import>
 	<html:import url="/js/example.js" type="js"></html:import>
+	
+	<html:iframe url="/" name="content" title="My iframe title" />
+	
 
 
 
