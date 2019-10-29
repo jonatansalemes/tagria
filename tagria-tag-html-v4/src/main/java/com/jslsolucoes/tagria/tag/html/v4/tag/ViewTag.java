@@ -245,7 +245,11 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> appHtml() {
-	return Arrays.asList(ElementCreator.newCData(minifyHtml(bodyContent())));
+	return Arrays.asList(antiCorruptionLayer(),ElementCreator.newCData(minifyHtml(bodyContent())));
+    }
+
+    private Element antiCorruptionLayer() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "anti-corruption-layer");
     }
 
     private List<Element> appJsScriptsForImport() {
