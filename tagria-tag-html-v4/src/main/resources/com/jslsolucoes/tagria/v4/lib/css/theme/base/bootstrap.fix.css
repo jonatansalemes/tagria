@@ -1,10 +1,10 @@
 .row {
-	margin-right: 0px !important; 
-	margin-left: 0px !important;
+	margin-right: 0px; 
+	margin-left: 0px;
 }
 
 .popover {
-	max-width: 100% !important;
+	max-width: 100%;
 }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
@@ -24,23 +24,23 @@
 }
 
 .card-body {
-    padding: 10px;
+    padding: 15px;
 }
 
 .alert {
-	margin-bottom: 0rem !important;
+	margin-bottom: 0rem;
 }
 
 .form-group {
-	margin-bottom: 0rem !important;
+	margin-bottom: 0rem;
 }
 
 label {
-	margin-bottom: 0rem !important;
+	margin-bottom: 0rem;
 }
 
 ol, ul, dl {
-	margin-bottom: 0rem !important;
+	margin-bottom: 0rem;
 }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
@@ -54,10 +54,10 @@ ol, ul, dl {
 	.col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2,
 	.col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8,
 	.col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
-	padding-right: 3px !important;
-	padding-left: 3px !important;
+	padding-right: 3px;
+	padding-left: 3px;
 }
 
 .card {
-	position: static !important;
+	position: static;
 }
