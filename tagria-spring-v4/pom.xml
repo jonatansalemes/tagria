@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria-v4</artifactId>
-		<version>4.0.2-SNAPSHOT</version>
+		<version>4.0.2</version>
 	</parent>
 	<artifactId>tagria-spring-v4</artifactId>
 	<packaging>war</packaging>
