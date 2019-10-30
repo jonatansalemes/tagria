@@ -2,12 +2,14 @@
 package com.jslsolucoes.tagria.doc.v4.controller;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.jslsolucoes.tagria.doc.v4.repository.PersonRepository;
+import com.jslsolucoes.tagria.tag.html.v4.tag.form.FormErrors;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
@@ -46,6 +48,14 @@ public class AppController {
 	this.result.include("cpf", 7137389090L);
     }
 
+    @Path("/app/form/validation")
+    public void ajaxValidation() {
+	this.result.use(Results.json()).withoutRoot()
+		.from(FormErrors.newBuilder().withErrors(Arrays.asList("error1", "error2")).build())
+		.include("errors")
+		.serialize();
+    }
+
     @Path("/app/ajax")
     public void ajax(String input1) {
 	this.result.use(Results.json()).from(input1, "field").serialize();
@@ -58,7 +68,7 @@ public class AppController {
 
     @Path("/app/autoComplete")
     public void autoComplete() {
-	
+
     }
-   
+
 }

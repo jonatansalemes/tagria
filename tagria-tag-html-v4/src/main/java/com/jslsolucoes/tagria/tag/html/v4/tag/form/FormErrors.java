@@ -4,30 +4,23 @@ import java.util.List;
 
 public class FormErrors {
 
-	private List<String> errors;
+    private List<String> errors;
 
-	private FormErrors() {
+    private FormErrors() {
 
-	}
+    }
 
-	public static FormErrors newBuilder() {
-		return new FormErrors();
-	}
+    public static FormErrors newBuilder() {
+	return new FormErrors();
+    }
 
-	public FormErrors withErrors(List<String> errors) {
-		this.errors = errors;
-		return this;
-	}
+    public FormErrors withErrors(List<String> errors) {
+	this.errors = errors;
+	return this;
+    }
 
-	public FormErrors build() {
-		return this;
-	}
+    public FormError build() {
+	return new FormError(errors);
+    }
 
-	public List<String> getErrors() {
-		return errors;
-	}
-
-	public void setErrors(List<String> errors) {
-		this.errors = errors;
-	}
 }

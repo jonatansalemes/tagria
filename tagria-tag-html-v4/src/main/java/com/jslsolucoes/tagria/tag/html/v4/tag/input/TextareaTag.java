@@ -34,19 +34,25 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	    textArea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeHolderKey, placeHolder));
 	}
 
-	if (!StringUtils.isEmpty(value)) {
-	    textArea.add(value);
+	String textAreaValue = !StringUtils.isEmpty(value) ? value : bodyContent();
+
+	if (!StringUtils.isEmpty(textAreaValue)) {
+	    textArea.attribute(Attribute.CLASS, "is-not-empty").add(textAreaValue);
 	} else {
-	    textArea.add(bodyContent());
+	    textArea.attribute(Attribute.CLASS, "is-empty");
 	}
-	
+
 	if (required) {
 	    textArea.attribute(Attribute.CLASS, "form-required");
 	    textArea.attribute(Attribute.REQUIRED, "required");
+	    if (StringUtils.isEmpty(placeHolder) && StringUtils.isEmpty(placeHolderKey)
+		    && StringUtils.isEmpty(textAreaValue)) {
+		textArea.attribute(Attribute.PLACEHOLDER, keyForLibrary("textarea.required.placeholder"));
+	    }
 	}
-	
-	appendJsCode("$('#"+textArea.attribute(Attribute.ID)+"').textarea();");
-	
+
+	appendJsCode("$('#" + textArea.attribute(Attribute.ID) + "').textarea();");
+
 	return textArea;
     }
 

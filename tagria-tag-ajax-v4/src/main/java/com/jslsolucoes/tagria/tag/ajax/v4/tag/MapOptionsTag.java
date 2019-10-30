@@ -15,7 +15,7 @@ public class MapOptionsTag extends AbstractSimpleTagSupport {
     public void renderOnVoid() {
 	String id = idForName(target);
 	String onSuccess = "var defaultOption = $(document.createElement('option')).attr('value','').text('- - -');$('#"
-		+ id + "').html('').append(defaultOption);for(i=0;i < data.length; i++) {var text = new Array();"
+		+ id + "').html('').append(defaultOption);for(var i=0; i < data.length; i++) {var text = new Array();"
 		+ Arrays.asList(text.split(",")).stream().map(text -> "text.push(data[i]." + text + ");").collect(
 			Collectors.joining())
 		+ "var option= $(document.createElement('option')).attr('value',data[i]." + value

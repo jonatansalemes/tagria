@@ -76,6 +76,12 @@ public class SelectTag extends AbstractSimpleTagSupport {
 		if (!StringUtils.isEmpty(cssClass)) {
 			select.attribute(Attribute.CLASS, cssClass);
 		}
+		
+		if (!StringUtils.isEmpty(value)) {
+		    select.attribute(Attribute.CLASS,"is-not-empty");
+		} else {
+		    select.attribute(Attribute.CLASS,"is-empty");
+		}
 
 		if (fixed) {
 			select.add(bodyContent());

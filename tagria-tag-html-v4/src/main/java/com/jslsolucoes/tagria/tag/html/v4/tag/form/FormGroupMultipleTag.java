@@ -126,7 +126,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     }
 
     private Element divRow(String bodyContent) {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "row fg-row shadow-xl rounded mt-3 mb-3 p-3")
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "row fg-row mt-3 mb-3 p-3 border rounded")
 		.add(divCol1(bodyContent)).add(divCol2());
     }
 

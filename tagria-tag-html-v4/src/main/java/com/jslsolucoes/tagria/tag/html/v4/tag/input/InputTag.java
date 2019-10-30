@@ -106,6 +106,9 @@ public class InputTag extends AbstractSimpleTagSupport {
 		if (required) {
 			input.attribute(Attribute.REQUIRED, "required");
 			input.attribute(Attribute.CLASS, "form-required");
+			if(StringUtils.isEmpty(placeHolder) && StringUtils.isEmpty(placeHolderKey) && StringUtils.isEmpty(value)) {
+			    input.attribute(Attribute.PLACEHOLDER,keyForLibrary("input.required.placeholder"));
+			}
 		}
 
 		if (!StringUtils.isEmpty(cssClass)) {

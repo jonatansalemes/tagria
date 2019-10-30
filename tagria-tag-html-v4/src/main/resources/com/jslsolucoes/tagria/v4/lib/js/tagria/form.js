@@ -7,6 +7,12 @@
 				max : 'Must not be greater than',
 				min : 'Must not be less than'
 			},
+			errors: {
+				required: {
+					title: 'Form fillment error',
+					text: 'You cant leave required fields empty. Please check'
+				}
+			},
 			beforeSubmit: function() {
 				return true;
 			}
@@ -51,19 +57,15 @@
 			var form = this.element;
 			$('a.btn[data-type=submit]',form).removeClass("disabled");
 		},
-		_clean : function() {
-			var self = this;
-			var form = self.element;
-			$('.form-error',form).hide();
-			$('.form-has-error',form).removeClass('form-has-error');
-		},
 		_validateAndSubmit : function() {
 			var self = this;
 			var form = this.element;
-			self._clean();
 			self._block();
 			
-			if(!self._hasRequiredFieldBlank() && !self._hasValidationError()){
+			var hasRequiredFieldBlank = self._hasRequiredFieldBlank();
+			var hasValidationError = self._hasValidationError();
+			
+			if(!hasRequiredFieldBlank && !hasValidationError){
 				if(self.options.validation == '') {
 					self._submit();
 				} else {
@@ -85,8 +87,8 @@
 								var ul = $(document.createElement('ul')).addClass('list-group shadow-sm');
 								$.each(data.errors,function( index, value ) {
 									ul.append($(document.createElement('li')).addClass('list-group-item list-group-item-danger').text(value));
-								});					
-								$('.form-error',form).html(ul).show();
+								});
+								self._alert(self.options.errors.required.title,ul[0].outerHTML)
 								self._unblock();
 							} else {
 								self._submit();
@@ -99,7 +101,17 @@
 				}
 			} else {
 				self._unblock();
+				if(hasRequiredFieldBlank){
+					self._alert(self.options.errors.required.title,self.options.errors.required.text)
+				}
 			}
+		},
+		_alert: function(title,message) {
+			Swal.fire({
+				type: 'error',
+				title: title,
+				html: message
+			})
 		},
         _submit : function() {
         	var self = this;
@@ -119,7 +131,6 @@
 			 var empty = false;
          	 $('.form-required:visible',form).each(function(){
          		if($(this).val() == ''){
-         			$(this).addClass('form-has-error');
          			empty = true;
          		}
          	 });
@@ -143,7 +154,7 @@
 			var error = false;
 			$('input[type=email]',form).each(function(){
 				if(!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test( $(this).val() )){
-					var input = $(this).addClass('form-has-error');
+					var input = $(this).addClass('is-empty');
 					self._popover(input,self.options.invalid.email);
 					error = true;
 				}
@@ -151,7 +162,7 @@
 			
 			$('input[type=number][max]',form).each(function(){
 				if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
-					var input = $(this).addClass('form-has-error');
+					var input = $(this).addClass('is-empty');
 					self._popover(input,self.options.invalid.max + ' ' + input.attr("max"));
 					error = true;
 				}
@@ -159,7 +170,7 @@
 			
 			$('input[type=number][min]',form).each(function(){
 				if(parseInt($(this).val()) < parseInt($(this).attr("min"))){
-					var input = $(this).addClass('form-has-error');
+					var input = $(this).addClass('is-empty');
 					self._popover(input,self.options.invalid.min + ' ' + input.attr("min"));
 					error = true;
 				}

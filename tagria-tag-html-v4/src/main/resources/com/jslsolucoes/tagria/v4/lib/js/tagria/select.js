@@ -8,7 +8,9 @@
 			var select = self.element;
 			$(select).change(function(){
 				if($(this).val() !== ''){
-					$(this).removeClass('form-has-error');
+					$(this).removeClass('is-empty').addClass('is-not-empty');
+				} else {
+					$(this).removeClass('is-not-empty').addClass('is-empty');
 				}
 			});
 		}

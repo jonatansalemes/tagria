@@ -1,10 +1,7 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
-
-	
-
-	<html:form action="#" label="My title">
+	<html:form action="#" label="My title" validation="/app/form/validation">
 
 
 		<html:formOnBeforeSubmit>
@@ -15,15 +12,23 @@
 		<html:formGroupRow>
 			<html:col extraSmall="6">
 				<html:formGroup label="Field 1" required="true" forElement="field1">
-					<html:input required="true" name="field1" placeHolder="holder1"/>
+					<html:input required="true" name="field1"/>
 				</html:formGroup>
 			</html:col>
 			<html:col extraSmall="6">
 				<html:formGroup label="Field 3" required="true" forElement="field3">
-					<html:input required="true" name="field3" placeHolder="holder3"/>
+					<html:input required="true" name="field3"/>
 				</html:formGroup>
 			</html:col>
 		</html:formGroupRow>
+		<html:formGroup label="Field17" required="true">
+			<html:textarea name="textarea17" required="true"></html:textarea>
+		</html:formGroup>
+		<html:formGroup label="Field18" required="true">
+			<html:select name="filed18" data="${ persons }" var="person" required="true">
+				<html:option value="${ person.id }">${ person.name }</html:option>
+			</html:select>
+		</html:formGroup>
 		
 		<html:card>
 			<html:cardBody>
