@@ -120,7 +120,6 @@ Some configuration can be change by creating an tagrialib.xml file in source fol
 		&lt;/templates&gt;
 		&lt;formatters&gt;
 			&lt;formatter&gt;
-				&lt;name&gt;matriculaSap&lt;/name&gt;
 				&lt;class&gt;com.package.YourFormatterThatImplementsFormatterInterface&lt;/class&gt;
 			&lt;/formatter&gt;
 		&lt;/formatters&gt;
