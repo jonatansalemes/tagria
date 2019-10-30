@@ -33,7 +33,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element div() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2 shadow-xl rounded bg-white").add(form());
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2   bg-white").add(form());
 	if (!StringUtils.isEmpty(cssClass)) {
 	    div.attribute(Attribute.CLASS, cssClass);
 	}

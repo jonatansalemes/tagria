@@ -54,7 +54,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     }
 
     private Element buttonDropdown() {
-	return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-default dropdown-toggle shadow-xl")
+	return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-default dropdown-toggle ")
 		.attribute(Attribute.DATA_TOGGLE, "dropdown").add(String.valueOf(resultsPerPage()));
     }
 
@@ -89,7 +89,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     }
 
     private Element liPaginate(Integer currentPage, Integer page) {
-	Element li = ElementCreator.newLi().attribute(Attribute.CLASS, "page-item grid-paginate-item shadow-xl")
+	Element li = ElementCreator.newLi().attribute(Attribute.CLASS, "page-item grid-paginate-item ")
 		.add(aPaginate(page));
 	if (currentPage == page) {
 	    li.attribute(Attribute.CLASS, "active");

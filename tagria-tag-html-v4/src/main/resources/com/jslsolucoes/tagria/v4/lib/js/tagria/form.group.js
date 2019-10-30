@@ -116,7 +116,7 @@
 			var self = this;
 			var detail = self.element;
 			var templateScript = $('.fg-template-script',detail).val();
-			$('.fg-template',detail).val('<div class="row fg-row mt-3 mb-3 p-3 border rounded">' + $('.fg-row:first',detail).html()
+			$('.fg-template',detail).val('<div class="row fg-row mt-3 mb-3 p-3 border">' + $('.fg-row:first',detail).html()
 					+ templateScript + '</div>');
 		},
 		_reorganize : function (){

@@ -50,7 +50,7 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newButton()
 		.attribute(Attribute.DATA_TOGGLE, "modal")
 		.attribute(Attribute.DATA_TARGET, "#"+id)
-		.attribute(Attribute.CLASS, "btn btn-outline-dark shadow-xl")
+		.attribute(Attribute.CLASS, "btn btn-outline-dark ")
 		.add(new Span().attribute(Attribute.CLASS, "fa fa-search"));
     }
 

@@ -49,7 +49,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
 	private Element a() {
 		return ElementCreator.newA()
-				.attribute(Attribute.CLASS, "select-search-button btn btn-outline-primary shadow-xl")
+				.attribute(Attribute.CLASS, "select-search-button btn btn-outline-primary ")
 				.attribute(Attribute.HREF, "#")
 				.attribute(Attribute.ARIA_LABEL, keyForLibrary("select.search.button"))
 				.add(span());
@@ -71,7 +71,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 			select.attribute(Attribute.CLASS, "form-required");
 			select.attribute(Attribute.REQUIRED, "required");
 		}
-		select.attribute(Attribute.CLASS, "select form-control shadow-xl");
+		select.attribute(Attribute.CLASS, "select form-control ");
 
 		if (!StringUtils.isEmpty(cssClass)) {
 			select.attribute(Attribute.CLASS, cssClass);
@@ -128,7 +128,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
 	private Element input() {
 		return ElementCreator.newInput().attribute(Attribute.TYPE, "text").attribute(Attribute.AUTOCOMPLETE, "off")
-				.attribute(Attribute.CLASS, "form-control shadow-xl select-search-input")
+				.attribute(Attribute.CLASS, "form-control  select-search-input")
 				.attribute(Attribute.PLACEHOLDER, keyForLibrary("select.search.input"))
 				.attribute(Attribute.AUTOFOCUS, "autofocus");
 	}

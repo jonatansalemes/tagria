@@ -84,7 +84,7 @@
 				        	if(data == null) {
 				        		throw new Error('data response cannot be null. Please return empty FormErrors. ex:. FormErrors.newBuilder().build()')
 				        	} else if(data.errors && data.errors.length > 0) {
-								var ul = $(document.createElement('ul')).addClass('list-group shadow-sm');
+								var ul = $(document.createElement('ul')).addClass('list-group');
 								$.each(data.errors,function( index, value ) {
 									ul.append($(document.createElement('li')).addClass('list-group-item list-group-item-danger').text(value));
 								});

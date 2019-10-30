@@ -56,25 +56,25 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 	}
 
 	private Element buttonXml() {
-		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-xml shadow-xl")
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-xml ")
 				.attribute(Attribute.TITLE, keyForLibrary("grid.export.xml"))
 				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-code"));
 	}
 
 	private Element buttonCsv() {
-		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-csv shadow-xl")
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-csv ")
 				.attribute(Attribute.TITLE, keyForLibrary("grid.export.csv"))
 				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-csv"));
 	}
 
 	private Element buttonXlsx() {
-		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-excel shadow-xl")
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-excel ")
 				.attribute(Attribute.TITLE, keyForLibrary("grid.export.xls"))
 				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-excel"));
 	}
 
 	private Element buttonPDF() {
-		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-pdf shadow-xl")
+		return ElementCreator.newButton().attribute(Attribute.CLASS, "btn btn-outline-primary grid-export-pdf ")
 				.attribute(Attribute.TITLE, keyForLibrary("grid.export.pdf"))
 				.add(new Span().attribute(Attribute.CLASS, "fa fa-file-pdf"));
 	}

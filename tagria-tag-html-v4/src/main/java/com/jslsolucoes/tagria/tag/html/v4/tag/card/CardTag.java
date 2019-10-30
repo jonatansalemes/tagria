@@ -19,7 +19,7 @@ public class CardTag extends AbstractSimpleTagSupport {
 
 	private Element div() {
 		Element div = ElementCreator.newDiv().attribute(Attribute.ID, idForId(id))
-				.attribute(Attribute.CLASS, "card shadow-xl bg-" + state).add(bodyContent());
+				.attribute(Attribute.CLASS, "card  bg-" + state).add(bodyContent());
 		if (!StringUtils.isEmpty(cssClass)) {
 			div.attribute(Attribute.CLASS, cssClass);
 		}
