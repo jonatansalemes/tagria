@@ -8,7 +8,9 @@
 			var input = self.element;
 			$(input).keyup(function(){
 				if($(this).val() !== ''){
-					$(this).removeClass('form-has-error');
+					$(this).removeClass('form-has-error').removeClass('is-empty').addClass('is-not-empty');
+				} else {
+					$(this).removeClass('is-not-empty').addClass('is-empty');
 				}
 			});
 		}

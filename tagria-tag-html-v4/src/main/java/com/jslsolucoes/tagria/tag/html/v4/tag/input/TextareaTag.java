@@ -39,6 +39,7 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	} else {
 	    textArea.add(bodyContent());
 	}
+	
 	if (required) {
 	    textArea.attribute(Attribute.CLASS, "form-required");
 	    textArea.attribute(Attribute.REQUIRED, "required");

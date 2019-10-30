@@ -39,7 +39,7 @@ public class GridTag extends AbstractSimpleTagSupport {
     private Element divGrid() {
 	String id = id();
 	Element div = ElementCreator.newDiv()
-		.attribute(Attribute.CLASS,"d-flex flex-column")
+		.attribute(Attribute.CLASS,"d-flex flex-column p-2")
 		.attribute(Attribute.ID, id);
 	if (hasKeyOrLabel(labelKey, label)) {
 	    div.add(divTitle());

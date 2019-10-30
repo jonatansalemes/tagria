@@ -87,7 +87,9 @@ public class InputTag extends AbstractSimpleTagSupport {
 		}
 
 		if (!StringUtils.isEmpty(value)) {
-		    	input.attribute(Attribute.VALUE, format(formatter, value));
+		    input.attribute(Attribute.CLASS,"is-not-empty").attribute(Attribute.VALUE, format(formatter, value));
+		} else {
+		    input.attribute(Attribute.CLASS,"is-empty");
 		}
 		
 		if (!StringUtils.isEmpty(pattern)) {
