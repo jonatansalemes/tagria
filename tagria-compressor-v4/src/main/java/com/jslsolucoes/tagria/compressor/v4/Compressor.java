@@ -62,7 +62,7 @@ public class Compressor {
 	Compiler compiler = new Compiler();
 	CompilerOptions options = new CompilerOptions();
 	compilationLevel.setOptionsForCompilationLevel(options);
-	options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+	options.setLanguageIn(LanguageMode.ECMASCRIPT_2015);
 	SourceFile input = SourceFile.fromCode("input.js", code);
 	compiler.compile(SourceFile.fromCode("output.js", ""), input, options);
 	return compiler.toSource();

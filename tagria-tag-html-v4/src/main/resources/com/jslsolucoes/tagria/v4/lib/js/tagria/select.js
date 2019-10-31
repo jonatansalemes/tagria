@@ -5,8 +5,8 @@
 		},
 		_create: function() {
 			var self = this;
-			var select = self.element;
-			$(select).change(function(){
+			var selectElement = self.element;
+			$(selectElement).on('change.select',function(e) {
 				if($(this).val() !== ''){
 					$(this).removeClass('is-empty').addClass('is-not-empty');
 				} else {
