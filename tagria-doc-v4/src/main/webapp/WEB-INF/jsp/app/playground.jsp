@@ -77,6 +77,24 @@
 			<html:button state="primary" type="submit" label="Label for submit" />
 		</html:formToolbar>
 	</html:form>
+	
+	<html:jsCode>
+		if(random()){
+			$('#par_field3').val('text by val');
+		}
+		
+		if(random()){
+			$('#par_filed18').val(2);
+		}
+		
+		if(random()){
+			$('#par_textarea17').val('textarea by val');
+		}
+		
+		function random() {
+			return Math.floor(Math.random() * 100) % 2 === 0;
+		}
+	</html:jsCode>
 
 
 	<auth:rule uri="/pessoa3" httpMethod="get">

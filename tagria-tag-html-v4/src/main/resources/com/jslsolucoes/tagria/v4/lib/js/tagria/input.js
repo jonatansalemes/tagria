@@ -6,7 +6,7 @@
 		_create: function() {
 			var self = this;
 			var input = self.element;
-			$(input).on('keyup.input',function(e) {
+			$(input).on('change keyup',function(){
 				if($(this).val() !== ''){
 					$(this).removeClass('is-empty').addClass('is-not-empty');
 				} else {

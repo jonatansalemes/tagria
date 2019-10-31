@@ -58,7 +58,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:template render="body"/&gt;
+			.......
 		</example>
 	</tag>
 
@@ -298,8 +298,8 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-		    &lt;html:button id="btn1" label="Confirm that ?"/&gt;
-			&lt;html:confirm url="#" label="Titulo do modal" attachToSelector="#btn1"/&gt;
+		    &lt;html:input name="input1" placeholder="Animated on show" /&gt;
+			&lt;html:animate attachTo="input1" animation="bounce"/&gt;
 		</example>
 	</tag>
 </fragment>

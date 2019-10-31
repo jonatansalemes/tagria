@@ -6,7 +6,7 @@
 		_create: function() {
 			var self = this;
 			var textarea = self.element;
-			$(textarea).on('keyup.textarea',function(e) {
+			$(textarea).on('change keyup',function(){
 				if($(this).val() !== ''){
 					$(this).removeClass('is-empty').addClass('is-not-empty');
 				} else {
