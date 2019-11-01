@@ -270,7 +270,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element spinnerLoading() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "spinner-grow text-primary")
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "spinner-border text-primary")
 		.add(spinnerLoadingSpan());
     }
 
@@ -302,7 +302,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element dropBackLayerInlineCss() {
-	String content = ".drop-back-layer{position:absolute;top:0;left:0;z-index:2000;background-color:#000;opacity:.4;width:100%;height:100%}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}@-webkit-keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}@keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}.spinner-grow{display:inline-block;width:2rem;height:2rem;vertical-align:text-bottom;background-color:currentColor;border-radius:50%;opacity:0;-webkit-animation:spinner-grow .75s linear infinite;animation:spinner-grow .75s linear infinite}.spinner-grow-sm{width:1rem;height:1rem}.text-primary{color:#007bff!important}.d-flex{display:-ms-flexbox!important;display:flex!important}.w-100{width:100%!important}.h-100{height:100%!important}.align-items-center{-ms-flex-align:center!important;align-items:center!important}.justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}";
+	String content = ".drop-back-layer{position:fixed;top:0;left:0;z-index:2000;background-color:#fff;width:100%;height:100%}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}@-webkit-keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}@keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}.spinner-grow{display:inline-block;width:2rem;height:2rem;vertical-align:text-bottom;background-color:currentColor;border-radius:50%;opacity:0;-webkit-animation:spinner-grow .75s linear infinite;animation:spinner-grow .75s linear infinite}.spinner-grow-sm{width:1rem;height:1rem}.text-primary{color:#007bff!important}.d-flex{display:-ms-flexbox!important;display:flex!important}.w-100{width:100%!important}.h-100{height:100%!important}.align-items-center{-ms-flex-align:center!important;align-items:center!important}.justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}";
 	return ElementCreator.newStyle().add(content);
     }
 
