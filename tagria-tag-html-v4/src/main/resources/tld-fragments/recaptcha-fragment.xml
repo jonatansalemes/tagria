@@ -1,0 +1,21 @@
+<fragment>
+	<tag>
+		<description>Renders a google recaptcha</description>
+		<display-name>Misc</display-name>
+		<name>recaptcha</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.recaptcha.RecaptchaTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the site key available in google account developer for recaptcha</description>
+			<name>siteKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:recaptcha siteKey="yourapikey" &gt;
+				
+			&lt;/html:recaptcha&gt; 
+		</example>
+	</tag>
+</fragment>

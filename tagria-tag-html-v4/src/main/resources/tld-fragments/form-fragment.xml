@@ -1,0 +1,355 @@
+<fragment>
+
+	<tag>
+		<description>Renders a form group row of columns in subdivision (divided into 12 sections combined with the col tag)</description>
+		<display-name>Form</display-name>
+		<name>formGroupRow</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormGroupRowTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroupRow&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input required="true" name="field1"/&gt;
+						&lt;/html:col&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input name="field2"/&gt;
+						&lt;/html:col&gt;
+				&lt;/html:formGroupRow&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a javascript block to be performed after remove a row</description>
+		<display-name>Form</display-name>
+		<name>formGroupMultipleOnAfterRemove</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormGroupMultipleOnAfterRemoveTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+			
+				&lt;html:formGroupMultiple label="Fields group"&gt;
+					&lt;html:formGroupMultipleOnAfterRemove&gt;
+					    /* function signature is f():void */      
+					    
+					&lt;/html:formGroupMultipleOnAfterRemove&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:formGroupMultiple&gt;	
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a javascript block to be performed after insert a new row</description>
+		<display-name>Form</display-name>
+		<name>formGroupMultipleOnAfterInsert</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormGroupMultipleOnAfterInsertTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:formGroupMultiple label="Fields group"&gt;
+					&lt;html:formGroupMultipleOnAfterInsert&gt;
+					    /* function signature is f(idx,element):void. idx: index of line was added, element: clone of elements declared in template */      
+					    console.log(idx);
+					    console.log(element);
+					&lt;/html:formGroupMultipleOnAfterInsert&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:formGroupMultiple&gt;	
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
+
+	<tag>
+		<description>Renders a before submit block</description>
+		<display-name>Form</display-name>
+		<name>formOnBeforeSubmit</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormOnBeforeSubmitTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:formOnBeforeSubmit&gt;
+				    /* function signature is f():boolean (true to continue submit and false to cancel submit) */
+					return true;
+				&lt;/html:formOnBeforeSubmit&gt;
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
+
+	<tag>
+		<description>Renders a form</description>
+		<display-name>Form</display-name>
+		<name>form</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the action of submission</description>
+			<name>action</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates form to be inline. Default false</description>
+			<name>inline</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label of the form</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the localize (i18n) label key of the form</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target of submission. Default : _self. Options : _blank,_self,_parent,_top,iframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the method to be used. Default: post. Options: post, get</description>
+			<name>method</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the name of form</description>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a validation to be performed on the data form</description>
+			<name>validation</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the form should have file support</description>
+			<name>multipart</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:formGroup label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroupMultiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:formGroupMultiple&gt;				
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+	
+	
+	
+	<tag>
+		<description>Renders a form footer on the form component</description>
+		<display-name>Form</display-name>
+		<name>formToolbar</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormToolbarTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:formGroup label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroupMultiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:formGroupMultiple&gt;				
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a component grouping in the form</description>
+		<display-name>Form</display-name>
+		<name>formGroup</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label of the group</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (18n) of the group</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of the group</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the element to be oriented the label</description>
+			<name>forElement</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the completion of the internal component should be mandatory</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be visible</description>
+			<name>visible</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:formGroup label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroupMultiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:formGroupMultiple&gt;				
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a detail table</description>
+		<display-name>Form</display-name>
+		<name>formGroupMultiple</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormGroupMultipleTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n) component</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the collection to be iterated in component</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java (com.jslsolucoes.tagria.tag.html.v4.tag.VarStatus) to be made available the index of iteration.  </description>
+			<name>varStatus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the minimum number of lines to be filled</description>
+			<name>atLeast</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should start without lines</description>
+			<name>empty</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#" label="My title"&gt;
+				&lt;html:formGroup label="Field 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Field 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroupMultiple label="Fields group"&gt;
+					&lt;html:input name="fields3[]"/&gt;
+				&lt;/html:formGroupMultiple&gt;				
+				&lt;html:formToolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Label for submit"/&gt;
+				&lt;/html:formToolbar&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+</fragment>

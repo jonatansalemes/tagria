@@ -1,0 +1,373 @@
+<fragment>
+	<tag>
+		<description>Renders a card</description>
+		<display-name>Card</display-name>
+		<name>card</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the card state. Default: primary. Options: success, danger, info, default, primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be visible. Default : true</description>
+			<name>visible</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id for card component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders an card image</description>
+		<display-name>Card</display-name>
+		<name>cardImage</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardImageTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates if the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if cardImage is responsive. Default : false</description>
+			<name>responsive</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height component</description>
+			<name>height</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image width</description>
+			<name>width</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the alt of image</description>
+			<name>alt</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the alt key (i18n) of image</description>
+			<name>altKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if the component must be loaded from cdn</description>
+			<name>cdn</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image url</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders card title</description>
+		<display-name>Card</display-name>
+		<name>cardTitle</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardTitleTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n)</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders card sub title</description>
+		<display-name>Card</display-name>
+		<name>cardSubTitle</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardSubTitleTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n)</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders card text</description>
+		<display-name>Card</display-name>
+		<name>cardText</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardTextTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n)</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders card header</description>
+		<display-name>Card</display-name>
+		<name>cardHeader</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders card body</description>
+		<display-name>Card</display-name>
+		<name>cardBody</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders card link</description>
+		<display-name>Card</display-name>
+		<name>cardLink</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardLinkTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the URL</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the label key (i18n)</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, iframen</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders card footer</description>
+		<display-name>Card</display-name>
+		<name>cardFooter</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardHeader&gt;
+					My header
+				&lt;/html:cardHeader&gt;
+				&lt;html:cardBody&gt;
+					&lt;html:cardTitle&gt;My title&lt;/html:cardTitle&gt;
+					&lt;html:cardSubTitle&gt;My subtitle&lt;/html:cardSubTitle&gt;
+					&lt;html:cardText&gt;My text&lt;/html:cardText&gt;
+					&lt;html:cardLink label="My link 1" url="#"&gt;&lt;/html:cardLink&gt;
+				&lt;/html:cardBody&gt;
+				&lt;html:cardFooter&gt;
+					My footer
+				&lt;/html:cardFooter&gt;
+			&lt;/html:card&gt;
+		</example>
+	</tag>
+</fragment>

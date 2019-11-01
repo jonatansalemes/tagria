@@ -1,0 +1,37 @@
+.form-control {
+	height: calc(2.5em + 0.75rem + 2px);
+}
+
+.form-control:focus {
+  	background-color: #fff;
+    border-color:#0d7ffb;
+    outline: 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,.22);
+}
+
+.form-group label {
+  background-color: #fff;
+	transition: 0.15s ease-in-out;
+}
+
+.form-group > input.disabled + label {
+  background-color: #e9ecef;
+}
+
+.form-group.is-focused > input.is-empty + label {
+  transform: translate(10px,-65px) scale(0.9);
+	color:#0d7ffb;
+}
+
+.form-group.is-focused > input.is-not-empty + label {
+  transform: translate(10px,-65px) scale(0.9);
+	color:#0d7ffb;
+}
+
+.form-group > input.is-empty + label {
+	transform: translate(15px,-40px);
+}
+
+.form-group > input.is-not-empty + label {
+	transform: translate(10px,-65px) scale(0.9);
+}

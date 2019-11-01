@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
-	<artifactId>tagria</artifactId>
-	<version>3.0.10</version>
+	<artifactId>tagria-v4</artifactId>
+	<version>4.0.5</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>7</version>
+		<version>9</version>
 	</parent>
 
 	<description>Action based component suit that integrates with spring mvn,vraptor,struts 2,servlet and any kind of action based mvn framework </description>
@@ -45,12 +45,24 @@
 		<url>https://github.com/jslsolucoes/tagria</url>
 		<connection>scm:git:https://github.com/jslsolucoes/tagria</connection>
 		<developerConnection>scm:git:https://github.com/jslsolucoes/tagria.git</developerConnection>
-		<tag>v.3.0.10</tag>
+		<tag>v.4.0.5</tag>
 	</scm>
 
 	<modules>
-		<module>tagria-lib</module>
-		<module>tagria-doc</module>
+		<module>tagria-formatter-v4</module>
+		<module>tagria-exception-v4</module>
+		<module>tagria-exporter-v4</module>
+		<module>tagria-compressor-v4</module>
+		<module>tagria-html-v4</module>
+		<module>tagria-config-v4</module>
+		<module>tagria-tag-base-v4</module>
+		<module>tagria-tag-x-v4</module>
+		<module>tagria-tag-ajax-v4</module>
+		<module>tagria-tag-auth-v4</module>
+		<module>tagria-tag-html-v4</module>
+		<module>tagria-lib-v4</module>
+		<module>tagria-doc-v4</module>
+		<module>tagria-spring-v4</module>
 	</modules>
 
 	<properties>
@@ -59,12 +71,59 @@
 		<project.scm.id>github</project.scm.id>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -76,7 +135,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -89,7 +148,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -100,8 +159,26 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.5.3</version>
+				<configuration>
+					<arguments>-DskipTests</arguments>
+					<tagNameFormat>v.@{project.version}</tagNameFormat>
+				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>org.apache.maven.scm</groupId>

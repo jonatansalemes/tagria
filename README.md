@@ -80,13 +80,13 @@ The demo and documentation about components of tagria is hosted in :
 <hr/>
 Quick start installation and configuration : 
 
-Add maven dependency to your project :
+Add latest maven dependency to your project : <a href='https://mvnrepository.com/artifact/com.jslsolucoes/tagria-lib-v4' target='_blank'>check for versions here</a>
 <pre>
 	<code>
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
-	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;3.0.10&lt;/version&gt;
+	&lt;artifactId&gt;tagria-lib-v4&lt;/artifactId&gt;
+	&lt;version&gt;latest-version&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
@@ -95,12 +95,10 @@ Create an jsp for example index.jsp and import directives
 <pre>
 	<code>
 	
-&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
-&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %&gt;
-&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %&gt;
-&lt;%@ taglib  uri="http://tagrialib.jslsolucoes.com/tags/html" prefix="html"%&gt;
-&lt;%@ taglib  uri="http://tagrialib.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
-&lt;%@ taglib  uri="http://tagrialib.jslsolucoes.com/tags/x" prefix="x"%&gt;
+&lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/html" prefix="html"%&gt;
+&lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
+&lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/x" prefix="x"%&gt;
+&lt;%@ taglib uri="http://v4.tagria.jslsolucoes.com/tags/auth" prefix="auth"%&gt;
 &lt;html:view title="My title"&gt;
 	&lt;html:alert state="info"&gt;
 		My firts view	
@@ -109,57 +107,35 @@ Create an jsp for example index.jsp and import directives
 </code>
 </pre>
 
-Some configuration can be change by creating an tagrialib.properties file in source folder like :
+Some configuration can be change by creating an tagrialib.xml file in source folder like, all options is optional by default :
 <pre>
 	<code>
-encoding=ISO-8859-1
-locale=pt-BR
-cdn.enabled=true
-cdn.url=fdsfds.cloudfront.net
-skin=default
+	&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
+	&lt;tagrialib&gt;
+		&lt;templates&gt;
+			&lt;template&gt;
+				&lt;name&gt;master&lt;/name&gt;
+				&lt;path&gt;/WEB-INF/jsp/app/template.jsp&lt;/path&gt;
+			&lt;/template&gt;
+		&lt;/templates&gt;
+		&lt;formatters&gt;
+			&lt;formatter&gt;
+				&lt;class&gt;com.package.YourFormatterThatImplementsFormatterInterface&lt;/class&gt;
+			&lt;/formatter&gt;
+		&lt;/formatters&gt;
+		&lt;cdn&gt;
+			&lt;enabled&gt;false&lt;/enabled&gt;
+			&lt;url&gt;d35ckkxcy33ron.cloudfront.net&lt;/url&gt;
+		&lt;/cdn&gt;
+		&lt;encoding&gt;UTF-8&lt;/encoding&gt;
+		&lt;skin&gt;default&lt;/skin&gt;
+		&lt;locale&gt;en&lt;/locale&gt;
+		&lt;auth&gt;
+			&lt;class&gt;com.package.YourAuthorizerThatImplementsAuthorizerInterface&lt;/class&gt;
+		&lt;/auth&gt;
+	&lt;/tagrialib&gt; 
 	</code>
 </pre>
-
-<table>
-	<tbody>
-		<tr>
-			<th>Parameter</th>
-			<th>Description</th>
-			<th>Default value</th>
-			<th>Values</th>
-		</tr>
-		<tr>
-			<td>encoding</td>
-			<td>Encoding to be used</td>
-			<td align="center">utf-8</td>
-			<td>Any valid encoding</td>
-		</tr>
-		<tr>
-			<td>locale</td>
-			<td>Locale used by components</td>
-			<td align="center">en</td>
-			<td>Any valid locale</td>
-		</tr>
-		<tr>
-			<td>cdn.enabled</td>
-			<td>If serve static files using cdn like cloud front</td>
-			<td align="center">-</td>
-			<td>true|false</td>
-		</tr>
-		<tr>
-			<td>cdn.url</td>
-			<td>Url of cdn host</td>
-			<td align="center">-</td>
-			<td>Host endpoint</td>
-		</tr>
-		<tr>
-			<td>skin</td>
-			<td>Skin to use</td>
-			<td align="center">default</td>
-			<td>default</td>
-		</tr>
-	</tbody>
-</table>
 
 <h2>
 	TagriaLib Framework has some official certification programs. Become an Tagria Library Framework Certified and demonstrate understanding of fundamental TagriaLib concepts needed to undertake any web java project using Tagria Library Framework as view framework.

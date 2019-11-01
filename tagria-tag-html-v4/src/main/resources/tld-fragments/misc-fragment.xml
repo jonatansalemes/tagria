@@ -1,0 +1,305 @@
+<fragment>
+
+	<tag>
+		<description>Renders a tooltip</description>
+		<display-name>Misc</display-name>
+		<name>tooltip</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TooltipTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name that triggers the tooltip</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the tooltip</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label for the component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label key (i18n) for the component</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates tooltip placement. Options: top,bottom,left,right. Default: top</description>
+			<name>placement</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:input name="field1"/&gt;
+		    &lt;html:tooltip attachTo="field1" label="label for input"/&gt;
+		</example>
+	</tag>
+	
+	
+
+	<tag>
+		<description>Renders a template attribute body</description>
+		<display-name>Misc</display-name>
+		<name>template</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TemplateTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates an attribute name placeholder to render</description>
+			<name>render</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			.......
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a jumbotron</description>
+		<display-name>Misc</display-name>
+		<name>jumbotron</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.JumbotronTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:jumbotron&gt;
+				&lt;html:h1&gt;
+					Header
+				&lt;/html:h1&gt; 
+			&lt;/html:jumbotron&gt; 
+		</example>
+	</tag>
+	<tag>
+		<description>Renders a component with collapsable effect</description>
+		<display-name>Misc</display-name>
+		<name>collapsable</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.CollapsableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label to be used in collapsable</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label key (i18n) to be used in collapsable</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if component must be opened. Default : false. Options : true,false</description>
+			<name>opened</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the status of the group. Default: primary. Options: default, primary, danger, info, success</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:collapsable label="Label 1"&gt;
+				Components
+			&lt;/html:collapsable&gt;
+		</example>
+	</tag>
+	<tag>
+		<description>Format values</description>
+		<display-name>Misc</display-name>
+		<name>format</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.FormatTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a type format in which the value must be converted. Default options: date,datetime, timestamp, hour, currency, zipCode, cnpj, tel, cpf</description>
+			<name>formatter</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:format formatter="currency"&gt;
+				${ myValue}
+			&lt;/html:format&gt;
+		</example>
+	</tag>
+	<tag>
+		<description>Renders an alert box</description>
+		<display-name>Misc</display-name>
+		<name>alert</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.AlertTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label for the alert.</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label key(i18n) for the alert.</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component can be closed. Default: false</description>
+			<name>dismissible</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the state where the box should be rendered. Default: warning. Options: primary, secondary, light, dark, warning, success, danger, info</description>
+			<name>state</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be visible. Default : true</description>
+			<name>visible</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:alert state="info"&gt;
+				info
+			&lt;/html:alert&gt;
+		</example>
+	</tag>
+	<tag>
+		<description>Renders importing a js file or css</description>
+		<display-name>Misc</display-name>
+		<name>import</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.ImportTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the type of file to be imported. Options: js, css</description>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL where the file</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:import type="css" url="/css/example.css"/&gt;
+			&lt;html:import type="js" url="/js/example.js"/&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a dialog modal confirmation</description>
+		<display-name>Misc</display-name>
+		<name>confirm</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.ConfirmDialogTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label of the title modal</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to confirm the operation</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component target. Default: _self. Options: _blank, _newtab, nomedoiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name that triggers the confirm screen</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the confirm screen</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:button id="btn1" label="Confirm that ?"/&gt;
+			&lt;html:confirm url="#" label="Titulo do modal" attachToSelector="#btn1"/&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a animation attachment</description>
+		<display-name>Misc</display-name>
+		<name>animate</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.AnimateTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the animation. Options: bounce,flash,pulse,rubberBand,shake,headShake,swing,tada,wobble,jello,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flipInX,flipInY,flipOutX,flipOutY,lightSpeedIn,lightSpeedOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,hinge,jackInTheBox,rollIn,rollOut,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,heartBeat</description>
+			<required>true</required>
+			<name>animation</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the animation delay . Default: 2s. Options: 1-5s</description>
+			<name>delay</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component name that triggers the confirm screen</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the confirm screen</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:input name="input1" placeholder="Animated on show" /&gt;
+			&lt;html:animate attachTo="input1" animation="bounce"/&gt;
+		</example>
+	</tag>
+</fragment>
