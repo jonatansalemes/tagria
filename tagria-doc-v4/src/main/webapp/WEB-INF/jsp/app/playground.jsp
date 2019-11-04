@@ -175,7 +175,7 @@
 				cssClass="border border-danger" formatter="datetime">
 				${ person.name }
 			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger" collapsable="true">
+			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger" collapsable="true" formatter="boolean">
 				${ person.likeChocolate }
 			</html:gridColumnData>
 			<html:gridColumnData align="center" exportable="true"
