@@ -64,7 +64,7 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
     }
     
     private Element divModalDialog() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-dialog-centered")
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-lg")
 			.add(divModalContent());
     }
     
@@ -78,7 +78,7 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
     }
     
     private Element divModalBody() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body").add(divContent());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body modal-body-scroll").add(divContent());
     }
     
     private Element button() {

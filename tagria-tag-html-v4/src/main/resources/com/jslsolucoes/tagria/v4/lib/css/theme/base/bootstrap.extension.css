@@ -68,5 +68,9 @@ select.is-empty.form-required {
 	border-color: #dc3545 !important;
 }
 
+.modal-body-scroll {
+	max-height:70vh;
+	overflow-y:scroll;
+}
 
 
