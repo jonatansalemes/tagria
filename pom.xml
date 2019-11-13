@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
 	<artifactId>tagria-v4</artifactId>
-	<version>4.0.7-SNAPSHOT</version>
+	<version>4.0.7</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -45,7 +45,7 @@
 		<url>https://github.com/jslsolucoes/tagria</url>
 		<connection>scm:git:https://github.com/jslsolucoes/tagria</connection>
 		<developerConnection>scm:git:https://github.com/jslsolucoes/tagria.git</developerConnection>
-		<tag>v.3.0.6</tag>
+		<tag>v.4.0.7</tag>
 	</scm>
 
 	<modules>
