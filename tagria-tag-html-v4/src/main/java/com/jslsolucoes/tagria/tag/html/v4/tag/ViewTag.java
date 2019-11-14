@@ -232,7 +232,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	    Compiler compiler = new Compiler();
 	    CompilerOptions options = new CompilerOptions();
 	    CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-	    options.setLanguageIn(LanguageMode.ECMASCRIPT_2019);
+	    options.setStrictModeInput(false);
+	    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
 	    compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
 	    return compiler.toSource();
 	} else {
@@ -336,7 +337,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private String tagriaJsCodeForUrlBase() {
-	return "let URL_BASE='" + pathForUrl("") + "';";
+	return "URL_BASE='" + pathForUrl("") + "';";
     }
 
     private Element docTypeHtml5() {

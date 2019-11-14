@@ -1,6 +1,23 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+
+<html:row>
+		<html:col extraSmall="3">
+			<html:input required="true" name="field4" />
+			<html:mask mask="99/99/9999" attachTo="field4">
+				<html:maskOnKeypress>
+					 console.log($(field[0]).attr('id'));
+				</html:maskOnKeypress>
+			</html:mask>
+		</html:col>
+		<html:col extraSmall="9">
+			<html:input name="field5" />
+			<html:maskCurrency attachTo="field5"></html:maskCurrency>
+		</html:col>
+	</html:row>
+
+
 	<html:form action="#" label="My title" validation="/app/form/validation">
 
 
@@ -342,20 +359,7 @@
 	</html:dataBlock>
 
 
-	<html:row>
-		<html:col extraSmall="3">
-			<html:input required="true" name="field4" />
-			<html:mask mask="99/99/9999" attachTo="field4">
-				<html:maskOnKeypress>
-					 console.log($(field[0]).attr('id'));
-				</html:maskOnKeypress>
-			</html:mask>
-		</html:col>
-		<html:col extraSmall="9">
-			<html:input name="field5" />
-			<html:maskCurrency attachTo="field5"></html:maskCurrency>
-		</html:col>
-	</html:row>
+	
 
 	<html:container>
 		<html:alert state="info">

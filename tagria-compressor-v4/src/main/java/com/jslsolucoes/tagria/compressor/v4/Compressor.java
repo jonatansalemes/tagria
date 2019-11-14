@@ -54,15 +54,16 @@ public class Compressor {
 	}
 	String content = StringUtils.join(contents, "\n");
 	FileUtils.writeStringToFile(new File(new File(destination, "js"), "tagria-ui.js"),
-		compress ? minifyJs(content, CompilationLevel.SIMPLE_OPTIMIZATIONS) : content, CHARSET);
+		compress ? minifyJs(content) : content, CHARSET);
 	logger.info("JS COMPRESSED");
     }
 
-    public String minifyJs(String code, CompilationLevel compilationLevel) throws IOException {
+    public String minifyJs(String code) throws IOException {
 	Compiler compiler = new Compiler();
 	CompilerOptions options = new CompilerOptions();
-	compilationLevel.setOptionsForCompilationLevel(options);
-	options.setLanguageIn(LanguageMode.ECMASCRIPT_2015);
+	options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+	options.setStrictModeInput(false);
+	CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
 	SourceFile input = SourceFile.fromCode("input.js", code);
 	compiler.compile(SourceFile.fromCode("output.js", ""), input, options);
 	return compiler.toSource();

@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.WeakHashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Stopwatch;
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.config.v4.xml.TagriaCdnXML;
 import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
@@ -51,9 +53,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
+    public static final String VERSION = "4.0.8.0";
 
     private String version() {
-	return "4.0.6.1";
+	return VERSION;
     }
 
     private JspWriter writer() {
@@ -84,9 +87,9 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.getPath();
 	HttpServletRequest httpServletRequest = httpServletRequest();
 	HttpServletResponse httpServletResponse = httpServletResponse();
-	try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse, encoding)) {
-	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
-	    return new String(tagriaResponseWrapper.asString().getBytes(encoding));
+	try (TagriaServletResponseWrapper tagriaServletResponseWrapper = new TagriaServletResponseWrapper(httpServletResponse, encoding)) {
+	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaServletResponseWrapper);
+	    return tagriaServletResponseWrapper.flush().asString();
 	} catch (Exception e) {
 	    throw new TagriaRuntimeException(e);
 	}
@@ -120,6 +123,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     @Override
     public void doTag() throws JspException, IOException {
+	Stopwatch stopwatch = Stopwatch.createStarted();
 	if (flush()) {
 	    flushBodyContent();
 	}
@@ -129,6 +133,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		out(element);
 	    }
 	}
+	logger.debug("Render time of " + this + " => " + stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms ");
     }
 
     public Boolean rendered() {
