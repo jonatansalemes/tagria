@@ -25,7 +25,6 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.TagriaServletResponseWrapper;
 
 public class CacheFilter implements Filter {
 
-    private final static Boolean CACHE_RESOURCE = Boolean.TRUE;
     private Cache<String, byte[]> cache = CacheBuilder.newBuilder().build();
 
     @Override
@@ -34,7 +33,7 @@ public class CacheFilter implements Filter {
 	HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 	HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 	 String key = httpServletRequest.getRequestURI();
-	if (CACHE_RESOURCE && !skip(key)) {
+	if (!skip(key)) {
 	   
 	    String version = AbstractSimpleTagSupport.VERSION;
 	    String etag = DigestUtils.sha256Hex(key + version);
@@ -67,6 +66,6 @@ public class CacheFilter implements Filter {
     }
 
     private boolean skip(String key) {
-	return Arrays.asList(".css",".js",".png",".icon").stream().anyMatch(extension -> key.endsWith(extension));
+	return Arrays.asList(".css",".js",".png",".ico","/app/playground").stream().anyMatch(extension -> key.endsWith(extension));
     }
 }
