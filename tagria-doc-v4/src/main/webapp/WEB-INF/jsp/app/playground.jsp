@@ -46,7 +46,9 @@
 				<html:option value="${ person.id }">${ person.name }</html:option>
 			</html:select>
 		</html:formGroup>
-		
+		<html:formGroup label="One label">
+			<html:icon icon="plus"></html:icon>
+		</html:formGroup>
 		<html:card>
 			<html:cardBody>
 				<html:formGroupRow>

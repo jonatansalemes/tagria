@@ -46,6 +46,9 @@ public class GridTag extends AbstractSimpleTagSupport {
 	}
 	
 	Boolean hasData = !CollectionUtils.isEmpty(data);
+	if(hasData) {
+	    checkForDataSetExceed(data);
+	}
 	
 	Element firstRow = ElementCreator.newDiv()
 			.attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center");

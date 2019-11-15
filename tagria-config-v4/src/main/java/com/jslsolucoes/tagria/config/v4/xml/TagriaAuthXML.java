@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "auth")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaAuthXml {
+public class TagriaAuthXML {
 
     @XmlElement(name="class")
     private String clazz = "com.jslsolucoes.tagria.tag.auth.v4.DefaultAuthorizer";

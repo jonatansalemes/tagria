@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -53,7 +54,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
-    public static final String VERSION = "4.0.9.0";
+    public static final String VERSION = "4.0.9.1";
 
     private String version() {
 	return VERSION;
@@ -87,7 +88,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.getPath();
 	HttpServletRequest httpServletRequest = httpServletRequest();
 	HttpServletResponse httpServletResponse = httpServletResponse();
-	try (TagriaServletResponseWrapper tagriaServletResponseWrapper = new TagriaServletResponseWrapper(httpServletResponse, encoding)) {
+	try (TagriaServletResponseWrapper tagriaServletResponseWrapper = new TagriaServletResponseWrapper(
+		httpServletResponse, encoding)) {
 	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaServletResponseWrapper);
 	    return tagriaServletResponseWrapper.flush().asString();
 	} catch (Exception e) {
@@ -121,6 +123,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return ElementCreator.newNull();
     }
 
+    public void checkForDataSetExceed(Collection<Object> data) {
+	Long componentDataSetThreshold = xml().getWarning().getComponentDataSetThreshold();
+	if (data.size() > componentDataSetThreshold) {
+	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
+	}
+    }
+
     @Override
     public void doTag() throws JspException, IOException {
 	Stopwatch stopwatch = Stopwatch.createStarted();
@@ -133,7 +142,12 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		out(element);
 	    }
 	}
-	logger.debug("Render time of " + this + " => " + stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms ");
+	Long elapsed = stopwatch.elapsed(TimeUnit.MILLISECONDS);
+
+	if (elapsed > xml().getWarning().getComponentMountTimeThreshold()) {
+	    logger.warn("Slow component detected on " + this + " => elapsed " + elapsed + " ms ");
+	}
+
     }
 
     public Boolean rendered() {
@@ -238,7 +252,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	if (ancestorClass.isAssignableFrom(jspTag.getClass())) {
 	    ancestors.add((T) jspTag);
 	} else {
-	    JspTag jspTagtParent = parent(jspTag,ancestorClass);
+	    JspTag jspTagtParent = parent(jspTag, ancestorClass);
 	    if (jspTagtParent != null) {
 		ancestors.addAll(findAncestorsWithAssignable(jspTagtParent, ancestorClass));
 	    }
@@ -295,11 +309,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     private String keyFor(String key, String bundle, Object... args) {
 	Locale locale = locale();
 	try {
-	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale,getClass().getClassLoader());
+	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale, getClass().getClassLoader());
 	    MessageFormat messageFormat = new MessageFormat(resourceBundle.getString(key));
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
-	    logger.warn("could not find key {} resource for bundle {} locale {}",key,bundle,locale, e);
+	    logger.warn("could not find key {} resource for bundle {} locale {}", key, bundle, locale, e);
 	    return "???" + key + "???";
 	}
     }

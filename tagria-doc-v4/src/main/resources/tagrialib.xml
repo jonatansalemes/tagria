@@ -6,6 +6,10 @@
 			<path>/WEB-INF/jsp/app/template.jsp</path>
 		</template>
 	</templates>
+	<warning>
+		<componentMountTimeThreshold>200</componentMountTimeThreshold>
+		<componentDataSetThreshold>2</componentDataSetThreshold>
+	</warning>
 	<formatters>
 		<formatter>
 			<class>com.jslsolucoes.tagria.doc.v4.formatter.BooleanFormatter</class>
