@@ -54,7 +54,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
-    public static final String VERSION = "4.0.9.1";
+    public static final String VERSION = "4.0.10.1";
 
     private String version() {
 	return VERSION;
