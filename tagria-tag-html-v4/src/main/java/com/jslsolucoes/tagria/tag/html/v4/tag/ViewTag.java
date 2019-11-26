@@ -13,11 +13,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.javascript.jscomp.CompilationLevel;
-import com.google.javascript.jscomp.Compiler;
-import com.google.javascript.jscomp.CompilerOptions;
-import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
-import com.google.javascript.jscomp.SourceFile;
+import com.jslsolucoes.tagria.compressor.v4.CssCompressor;
+import com.jslsolucoes.tagria.compressor.v4.HtmlCompressor;
+import com.jslsolucoes.tagria.compressor.v4.JsCompressor;
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -212,8 +210,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private String minifyCss(String cssCode) {
 	if (minifyCss) {
-	    return cssCode.replaceAll("(\n|\r|\t|\\s{2,})", "").replaceAll(" \\{", "{").replaceAll(" ,", ",")
-		    .replaceAll(": ", ":").replaceAll(", ", ",");
+	    return CssCompressor.newCompressor().compress(cssCode);
 	} else {
 	    return cssCode;
 	}
@@ -221,7 +218,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private String minifyHtml(String html) {
 	if (minifyHtml) {
-	    return html.replaceAll("(<.*?>)(\n|\r|\t|\\s)+(<.*?>)", "$1$3");
+	    return HtmlCompressor.newCompressor().compress(html);
 	} else {
 	    return html;
 	}
@@ -229,13 +226,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private String minifyJs(String jsCode) {
 	if (minifyJs) {
-	    Compiler compiler = new Compiler();
-	    CompilerOptions options = new CompilerOptions();
-	    CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-	    options.setStrictModeInput(false);
-	    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
-	    compiler.compile(SourceFile.fromCode("output.js", ""), SourceFile.fromCode("input.js", jsCode), options);
-	    return compiler.toSource();
+	    return JsCompressor.newCompressor().compress(jsCode);
 	} else {
 	    return jsCode;
 	}
@@ -252,7 +243,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private List<Element> appHtml() {
 	List<Element> elements = new ArrayList<>();
 	elements.add(antiCorruptionLayer());
-	if(dropBack) {
+	if (dropBack) {
 	    elements.add(dropBackLayer());
 	    elements.add(dropBackLayerInlineCss());
 	}
@@ -280,7 +271,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element dropBackLayer() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS,"drop-back-layer").add(dropBackLayerLoading());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "drop-back-layer").add(dropBackLayerLoading());
     }
 
     private List<Element> appJsScriptsForImport() {
@@ -332,12 +323,11 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private String tagriaJsScripts() {
-	return Arrays.asList(tagriaJsCodeForUrlBase()).stream()
-		.collect(Collectors.joining(""));
+	return Arrays.asList(tagriaJsCodeForUrlBase()).stream().collect(Collectors.joining(""));
     }
 
     private String tagriaJsCodeForUrlBase() {
-	return "URL_BASE='" + pathForUrl("") + "';";
+	return "const URL_BASE='" + pathForUrl("") + "';";
     }
 
     private Element docTypeHtml5() {

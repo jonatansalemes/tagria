@@ -54,7 +54,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
-    public static final String VERSION = "4.0.10.1";
+    public static final String VERSION = "4.0.10.2";
 
     private String version() {
 	return VERSION;
@@ -409,10 +409,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public void appendJsCode(String jsCode) {
+	
+	logger.debug("Append js code {}",jsCode);
 	GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 	globalJsAppender.appendJavascriptCode(jsCode);
+	
+	logger.debug("Global js appender found {}",globalJsAppender);
+	
 	CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 	if (cloneableJsAppender != null) {
+	    logger.debug("Cloneable js appender found {}",cloneableJsAppender);	    
 	    if (cloneableJsAppender.index() == 0) {
 		cloneableJsAppender.appendJavascriptCode(jsCode);
 	    }

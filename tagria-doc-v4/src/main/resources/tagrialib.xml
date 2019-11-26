@@ -8,7 +8,7 @@
 	</templates>
 	<warning>
 		<componentMountTimeThreshold>200</componentMountTimeThreshold>
-		<componentDataSetThreshold>2</componentDataSetThreshold>
+		<componentDataSetThreshold>50</componentDataSetThreshold>
 	</warning>
 	<formatters>
 		<formatter>

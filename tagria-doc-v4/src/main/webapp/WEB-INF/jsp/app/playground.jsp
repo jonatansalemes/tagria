@@ -31,6 +31,9 @@
 				<html:formGroup label="Field 1" required="true" forElement="field1">
 					<html:input required="true" name="field1"/>
 				</html:formGroup>
+				<html:jsEvent event="blur" attachTo="field1">
+					console.log('hello ' + new Date());
+				</html:jsEvent>
 			</html:col>
 			<html:col extraSmall="6">
 				<html:formGroup label="Field 3" required="true" forElement="field3">
@@ -113,6 +116,12 @@
 		function random() {
 			return Math.floor(Math.random() * 100) % 2 === 0;
 		}
+		
+		hello = () => {
+		  return "Hello World!";
+		}
+		
+		console.log(' arrow function compiled: ' + hello());
 	</html:jsCode>
 
 
