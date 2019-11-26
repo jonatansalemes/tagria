@@ -97,3 +97,7 @@ html,body,#root {
 .shadow-xl {
     box-shadow: 0 3px 6px rgba(0, 0, 0, .22);
 }
+
+.cursor-pointer {
+	cursor: pointer;
+}

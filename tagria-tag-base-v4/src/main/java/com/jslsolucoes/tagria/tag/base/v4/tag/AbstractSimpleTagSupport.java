@@ -54,7 +54,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
-    public static final String VERSION = "4.0.10.2";
+    public static final String VERSION = "4.0.10.3";
+    private String bodyContent;
 
     private String version() {
 	return VERSION;
@@ -218,20 +219,24 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private void flushBodyContent() {
-	bodyContent();
+	bodyContent = bodyContent();
     }
 
     public String bodyContent() {
-	JspFragment jspFragment = jspbody();
-	if (jspFragment != null) {
-	    try (StringWriter stringWriter = new StringWriter()) {
-		jspFragment.invoke(stringWriter);
-		return stringWriter.toString().trim();
-	    } catch (Exception e) {
-		throw new TagriaRuntimeException(e);
+	if (!StringUtils.isEmpty(bodyContent)) {
+	    return bodyContent;
+	} else {
+	    JspFragment jspFragment = jspbody();
+	    if (jspFragment != null) {
+		try (StringWriter stringWriter = new StringWriter()) {
+		    jspFragment.invoke(stringWriter);
+		    return stringWriter.toString().trim();
+		} catch (Exception e) {
+		    throw new TagriaRuntimeException(e);
+		}
 	    }
+	    return "";
 	}
-	return "";
     }
 
     public <T> T findAncestorWithClass(Class<T> ancestorClass) {
@@ -409,16 +414,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public void appendJsCode(String jsCode) {
-	
-	logger.debug("Append js code {}",jsCode);
+
+	logger.debug("Append js code {}", jsCode);
 	GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 	globalJsAppender.appendJavascriptCode(jsCode);
-	
-	logger.debug("Global js appender found {}",globalJsAppender);
-	
+
+	logger.debug("Global js appender found {}", globalJsAppender);
+
 	CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 	if (cloneableJsAppender != null) {
-	    logger.debug("Cloneable js appender found {}",cloneableJsAppender);	    
+	    logger.debug("Cloneable js appender found {}", cloneableJsAppender);
 	    if (cloneableJsAppender.index() == 0) {
 		cloneableJsAppender.appendJavascriptCode(jsCode);
 	    }
