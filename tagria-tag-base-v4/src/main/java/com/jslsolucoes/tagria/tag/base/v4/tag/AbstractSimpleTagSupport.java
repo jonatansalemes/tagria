@@ -54,11 +54,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
-    public static final String VERSION = "4.0.10.3";
     private String bodyContent;
 
     private String version() {
-	return VERSION;
+	return TagriaConfig.VERSION;
     }
 
     private JspWriter writer() {
@@ -366,6 +365,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    urlBase = urlBaseForStaticFile();
 	}
 	return urlBase + url;
+    }
+    
+    public String javascriptForVoid() {
+	return "javascript:void(0)";
     }
 
     public String pathForUrl(String path) {

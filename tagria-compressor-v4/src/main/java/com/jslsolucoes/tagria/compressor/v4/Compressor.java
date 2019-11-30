@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class Compressor {
@@ -27,21 +28,20 @@ public class Compressor {
     private String source;
     private Boolean compress;
     private String destination;
-    private String version;
 
-    public Compressor(String source, String destination, Boolean compress, String version) {
+    public Compressor(String source, String destination, Boolean compress) {
 	this.source = source;
 	this.compress = compress;
 	this.destination = destination;
-	this.version = version;
     }
 
     public void compressJs() throws IOException {
-	String[] files = new String[] { "jquery/jquery.js","tagria/jquery.fix.js", "jquery/ui/jquery.ui.js", "tagria/onpageload.js",
-		"tagria/form.js", "tagria/mask.js", "tagria/currency.mask.js", "lazysizes/lazysizes.js",
-		"tagria/iframe.js", "tagria/grid.js", "tagria/tabs.js", "tagria/form.group.js", "popper/popper.js",
-		"bootstrap/bootstrap.js", "tagria/select.js", "tagria/searchableSelect.js", "tagria/autocomplete.js",
-		"tagria/input.js", "tagria/textarea.js", "sweet-alert/sweet.alert.js" };
+	String[] files = new String[] { "jquery/jquery.js", "tagria/jquery.fix.js", "jquery/ui/jquery.ui.js",
+		"tagria/onpageload.js", "tagria/form.js", "tagria/mask.js", "tagria/currency.mask.js",
+		"lazysizes/lazysizes.js", "tagria/iframe.js", "tagria/grid.js", "tagria/tabs.js",
+		"tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js", "tagria/select.js",
+		"tagria/searchableSelect.js", "tagria/autocomplete.js", "tagria/input.js", "tagria/textarea.js",
+		"sweet-alert/sweet.alert.js" };
 
 	List<String> contents = new ArrayList<>();
 	for (String file : files) {
@@ -97,7 +97,7 @@ public class Compressor {
 	for (String theme : themes) {
 
 	    String[] files = new String[] { "common.css", "iframe.css", "bootstrap.css", "bootstrap.fix.css",
-		    "base.css", "animate.css", "fontawesome.css", "bootstrap.extension.css","sweet.alert.css" };
+		    "base.css", "animate.css", "fontawesome.css", "bootstrap.extension.css", "sweet.alert.css" };
 
 	    String content = StringUtils.join(Stream
 		    .concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),
@@ -129,7 +129,7 @@ public class Compressor {
 	    extensions.add("otf");
 	    for (String extension : extensions) {
 		normalized = normalized.replaceAll("\\." + extension + "('|\")",
-			"." + extension + "?ver=" + version + "$1");
+			"." + extension + "?ver=" + TagriaConfig.VERSION + "$1");
 	    }
 	    return normalized;
 	} catch (IOException exception) {

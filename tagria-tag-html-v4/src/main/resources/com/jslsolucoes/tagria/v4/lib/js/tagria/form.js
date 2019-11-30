@@ -21,10 +21,11 @@
 			var self = this;
 			var form = self.element;  
 			
-			$("input[type=text]",form).on('keydown.form',function(e) {
-				if(e.keyCode==13) {
+			addEventListener('inputEnterEvent', e => {	
+				console.log(e.detail.src);
+				if($('#' + e.detail.src,form).length === 1) {
 					self._validateAndSubmit();
-        		}
+				}
 			});
 			
 			$(form).on('submit',function(e){
@@ -132,6 +133,7 @@
          	 $('.form-required:visible',form).each(function(){
          		if($(this).val() == ''){
          			empty = true;
+         			$(this).addClass('is-empty');
          		}
          	 });
         	 return empty;

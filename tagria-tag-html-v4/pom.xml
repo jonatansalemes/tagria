@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria-v4</artifactId>
-		<version>4.0.10</version>
+		<version>4.0.11</version>
 	</parent>
 	<artifactId>tagria-tag-html-v4</artifactId>
 
@@ -56,7 +56,6 @@
 								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/v4/lib</argument>
 								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/v4/lib</argument>
 								<argument>true</argument>
-								<argument>${project.version}</argument>
 							</arguments>
 						</configuration>
 					</execution>

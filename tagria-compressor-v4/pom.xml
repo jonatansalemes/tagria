@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria-v4</artifactId>
-		<version>4.0.10</version>
+		<version>4.0.11</version>
 	</parent>
 	<artifactId>tagria-compressor-v4</artifactId>
 
@@ -16,6 +16,11 @@
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
 			<artifactId>tagria-exception-v4</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>tagria-config-v4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

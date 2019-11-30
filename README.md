@@ -141,6 +141,32 @@ Some configuration can be change by creating an tagrialib.xml file in source fol
 	</code>
 </pre>
 
+if you want, can configure servlet manually
+
+<pre>
+	<code>
+		&lt;servlet&gt;
+			&lt;servlet-name&gt;tagria-v4&lt;/servlet-name&gt;
+			&lt;servlet-class&gt;com.jslsolucoes.tagria.lib.v4.servlet.Tagria&lt;/servlet-class&gt;
+		&lt;/servlet&gt;
+		
+		 &lt;servlet-mapping&gt;
+			&lt;servlet-name&gt;tagria-v4&lt;/servlet-name&gt;
+			&lt;url-pattern&gt;/tagria/v4/*&lt;/url-pattern&gt;
+		&lt;/servlet-mapping&gt;
+		
+		&lt;servlet&gt;
+			&lt;servlet-name&gt;tagria-exporter-v4&lt;/servlet-name&gt;
+			&lt;servlet-class&gt;com.jslsolucoes.tagria.lib.v4.servlet.TagriaExporter&lt;/servlet-class&gt;
+		&lt;/servlet&gt;
+		
+		 &lt;servlet-mapping&gt;
+			&lt;servlet-name&gt;tagria-exporter-v4&lt;/servlet-name&gt;
+			&lt;url-pattern&gt;/tagria-exporter/v4&lt;/url-pattern&gt;
+		&lt;/servlet-mapping&gt;
+	</code>
+</pre>
+
 <h2>
 	TagriaLib Framework has some official certification programs. Become an Tagria Library Framework Certified and demonstrate understanding of fundamental TagriaLib concepts needed to undertake any web java project using Tagria Library Framework as view framework.
 </h2>
