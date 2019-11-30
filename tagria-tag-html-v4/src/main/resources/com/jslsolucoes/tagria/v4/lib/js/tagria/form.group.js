@@ -8,7 +8,8 @@
 			},
 			afterRemove : function() {
 
-			}
+			},
+			indexed : false
 		},
 		_create : function() {
 			var self = this;
@@ -126,20 +127,17 @@
 		},
 		_reorganize : function() {
 			var self = this;
-			var detail = self.element;
-			$('.fg-row', detail).each(
-					function(index) {
-						$('*', this).each(
-								function() {
-									var name = $(this).attr('name');
-									if (name) {
-										$(this).attr(
-												'name',
-												name.replace(/(\[.*?\])/, '['
-														+ index + ']'));
-									}
-								});
+			if(self.options.indexed) {
+				var detail = self.element;
+				$('.fg-row', detail).each(function(index) {
+					$('*', this).each(function() {
+						var name = $(this).attr('name');
+						if (name) {
+							$(this).attr('name',name.replace(/(\[.*?\])/, '[' + index + ']'));
+						}
 					});
+				});
+			}
 		}
 	});
 })(jQuery);
