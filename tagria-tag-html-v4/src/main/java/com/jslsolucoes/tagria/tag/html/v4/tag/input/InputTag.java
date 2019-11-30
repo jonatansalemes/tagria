@@ -87,9 +87,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 		}
 
 		if (!StringUtils.isEmpty(value)) {
-		    input.attribute(Attribute.CLASS,"is-not-empty").attribute(Attribute.VALUE, format(formatter, value));
-		} else {
-		    input.attribute(Attribute.CLASS,"is-empty");
+		    input.attribute(Attribute.VALUE, format(formatter, value));
 		}
 		
 		if (!StringUtils.isEmpty(pattern)) {
@@ -115,8 +113,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 			input.attribute(Attribute.CLASS, cssClass);
 		}
 		
-		appendJsCode("$('#"+input.attribute(Attribute.ID)+"').input();");
-
+		appendJsCode("$('#"+input.attribute(Attribute.ID)+"').input();");		
 		return input;
 	}
 

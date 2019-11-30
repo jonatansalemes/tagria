@@ -56,7 +56,6 @@
 								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/v4/lib</argument>
 								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/v4/lib</argument>
 								<argument>true</argument>
-								<argument>${project.version}</argument>
 							</arguments>
 						</configuration>
 					</execution>

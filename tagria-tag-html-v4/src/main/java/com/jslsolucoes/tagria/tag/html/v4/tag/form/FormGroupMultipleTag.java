@@ -70,7 +70,8 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     }
 
     private Element divToolbar() {
-	Element toolbar = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2 d-flex align-items-center").add(divButtonGroupToolbar());
+	Element toolbar = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2 d-flex align-items-center")
+		.add(divButtonGroupToolbar());
 	if (hasKeyOrLabel(labelKey, label)) {
 	    toolbar.add(divTitle());
 	}
@@ -90,10 +91,10 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     }
 
     private Element buttonPlus() {
-	return ElementCreator.newButton().attribute(Attribute.TYPE, "button")
+	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid())
 		.attribute(Attribute.ARIA_LABEL, keyForLibrary("form.group.plus"))
 		.attribute(Attribute.TITLE, keyForLibrary("form.group.plus"))
-		.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus ").add(spanPlus());
+		.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus").add(spanPlus());
     }
 
     private Element spanPlus() {
@@ -132,7 +133,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     }
 
     private Element buttonRemove() {
-	return ElementCreator.newButton().attribute(Attribute.ID, id())
+	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid()).attribute(Attribute.ID, id())
 		.attribute(Attribute.ARIA_LABEL, keyForLibrary("form.group.minus"))
 		.attribute(Attribute.TITLE, keyForLibrary("form.group.minus"))
 		.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus ").add(spanTrash());

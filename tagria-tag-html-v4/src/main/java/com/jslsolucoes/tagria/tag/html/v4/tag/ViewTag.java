@@ -29,9 +29,9 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private String title;
     private String titleKey;
     private String cssClass = "body-default";
-    private Boolean minifyJs = Boolean.TRUE;
-    private Boolean minifyHtml = Boolean.TRUE;
-    private Boolean minifyCss = Boolean.TRUE;
+    private Boolean minifyJs = Boolean.FALSE;
+    private Boolean minifyHtml = Boolean.FALSE;
+    private Boolean minifyCss = Boolean.FALSE;
     private Boolean dropBack = Boolean.TRUE;
     private Boolean asFragment = Boolean.FALSE;
     private String template;

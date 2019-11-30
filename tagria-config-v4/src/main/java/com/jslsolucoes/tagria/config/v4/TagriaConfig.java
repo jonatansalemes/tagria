@@ -14,6 +14,7 @@ public class TagriaConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(TagriaConfig.class);
     private static TagriaXML xml;
+    public static final String VERSION = "4.0.11.10";
 
     private TagriaConfig() {
 

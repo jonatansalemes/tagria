@@ -75,12 +75,6 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	    select.attribute(Attribute.CLASS, cssClass);
 	}
 
-	if (!StringUtils.isEmpty(value)) {
-	    select.attribute(Attribute.CLASS, "is-not-empty");
-	} else {
-	    select.attribute(Attribute.CLASS, "is-empty");
-	}
-
 	if (fixed) {
 	    select.add(bodyContent());
 	}
@@ -137,7 +131,8 @@ public class SelectTag extends AbstractSimpleTagSupport {
     }
 
     private Element button() {
-	return ElementCreator.newButton().attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
+	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid())
+			.attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
 		.add(spanTimes());
     }
 

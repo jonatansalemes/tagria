@@ -14,7 +14,7 @@ public class ResourceCompressor {
 	}
 
 	public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
-		Compressor compressor = new Compressor(args[0], args[1], Boolean.valueOf(args[2]), args[3]);
+		Compressor compressor = new Compressor(args[0], args[1], Boolean.valueOf(args[2]));
 		compressor.compressJs();
 		compressor.compressCss();
 		compressor.compressImage();

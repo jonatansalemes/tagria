@@ -37,9 +37,7 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	String textAreaValue = !StringUtils.isEmpty(value) ? value : bodyContent();
 
 	if (!StringUtils.isEmpty(textAreaValue)) {
-	    textArea.attribute(Attribute.CLASS, "is-not-empty").add(textAreaValue);
-	} else {
-	    textArea.attribute(Attribute.CLASS, "is-empty");
+	    textArea.add(textAreaValue);
 	}
 
 	if (required) {

@@ -18,5 +18,10 @@
 			<artifactId>tagria-exception-v4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>tagria-config-v4</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -52,9 +52,9 @@
 		<module>tagria-formatter-v4</module>
 		<module>tagria-exception-v4</module>
 		<module>tagria-exporter-v4</module>
+		<module>tagria-config-v4</module>
 		<module>tagria-compressor-v4</module>
 		<module>tagria-html-v4</module>
-		<module>tagria-config-v4</module>
 		<module>tagria-tag-base-v4</module>
 		<module>tagria-tag-x-v4</module>
 		<module>tagria-tag-ajax-v4</module>

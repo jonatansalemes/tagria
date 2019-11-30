@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -19,13 +20,19 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.lib.v4.servlet.HttpHeader;
-import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 import com.jslsolucoes.tagria.tag.base.v4.tag.TagriaServletResponseWrapper;
 
 public class CacheFilter implements Filter {
 
     private Cache<String, byte[]> cache = CacheBuilder.newBuilder().build();
+    private Boolean enabled = Boolean.FALSE;
+    
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+	enabled = Boolean.valueOf(filterConfig.getInitParameter("enabled"));
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
@@ -33,9 +40,9 @@ public class CacheFilter implements Filter {
 	HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 	HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 	 String key = httpServletRequest.getRequestURI();
-	if (!skip(key)) {
+	if (!skip(key) && enabled) {
 	   
-	    String version = AbstractSimpleTagSupport.VERSION;
+	    String version = TagriaConfig.VERSION;
 	    String etag = DigestUtils.sha256Hex(key + version);
 	    if (etag.equals(httpServletRequest.getHeader("If-None-Match"))) {
 		httpServletResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
@@ -66,6 +73,6 @@ public class CacheFilter implements Filter {
     }
 
     private boolean skip(String key) {
-	return Arrays.asList(".css",".js",".png",".ico","/app/playground").stream().anyMatch(extension -> key.endsWith(extension));
+	return Arrays.asList(".woff2",".woff",".ttf",".css",".js",".png",".ico","/app/playground").stream().anyMatch(extension -> key.endsWith(extension));
     }
 }
