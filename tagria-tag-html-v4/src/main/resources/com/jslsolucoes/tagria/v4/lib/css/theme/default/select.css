@@ -2,3 +2,15 @@
 	height: 400px;
 	overflow-y: scroll; 
 }
+
+.select-search-container li{
+	cursor: pointer;
+}
+
+.select-search-container li:hover {
+	background-color: #f8f9fa;
+}
+
+.select-search-container li:nth-of-type(odd) {
+  background-color: rgb(249, 249, 249);
+}

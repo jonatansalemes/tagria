@@ -1,6 +1,23 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+
+<html:row>
+		<html:col extraSmall="3">
+			<html:input required="true" name="field4" />
+			<html:mask mask="99/99/9999" attachTo="field4">
+				<html:maskOnKeypress>
+					 console.log($(field[0]).attr('id'));
+				</html:maskOnKeypress>
+			</html:mask>
+		</html:col>
+		<html:col extraSmall="9">
+			<html:input name="field5" />
+			<html:maskCurrency attachTo="field5"></html:maskCurrency>
+		</html:col>
+	</html:row>
+
+
 	<html:form action="#" label="My title" validation="/app/form/validation">
 
 
@@ -14,6 +31,9 @@
 				<html:formGroup label="Field 1" required="true" forElement="field1">
 					<html:input required="true" name="field1"/>
 				</html:formGroup>
+				<html:jsEvent event="blur" attachTo="field1">
+					console.log('hello ' + new Date());
+				</html:jsEvent>
 			</html:col>
 			<html:col extraSmall="6">
 				<html:formGroup label="Field 3" required="true" forElement="field3">
@@ -29,7 +49,9 @@
 				<html:option value="${ person.id }">${ person.name }</html:option>
 			</html:select>
 		</html:formGroup>
-		
+		<html:formGroup label="One label">
+			<html:icon icon="plus"></html:icon>
+		</html:formGroup>
 		<html:card>
 			<html:cardBody>
 				<html:formGroupRow>
@@ -94,6 +116,12 @@
 		function random() {
 			return Math.floor(Math.random() * 100) % 2 === 0;
 		}
+		
+		hello = () => {
+		  return "Hello World!";
+		}
+		
+		console.log(' arrow function compiled: ' + hello());
 	</html:jsCode>
 
 
@@ -175,7 +203,7 @@
 				cssClass="border border-danger" formatter="datetime">
 				${ person.name }
 			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger" collapsable="true">
+			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger" collapsable="true" formatter="boolean">
 				${ person.likeChocolate }
 			</html:gridColumnData>
 			<html:gridColumnData align="center" exportable="true"
@@ -342,20 +370,7 @@
 	</html:dataBlock>
 
 
-	<html:row>
-		<html:col extraSmall="3">
-			<html:input required="true" name="field4" />
-			<html:mask mask="99/99/9999" attachTo="field4">
-				<html:maskOnKeypress>
-					 console.log($(field[0]).attr('id'));
-				</html:maskOnKeypress>
-			</html:mask>
-		</html:col>
-		<html:col extraSmall="9">
-			<html:input name="field5" />
-			<html:maskCurrency attachTo="field5"></html:maskCurrency>
-		</html:col>
-	</html:row>
+	
 
 	<html:container>
 		<html:alert state="info">

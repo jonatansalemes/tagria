@@ -92,6 +92,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     private Element buttonPlus() {
 	return ElementCreator.newButton().attribute(Attribute.TYPE, "button")
 		.attribute(Attribute.ARIA_LABEL, keyForLibrary("form.group.plus"))
+		.attribute(Attribute.TITLE, keyForLibrary("form.group.plus"))
 		.attribute(Attribute.CLASS, "btn btn-outline-primary fg-plus ").add(spanPlus());
     }
 
@@ -133,11 +134,12 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     private Element buttonRemove() {
 	return ElementCreator.newButton().attribute(Attribute.ID, id())
 		.attribute(Attribute.ARIA_LABEL, keyForLibrary("form.group.minus"))
-		.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus ").add(spanMinus());
+		.attribute(Attribute.TITLE, keyForLibrary("form.group.minus"))
+		.attribute(Attribute.CLASS, "btn btn-outline-danger fg-minus ").add(spanTrash());
     }
 
-    private Element spanMinus() {
-	return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-minus");
+    private Element spanTrash() {
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-trash");
     }
 
     public String getLabel() {

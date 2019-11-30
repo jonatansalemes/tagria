@@ -13,7 +13,7 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 @SuppressWarnings("rawtypes")
 public class DataListTag extends AbstractSimpleTagSupport {
 
-	private Collection data;
+	private Collection<Object> data;
 	private Map map;
 	private String var;
 	private Boolean fixed = Boolean.FALSE;
@@ -28,6 +28,7 @@ public class DataListTag extends AbstractSimpleTagSupport {
 		if (fixed) {
 			dataList.add(bodyContent());
 		} else if (!CollectionUtils.isEmpty(data)) {
+		    	checkForDataSetExceed(data);
 			for (Object item : data) {
 				setAttribute(var, item);
 				dataList.add(bodyContent());
@@ -43,11 +44,11 @@ public class DataListTag extends AbstractSimpleTagSupport {
 		return dataList;
 	}
 
-	public Collection getData() {
+	public Collection<Object> getData() {
 		return data;
 	}
 
-	public void setData(Collection data) {
+	public void setData(Collection<Object> data) {
 		this.data = data;
 	}
 

@@ -39,7 +39,7 @@
 				var option = $(this);
 				var li = $(document.createElement('li'))
 					.attr('data-id',option.val())
-					.addClass('list-group-item').html(option.text())
+					.addClass('list-group-item cursor-pointer').html(option.text())
 					.click(function(){
 						select.val($(this).attr('data-id'));
 						input.val('');

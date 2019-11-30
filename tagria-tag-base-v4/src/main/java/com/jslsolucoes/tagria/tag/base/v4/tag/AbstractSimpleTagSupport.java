@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.WeakHashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +35,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Stopwatch;
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.config.v4.xml.TagriaCdnXML;
 import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
@@ -51,9 +54,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected Boolean rendered = Boolean.TRUE;
     protected String cssClass;
     protected String id;
+    public static final String VERSION = "4.0.10.3";
+    private String bodyContent;
 
     private String version() {
-	return "4.0.5.0";
+	return VERSION;
     }
 
     private JspWriter writer() {
@@ -84,9 +89,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.getPath();
 	HttpServletRequest httpServletRequest = httpServletRequest();
 	HttpServletResponse httpServletResponse = httpServletResponse();
-	try (TagriaResponseWrapper tagriaResponseWrapper = new TagriaResponseWrapper(httpServletResponse, encoding)) {
-	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaResponseWrapper);
-	    return new String(tagriaResponseWrapper.asString().getBytes(encoding));
+	try (TagriaServletResponseWrapper tagriaServletResponseWrapper = new TagriaServletResponseWrapper(
+		httpServletResponse, encoding)) {
+	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaServletResponseWrapper);
+	    return tagriaServletResponseWrapper.flush().asString();
 	} catch (Exception e) {
 	    throw new TagriaRuntimeException(e);
 	}
@@ -118,8 +124,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return ElementCreator.newNull();
     }
 
+    public void checkForDataSetExceed(Collection<Object> data) {
+	Long componentDataSetThreshold = xml().getWarning().getComponentDataSetThreshold();
+	if (data.size() > componentDataSetThreshold) {
+	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
+	}
+    }
+
     @Override
     public void doTag() throws JspException, IOException {
+	Stopwatch stopwatch = Stopwatch.createStarted();
 	if (flush()) {
 	    flushBodyContent();
 	}
@@ -129,6 +143,12 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		out(element);
 	    }
 	}
+	Long elapsed = stopwatch.elapsed(TimeUnit.MILLISECONDS);
+
+	if (elapsed > xml().getWarning().getComponentMountTimeThreshold()) {
+	    logger.warn("Slow component detected on " + this + " => elapsed " + elapsed + " ms ");
+	}
+
     }
 
     public Boolean rendered() {
@@ -199,20 +219,24 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private void flushBodyContent() {
-	bodyContent();
+	bodyContent = bodyContent();
     }
 
     public String bodyContent() {
-	JspFragment jspFragment = jspbody();
-	if (jspFragment != null) {
-	    try (StringWriter stringWriter = new StringWriter()) {
-		jspFragment.invoke(stringWriter);
-		return stringWriter.toString().trim();
-	    } catch (Exception e) {
-		throw new TagriaRuntimeException(e);
+	if (!StringUtils.isEmpty(bodyContent)) {
+	    return bodyContent;
+	} else {
+	    JspFragment jspFragment = jspbody();
+	    if (jspFragment != null) {
+		try (StringWriter stringWriter = new StringWriter()) {
+		    jspFragment.invoke(stringWriter);
+		    return stringWriter.toString().trim();
+		} catch (Exception e) {
+		    throw new TagriaRuntimeException(e);
+		}
 	    }
+	    return "";
 	}
-	return "";
     }
 
     public <T> T findAncestorWithClass(Class<T> ancestorClass) {
@@ -233,7 +257,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	if (ancestorClass.isAssignableFrom(jspTag.getClass())) {
 	    ancestors.add((T) jspTag);
 	} else {
-	    JspTag jspTagtParent = parent(jspTag,ancestorClass);
+	    JspTag jspTagtParent = parent(jspTag, ancestorClass);
 	    if (jspTagtParent != null) {
 		ancestors.addAll(findAncestorsWithAssignable(jspTagtParent, ancestorClass));
 	    }
@@ -290,11 +314,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     private String keyFor(String key, String bundle, Object... args) {
 	Locale locale = locale();
 	try {
-	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale,getClass().getClassLoader());
+	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale, getClass().getClassLoader());
 	    MessageFormat messageFormat = new MessageFormat(resourceBundle.getString(key));
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
-	    logger.warn("could not find key {} resource for bundle {} locale {}",key,bundle,locale, e);
+	    logger.warn("could not find key {} resource for bundle {} locale {}", key, bundle, locale, e);
 	    return "???" + key + "???";
 	}
     }
@@ -390,10 +414,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public void appendJsCode(String jsCode) {
+
+	logger.debug("Append js code {}", jsCode);
 	GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 	globalJsAppender.appendJavascriptCode(jsCode);
+
+	logger.debug("Global js appender found {}", globalJsAppender);
+
 	CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 	if (cloneableJsAppender != null) {
+	    logger.debug("Cloneable js appender found {}", cloneableJsAppender);
 	    if (cloneableJsAppender.index() == 0) {
 		cloneableJsAppender.appendJavascriptCode(jsCode);
 	    }

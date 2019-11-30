@@ -11,7 +11,33 @@
   box-shadow: 0 3px 6px rgba(0,0,0,.22);
 }
 
-.form-group label {
+.form-group > label {
+  position:absolute;
+  top:0px;
+  left:0px;
+  transition: 0.15s ease-in-out;
+  transform: translate(0px,-5px) scale(0.9);
+}
+
+.form-group > input.form-control + label {
+  background-color: #fff;
+  position:absolute;
+  top:0px;
+  left:0px;
+  transition: 0.15s ease-in-out;
+  transform: translate(10px,5px) scale(0.9);
+}
+
+.form-group > textarea.form-control + label {
+  background-color: #fff;
+  position:absolute;
+  top:0px;
+  left:0px;
+  transition: 0.15s ease-in-out;
+  transform: translate(10px,5px) scale(0.9);
+}
+
+.form-group > select.form-control + label {
   background-color: #fff;
   position:absolute;
   top:0px;
@@ -68,5 +94,9 @@ select.is-empty.form-required {
 	border-color: #dc3545 !important;
 }
 
+.modal-body-scroll {
+	max-height:70vh;
+	overflow-y:scroll;
+}
 
 

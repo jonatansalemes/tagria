@@ -69,7 +69,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:input name="teste" value="0" format="currency"/&gt;
+			&lt;html:input name="teste" value="0" formatter="currency"/&gt;
 			&lt;html:maskCurrency attachTo="teste"/&gt; 
 		</example>
 	</tag>

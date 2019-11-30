@@ -22,10 +22,12 @@ public class TagriaXML {
     private List<TagriaFormatterXML> formatters = new ArrayList<>();
 
     private TagriaCdnXML cdn = new TagriaCdnXML();
-    private TagriaAuthXml auth = new TagriaAuthXml();
+    private TagriaAuthXML auth = new TagriaAuthXML();
     private String encoding = "utf-8";
     private String skin = "default";
     private String locale = "en";
+    
+    private TagriaWarningXML warning = new TagriaWarningXML();
 
     public List<TagriaTemplateXML> getTemplates() {
 	return templates;
@@ -51,11 +53,11 @@ public class TagriaXML {
 	this.cdn = cdn;
     }
 
-    public TagriaAuthXml getAuth() {
+    public TagriaAuthXML getAuth() {
 	return auth;
     }
 
-    public void setAuth(TagriaAuthXml auth) {
+    public void setAuth(TagriaAuthXML auth) {
 	this.auth = auth;
     }
 
@@ -81,6 +83,14 @@ public class TagriaXML {
 
     public void setLocale(String locale) {
 	this.locale = locale;
+    }
+
+    public TagriaWarningXML getWarning() {
+	return warning;
+    }
+
+    public void setWarning(TagriaWarningXML warning) {
+	this.warning = warning;
     }
 
 }

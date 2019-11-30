@@ -16,11 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.javascript.jscomp.CompilationLevel;
-import com.google.javascript.jscomp.Compiler;
-import com.google.javascript.jscomp.CompilerOptions;
-import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
-import com.google.javascript.jscomp.SourceFile;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class Compressor {
@@ -54,18 +49,12 @@ public class Compressor {
 	}
 	String content = StringUtils.join(contents, "\n");
 	FileUtils.writeStringToFile(new File(new File(destination, "js"), "tagria-ui.js"),
-		compress ? minifyJs(content, CompilationLevel.SIMPLE_OPTIMIZATIONS) : content, CHARSET);
+		compress ? minifyJs(content) : content, CHARSET);
 	logger.info("JS COMPRESSED");
     }
 
-    public String minifyJs(String code, CompilationLevel compilationLevel) throws IOException {
-	Compiler compiler = new Compiler();
-	CompilerOptions options = new CompilerOptions();
-	compilationLevel.setOptionsForCompilationLevel(options);
-	options.setLanguageIn(LanguageMode.ECMASCRIPT_2015);
-	SourceFile input = SourceFile.fromCode("input.js", code);
-	compiler.compile(SourceFile.fromCode("output.js", ""), input, options);
-	return compiler.toSource();
+    public String minifyJs(String code) throws IOException {
+	return JsCompressor.newCompressor().compress(code);
     }
 
     private void copyFileToDirectory(String resource) throws IOException {
@@ -123,8 +112,7 @@ public class Compressor {
     }
 
     private String minifyCss(String code) throws IOException {
-	return code.replaceAll("(\n|\r|\t|\\s{2,})", "").replaceAll(" \\{", "{").replaceAll(" ,", ",")
-		.replaceAll(": ", ":").replaceAll(", ", ",");
+	return CssCompressor.newCompressor().compress(code);
     }
 
     private String normalizeCssFile(File cssFile, String theme) {

@@ -6,9 +6,15 @@
 			<path>/WEB-INF/jsp/app/template.jsp</path>
 		</template>
 	</templates>
+	<warning>
+		<componentMountTimeThreshold>200</componentMountTimeThreshold>
+		<componentDataSetThreshold>50</componentDataSetThreshold>
+	</warning>
 	<formatters>
 		<formatter>
-			<name>matriculaSap</name>
+			<class>com.jslsolucoes.tagria.doc.v4.formatter.BooleanFormatter</class>
+		</formatter>
+		<formatter>
 			<class>com.jslsolucoes.tagria.doc.v4.formatter.MyFormatter</class>
 		</formatter>
 	</formatters>
