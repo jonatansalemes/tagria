@@ -2,6 +2,14 @@
 <html:view title="Playground">
 
 
+	<html:inputGroup cssClass="form-group">
+		<html:select name="s1">
+			<html:option value="">---</html:option>
+		</html:select>
+		<html:label label="anotherLabel"></html:label>
+		<html:button label="test"></html:button>
+	</html:inputGroup>
+
 <html:row>
 		<html:col extraSmall="3">
 			<html:input required="true" name="field4" />

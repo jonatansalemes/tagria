@@ -17,6 +17,7 @@
   left:0px;
   transition: 0.15s ease-in-out;
   transform: translate(0px,-5px) scale(0.9);
+  z-index: 10;
 }
 
 .form-group > input.form-control + label {

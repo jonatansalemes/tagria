@@ -151,6 +151,12 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the input group should prepend another component. Default:false</description>
 			<name>prepend</name>
 			<rtexprvalue>true</rtexprvalue>
