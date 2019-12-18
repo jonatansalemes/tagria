@@ -3,7 +3,7 @@
 	<templates>
 		<template>
 			<name>master</name>
-			<path>/WEB-INF/jsp/app/template.jsp</path>
+			<uri>/app/template</uri>
 		</template>
 	</templates>
 	<warning>

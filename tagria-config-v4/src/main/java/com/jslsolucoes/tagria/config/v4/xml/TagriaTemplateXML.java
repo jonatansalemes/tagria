@@ -4,33 +4,33 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="template")
+@XmlRootElement(name = "template")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TagriaTemplateXML {
-	
-	private String name;
-	
-	private String path;
 
-	public String getName() {
-		return name;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String uri;
 
-	public String getPath() {
-		return path;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	@Override
-	public String toString() {
-		return "TagriaTemplateXML [name=" + name + ", path=" + path + "]";
-	}
-	
+    @Override
+    public String toString() {
+	return "TagriaTemplateXML [name=" + name + ", uri=" + uri + "]";
+    }
+
+    public String getUri() {
+	return uri;
+    }
+
+    public void setUri(String uri) {
+	this.uri = uri;
+    }
+
 }

@@ -13,5 +13,4 @@
 			</html:tabsBody>
 		</html:tabs>
 	</html:template>
-
 </html:view>

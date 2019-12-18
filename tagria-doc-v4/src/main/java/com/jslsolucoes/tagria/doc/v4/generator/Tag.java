@@ -3,103 +3,108 @@ package com.jslsolucoes.tagria.doc.v4.generator;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.apache.commons.lang3.StringUtils;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
-
-@XStreamAlias("tag")
+@XmlRootElement(name = "tag")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Tag {
 
-	private String name;
+    private String name;
 
-	private String description;
-	
-	@XStreamAlias("dynamic-attributes")
-	private Boolean dynamicAttributes;
+    private String description;
 
-	@XStreamAlias("display-name")
-	private String group;
+    @XmlElement(name = "dynamic-attributes")
+    private Boolean dynamicAttributes;
 
-	private String example;
+    @XmlElement(name = "display-name")
+    private String group;
 
-	@XStreamAlias("tag-class")
-	private String tagClass;
+    private String example;
 
-	@XStreamAlias("body-content")
-	private String bodyContent;
+    @XmlElement(name = "tag-class")
+    private String tagClass;
 
-	@XStreamImplicit
-	private List<Attribute> attributes;
+    @XmlElement(name = "body-content")
+    private String bodyContent;
 
-	public String getName() {
-		return name;
-	}
+    @XmlElementWrapper(name = "attributes")
+    @XmlElement(name = "attribute")
+    private List<Attribute> attributes;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public String getTagClass() {
-		return tagClass;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public void setTagClass(String tagClass) {
-		this.tagClass = tagClass;
-	}
+    public String getTagClass() {
+	return tagClass;
+    }
 
-	public String getBodyContent() {
-		return bodyContent;
-	}
+    public void setTagClass(String tagClass) {
+	this.tagClass = tagClass;
+    }
 
-	public void setBodyContent(String bodyContent) {
-		this.bodyContent = bodyContent;
-	}
+    public String getBodyContent() {
+	return bodyContent;
+    }
 
-	public List<Attribute> getAttributes() {
-		return attributes;
-	}
+    public void setBodyContent(String bodyContent) {
+	this.bodyContent = bodyContent;
+    }
 
-	public void setAttributes(List<Attribute> attributes) {
-		this.attributes = attributes;
-	}
+    public List<Attribute> getAttributes() {
+	return attributes;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setAttributes(List<Attribute> attributes) {
+	this.attributes = attributes;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+	return description;
+    }
 
-	public String getExample() {
-		return example;
-	}
+    public void setDescription(String description) {
+	this.description = description;
+    }
 
-	public void setExample(String example) {
-		this.example = example;
-	}
+    public String getExample() {
+	return example;
+    }
 
-	public String getExampleEscaped() {
-		if (StringUtils.isEmpty(example))
-			return "";
-		return example.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\\$", "\\\\\\$");
-	}
+    public void setExample(String example) {
+	this.example = example;
+    }
 
-	public String getGroup() {
-		return group;
-	}
+    public String getExampleEscaped() {
+	if (StringUtils.isEmpty(example))
+	    return "";
+	return example.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\\$", "\\\\\\$");
+    }
 
-	public void setGroup(String group) {
-		this.group = group;
-	}
+    public String getGroup() {
+	return group;
+    }
 
-	public Boolean getDynamicAttributes() {
-		return dynamicAttributes;
-	}
+    public void setGroup(String group) {
+	this.group = group;
+    }
 
-	public void setDynamicAttributes(Boolean dynamicAttributes) {
-		this.dynamicAttributes = dynamicAttributes;
-	}
+    public Boolean getDynamicAttributes() {
+	return dynamicAttributes;
+    }
+
+    public void setDynamicAttributes(Boolean dynamicAttributes) {
+	this.dynamicAttributes = dynamicAttributes;
+    }
 
 }

@@ -22,13 +22,14 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.lib.v4.servlet.HttpHeader;
-import com.jslsolucoes.tagria.tag.base.v4.tag.TagriaServletResponseWrapper;
+import com.jslsolucoes.tagria.tag.base.v4.tag.TagriaHttpServletResponse;
+import com.jslsolucoes.tagria.tag.base.v4.tag.TagriaHttpServletResponseWrapper;
 
 public class CacheFilter implements Filter {
 
     private Cache<String, byte[]> cache = CacheBuilder.newBuilder().build();
     private Boolean enabled = Boolean.FALSE;
-    
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 	enabled = Boolean.valueOf(filterConfig.getInitParameter("enabled"));
@@ -39,9 +40,9 @@ public class CacheFilter implements Filter {
 	    throws IOException, ServletException {
 	HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 	HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-	 String key = httpServletRequest.getRequestURI();
+	String key = httpServletRequest.getRequestURI();
 	if (!skip(key) && enabled) {
-	   
+
 	    String version = TagriaConfig.VERSION;
 	    String etag = DigestUtils.sha256Hex(key + version);
 	    if (etag.equals(httpServletRequest.getHeader("If-None-Match"))) {
@@ -49,18 +50,23 @@ public class CacheFilter implements Filter {
 	    } else {
 		byte[] response = cache.getIfPresent(key);
 		if (response == null) {
-		    try (TagriaServletResponseWrapper tagriaServletResponseWrapper = new TagriaServletResponseWrapper(
+		    try (TagriaHttpServletResponse tagriaHttpServletResponse = new TagriaHttpServletResponse(
 			    httpServletResponse, "utf-8")) {
-
+			TagriaHttpServletResponseWrapper tagriaHttpServletResponseWrapper = new TagriaHttpServletResponseWrapper(
+				tagriaHttpServletResponse);
 			LocalDateTime now = LocalDateTime.now();
 			LocalDateTime expires = LocalDateTime.now().plusDays(365);
-			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss 'GMT'", Locale.ENGLISH);
-			tagriaServletResponseWrapper.setHeader(HttpHeader.LAST_MODIFIED, dateTimeFormatter.format(now));
-			tagriaServletResponseWrapper.setHeader(HttpHeader.EXPIRES, dateTimeFormatter.format(expires));
-			tagriaServletResponseWrapper.setHeader(HttpHeader.CACHE_CONTROL,"public,max-age=" + now.until(expires, ChronoUnit.SECONDS));
-			tagriaServletResponseWrapper.setHeader(HttpHeader.ETAG,etag);
-			filterChain.doFilter(httpServletRequest, tagriaServletResponseWrapper);
-			response = tagriaServletResponseWrapper.flush().asByteArray();
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter
+				.ofPattern("E, dd MMM yyyy HH:mm:ss 'GMT'", Locale.ENGLISH);
+			tagriaHttpServletResponseWrapper.setHeader(HttpHeader.LAST_MODIFIED,
+				dateTimeFormatter.format(now));
+			tagriaHttpServletResponseWrapper.setHeader(HttpHeader.EXPIRES,
+				dateTimeFormatter.format(expires));
+			tagriaHttpServletResponseWrapper.setHeader(HttpHeader.CACHE_CONTROL,
+				"public,max-age=" + now.until(expires, ChronoUnit.SECONDS));
+			tagriaHttpServletResponse.setHeader(HttpHeader.ETAG, etag);
+			filterChain.doFilter(httpServletRequest, tagriaHttpServletResponseWrapper);
+			response = tagriaHttpServletResponse.flush().asByteArray();
 			cache.put(key, response);
 		    }
 		}
@@ -73,6 +79,7 @@ public class CacheFilter implements Filter {
     }
 
     private boolean skip(String key) {
-	return Arrays.asList(".woff2",".woff",".ttf",".css",".js",".png",".ico","/app/playground").stream().anyMatch(extension -> key.endsWith(extension));
+	return Arrays.asList(".woff2", ".woff", ".ttf", ".css", ".js", ".png", ".ico", "/app/playground").stream()
+		.anyMatch(extension -> key.endsWith(extension));
     }
 }
