@@ -10,6 +10,6 @@ public class IndexController {
     @GET
     @Controller
     public String index() {
-	return "redirect:app/home";
+	return "redirect:/app/home";
     }
 }
