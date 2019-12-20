@@ -25,7 +25,7 @@ public class DocGenerator {
     public static void main(String[] args) throws Exception {
 
 	String workspace = args[0];
-	String jspFolder = workspace + "/tagria-doc-v4/src/main/webapp/WEB-INF/jsp";
+	String jspFolder = workspace + "/tagria-doc-v4/src/main/webapp/WEB-INF/views";
 	Map<String, List<Tag>> groupments = new HashMap<>();
 
 	List<Tag> tags = new ArrayList<Tag>();

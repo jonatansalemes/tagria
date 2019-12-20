@@ -37,7 +37,7 @@
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -113,7 +113,7 @@
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -150,7 +150,7 @@
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -187,7 +187,7 @@
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -230,7 +230,7 @@
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -255,7 +255,7 @@
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -280,7 +280,7 @@
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -329,7 +329,7 @@
 		</attribute>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;
@@ -354,7 +354,7 @@
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;

@@ -306,7 +306,7 @@
 
 
 	<html:card>
-		<html:cardImage url="/image/person.png" width="32" height="32"
+		<html:cardImage url="/assets/image/person.png" width="32" height="32"
 			responsive="false" alt="logo"></html:cardImage>
 		<html:cardHeader>
 			My header
@@ -359,7 +359,7 @@
 
 	
 
-	<html:img url="/image/person.png" alt="logo" responsive="true" />
+	<html:img url="/assets/image/person.png" alt="logo" responsive="true" />
 	<html:icon icon="cog" />
 
 	<html:div>
@@ -460,8 +460,8 @@ private class Java {
 	<html:button id="btn3" label="Confirm that ?" url="#" />
 	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3" />
 
-	<html:import url="/css/example.css" type="css"></html:import>
-	<html:import url="/js/example.js" type="js"></html:import>
+	<html:import url="/assets/css/example.css" type="css"></html:import>
+	<html:import url="/assets/js/example.js" type="js"></html:import>
 	
 	<html:iframe url="/" name="content" title="My iframe title" />
 	

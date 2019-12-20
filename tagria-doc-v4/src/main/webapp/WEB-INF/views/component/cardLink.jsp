@@ -1,6 +1,6 @@
 <%@include file="../app/taglibs.jsp"  %>																							<html:view title="{title}" template="master">					<html:template render="body">																													<html:card>																														<html:cardHeader>																				cardLink							</html:cardHeader>																											<html:cardBody>																												<html:tabs>																														<html:tabsHeader>																												<html:tabsTab active="true" labelKey="about" id="tab1"></html:tabsTab> 												<html:tabsTab labelKey="attributes" id="tab2"></html:tabsTab> 														<html:tabsTab labelKey="demo" id="tab3"></html:tabsTab> 																<html:tabsTab labelKey="source" id="tab4"></html:tabsTab> 														</html:tabsHeader> 																										<html:tabsBody> 																												<html:tabsContent active="true" contentOf="tab1">																			<html:alert state="warning">													Renders card link											</html:alert>																											</html:tabsContent>																										<html:tabsContent contentOf="tab2">												<html:alert state="info" labelKey="tag.empty.attributes"></html:alert>										</html:tabsContent>																								<html:tabsContent contentOf="tab3">										
 			<html:card>
-				<html:cardImage url="/image/person.png" width="32" height="32" responsive="false"></html:cardImage>
+				<html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"></html:cardImage>
 				<html:cardHeader>
 					My header
 				</html:cardHeader>
@@ -16,7 +16,7 @@
 			</html:card>
 												</html:tabsContent>																								<html:tabsContent contentOf="tab4">																					<html:code>																												&lt;html:view&gt;
 			&lt;html:card&gt;
-				&lt;html:cardImage url="/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
+				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
 				&lt;html:cardHeader&gt;
 					My header
 				&lt;/html:cardHeader&gt;

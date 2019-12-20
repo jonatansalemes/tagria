@@ -1,110 +1,87 @@
 package com.jslsolucoes.tagria.lib.v4.handler.impl;
 
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.Resources;
 import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
+import com.jslsolucoes.tagria.lib.v4.handler.ResourceHandler;
 import com.jslsolucoes.tagria.lib.v4.servlet.HttpHeader;
 
-public class ContentResourceHandler extends DefaultResourceHandler {
+public class ContentResourceHandler implements ResourceHandler {
 
     private static Logger logger = LoggerFactory.getLogger(ContentResourceHandler.class);
 
-    public ContentResourceHandler(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-	super(httpServletRequest, httpServletResponse);
-    }
-
     @Override
-    public Boolean accepts() {
+    public Boolean accepts(HttpServletRequest httpServletRequest) {
 	return true;
     }
 
     @Override
-    public void handle() {
-	setCharset();
-	setContentType();
-	setContentEncoding();
-	setAllowOrigin();
-	setEtag();
-	setExpires();
-	setContent();
-    }
+    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
-    private void setCharset() {
-	httpServletResponse
-		.setCharacterEncoding(xml().getEncoding());
-    }
-
-    private void setContent() {
-	String uri = uri();
-	String url = "/com/jslsolucoes" + uri.replaceFirst(httpServletRequest.getContextPath(), "").replaceAll(";jsessionid=.*", "");
-	try (OutputStream outputStream = new GZIPOutputStream(outputStream());
-		InputStream in = getClass().getResourceAsStream(url)) {
-	    setContentLength(in.available());
-	    byte[] buffer = new byte[1024 * 10];
-	    int nByteRead = 0;
-	    while ((nByteRead = in.read(buffer)) != -1) {
-		outputStream.write(buffer, 0, nByteRead);
-	    }
+	TagriaXML tagriaXML = tagriaXML();
+	httpServletResponse.setCharacterEncoding(encoding(tagriaXML));
+	httpServletResponse.setContentType(contentType(httpServletRequest));
+	httpServletResponse.setHeader("Content-Encoding", "gzip");
+	if (cdnIsEnabled(tagriaXML)) {
+	    httpServletResponse.setHeader(HttpHeader.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+	}
+	httpServletResponse.setHeader(HttpHeader.ETAG, etag(httpServletRequest));
+	httpServletResponse.setHeader(HttpHeader.CACHE_CONTROL,"public,max-age=" + 31536000);
+	
+	String uri = uri(httpServletRequest);
+	String url = "com/jslsolucoes" + uri.replaceFirst(httpServletRequest.getContextPath(), "").replaceAll(";jsessionid=.*", "");
+	
+	try (OutputStream outputStream = new GZIPOutputStream(httpServletResponse.getOutputStream())) {
+	    byte[] resource = Resources.toByteArray(Resources.getResource(url));
+	    httpServletResponse.setContentLength(resource.length);
+	    outputStream.write(resource);
 	} catch (Exception exception) {
 	    logger.error("Could not load resource {}, {}", uri, exception);
 	    httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	}
     }
-    
-    private TagriaXML xml() {
+
+    private String etag(HttpServletRequest httpServletRequest) {
+	return DigestUtils.sha512Hex(httpServletRequest.getRequestURL().toString());
+    }
+
+    private boolean cdnIsEnabled(TagriaXML tagriaXML) {
+	return tagriaXML.getCdn().getEnabled();
+    }
+
+    private String encoding(TagriaXML tagriaXML) {
+	return tagriaXML.getEncoding();
+    }
+
+    private TagriaXML tagriaXML() {
 	return TagriaConfig.newConfig().xml();
     }
 
-    private void setAllowOrigin() {
-	if (xml().getCdn().getEnabled()) {
-	    httpServletResponse.setHeader(HttpHeader.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
-	}
+    private String uri(HttpServletRequest httpServletRequest) {
+	return httpServletRequest.getRequestURI();
     }
 
-    private void setContentLength(Integer contentLength) {
-	httpServletResponse.setContentLength(contentLength);
-    }
-
-    private void setContentEncoding() {
-	httpServletResponse.setHeader("Content-Encoding","gzip");
-    }
-
-    private void setContentType() {
-	String uri = uri();
+    private String contentType(HttpServletRequest httpServletRequest) {
+	String uri = uri(httpServletRequest);
 	if (uri.endsWith(".css")) {
-	    httpServletResponse.setContentType("text/css");
+	    return "text/css";
 	} else if (uri.endsWith(".js")) {
-	    httpServletResponse.setContentType("text/javascript");
+	    return "text/javascript";
 	} else if (uri.endsWith(".png")) {
-	    httpServletResponse.setContentType("image/png");
+	    return "image/png";
+	} else {
+	    return "octect-stream";
 	}
-    }
-
-    private void setEtag() {
-	httpServletResponse.setHeader(HttpHeader.ETAG, etag());
-    }
-
-    private void setExpires() {
-	LocalDateTime now = LocalDateTime.now();
-	LocalDateTime expires = LocalDateTime.now().plusDays(365);
-	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss 'GMT'",
-		Locale.ENGLISH);
-	httpServletResponse.setHeader(HttpHeader.EXPIRES, dateTimeFormatter.format(expires));
-	httpServletResponse.setHeader(HttpHeader.CACHE_CONTROL,
-		"public,max-age=" + now.until(expires, ChronoUnit.SECONDS));
     }
 
 }

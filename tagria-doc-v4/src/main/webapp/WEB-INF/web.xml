@@ -12,22 +12,6 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	    <param-value>messages</param-value>
   	</context-param>
 	
-	
-	<filter>
-		<filter-name>cache</filter-name>
-		<filter-class>com.jslsolucoes.tagria.doc.v4.cache.CacheFilter</filter-class>
-		<init-param>
-			<param-name>enabled</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>cache</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-	</filter-mapping>
-	
 	<servlet>
 		<servlet-name>tagria-v4</servlet-name>
 		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.Tagria</servlet-class>

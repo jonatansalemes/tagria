@@ -219,8 +219,8 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:import type="css" url="/css/example.css"/&gt;
-			&lt;html:import type="js" url="/js/example.js"/&gt;
+			&lt;html:import type="css" url="/assets/css/example.css"/&gt;
+			&lt;html:import type="js" url="/assets/js/example.js"/&gt;
 		</example>
 	</tag>
 	
