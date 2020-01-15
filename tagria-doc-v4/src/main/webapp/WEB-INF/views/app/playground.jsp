@@ -2,6 +2,29 @@
 <html:view title="Playground">
 
 
+	<html:div>
+		<html:overlay>
+			<html:div>
+				Some content
+			</html:div>
+		</html:overlay>
+
+		<html:button label="test"></html:button>
+		
+		
+		<html:overlay>
+			<html:buttonGroup>
+				<html:button label="btn1"></html:button>
+				<html:button label="btn2"></html:button>
+			</html:buttonGroup>
+		</html:overlay>
+
+	</html:div>
+
+
+	<html:link disabled="true" url="/a/abc">My disabled link</html:link>
+
+
 	<html:inputGroup cssClass="form-group">
 		<html:select name="s1">
 			<html:option value="">---</html:option>
@@ -10,7 +33,7 @@
 		<html:button label="test"></html:button>
 	</html:inputGroup>
 
-<html:row>
+	<html:row>
 		<html:col extraSmall="3">
 			<html:input required="true" name="field4" />
 			<html:mask mask="99/99/9999" attachTo="field4">
@@ -26,7 +49,8 @@
 	</html:row>
 
 
-	<html:form action="#" label="My title" validation="/app/form/validation">
+	<html:form action="#" label="My title"
+		validation="/app/form/validation">
 
 
 		<html:formOnBeforeSubmit>
@@ -37,7 +61,7 @@
 		<html:formGroupRow>
 			<html:col extraSmall="6">
 				<html:formGroup label="Field 1" required="true" forElement="field1">
-					<html:input required="true" name="field1"/>
+					<html:input required="true" name="field1" />
 				</html:formGroup>
 				<html:jsEvent event="blur" attachTo="field1">
 					console.log('hello ' + new Date());
@@ -45,7 +69,7 @@
 			</html:col>
 			<html:col extraSmall="6">
 				<html:formGroup label="Field 3" required="true" forElement="field3">
-					<html:input required="true" name="field3"/>
+					<html:input required="true" name="field3" />
 				</html:formGroup>
 			</html:col>
 		</html:formGroupRow>
@@ -53,7 +77,8 @@
 			<html:textarea name="textarea17" required="true"></html:textarea>
 		</html:formGroup>
 		<html:formGroup label="Field18" required="true">
-			<html:select name="filed18" data="${ persons }" var="person" required="true">
+			<html:select name="filed18" data="${ persons }" var="person"
+				required="true">
 				<html:option value="${ person.id }">${ person.name }</html:option>
 			</html:select>
 		</html:formGroup>
@@ -65,25 +90,29 @@
 				<html:formGroupRow>
 					<html:col extraSmall="6">
 						<html:formGroup label="Field 15" forElement="field15">
-							<html:input name="field15" disabled="true" placeHolder="holder15" value="value15"/>
+							<html:input name="field15" disabled="true" placeHolder="holder15"
+								value="value15" />
 						</html:formGroup>
 					</html:col>
 					<html:col extraSmall="6">
 						<html:formGroup label="Field 16" forElement="field16">
-							<html:input name="field16" disabled="true" placeHolder="holder16" value="value16"/>
+							<html:input name="field16" disabled="true" placeHolder="holder16"
+								value="value16" />
 						</html:formGroup>
 					</html:col>
 				</html:formGroupRow>
 			</html:cardBody>
 		</html:card>
-		
+
 		<html:formGroup label="Field 2" forElement="field2">
-			<html:input name="field2" disabled="true" placeHolder="holder2" value="value1"/>
+			<html:input name="field2" disabled="true" placeHolder="holder2"
+				value="value1" />
 		</html:formGroup>
 		<html:formGroup label="Field 14" forElement="field14">
-			<html:input name="field14" disabled="true" placeHolder="holder14" value="value14"/>
+			<html:input name="field14" disabled="true" placeHolder="holder14"
+				value="value14" />
 		</html:formGroup>
-		
+
 		<html:formGroupMultiple label="Groups 1" data="${ persons }"
 			var="person" atLeast="1">
 
@@ -95,7 +124,7 @@
 			<html:formGroupMultipleOnAfterRemove>
 				console.log('after remove row ');
 			</html:formGroupMultipleOnAfterRemove>
-			
+
 			<html:input name="fields3[]" required="true" value="${ person.name }" />
 			<html:jsEvent event="blur" attachTo="fields3[]">
 					console.log($(this).val());
@@ -107,7 +136,7 @@
 			<html:button state="primary" type="submit" label="Label for submit" />
 		</html:formToolbar>
 	</html:form>
-	
+
 	<html:jsCode>
 		if(random()){
 			$('#par_field3').val('text by val');
@@ -138,7 +167,7 @@
 			id="btn3" url="/pessoa" />
 	</auth:rule>
 
-	<html:input name="ipt1" formatter="cpf" value="${ cpf }"/>
+	<html:input name="ipt1" formatter="cpf" value="${ cpf }" />
 	
 	My date <html:format formatter="datetime">${ dateTime }</html:format>
 	My cpf <html:format formatter="cpf">${ cpf }</html:format>
@@ -211,7 +240,9 @@
 				cssClass="border border-danger" formatter="datetime">
 				${ person.name }
 			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true" cssClass="border border-danger" collapsable="true" formatter="boolean">
+			<html:gridColumnData align="center" exportable="true"
+				cssClass="border border-danger" collapsable="true"
+				formatter="boolean">
 				${ person.likeChocolate }
 			</html:gridColumnData>
 			<html:gridColumnData align="center" exportable="true"
@@ -357,7 +388,7 @@
 		<html:dropDownItem icon="trash" label="Item 3" url="#" />
 	</html:dropDown>
 
-	
+
 
 	<html:img url="/assets/image/person.png" alt="logo" responsive="true" />
 	<html:icon icon="cog" />
@@ -378,7 +409,7 @@
 	</html:dataBlock>
 
 
-	
+
 
 	<html:container>
 		<html:alert state="info">
@@ -421,7 +452,7 @@ private class Java {
 
 	<html:link label="My link" url="#" />
 
-	
+
 
 	<html:recaptcha siteKey="fdaf9dsj9j" />
 
@@ -455,16 +486,16 @@ private class Java {
 		Components
 	</html:collapsable>
 
-	
+
 
 	<html:button id="btn3" label="Confirm that ?" url="#" />
 	<html:confirm url="#" label="Confirm title" attachToSelector="#btn3" />
 
 	<html:import url="/assets/css/example.css" type="css"></html:import>
 	<html:import url="/assets/js/example.js" type="js"></html:import>
-	
+
 	<html:iframe url="/" name="content" title="My iframe title" />
-	
+
 
 
 
