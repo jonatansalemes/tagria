@@ -1,13 +1,18 @@
 package com.jslsolucoes.tagria.tag.base.v4.tag;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -15,6 +20,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +61,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected String cssClass;
     protected String id;
     private String bodyContent;
+    private static final Map<String, String> templateCaches = new HashMap<String, String>();
 
     private String version() {
 	return TagriaConfig.VERSION;
@@ -80,21 +87,50 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String contentOfTemplate(String template) {
-	String encoding = encoding();
-	String jspPath = xml().getTemplates().stream()
+	String templateUri = xml().getTemplates().stream()
 		.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
-		.getPath();
-	HttpServletRequest httpServletRequest = httpServletRequest();
-	HttpServletResponse httpServletResponse = httpServletResponse();
-	try (TagriaServletResponseWrapper tagriaServletResponseWrapper = new TagriaServletResponseWrapper(
-		httpServletResponse, encoding)) {
-	    httpServletRequest.getRequestDispatcher(jspPath).include(httpServletRequest, tagriaServletResponseWrapper);
-	    return tagriaServletResponseWrapper.flush().asString();
-	} catch (Exception e) {
-	    throw new TagriaRuntimeException(e);
+		.getUri();
+
+	String contentOfTemplate = templateCaches.get(template);
+	if (StringUtils.isEmpty(contentOfTemplate)) {
+	    logger.debug("Template {} was not found,  asking for it and caching ...",template);
+	    templateCaches.put(template,contentOfTemplate = contentOfUri(templateUri));
+	} else {
+	    logger.debug("Using template {} from cache",template);
 	}
+	return contentOfTemplate;
+    }
+    
+    private String contentOfUri(String templateUri) {
+	 try {
+	     	String urlForTemplate = urlFor(templateUri);
+	     	logger.debug("Ask for render url {}",urlForTemplate);
+		URL url = new URL(urlForTemplate);
+		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+		httpCon.setDoOutput(true);
+		httpCon.setRequestMethod("GET");
+		httpCon.connect();
+		try (BufferedReader bufferedReader = new BufferedReader(
+			new InputStreamReader(httpCon.getInputStream()))) {
+		    return bufferedReader.lines().collect(Collectors.joining());
+		}
+	    } catch (Exception e) {
+		throw new TagriaRuntimeException(e);
+	    }
+    }
+    
+    private String urlFor(String uri) {
+	return httpScheme() + "://" + serverName() + ":" + serverPort() + pathForUrl(uri);
+    }
+    
+    private Integer serverPort() {
+	return httpServletRequest().getServerPort();
+    }
+    
+    private String serverName() {
+	return httpServletRequest().getServerName();
     }
 
     public String encoding() {
@@ -366,7 +402,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	return urlBase + url;
     }
-    
+
     public String javascriptForVoid() {
 	return "javascript:void(0)";
     }

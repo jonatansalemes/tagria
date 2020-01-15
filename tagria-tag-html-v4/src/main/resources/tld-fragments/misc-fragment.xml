@@ -1,6 +1,33 @@
 <fragment>
 
 	<tag>
+		<description>Renders an overlay block interation</description>
+		<display-name>Misc</display-name>
+		<name>overlay</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.OverlayTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates if overlay is enabled. Default: true</description>
+			<name>enabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:overlay&gt;
+				&lt;html:div&gt;
+					Other components
+				&lt;/html:div&gt; 
+			&lt;/html:overlay&gt; 
+		</example>
+	</tag>
+
+	<tag>
 		<description>Renders a tooltip</description>
 		<display-name>Misc</display-name>
 		<name>tooltip</name>
@@ -58,7 +85,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			.......
+			No examples yet
 		</example>
 	</tag>
 
@@ -219,8 +246,8 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:import type="css" url="/css/example.css"/&gt;
-			&lt;html:import type="js" url="/js/example.js"/&gt;
+			&lt;html:import type="css" url="/assets/css/example.css"/&gt;
+			&lt;html:import type="js" url="/assets/js/example.js"/&gt;
 		</example>
 	</tag>
 	
@@ -230,6 +257,12 @@
 		<name>confirm</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.ConfirmDialogTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the size of modal. Default sm. Options: xl,sm,lg</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>It indicates the label of the title modal</description>
 			<name>label</name>

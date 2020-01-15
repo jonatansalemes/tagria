@@ -294,6 +294,12 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FormGroupMultipleTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates if input names must be indexed. Default: true</description>
+			<name>indexed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the label component</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>

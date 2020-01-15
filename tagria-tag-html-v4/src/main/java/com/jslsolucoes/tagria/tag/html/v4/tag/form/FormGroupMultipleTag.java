@@ -24,6 +24,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     private String labelKey;
     private Integer atLeast = 0;
     private Boolean empty = Boolean.FALSE;
+    private Boolean indexed = Boolean.TRUE;
     private String onAfterInsert;
     private String onAfterRemove;
     private String varStatus;
@@ -40,7 +41,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	Element div = ElementCreator.newDiv().attribute(Attribute.ID, id)
 		.attribute(Attribute.CLASS, "form-group p-2   bg-white fg-container").add(divToolbar())
 		.add(divContent()).add(textAreaHtml()).add(textAreaScript());
-	appendJsCode("$('#" + id + "').formGroup({atLeast:" + atLeast + ",empty:" + empty
+	appendJsCode("$('#" + id + "').formGroup({indexed:" + indexed + ",atLeast:" + atLeast + ",empty:" + empty
 		+ ",afterInsert:function(idx,element){" + (!StringUtils.isEmpty(onAfterInsert) ? onAfterInsert : "")
 		+ " },afterRemove:function(){" + (!StringUtils.isEmpty(onAfterRemove) ? onAfterRemove : "") + "}});");
 	return div;
@@ -231,6 +232,14 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
     public void setOnAfterRemove(String onAfterRemove) {
 	this.onAfterRemove = onAfterRemove;
+    }
+
+    public Boolean getIndexed() {
+	return indexed;
+    }
+
+    public void setIndexed(Boolean indexed) {
+	this.indexed = indexed;
     }
 
 }

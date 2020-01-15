@@ -1,0 +1,5 @@
+a[disabled="disabled"] {
+	pointer-events: none;
+	cursor: default;
+	color: #b3b3b3;
+}

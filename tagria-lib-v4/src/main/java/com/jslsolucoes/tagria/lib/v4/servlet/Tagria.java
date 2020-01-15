@@ -16,30 +16,27 @@ import com.jslsolucoes.tagria.lib.v4.handler.ResourceHandler;
 import com.jslsolucoes.tagria.lib.v4.handler.impl.BlankResourceHandler;
 import com.jslsolucoes.tagria.lib.v4.handler.impl.ContentResourceHandler;
 import com.jslsolucoes.tagria.lib.v4.handler.impl.LocaleResourceHandler;
-import com.jslsolucoes.tagria.lib.v4.handler.impl.NoneMatchResourceHandler;
+import com.jslsolucoes.tagria.lib.v4.handler.impl.CacheableResourceHandler;
 
 @SuppressWarnings("serial")
 @WebServlet(name = "tagria-v4", urlPatterns = "/tagria/v4/*", loadOnStartup = 1)
 public class Tagria extends HttpServlet {
 
-	@Override
-	public void init(ServletConfig servletConfig) throws ServletException {
+    @Override
+    public void init(ServletConfig servletConfig) throws ServletException {
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
+	    throws ServletException, IOException {
+
+	List<ResourceHandler> handlers = Arrays.asList(new BlankResourceHandler(), new LocaleResourceHandler(),
+		new CacheableResourceHandler(), new ContentResourceHandler());
+	for (ResourceHandler tagriaHandler : handlers) {
+	    if (tagriaHandler.accepts(httpServletRequest)) {
+		tagriaHandler.handle(httpServletRequest, httpServletResponse);
+	    }
 	}
-
-	@Override
-	protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws ServletException, IOException {
-
-		List<ResourceHandler> handlers = Arrays.asList(
-				new BlankResourceHandler(httpServletRequest, httpServletResponse),
-				new LocaleResourceHandler(httpServletRequest, httpServletResponse),
-				new NoneMatchResourceHandler(httpServletRequest, httpServletResponse),
-				new ContentResourceHandler(httpServletRequest, httpServletResponse));
-		for (ResourceHandler tagriaHandler : handlers) {
-			if (tagriaHandler.accepts()) {
-				tagriaHandler.handle();
-			}
-		}
-	}
+    }
 }

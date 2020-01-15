@@ -3,26 +3,26 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria-v4</artifactId>
-		<version>4.0.11</version>
+		<version>4.0.14</version>
 	</parent>
 	<artifactId>tagria-doc-v4</artifactId>
 	<packaging>war</packaging>
 
 	<dependencies>
 		<dependency>
-			<groupId>br.com.caelum</groupId>
-			<artifactId>vraptor</artifactId>
-			<version>4.3.0-beta-3</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.google.code.gson</groupId>
-					<artifactId>gson</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>javax.mvc</groupId>
+			<artifactId>javax.mvc-api</artifactId>
+			<version>1.0.0-RC1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.krazo</groupId>
+			<artifactId>krazo-resteasy</artifactId>
+			<version>1.0.0-RC1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jslsolucoes</groupId>
+			<artifactId>jax-rs-server-ee</artifactId>
+			<version>1.0.32</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
