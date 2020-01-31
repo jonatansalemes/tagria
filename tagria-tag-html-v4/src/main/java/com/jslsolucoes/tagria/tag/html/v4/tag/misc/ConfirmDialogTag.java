@@ -46,7 +46,7 @@ public class ConfirmDialogTag extends AbstractSimpleTagSupport {
     }
 
     private Element divModalBody() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body");
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body text-center");
 	String bodyContent = bodyContent();
 	if (!StringUtils.isEmpty(bodyContent)) {
 	    div.add(bodyContent);
@@ -59,7 +59,7 @@ public class ConfirmDialogTag extends AbstractSimpleTagSupport {
     }
 
     private Element divModalHeader() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header").add(h4ModalTitle())
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header text-center").add(h4ModalTitle())
 		.add(buttonClose());
     }
 

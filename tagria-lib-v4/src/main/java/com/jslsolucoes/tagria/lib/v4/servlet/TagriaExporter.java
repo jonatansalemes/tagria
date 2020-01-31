@@ -16,6 +16,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jslsolucoes.tagria.config.v4.TagriaConfig;
 import com.jslsolucoes.tagria.exporter.v4.impl.CsvExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.ExcelExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.Exporter;
@@ -35,6 +36,7 @@ public class TagriaExporter extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
 			throws ServletException, IOException {
+	        httpServletRequest.setCharacterEncoding(TagriaConfig.newConfig().xml().getEncoding()); 
 		ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
 		try {
 			String json = httpServletRequest.getParameter("json");

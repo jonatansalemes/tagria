@@ -25,7 +25,7 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 	private Element formExport() {
 		return ElementCreator.newForm().attribute(Attribute.METHOD, "post").attribute(Attribute.TARGET, "_blank")
 				.attribute(Attribute.CLASS, "grid-export-form hidden")
-				.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter")).add(inputType()).add(inputJson());
+				.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter/v4")).add(inputType()).add(inputJson());
 	}
 
 	private Element inputType() {

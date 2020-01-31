@@ -6,11 +6,11 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.grid.GridTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates the collection to be iterated by the component</description>
+			<description>It indicates the collection to be iterated by the component. Single objects is converted to Collection using immutable Arrays.asList(...)</description>
 			<name>data</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Collection</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description>It indicates the name of the variable java to be made available the object of iteration</description>

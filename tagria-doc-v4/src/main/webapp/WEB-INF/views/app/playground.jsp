@@ -2,6 +2,44 @@
 <html:view title="Playground">
 
 
+<html:grid var="person" data="${ persons }" label="My grid"
+		url="/app/playground/v4">
+
+		<html:gridExport />
+		<html:gridPaginate totalResults="200" />
+		<html:gridSearch />
+
+		<html:gridToolbar>
+			<html:alert state="danger">my toolbars</html:alert>
+		</html:gridToolbar>
+
+		<html:gridHeader>
+			<html:gridColumn labelKey="app.dev.by" align="left" exportable="true"></html:gridColumn>
+			<html:gridColumn labelKey="grid.column1" align="center" exportable="true"></html:gridColumn>
+			<html:gridColumn label="Column 3" align="center"></html:gridColumn>
+		</html:gridHeader>
+		<html:gridBody>
+			<html:gridColumnData align="right" exportable="true"
+				cssClass="border border-danger">
+				${ person.name }
+			</html:gridColumnData>
+			<html:gridColumnData align="center" exportable="true"
+				cssClass="border border-danger"
+				formatter="boolean">
+				${ person.likeChocolate }
+			</html:gridColumnData>
+			<html:gridColumnData align="center" 
+				collapsable="true" cssClass="border border-danger">
+				${ person.cpf }
+			</html:gridColumnData>
+		</html:gridBody>
+	</html:grid>
+
+
+
+<html:print/>
+
+
 	<html:div>
 		<html:overlay>
 			<html:div>
@@ -219,39 +257,7 @@
 		styled div ${ descriptions }
 	</html:div>
 
-	<html:grid var="person" data="${ persons }" label="My grid"
-		url="/app/playground/v4">
-
-		<html:gridExport />
-		<html:gridPaginate totalResults="200" />
-		<html:gridSearch />
-
-		<html:gridToolbar>
-			<html:alert state="danger">my toolbars</html:alert>
-		</html:gridToolbar>
-
-		<html:gridHeader>
-			<html:gridColumn label="Column 1" align="left" exportable="true"></html:gridColumn>
-			<html:gridColumn label="Column 2" align="center" exportable="true"></html:gridColumn>
-			<html:gridColumn label="Column 3" align="center" exportable="true"></html:gridColumn>
-		</html:gridHeader>
-		<html:gridBody>
-			<html:gridColumnData align="right" exportable="true"
-				cssClass="border border-danger" formatter="datetime">
-				${ person.name }
-			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true"
-				cssClass="border border-danger" collapsable="true"
-				formatter="boolean">
-				${ person.likeChocolate }
-			</html:gridColumnData>
-			<html:gridColumnData align="center" exportable="true"
-				collapsable="true" cssClass="border border-danger">
-				${ person.cpf }
-			</html:gridColumnData>
-		</html:gridBody>
-	</html:grid>
-
+	
 
 
 
