@@ -64,7 +64,11 @@ ol, ul, dl {
 
 
 @media (min-width: 992px) {
-  .modal-lg,
+  
+  .modal-lg {
+    max-width: 70%;
+  }
+  
   .modal-xl {
     max-width: 90%;
   }

@@ -17,7 +17,7 @@ public class GridTag extends AbstractSimpleTagSupport {
     private String varStatus;
     private String label;
     private String labelKey;
-    private Collection<Object> data;
+    private Object data;
     private String url = "#";
     private String noRowText;
     private String noRowTextKey;
@@ -45,9 +45,12 @@ public class GridTag extends AbstractSimpleTagSupport {
 	    div.add(divTitle());
 	}
 	
-	Boolean hasData = !CollectionUtils.isEmpty(data);
+	
+	Collection<Object> dataSet = dataSet();
+	
+	Boolean hasData = !CollectionUtils.isEmpty(dataSet);
 	if(hasData) {
-	    checkForDataSetExceed(data);
+	    checkForDataSetExceed(dataSet);
 	}
 	
 	Element firstRow = ElementCreator.newDiv()
@@ -94,12 +97,25 @@ public class GridTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newTable().attribute(Attribute.CLASS, "table table-striped table-hover table-light")
 		.add(bodyContent());
     }
-
-    public Collection<Object> getData() {
-	return data;
+    
+    @SuppressWarnings("unchecked")
+    public Collection<Object> dataSet() {
+	if(data instanceof Collection) {
+	    return (Collection<Object>) data;
+	} else {
+	    return Arrays.asList(data);
+	}
     }
 
+    public Object getData() {
+	return data;
+    }
+    
     public void setData(Collection<Object> data) {
+	this.data = data;
+    }
+
+    public void setData(Object data) {
 	this.data = data;
     }
 
