@@ -6,6 +6,18 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.listgroup.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates whether the component should be flushable removing bottom borders. Default : false</description>
+			<name>flushable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered to horizontal disposition. Default : false</description>
+			<name>horizontal</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>

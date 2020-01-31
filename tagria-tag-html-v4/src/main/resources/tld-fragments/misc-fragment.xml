@@ -1,6 +1,17 @@
 <fragment>
 
 	<tag>
+		<description>Renders an float print button</description>
+		<display-name>Misc</display-name>
+		<name>print</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.PrintTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:print/&gt;
+		</example>
+	</tag>
+
+	<tag>
 		<description>Renders an overlay block interation</description>
 		<display-name>Misc</display-name>
 		<name>overlay</name>
