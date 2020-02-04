@@ -23,6 +23,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
     private Boolean required = Boolean.FALSE;
     private Boolean fixed = Boolean.FALSE;
     private Boolean searchable = Boolean.FALSE;
+    private Boolean disabled = Boolean.FALSE;
 
     @Override
     public Element render() {
@@ -66,9 +67,13 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
 		.attribute(Attribute.ARIA_LABEL, "select").attribute(Attribute.NAME, name).add(option());
 	if (required) {
-	    select.attribute(Attribute.CLASS, "form-required");
-	    select.attribute(Attribute.REQUIRED, "required");
+	    select.attribute(Attribute.CLASS, "form-required").attribute(Attribute.REQUIRED, "required");
 	}
+
+	if (disabled) {
+	    select.attribute(Attribute.DISABLED, "disabled").attribute(Attribute.CLASS, "disabled");
+	}
+
 	select.attribute(Attribute.CLASS, "select form-control ");
 
 	if (!StringUtils.isEmpty(cssClass)) {
@@ -131,9 +136,8 @@ public class SelectTag extends AbstractSimpleTagSupport {
     }
 
     private Element button() {
-	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid())
-			.attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
-		.add(spanTimes());
+	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid()).attribute(Attribute.CLASS, "close")
+		.attribute(Attribute.DATA_DISMISS, "modal").add(spanTimes());
     }
 
     private Element spanTimes() {
@@ -176,6 +180,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
     public void setValue(String value) {
 	this.value = value;
+    }
+
+    public Boolean getDisabled() {
+	return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+	this.disabled = disabled;
     }
 
     public String getVar() {
