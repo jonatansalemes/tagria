@@ -30,7 +30,7 @@ public class OptionTag extends AbstractSimpleTagSupport {
 		String selectValue = selectTag.getValue();
 		if(!StringUtils.isEmpty(selectValue)) {
 			return value.equals(selectTag.getValue()) || (selectTag.getRequired()
-					&& !CollectionUtils.isEmpty(selectTag.getData()) && selectTag.getData().size() == 1);
+					&& !CollectionUtils.isEmpty(dataSet(selectTag.getData())) && dataSet(selectTag.getData()).size() == 1);
 		}
 		return false;
 	}

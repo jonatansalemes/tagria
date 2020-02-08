@@ -158,10 +158,22 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     public Element render() {
 	return ElementCreator.newNull();
     }
+    
+    @SuppressWarnings("unchecked")
+    public Collection<Object> dataSet(Object dataSet) {
+	if (dataSet != null) {
+	    if (dataSet instanceof Collection) {
+		return (Collection<Object>) dataSet;
+	    } else {
+		return Arrays.asList(dataSet);
+	    }
+	}
+	return null;
+    }
 
     public void checkForDataSetExceed(Collection<Object> data) {
 	Long componentDataSetThreshold = xml().getWarning().getComponentDataSetThreshold();
-	if (data.size() > componentDataSetThreshold) {
+	if (!CollectionUtils.isEmpty(data) && data.size() > componentDataSetThreshold) {
 	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
 	}
     }

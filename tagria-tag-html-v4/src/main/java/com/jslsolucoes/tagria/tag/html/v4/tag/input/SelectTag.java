@@ -15,7 +15,7 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 @SuppressWarnings("rawtypes")
 public class SelectTag extends AbstractSimpleTagSupport {
 
-    private Collection<Object> data;
+    private Object data;
     private Map map;
     private String name;
     private String value;
@@ -83,9 +83,12 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	if (fixed) {
 	    select.add(bodyContent());
 	}
-	if (!CollectionUtils.isEmpty(data)) {
-	    checkForDataSetExceed(data);
-	    for (Object item : data) {
+	
+	 Collection<Object> dataSet = dataSet(data);
+	
+	if (!CollectionUtils.isEmpty(dataSet)) {
+	    checkForDataSetExceed(dataSet);
+	    for (Object item : dataSet) {
 		setAttribute(var, item);
 		select.add(bodyContent());
 	    }
@@ -158,10 +161,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog").add(divModalContent());
     }
 
-    public Collection<Object> getData() {
+    public Object getData() {
 	return data;
     }
 
+    public void setData(Object data) {
+	this.data = data;
+    }
+    
     public void setData(Collection<Object> data) {
 	this.data = data;
     }

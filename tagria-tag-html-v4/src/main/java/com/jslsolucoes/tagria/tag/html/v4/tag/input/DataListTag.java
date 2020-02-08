@@ -10,70 +10,76 @@ import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+
 @SuppressWarnings("rawtypes")
 public class DataListTag extends AbstractSimpleTagSupport {
 
-	private Collection<Object> data;
-	private Map map;
-	private String var;
-	private Boolean fixed = Boolean.FALSE;
+    private Object data;
+    private Map map;
+    private String var;
+    private Boolean fixed = Boolean.FALSE;
 
-	@Override
-	public Element render() {
-		return dataList();
-	}
+    @Override
+    public Element render() {
+	return dataList();
+    }
 
-	private Element dataList() {
-		Element dataList = ElementCreator.newDataList().attribute(Attribute.ID, idForId(id));
-		if (fixed) {
-			dataList.add(bodyContent());
-		} else if (!CollectionUtils.isEmpty(data)) {
-		    	checkForDataSetExceed(data);
-			for (Object item : data) {
-				setAttribute(var, item);
-				dataList.add(bodyContent());
-			}
-			setAttribute(var, null);
-		} else if (map != null) {
-			for (Object entry : map.entrySet()) {
-				setAttribute(var, entry);
-				dataList.add(bodyContent());
-			}
-			setAttribute(var, null);
-		}
-		return dataList;
+    private Element dataList() {
+	Element dataList = ElementCreator.newDataList().attribute(Attribute.ID, idForId(id));
+	Collection<Object> dataSet = dataSet(data);
+	if (fixed) {
+	    dataList.add(bodyContent());
+	} else if (!CollectionUtils.isEmpty(dataSet)) {
+	    checkForDataSetExceed(dataSet);
+	    for (Object item : dataSet) {
+		setAttribute(var, item);
+		dataList.add(bodyContent());
+	    }
+	    setAttribute(var, null);
+	} else if (map != null) {
+	    for (Object entry : map.entrySet()) {
+		setAttribute(var, entry);
+		dataList.add(bodyContent());
+	    }
+	    setAttribute(var, null);
 	}
+	return dataList;
+    }
 
-	public Collection<Object> getData() {
-		return data;
-	}
+    public Object getData() {
+	return data;
+    }
 
-	public void setData(Collection<Object> data) {
-		this.data = data;
-	}
+    public void setData(Object data) {
+	this.data = data;
+    }
 
-	public Map getMap() {
-		return map;
-	}
+    public void setData(Collection<Object> data) {
+	this.data = data;
+    }
 
-	public void setMap(Map map) {
-		this.map = map;
-	}
+    public Map getMap() {
+	return map;
+    }
 
-	public String getVar() {
-		return var;
-	}
+    public void setMap(Map map) {
+	this.map = map;
+    }
 
-	public void setVar(String var) {
-		this.var = var;
-	}
+    public String getVar() {
+	return var;
+    }
 
-	public Boolean getFixed() {
-		return fixed;
-	}
+    public void setVar(String var) {
+	this.var = var;
+    }
 
-	public void setFixed(Boolean fixed) {
-		this.fixed = fixed;
-	}
+    public Boolean getFixed() {
+	return fixed;
+    }
+
+    public void setFixed(Boolean fixed) {
+	this.fixed = fixed;
+    }
 
 }

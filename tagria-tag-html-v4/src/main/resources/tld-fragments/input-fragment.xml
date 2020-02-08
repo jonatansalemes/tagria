@@ -187,10 +187,10 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the collection to be iterated in component</description>
+			<description>It indicates the collection to be iterated by the component. Single objects is converted to Collection using immutable Arrays.asList(...)</description>
 			<name>data</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Collection</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the map to be iterated in component</description>
@@ -268,10 +268,10 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the collection to be iterated in component</description>
+			<description>It indicates the collection to be iterated by the component. Single objects is converted to Collection using immutable Arrays.asList(...)</description>
 			<name>data</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Collection</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the map to be iterated in component</description>

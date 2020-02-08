@@ -20,7 +20,7 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 
     private Element tbody() {
 	GridTag gridTag = findAncestorWithClass(GridTag.class);
-	Collection<Object> data = gridTag.dataSet();
+	Collection<Object> data = dataSet(gridTag.getData());
 	String var = gridTag.getVar();
 	String varStatus = gridTag.getVarStatus();
 	String noRowText = gridTag.getNoRowText();
