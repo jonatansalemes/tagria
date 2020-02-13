@@ -29,7 +29,7 @@ public class DocGenerator {
 	Map<String, List<Tag>> groupments = new HashMap<>();
 
 	List<Tag> tags = new ArrayList<Tag>();
-	List<String> resources = Arrays.asList("html.tld", "ajax.tld", "auth.tld");
+	List<String> resources = Arrays.asList("html.tld", "ajax.tld", "security.tld");
 	JAXBContext jaxbContext = JAXBContext.newInstance(Taglib.class);
 	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 	for (String resource : resources) {

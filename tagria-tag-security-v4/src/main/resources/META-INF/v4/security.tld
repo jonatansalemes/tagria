@@ -4,17 +4,17 @@
 http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	version="2.0">
 
-	<description>Tagria Auth library</description>
-	<display-name>Tagria Auth</display-name>
+	<description>Tagria Security library</description>
+	<display-name>Tagria Security</display-name>
 	<tlib-version>4.0</tlib-version>
-	<short-name>auth</short-name>
-	<uri>http://v4.tagria.jslsolucoes.com/tags/auth</uri>
+	<short-name>security</short-name>
+	<uri>http://v4.tagria.jslsolucoes.com/tags/security</uri>
 	
 	<tag>
 		<description>Renders an auth integration checking for existent rule</description>
-		<display-name>Auth</display-name>
-		<name>rule</name>
-		<tag-class>com.jslsolucoes.tagria.tag.auth.v4.tag.AuthRuleTag</tag-class>
+		<display-name>Security</display-name>
+		<name>authorize</name>
+		<tag-class>com.jslsolucoes.tagria.tag.security.v4.tag.AuthorizeTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the uri to be checked on integration</description>
@@ -36,9 +36,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-				 &lt;auth:rule uri="/my/uri" httpMethod="GET"&gt;
+				 &lt;security:authorize uri="/my/uri" httpMethod="GET"&gt;
 			     	&lt;html:input name="input1" value="Valor 0"/&gt;
-			     &lt;/auth:rule&gt;
+			     &lt;/security:authorize&gt;
 		</example>
 	</tag>
 	

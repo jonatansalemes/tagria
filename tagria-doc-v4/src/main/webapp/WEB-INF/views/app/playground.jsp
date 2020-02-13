@@ -207,10 +207,10 @@
 	</html:jsCode>
 
 
-	<auth:rule uri="/pessoa3" httpMethod="get">
+	<security:authorize uri="/pessoa3" httpMethod="get">
 		<html:button label="This button will not render" icon="search"
 			id="btn3" url="/pessoa" />
-	</auth:rule>
+	</security:authorize>
 
 	<html:input name="ipt1" formatter="cpf" value="${ cpf }" />
 	

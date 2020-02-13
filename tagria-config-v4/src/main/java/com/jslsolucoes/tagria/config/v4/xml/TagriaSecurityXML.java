@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "auth")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaAuthXML {
+public class TagriaSecurityXML {
 
     @XmlElement(name="class")
-    private String clazz = "com.jslsolucoes.tagria.tag.auth.v4.DefaultAuthorizer";
+    private String clazz = "com.jslsolucoes.tagria.tag.security.v4.DefaultAuthorizer";
 
     public String getClazz() {
 	return clazz;

@@ -35,7 +35,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
-			<artifactId>tagria-tag-auth-v4</artifactId>
+			<artifactId>tagria-tag-security-v4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		

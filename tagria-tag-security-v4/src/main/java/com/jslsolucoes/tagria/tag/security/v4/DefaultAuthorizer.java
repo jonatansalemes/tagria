@@ -1,4 +1,4 @@
-package com.jslsolucoes.tagria.tag.auth.v4;
+package com.jslsolucoes.tagria.tag.security.v4;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
