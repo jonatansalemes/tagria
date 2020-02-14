@@ -1,25 +1,12 @@
 language: java
 sudo: false
 install: true
-
-addons:
-    sonarcloud:
-        organization: "jslsolucoes-github"
-        branches:
-            - develop
-            - master
-        token:
-            secure: "ZbNWhOjTrL/rcK+1LjIEtblOxta9j15ya5Soy8LRIwE/oUJzNRCIuZTIL42RvXwEGkNUSoY99xJ70ZFqa0y8G8AGzR1py9/um/PCgnCDRvtc+L83+nlgf5Z0t59F/Kyj7O6uKXvM2aodGp6R+JZ5z/CqNUrsImhJ5FN/Q4xi1xwJ521BfZKdkXTNFgN2PCVYOf1Ihb3KI71zc+pUNRlMNv11h4qZxMidalEoCsBNmbGMAQYGuzqW0ONafu7mb7qK3yaBO81ZvOjikQF8UFNSp7CVaLBhDd7ZL4GuixXKkFHrJtH+u/wOKuxpH+DCBhvsJVKgC7w6IPXIyBWRM6iQz2eC0jdXxhiOT4BapvMZSkN1yFnzzpptWVD+msJ+MG0VgcUXoJaFLFBfSrL/WFF5c02lc0/WecEmTPH8HDvYhcwL6Cm9SRlCSsShIUWARPm6+RRsSku7uNlUksr5dLHeUhDSQwsepI0HBW7V2m/sW46NqyL3BUrN8uIhMksjT5015PHPpJAhQ6oAz6sXFl38LoKH3ics1KnYIfYn2I75c0CHwzRMq2QGfHYnm3dcVMyfxp93ECKQDRjTO3hEHM+qzJ2N5QXXlILGQKOSZE1DgOmGyfzTAmokOZPsg+fV2VAs0IU5WSqtMTiJoTzR6y3qTSxC5mhM78eyzbGbk83eCNI="
-
 jdk:
   - openjdk8
-
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
-
+  - mvn clean install
 cache:
   directories:
     - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
 
   
