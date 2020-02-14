@@ -51,6 +51,14 @@ public class AppController {
 	this.models.put("cpf", 7137389090L);
     }
 
+    @GET
+    @Path("benchmark")
+    @View("app/benchmark.jsp")
+    @Controller
+    public void benchmark() {
+	
+    }
+
     @POST
     @Path("autoComplete")
     @View("app/autoComplete.jsp")
