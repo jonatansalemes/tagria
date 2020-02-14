@@ -19,6 +19,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,15 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     public Authorizer authorizer() {
 	return cache.get("authorizer",() -> createAuthorizer(), Authorizer.class);
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Element> cacheds(String key,Supplier<List> elementSupplier) {
+	return cache.get("elements:" + key,elementSupplier, List.class);
+    }
+    
+    public Element cached(String key,Supplier<Element> elementSupplier) {
+	return cache.get("element:" + key,elementSupplier, Element.class);
     }
 
     private Authorizer createAuthorizer() {

@@ -164,7 +164,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element templateComment() {
-	return ElementCreator.newCData("<!-- template -->");
+	return cached("templateComment", () -> ElementCreator.newCData("<!-- template -->"));
     }
 
     private Element divRoot() {
@@ -185,12 +185,12 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element favicon() {
-	return ElementCreator.newLink().attribute(Attribute.REL, "icon").attribute(Attribute.TYPE, "image/x-icon")
-		.attribute(Attribute.HREF, pathForUrl("/favicon.ico"));
+	return cached("favicon", () -> ElementCreator.newLink().attribute(Attribute.REL, "icon").attribute(Attribute.TYPE, "image/x-icon")
+		.attribute(Attribute.HREF, pathForUrl("/favicon.ico")));
     }
 
     private Element noScript() {
-	return ElementCreator.newNoScript().add(keyForLibrary("app.no.script"));
+	return cached("noScript", () -> ElementCreator.newNoScript().add(keyForLibrary("app.no.script")));
     }
 
     private Element metaDescription() {
@@ -199,13 +199,13 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element metaViewPort() {
-	return ElementCreator.newMeta().attribute(Attribute.NAME, "viewport").attribute(Attribute.CONTENT,
-		"width=device-width, initial-scale=1");
+	return cached("metaViewPort", () -> ElementCreator.newMeta().attribute(Attribute.NAME, "viewport").attribute(Attribute.CONTENT,
+		"width=device-width, initial-scale=1"));
     }
 
     private Element metaContentType() {
-	return ElementCreator.newMeta().attribute(Attribute.HTTP_EQUIV, "content-type").attribute(Attribute.CONTENT,
-		"text/html;charset=" + encoding());
+	return cached("metaContentType", () -> ElementCreator.newMeta().attribute(Attribute.HTTP_EQUIV, "content-type").attribute(Attribute.CONTENT,
+		"text/html;charset=" + encoding()));
     }
 
     private String minifyCss(String cssCode) {
@@ -252,7 +252,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element antiCorruptionLayer() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "anti-corruption-layer");
+	return cached("antiCorruptionLayer", () -> ElementCreator.newDiv().attribute(Attribute.CLASS, "anti-corruption-layer"));
     }
 
     private Element dropBackLayerLoading() {
@@ -271,7 +271,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element dropBackLayer() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "drop-back-layer").add(dropBackLayerLoading());
+	return cached("dropBackLayer", () -> ElementCreator.newDiv().attribute(Attribute.CLASS, "drop-back-layer").add(dropBackLayerLoading()));
     }
 
     private List<Element> appJsScriptsForImport() {
@@ -294,8 +294,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private Element dropBackLayerInlineCss() {
-	String content = ".drop-back-layer{position:fixed;top:0;left:0;z-index:2000;background-color:#fff;width:100%;height:100%}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}@-webkit-keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}@keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}.spinner-grow{display:inline-block;width:2rem;height:2rem;vertical-align:text-bottom;background-color:currentColor;border-radius:50%;opacity:0;-webkit-animation:spinner-grow .75s linear infinite;animation:spinner-grow .75s linear infinite}.spinner-grow-sm{width:1rem;height:1rem}.text-primary{color:#007bff!important}.d-flex{display:-ms-flexbox!important;display:flex!important}.w-100{width:100%!important}.h-100{height:100%!important}.align-items-center{-ms-flex-align:center!important;align-items:center!important}.justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}";
-	return ElementCreator.newStyle().add(content);
+	return cached("dropBackLayerInlineCss", () -> ElementCreator.newStyle().add(".drop-back-layer{position:fixed;top:0;left:0;z-index:2000;background-color:#fff;width:100%;height:100%}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}@-webkit-keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}@keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}.spinner-grow{display:inline-block;width:2rem;height:2rem;vertical-align:text-bottom;background-color:currentColor;border-radius:50%;opacity:0;-webkit-animation:spinner-grow .75s linear infinite;animation:spinner-grow .75s linear infinite}.spinner-grow-sm{width:1rem;height:1rem}.text-primary{color:#007bff!important}.d-flex{display:-ms-flexbox!important;display:flex!important}.w-100{width:100%!important}.h-100{height:100%!important}.align-items-center{-ms-flex-align:center!important;align-items:center!important}.justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}"));
     }
 
     private String cssScripts() {
@@ -307,15 +306,15 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> tagriaJsScriptsForImport() {
-	return Arrays
+	return cacheds("tagriaJsScriptsForImport", () -> Arrays
 		.asList(pathForJavascriptOnLibrary("tagria-ui.js"),
 			pathForUrl("https://www.google.com/recaptcha/api.js?hl=" + lang()))
-		.stream().map(jsScriptForImport -> script(jsScriptForImport)).collect(Collectors.toList());
+		.stream().map(jsScriptForImport -> script(jsScriptForImport)).collect(Collectors.toList()));
     }
 
     private List<Element> tagriaCssScriptsForImport() {
-	return Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream()
-		.map(cssScriptForImport -> style(cssScriptForImport)).collect(Collectors.toList());
+	return cacheds("tagriaCssScriptsForImport", () -> Arrays.asList(pathForCssOnLibrary("tagria-ui.css")).stream()
+		.map(cssScriptForImport -> style(cssScriptForImport)).collect(Collectors.toList()));
     }
 
     private List<Element> tagriaJs() {
