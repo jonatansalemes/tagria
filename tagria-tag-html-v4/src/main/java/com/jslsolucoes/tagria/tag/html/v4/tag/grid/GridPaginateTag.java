@@ -19,15 +19,15 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     }
 
     private Element divPaginate() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center")
-		.add(divDisplay())
-		.add(secondColumn());
+	return ElementCreator.newDiv()
+		.attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center")
+		.add(divDisplay()).add(secondColumn());
     }
-    
+
     private Element secondColumn() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center")
-		.add(divDropdown())
-		.add(divNavigation());
+	return ElementCreator.newDiv()
+		.attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center")
+		.add(divDropdown()).add(divNavigation());
     }
 
     private Element divDropdown() {

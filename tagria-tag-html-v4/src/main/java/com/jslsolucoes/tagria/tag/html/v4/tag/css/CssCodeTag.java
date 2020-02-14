@@ -5,8 +5,8 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class CssCodeTag extends AbstractSimpleTagSupport {
 
-	@Override
-	public void renderOnVoid() {
-		appendCssCode(bodyContent());
-	}
+    @Override
+    public void renderOnVoid() {
+	appendCssCode(bodyContent());
+    }
 }

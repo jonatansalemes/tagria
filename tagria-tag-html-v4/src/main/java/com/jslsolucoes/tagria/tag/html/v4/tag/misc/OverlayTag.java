@@ -16,8 +16,8 @@ public class OverlayTag extends AbstractSimpleTagSupport {
     }
 
     private Element overlay() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "overlay p-2");	
-	if(enabled) {
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "overlay p-2");
+	if (enabled) {
 	    div.add(overlayLayer());
 	}
 	return div.add(bodyContent());

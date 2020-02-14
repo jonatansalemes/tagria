@@ -9,11 +9,11 @@ public class AnimateTag extends AbstractSimpleTagSupport {
     private String attachToSelector;
     private String animation;
     private Integer delay = 0;
-    
+
     @Override
     public void renderOnVoid() {
 	String selector = attachTo(attachToSelector, attachTo);
-	appendJsCode("$('" + selector + "').addClass('animated "+animation+ " " + "delay-" + delay + "s');");
+	appendJsCode("$('" + selector + "').addClass('animated " + animation + " " + "delay-" + delay + "s');");
     }
 
     public String getAttachTo() {

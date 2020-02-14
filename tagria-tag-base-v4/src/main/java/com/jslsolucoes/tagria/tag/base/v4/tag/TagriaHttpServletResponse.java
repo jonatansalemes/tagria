@@ -11,7 +11,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-public class TagriaHttpServletResponse implements HttpServletResponse,AutoCloseable {
+public class TagriaHttpServletResponse implements HttpServletResponse, AutoCloseable {
 
     private HttpServletResponse httpServletResponse;
     private OutputStream outputStream;

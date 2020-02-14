@@ -13,20 +13,16 @@ public class PrintTag extends AbstractSimpleTagSupport {
     public Element render() {
 	String id = id();
 	Element div = div(id);
-	appendJsCode("$('#"+id+"').click(function(){window.print();});");
+	appendJsCode("$('#" + id + "').click(function(){window.print();});");
 	return div;
     }
 
     private Element div(String id) {
-	return ElementCreator.newDiv()
-		.attribute(Attribute.CLASS, "print-button")
-		.add(button(id));
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "print-button").add(button(id));
     }
 
     private Element button(String id) {
-	return ElementCreator.newButton()
-		.attribute(Attribute.ID,id)
-		.attribute(Attribute.CLASS, "btn btn-secondary")
+	return ElementCreator.newButton().attribute(Attribute.ID, id).attribute(Attribute.CLASS, "btn btn-secondary")
 		.attribute(Attribute.TITLE, keyForLibrary("misc.print.page"))
 		.add(new Span().attribute(Attribute.CLASS, "fa fa-print"));
     }

@@ -15,7 +15,7 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 @SuppressWarnings("rawtypes")
 public class SelectTag extends AbstractSimpleTagSupport {
 
-    private Collection<Object> data;
+    private Object data;
     private Map map;
     private String name;
     private String value;
@@ -23,6 +23,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
     private Boolean required = Boolean.FALSE;
     private Boolean fixed = Boolean.FALSE;
     private Boolean searchable = Boolean.FALSE;
+    private Boolean disabled = Boolean.FALSE;
 
     @Override
     public Element render() {
@@ -66,9 +67,13 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
 		.attribute(Attribute.ARIA_LABEL, "select").attribute(Attribute.NAME, name).add(option());
 	if (required) {
-	    select.attribute(Attribute.CLASS, "form-required");
-	    select.attribute(Attribute.REQUIRED, "required");
+	    select.attribute(Attribute.CLASS, "form-required").attribute(Attribute.REQUIRED, "required");
 	}
+
+	if (disabled) {
+	    select.attribute(Attribute.DISABLED, "disabled").attribute(Attribute.CLASS, "disabled");
+	}
+
 	select.attribute(Attribute.CLASS, "select form-control ");
 
 	if (!StringUtils.isEmpty(cssClass)) {
@@ -78,9 +83,12 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	if (fixed) {
 	    select.add(bodyContent());
 	}
-	if (!CollectionUtils.isEmpty(data)) {
-	    checkForDataSetExceed(data);
-	    for (Object item : data) {
+
+	Collection<Object> dataSet = dataSet(data);
+
+	if (!CollectionUtils.isEmpty(dataSet)) {
+	    checkForDataSetExceed(dataSet);
+	    for (Object item : dataSet) {
 		setAttribute(var, item);
 		select.add(bodyContent());
 	    }
@@ -131,9 +139,8 @@ public class SelectTag extends AbstractSimpleTagSupport {
     }
 
     private Element button() {
-	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid())
-			.attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
-		.add(spanTimes());
+	return ElementCreator.newA().attribute(Attribute.HREF, javascriptForVoid()).attribute(Attribute.CLASS, "close")
+		.attribute(Attribute.DATA_DISMISS, "modal").add(spanTimes());
     }
 
     private Element spanTimes() {
@@ -154,8 +161,12 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog").add(divModalContent());
     }
 
-    public Collection<Object> getData() {
+    public Object getData() {
 	return data;
+    }
+
+    public void setData(Object data) {
+	this.data = data;
     }
 
     public void setData(Collection<Object> data) {
@@ -176,6 +187,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
     public void setValue(String value) {
 	this.value = value;
+    }
+
+    public Boolean getDisabled() {
+	return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+	this.disabled = disabled;
     }
 
     public String getVar() {

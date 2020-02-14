@@ -98,7 +98,7 @@ Create an jsp for example index.jsp and import directives
 &lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/html" prefix="html"%&gt;
 &lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/ajax" prefix="ajax"%&gt;
 &lt;%@ taglib  uri="http://v4.tagria.jslsolucoes.com/tags/x" prefix="x"%&gt;
-&lt;%@ taglib uri="http://v4.tagria.jslsolucoes.com/tags/auth" prefix="auth"%&gt;
+&lt;%@ taglib uri="http://v4.tagria.jslsolucoes.com/tags/security" prefix="security"%&gt;
 &lt;html:view title="My title"&gt;
 	&lt;html:alert state="info"&gt;
 		My firts view	
@@ -134,9 +134,9 @@ Some configuration can be change by creating an tagrialib.xml file in source fol
 		&lt;encoding&gt;UTF-8&lt;/encoding&gt;
 		&lt;skin&gt;default&lt;/skin&gt;
 		&lt;locale&gt;en&lt;/locale&gt;
-		&lt;auth&gt;
-			&lt;class&gt;com.package.YourAuthorizerThatImplementsAuthorizerInterface&lt;/class&gt;
-		&lt;/auth&gt;
+		&lt;security&gt;
+			&lt;class&gt;com.package.YourAuthorizerThatImplementsAuthorizerInterface&lt;/class&gt; <!-- implements this interface => com.jslsolucoes.tagria.api.v4.Authorizer -->
+		&lt;/security&gt;
 	&lt;/tagrialib&gt; 
 	</code>
 </pre>

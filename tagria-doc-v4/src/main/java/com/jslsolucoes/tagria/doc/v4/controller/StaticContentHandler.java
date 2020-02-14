@@ -14,13 +14,12 @@ import javax.ws.rs.core.Response.Status;
 @Path("assets")
 public class StaticContentHandler {
 
-    
     private ServletContext servletContext;
-    
+
     public StaticContentHandler() {
-	
+
     }
-    
+
     @Inject
     public StaticContentHandler(ServletContext servletContext) {
 	this.servletContext = servletContext;
@@ -30,6 +29,7 @@ public class StaticContentHandler {
     @Path("{path:.*}")
     public Response Get(@PathParam("path") String path) {
 	InputStream resource = servletContext.getResourceAsStream(String.format("/WEB-INF/assets/%s", path));
-	return Objects.isNull(resource) ? Response.status(Status.NOT_FOUND).build() : Response.ok().entity(resource).build();
+	return Objects.isNull(resource) ? Response.status(Status.NOT_FOUND).build()
+		: Response.ok().entity(resource).build();
     }
 }

@@ -10,10 +10,10 @@ public class BooleanFormatter implements Formatter {
 
     @Override
     public String format(String type, String value, Locale locale) {
-	if(!StringUtils.isEmpty(value)) {
-	    if("1".equals(value) || "true".equals(value)) {
+	if (!StringUtils.isEmpty(value)) {
+	    if ("1".equals(value) || "true".equals(value)) {
 		return "Sim";
-	    } else if("0".equals(value) || "false".equals(value)) {
+	    } else if ("0".equals(value) || "false".equals(value)) {
 		return "Não";
 	    } else {
 		return value;

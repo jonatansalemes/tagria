@@ -4,9 +4,9 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class FormOnBeforeSubmitTag extends AbstractSimpleTagSupport {
 
-	@Override
-	public void renderOnVoid() {
-		findAncestorWithClass(FormTag.class).setOnBeforeSubmit(bodyContent());
-	}
+    @Override
+    public void renderOnVoid() {
+	findAncestorWithClass(FormTag.class).setOnBeforeSubmit(bodyContent());
+    }
 
 }

@@ -13,8 +13,8 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   	</context-param>
 	
 	<servlet>
-		<servlet-name>tagria-v4</servlet-name>
-		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.Tagria</servlet-class>
+		<servlet-name>tagria-servlet-v4</servlet-name>
+		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.TagriaServlet</servlet-class>
 	</servlet>
 	
 	 <servlet-mapping>
@@ -23,8 +23,8 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>tagria-exporter-v4</servlet-name>
-		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.TagriaExporter</servlet-class>
+		<servlet-name>tagria-servlet-exporter-v4</servlet-name>
+		<servlet-class>com.jslsolucoes.tagria.lib.v4.servlet.TagriaServletExporter</servlet-class>
 	</servlet>
 	
 	 <servlet-mapping>

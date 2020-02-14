@@ -18,7 +18,7 @@ import com.jslsolucoes.tagria.tag.html.v4.VarStatus;
 
 public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements CloneableJsAppender {
 
-    private Collection<Object> data;
+    private Object data;
     private String var;
     private String label;
     private String labelKey;
@@ -49,8 +49,9 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
     private Element divContent() {
 	Element content = ElementCreator.newDiv().attribute(Attribute.CLASS, "fg-content");
-	if (!CollectionUtils.isEmpty(data)) {
-	    for (Object object : data) {
+	Collection<Object> dataSet = dataSet(data);
+	if (!CollectionUtils.isEmpty(dataSet)) {
+	    for (Object object : dataSet) {
 		setAttribute(var, object);
 		if (!StringUtils.isEmpty(varStatus)) {
 		    setAttribute(varStatus, varStatusObject);
@@ -152,8 +153,12 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	this.label = label;
     }
 
-    public Collection<Object> getData() {
+    public Object getData() {
 	return data;
+    }
+
+    public void setData(Object data) {
+	this.data = data;
     }
 
     public void setData(Collection<Object> data) {

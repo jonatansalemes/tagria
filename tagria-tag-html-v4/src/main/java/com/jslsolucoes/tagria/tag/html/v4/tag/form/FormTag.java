@@ -21,7 +21,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     private Boolean inline = Boolean.FALSE;
     private String onBeforeSubmit;
     private Element toolbar;
-    
+
     @Override
     public Boolean flush() {
 	return true;
@@ -65,14 +65,14 @@ public class FormTag extends AbstractSimpleTagSupport {
 	if (!StringUtils.isEmpty(cssClass)) {
 	    form.attribute(Attribute.CLASS, cssClass);
 	}
-	
+
 	if (!StringUtils.isEmpty(name)) {
 	    form.attribute(Attribute.NAME, name);
 	}
 	if (multipart) {
 	    form.attribute(Attribute.ENCTYPE, "multipart/form-data");
 	}
-	
+
 	if (hasKeyOrLabel(labelKey, label)) {
 	    form.add(divHeader());
 	}
@@ -89,8 +89,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element divFooter() {
-	Element divFooter = ElementCreator.newDiv().attribute(Attribute.CLASS, "my-3")
-		.add(divFooterLine());
+	Element divFooter = ElementCreator.newDiv().attribute(Attribute.CLASS, "my-3").add(divFooterLine());
 	if (toolbar != null) {
 	    divFooter.add(divToolbar());
 	}
@@ -98,7 +97,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element divToolbar() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS,"d-flex justify-content-end").add(toolbar);
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex justify-content-end").add(toolbar);
     }
 
     private Element divFooterLine() {

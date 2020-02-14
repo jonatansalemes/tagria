@@ -7,8 +7,8 @@
 		</template>
 	</templates>
 	<warning>
-		<componentMountTimeThreshold>200</componentMountTimeThreshold>
-		<componentDataSetThreshold>50</componentDataSetThreshold>
+		<componentMountTimeThreshold>1200</componentMountTimeThreshold>
+		<componentDataSetThreshold>300</componentDataSetThreshold>
 	</warning>
 	<formatters>
 		<formatter>
@@ -25,7 +25,7 @@
 	<encoding>UTF-8</encoding>
 	<skin>default</skin>
 	<locale>pt-BR</locale>
-	<auth>
-		<class>com.jslsolucoes.tagria.doc.v4.auth.FalseAuthorizer</class>
-	</auth>
+	<security>
+		<class>com.jslsolucoes.tagria.doc.v4.security.FalseAuthorizer</class>
+	</security>
 </tagrialib> 

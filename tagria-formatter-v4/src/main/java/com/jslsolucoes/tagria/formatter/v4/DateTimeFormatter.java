@@ -11,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DateTimeFormatter implements Formatter {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(DateTimeFormatter.class);
-    
+
     @Override
     public String format(String type, String value, Locale locale) {
 	DateFormat dateFormat = DateFormat.getDateTimeInstance();
@@ -33,10 +33,10 @@ public class DateTimeFormatter implements Formatter {
 
 	for (String cpattern : patterns) {
 	    try {
-		logger.debug("pattern {} match with value {}, formatting ...",cpattern,value);
+		logger.debug("pattern {} match with value {}, formatting ...", cpattern, value);
 		return dateFormat.format(new SimpleDateFormat(cpattern, Locale.ENGLISH).parse(value));
 	    } catch (ParseException pe) {
-		logger.debug("pattern {} does not match with value {}",cpattern,value);
+		logger.debug("pattern {} does not match with value {}", cpattern, value);
 	    }
 	}
 	return value;

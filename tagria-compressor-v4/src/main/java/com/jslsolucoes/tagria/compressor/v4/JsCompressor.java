@@ -8,15 +8,14 @@ import com.google.javascript.jscomp.SourceFile;
 
 public class JsCompressor {
 
-    
     private JsCompressor() {
-	
+
     }
-    
+
     public static JsCompressor newCompressor() {
 	return new JsCompressor();
     }
-    
+
     public String compress(String jsCode) {
 	Compiler compiler = new Compiler();
 	CompilerOptions options = new CompilerOptions();

@@ -12,20 +12,22 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jslsolucoes.tagria.config.v4.TagriaConfig;
-import com.jslsolucoes.tagria.config.v4.xml.TagriaFormatterXML;
+import com.jslsolucoes.tagria.api.v4.cache.Cache;
+import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class DataFormatter {
 
+    private Cache cache = Cache.instance();
     private List<Formatter> formatters;
     private static final Logger logger = LoggerFactory.getLogger(DataFormatter.class);
 
+    @SuppressWarnings("unchecked")
     private DataFormatter() {
-	formatters = formatters();
+	formatters = cache.get("formatters", () -> formatters(), List.class);
     }
 
-    public static DataFormatter newInstance() {
+    public static DataFormatter newDataFormatter() {
 	return new DataFormatter();
     }
 
@@ -41,11 +43,12 @@ public class DataFormatter {
 
     private List<Formatter> customFormatters() {
 	List<Formatter> formatters = new ArrayList<>();
-	List<TagriaFormatterXML> customTagriaFormatters = TagriaConfig.newConfig().xml().getFormatters();
-	if (!CollectionUtils.isEmpty(customTagriaFormatters)) {
-	    for (TagriaFormatterXML tagriaFormatterXML : customTagriaFormatters) {
+	List<com.jslsolucoes.tagria.config.v4.xml.Formatter> customFormatters = ConfigurationParser.newParser().parse()
+		.getFormatters();
+	if (!CollectionUtils.isEmpty(customFormatters)) {
+	    for (com.jslsolucoes.tagria.config.v4.xml.Formatter customFormatter : customFormatters) {
 		try {
-		    formatters.add((Formatter) Class.forName(tagriaFormatterXML.getClazz()).newInstance());
+		    formatters.add((Formatter) Class.forName(customFormatter.getClazz()).newInstance());
 		} catch (Exception e) {
 		    throw new TagriaRuntimeException(e);
 		}
@@ -60,13 +63,13 @@ public class DataFormatter {
 	if (!StringUtils.isEmpty(value)) {
 	    for (Formatter formatter : formatters) {
 		if (formatter.accepts(type)) {
-		    
-		    logger.debug(" type {} accepted by {}, value {}, locale {}",type,formatter,value,locale);
+
+		    logger.debug(" type {} accepted by {}, value {}, locale {}", type, formatter, value, locale);
 		    return formatter.format(type, value.trim(), locale);
 		} else {
-		    logger.debug(" type {} not accepted by {}",type,formatter);
+		    logger.debug(" type {} not accepted by {}", type, formatter);
 		}
-	    } 
+	    }
 	}
 	return value;
     }

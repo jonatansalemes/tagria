@@ -22,10 +22,9 @@ public class JaxRsApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-	return new HashSet<Class<?>>(
-		Arrays.asList(IndexController.class, AppController.class, ComponentController.class,
-			FormUrlEncodedStringMessageBodyReader.class, FormUrlEncodedObjectMessageBodyReader.class,
-			StaticContentHandler.class));
+	return new HashSet<Class<?>>(Arrays.asList(IndexController.class, AppController.class,
+		ComponentController.class, FormUrlEncodedStringMessageBodyReader.class,
+		FormUrlEncodedObjectMessageBodyReader.class, StaticContentHandler.class));
     }
 
     @Override

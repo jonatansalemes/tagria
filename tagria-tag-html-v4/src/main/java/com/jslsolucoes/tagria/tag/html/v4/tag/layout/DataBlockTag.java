@@ -9,11 +9,10 @@ import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
-
 public class DataBlockTag extends AbstractSimpleTagSupport {
 
     private String var;
-    private Collection<Object> data;
+    private Object data;
     private Integer extraSmall;
     private Integer small;
     private Integer medium;
@@ -26,9 +25,10 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 
     private Element div() {
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "row");
-	if (!CollectionUtils.isEmpty(data)) {
-	    checkForDataSetExceed(data);
-	    for (Object object : data) {
+	Collection<Object> dataSet = dataSet(data);
+	if (!CollectionUtils.isEmpty(dataSet)) {
+	    checkForDataSetExceed(dataSet);
+	    for (Object object : dataSet) {
 		setAttribute(var, object);
 		div.add(col());
 	    }
@@ -60,8 +60,12 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 	this.var = var;
     }
 
-    public Collection<Object> getData() {
+    public Object getData() {
 	return data;
+    }
+
+    public void setData(Object data) {
+	this.data = data;
     }
 
     public void setData(Collection<Object> data) {

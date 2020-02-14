@@ -4,9 +4,9 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class MaskOnKeyPressTag extends AbstractSimpleTagSupport {
 
-	@Override
-	public void renderOnVoid() {
-		findAncestorWithClass(MaskTag.class).setOnKeyPress(bodyContent());
-	}
+    @Override
+    public void renderOnVoid() {
+	findAncestorWithClass(MaskTag.class).setOnKeyPress(bodyContent());
+    }
 
 }

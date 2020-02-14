@@ -2,7 +2,14 @@
 <html:view title="Playground">
 
 
-<html:grid var="person" data="${ persons }" label="My grid"
+	<html:select name="s14" disabled="true" fixed="true">
+		<html:option value="1">-1-</html:option>
+		<html:option value="2">-2-</html:option>
+		<html:option value="3">-3-</html:option>
+	</html:select>
+
+
+	<html:grid var="person" data="${ persons }" label="My grid"
 		url="/app/playground/v4">
 
 		<html:gridExport />
@@ -15,7 +22,8 @@
 
 		<html:gridHeader>
 			<html:gridColumn labelKey="app.dev.by" align="left" exportable="true"></html:gridColumn>
-			<html:gridColumn labelKey="grid.column1" align="center" exportable="true"></html:gridColumn>
+			<html:gridColumn labelKey="grid.column1" align="center"
+				exportable="true"></html:gridColumn>
 			<html:gridColumn label="Column 3" align="center"></html:gridColumn>
 		</html:gridHeader>
 		<html:gridBody>
@@ -24,12 +32,11 @@
 				${ person.name }
 			</html:gridColumnData>
 			<html:gridColumnData align="center" exportable="true"
-				cssClass="border border-danger"
-				formatter="boolean">
+				cssClass="border border-danger" formatter="boolean">
 				${ person.likeChocolate }
 			</html:gridColumnData>
-			<html:gridColumnData align="center" 
-				collapsable="true" cssClass="border border-danger">
+			<html:gridColumnData align="center" collapsable="true"
+				cssClass="border border-danger">
 				${ person.cpf }
 			</html:gridColumnData>
 		</html:gridBody>
@@ -37,7 +44,7 @@
 
 
 
-<html:print/>
+	<html:print />
 
 
 	<html:div>
@@ -48,8 +55,8 @@
 		</html:overlay>
 
 		<html:button label="test"></html:button>
-		
-		
+
+
 		<html:overlay>
 			<html:buttonGroup>
 				<html:button label="btn1"></html:button>
@@ -200,10 +207,10 @@
 	</html:jsCode>
 
 
-	<auth:rule uri="/pessoa3" httpMethod="get">
+	<security:authorize uri="/pessoa3" httpMethod="get">
 		<html:button label="This button will not render" icon="search"
 			id="btn3" url="/pessoa" />
-	</auth:rule>
+	</security:authorize>
 
 	<html:input name="ipt1" formatter="cpf" value="${ cpf }" />
 	
@@ -257,7 +264,7 @@
 		styled div ${ descriptions }
 	</html:div>
 
-	
+
 
 
 

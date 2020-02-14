@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -20,6 +19,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,9 +42,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
-import com.jslsolucoes.tagria.config.v4.TagriaConfig;
-import com.jslsolucoes.tagria.config.v4.xml.TagriaCdnXML;
-import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
+import com.jslsolucoes.tagria.api.v4.Authorizer;
+import com.jslsolucoes.tagria.api.v4.Tagria;
+import com.jslsolucoes.tagria.api.v4.cache.Cache;
+import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
+import com.jslsolucoes.tagria.config.v4.xml.Configuration;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.formatter.v4.DataFormatter;
 import com.jslsolucoes.tagria.html.v4.Element;
@@ -61,10 +63,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected String cssClass;
     protected String id;
     private String bodyContent;
-    private static final Map<String, String> templateCaches = new HashMap<String, String>();
+    private Cache cache = Cache.instance();
 
     private String version() {
-	return TagriaConfig.VERSION;
+	return Tagria.VERSION;
     }
 
     private JspWriter writer() {
@@ -75,9 +77,30 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return getJspContext();
     }
 
+    public Authorizer authorizer() {
+	return cache.get("authorizer",() -> createAuthorizer(), Authorizer.class);
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Element> cacheds(String key,Supplier<List> elementSupplier) {
+	return cache.get("elements:" + key,elementSupplier, List.class);
+    }
+    
+    public Element cached(String key,Supplier<Element> elementSupplier) {
+	return cache.get("element:" + key,elementSupplier, Element.class);
+    }
+
+    private Authorizer createAuthorizer() {
+	try {
+	    return (Authorizer) Class.forName(xml().getSecurity().getClazz()).newInstance();
+	} catch (Exception e) {
+	    throw new TagriaRuntimeException(e);
+	}
+    }
+
     public String format(String type, String value) {
 	if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(value)) {
-	    return DataFormatter.newInstance().format(type, value, locale());
+	    return DataFormatter.newDataFormatter().format(type, value, locale());
 	}
 	return value;
     }
@@ -92,43 +115,34 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
 		.getUri();
+	return cache.get("template:" + template,() -> contentOfUri(templateUri), String.class);
+    }
 
-	String contentOfTemplate = templateCaches.get(template);
-	if (StringUtils.isEmpty(contentOfTemplate)) {
-	    logger.debug("Template {} was not found,  asking for it and caching ...",template);
-	    templateCaches.put(template,contentOfTemplate = contentOfUri(templateUri));
-	} else {
-	    logger.debug("Using template {} from cache",template);
-	}
-	return contentOfTemplate;
-    }
-    
     private String contentOfUri(String templateUri) {
-	 try {
-	     	String urlForTemplate = urlFor(templateUri);
-	     	logger.debug("Ask for render url {}",urlForTemplate);
-		URL url = new URL(urlForTemplate);
-		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-		httpCon.setDoOutput(true);
-		httpCon.setRequestMethod("GET");
-		httpCon.connect();
-		try (BufferedReader bufferedReader = new BufferedReader(
-			new InputStreamReader(httpCon.getInputStream()))) {
-		    return bufferedReader.lines().collect(Collectors.joining());
-		}
-	    } catch (Exception e) {
-		throw new TagriaRuntimeException(e);
+	try {
+	    String urlForTemplate = urlFor(templateUri);
+	    logger.debug("Ask for render url {}", urlForTemplate);
+	    URL url = new URL(urlForTemplate);
+	    HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+	    httpCon.setDoOutput(true);
+	    httpCon.setRequestMethod("GET");
+	    httpCon.connect();
+	    try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpCon.getInputStream()))) {
+		return bufferedReader.lines().collect(Collectors.joining());
 	    }
+	} catch (Exception e) {
+	    throw new TagriaRuntimeException(e);
+	}
     }
-    
+
     private String urlFor(String uri) {
 	return httpScheme() + "://" + serverName() + ":" + serverPort() + pathForUrl(uri);
     }
-    
+
     private Integer serverPort() {
 	return httpServletRequest().getServerPort();
     }
-    
+
     private String serverName() {
 	return httpServletRequest().getServerName();
     }
@@ -159,9 +173,21 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return ElementCreator.newNull();
     }
 
+    @SuppressWarnings("unchecked")
+    public Collection<Object> dataSet(Object dataSet) {
+	if (dataSet != null) {
+	    if (dataSet instanceof Collection) {
+		return (Collection<Object>) dataSet;
+	    } else {
+		return Arrays.asList(dataSet);
+	    }
+	}
+	return null;
+    }
+
     public void checkForDataSetExceed(Collection<Object> data) {
 	Long componentDataSetThreshold = xml().getWarning().getComponentDataSetThreshold();
-	if (data.size() > componentDataSetThreshold) {
+	if (!CollectionUtils.isEmpty(data) && data.size() > componentDataSetThreshold) {
 	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
 	}
     }
@@ -329,8 +355,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return locale;
     }
 
-    public TagriaXML xml() {
-	return TagriaConfig.newConfig().xml();
+    public Configuration xml() {
+	return ConfigurationParser.newParser().parse();
     }
 
     public Boolean hasKeyOrLabel(String key, String label) {
@@ -417,8 +443,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String urlBaseForStaticFile() {
-	TagriaCdnXML tagriaCdnXML = xml().getCdn();
-	return tagriaCdnXML.getEnabled() ? httpScheme() + "://" + tagriaCdnXML.getUrl() : contextPath();
+	return xml().getCdn().getEnabled() ? httpScheme() + "://" + xml().getCdn().getUrl() : contextPath();
     }
 
     public String httpScheme() {

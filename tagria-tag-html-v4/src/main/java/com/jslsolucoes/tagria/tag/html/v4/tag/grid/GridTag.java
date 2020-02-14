@@ -38,29 +38,28 @@ public class GridTag extends AbstractSimpleTagSupport {
 
     private Element divGrid() {
 	String id = id();
-	Element div = ElementCreator.newDiv()
-		.attribute(Attribute.CLASS,"d-flex flex-column p-2")
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex flex-column p-2")
 		.attribute(Attribute.ID, id);
 	if (hasKeyOrLabel(labelKey, label)) {
 	    div.add(divTitle());
 	}
-	
-	
-	Collection<Object> dataSet = dataSet();
-	
+
+	Collection<Object> dataSet = dataSet(data);
+
 	Boolean hasData = !CollectionUtils.isEmpty(dataSet);
-	if(hasData) {
+	if (hasData) {
 	    checkForDataSetExceed(dataSet);
 	}
-	
-	Element firstRow = ElementCreator.newDiv()
-			.attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center");
-	
+
+	Element firstRow = ElementCreator.newDiv().attribute(Attribute.CLASS,
+		"d-flex flex-row justify-content-between align-items-center");
+
 	if (toolbar != null) {
 	    firstRow.add(toolbar);
 	}
-	
-	Element firstRowSecondColumn = ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center");
+
+	Element firstRowSecondColumn = ElementCreator.newDiv().attribute(Attribute.CLASS,
+		"d-flex flex-row justify-content-between align-items-center");
 	if (search != null) {
 	    firstRowSecondColumn.add(search);
 	}
@@ -68,10 +67,10 @@ public class GridTag extends AbstractSimpleTagSupport {
 	    firstRowSecondColumn.add(export);
 	}
 	firstRow.add(firstRowSecondColumn);
-	
+
 	div.add(firstRow);
 	div.add(divTable());
-	
+
 	if (paginate != null && hasData) {
 	    div.add(paginate);
 	}
@@ -97,20 +96,11 @@ public class GridTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newTable().attribute(Attribute.CLASS, "table table-striped table-hover table-light")
 		.add(bodyContent());
     }
-    
-    @SuppressWarnings("unchecked")
-    public Collection<Object> dataSet() {
-	if(data instanceof Collection) {
-	    return (Collection<Object>) data;
-	} else {
-	    return Arrays.asList(data);
-	}
-    }
 
     public Object getData() {
 	return data;
     }
-    
+
     public void setData(Collection<Object> data) {
 	this.data = data;
     }

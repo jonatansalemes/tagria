@@ -20,7 +20,7 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 
     private Element tbody() {
 	GridTag gridTag = findAncestorWithClass(GridTag.class);
-	Collection<Object> data = gridTag.dataSet();
+	Collection<Object> data = dataSet(gridTag.getData());
 	String var = gridTag.getVar();
 	String varStatus = gridTag.getVarStatus();
 	String noRowText = gridTag.getNoRowText();
@@ -41,7 +41,7 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 		setAttribute(varStatus, null);
 	    }
 	} else {
-	    tbody.add(tr(noRowTextKey,noRowText));
+	    tbody.add(tr(noRowTextKey, noRowText));
 	}
 	return tbody;
     }
@@ -60,8 +60,5 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 		.add((hasKeyOrLabel(noRowTextKey, noRowText) ? keyOrLabel(noRowTextKey, noRowText)
 			: keyForLibrary("grid.no.row")));
     }
-    
-    
-    
 
 }

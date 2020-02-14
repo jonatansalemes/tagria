@@ -3,8 +3,8 @@ package com.jslsolucoes.tagria.html.v4;
 
 public class Footer extends AbstractElement {
 
-	@Override
-	public String tag() {
-		return "footer";
-	}
+    @Override
+    public String tag() {
+	return "footer";
+    }
 }

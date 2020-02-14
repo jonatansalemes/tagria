@@ -8,12 +8,12 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class ButtonGroupTag extends AbstractSimpleTagSupport {
 
-	@Override
-	public Element render() {
-		return div();
-	}
+    @Override
+    public Element render() {
+	return div();
+    }
 
-	private Element div() {
-		return ElementCreator.newDiv().attribute(Attribute.CLASS, "btn-group").add(bodyContent());
-	}
+    private Element div() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "btn-group").add(bodyContent());
+    }
 }

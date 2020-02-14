@@ -11,8 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Resources;
-import com.jslsolucoes.tagria.config.v4.TagriaConfig;
-import com.jslsolucoes.tagria.config.v4.xml.TagriaXML;
+import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
+import com.jslsolucoes.tagria.config.v4.xml.Configuration;
 import com.jslsolucoes.tagria.lib.v4.handler.ResourceHandler;
 import com.jslsolucoes.tagria.lib.v4.servlet.HttpHeader;
 
@@ -28,19 +28,19 @@ public class ContentResourceHandler implements ResourceHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
-	TagriaXML tagriaXML = tagriaXML();
-	httpServletResponse.setCharacterEncoding(encoding(tagriaXML));
+	httpServletResponse.setCharacterEncoding(encoding());
 	httpServletResponse.setContentType(contentType(httpServletRequest));
 	httpServletResponse.setHeader("Content-Encoding", "gzip");
-	if (cdnIsEnabled(tagriaXML)) {
+	if (cdnIsEnabled()) {
 	    httpServletResponse.setHeader(HttpHeader.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 	}
 	httpServletResponse.setHeader(HttpHeader.ETAG, etag(httpServletRequest));
-	httpServletResponse.setHeader(HttpHeader.CACHE_CONTROL,"public,max-age=" + 31536000);
-	
+	httpServletResponse.setHeader(HttpHeader.CACHE_CONTROL, "public,max-age=" + 31536000);
+
 	String uri = uri(httpServletRequest);
-	String url = "com/jslsolucoes" + uri.replaceFirst(httpServletRequest.getContextPath(), "").replaceAll(";jsessionid=.*", "");
-	
+	String url = "com/jslsolucoes"
+		+ uri.replaceFirst(httpServletRequest.getContextPath(), "").replaceAll(";jsessionid=.*", "");
+
 	try (OutputStream outputStream = new GZIPOutputStream(httpServletResponse.getOutputStream())) {
 	    byte[] resource = Resources.toByteArray(Resources.getResource(url));
 	    httpServletResponse.setContentLength(resource.length);
@@ -55,16 +55,16 @@ public class ContentResourceHandler implements ResourceHandler {
 	return DigestUtils.sha512Hex(httpServletRequest.getRequestURL().toString());
     }
 
-    private boolean cdnIsEnabled(TagriaXML tagriaXML) {
-	return tagriaXML.getCdn().getEnabled();
+    private boolean cdnIsEnabled() {
+	return configuration().getCdn().getEnabled();
     }
 
-    private String encoding(TagriaXML tagriaXML) {
-	return tagriaXML.getEncoding();
+    private String encoding() {
+	return configuration().getEncoding();
     }
 
-    private TagriaXML tagriaXML() {
-	return TagriaConfig.newConfig().xml();
+    private Configuration configuration() {
+	return ConfigurationParser.newParser().parse();
     }
 
     private String uri(HttpServletRequest httpServletRequest) {

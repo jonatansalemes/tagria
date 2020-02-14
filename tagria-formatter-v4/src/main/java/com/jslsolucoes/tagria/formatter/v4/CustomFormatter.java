@@ -3,13 +3,12 @@ package com.jslsolucoes.tagria.formatter.v4;
 import java.util.Locale;
 
 public class CustomFormatter implements Formatter {
-    
-    
+
     private String accepts;
     private String match;
     private String replace;
 
-    public CustomFormatter(String accepts,String match,String replace) {
+    public CustomFormatter(String accepts, String match, String replace) {
 	this.accepts = accepts;
 	this.match = match;
 	this.replace = replace;

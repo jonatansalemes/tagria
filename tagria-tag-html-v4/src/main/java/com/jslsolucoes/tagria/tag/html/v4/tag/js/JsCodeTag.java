@@ -5,8 +5,8 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class JsCodeTag extends AbstractSimpleTagSupport {
 
-	@Override
-	public void renderOnVoid() {
-		appendJsCode(bodyContent());
-	}
+    @Override
+    public void renderOnVoid() {
+	appendJsCode(bodyContent());
+    }
 }
