@@ -4,7 +4,7 @@ install: true
 jdk:
   - openjdk8
 script:
-  - mvn clean install
+  - mvn clean install -Dgpg.skip
 cache:
   directories:
     - '$HOME/.m2/repository'
