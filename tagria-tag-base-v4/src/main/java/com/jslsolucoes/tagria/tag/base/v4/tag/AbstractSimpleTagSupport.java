@@ -77,7 +77,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public Authorizer authorizer() {
-	return cache.get("authorizer", createAuthorizer(), Authorizer.class);
+	return cache.get("authorizer",() -> createAuthorizer(), Authorizer.class);
     }
 
     private Authorizer createAuthorizer() {
@@ -105,7 +105,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
 		.getUri();
-	return cache.get("template:" + template,contentOfUri(templateUri), String.class);
+	return cache.get("template:" + template,() -> contentOfUri(templateUri), String.class);
     }
 
     private String contentOfUri(String templateUri) {

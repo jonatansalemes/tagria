@@ -18,16 +18,17 @@ import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class DataFormatter {
 
-    private static Cache cache = Cache.instance();
+    private Cache cache = Cache.instance();
     private List<Formatter> formatters;
     private static final Logger logger = LoggerFactory.getLogger(DataFormatter.class);
 
+    @SuppressWarnings("unchecked")
     private DataFormatter() {
-	formatters = formatters();
+	formatters = cache.get("formatters", () -> formatters(), List.class);
     }
 
     public static DataFormatter newDataFormatter() {
-	return cache.get("dataFormatter", new DataFormatter(), DataFormatter.class);
+	return new DataFormatter();
     }
 
     private List<Formatter> formatters() {

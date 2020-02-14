@@ -1,7 +1,8 @@
 package com.jslsolucoes.tagria.api.v4.cache;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,7 @@ public class Cache {
 
     private static Logger logger = LoggerFactory.getLogger(Cache.class);
     private static Cache cacheInstance;
-    private Map<String, Object> cache = new HashMap<>();
+    private Map<String, Object> cache = new ConcurrentHashMap<>();
 
     public Cache remove(String key) {
 	logger.debug("Removing key {} from cache", key);
@@ -31,13 +32,13 @@ public class Cache {
     }
 
     @SuppressWarnings("unchecked")
-    public <R> R get(String key, R defaultValue, Class<R> clazz) {
+    public <R> R get(String key, Supplier<R> defaultValue, Class<R> clazz) {
 	Object value = cache.get(key);
 	if (value == null) {
 	    logger.debug("Key {} was not found on cache.", key);
-	    put(key, value = defaultValue);
+	    put(key, value = defaultValue.get());
 	} else {
-	    logger.debug("Key {} was recovery from cache.", key, value);
+	    logger.debug("Key {} was retrieved from cache with value {}.", key, value);
 	}
 	return (R) value;
     }

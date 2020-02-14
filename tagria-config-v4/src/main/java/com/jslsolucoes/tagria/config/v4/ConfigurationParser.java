@@ -14,21 +14,22 @@ import com.jslsolucoes.tagria.config.v4.xml.Configuration;
 public class ConfigurationParser {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationParser.class);
-    private static Cache cache = Cache.instance();
+    private Cache cache = Cache.instance();
 
     private ConfigurationParser() {
 
     }
 
     public static ConfigurationParser newParser() {
-	return cache.get("configurationParser", new ConfigurationParser(), ConfigurationParser.class);
+	return new ConfigurationParser();
     }
 
     public Configuration parse() {
-	return cache.get("configuration", createInstance(), Configuration.class);
+	return cache.get("configuration", () -> createInstance(), Configuration.class);
     }
 
     private Configuration createInstance() {
+	logger.debug("Parsing configuration ...");
 	try {
 	    InputStream props = ConfigurationParser.class.getResourceAsStream("/tagrialib.xml");
 	    JAXBContext jaxbContext = JAXBContext.newInstance(Configuration.class);
