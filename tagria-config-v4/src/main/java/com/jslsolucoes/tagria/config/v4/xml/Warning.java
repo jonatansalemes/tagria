@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Warning {
 
-    private Long componentMountTimeThreshold = 1000L;
+    private Long componentMountTimeThreshold = 1200L;
     private Long componentDataSetThreshold = 300L;
 
     public Long getComponentMountTimeThreshold() {
