@@ -33,7 +33,6 @@ public class Tag {
     @XmlElement(name = "body-content")
     private String bodyContent;
 
-    @XmlElementWrapper(name = "attributes")
     @XmlElement(name = "attribute")
     private List<Attribute> attributes;
 
