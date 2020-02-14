@@ -19,8 +19,8 @@ import com.jslsolucoes.tagria.lib.v4.handler.impl.LocaleResourceHandler;
 import com.jslsolucoes.tagria.lib.v4.handler.impl.CacheableResourceHandler;
 
 @SuppressWarnings("serial")
-@WebServlet(name = "tagria-v4", urlPatterns = "/tagria/v4/*", loadOnStartup = 1)
-public class Tagria extends HttpServlet {
+@WebServlet(name = "tagria-servlet-v4", urlPatterns = "/tagria/v4/*", loadOnStartup = 1)
+public class TagriaServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {

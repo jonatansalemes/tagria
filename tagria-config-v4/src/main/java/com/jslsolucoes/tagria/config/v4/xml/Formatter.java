@@ -5,12 +5,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "auth")
+@XmlRootElement(name = "formatter")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaSecurityXML {
+public class Formatter {
 
-    @XmlElement(name="class")
-    private String clazz = "com.jslsolucoes.tagria.tag.security.v4.DefaultAuthorizer";
+    @XmlElement(name = "class")
+    private String clazz;
 
     public String getClazz() {
 	return clazz;
@@ -19,4 +19,5 @@ public class TagriaSecurityXML {
     public void setClazz(String clazz) {
 	this.clazz = clazz;
     }
+
 }

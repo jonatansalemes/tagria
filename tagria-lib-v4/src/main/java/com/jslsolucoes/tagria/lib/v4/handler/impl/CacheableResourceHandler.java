@@ -14,16 +14,14 @@ public class CacheableResourceHandler implements ResourceHandler {
     @Override
     public Boolean accepts(HttpServletRequest httpServletRequest) {
 	String etag = httpServletRequest.getHeader(HttpHeader.IF_NONE_MATCH);
-	return (!StringUtils.isEmpty(etag)
-		&& etag
-			.equals(etag(httpServletRequest)));
+	return (!StringUtils.isEmpty(etag) && etag.equals(etag(httpServletRequest)));
     }
 
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 	httpServletResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
     }
-    
+
     private String etag(HttpServletRequest httpServletRequest) {
 	return DigestUtils.sha512Hex(httpServletRequest.getRequestURL().toString());
     }

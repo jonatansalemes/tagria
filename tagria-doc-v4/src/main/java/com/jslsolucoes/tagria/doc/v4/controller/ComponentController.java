@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 import com.jslsolucoes.tagria.doc.v4.model.Person;
 import com.jslsolucoes.tagria.doc.v4.repository.PersonRepository;
 
-
 @Path("component")
 public class ComponentController {
 
@@ -32,7 +31,7 @@ public class ComponentController {
     }
 
     @GET
-    @Path("{component}")    
+    @Path("{component}")
     @Controller
     public Response component(@PathParam("component") String component) {
 	List<Person> persons = personRepository.listAll();

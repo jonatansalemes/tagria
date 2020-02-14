@@ -160,7 +160,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     public void setData(Object data) {
 	this.data = data;
     }
-    
+
     public void setData(Collection<Object> data) {
 	this.data = data;
     }

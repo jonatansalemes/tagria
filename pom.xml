@@ -49,6 +49,7 @@
 	</scm>
 
 	<modules>
+		<module>tagria-api-v4</module>
 		<module>tagria-formatter-v4</module>
 		<module>tagria-exception-v4</module>
 		<module>tagria-exporter-v4</module>

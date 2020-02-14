@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "warning")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaWarningXML {
+public class Warning {
 
     private Long componentMountTimeThreshold = 1000L;
     private Long componentDataSetThreshold = 300L;

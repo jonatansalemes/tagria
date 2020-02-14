@@ -31,8 +31,7 @@ public class ConfirmDialogTag extends AbstractSimpleTagSupport {
     }
 
     private Element divModalDialog() {
-	return ElementCreator.newDiv()
-		.attribute(Attribute.CLASS, "modal-dialog modal-dialog-centered modal-" + size)
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-dialog-centered modal-" + size)
 		.add(divModalContent());
     }
 
@@ -142,7 +141,5 @@ public class ConfirmDialogTag extends AbstractSimpleTagSupport {
     public void setSize(String size) {
 	this.size = size;
     }
-
-   
 
 }

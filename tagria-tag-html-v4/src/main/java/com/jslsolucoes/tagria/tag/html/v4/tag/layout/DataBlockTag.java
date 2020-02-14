@@ -9,7 +9,6 @@ import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
-
 public class DataBlockTag extends AbstractSimpleTagSupport {
 
     private String var;
@@ -68,7 +67,7 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
     public void setData(Object data) {
 	this.data = data;
     }
-    
+
     public void setData(Collection<Object> data) {
 	this.data = data;
     }

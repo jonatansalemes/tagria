@@ -4,9 +4,9 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class OnBeforeSendTag extends AbstractSimpleTagSupport {
 
-	@Override
-	public void renderOnVoid() {
-		findAncestorWithClass(FunctionTag.class).setOnBeforeSend(bodyContent());
-	}
+    @Override
+    public void renderOnVoid() {
+	findAncestorWithClass(FunctionTag.class).setOnBeforeSend(bodyContent());
+    }
 
 }

@@ -7,7 +7,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;
 
 public class TagriaServletOutputStream extends ServletOutputStream {
-    
+
     private OutputStream outputStream;
 
     public TagriaServletOutputStream(OutputStream outputStream) {
@@ -21,9 +21,9 @@ public class TagriaServletOutputStream extends ServletOutputStream {
 
     @Override
     public void setWriteListener(WriteListener writeListener) {
-	
+
     }
-    
+
     @Override
     public void flush() throws IOException {
 	this.outputStream.flush();
@@ -33,5 +33,5 @@ public class TagriaServletOutputStream extends ServletOutputStream {
     public void write(int b) throws IOException {
 	this.outputStream.write(b);
     }
-    
+
 }

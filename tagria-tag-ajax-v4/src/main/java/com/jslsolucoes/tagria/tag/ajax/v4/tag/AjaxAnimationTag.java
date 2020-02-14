@@ -17,7 +17,7 @@ public class AjaxAnimationTag extends AbstractSimpleTagSupport {
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "spinner-grow text-primary ajax-loading")
 		.attribute(Attribute.ROLE, "status").add(span());
 	if (!StringUtils.isEmpty(cssClass)) {
-		div.attribute(Attribute.CLASS, cssClass);
+	    div.attribute(Attribute.CLASS, cssClass);
 	}
 	return div;
     }

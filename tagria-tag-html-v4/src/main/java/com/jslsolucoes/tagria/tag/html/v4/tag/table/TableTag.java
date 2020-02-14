@@ -1,84 +1,86 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.table;
+
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+
 public class TableTag extends AbstractSimpleTagSupport {
 
-	private Boolean stripe = Boolean.FALSE;
-	private Boolean dark = Boolean.FALSE;
-	private Boolean hover = Boolean.FALSE;
-	private Boolean small = Boolean.FALSE;
-	private Boolean border = Boolean.FALSE;
+    private Boolean stripe = Boolean.FALSE;
+    private Boolean dark = Boolean.FALSE;
+    private Boolean hover = Boolean.FALSE;
+    private Boolean small = Boolean.FALSE;
+    private Boolean border = Boolean.FALSE;
 
-	@Override
-	public Element render() {
-		return table();
+    @Override
+    public Element render() {
+	return table();
+    }
+
+    public Element table() {
+	Element table = ElementCreator.newTable().attribute(Attribute.CLASS, "table").add(bodyContent());
+	if (stripe) {
+	    table.attribute(Attribute.CLASS, "table-striped");
 	}
 
-	public Element table() {
-		Element table = ElementCreator.newTable().attribute(Attribute.CLASS, "table").add(bodyContent());
-		if (stripe) {
-			table.attribute(Attribute.CLASS, "table-striped");
-		}
-
-		if (dark) {
-			table.attribute(Attribute.CLASS, "table-dark");
-		}
-
-		if (hover) {
-			table.attribute(Attribute.CLASS, "table-hover");
-		}
-
-		if (small) {
-			table.attribute(Attribute.CLASS, "table-sm");
-		}
-
-		if (border) {
-			table.attribute(Attribute.CLASS, "table-bordered");
-		}
-		return table;
+	if (dark) {
+	    table.attribute(Attribute.CLASS, "table-dark");
 	}
 
-	public Boolean getStripe() {
-		return stripe;
+	if (hover) {
+	    table.attribute(Attribute.CLASS, "table-hover");
 	}
 
-	public void setStripe(Boolean stripe) {
-		this.stripe = stripe;
+	if (small) {
+	    table.attribute(Attribute.CLASS, "table-sm");
 	}
 
-	public Boolean getDark() {
-		return dark;
+	if (border) {
+	    table.attribute(Attribute.CLASS, "table-bordered");
 	}
+	return table;
+    }
 
-	public void setDark(Boolean dark) {
-		this.dark = dark;
-	}
+    public Boolean getStripe() {
+	return stripe;
+    }
 
-	public Boolean getHover() {
-		return hover;
-	}
+    public void setStripe(Boolean stripe) {
+	this.stripe = stripe;
+    }
 
-	public void setHover(Boolean hover) {
-		this.hover = hover;
-	}
+    public Boolean getDark() {
+	return dark;
+    }
 
-	public Boolean getSmall() {
-		return small;
-	}
+    public void setDark(Boolean dark) {
+	this.dark = dark;
+    }
 
-	public void setSmall(Boolean small) {
-		this.small = small;
-	}
+    public Boolean getHover() {
+	return hover;
+    }
 
-	public Boolean getBorder() {
-		return border;
-	}
+    public void setHover(Boolean hover) {
+	this.hover = hover;
+    }
 
-	public void setBorder(Boolean border) {
-		this.border = border;
-	}
+    public Boolean getSmall() {
+	return small;
+    }
+
+    public void setSmall(Boolean small) {
+	this.small = small;
+    }
+
+    public Boolean getBorder() {
+	return border;
+    }
+
+    public void setBorder(Boolean border) {
+	this.border = border;
+    }
 
 }

@@ -135,7 +135,7 @@ Some configuration can be change by creating an tagrialib.xml file in source fol
 		&lt;skin&gt;default&lt;/skin&gt;
 		&lt;locale&gt;en&lt;/locale&gt;
 		&lt;security&gt;
-			&lt;class&gt;com.package.YourAuthorizerThatImplementsAuthorizerInterface&lt;/class&gt; <!-- implements this interface com.jslsolucoes.tagria.tag.security.v4.Authorizer -->
+			&lt;class&gt;com.package.YourAuthorizerThatImplementsAuthorizerInterface&lt;/class&gt; <!-- implements this interface => com.jslsolucoes.tagria.api.v4.Authorizer -->
 		&lt;/security&gt;
 	&lt;/tagrialib&gt; 
 	</code>

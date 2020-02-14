@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestScope
 public class AppController {
 
-    
     @GetMapping("/app/another")
     public ModelAndView another() {
 	return new ModelAndView();
@@ -22,15 +21,15 @@ public class AppController {
 
     @GetMapping("/app/playground")
     public ModelAndView playground(Model model) {
-	model.addAttribute("now",LocalDate.now());
+	model.addAttribute("now", LocalDate.now());
 	return new ModelAndView();
     }
-    
+
     @GetMapping("/app/template")
     public ModelAndView template() {
 	return new ModelAndView();
     }
-    
+
     @PostMapping("/app/playground/submit")
     public ModelAndView createOrUpdate(@RequestParam LocalDate myDate) {
 	System.out.println(myDate);

@@ -25,20 +25,18 @@ public class FunctionTag extends AbstractSimpleTagSupport {
     @Override
     public void renderOnVoid() {
 
-	String jsCode = "function "+name+"(){var data = new Array();$.ajax({type:'post',processData:false,dataType:'"
-		+ dataType
+	String jsCode = "function " + name
+		+ "(){var data = new Array();$.ajax({type:'post',processData:false,dataType:'" + dataType
 		+ "',beforeSend: function(jqXHR, settings) {var data = {};for (var property in settings.data) {data[property] = settings.data[property].value;if(settings.data[property].required && settings.data[property].value == ''){return false;}}settings.data = $.param(data);"
 		+ (!StringUtils.isEmpty(onBeforeSend) ? onBeforeSend : "") + "return true;},url: '" + pathForUrl(url)
 		+ "',async:true,data: {"
 		+ data.stream()
-			.map(functionParameter ->"'" + functionParameter.getName() + "':{required:"
-				+ functionParameter.getRequired() + ",value:" + functionParameter.getValue()
-				+ "}")
+			.map(functionParameter -> "'" + functionParameter.getName() + "':{required:"
+				+ functionParameter.getRequired() + ",value:" + functionParameter.getValue() + "}")
 			.collect(Collectors.joining(","))
-		+ "},error:function(jqXHR,textStatus,errorThrown){"
-		+ (!StringUtils.isEmpty(onError) ? onError : "") + "},success:function(data,textStatus,jqXHR){"
-		+ onSuccess.stream().collect(Collectors.joining()) + "}}).done(function(){"
-		+ (!StringUtils.isEmpty(onDone) ? onDone : "") + "});}";
+		+ "},error:function(jqXHR,textStatus,errorThrown){" + (!StringUtils.isEmpty(onError) ? onError : "")
+		+ "},success:function(data,textStatus,jqXHR){" + onSuccess.stream().collect(Collectors.joining())
+		+ "}}).done(function(){" + (!StringUtils.isEmpty(onDone) ? onDone : "") + "});}";
 	appendJsCode(jsCode);
 	if (execute) {
 	    appendJsCode(name + "();");

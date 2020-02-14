@@ -40,8 +40,8 @@ public class DocGenerator {
 
 	for (Tag tag : tags) {
 
-	    System.out.println("Generating doc for tag: "  + tag.getName());
-	    
+	    System.out.println("Generating doc for tag: " + tag.getName());
+
 	    List<Tag> groups = groupments.get(tag.getGroup());
 	    if (groups == null) {
 		groupments.put(tag.getGroup(), new ArrayList<>());

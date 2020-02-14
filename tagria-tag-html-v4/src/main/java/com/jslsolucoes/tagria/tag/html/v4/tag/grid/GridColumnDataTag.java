@@ -47,52 +47,49 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
     }
 
     private Element button(String id) {
-	return ElementCreator.newButton()
-		.attribute(Attribute.DATA_TOGGLE, "modal")
-		.attribute(Attribute.DATA_TARGET, "#"+id)
-		.attribute(Attribute.CLASS, "btn btn-outline-dark ")
+	return ElementCreator.newButton().attribute(Attribute.DATA_TOGGLE, "modal")
+		.attribute(Attribute.DATA_TARGET, "#" + id).attribute(Attribute.CLASS, "btn btn-outline-dark ")
 		.add(new Span().attribute(Attribute.CLASS, "fa fa-search"));
     }
 
     private Element divContent() {
 	return ElementCreator.newDiv().add(format(formatter, bodyContent()));
     }
-    
+
     public Element divModal(String id) {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal fade").attribute(Attribute.ID, id)
-			.add(divModalDialog());
+		.add(divModalDialog());
     }
-    
+
     private Element divModalDialog() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-lg")
-			.add(divModalContent());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog modal-lg").add(divModalContent());
     }
-    
+
     private Element divModalContent() {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-content").add(divModalHeader())
-			.add(divModalBody());
+		.add(divModalBody());
     }
-    
+
     private Element divModalHeader() {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-header").add(h4()).add(button());
     }
-    
+
     private Element divModalBody() {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-body modal-body-scroll").add(divContent());
     }
-    
+
     private Element button() {
 	return ElementCreator.newButton().attribute(Attribute.CLASS, "close").attribute(Attribute.DATA_DISMISS, "modal")
-			.add(spanTimes());
+		.add(spanTimes());
     }
-    
+
     private Element spanTimes() {
-    	return ElementCreator.newSpan().add("&times;");
+	return ElementCreator.newSpan().add("&times;");
     }
-    
+
     private Element h4() {
-    	return ElementCreator.newH4().attribute(Attribute.CLASS, "modal-title")
-    			.add(keyForLibrary("grid.collapsable.show"));
+	return ElementCreator.newH4().attribute(Attribute.CLASS, "modal-title")
+		.add(keyForLibrary("grid.collapsable.show"));
     }
 
     public String getAlign() {

@@ -6,34 +6,34 @@ import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class ImportTag extends AbstractSimpleTagSupport {
 
-	private String type;
-	private String url;
-	
-	@Override
-	public void renderOnVoid() {
-		if ("css".equals(type)) {
-			appendCssScript(url);
-		} else if ("js".equals(type)) {
-			appendJsScript(url);
-		} else {
-			throw new TagriaRuntimeException("Type " + type + " is not supported. Options: js,css");
-		}
-	}
+    private String type;
+    private String url;
 
-	public String getType() {
-		return type;
+    @Override
+    public void renderOnVoid() {
+	if ("css".equals(type)) {
+	    appendCssScript(url);
+	} else if ("js".equals(type)) {
+	    appendJsScript(url);
+	} else {
+	    throw new TagriaRuntimeException("Type " + type + " is not supported. Options: js,css");
 	}
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+	return type;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setType(String type) {
+	this.type = type;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getUrl() {
+	return url;
+    }
+
+    public void setUrl(String url) {
+	this.url = url;
+    }
 
 }

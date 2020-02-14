@@ -50,7 +50,7 @@ public class AppController {
 	this.models.put("myValue", 12345L);
 	this.models.put("cpf", 7137389090L);
     }
-    
+
     @POST
     @Path("autoComplete")
     @View("app/autoComplete.jsp")
@@ -58,21 +58,21 @@ public class AppController {
     public void autoComplete() {
 
     }
-    
+
     @GET
     @Path("home")
     @View("app/home.jsp")
     @Controller
     public void home() {
-	
+
     }
-    
+
     @GET
     @Path("template")
     @View("app/template.jsp")
     @Controller
     public void template() {
-	
+
     }
 
     @POST
@@ -94,6 +94,6 @@ public class AppController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response ajaxList() {
 	return Responses.ok(personRepository.listAll());
-    }  
+    }
 
 }

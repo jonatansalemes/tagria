@@ -23,7 +23,7 @@ public class LinkTag extends AbstractSimpleTagSupport {
 
     private Element a() {
 	Element a = applyDynamicAttributesOn(ElementCreator.newA()).attribute(Attribute.ID, idForId(id))
-		.attribute(Attribute.HREF,href()).attribute(Attribute.TARGET, target);
+		.attribute(Attribute.HREF, href()).attribute(Attribute.TARGET, target);
 	if (hasKeyOrLabel(labelKey, label)) {
 	    a.add(keyOrLabel(labelKey, label));
 	} else {

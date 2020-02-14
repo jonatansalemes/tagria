@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jslsolucoes.tagria.config.v4.TagriaConfig;
+import com.jslsolucoes.tagria.api.v4.Tagria;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class Compressor {
@@ -97,7 +97,8 @@ public class Compressor {
 	for (String theme : themes) {
 
 	    String[] files = new String[] { "common.css", "iframe.css", "bootstrap.css", "bootstrap.fix.css",
-		    "base.css", "animate.css", "fontawesome.css", "bootstrap.extension.css", "sweet.alert.css","link.css","overlay.css","print.css" };
+		    "base.css", "animate.css", "fontawesome.css", "bootstrap.extension.css", "sweet.alert.css",
+		    "link.css", "overlay.css", "print.css" };
 
 	    String content = StringUtils.join(Stream
 		    .concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),
@@ -129,7 +130,7 @@ public class Compressor {
 	    extensions.add("otf");
 	    for (String extension : extensions) {
 		normalized = normalized.replaceAll("\\." + extension + "('|\")",
-			"." + extension + "?ver=" + TagriaConfig.VERSION + "$1");
+			"." + extension + "?ver=" + Tagria.VERSION + "$1");
 	    }
 	    return normalized;
 	} catch (IOException exception) {

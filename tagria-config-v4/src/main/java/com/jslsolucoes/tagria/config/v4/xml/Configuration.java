@@ -11,49 +11,47 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "tagrialib")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaXML {
+public class Configuration {
 
     @XmlElementWrapper(name = "templates")
     @XmlElement(name = "template")
-    private List<TagriaTemplateXML> templates = new ArrayList<>();
+    private List<Template> templates = new ArrayList<>();
 
     @XmlElementWrapper(name = "formatters")
     @XmlElement(name = "formatter")
-    private List<TagriaFormatterXML> formatters = new ArrayList<>();
+    private List<Formatter> formatters = new ArrayList<>();
 
-    private TagriaCdnXML cdn = new TagriaCdnXML();
-    private TagriaSecurityXML security = new TagriaSecurityXML();
+    private Cdn cdn = new Cdn();
+    private Security security = new Security();
     private String encoding = "utf-8";
     private String skin = "default";
     private String locale = "en";
-    
-    private TagriaWarningXML warning = new TagriaWarningXML();
 
-    public List<TagriaTemplateXML> getTemplates() {
+    private Warning warning = new Warning();
+
+    public List<Template> getTemplates() {
 	return templates;
     }
 
-    public void setTemplates(List<TagriaTemplateXML> templates) {
+    public void setTemplates(List<Template> templates) {
 	this.templates = templates;
     }
 
-    public List<TagriaFormatterXML> getFormatters() {
+    public List<Formatter> getFormatters() {
 	return formatters;
     }
 
-    public void setFormatters(List<TagriaFormatterXML> formatters) {
+    public void setFormatters(List<Formatter> formatters) {
 	this.formatters = formatters;
     }
 
-    public TagriaCdnXML getCdn() {
+    public Cdn getCdn() {
 	return cdn;
     }
 
-    public void setCdn(TagriaCdnXML cdn) {
+    public void setCdn(Cdn cdn) {
 	this.cdn = cdn;
     }
-
-    
 
     public String getEncoding() {
 	return encoding;
@@ -79,19 +77,19 @@ public class TagriaXML {
 	this.locale = locale;
     }
 
-    public TagriaWarningXML getWarning() {
+    public Warning getWarning() {
 	return warning;
     }
 
-    public void setWarning(TagriaWarningXML warning) {
+    public void setWarning(Warning warning) {
 	this.warning = warning;
     }
 
-    public TagriaSecurityXML getSecurity() {
+    public Security getSecurity() {
 	return security;
     }
 
-    public void setSecurity(TagriaSecurityXML security) {
+    public void setSecurity(Security security) {
 	this.security = security;
     }
 

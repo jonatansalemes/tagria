@@ -41,7 +41,7 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 		setAttribute(varStatus, null);
 	    }
 	} else {
-	    tbody.add(tr(noRowTextKey,noRowText));
+	    tbody.add(tr(noRowTextKey, noRowText));
 	}
 	return tbody;
     }
@@ -60,8 +60,5 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 		.add((hasKeyOrLabel(noRowTextKey, noRowText) ? keyOrLabel(noRowTextKey, noRowText)
 			: keyForLibrary("grid.no.row")));
     }
-    
-    
-    
 
 }

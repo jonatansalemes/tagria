@@ -6,27 +6,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "cdn")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TagriaCdnXML {
+public class Cdn {
 
     private Boolean enabled = Boolean.FALSE;
-    
+
     private String url;
 
     public Boolean getEnabled() {
-        return enabled;
+	return enabled;
     }
 
     public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+	this.enabled = enabled;
     }
 
     public String getUrl() {
-        return url;
+	return url;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+	this.url = url;
     }
-    
-    
+
 }

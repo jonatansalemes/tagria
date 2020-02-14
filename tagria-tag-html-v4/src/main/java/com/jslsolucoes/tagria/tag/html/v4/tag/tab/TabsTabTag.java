@@ -4,65 +4,68 @@ import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+
 public class TabsTabTag extends AbstractSimpleTagSupport {
-	
-	private String label;
-	private String labelKey;
-	private Boolean active = Boolean.FALSE;
-	private Boolean reloadOnSelect = Boolean.TRUE;
 
-	@Override
-	public Element render() {
-		return li();
-	}
+    private String label;
+    private String labelKey;
+    private Boolean active = Boolean.FALSE;
+    private Boolean reloadOnSelect = Boolean.TRUE;
 
-	private Element link() {
-		Element a = ElementCreator.newA().attribute(Attribute.CLASS, "nav-link").attribute(Attribute.HREF, "#" + idForId(id))
-				.attribute(Attribute.DATA_TOGGLE, "tab").add(keyOrLabel(labelKey, label));
-		if (active) {
-			a.attribute(Attribute.CLASS, "active");
-		}
-		return a;
-	}
+    @Override
+    public Element render() {
+	return li();
+    }
 
-	private Element li() {
-		Element li = applyDynamicAttributesOn(ElementCreator.newLi()).add(link()).attribute(Attribute.ID,"t-" + idForId(id));
-		if (reloadOnSelect) {
-			li.attribute(Attribute.CLASS, "tab-reload-on-select nav-item");
-		}
-		return li;
+    private Element link() {
+	Element a = ElementCreator.newA().attribute(Attribute.CLASS, "nav-link")
+		.attribute(Attribute.HREF, "#" + idForId(id)).attribute(Attribute.DATA_TOGGLE, "tab")
+		.add(keyOrLabel(labelKey, label));
+	if (active) {
+	    a.attribute(Attribute.CLASS, "active");
 	}
-	
-	public String getLabel() {
-		return label;
-	}
+	return a;
+    }
 
-	public void setLabel(String label) {
-		this.label = label;
+    private Element li() {
+	Element li = applyDynamicAttributesOn(ElementCreator.newLi()).add(link()).attribute(Attribute.ID,
+		"t-" + idForId(id));
+	if (reloadOnSelect) {
+	    li.attribute(Attribute.CLASS, "tab-reload-on-select nav-item");
 	}
-	
-	public String getLabelKey() {
-		return labelKey;
-	}
+	return li;
+    }
 
-	public void setLabelKey(String labelKey) {
-		this.labelKey = labelKey;
-	}
+    public String getLabel() {
+	return label;
+    }
 
-	public Boolean getActive() {
-		return active;
-	}
+    public void setLabel(String label) {
+	this.label = label;
+    }
 
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
+    public String getLabelKey() {
+	return labelKey;
+    }
 
-	public Boolean getReloadOnSelect() {
-		return reloadOnSelect;
-	}
+    public void setLabelKey(String labelKey) {
+	this.labelKey = labelKey;
+    }
 
-	public void setReloadOnSelect(Boolean reloadOnSelect) {
-		this.reloadOnSelect = reloadOnSelect;
-	}
+    public Boolean getActive() {
+	return active;
+    }
+
+    public void setActive(Boolean active) {
+	this.active = active;
+    }
+
+    public Boolean getReloadOnSelect() {
+	return reloadOnSelect;
+    }
+
+    public void setReloadOnSelect(Boolean reloadOnSelect) {
+	this.reloadOnSelect = reloadOnSelect;
+    }
 
 }

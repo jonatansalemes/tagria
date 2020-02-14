@@ -5,60 +5,60 @@ import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+
 public class CardLinkTag extends AbstractSimpleTagSupport {
 
-	private String url = "#";
-	private String label;
-	private String labelKey;
-	private String target = "_self";
+    private String url = "#";
+    private String label;
+    private String labelKey;
+    private String target = "_self";
 
-	@Override
-	public Element render() {
-		return a();
+    @Override
+    public Element render() {
+	return a();
+    }
+
+    private Element a() {
+	Element a = ElementCreator.newA().attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET, target)
+		.attribute(Attribute.CLASS, "card-link");
+
+	if (hasKeyOrLabel(labelKey, label)) {
+	    a.add(keyOrLabel(labelKey, label));
+	} else {
+	    a.add(bodyContent());
 	}
+	return a;
+    }
 
-	private Element a() {
-		Element a = ElementCreator.newA()
-				.attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET, target)
-				.attribute(Attribute.CLASS, "card-link");
+    public String getLabel() {
+	return label;
+    }
 
-		if (hasKeyOrLabel(labelKey, label)) {
-			a.add(keyOrLabel(labelKey, label));
-		} else {
-			a.add(bodyContent());
-		}
-		return a;
-	}
+    public void setLabel(String label) {
+	this.label = label;
+    }
 
-	public String getLabel() {
-		return label;
-	}
+    public String getTarget() {
+	return target;
+    }
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    public void setTarget(String target) {
+	this.target = target;
+    }
 
-	public String getTarget() {
-		return target;
-	}
+    public String getUrl() {
+	return url;
+    }
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+    public void setUrl(String url) {
+	this.url = url;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getLabelKey() {
+	return labelKey;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getLabelKey() {
-		return labelKey;
-	}
-
-	public void setLabelKey(String labelKey) {
-		this.labelKey = labelKey;
-	}
+    public void setLabelKey(String labelKey) {
+	this.labelKey = labelKey;
+    }
 }

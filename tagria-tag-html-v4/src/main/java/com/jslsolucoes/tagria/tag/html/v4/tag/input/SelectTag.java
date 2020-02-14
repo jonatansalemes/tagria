@@ -83,9 +83,9 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	if (fixed) {
 	    select.add(bodyContent());
 	}
-	
-	 Collection<Object> dataSet = dataSet(data);
-	
+
+	Collection<Object> dataSet = dataSet(data);
+
 	if (!CollectionUtils.isEmpty(dataSet)) {
 	    checkForDataSetExceed(dataSet);
 	    for (Object item : dataSet) {
@@ -168,7 +168,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
     public void setData(Object data) {
 	this.data = data;
     }
-    
+
     public void setData(Collection<Object> data) {
 	this.data = data;
     }
