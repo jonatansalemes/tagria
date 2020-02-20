@@ -42,9 +42,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
+import com.jslsolucoes.cache.CacheInstance;
+import com.jslsolucoes.cache.CacheInstanceBuilder;
 import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
-import com.jslsolucoes.tagria.api.v4.cache.Cache;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.config.v4.xml.Configuration;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
@@ -63,7 +64,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected String cssClass;
     protected String id;
     private String bodyContent;
-    private Cache cache = Cache.instance();
+    private CacheInstance<String,Object> cache = CacheInstanceBuilder.newBuilder().withKey(Tagria.CACHE_NAME).build();
+    
 
     private String version() {
 	return Tagria.VERSION;
@@ -81,12 +83,12 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return cache.get("authorizer",() -> createAuthorizer(), Authorizer.class);
     }
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<Element> cacheds(String key,Supplier<List> elementSupplier) {
+    @SuppressWarnings({ "unchecked" })
+    public List<Element> cacheds(String key,Supplier<Object> elementSupplier) {
 	return cache.get("elements:" + key,elementSupplier, List.class);
     }
     
-    public Element cached(String key,Supplier<Element> elementSupplier) {
+    public Element cached(String key,Supplier<Object> elementSupplier) {
 	return cache.get("element:" + key,elementSupplier, Element.class);
     }
 

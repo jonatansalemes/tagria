@@ -8,13 +8,15 @@ import javax.xml.bind.Unmarshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jslsolucoes.tagria.api.v4.cache.Cache;
+import com.jslsolucoes.cache.CacheInstance;
+import com.jslsolucoes.cache.CacheInstanceBuilder;
+import com.jslsolucoes.tagria.api.v4.Tagria;
 import com.jslsolucoes.tagria.config.v4.xml.Configuration;
 
 public class ConfigurationParser {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationParser.class);
-    private Cache cache = Cache.instance();
+    private CacheInstance<String,Object> cache = CacheInstanceBuilder.newBuilder().withKey(Tagria.CACHE_NAME).build();
 
     private ConfigurationParser() {
 
@@ -25,7 +27,7 @@ public class ConfigurationParser {
     }
 
     public Configuration parse() {
-	return cache.get("configuration", () -> createInstance(), Configuration.class);
+	return cache.get("configuration", () -> createInstance(),Configuration.class);
     }
 
     private Configuration createInstance() {
