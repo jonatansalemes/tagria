@@ -378,15 +378,25 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String keyFor(String key, String bundle, Object... args) {
-	Locale locale = locale();
+	return cache().get("resourceBundleKey:" + key + ":" + bundle, () -> keyForResourceBundle(key, bundle, args),
+		String.class);
+    }
+
+    private String keyForResourceBundle(String key, String bundle, Object... args) {
 	try {
-	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale, getClass().getClassLoader());
+	    ResourceBundle resourceBundle = resourceBundle(bundle);
 	    MessageFormat messageFormat = new MessageFormat(resourceBundle.getString(key));
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
-	    logger.warn("could not find key {} resource for bundle {} locale {}", key, bundle, locale, e);
+	    logger.warn("could not find key {} resource for bundle {}", key, bundle, e);
 	    return "???" + key + "???";
 	}
+    }
+
+    private ResourceBundle resourceBundle(String bundle) {
+	Locale locale = locale();
+	return cache().get("resourceBundle:" + bundle + "_" + locale.getDisplayLanguage(),
+		() -> ResourceBundle.getBundle(bundle, locale, getClass().getClassLoader()), ResourceBundle.class);
     }
 
     public String keyForApplication(String key) {
