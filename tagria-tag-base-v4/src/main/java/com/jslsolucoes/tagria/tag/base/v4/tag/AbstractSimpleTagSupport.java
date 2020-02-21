@@ -43,7 +43,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
 import com.jslsolucoes.cache.CacheInstance;
-import com.jslsolucoes.cache.CacheInstanceBuilder;
 import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
@@ -65,10 +64,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected String cssClass;
     protected String id;
     private String bodyContent;
-    private CacheInstance<String, Object> cache = CacheInstanceBuilder.newBuilder().withKey(Tagria.CACHE_NAME).build();
 
     private String version() {
-	return Tagria.VERSION;
+	return Tagria.version();
+    }
+
+    public CacheInstance<String, Object> cache() {
+	return Tagria.cache();
     }
 
     private JspWriter writer() {
@@ -80,16 +82,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public Authorizer authorizer() {
-	return cache.get("authorizer", () -> createAuthorizer(), Authorizer.class);
+	return cache().get("authorizer", () -> createAuthorizer(), Authorizer.class);
     }
 
     @SuppressWarnings({ "unchecked" })
     public List<Element> cacheds(String key, Supplier<Object> elementSupplier) {
-	return cache.get("elements:" + key, elementSupplier, List.class);
+	return cache().get("elements:" + key, elementSupplier, List.class);
     }
 
     public Element cached(String key, Supplier<Object> elementSupplier) {
-	return cache.get("element:" + key, elementSupplier, Element.class);
+	return cache().get("element:" + key, elementSupplier, Element.class);
     }
 
     private Authorizer createAuthorizer() {
@@ -117,7 +119,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
 		.getUri();
-	return cache.get("template:" + template, () -> contentOfUri(templateUri), String.class);
+	return cache().get("template:" + template, () -> contentOfUri(templateUri), String.class);
     }
 
     private String contentOfUri(String templateUri) {
