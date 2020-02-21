@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Warning {
 
+    private Boolean enabled = Boolean.FALSE;
     private Long componentMountTimeThreshold = 1200L;
     private Long componentDataSetThreshold = 300L;
 
@@ -25,6 +26,14 @@ public class Warning {
 
     public void setComponentDataSetThreshold(Long componentDataSetThreshold) {
 	this.componentDataSetThreshold = componentDataSetThreshold;
+    }
+
+    public Boolean getEnabled() {
+	return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+	this.enabled = enabled;
     }
 
 }

@@ -7,6 +7,7 @@
 		</template>
 	</templates>
 	<warning>
+		<enabled>true</enabled>
 		<componentMountTimeThreshold>1200</componentMountTimeThreshold>
 		<componentDataSetThreshold>300</componentDataSetThreshold>
 	</warning>
