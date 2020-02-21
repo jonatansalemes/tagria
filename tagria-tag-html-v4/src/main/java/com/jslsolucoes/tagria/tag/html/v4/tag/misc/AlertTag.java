@@ -42,8 +42,8 @@ public class AlertTag extends AbstractSimpleTagSupport {
     }
 
     private Element close() {
-	return ElementCreator.newButton().attribute(Attribute.TYPE, "button").attribute(Attribute.CLASS, "close")
-		.attribute(Attribute.DATA_DISMISS, "alert").add(closeSpan());
+	return cached("alertCloseButton", () -> ElementCreator.newButton().attribute(Attribute.TYPE, "button").attribute(Attribute.CLASS, "close")
+		.attribute(Attribute.DATA_DISMISS, "alert").add(closeSpan()));
     }
 
     private Element closeSpan() {
