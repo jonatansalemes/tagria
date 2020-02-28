@@ -1,9 +1,9 @@
 package com.jslsolucoes.tagria.tag.base.v4.tag;
 
 import java.io.BufferedReader;
+import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -294,9 +294,9 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	} else {
 	    JspFragment jspFragment = jspbody();
 	    if (jspFragment != null) {
-		try (StringWriter stringWriter = new StringWriter()) {
-		    jspFragment.invoke(stringWriter);
-		    return stringWriter.toString().trim();
+		try (CharArrayWriter charArrayWriter = new CharArrayWriter()) {
+		    jspFragment.invoke(charArrayWriter);
+		    return charArrayWriter.toString();
 		} catch (Exception e) {
 		    throw new TagriaRuntimeException(e);
 		}

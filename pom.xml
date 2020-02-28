@@ -83,7 +83,7 @@
 		<dependency>
 			<groupId>com.jslsolucoes</groupId>
 			<artifactId>cache</artifactId>
-			<version>1.0.34-SNAPSHOT</version>
+			<version>1.0.34</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
