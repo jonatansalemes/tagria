@@ -12,19 +12,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jslsolucoes.tagria.api.v4.cache.Cache;
+import com.jslsolucoes.tagria.api.v4.Tagria;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class DataFormatter {
 
-    private Cache cache = Cache.instance();
     private List<Formatter> formatters;
     private static final Logger logger = LoggerFactory.getLogger(DataFormatter.class);
 
     @SuppressWarnings("unchecked")
     private DataFormatter() {
-	formatters = cache.get("formatters", () -> formatters(), List.class);
+	formatters = Tagria.cache().get("formatters", () -> formatters(),List.class);
     }
 
     public static DataFormatter newDataFormatter() {

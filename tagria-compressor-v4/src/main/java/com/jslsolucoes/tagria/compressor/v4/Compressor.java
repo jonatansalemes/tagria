@@ -130,7 +130,7 @@ public class Compressor {
 	    extensions.add("otf");
 	    for (String extension : extensions) {
 		normalized = normalized.replaceAll("\\." + extension + "('|\")",
-			"." + extension + "?ver=" + Tagria.VERSION + "$1");
+			"." + extension + "?ver=" + Tagria.version() + "$1");
 	    }
 	    return normalized;
 	} catch (IOException exception) {

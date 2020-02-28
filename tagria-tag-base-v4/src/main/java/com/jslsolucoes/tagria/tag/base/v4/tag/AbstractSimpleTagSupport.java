@@ -1,9 +1,9 @@
 package com.jslsolucoes.tagria.tag.base.v4.tag;
 
 import java.io.BufferedReader;
+import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -42,11 +42,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
+import com.jslsolucoes.cache.CacheInstance;
 import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
-import com.jslsolucoes.tagria.api.v4.cache.Cache;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.config.v4.xml.Configuration;
+import com.jslsolucoes.tagria.config.v4.xml.Warning;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.formatter.v4.DataFormatter;
 import com.jslsolucoes.tagria.html.v4.Element;
@@ -63,10 +64,13 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     protected String cssClass;
     protected String id;
     private String bodyContent;
-    private Cache cache = Cache.instance();
 
     private String version() {
-	return Tagria.VERSION;
+	return Tagria.version();
+    }
+
+    public CacheInstance<String, Object> cache() {
+	return Tagria.cache();
     }
 
     private JspWriter writer() {
@@ -78,16 +82,16 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public Authorizer authorizer() {
-	return cache.get("authorizer",() -> createAuthorizer(), Authorizer.class);
+	return cache().get("authorizer", () -> createAuthorizer(), Authorizer.class);
     }
-    
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<Element> cacheds(String key,Supplier<List> elementSupplier) {
-	return cache.get("elements:" + key,elementSupplier, List.class);
+
+    @SuppressWarnings({ "unchecked" })
+    public List<Element> cacheds(String key, Supplier<Object> elementSupplier) {
+	return cache().get("elements:" + key, elementSupplier, List.class);
     }
-    
-    public Element cached(String key,Supplier<Element> elementSupplier) {
-	return cache.get("element:" + key,elementSupplier, Element.class);
+
+    public Element cached(String key, Supplier<Object> elementSupplier) {
+	return cache().get("element:" + key, elementSupplier, Element.class);
     }
 
     private Authorizer createAuthorizer() {
@@ -115,7 +119,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
 		.getUri();
-	return cache.get("template:" + template,() -> contentOfUri(templateUri), String.class);
+	return cache().get("template:" + template, () -> contentOfUri(templateUri), String.class);
     }
 
     private String contentOfUri(String templateUri) {
@@ -186,8 +190,9 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public void checkForDataSetExceed(Collection<Object> data) {
-	Long componentDataSetThreshold = xml().getWarning().getComponentDataSetThreshold();
-	if (!CollectionUtils.isEmpty(data) && data.size() > componentDataSetThreshold) {
+	Warning warning = xml().getWarning();
+	Long componentDataSetThreshold = warning.getComponentDataSetThreshold();
+	if (warning.getEnabled() && !CollectionUtils.isEmpty(data) && data.size() > componentDataSetThreshold) {
 	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
 	}
     }
@@ -205,8 +210,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    }
 	}
 	Long elapsed = stopwatch.elapsed(TimeUnit.MILLISECONDS);
-
-	if (elapsed > xml().getWarning().getComponentMountTimeThreshold()) {
+	Warning warning = xml().getWarning();
+	if (warning.getEnabled() && elapsed > warning.getComponentMountTimeThreshold()) {
 	    logger.warn("Slow component detected on " + this + " => elapsed " + elapsed + " ms ");
 	}
 
@@ -289,9 +294,9 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	} else {
 	    JspFragment jspFragment = jspbody();
 	    if (jspFragment != null) {
-		try (StringWriter stringWriter = new StringWriter()) {
-		    jspFragment.invoke(stringWriter);
-		    return stringWriter.toString().trim();
+		try (CharArrayWriter charArrayWriter = new CharArrayWriter()) {
+		    jspFragment.invoke(charArrayWriter);
+		    return charArrayWriter.toString();
 		} catch (Exception e) {
 		    throw new TagriaRuntimeException(e);
 		}
@@ -373,15 +378,25 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String keyFor(String key, String bundle, Object... args) {
-	Locale locale = locale();
+	return cache().get("resourceBundleKey:" + key + ":" + bundle, () -> keyForResourceBundle(key, bundle, args),
+		String.class);
+    }
+
+    private String keyForResourceBundle(String key, String bundle, Object... args) {
 	try {
-	    ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle, locale, getClass().getClassLoader());
+	    ResourceBundle resourceBundle = resourceBundle(bundle);
 	    MessageFormat messageFormat = new MessageFormat(resourceBundle.getString(key));
 	    return messageFormat.format(args);
 	} catch (MissingResourceException e) {
-	    logger.warn("could not find key {} resource for bundle {} locale {}", key, bundle, locale, e);
+	    logger.warn("could not find key {} resource for bundle {}", key, bundle, e);
 	    return "???" + key + "???";
 	}
+    }
+
+    private ResourceBundle resourceBundle(String bundle) {
+	Locale locale = locale();
+	return cache().get("resourceBundle:" + bundle + "_" + locale.getDisplayLanguage(),
+		() -> ResourceBundle.getBundle(bundle, locale, getClass().getClassLoader()), ResourceBundle.class);
     }
 
     public String keyForApplication(String key) {
