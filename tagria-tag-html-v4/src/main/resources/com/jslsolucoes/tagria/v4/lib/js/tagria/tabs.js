@@ -13,15 +13,16 @@
 			self._active('iframe.active');
 			self._active('iframe:first');
 		
-			$('li',panel).click(function(){
+			$('li',panel).click(function(e){
 				var iframe = $('iframe',$('a',this).attr('href'));
 				if($(this).hasClass('tab-reload-on-select')||iframe.attr('src')==''){
 					iframe.attr('src',iframe.attr('data-url'));	
 				}
-			});
-			
-			$('a[data-toggle="tab"]',panel).on('shown.bs.tab', function (e) {
-				self.options.afterShow(e.relatedTarget.parentElement,e.target.parentElement);
+				var oldTab = $('li.active',panel)[0];
+				var newTab = $(this)[0];
+				self.options.afterShow(oldTab,newTab);
+				$('li.active',panel).removeClass('active');
+				$(this).addClass('active');
 			});
 		},
 		_active: function(selector){

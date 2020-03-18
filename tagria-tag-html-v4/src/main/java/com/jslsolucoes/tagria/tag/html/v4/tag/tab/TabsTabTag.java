@@ -33,6 +33,9 @@ public class TabsTabTag extends AbstractSimpleTagSupport {
 	if (reloadOnSelect) {
 	    li.attribute(Attribute.CLASS, "tab-reload-on-select nav-item");
 	}
+	if (active) {
+	    li.attribute(Attribute.CLASS, "active");
+	}
 	return li;
     }
 

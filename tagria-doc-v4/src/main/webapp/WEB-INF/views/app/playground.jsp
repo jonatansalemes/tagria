@@ -1,6 +1,26 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+	<html:tabs>
+
+		<html:tabsOnAfterShow>
+			console.log(oldTab);
+			console.log(newTab);
+		</html:tabsOnAfterShow>
+
+		<html:tabsHeader>
+			<html:tabsTab data-id="mytabid" active="true" label="my tab 1"
+				id="tab1"></html:tabsTab>
+			<html:tabsTab label="my tab 2" id="tab2"></html:tabsTab>
+			<html:tabsTab label="my tab 3" id="tab3"></html:tabsTab>
+		</html:tabsHeader>
+		<html:tabsBody>
+			<html:tabsContent active="true" contentOf="tab1"> My content 1</html:tabsContent>
+			<html:tabsContent contentOf="tab2"> My content 2</html:tabsContent>
+			<html:tabsContent contentOf="tab3"> My content 3</html:tabsContent>
+		</html:tabsBody>
+	</html:tabs>
+
 
 	<html:select name="s14" disabled="true" fixed="true">
 		<html:option value="1">-1-</html:option>
@@ -312,25 +332,7 @@
 	</html:table>
 
 
-	<html:tabs>
-
-		<html:tabsOnAfterShow>
-			console.log(oldTab);
-			console.log(newTab);
-		</html:tabsOnAfterShow>
-
-		<html:tabsHeader>
-			<html:tabsTab data-id="mytabid" active="true" label="my tab 1"
-				id="tab1"></html:tabsTab>
-			<html:tabsTab label="my tab 2" id="tab2"></html:tabsTab>
-			<html:tabsTab label="my tab 3" id="tab3"></html:tabsTab>
-		</html:tabsHeader>
-		<html:tabsBody>
-			<html:tabsContent active="true" contentOf="tab1"> My content 1</html:tabsContent>
-			<html:tabsContent contentOf="tab2"> My content 2</html:tabsContent>
-			<html:tabsContent contentOf="tab3"> My content 3</html:tabsContent>
-		</html:tabsBody>
-	</html:tabs>
+	
 
 	<html:buttonGroup>
 		<html:button label="My button" icon="search" id="btn1" />
