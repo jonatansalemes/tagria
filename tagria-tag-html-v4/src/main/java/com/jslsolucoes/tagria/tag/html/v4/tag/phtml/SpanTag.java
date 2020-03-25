@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.html.v4.Span;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class SpanTag extends AbstractSimpleTagSupport {
@@ -19,7 +18,7 @@ public class SpanTag extends AbstractSimpleTagSupport {
     }
 
     private Element span() {
-	Span span = ElementCreator.newSpan();
+	Element span = ElementCreator.newSpan().attribute(Attribute.ID, idForId(id));
 	if (hasKeyOrLabel(labelKey, label)) {
 	    span.add(keyOrLabel(labelKey, label));
 	} else {
