@@ -5,7 +5,7 @@ import com.jslsolucoes.cache.MemoryCacheBuilder;
 
 public class Tagria {
 
-    private static final String VERSION = "4.0.21.0";
+    private static final String VERSION = "4.0.21.2";
     private static final MemoryCache<String, Object> CACHE = MemoryCacheBuilder.newBuilder().withKey("tagriaCache")
 	    .build();
     

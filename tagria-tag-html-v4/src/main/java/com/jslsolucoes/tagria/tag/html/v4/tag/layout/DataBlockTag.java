@@ -1,18 +1,12 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.layout;
 
-import java.util.Collection;
-
-import org.apache.commons.collections4.CollectionUtils;
-
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractIterableSimpleTagSupport;
 
-public class DataBlockTag extends AbstractSimpleTagSupport {
+public class DataBlockTag extends AbstractIterableSimpleTagSupport {
 
-    private String var;
-    private Object data;
     private Integer extraSmall;
     private Integer small;
     private Integer medium;
@@ -25,15 +19,7 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 
     private Element div() {
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "row");
-	Collection<Object> dataSet = dataSet(data);
-	if (!CollectionUtils.isEmpty(dataSet)) {
-	    checkForDataSetExceed(dataSet);
-	    for (Object object : dataSet) {
-		setAttribute(var, object);
-		div.add(col());
-	    }
-	    setAttribute(var, null);
-	}
+	iterateOver((object) -> div.add(col()));
 	return div;
     }
 
@@ -50,26 +36,6 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 	    div.attribute(Attribute.CLASS, "col-lg-" + large);
 	}
 	return div;
-    }
-
-    public String getVar() {
-	return var;
-    }
-
-    public void setVar(String var) {
-	this.var = var;
-    }
-
-    public Object getData() {
-	return data;
-    }
-
-    public void setData(Object data) {
-	this.data = data;
-    }
-
-    public void setData(Collection<Object> data) {
-	this.data = data;
     }
 
     public Integer getExtraSmall() {
@@ -103,4 +69,5 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
     public void setLarge(Integer large) {
 	this.large = large;
     }
+
 }

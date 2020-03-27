@@ -2,22 +2,18 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.grid;
 
 import java.util.Arrays;
-import java.util.Collection;
 
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractIterableSimpleTagSupport;
 
-public class GridTag extends AbstractSimpleTagSupport {
+public class GridTag extends AbstractIterableSimpleTagSupport {
 
-    private String var;
-    private String varStatus;
     private String label;
     private String labelKey;
-    private Object data;
     private String url = "#";
     private String noRowText;
     private String noRowTextKey;
@@ -44,12 +40,8 @@ public class GridTag extends AbstractSimpleTagSupport {
 	    div.add(divTitle());
 	}
 
-	Collection<Object> dataSet = dataSet(data);
 
-	Boolean hasData = !CollectionUtils.isEmpty(dataSet);
-	if (hasData) {
-	    checkForDataSetExceed(dataSet);
-	}
+	Boolean hasData = !CollectionUtils.isEmpty(dataSet());	
 
 	Element firstRow = ElementCreator.newDiv().attribute(Attribute.CLASS,
 		"d-flex flex-row justify-content-between align-items-center");
@@ -97,26 +89,6 @@ public class GridTag extends AbstractSimpleTagSupport {
 		.add(bodyContent());
     }
 
-    public Object getData() {
-	return data;
-    }
-
-    public void setData(Collection<Object> data) {
-	this.data = data;
-    }
-
-    public void setData(Object data) {
-	this.data = data;
-    }
-
-    public String getVar() {
-	return var;
-    }
-
-    public void setVar(String var) {
-	this.var = var;
-    }
-
     public String getLabel() {
 	return label;
     }
@@ -131,14 +103,6 @@ public class GridTag extends AbstractSimpleTagSupport {
 
     public void setUrl(String url) {
 	this.url = url;
-    }
-
-    public String getVarStatus() {
-	return varStatus;
-    }
-
-    public void setVarStatus(String varStatus) {
-	this.varStatus = varStatus;
     }
 
     public String getNoRowText() {

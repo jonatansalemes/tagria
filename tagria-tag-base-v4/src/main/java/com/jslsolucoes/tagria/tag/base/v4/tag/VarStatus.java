@@ -1,4 +1,4 @@
-package com.jslsolucoes.tagria.tag.html.v4;
+package com.jslsolucoes.tagria.tag.base.v4.tag;
 
 public class VarStatus {
 

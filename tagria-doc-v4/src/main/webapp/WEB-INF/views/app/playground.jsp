@@ -1,6 +1,23 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+
+	<html:dataBlock dataArray="${ personsArray }" var="personArray" extraSmall="12">
+		${ personArray.name }
+	</html:dataBlock>
+			
+	<html:dataBlock data="${ personsMap }" var="personMap" extraSmall="12">
+		${ personMap.value }
+	</html:dataBlock>
+	
+	<html:dataBlock data="${ persons }" var="personCollection" extraSmall="12">
+		${ personCollection.name }
+	</html:dataBlock>
+	
+	<html:dataBlock data="${ person }" var="personSingle" extraSmall="12">
+		${ personSingle.name }
+	</html:dataBlock>
+			
 	<html:tabs>
 
 		<html:tabsOnAfterShow>
