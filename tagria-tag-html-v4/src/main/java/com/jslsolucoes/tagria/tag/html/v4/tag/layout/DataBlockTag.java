@@ -11,6 +11,7 @@ public class DataBlockTag extends AbstractIterableSimpleTagSupport {
     private Integer small;
     private Integer medium;
     private Integer large;
+    private Integer extraLarge;
 
     @Override
     public Element render() {
@@ -24,8 +25,8 @@ public class DataBlockTag extends AbstractIterableSimpleTagSupport {
     }
 
     private Element col() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "col mt-3")
-		.attribute(Attribute.CLASS, "col-xs-" + extraSmall).add(bodyContent());
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "col mt-1")
+		.attribute(Attribute.CLASS, "col-" + extraSmall).add(bodyContent());
 	if (small != null) {
 	    div.attribute(Attribute.CLASS, "col-sm-" + small);
 	}
@@ -34,6 +35,9 @@ public class DataBlockTag extends AbstractIterableSimpleTagSupport {
 	}
 	if (large != null) {
 	    div.attribute(Attribute.CLASS, "col-lg-" + large);
+	}
+	if (extraLarge != null) {
+	    div.attribute(Attribute.CLASS, "col-xl-" + extraLarge);
 	}
 	return div;
     }
@@ -68,6 +72,14 @@ public class DataBlockTag extends AbstractIterableSimpleTagSupport {
 
     public void setLarge(Integer large) {
 	this.large = large;
+    }
+
+    public Integer getExtraLarge() {
+	return extraLarge;
+    }
+
+    public void setExtraLarge(Integer extraLarge) {
+	this.extraLarge = extraLarge;
     }
 
 }
