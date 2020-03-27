@@ -10,7 +10,6 @@ import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -36,16 +35,12 @@ import javax.servlet.jsp.tagext.JspTag;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
 import com.jslsolucoes.cache.MemoryCache;
 import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
@@ -179,47 +174,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     public Element render() {
 	return ElementCreator.newNull();
-    }
-
-    @SuppressWarnings("unchecked")
-    public Collection<Object> dataSet(Object dataSet, Object[] dataSetArray) {
-	Builder<Object> builder = ImmutableList.<Object>builder();
-	Class<?> classOfDataset = dataSet == null ? Object.class : dataSet.getClass();
-	if (Collection.class.isAssignableFrom(classOfDataset)) {
-	    Collection<Object> collection = (Collection<Object>) dataSet;
-	    if (!CollectionUtils.isEmpty(collection)) {
-		builder.addAll(collection);
-		logger.debug("Dataset {} is instance of Collection", dataSet);
-	    }
-	} else if (Map.class.isAssignableFrom(classOfDataset)) {
-	    Map<Object, Object> map = (Map<Object, Object>) dataSet;
-	    if (!MapUtils.isEmpty(map)) {
-		logger.debug("Dataset {} is instance of Map", dataSet);
-		map.entrySet().forEach(entry -> builder.add(entry));
-	    }
-	} else if (classOfDataset.isArray()) {
-	    Object[] objects = (Object[]) dataSetArray;
-	    if (!ArrayUtils.isEmpty(objects)) {
-		logger.debug("Dataset {} is an array,", dataSetArray);
-		builder.add(objects);
-	    }
-	} else {
-	    Object object = (Object) dataSet;
-	    if (object != null) {
-		logger.debug("Dataset {} is single object of Collection", dataSet);
-		builder.add(dataSet);
-	    }
-	}
-	return checkForDataSetExceed(builder.build());
-    }
-    
-    public Collection<Object> checkForDataSetExceed(Collection<Object> data) {
-	Warning warning = xml().getWarning();
-	Long componentDataSetThreshold = warning.getComponentDataSetThreshold();
-	if (warning.getEnabled() && !CollectionUtils.isEmpty(data) && data.size() > componentDataSetThreshold) {
-	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
-	}
-	return data;
     }
 
     @Override
