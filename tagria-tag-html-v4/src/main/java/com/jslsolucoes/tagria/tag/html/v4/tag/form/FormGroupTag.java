@@ -35,14 +35,16 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     }
 
     private Element label() {
-	Element label = ElementCreator.newLabel().add(keyOrLabel(labelKey, this.label));
-	if (!StringUtils.isEmpty(forElement)) {
-	    label.attribute(Attribute.FOR, idForName(forElement));
-	}
+	String label = keyOrLabel(labelKey, this.label);
+	Element element = ElementCreator.newLabel().attribute(Attribute.TITLE, label).attribute(Attribute.CLASS,"text-truncate");
 	if (required) {
-	    label.add(span());
+	    element.add(span());
 	}
-	return label;
+	element.add(label);
+	if (!StringUtils.isEmpty(forElement)) {
+	    element.attribute(Attribute.FOR, idForName(forElement));
+	}
+	return element;
     }
 
     private Element span() {

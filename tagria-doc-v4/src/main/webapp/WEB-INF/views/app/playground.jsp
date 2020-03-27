@@ -124,24 +124,29 @@
 		</html:formOnBeforeSubmit>
 
 		<html:formGroupRow>
-			<html:col extraSmall="6">
-				<html:formGroup label="Field 1" required="true" forElement="field1">
+			<html:col extraSmall="4">
+				<html:formGroup label="Field 1 with an huge label of this one" required="true" forElement="field1">
 					<html:input required="true" name="field1" />
 				</html:formGroup>
 				<html:jsEvent event="blur" attachTo="field1">
 					console.log('hello ' + new Date());
 				</html:jsEvent>
 			</html:col>
-			<html:col extraSmall="6">
-				<html:formGroup label="Field 3" required="true" forElement="field3">
+			<html:col extraSmall="4">
+				<html:formGroup label="Field 3 with an huge label of this one" required="true" forElement="field3">
 					<html:input required="true" name="field3" />
 				</html:formGroup>
 			</html:col>
+			<html:col extraSmall="4">
+				<html:formGroup label="Field 19" required="true" forElement="field19">
+					<html:input required="true" name="field19" />
+				</html:formGroup>
+			</html:col>
 		</html:formGroupRow>
-		<html:formGroup label="Field17" required="true">
+		<html:formGroup label="Field 17" required="true">
 			<html:textarea name="textarea17" required="true"></html:textarea>
 		</html:formGroup>
-		<html:formGroup label="Field18" required="true">
+		<html:formGroup label="Field 18" required="true">
 			<html:select name="filed18" data="${ persons }" var="person"
 				required="true">
 				<html:option value="${ person.id }">${ person.name }</html:option>
