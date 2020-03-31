@@ -1,5 +1,7 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.grid;
 
+import java.util.UUID;
+
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -12,7 +14,10 @@ public class GridExportTag extends AbstractSimpleTagSupport {
     private Boolean xlsx = Boolean.TRUE;
     private Boolean csv = Boolean.TRUE;
     private Boolean xml = Boolean.TRUE;
-    private String fileName = "data";
+    private String filename = UUID.randomUUID().toString();
+    private String filenameKey;
+    private Boolean timestamp = Boolean.TRUE;
+    private String pattern = "dd/MM/yyyy HH:mm:ss";
 
     @Override
     public void renderOnVoid() {
@@ -27,12 +32,24 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newForm().attribute(Attribute.METHOD, "post").attribute(Attribute.TARGET, "_blank")
 		.attribute(Attribute.CLASS, "grid-export-form hidden")
 		.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter/v4")).add(inputType()).add(inputJson())
-		.add(inputFileName());
+		.add(inputFileName())
+		.add(inputTimestamp())
+		.add(inputPattern());
     }
+    
+    private Element inputTimestamp() {
+   	return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "timestamp")
+   		.attribute(Attribute.VALUE, timestamp);
+    }
+    
+    private Element inputPattern() {
+   	return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "pattern")
+   		.attribute(Attribute.VALUE, pattern);
+       }
 
     private Element inputFileName() {
-	return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "fileName")
-		.attribute(Attribute.VALUE, fileName);
+	return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "filename")
+		.attribute(Attribute.VALUE, keyOrLabel(filenameKey, filename));
     }
 
     private Element inputType() {
@@ -118,12 +135,36 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 	this.xlsx = xlsx;
     }
 
-    public String getFileName() {
-	return fileName;
+    public String getFilename() {
+	return filename;
     }
 
-    public void setFileName(String fileName) {
-	this.fileName = fileName;
+    public void setFilename(String filename) {
+	this.filename = filename;
+    }
+
+    public Boolean getTimestamp() {
+	return timestamp;
+    }
+
+    public void setTimestamp(Boolean timestamp) {
+	this.timestamp = timestamp;
+    }
+
+    public String getPattern() {
+	return pattern;
+    }
+
+    public void setPattern(String pattern) {
+	this.pattern = pattern;
+    }
+
+    public String getFilenameKey() {
+	return filenameKey;
+    }
+
+    public void setFilenameKey(String filenameKey) {
+	this.filenameKey = filenameKey;
     }
 
 }

@@ -49,7 +49,7 @@ public class ExcelExporter implements Exporter {
     @Override
     public byte[] export(ExporterContext exporterContext) {
 	Table table = exporterContext.getTable();
-	String fileName = exporterContext.getFileName();
+	String fileName = exporterContext.getFilename();
 	try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
 	    try (Workbook workbook = new XSSFWorkbook()) {
 		Sheet sheet = workbook.createSheet(fileName);

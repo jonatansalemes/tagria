@@ -1,6 +1,8 @@
 package com.jslsolucoes.tagria.lib.v4.servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,17 +46,20 @@ public class TagriaServletExporter extends HttpServlet {
 	try {
 	    String json = httpServletRequest.getParameter("json");
 	    String type = httpServletRequest.getParameter("type");
-	    String fileName = normalize(httpServletRequest.getParameter("fileName"));
+	    Boolean timestamp = Boolean.valueOf(httpServletRequest.getParameter("timestamp"));
+	    String pattern = httpServletRequest.getParameter("pattern");
+	    String filename = normalize(httpServletRequest.getParameter("filename") + (timestamp ? "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)): ""));	    
+	    
 	    logger.debug("exporting: json {},type {}", json, type);
 	    Table table = TableParser.newParser().withJson(json).parse();
 	    if (!CollectionUtils.isEmpty(table.getHeaders()) && !CollectionUtils.isEmpty(table.getRows())
 		    && table.getRows().get(0).getColumns().size() == table.getHeaders().size()) {
 
 		httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-		httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + fileName + "." + type);
+		httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + filename + "." + type);
 		for (Exporter exporter : exporters) {
 		    if (exporter.accepts(type)) {
-			byte[] bytes = exporter.export(new ExporterContext(table, fileName, encoding));
+			byte[] bytes = exporter.export(new ExporterContext(table, filename, encoding));
 			httpServletResponse.setContentType(exporter.contentType(encoding));
 			httpServletResponse.setContentLength(bytes.length);
 			servletOutputStream.write(bytes);
@@ -74,7 +79,7 @@ public class TagriaServletExporter extends HttpServlet {
     }
 
     private String normalize(String fileName) {
-	return StringUtils.stripAccents(fileName).replaceAll(" ","_");
+	return StringUtils.stripAccents(fileName).replaceAll("( |\\/|:|!|\\.)","_").toLowerCase();
     }
 
     @Override

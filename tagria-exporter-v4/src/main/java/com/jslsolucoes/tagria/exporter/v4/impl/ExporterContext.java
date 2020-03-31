@@ -5,16 +5,16 @@ import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
 public class ExporterContext {
 
     private Table table;
-    private String fileName;
+    private String filename;
     private String encoding;
     
     public ExporterContext() {
 	
     }
     
-    public ExporterContext(Table table, String fileName,String encoding) {
+    public ExporterContext(Table table, String filename,String encoding) {
 	this.table = table;
-	this.fileName = fileName;
+	this.filename = filename;
 	this.encoding = encoding;
     }
 
@@ -24,11 +24,11 @@ public class ExporterContext {
     public void setTable(Table table) {
         this.table = table;
     }
-    public String getFileName() {
-        return fileName;
+    public String getFilename() {
+        return filename;
     }
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getEncoding() {
