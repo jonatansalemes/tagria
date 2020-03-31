@@ -12,6 +12,7 @@ public class GridExportTag extends AbstractSimpleTagSupport {
     private Boolean xlsx = Boolean.TRUE;
     private Boolean csv = Boolean.TRUE;
     private Boolean xml = Boolean.TRUE;
+    private String fileName = "data";
 
     @Override
     public void renderOnVoid() {
@@ -25,7 +26,13 @@ public class GridExportTag extends AbstractSimpleTagSupport {
     private Element formExport() {
 	return ElementCreator.newForm().attribute(Attribute.METHOD, "post").attribute(Attribute.TARGET, "_blank")
 		.attribute(Attribute.CLASS, "grid-export-form hidden")
-		.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter/v4")).add(inputType()).add(inputJson());
+		.attribute(Attribute.ACTION, pathForUrl("/tagria-exporter/v4")).add(inputType()).add(inputJson())
+		.add(inputFileName());
+    }
+
+    private Element inputFileName() {
+	return ElementCreator.newInput().attribute(Attribute.TYPE, "hidden").attribute(Attribute.NAME, "fileName")
+		.attribute(Attribute.VALUE, fileName);
     }
 
     private Element inputType() {
@@ -109,6 +116,14 @@ public class GridExportTag extends AbstractSimpleTagSupport {
 
     public void setXlsx(Boolean xlsx) {
 	this.xlsx = xlsx;
+    }
+
+    public String getFileName() {
+	return fileName;
+    }
+
+    public void setFileName(String fileName) {
+	this.fileName = fileName;
     }
 
 }

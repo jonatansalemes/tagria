@@ -1,6 +1,10 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+
+	Developed by JSL Soluções LTDA Ãáôões
+
+
 	<html:tabs>
 
 		<html:tabsOnAfterShow>
@@ -32,7 +36,7 @@
 	<html:grid var="person" data="${ persons }" label="My grid"
 		url="/app/playground/v4">
 
-		<html:gridExport />
+		<html:gridExport fileName="MyFileName"/>
 		<html:gridPaginate totalResults="200" />
 		<html:gridSearch />
 

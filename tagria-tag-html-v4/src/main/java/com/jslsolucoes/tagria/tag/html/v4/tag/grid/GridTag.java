@@ -85,7 +85,7 @@ public class GridTag extends AbstractSimpleTagSupport {
     }
 
     private Element h2Title() {
-	return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary").add(keyOrLabel(labelKey, label));
+	return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary grid-title").add(keyOrLabel(labelKey, label));
     }
 
     private Element divTable() {

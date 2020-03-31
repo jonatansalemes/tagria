@@ -182,6 +182,13 @@
 		<name>gridExport</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.grid.GridExportTag</tag-class>
 		<body-content>scriptless</body-content>
+		
+		<attribute>
+			<description>It indicates the final name of the exported file. Default: data.(csv,xml,pdf,xlsx)</description>
+			<name>fileName</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 			<description>It indicates if export support pdf file. Default: true</description>
 			<name>pdf</name>

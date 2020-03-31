@@ -47,10 +47,12 @@ public class ExcelExporter implements Exporter {
     }
 
     @Override
-    public byte[] export(Table table) {
+    public byte[] export(ExporterContext exporterContext) {
+	Table table = exporterContext.getTable();
+	String fileName = exporterContext.getFileName();
 	try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
 	    try (Workbook workbook = new XSSFWorkbook()) {
-		Sheet sheet = workbook.createSheet("data");
+		Sheet sheet = workbook.createSheet(fileName);
 		Row headerRow = createRow(sheet);
 		for (Header header : table.getHeaders()) {
 		    createCell(headerRow, header.getContent(), header.getAlign());
