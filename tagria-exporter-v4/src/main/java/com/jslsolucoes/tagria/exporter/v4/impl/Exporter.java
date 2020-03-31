@@ -1,12 +1,11 @@
 package com.jslsolucoes.tagria.exporter.v4.impl;
 
-import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
-
 public interface Exporter {
 
-    public byte[] export(Table table);
+    public byte[] export(ExporterContext exporterContext);
 
-    public String contentType();
+    public String contentType(String charset);
 
     public Boolean accepts(String mediaType);
+    
 }

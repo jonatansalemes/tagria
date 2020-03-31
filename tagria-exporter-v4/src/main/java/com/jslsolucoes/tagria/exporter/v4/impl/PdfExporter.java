@@ -45,7 +45,8 @@ public class PdfExporter implements Exporter {
     }
 
     @Override
-    public byte[] export(Table table) {
+    public byte[] export(ExporterContext exporterContext) {
+	Table table = exporterContext.getTable();
 	try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
 	    Document document = new Document();
 	    PdfWriter pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
@@ -76,7 +77,7 @@ public class PdfExporter implements Exporter {
     }
 
     @Override
-    public String contentType() {
+    public String contentType(String encoding) {
 	return "application/pdf";
     }
 

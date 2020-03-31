@@ -2,6 +2,30 @@
 <html:view title="Playground">
 
 
+	Developed by JSL Soluções LTDA Ãáôões
+
+
+	<html:tabs>
+
+		<html:tabsOnAfterShow>
+			console.log(oldTab);
+			console.log(newTab);
+		</html:tabsOnAfterShow>
+
+		<html:tabsHeader>
+			<html:tabsTab data-id="mytabid" active="true" label="my tab 1"
+				id="tab1"></html:tabsTab>
+			<html:tabsTab label="my tab 2" id="tab2"></html:tabsTab>
+			<html:tabsTab label="my tab 3" id="tab3"></html:tabsTab>
+		</html:tabsHeader>
+		<html:tabsBody>
+			<html:tabsContent active="true" contentOf="tab1"> My content 1</html:tabsContent>
+			<html:tabsContent contentOf="tab2"> My content 2</html:tabsContent>
+			<html:tabsContent contentOf="tab3"> My content 3</html:tabsContent>
+		</html:tabsBody>
+	</html:tabs>
+
+
 	<html:select name="s14" disabled="true" fixed="true">
 		<html:option value="1">-1-</html:option>
 		<html:option value="2">-2-</html:option>
@@ -12,7 +36,7 @@
 	<html:grid var="person" data="${ persons }" label="My grid"
 		url="/app/playground/v4">
 
-		<html:gridExport />
+		<html:gridExport fileName="MyFileName"/>
 		<html:gridPaginate totalResults="200" />
 		<html:gridSearch />
 
@@ -104,24 +128,29 @@
 		</html:formOnBeforeSubmit>
 
 		<html:formGroupRow>
-			<html:col extraSmall="6">
-				<html:formGroup label="Field 1" required="true" forElement="field1">
+			<html:col extraSmall="4">
+				<html:formGroup label="Field 1 with an huge label of this one" required="true" forElement="field1">
 					<html:input required="true" name="field1" />
 				</html:formGroup>
 				<html:jsEvent event="blur" attachTo="field1">
 					console.log('hello ' + new Date());
 				</html:jsEvent>
 			</html:col>
-			<html:col extraSmall="6">
-				<html:formGroup label="Field 3" required="true" forElement="field3">
+			<html:col extraSmall="4">
+				<html:formGroup label="Field 3 with an huge label of this one" required="true" forElement="field3">
 					<html:input required="true" name="field3" />
 				</html:formGroup>
 			</html:col>
+			<html:col extraSmall="4">
+				<html:formGroup label="Field 19" required="true" forElement="field19">
+					<html:input required="true" name="field19" />
+				</html:formGroup>
+			</html:col>
 		</html:formGroupRow>
-		<html:formGroup label="Field17" required="true">
+		<html:formGroup label="Field 17" required="true">
 			<html:textarea name="textarea17" required="true"></html:textarea>
 		</html:formGroup>
-		<html:formGroup label="Field18" required="true">
+		<html:formGroup label="Field 18" required="true">
 			<html:select name="filed18" data="${ persons }" var="person"
 				required="true">
 				<html:option value="${ person.id }">${ person.name }</html:option>
@@ -312,25 +341,7 @@
 	</html:table>
 
 
-	<html:tabs>
-
-		<html:tabsOnAfterShow>
-			console.log(oldTab);
-			console.log(newTab);
-		</html:tabsOnAfterShow>
-
-		<html:tabsHeader>
-			<html:tabsTab data-id="mytabid" active="true" label="my tab 1"
-				id="tab1"></html:tabsTab>
-			<html:tabsTab label="my tab 2" id="tab2"></html:tabsTab>
-			<html:tabsTab label="my tab 3" id="tab3"></html:tabsTab>
-		</html:tabsHeader>
-		<html:tabsBody>
-			<html:tabsContent active="true" contentOf="tab1"> My content 1</html:tabsContent>
-			<html:tabsContent contentOf="tab2"> My content 2</html:tabsContent>
-			<html:tabsContent contentOf="tab3"> My content 3</html:tabsContent>
-		</html:tabsBody>
-	</html:tabs>
+	
 
 	<html:buttonGroup>
 		<html:button label="My button" icon="search" id="btn1" />

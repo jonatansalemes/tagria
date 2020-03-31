@@ -100,8 +100,10 @@
 				columns.push({columns : column});
 			});
 			
+			var title = $('.grid-title',grid).text();
+			
 			return JSON.stringify({ 
-				title :  $('.panel-heading',grid).text(),
+				title :  title,
 				headers : headers,
 				rows : columns
 			});

@@ -3,6 +3,7 @@ package com.jslsolucoes.tagria.exporter.v4.impl;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,16 +14,17 @@ import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
 
 public class CsvExporter implements Exporter {
 
-    private byte[] header(List<Header> headers) {
-	return headers.stream().map(header -> header.getContent()).collect(Collectors.joining(",")).getBytes();
+    private byte[] header(List<Header> headers, String encoding) throws UnsupportedEncodingException {
+	return headers.stream().map(header -> header.getContent()).collect(Collectors.joining(",")).getBytes(encoding);
     }
 
-    private byte[] row(Row row) {
-	return row.getColumns().stream().map(column -> column.getContent()).collect(Collectors.joining(",")).getBytes();
+    private byte[] row(Row row, String encoding) throws UnsupportedEncodingException {
+	return row.getColumns().stream().map(column -> column.getContent()).collect(Collectors.joining(","))
+		.getBytes(encoding);
     }
 
-    private byte[] newLine() {
-	return System.lineSeparator().getBytes();
+    private byte[] newLine(String encoding) throws UnsupportedEncodingException {
+	return System.lineSeparator().getBytes(encoding);
     }
 
     @Override
@@ -31,13 +33,20 @@ public class CsvExporter implements Exporter {
     }
 
     @Override
-    public byte[] export(Table table) {
+    public byte[] export(ExporterContext exporterContext) {
+	Table table = exporterContext.getTable();
+	String encoding = exporterContext.getEncoding();
 	try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-	    byteArrayOutputStream.write(header(table.getHeaders()));
-	    byteArrayOutputStream.write(newLine());
+	    if ("utf-8".equals(encoding.toLowerCase())) {
+		byteArrayOutputStream.write(0xEF);
+		byteArrayOutputStream.write(0xBB);
+		byteArrayOutputStream.write(0xBF);
+	    }
+	    byteArrayOutputStream.write(header(table.getHeaders(), encoding));
+	    byteArrayOutputStream.write(newLine(encoding));
 	    for (Row row : table.getRows()) {
-		byteArrayOutputStream.write(row(row));
-		byteArrayOutputStream.write(newLine());
+		byteArrayOutputStream.write(row(row, encoding));
+		byteArrayOutputStream.write(newLine(encoding));
 	    }
 	    return byteArrayOutputStream.toByteArray();
 	} catch (IOException e) {
@@ -46,7 +55,8 @@ public class CsvExporter implements Exporter {
     }
 
     @Override
-    public String contentType() {
-	return "text/csv";
+    public String contentType(String encoding) {
+	return "text/csv;charset=" + encoding;
     }
+
 }
