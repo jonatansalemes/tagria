@@ -4,7 +4,7 @@ public interface Exporter {
 
     public byte[] export(ExporterContext exporterContext);
 
-    public String contentType();
+    public String contentType(String charset);
 
     public Boolean accepts(String mediaType);
     

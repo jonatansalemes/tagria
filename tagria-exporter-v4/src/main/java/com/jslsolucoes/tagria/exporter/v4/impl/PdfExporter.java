@@ -77,7 +77,7 @@ public class PdfExporter implements Exporter {
     }
 
     @Override
-    public String contentType() {
+    public String contentType(String encoding) {
 	return "application/pdf";
     }
 

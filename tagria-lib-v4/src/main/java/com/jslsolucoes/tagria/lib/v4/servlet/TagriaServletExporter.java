@@ -55,7 +55,7 @@ public class TagriaServletExporter extends HttpServlet {
 		for (Exporter exporter : exporters) {
 		    if (exporter.accepts(type)) {
 			byte[] bytes = exporter.export(new ExporterContext(table, fileName, encoding));
-			httpServletResponse.setContentType(exporter.contentType());
+			httpServletResponse.setContentType(exporter.contentType(encoding));
 			httpServletResponse.setContentLength(bytes.length);
 			servletOutputStream.write(bytes);
 			servletOutputStream.flush();

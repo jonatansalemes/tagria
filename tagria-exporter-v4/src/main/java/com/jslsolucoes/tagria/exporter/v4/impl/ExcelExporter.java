@@ -72,7 +72,7 @@ public class ExcelExporter implements Exporter {
     }
 
     @Override
-    public String contentType() {
+    public String contentType(String encoding) {
 	return "application/vnd.ms-excel";
     }
 

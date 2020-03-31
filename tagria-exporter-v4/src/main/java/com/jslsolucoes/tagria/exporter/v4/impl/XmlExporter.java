@@ -14,67 +14,67 @@ import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
 
 public class XmlExporter implements Exporter {
 
-    private byte[] title(String title, String charset) throws UnsupportedEncodingException {
-	return ("<title>" + title + "</title>").getBytes(charset);
+    private byte[] title(String title, String encoding) throws UnsupportedEncodingException {
+	return ("<title>" + title + "</title>").getBytes(encoding);
     }
 
-    private byte[] header(List<Header> headers, String charset) throws UnsupportedEncodingException {
+    private byte[] header(List<Header> headers, String encoding) throws UnsupportedEncodingException {
 	return headers.stream()
 		.map(header -> "<column align=\"" + header.getAlign() + "\">" + header.getContent() + "</column>")
-		.collect(Collectors.joining()).getBytes(charset);
+		.collect(Collectors.joining()).getBytes(encoding);
     }
 
-    private byte[] row(Row row, String charset) throws UnsupportedEncodingException {
+    private byte[] row(Row row, String encoding) throws UnsupportedEncodingException {
 	return row.getColumns().stream()
 		.map(column -> "<column align=\"" + column.getAlign() + "\">" + column.getContent() + "</column>")
-		.collect(Collectors.joining()).getBytes(charset);
+		.collect(Collectors.joining()).getBytes(encoding);
     }
 
-    private byte[] init(String charset) throws UnsupportedEncodingException {
-	return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".getBytes(charset);
+    private byte[] init(String encoding) throws UnsupportedEncodingException {
+	return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".getBytes(encoding);
     }
 
-    private byte[] tableStart(String charset) throws UnsupportedEncodingException {
-	return "<table>".getBytes(charset);
+    private byte[] tableStart(String encoding) throws UnsupportedEncodingException {
+	return "<table>".getBytes(encoding);
     }
 
-    private byte[] tableEnd(String charset) throws UnsupportedEncodingException {
-	return "</table>".getBytes(charset);
+    private byte[] tableEnd(String encoding) throws UnsupportedEncodingException {
+	return "</table>".getBytes(encoding);
     }
 
-    private byte[] headerStart(String charset) throws UnsupportedEncodingException {
-	return "<header>".getBytes(charset);
+    private byte[] headerStart(String encoding) throws UnsupportedEncodingException {
+	return "<header>".getBytes(encoding);
     }
 
-    private byte[] headerEnd(String charset) throws UnsupportedEncodingException {
-	return "</header>".getBytes(charset);
+    private byte[] headerEnd(String encoding) throws UnsupportedEncodingException {
+	return "</header>".getBytes(encoding);
     }
 
-    private byte[] bodyStart(String charset) throws UnsupportedEncodingException {
-	return "<body>".getBytes(charset);
+    private byte[] bodyStart(String encoding) throws UnsupportedEncodingException {
+	return "<body>".getBytes(encoding);
     }
 
-    private byte[] bodyEnd(String charset) throws UnsupportedEncodingException {
-	return "</body>".getBytes(charset);
+    private byte[] bodyEnd(String encoding) throws UnsupportedEncodingException {
+	return "</body>".getBytes(encoding);
     }
 
     @Override
     public byte[] export(ExporterContext exporterContext) {
 	Table table = exporterContext.getTable();
-	String charset = exporterContext.getCharset();
+	String encoding = exporterContext.getEncoding();
 	try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-	    byteArrayOutputStream.write(init(charset));
-	    byteArrayOutputStream.write(tableStart(charset));
-	    byteArrayOutputStream.write(title(table.getTitle(), charset));
-	    byteArrayOutputStream.write(headerStart(charset));
-	    byteArrayOutputStream.write(header(table.getHeaders(), charset));
-	    byteArrayOutputStream.write(headerEnd(charset));
-	    byteArrayOutputStream.write(bodyStart(charset));
+	    byteArrayOutputStream.write(init(encoding));
+	    byteArrayOutputStream.write(tableStart(encoding));
+	    byteArrayOutputStream.write(title(table.getTitle(), encoding));
+	    byteArrayOutputStream.write(headerStart(encoding));
+	    byteArrayOutputStream.write(header(table.getHeaders(), encoding));
+	    byteArrayOutputStream.write(headerEnd(encoding));
+	    byteArrayOutputStream.write(bodyStart(encoding));
 	    for (Row row : table.getRows()) {
-		byteArrayOutputStream.write(row(row, charset));
+		byteArrayOutputStream.write(row(row, encoding));
 	    }
-	    byteArrayOutputStream.write(bodyEnd(charset));
-	    byteArrayOutputStream.write(tableEnd(charset));
+	    byteArrayOutputStream.write(bodyEnd(encoding));
+	    byteArrayOutputStream.write(tableEnd(encoding));
 	    return byteArrayOutputStream.toByteArray();
 	} catch (IOException e) {
 	    throw new TagriaRuntimeException(e);
@@ -82,8 +82,8 @@ public class XmlExporter implements Exporter {
     }
 
     @Override
-    public String contentType() {
-	return "text/xml";
+    public String contentType(String encoding) {
+	return "text/xml;charset=" + encoding;
     }
 
     @Override

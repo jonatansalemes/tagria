@@ -6,16 +6,16 @@ public class ExporterContext {
 
     private Table table;
     private String fileName;
-    private String charset;
+    private String encoding;
     
     public ExporterContext() {
 	
     }
     
-    public ExporterContext(Table table, String fileName, String charset) {
+    public ExporterContext(Table table, String fileName,String encoding) {
 	this.table = table;
 	this.fileName = fileName;
-	this.charset = charset;
+	this.encoding = encoding;
     }
 
     public Table getTable() {
@@ -30,12 +30,15 @@ public class ExporterContext {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-    public String getCharset() {
-        return charset;
+
+    public String getEncoding() {
+	return encoding;
     }
-    public void setCharset(String charset) {
-        this.charset = charset;
+
+    public void setEncoding(String encoding) {
+	this.encoding = encoding;
     }
+    
     
     
 }
