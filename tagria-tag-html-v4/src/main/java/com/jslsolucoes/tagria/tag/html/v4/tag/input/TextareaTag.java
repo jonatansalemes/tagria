@@ -16,10 +16,32 @@ public class TextareaTag extends AbstractSimpleTagSupport {
     private String placeHolderKey;
     private Boolean required = Boolean.FALSE;
     private Integer rows = 4;
+    private Boolean disabled = Boolean.FALSE;
 
     @Override
     public Element render() {
-	return textarea();
+	return container();
+    }
+    
+    public Element container() {
+	Element container = ElementCreator.newDiv()
+		.attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(textarea())
+		.add(ripple());
+	if(required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+	
+	if (disabled) {
+	    container.attribute(Attribute.CLASS, "disabled");
+	}
+	
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').textarea();");
+	return container;
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
     }
 
     private Element textarea() {
@@ -41,15 +63,12 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	}
 
 	if (required) {
-	    textArea.attribute(Attribute.CLASS, "form-required");
 	    textArea.attribute(Attribute.REQUIRED, "required");
 	    if (StringUtils.isEmpty(placeHolder) && StringUtils.isEmpty(placeHolderKey)
 		    && StringUtils.isEmpty(textAreaValue)) {
 		textArea.attribute(Attribute.PLACEHOLDER, keyForLibrary("textarea.required.placeholder"));
 	    }
 	}
-
-	appendJsCode("$('#" + textArea.attribute(Attribute.ID) + "').textarea();");
 
 	return textArea;
     }
@@ -100,6 +119,14 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
     public void setPlaceHolderKey(String placeHolderKey) {
 	this.placeHolderKey = placeHolderKey;
+    }
+
+    public Boolean getDisabled() {
+	return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+	this.disabled = disabled;
     }
 
 }

@@ -361,6 +361,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates whether the component should be disabled. Default: false</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates placeHolder for textarea</description>
 			<name>placeHolder</name>
 			<rtexprvalue>true</rtexprvalue>

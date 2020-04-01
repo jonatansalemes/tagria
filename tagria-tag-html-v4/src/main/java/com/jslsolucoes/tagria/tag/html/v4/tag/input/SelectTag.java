@@ -30,8 +30,29 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	if (searchable) {
 	    return div();
 	} else {
-	    return select();
+	    return container();
 	}
+    }
+    
+    public Element container() {
+	Element container = ElementCreator.newDiv()
+		.attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(select())
+		.add(ripple());
+	if(required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+	
+	if (disabled) {
+	    container.attribute(Attribute.CLASS, "disabled");
+	}
+	
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').select();");
+	return container;
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
     }
 
     private Element div() {
@@ -60,14 +81,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
     }
 
     private Element divCol1() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(select());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(container());
     }
 
     private Element select() {
 	Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
 		.attribute(Attribute.ARIA_LABEL, "select").attribute(Attribute.NAME, name).add(option());
 	if (required) {
-	    select.attribute(Attribute.CLASS, "form-required").attribute(Attribute.REQUIRED, "required");
+	    select.attribute(Attribute.REQUIRED, "required");
 	}
 
 	if (disabled) {
@@ -101,8 +122,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	    setAttribute(var, null);
 	}
 
-	appendJsCode("$('#" + select.attribute(Attribute.ID) + "').select();");
-
+	
 	return select;
     }
 

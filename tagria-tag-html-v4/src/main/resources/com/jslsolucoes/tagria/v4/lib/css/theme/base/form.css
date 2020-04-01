@@ -1,0 +1,61 @@
+.form-control {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+	border-bottom: 0.8px solid #ced4da;
+	background-color: transparent;
+	padding: 0px 0px 0px 5px;
+	font-size: 1em;
+	height: 2em;
+}
+
+.form-control:focus {
+	box-shadow: 0 0px;
+	outline: 0;
+	border-bottom: 0.8px solid #ced4da;
+	background-color: transparent;
+}
+
+.form-group label {
+	background-color: #fff;
+	margin-bottom: 0;
+	padding: 0px 0px 0px 5px;
+	font-size: 0.8em;
+}
+
+.form-control-container>.form-control-container-line-ripple {
+	width: 100%;
+	height: 0.8px;
+	border-bottom: 0.8px solid #0d7ffb;
+	transform: scaleX(0);
+	transition: transform 0.3s ease-in-out 0s;
+}
+
+.form-control-container:not(.disabled ):hover .form-control-container-line-ripple {
+	transform: scaleX(1);
+}
+
+.form-control-container .form-control:focus+.form-control-container-line-ripple {
+	transform: scaleX(1);
+}
+
+.form-group .form-control-container.is-focus+label {
+	color: #0d7ffb;
+}
+
+.form-group .form-control-container.is-empty.form-control-container-required+label {
+	color: #dc3545;
+}
+
+.form-control-container.is-empty.form-control-container-required .form-control-container-line-ripple {
+	border-color: #dc3545;
+}
+
+.form-control-container.is-empty.form-control-container-required .form-control {
+	border-color: #dc3545;
+}
+
+.form-control-container.is-focus .form-control {
+	border-color: #0d7ffb;
+}

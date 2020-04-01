@@ -34,8 +34,28 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     @Override
     public Element render() {
-	return input();
+	return container();
+    }
 
+    public Element container() {
+	Element container = ElementCreator.newDiv()
+		.attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(input())
+		.add(ripple());
+	if(required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+	
+	if (disabled) {
+	    container.attribute(Attribute.CLASS, "disabled");
+	}
+	
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
+	return container;
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
     }
 
     private Element input() {
@@ -104,7 +124,6 @@ public class InputTag extends AbstractSimpleTagSupport {
 
 	if (required) {
 	    input.attribute(Attribute.REQUIRED, "required");
-	    input.attribute(Attribute.CLASS, "form-required");
 	    if (StringUtils.isEmpty(placeHolder) && StringUtils.isEmpty(placeHolderKey) && StringUtils.isEmpty(value)) {
 		input.attribute(Attribute.PLACEHOLDER, keyForLibrary("input.required.placeholder"));
 	    }
@@ -114,7 +133,6 @@ public class InputTag extends AbstractSimpleTagSupport {
 	    input.attribute(Attribute.CLASS, cssClass);
 	}
 
-	appendJsCode("$('#" + input.attribute(Attribute.ID) + "').input();");
 	return input;
     }
 

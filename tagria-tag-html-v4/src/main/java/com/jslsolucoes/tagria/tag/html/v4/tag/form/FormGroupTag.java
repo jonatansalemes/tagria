@@ -22,7 +22,7 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     }
 
     private Element div() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "form-group border rounded d-flex flex-column-reverse").attribute(Attribute.ID,
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "form-group d-flex flex-column-reverse border rounded p-1").attribute(Attribute.ID,
 		idForId(id));
 	if (!visible) {
 	    div.attribute(Attribute.CLASS, "collapse");

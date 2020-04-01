@@ -5,14 +5,13 @@
 		},
 		_create: function() {
 			var self = this;
-			var input = self.element;
-			$(input).on('change keyup',function(e){
+			var container = self.element;
+			$('input',container).on('change keyup',function(e){
 				if($(this).val() !== ''){
-					$(this).removeClass('is-empty').addClass('is-not-empty');
+					$(this).parent().removeClass('is-empty').addClass('is-not-empty');
 				} else {
-					$(this).removeClass('is-not-empty').addClass('is-empty');
+					$(this).parent().removeClass('is-not-empty').addClass('is-empty');
 				}
-				
 				if(e.keyCode==13) {
 					const id = $(this).attr('id');
 					const enterEvent = new CustomEvent('inputEnterEvent', {
@@ -20,6 +19,10 @@
 					});
 					dispatchEvent(enterEvent);
         		}
+			}).on('focus',function(e){
+				$(this).parent().addClass('is-focus');		
+			}).on('blur',function(e){
+				$(this).parent().removeClass('is-focus');
 			});
 		}
 	});
