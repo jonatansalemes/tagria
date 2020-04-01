@@ -183,6 +183,30 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.grid.GridExportTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates if timestamp must be added to fileName export. Default: true</description>
+			<name>timestamp</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the pattern of appended file. Default: dd/MM/yyyy HH:mm:ss</description>
+			<name>pattern</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the final name of the exported file. Default: data.(csv,xml,pdf,xlsx)</description>
+			<name>filename</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the final name (i18n) of the exported file.</description>
+			<name>filenameKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates if export support pdf file. Default: true</description>
 			<name>pdf</name>
 			<rtexprvalue>true</rtexprvalue>

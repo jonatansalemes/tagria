@@ -1,6 +1,8 @@
 package com.jslsolucoes.tagria.lib.v4.servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +23,7 @@ import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.exporter.v4.impl.CsvExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.ExcelExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.Exporter;
+import com.jslsolucoes.tagria.exporter.v4.impl.ExporterContext;
 import com.jslsolucoes.tagria.exporter.v4.impl.PdfExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.XmlExporter;
 import com.jslsolucoes.tagria.exporter.v4.parser.TableParser;
@@ -36,22 +40,27 @@ public class TagriaServletExporter extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
 	    throws ServletException, IOException {
-	httpServletRequest.setCharacterEncoding(ConfigurationParser.newParser().parse().getEncoding());
+	String encoding = ConfigurationParser.newParser().parse().getEncoding();
+	httpServletRequest.setCharacterEncoding(encoding);
 	ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
 	try {
 	    String json = httpServletRequest.getParameter("json");
 	    String type = httpServletRequest.getParameter("type");
+	    Boolean timestamp = Boolean.valueOf(httpServletRequest.getParameter("timestamp"));
+	    String pattern = httpServletRequest.getParameter("pattern");
+	    String filename = normalize(httpServletRequest.getParameter("filename") + (timestamp ? "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)): ""));	    
+	    
 	    logger.debug("exporting: json {},type {}", json, type);
 	    Table table = TableParser.newParser().withJson(json).parse();
 	    if (!CollectionUtils.isEmpty(table.getHeaders()) && !CollectionUtils.isEmpty(table.getRows())
 		    && table.getRows().get(0).getColumns().size() == table.getHeaders().size()) {
 
 		httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-		httpServletResponse.setHeader("Content-Disposition", "attachment; filename=data." + type);
+		httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + filename + "." + type);
 		for (Exporter exporter : exporters) {
 		    if (exporter.accepts(type)) {
-			byte[] bytes = exporter.export(table);
-			httpServletResponse.setContentType(exporter.contentType());
+			byte[] bytes = exporter.export(new ExporterContext(table, filename, encoding));
+			httpServletResponse.setContentType(exporter.contentType(encoding));
 			httpServletResponse.setContentLength(bytes.length);
 			servletOutputStream.write(bytes);
 			servletOutputStream.flush();
@@ -67,6 +76,10 @@ public class TagriaServletExporter extends HttpServlet {
 	    logger.error("Could not export data", exception);
 	    httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	}
+    }
+
+    private String normalize(String fileName) {
+	return StringUtils.stripAccents(fileName).replaceAll("( |\\/|:|!|\\.)","_").toLowerCase();
     }
 
     @Override
