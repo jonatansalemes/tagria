@@ -36,6 +36,21 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	return div;
     }
 
+    public Element inputTextContainer() {
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(input()).add(ripple());
+	if (required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
+	return container;
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
+    }
+
     private Element input() {
 	Element input = ElementCreator.newInput().attribute(Attribute.TYPE, "text").attribute(Attribute.CLASS,
 		"form-control autocomplete-input");
@@ -59,7 +74,7 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 
     private Element inputContainer() {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex justify-content-between align-items-center")
-		.add(input()).add(spinner());
+		.add(inputTextContainer()).add(spinner());
     }
 
     private Element div() {

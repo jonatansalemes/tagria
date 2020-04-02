@@ -35,8 +35,14 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     }
     
     private Element label() {
+	
 	String label = keyOrLabel(labelKey, this.label);
-	Element element = ElementCreator.newLabel().attribute(Attribute.TITLE, label).attribute(Attribute.CLASS,"text-truncate");
+	Element element = ElementCreator.newLabel()
+		.attribute(Attribute.TITLE, label)
+		.attribute(Attribute.ID,id())
+		.attribute(Attribute.DATA_TOGGLE, "tooltip")
+		.attribute(Attribute.DATA_PLACEMENT, "top")
+		.attribute(Attribute.CLASS,"text-truncate");
 	if (required) {
 	    element.add(span());
 	}
@@ -44,6 +50,7 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 	if (!StringUtils.isEmpty(forElement)) {
 	    element.attribute(Attribute.FOR, idForName(forElement));
 	}
+	appendJsCode("$('#" + element.attribute(Attribute.ID) + "').tooltip();");
 	return element;
     }
 

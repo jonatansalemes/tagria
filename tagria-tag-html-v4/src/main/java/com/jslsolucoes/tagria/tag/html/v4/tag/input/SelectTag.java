@@ -30,11 +30,11 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	if (searchable) {
 	    return div();
 	} else {
-	    return container();
+	    return inputTextContainer();
 	}
     }
     
-    public Element container() {
+    public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv()
 		.attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "form-control-container").add(select())
@@ -44,7 +44,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	}
 	
 	if (disabled) {
-	    container.attribute(Attribute.CLASS, "disabled");
+	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 	
 	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').select();");
@@ -81,7 +81,7 @@ public class SelectTag extends AbstractSimpleTagSupport {
     }
 
     private Element divCol1() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(container());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(inputTextContainer());
     }
 
     private Element select() {

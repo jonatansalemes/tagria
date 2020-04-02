@@ -13,10 +13,10 @@ public class GridSearchTag extends AbstractSimpleTagSupport {
     }
 
     private Element divSearch() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(inputContainer());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(inputTextContainer());
     }
     
-    public Element inputContainer() {
+    public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv()
 		.attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "form-control-container").add(inputSearch())

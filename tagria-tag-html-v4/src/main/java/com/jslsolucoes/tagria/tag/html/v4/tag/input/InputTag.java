@@ -34,10 +34,10 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     @Override
     public Element render() {
-	return container();
+	return inputTextContainer();
     }
 
-    public Element container() {
+    public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv()
 		.attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "form-control-container").add(input())
@@ -46,8 +46,8 @@ public class InputTag extends AbstractSimpleTagSupport {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
 	
-	if (disabled) {
-	    container.attribute(Attribute.CLASS, "disabled");
+	if (disabled || ("checkbox".equals(type) || "radio".equals(type))) {
+	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 	
 	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");

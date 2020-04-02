@@ -20,10 +20,10 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
     @Override
     public Element render() {
-	return container();
+	return inputTextContainer();
     }
     
-    public Element container() {
+    public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv()
 		.attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "form-control-container").add(textarea())
@@ -33,7 +33,7 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	}
 	
 	if (disabled) {
-	    container.attribute(Attribute.CLASS, "disabled");
+	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 	
 	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').textarea();");
