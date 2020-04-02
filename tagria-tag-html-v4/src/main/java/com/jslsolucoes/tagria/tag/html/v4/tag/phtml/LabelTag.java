@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.html.v4.Label;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class LabelTag extends AbstractSimpleTagSupport {
@@ -19,7 +18,7 @@ public class LabelTag extends AbstractSimpleTagSupport {
     }
 
     private Element label() {
-	Label labelElement = ElementCreator.newLabel();
+	Element labelElement = ElementCreator.newLabel().attribute(Attribute.ID, idForId(id));
 	if (hasKeyOrLabel(labelKey, label)) {
 	    labelElement.add(keyOrLabel(labelKey, label));
 	} else {

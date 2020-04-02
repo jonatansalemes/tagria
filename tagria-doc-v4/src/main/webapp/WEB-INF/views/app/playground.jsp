@@ -4,6 +4,18 @@
 
 	Developed by JSL Soluções LTDA Ãáôões
 	
+	
+	<html:inputGroup>
+		<html:inputGroup prepend="true">
+			<html:button icon="trash" title="Search 1" />
+		</html:inputGroup>
+		<html:input type="search" name="search" />
+		<html:inputGroup append="true">
+			<html:button icon="search" title="Search" />
+		</html:inputGroup>
+	</html:inputGroup>
+
+
 	<html:form action="#" label="My title"
 		validation="/app/form/validation">
 

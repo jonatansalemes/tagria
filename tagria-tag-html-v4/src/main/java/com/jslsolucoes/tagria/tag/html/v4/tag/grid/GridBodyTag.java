@@ -1,16 +1,10 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.grid;
 
-import java.util.Collection;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
-import com.jslsolucoes.tagria.tag.html.v4.VarStatus;
 
 public class GridBodyTag extends AbstractSimpleTagSupport {
 
@@ -20,29 +14,14 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 
     private Element tbody() {
 	GridTag gridTag = findAncestorWithClass(GridTag.class);
-	Collection<Object> data = dataSet(gridTag.getData());
-	String var = gridTag.getVar();
-	String varStatus = gridTag.getVarStatus();
 	String noRowText = gridTag.getNoRowText();
 	String noRowTextKey = gridTag.getNoRowTextKey();
-	VarStatus varStatusObject = new VarStatus();
 	Element tbody = ElementCreator.newTBody();
-	if (!CollectionUtils.isEmpty(data)) {
-	    for (Object row : data) {
-		setAttribute(var, row);
-		if (!StringUtils.isEmpty(varStatus)) {
-		    setAttribute(varStatus, varStatusObject);
-		}
-		tbody.add(ElementCreator.newTr().add(bodyContent()));
-		varStatusObject.increment();
-	    }
-	    setAttribute(var, null);
-	    if (!StringUtils.isEmpty(varStatus)) {
-		setAttribute(varStatus, null);
-	    }
-	} else {
+	gridTag.iterateOver(object -> {
+	    tbody.add(ElementCreator.newTr().add(bodyContent()));
+	}, () -> {
 	    tbody.add(tr(noRowTextKey, noRowText));
-	}
+	});
 	return tbody;
     }
 

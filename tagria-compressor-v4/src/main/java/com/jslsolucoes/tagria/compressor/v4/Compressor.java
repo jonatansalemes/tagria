@@ -98,7 +98,7 @@ public class Compressor {
 
 	    String[] files = new String[] { "common.css", "iframe.css", "bootstrap.css", "bootstrap.fix.css",
 		    "base.css", "animate.css", "fontawesome.css",  "sweet.alert.css",
-		    "link.css", "overlay.css", "print.css","form.css","grid.css" };
+		    "link.css", "overlay.css", "print.css","form.css","grid.css","input.group.css" };
 
 	    String content = StringUtils.join(Stream
 		    .concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),

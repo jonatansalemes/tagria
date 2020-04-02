@@ -77,3 +77,8 @@ ol, ul, dl {
     max-width: 90%;
   }
 }
+
+.navbar {
+	z-index: 2000;
+	
+}

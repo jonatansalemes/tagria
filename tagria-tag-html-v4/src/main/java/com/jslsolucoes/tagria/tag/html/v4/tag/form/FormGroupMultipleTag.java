@@ -2,24 +2,19 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.form;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.CloneableJsAppender;
-import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
-import com.jslsolucoes.tagria.tag.html.v4.VarStatus;
+import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractIterableSimpleTagSupport;
 
-public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements CloneableJsAppender {
+public class FormGroupMultipleTag extends AbstractIterableSimpleTagSupport implements CloneableJsAppender {
 
-    private Object data;
-    private String var;
     private String label;
     private String labelKey;
     private Integer atLeast = 0;
@@ -27,8 +22,6 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     private Boolean indexed = Boolean.TRUE;
     private String onAfterInsert;
     private String onAfterRemove;
-    private String varStatus;
-    private VarStatus varStatusObject = new VarStatus();
     private List<String> jsScripts = new ArrayList<>();
 
     @Override
@@ -49,25 +42,13 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
     private Element divContent() {
 	Element content = ElementCreator.newDiv().attribute(Attribute.CLASS, "fg-content");
-	Collection<Object> dataSet = dataSet(data);
-	if (!CollectionUtils.isEmpty(dataSet)) {
-	    for (Object object : dataSet) {
-		setAttribute(var, object);
-		if (!StringUtils.isEmpty(varStatus)) {
-		    setAttribute(varStatus, varStatusObject);
-		}
-		content.add(divFormGroup(bodyContent()));
-		varStatusObject.increment();
-	    }
-	    if (!StringUtils.isEmpty(varStatus)) {
-		setAttribute(varStatus, null);
-	    }
-	    setAttribute(var, null);
-	} else {
+	iterateOver(object-> {
+	    content.add(divFormGroup(bodyContent()));
+	},() -> {
 	    for (int i = 0; i < (atLeast > 0 ? atLeast : 1); i++) {
 		content.add(divFormGroup(bodyContent()));
 	    }
-	}
+	});
 	return content;
     }
 
@@ -153,26 +134,6 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 	this.label = label;
     }
 
-    public Object getData() {
-	return data;
-    }
-
-    public void setData(Object data) {
-	this.data = data;
-    }
-
-    public void setData(Collection<Object> data) {
-	this.data = data;
-    }
-
-    public String getVar() {
-	return var;
-    }
-
-    public void setVar(String var) {
-	this.var = var;
-    }
-
     public Integer getAtLeast() {
 	return atLeast;
     }
@@ -187,22 +148,6 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
     public void setEmpty(Boolean empty) {
 	this.empty = empty;
-    }
-
-    public String getVarStatus() {
-	return varStatus;
-    }
-
-    public void setVarStatus(String varStatus) {
-	this.varStatus = varStatus;
-    }
-
-    public VarStatus getVarStatusObject() {
-	return varStatusObject;
-    }
-
-    public void setVarStatusObject(VarStatus varStatusObject) {
-	this.varStatusObject = varStatusObject;
     }
 
     public String getLabelKey() {
@@ -220,7 +165,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
 
     @Override
     public Integer index() {
-	return varStatusObject.getIndex();
+	return getVarStatusObject().getIndex();
     }
 
     public String getOnAfterInsert() {
