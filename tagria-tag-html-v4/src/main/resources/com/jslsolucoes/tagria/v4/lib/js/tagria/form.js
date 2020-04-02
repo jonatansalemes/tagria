@@ -22,7 +22,6 @@
 			var form = self.element;  
 			
 			addEventListener('inputEnterEvent', e => {	
-				console.log(e.detail.src);
 				if($('#' + e.detail.src,form).length === 1) {
 					self._validateAndSubmit();
 				}
@@ -130,10 +129,11 @@
 			 var self = this;
 			 var form = self.element;
 			 var empty = false;
-         	 $('.form-required:visible',form).each(function(){
+         	 $('input[required],select[required],textarea[required]',form).filter(":visible")
+         	 .each(function(){
          		if($(this).val() == ''){
          			empty = true;
-         			$(this).addClass('is-empty');
+         			$(this).parent().addClass('is-empty');
          		}
          	 });
         	 return empty;

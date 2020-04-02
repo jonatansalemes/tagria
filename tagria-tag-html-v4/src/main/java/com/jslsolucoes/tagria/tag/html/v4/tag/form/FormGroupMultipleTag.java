@@ -130,7 +130,7 @@ public class FormGroupMultipleTag extends AbstractSimpleTagSupport implements Cl
     }
 
     private Element divRow(String bodyContent) {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "row fg-row mt-3 mb-3 p-3 border ")
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "row fg-row my-2 p-2 border ")
 		.add(divCol1(bodyContent)).add(divCol2());
     }
 
