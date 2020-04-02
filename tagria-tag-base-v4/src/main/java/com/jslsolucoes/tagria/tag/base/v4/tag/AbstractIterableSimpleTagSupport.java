@@ -22,7 +22,7 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
     private String varStatus;
     private Object data;
     private Object[] dataArray;
-    private VarStatus varStatusObject;
+    private VarStatus varStatusObject = new VarStatus();
 
     public void iterateOver(Consumer<Object> onNotEmpty) {
 	iterateOver(onNotEmpty, () -> {});
@@ -31,7 +31,6 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
     public void iterateOver(Consumer<Object> onNotEmpty, NoArgsSupplier noArgsSupplier) {
 	Collection<Object> objects = dataSet();
 	if (!CollectionUtils.isEmpty(objects)) {
-	    varStatusObject = new VarStatus();
 	    for (Object object : objects) {
 		setAttribute(var, object);
 		if (!StringUtils.isEmpty(varStatus)) {
@@ -92,6 +91,10 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
 
     public void setData(Object data) {
 	this.data = data;
+    }
+    
+    public void setData(Collection<Object> data) {
+   	this.data = data;
     }
     
     public Object[] getDataArray() {
