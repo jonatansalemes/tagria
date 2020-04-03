@@ -46,7 +46,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
 	
-	if (disabled || ("checkbox".equals(type) || "radio".equals(type))) {
+	if (disabled || ("checkbox".equals(type) || "radio".equals(type) || "hidden".equals(type))) {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 	
