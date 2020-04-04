@@ -70,3 +70,15 @@
 .form-control-container.is-focus .form-control {
 	border-color: #0d7ffb;
 }
+
+.form-control-container.is-empty.form-control-container-required .form-control-container-toolbar {
+	color: #dc3545;
+}
+
+.form-control-container.is-focus .form-control-container-toolbar {
+	color: #0d7ffb;
+}
+
+.maxlenght-counter {
+	font-size: 0.8em;
+}

@@ -39,24 +39,38 @@ public class InputTag extends AbstractSimpleTagSupport {
     }
 
     public Element inputTextContainer() {
-	Element container = ElementCreator.newDiv()
-		.attribute(Attribute.ID, id())
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "form-control-container").add(input());
-	
-	if(ripple) {
-	   container.add(ripple());
+
+	if (ripple) {
+	    container.add(ripple());
 	}
-	
-	if(required) {
+
+	if (required) {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
-	
+
 	if (ripple && disabled || ("checkbox".equals(type) || "radio".equals(type) || "hidden".equals(type))) {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
-	
+
+	Element toolbar = toolbar();
+	if (maxLength != null) {
+	    toolbar.add(maxLengthCounter());
+	}
+	container.add(toolbar);
+
 	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
 	return container;
+    }
+
+    private Element maxLengthCounter() {
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "maxlenght-counter")
+		.add((StringUtils.isEmpty(value) ? "0" : value.length()) + "/" + maxLength);
+    }
+
+    private Element toolbar() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex justify-content-end align-items-center form-control-container-toolbar");
     }
 
     private Element ripple() {

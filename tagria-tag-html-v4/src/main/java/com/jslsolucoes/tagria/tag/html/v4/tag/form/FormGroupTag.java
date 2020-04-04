@@ -23,8 +23,8 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 
     private Element div() {
 	Element div = ElementCreator.newDiv()
-		.attribute(Attribute.CLASS, "form-group d-flex flex-column-reverse border rounded p-1").attribute(Attribute.ID,
-		idForId(id));
+		.attribute(Attribute.CLASS, "form-group d-flex flex-column-reverse border rounded p-1")
+		.attribute(Attribute.ID, idForId(id));
 	if (!visible) {
 	    div.attribute(Attribute.CLASS, "collapse");
 	}
@@ -35,24 +35,19 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 	}
 	return div;
     }
-    
-    
+
     private Element infoCircle(String text) {
 	Element infoCircle = ElementCreator.newSpan().attribute(Attribute.ID, id())
-		.attribute(Attribute.TITLE, text)
-		.attribute(Attribute.DATA_TOGGLE, "tooltip")
-		.attribute(Attribute.DATA_PLACEMENT, "top")
-		.attribute(Attribute.CLASS,
-		"fas fa-info-circle fa-fw mr-1");
-	appendJsCode("$('#" + infoCircle.attribute(Attribute.ID) + "').tooltip();");
+		.attribute(Attribute.CLASS, "fas fa-info-circle fa-fw mr-1 cursor-pointer");
+	appendJsCode("$('#" + infoCircle.attribute(Attribute.ID) + "').popover({trigger: 'hover', content: '" + text
+		+ "',placement: 'top'});");
 	return infoCircle;
     }
-    
+
     private Element label(String text) {
-	Element element = ElementCreator.newLabel()
-		.attribute(Attribute.ID,id())
-		.attribute(Attribute.CLASS,"text-truncate");
-	element.add(infoCircle(text));	
+	Element element = ElementCreator.newLabel().attribute(Attribute.ID, id()).attribute(Attribute.CLASS,
+		"text-truncate");
+	element.add(infoCircle(text));
 	if (required) {
 	    element.add(span());
 	}

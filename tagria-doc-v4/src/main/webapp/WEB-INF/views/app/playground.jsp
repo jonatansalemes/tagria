@@ -9,11 +9,15 @@
 		<html:inputGroup prepend="true">
 			<html:button icon="trash" title="Search 1" />
 		</html:inputGroup>
-		<html:input type="search" name="search" />
+		<html:input type="search" name="search2" />
 		<html:inputGroup append="true">
 			<html:button icon="search" title="Search" />
 		</html:inputGroup>
 	</html:inputGroup>
+	
+	<html:popover attachTo="search2" label="My label" placement="bottom">
+		My content
+	</html:popover>
 
 
 	<html:form action="#" label="My title"
@@ -29,7 +33,7 @@
 			<html:col extraSmall="4">
 				<html:formGroup label="Field 1 with an huge label of this one"
 					required="true" forElement="field1">
-					<html:input required="true" name="field1" />
+					<html:input required="true" name="field1" maxLength="50"/>
 				</html:formGroup>
 				<html:jsEvent event="blur" attachTo="field1">
 					console.log('hello ' + new Date());
