@@ -31,6 +31,7 @@ public class InputTag extends AbstractSimpleTagSupport {
     private String list;
     private Boolean autoComplete = Boolean.FALSE;
     private String formatter;
+    private Boolean ripple = Boolean.FALSE;
 
     @Override
     public Element render() {
@@ -40,13 +41,17 @@ public class InputTag extends AbstractSimpleTagSupport {
     public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv()
 		.attribute(Attribute.ID, id())
-		.attribute(Attribute.CLASS, "form-control-container").add(input())
-		.add(ripple());
+		.attribute(Attribute.CLASS, "form-control-container").add(input());
+	
+	if(ripple) {
+	   container.add(ripple());
+	}
+	
 	if(required) {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
 	
-	if (disabled || ("checkbox".equals(type) || "radio".equals(type) || "hidden".equals(type))) {
+	if (ripple && disabled || ("checkbox".equals(type) || "radio".equals(type) || "hidden".equals(type))) {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 	
@@ -318,6 +323,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     public void setFormatter(String formatter) {
 	this.formatter = formatter;
+    }
+
+    public Boolean getRipple() {
+	return ripple;
+    }
+
+    public void setRipple(Boolean ripple) {
+	this.ripple = ripple;
     }
 
 }

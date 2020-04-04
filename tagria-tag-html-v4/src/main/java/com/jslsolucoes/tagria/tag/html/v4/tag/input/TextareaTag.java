@@ -17,6 +17,7 @@ public class TextareaTag extends AbstractSimpleTagSupport {
     private Boolean required = Boolean.FALSE;
     private Integer rows = 4;
     private Boolean disabled = Boolean.FALSE;
+    private Boolean ripple = Boolean.FALSE;
 
     @Override
     public Element render() {
@@ -26,13 +27,17 @@ public class TextareaTag extends AbstractSimpleTagSupport {
     public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv()
 		.attribute(Attribute.ID, id())
-		.attribute(Attribute.CLASS, "form-control-container").add(textarea())
-		.add(ripple());
+		.attribute(Attribute.CLASS, "form-control-container").add(textarea());
+	
+	if (ripple) {
+	    container.add(ripple());
+	}
+	
 	if(required) {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
 	
-	if (disabled) {
+	if (ripple && disabled) {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 	
@@ -127,6 +132,14 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
     public void setDisabled(Boolean disabled) {
 	this.disabled = disabled;
+    }
+
+    public Boolean getRipple() {
+	return ripple;
+    }
+
+    public void setRipple(Boolean ripple) {
+	this.ripple = ripple;
     }
 
 }

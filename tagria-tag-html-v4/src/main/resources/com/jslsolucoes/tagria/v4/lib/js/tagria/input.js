@@ -6,11 +6,12 @@
 		_create: function() {
 			var self = this;
 			var container = self.element;
+			var parentSelectors = '.form-control-container,.form-group';
 			$('input',container).on('change keyup',function(e){
 				if($(this).val() !== ''){
-					$(this).parent().removeClass('is-empty').addClass('is-not-empty');
+					$(this).parents(parentSelectors).removeClass('is-empty').addClass('is-not-empty');
 				} else {
-					$(this).parent().removeClass('is-not-empty').addClass('is-empty');
+					$(this).parents(parentSelectors).removeClass('is-not-empty').addClass('is-empty');
 				}
 				if(e.keyCode==13) {
 					const id = $(this).attr('id');
@@ -20,9 +21,9 @@
 					dispatchEvent(enterEvent);
         		}
 			}).on('focus',function(e){
-				$(this).parent().addClass('is-focus');		
+				$(this).parents(parentSelectors).addClass('is-focus');		
 			}).on('blur',function(e){
-				$(this).parent().removeClass('is-focus');
+				$(this).parents(parentSelectors).removeClass('is-focus');
 			});
 		}
 	});

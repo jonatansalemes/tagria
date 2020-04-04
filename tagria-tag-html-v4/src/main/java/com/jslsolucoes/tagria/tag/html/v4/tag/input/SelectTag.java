@@ -8,7 +8,6 @@ import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractIterableSimpleTagSupport;
 
-
 public class SelectTag extends AbstractIterableSimpleTagSupport {
 
     private String name;
@@ -17,6 +16,7 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
     private Boolean fixed = Boolean.FALSE;
     private Boolean searchable = Boolean.FALSE;
     private Boolean disabled = Boolean.FALSE;
+    private Boolean ripple = Boolean.FALSE;
 
     @Override
     public Element render() {
@@ -26,20 +26,23 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 	    return inputTextContainer();
 	}
     }
-    
+
     public Element inputTextContainer() {
-	Element container = ElementCreator.newDiv()
-		.attribute(Attribute.ID, id())
-		.attribute(Attribute.CLASS, "form-control-container").add(select())
-		.add(ripple());
-	if(required) {
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(select());
+
+	if (ripple) {
+	    container.add(ripple());
+	}
+
+	if (required) {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
-	
-	if (disabled) {
+
+	if (ripple && disabled) {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
-	
+
 	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').select();");
 	return container;
     }
@@ -96,9 +99,9 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 	if (fixed) {
 	    select.add(bodyContent());
 	} else {
-	    iterateOver(object-> select.add(bodyContent()));
+	    iterateOver(object -> select.add(bodyContent()));
 	}
-	
+
 	return select;
     }
 
@@ -188,7 +191,7 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
     public void setRequired(Boolean required) {
 	this.required = required;
     }
-  
+
     public Boolean getFixed() {
 	return fixed;
     }
@@ -203,6 +206,14 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 
     public void setSearchable(Boolean searchable) {
 	this.searchable = searchable;
+    }
+
+    public Boolean getRipple() {
+	return ripple;
+    }
+
+    public void setRipple(Boolean ripple) {
+	this.ripple = ripple;
     }
 
 }

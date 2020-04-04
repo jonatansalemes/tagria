@@ -129,11 +129,12 @@
 			 var self = this;
 			 var form = self.element;
 			 var empty = false;
+			 var parentSelectors = '.form-control-container,.form-group';
          	 $('input[required],select[required],textarea[required]',form).filter(":visible")
          	 .each(function(){
          		if($(this).val() == ''){
          			empty = true;
-         			$(this).parent().addClass('is-empty');
+         			$(this).parents(parentSelectors).addClass('is-empty');
          		}
          	 });
         	 return empty;
@@ -154,9 +155,10 @@
 			var self = this;
 			var form = self.element;
 			var error = false;
+			var parentSelectors = '.form-control-container,.form-group';
 			$('input[type=email]',form).each(function(){
 				if(!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test( $(this).val() )){
-					var input = $(this).addClass('is-empty');
+					var input = $(this).parents(parentSelectors).addClass('is-empty');
 					self._popover(input,self.options.invalid.email);
 					error = true;
 				}
@@ -164,7 +166,7 @@
 			
 			$('input[type=number][max]',form).each(function(){
 				if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
-					var input = $(this).addClass('is-empty');
+					var input = $(this).parents(parentSelectors).addClass('is-empty');
 					self._popover(input,self.options.invalid.max + ' ' + input.attr("max"));
 					error = true;
 				}
@@ -172,7 +174,7 @@
 			
 			$('input[type=number][min]',form).each(function(){
 				if(parseInt($(this).val()) < parseInt($(this).attr("min"))){
-					var input = $(this).addClass('is-empty');
+					var input = $(this).parents(parentSelectors).addClass('is-empty');
 					self._popover(input,self.options.invalid.min + ' ' + input.attr("min"));
 					error = true;
 				}
