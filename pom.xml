@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
 	<artifactId>tagria-v4</artifactId>
-	<version>feature-input-refactor-SNAPSHOT</version>
+	<version>4.0.22-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
