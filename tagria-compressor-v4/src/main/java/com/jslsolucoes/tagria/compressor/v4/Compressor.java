@@ -41,7 +41,7 @@ public class Compressor {
 		"lazysizes/lazysizes.js", "tagria/iframe.js", "tagria/grid.js", "tagria/tabs.js",
 		"tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js", "tagria/select.js",
 		"tagria/searchableSelect.js", "tagria/autocomplete.js", "tagria/input.js", "tagria/textarea.js",
-		"sweet-alert/sweet.alert.js" };
+		"sweet-alert/sweet.alert.js","switch/switch.js"  };
 
 	List<String> contents = new ArrayList<>();
 	for (String file : files) {
@@ -98,7 +98,7 @@ public class Compressor {
 
 	    String[] files = new String[] { "common.css", "iframe.css", "bootstrap.css", "bootstrap.fix.css",
 		    "base.css", "animate.css", "fontawesome.css",  "sweet.alert.css",
-		    "link.css", "overlay.css", "print.css","form.css","grid.css","input.group.css" };
+		    "link.css", "overlay.css", "print.css","form.css","grid.css","input.group.css","switch.css" };
 
 	    String content = StringUtils.join(Stream
 		    .concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),

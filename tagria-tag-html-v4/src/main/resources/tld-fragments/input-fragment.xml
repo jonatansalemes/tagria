@@ -1,6 +1,61 @@
 <fragment>
 
 	<tag>
+		<description>Renders a switch (on|off) component</description>
+		<display-name>Input</display-name>
+		<name>switch</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.SwitchTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the name of the hidden input.</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the value selected in the component</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if switch must be checked</description>
+			<name>checked</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates on text label for swtich</description>
+			<name>onText</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates on text label key (i18n)</description>
+			<name>onTextKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+			<attribute>
+			<description>Indicates off text label for swtich</description>
+			<name>offText</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates off text label key (i18n)</description>
+			<name>offTextKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:switch name="mySwitch" value="1"/&gt;
+		</example>
+	</tag>
+
+	<tag>
 		<description>Renders a autoComplete</description>
 		<display-name>Input</display-name>
 		<name>autoComplete</name>
