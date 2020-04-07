@@ -1,5 +1,6 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.misc;
 
+import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
 
 public class TooltipTag extends AbstractSimpleTagSupport {
@@ -12,8 +13,8 @@ public class TooltipTag extends AbstractSimpleTagSupport {
 
     @Override
     public void renderOnVoid() {
-	appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').attr('data-placement','" + placement
-		+ "').attr('data-toggle','tooltip').attr('title','"
+	appendJsCode("$('" + attachTo(attachToSelector, attachTo) + "').attr('"+Attribute.DATA_PLACEMENT.getName()+"','" + placement
+		+ "').attr('"+Attribute.DATA_TOGGLE.getName()+"','tooltip').attr('title','"
 		+ (hasKeyOrLabel(labelKey, label) ? keyOrLabel(labelKey, label) : bodyContent()) + "').tooltip();");
     }
 

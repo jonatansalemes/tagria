@@ -1,7 +1,6 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.input;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.v4.Attribute;
@@ -30,9 +29,7 @@ public class OptionTag extends AbstractSimpleTagSupport {
 	SelectTag selectTag = findAncestorWithClass(SelectTag.class);
 	String selectValue = selectTag.getValue();
 	if (!StringUtils.isEmpty(selectValue)) {
-	    return value.equals(selectTag.getValue())
-		    || (selectTag.getRequired() && !CollectionUtils.isEmpty(dataSet(selectTag.getData()))
-			    && dataSet(selectTag.getData()).size() == 1);
+	    return value.equals(selectValue);
 	}
 	return false;
     }

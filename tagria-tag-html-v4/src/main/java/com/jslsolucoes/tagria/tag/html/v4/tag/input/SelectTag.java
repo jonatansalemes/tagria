@@ -1,37 +1,54 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.input;
 
-import java.util.Collection;
-import java.util.Map;
-
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractIterableSimpleTagSupport;
 
-@SuppressWarnings("rawtypes")
-public class SelectTag extends AbstractSimpleTagSupport {
+public class SelectTag extends AbstractIterableSimpleTagSupport {
 
-    private Object data;
-    private Map map;
     private String name;
     private String value;
-    private String var;
     private Boolean required = Boolean.FALSE;
     private Boolean fixed = Boolean.FALSE;
     private Boolean searchable = Boolean.FALSE;
     private Boolean disabled = Boolean.FALSE;
+    private Boolean ripple = Boolean.FALSE;
 
     @Override
     public Element render() {
 	if (searchable) {
 	    return div();
 	} else {
-	    return select();
+	    return inputTextContainer();
 	}
+    }
+
+    public Element inputTextContainer() {
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(select());
+
+	if (ripple) {
+	    container.add(ripple());
+	}
+
+	if (required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+
+	if (ripple && disabled) {
+	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
+	}
+
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').select();");
+	return container;
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
     }
 
     private Element div() {
@@ -60,14 +77,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
     }
 
     private Element divCol1() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(select());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(inputTextContainer());
     }
 
     private Element select() {
 	Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
 		.attribute(Attribute.ARIA_LABEL, "select").attribute(Attribute.NAME, name).add(option());
 	if (required) {
-	    select.attribute(Attribute.CLASS, "form-required").attribute(Attribute.REQUIRED, "required");
+	    select.attribute(Attribute.REQUIRED, "required");
 	}
 
 	if (disabled) {
@@ -79,29 +96,11 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	if (!StringUtils.isEmpty(cssClass)) {
 	    select.attribute(Attribute.CLASS, cssClass);
 	}
-
 	if (fixed) {
 	    select.add(bodyContent());
+	} else {
+	    iterateOver(object -> select.add(bodyContent()));
 	}
-
-	Collection<Object> dataSet = dataSet(data);
-
-	if (!CollectionUtils.isEmpty(dataSet)) {
-	    checkForDataSetExceed(dataSet);
-	    for (Object item : dataSet) {
-		setAttribute(var, item);
-		select.add(bodyContent());
-	    }
-	    setAttribute(var, null);
-	} else if (map != null) {
-	    for (Object entry : map.entrySet()) {
-		setAttribute(var, entry);
-		select.add(bodyContent());
-	    }
-	    setAttribute(var, null);
-	}
-
-	appendJsCode("$('#" + select.attribute(Attribute.ID) + "').select();");
 
 	return select;
     }
@@ -161,18 +160,6 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "modal-dialog").add(divModalContent());
     }
 
-    public Object getData() {
-	return data;
-    }
-
-    public void setData(Object data) {
-	this.data = data;
-    }
-
-    public void setData(Collection<Object> data) {
-	this.data = data;
-    }
-
     public String getName() {
 	return name;
     }
@@ -197,28 +184,12 @@ public class SelectTag extends AbstractSimpleTagSupport {
 	this.disabled = disabled;
     }
 
-    public String getVar() {
-	return var;
-    }
-
-    public void setVar(String var) {
-	this.var = var;
-    }
-
     public Boolean getRequired() {
 	return required;
     }
 
     public void setRequired(Boolean required) {
 	this.required = required;
-    }
-
-    public Map getMap() {
-	return map;
-    }
-
-    public void setMap(Map map) {
-	this.map = map;
     }
 
     public Boolean getFixed() {
@@ -235,6 +206,14 @@ public class SelectTag extends AbstractSimpleTagSupport {
 
     public void setSearchable(Boolean searchable) {
 	this.searchable = searchable;
+    }
+
+    public Boolean getRipple() {
+	return ripple;
+    }
+
+    public void setRipple(Boolean ripple) {
+	this.ripple = ripple;
     }
 
 }

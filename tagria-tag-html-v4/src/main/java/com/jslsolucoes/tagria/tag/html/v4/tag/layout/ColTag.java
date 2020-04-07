@@ -15,6 +15,7 @@ public class ColTag extends AbstractSimpleTagSupport {
     private Integer medium;
     private Integer large;
     private String cssClass;
+    private Integer extraLarge;
 
     @Override
     public Element render() {
@@ -34,6 +35,9 @@ public class ColTag extends AbstractSimpleTagSupport {
 	}
 	if (large != null) {
 	    col.attribute(Attribute.CLASS, "col-lg-" + large);
+	}
+	if (extraLarge != null) {
+	    col.attribute(Attribute.CLASS, "col-xl-" + extraLarge);
 	}
 	if (!StringUtils.isEmpty(cssClass)) {
 	    col.attribute(Attribute.CLASS, cssClass);
@@ -79,6 +83,14 @@ public class ColTag extends AbstractSimpleTagSupport {
 
     public void setCssClass(String cssClass) {
 	this.cssClass = cssClass;
+    }
+
+    public Integer getExtraLarge() {
+	return extraLarge;
+    }
+
+    public void setExtraLarge(Integer extraLarge) {
+	this.extraLarge = extraLarge;
     }
 
 }
