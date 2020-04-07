@@ -1,22 +1,17 @@
 package com.jslsolucoes.tagria.tag.html.v4.tag.layout;
 
-import java.util.Collection;
-
-import org.apache.commons.collections4.CollectionUtils;
-
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
-import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractSimpleTagSupport;
+import com.jslsolucoes.tagria.tag.base.v4.tag.AbstractIterableSimpleTagSupport;
 
-public class DataBlockTag extends AbstractSimpleTagSupport {
+public class DataBlockTag extends AbstractIterableSimpleTagSupport {
 
-    private String var;
-    private Object data;
     private Integer extraSmall;
     private Integer small;
     private Integer medium;
     private Integer large;
+    private Integer extraLarge;
 
     @Override
     public Element render() {
@@ -25,21 +20,13 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 
     private Element div() {
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "row");
-	Collection<Object> dataSet = dataSet(data);
-	if (!CollectionUtils.isEmpty(dataSet)) {
-	    checkForDataSetExceed(dataSet);
-	    for (Object object : dataSet) {
-		setAttribute(var, object);
-		div.add(col());
-	    }
-	    setAttribute(var, null);
-	}
+	iterateOver((object) -> div.add(col()));
 	return div;
     }
 
     private Element col() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "col mt-3")
-		.attribute(Attribute.CLASS, "col-xs-" + extraSmall).add(bodyContent());
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "col mt-1")
+		.attribute(Attribute.CLASS, "col-" + extraSmall).add(bodyContent());
 	if (small != null) {
 	    div.attribute(Attribute.CLASS, "col-sm-" + small);
 	}
@@ -49,27 +36,10 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
 	if (large != null) {
 	    div.attribute(Attribute.CLASS, "col-lg-" + large);
 	}
+	if (extraLarge != null) {
+	    div.attribute(Attribute.CLASS, "col-xl-" + extraLarge);
+	}
 	return div;
-    }
-
-    public String getVar() {
-	return var;
-    }
-
-    public void setVar(String var) {
-	this.var = var;
-    }
-
-    public Object getData() {
-	return data;
-    }
-
-    public void setData(Object data) {
-	this.data = data;
-    }
-
-    public void setData(Collection<Object> data) {
-	this.data = data;
     }
 
     public Integer getExtraSmall() {
@@ -103,4 +73,13 @@ public class DataBlockTag extends AbstractSimpleTagSupport {
     public void setLarge(Integer large) {
 	this.large = large;
     }
+
+    public Integer getExtraLarge() {
+	return extraLarge;
+    }
+
+    public void setExtraLarge(Integer extraLarge) {
+	this.extraLarge = extraLarge;
+    }
+
 }

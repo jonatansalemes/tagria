@@ -13,7 +13,20 @@ public class GridSearchTag extends AbstractSimpleTagSupport {
     }
 
     private Element divSearch() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(inputSearch());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "m-3").add(inputTextContainer());
+    }
+    
+    public Element inputTextContainer() {
+	Element container = ElementCreator.newDiv()
+		.attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(inputSearch())
+		.add(ripple());
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
+	return container;
+    }
+    
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
     }
 
     private Element inputSearch() {

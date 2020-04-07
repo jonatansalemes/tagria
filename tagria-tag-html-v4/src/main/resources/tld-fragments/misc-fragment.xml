@@ -1,6 +1,50 @@
 <fragment>
 
 	<tag>
+		<description>Renders a popover</description>
+		<display-name>Misc</display-name>
+		<name>popover</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.PopoverTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name that triggers the component</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the component</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label for the component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label key (i18n) for the component</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates component placement. Options: top,bottom,left,right. Default: top</description>
+			<name>placement</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:input name="field1"/&gt;
+		    &lt;html:popover attachTo="field1" label="label for helper"&gt;
+		   		 Other components - Popover content
+			&lt;/html:popover&gt;
+		</example>
+	</tag>
+
+	<tag>
 		<description>Renders an float print button</description>
 		<display-name>Misc</display-name>
 		<name>print</name>

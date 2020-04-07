@@ -13,6 +13,8 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     private String forElement;
     private String label;
     private String labelKey;
+    private String help;
+    private String helpKey;
     private Boolean required = Boolean.FALSE;
     private Boolean visible = Boolean.TRUE;
 
@@ -22,25 +24,38 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     }
 
     private Element div() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "form-group").attribute(Attribute.ID,
-		idForId(id));
+	Element div = ElementCreator.newDiv()
+		.attribute(Attribute.CLASS, "form-group d-flex flex-column-reverse border rounded p-1")
+		.attribute(Attribute.ID, idForId(id));
 	if (!visible) {
 	    div.attribute(Attribute.CLASS, "collapse");
 	}
 	div.add(bodyContent());
 	if (hasKeyOrLabel(labelKey, label)) {
-	    div.add(label());
+	    String labelText = keyOrLabel(labelKey, label);
+	    div.add(label(labelText));
 	}
 	return div;
     }
 
-    private Element label() {
-	String label = keyOrLabel(labelKey, this.label);
-	Element element = ElementCreator.newLabel().attribute(Attribute.TITLE, label).attribute(Attribute.CLASS,"text-truncate");
+    private Element infoCircle(String text) {
+	Element infoCircle = ElementCreator.newSpan().attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "fas fa-info-circle fa-fw mr-1 cursor-pointer")
+		.attribute(Attribute.DATA_TOGGLE,"tooltip")
+		.attribute(Attribute.DATA_PLACEMENT,"top")
+		.attribute(Attribute.TITLE,hasKeyOrLabel(helpKey,help) ? keyOrLabel(helpKey, help) : text);
+	appendJsCode("$('#" + infoCircle.attribute(Attribute.ID) + "').tooltip({ html:true });");
+	return infoCircle;
+    }
+
+    private Element label(String text) {
+	Element element = ElementCreator.newLabel().attribute(Attribute.ID, id()).attribute(Attribute.CLASS,
+		"text-truncate");
+	element.add(infoCircle(text));
 	if (required) {
 	    element.add(span());
 	}
-	element.add(label);
+	element.add(text);
 	if (!StringUtils.isEmpty(forElement)) {
 	    element.attribute(Attribute.FOR, idForName(forElement));
 	}
@@ -48,7 +63,7 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     }
 
     private Element span() {
-	return ElementCreator.newSpan().attribute(Attribute.CLASS, "text-danger").add(" * ");
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "text-danger mr-1").add("*");
     }
 
     public String getLabel() {
@@ -97,5 +112,21 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 
     public void setLabelKey(String labelKey) {
 	this.labelKey = labelKey;
+    }
+
+    public String getHelp() {
+	return help;
+    }
+
+    public void setHelp(String help) {
+	this.help = help;
+    }
+
+    public String getHelpKey() {
+	return helpKey;
+    }
+
+    public void setHelpKey(String helpKey) {
+	this.helpKey = helpKey;
     }
 }

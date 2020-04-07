@@ -121,7 +121,7 @@
 			var detail = self.element;
 			var templateScript = $('.fg-template-script', detail).val();
 			$('.fg-template', detail).val(
-					'<div class="row fg-row mt-3 mb-3 p-3 border">'
+					'<div class="row fg-row my-2 p-2 border">'
 							+ $('.fg-row:first', detail).html()
 							+ templateScript + '</div>');
 		},

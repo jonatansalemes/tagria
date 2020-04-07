@@ -14,6 +14,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates whether the component should be disabled. Default: false</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates placeHolder for autoComplete</description>
 			<name>placeHolder</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -36,6 +42,11 @@
 			<name>height</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component has ripple animation. Default: false</description>
+			<name>ripple</name>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
@@ -187,26 +198,33 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates the collection to be iterated by the component. Single objects is converted to Collection using immutable Arrays.asList(...)</description>
-			<name>data</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the map to be iterated in component</description>
-			<name>map</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Map</type>
-		</attribute>
-		<attribute>
 			<description>Indicates that component has fixed options</description>
 			<name>fixed</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates the collection to be iterated by the component. Supports only Map, Collection and Single objects thats is converted to Collection using immutable Arrays.asList(...).</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the object array to be iterated by the component.Supports only arrays of object</description>
+			<name>dataArray</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object[]</type>
+		</attribute>
+		<attribute>
 			<description>It indicates the name of the variable java to be made available the object of iteration</description>
 			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable to be available to current iteration</description>
+			<name>varStatus</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -256,6 +274,11 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates whether the component has ripple animation. Default: false</description>
+			<name>ripple</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether the component should be disabled. Default: false</description>
 			<name>disabled</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -267,18 +290,7 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<attribute>
-			<description>It indicates the collection to be iterated by the component. Single objects is converted to Collection using immutable Arrays.asList(...)</description>
-			<name>data</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the map to be iterated in component</description>
-			<name>map</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Map</type>
-		</attribute>
+		
 		<attribute>
 			<description>Indicates whether the component form is mandatory in form</description>
 			<name>required</name>
@@ -311,8 +323,26 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates the collection to be iterated by the component. Supports only Map, Collection and Single objects thats is converted to Collection using immutable Arrays.asList(...).</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the object array to be iterated by the component.Supports only arrays of object</description>
+			<name>dataArray</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object[]</type>
+		</attribute>
+		<attribute>
 			<description>It indicates the name of the variable java to be made available the object of iteration</description>
 			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable to be available to current iteration</description>
+			<name>varStatus</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -359,6 +389,17 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component has ripple animation. Default: false</description>
+			<name>ripple</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be disabled. Default: false</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates placeHolder for textarea</description>

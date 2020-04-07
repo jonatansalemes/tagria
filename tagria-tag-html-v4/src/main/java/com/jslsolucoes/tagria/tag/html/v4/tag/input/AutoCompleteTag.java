@@ -21,6 +21,8 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
     private Integer width = 400;
     private Integer height = 300;
     private String onSelect;
+    private Boolean ripple = Boolean.FALSE;
+    private Boolean disabled = Boolean.FALSE;
 
     @Override
     public Boolean flush() {
@@ -36,6 +38,30 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	return div;
     }
 
+    public Element inputTextContainer() {
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(input());
+	
+	if (ripple) {
+	    container.add(ripple());
+	}
+
+	if (required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+	
+	if (ripple && disabled) {
+	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
+	}
+
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
+	return container;
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
+    }
+
     private Element input() {
 	Element input = ElementCreator.newInput().attribute(Attribute.TYPE, "text").attribute(Attribute.CLASS,
 		"form-control autocomplete-input");
@@ -43,6 +69,12 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	    input.attribute(Attribute.REQUIRED, "required");
 	    input.attribute(Attribute.CLASS, "form-required");
 	}
+	
+	if (disabled) {
+	    input.attribute(Attribute.DISABLED, "disabled");
+	    input.attribute(Attribute.CLASS, "disabled");
+	}
+	
 	if (hasKeyOrLabel(textKey, text)) {
 	    input.attribute(Attribute.VALUE, keyOrLabel(textKey, text));
 	}
@@ -59,7 +91,7 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 
     private Element inputContainer() {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex justify-content-between align-items-center")
-		.add(input()).add(spinner());
+		.add(inputTextContainer()).add(spinner());
     }
 
     private Element div() {
@@ -189,6 +221,22 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 
     public void setHeight(Integer height) {
 	this.height = height;
+    }
+
+    public Boolean getRipple() {
+	return ripple;
+    }
+
+    public void setRipple(Boolean ripple) {
+	this.ripple = ripple;
+    }
+
+    public Boolean getDisabled() {
+	return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+	this.disabled = disabled;
     }
 
 }

@@ -31,11 +31,50 @@ public class InputTag extends AbstractSimpleTagSupport {
     private String list;
     private Boolean autoComplete = Boolean.FALSE;
     private String formatter;
+    private Boolean ripple = Boolean.FALSE;
 
     @Override
     public Element render() {
-	return input();
+	return inputTextContainer();
+    }
 
+    public Element inputTextContainer() {
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
+		.attribute(Attribute.CLASS, "form-control-container").add(input());
+
+	if (ripple) {
+	    container.add(ripple());
+	}
+
+	if (required) {
+	    container.attribute(Attribute.CLASS, "form-control-container-required");
+	}
+
+	if (ripple && disabled || ("checkbox".equals(type) || "radio".equals(type) || "hidden".equals(type))) {
+	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
+	}
+
+	Element toolbar = toolbar();
+	if (maxLength != null) {
+	    toolbar.add(maxLengthCounter());
+	}
+	container.add(toolbar);
+
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
+	return container;
+    }
+
+    private Element maxLengthCounter() {
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "maxlenght-counter")
+		.add((StringUtils.isEmpty(value) ? "0" : value.length()) + "/" + maxLength);
+    }
+
+    private Element toolbar() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex justify-content-end align-items-center form-control-container-toolbar");
+    }
+
+    private Element ripple() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "form-control-container-line-ripple");
     }
 
     private Element input() {
@@ -104,7 +143,6 @@ public class InputTag extends AbstractSimpleTagSupport {
 
 	if (required) {
 	    input.attribute(Attribute.REQUIRED, "required");
-	    input.attribute(Attribute.CLASS, "form-required");
 	    if (StringUtils.isEmpty(placeHolder) && StringUtils.isEmpty(placeHolderKey) && StringUtils.isEmpty(value)) {
 		input.attribute(Attribute.PLACEHOLDER, keyForLibrary("input.required.placeholder"));
 	    }
@@ -114,7 +152,6 @@ public class InputTag extends AbstractSimpleTagSupport {
 	    input.attribute(Attribute.CLASS, cssClass);
 	}
 
-	appendJsCode("$('#" + input.attribute(Attribute.ID) + "').input();");
 	return input;
     }
 
@@ -300,6 +337,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     public void setFormatter(String formatter) {
 	this.formatter = formatter;
+    }
+
+    public Boolean getRipple() {
+	return ripple;
+    }
+
+    public void setRipple(Boolean ripple) {
+	this.ripple = ripple;
     }
 
 }

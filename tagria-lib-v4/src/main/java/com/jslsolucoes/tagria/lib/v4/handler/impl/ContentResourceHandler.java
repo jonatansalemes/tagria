@@ -1,7 +1,6 @@
 package com.jslsolucoes.tagria.lib.v4.handler.impl;
 
 import java.io.OutputStream;
-import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +29,6 @@ public class ContentResourceHandler implements ResourceHandler {
 
 	httpServletResponse.setCharacterEncoding(encoding());
 	httpServletResponse.setContentType(contentType(httpServletRequest));
-	httpServletResponse.setHeader("Content-Encoding", "gzip");
 	if (cdnIsEnabled()) {
 	    httpServletResponse.setHeader(HttpHeader.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 	}
@@ -40,8 +38,8 @@ public class ContentResourceHandler implements ResourceHandler {
 	String uri = uri(httpServletRequest);
 	String url = "com/jslsolucoes"
 		+ uri.replaceFirst(httpServletRequest.getContextPath(), "").replaceAll(";jsessionid=.*", "");
-
-	try (OutputStream outputStream = new GZIPOutputStream(httpServletResponse.getOutputStream())) {
+	try {
+	    OutputStream outputStream = httpServletResponse.getOutputStream();
 	    byte[] resource = Resources.toByteArray(Resources.getResource(url));
 	    httpServletResponse.setContentLength(resource.length);
 	    outputStream.write(resource);

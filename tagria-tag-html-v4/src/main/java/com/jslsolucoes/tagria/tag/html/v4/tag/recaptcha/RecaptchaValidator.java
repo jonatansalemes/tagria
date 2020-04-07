@@ -23,6 +23,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 
 public class RecaptchaValidator {
 
@@ -47,34 +48,27 @@ public class RecaptchaValidator {
 	return this;
     }
 
-    public RecaptchaResponse validate() throws Exception {
-	CloseableHttpClient httpclient = client();
+    public RecaptchaResponse validate() {
+	try (CloseableHttpClient httpclient = client()) {
+	    HttpPost httpPost = new HttpPost("https://www.google.com/recaptcha/api/siteverify");
+	    MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+	    builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+	    builder.setCharset(Charset.forName("UTF-8"));
+	    builder.addPart("secret", new StringBody(secret, ContentType.TEXT_PLAIN));
+	    builder.addPart("response", new StringBody(response, ContentType.TEXT_PLAIN));
+	    HttpEntity entity = builder.build();
+	    httpPost.setEntity(entity);
+	    try (CloseableHttpResponse httpResponse = httpclient.execute(httpPost)) {
 
-	HttpPost httpPost = new HttpPost("https://www.google.com/recaptcha/api/siteverify");
-
-	MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-	builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-	builder.setCharset(Charset.forName("UTF-8"));
-	builder.addPart("secret", new StringBody(secret, ContentType.TEXT_PLAIN));
-	builder.addPart("response", new StringBody(response, ContentType.TEXT_PLAIN));
-
-	HttpEntity entity = builder.build();
-	httpPost.setEntity(entity);
-
-	CloseableHttpResponse httpResponse = null;
-	try {
-	    httpResponse = httpclient.execute(httpPost);
-	    if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-		Gson gson = gson();
-		return gson.fromJson(EntityUtils.toString(httpResponse.getEntity()), RecaptchaResponse.class);
-	    } else {
-		throw new Exception("Status code não esperado " + httpResponse.getStatusLine().getStatusCode());
+		if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+		    Gson gson = gson();
+		    return gson.fromJson(EntityUtils.toString(httpResponse.getEntity()), RecaptchaResponse.class);
+		} else {
+		    throw new Exception("Status code não esperado " + httpResponse.getStatusLine().getStatusCode());
+		}
 	    }
-	} finally {
-	    if (httpResponse != null) {
-		httpResponse.close();
-	    }
-	    httpclient.close();
+	} catch (Exception e) {
+	    throw new TagriaRuntimeException(e);
 	}
     }
 

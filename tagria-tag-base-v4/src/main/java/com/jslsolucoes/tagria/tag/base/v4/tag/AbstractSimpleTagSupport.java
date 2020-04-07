@@ -10,7 +10,6 @@ import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -175,26 +174,6 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     public Element render() {
 	return ElementCreator.newNull();
-    }
-
-    @SuppressWarnings("unchecked")
-    public Collection<Object> dataSet(Object dataSet) {
-	if (dataSet != null) {
-	    if (dataSet instanceof Collection) {
-		return (Collection<Object>) dataSet;
-	    } else {
-		return Arrays.asList(dataSet);
-	    }
-	}
-	return null;
-    }
-
-    public void checkForDataSetExceed(Collection<Object> data) {
-	Warning warning = xml().getWarning();
-	Long componentDataSetThreshold = warning.getComponentDataSetThreshold();
-	if (warning.getEnabled() && !CollectionUtils.isEmpty(data) && data.size() > componentDataSetThreshold) {
-	    logger.warn("Component " + this + " exceeded data set size threshold => size {} items", data.size());
-	}
     }
 
     @Override
@@ -494,15 +473,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 
     public void appendJsCode(String jsCode) {
 
-	logger.debug("Append js code {}", jsCode);
 	GlobalJsAppender globalJsAppender = findAncestorWithClass(GlobalJsAppender.class);
 	globalJsAppender.appendJavascriptCode(jsCode);
 
-	logger.debug("Global js appender found {}", globalJsAppender);
-
 	CloneableJsAppender cloneableJsAppender = findAncestorWithClass(CloneableJsAppender.class);
 	if (cloneableJsAppender != null) {
-	    logger.debug("Cloneable js appender found {}", cloneableJsAppender);
 	    if (cloneableJsAppender.index() == 0) {
 		cloneableJsAppender.appendJavascriptCode(jsCode);
 	    }
