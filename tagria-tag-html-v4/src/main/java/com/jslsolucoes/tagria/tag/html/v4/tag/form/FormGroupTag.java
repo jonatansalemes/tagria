@@ -13,6 +13,8 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     private String forElement;
     private String label;
     private String labelKey;
+    private String help;
+    private String helpKey;
     private Boolean required = Boolean.FALSE;
     private Boolean visible = Boolean.TRUE;
 
@@ -38,9 +40,11 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 
     private Element infoCircle(String text) {
 	Element infoCircle = ElementCreator.newSpan().attribute(Attribute.ID, id())
-		.attribute(Attribute.CLASS, "fas fa-info-circle fa-fw mr-1 cursor-pointer");
-	appendJsCode("$('#" + infoCircle.attribute(Attribute.ID) + "').popover({trigger: 'hover', content: '" + text
-		+ "',placement: 'top'});");
+		.attribute(Attribute.CLASS, "fas fa-info-circle fa-fw mr-1 cursor-pointer")
+		.attribute(Attribute.DATA_TOGGLE,"tooltip")
+		.attribute(Attribute.DATA_PLACEMENT,"top")
+		.attribute(Attribute.TITLE,hasKeyOrLabel(helpKey,help) ? keyOrLabel(helpKey, help) : text);
+	appendJsCode("$('#" + infoCircle.attribute(Attribute.ID) + "').tooltip({ html:true });");
 	return infoCircle;
     }
 
@@ -108,5 +112,21 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 
     public void setLabelKey(String labelKey) {
 	this.labelKey = labelKey;
+    }
+
+    public String getHelp() {
+	return help;
+    }
+
+    public void setHelp(String help) {
+	this.help = help;
+    }
+
+    public String getHelpKey() {
+	return helpKey;
+    }
+
+    public void setHelpKey(String helpKey) {
+	this.helpKey = helpKey;
     }
 }

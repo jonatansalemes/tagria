@@ -240,6 +240,18 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates a help for the component</description>
+			<name>help</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a help key (i18n) for the component</description>
+			<name>helpKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the id of the group</description>
 			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
