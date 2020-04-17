@@ -139,15 +139,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String urlFor(String uri) {
-	return httpScheme() + "://" + serverName() + ":" + serverPort() + pathForUrl(uri);
+	return httpScheme() + "://localhost:" + serverPort() + pathForUrl(uri);
     }
 
     private Integer serverPort() {
 	return httpServletRequest().getServerPort();
-    }
-
-    private String serverName() {
-	return httpServletRequest().getServerName();
     }
 
     public String encoding() {

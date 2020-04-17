@@ -1,0 +1,68 @@
+version: 1
+scm:
+   git:
+      url: "https://github.com/jslsolucoes/tagria"
+tasks:
+   create-jboss-xml:
+      - create:
+           file: "/tagria-doc-v4/src/main/webapp/WEB-INF/jboss-web.xml"
+           charset: "utf-8"
+           content: |
+                 <?xml version="1.0" encoding="UTF-8"?>
+                 <jboss-web xmlns="http://www.jboss.com/xml/ns/javaee"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="
+                       http://www.jboss.com/xml/ns/javaee
+                       http://www.jboss.org/j2ee/schema/jboss-web_5_1.xsd">
+                    <context-root>/</context-root>
+                 </jboss-web>
+   clear-log4j:
+      - replace:
+           file : "/tagria-doc-v4/src/main/resources/log4j.properties"
+           charset: "utf-8"
+           content: |
+                  log4j.rootLogger=warn, stdout
+                  log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+                  log4j.appender.stdout.Target=System.out
+                  log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+                  log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+profiles:
+   prod:
+      tasks:
+         - create-jboss-xml
+         - clear-log4j
+build:
+   mvn:
+      goals:
+         - clean
+         - install
+      skipTests: true
+      skipJavaDocs: true
+      skipSources: true
+      forceUpdate: true
+      properties:
+         - key: "gpg.skip"
+server:
+   wildfly:
+      httpPort: 8080
+      httpsPort: 8443
+      ajpPort: 8009
+      managementHttpPort: 9990
+      managementHttpsPort: 9993
+      bindAddress: "0.0.0.0"
+      dataSocketPort: 8789
+      offsetPort: 0
+      alias: "wildfly-18.0.1.Final"
+      minSizeMemory: "64M"
+      maxSizeMemory: "512M"
+      minMetaspaceSizeMemory: "96M"
+      maxMetaspaceSizeMemory: "256M"
+      virtualDomains:
+         - alias: doc-tagrialib.jslsolucoes.com
+           name:  tagria-doc-v4
+           defaultWebModule: tagria-doc-v4.war
+      maxPostSize: 1048576000 
+      proxyAddressForwarding: true
+deploys:
+   - "/tagria-doc-v4/target/tagria-doc-v4.war"      
+      
