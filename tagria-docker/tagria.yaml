@@ -26,11 +26,34 @@ tasks:
                   log4j.appender.stdout.Target=System.out
                   log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
                   log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+   dev-url-base:
+      - replace:
+           file : "/tagria-doc-v4/src/main/resources/tagrialib.xml"
+           charset: "utf-8"
+           tokens:
+              - match:   "http://localhost:8080/tagria-doc-v4"
+                replace: "http://doc-tagrialib.jslsolucoes.com:8080"
+                flags:
+                  - DOTALL
+   prod-url-base:
+      - replace:
+           file : "/tagria-doc-v4/src/main/resources/tagrialib.xml"
+           charset: "utf-8"
+           tokens:
+              - match:   "http://localhost:8080/tagria-doc-v4"
+                replace: "https://doc-tagrialib.jslsolucoes.com"
+                flags:
+                  - DOTALL
 profiles:
+   develop:
+      tasks:
+         - create-jboss-xml
+         - dev-url-base
    prod:
       tasks:
          - create-jboss-xml
          - clear-log4j
+         - prod-url-base
 build:
    mvn:
       goals:
