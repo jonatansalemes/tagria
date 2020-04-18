@@ -113,17 +113,18 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String contentOfTemplate(String template) {
+	String urlBase = xml().getUrlBase();
 	String templateUri = xml().getTemplates().stream()
 		.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
 		.orElseThrow(
 			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
 		.getUri();
-	return cache().get("template:" + template, () -> contentOfUri(templateUri), String.class);
+	return cache().get("template:" + template, () -> contentOfUri(urlBase,templateUri), String.class);
     }
 
-    private String contentOfUri(String templateUri) {
+    private String contentOfUri(String urlBase,String templateUri) {
 	try {
-	    String urlForTemplate = urlFor(templateUri);
+	    String urlForTemplate = urlFor(urlBase,templateUri);
 	    logger.debug("Ask for render url {}", urlForTemplate);
 	    URL url = new URL(urlForTemplate);
 	    HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
@@ -138,12 +139,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
     }
 
-    private String urlFor(String uri) {
-	return httpScheme() + "://localhost:" + serverPort() + pathForUrl(uri);
-    }
-
-    private Integer serverPort() {
-	return httpServletRequest().getServerPort();
+    private String urlFor(String urlBase,String templateUri) {
+	return urlBase + templateUri;
     }
 
     public String encoding() {
