@@ -5,9 +5,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.el7_7.x86_64
 RUN mkdir -p /opt/app-server-easy-deploy
 RUN curl https://oss.sonatype.org/service/local/repositories/snapshots/content/com/jslsolucoes/app-server-easy-deploy/all-1.0.35-SNAPSHOT/app-server-easy-deploy-all-1.0.35-20200410.011807-1.jar -o /opt/app-server-easy-deploy/app-server-easy-deploy-all-1.0.35-SNAPSHOT.jar
 COPY tagria.yaml /opt/deploy/tagria.yaml
-RUN java -jar /opt/app-server-easy-deploy/app-server-easy-deploy-all-1.0.35-SNAPSHOT.jar -y /opt/deploy/tagria.yaml -c deploy -b develop -p develop
+RUN java -jar /opt/app-server-easy-deploy/app-server-easy-deploy-all-1.0.35-SNAPSHOT.jar -y /opt/deploy/tagria.yaml -c deploy -b develop -p prod
 EXPOSE 8080
-#ENTRYPOINT ["java", "-jar", "/opt/app-server-easy-deploy/app-server-easy-deploy-all-1.0.35-SNAPSHOT.jar", "-y", "/opt/deploy/tagria.yaml","-c","run"]
-
-
-# java -jar /opt/app-server-easy-deploy/app-server-easy-deploy-all-1.0.35-SNAPSHOT.jar -y /opt/deploy/tagria.yaml -c run
+ENTRYPOINT ["java", "-jar", "/opt/app-server-easy-deploy/app-server-easy-deploy-all-1.0.35-SNAPSHOT.jar", "-y", "/opt/deploy/tagria.yaml","-c","run"]
