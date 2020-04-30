@@ -350,8 +350,12 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String keyFor(String key, String bundle, Object... args) {
-	return cache().get("resourceBundleKey:" + key + ":" + bundle, () -> keyForResourceBundle(key, bundle, args),
-		String.class);
+	if(args != null && args.length > 0) {
+	    return keyForResourceBundle(key, bundle, args);
+	} else {
+	    return cache().get("resourceBundleKey:" + key + ":" + bundle, () -> keyForResourceBundle(key, bundle, args),
+		    String.class);
+	}
     }
 
     private String keyForResourceBundle(String key, String bundle, Object... args) {
