@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "tagrialib")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Configuration {
+    
+    private String urlBase;
 
     @XmlElementWrapper(name = "templates")
     @XmlElement(name = "template")
@@ -91,6 +93,14 @@ public class Configuration {
 
     public void setSecurity(Security security) {
 	this.security = security;
+    }
+
+    public String getUrlBase() {
+	return urlBase;
+    }
+
+    public void setUrlBase(String urlBase) {
+	this.urlBase = urlBase;
     }
 
 }

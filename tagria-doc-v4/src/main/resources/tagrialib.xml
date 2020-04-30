@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <tagrialib>
+	<urlBase>http://localhost:8080/tagria-doc-v4</urlBase>
 	<templates>
 		<template>
 			<name>master</name>

@@ -4,6 +4,8 @@
 
 	Developed by JSL Soluções LTDA Ãáôões
 	
+	<html:switch name="MySwitch" value="1"></html:switch>
+	
 	
 	<html:inputGroup>
 		<html:inputGroup prepend="true">
