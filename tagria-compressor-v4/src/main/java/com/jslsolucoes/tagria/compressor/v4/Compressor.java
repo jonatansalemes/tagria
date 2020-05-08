@@ -36,10 +36,10 @@ public class Compressor {
     }
 
     public void compressJs() throws IOException {
-	String[] files = new String[] { "jquery/jquery.js", "tagria/jquery.fix.js", "jquery/ui/jquery.ui.js",
+	String[] files = new String[] { "jquery/jquery.js", "tagria/jquery.ext.js", "jquery/ui/jquery.ui.js",
 		"tagria/onpageload.js", "tagria/form.js", "tagria/mask.js", "tagria/currency.mask.js",
 		"lazysizes/lazysizes.js", "tagria/iframe.js", "tagria/grid.js", "tagria/tabs.js",
-		"tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js", "tagria/select.js",
+		"tagria/form.group.multiple.js","tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js", "tagria/select.js",
 		"tagria/searchableSelect.js", "tagria/autocomplete.js", "tagria/input.js", "tagria/textarea.js",
 		"sweet-alert/sweet.alert.js","switch/switch.js"  };
 

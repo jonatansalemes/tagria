@@ -34,7 +34,7 @@ public class FormGroupMultipleTag extends AbstractIterableSimpleTagSupport imple
 	Element div = ElementCreator.newDiv().attribute(Attribute.ID, id)
 		.attribute(Attribute.CLASS, "form-group p-2   bg-white fg-container").add(divToolbar())
 		.add(divContent()).add(textAreaHtml()).add(textAreaScript());
-	appendJsCode("$('#" + id + "').formGroup({indexed:" + indexed + ",atLeast:" + atLeast + ",empty:" + empty
+	appendJsCode("$('#" + id + "').formGroupMultiple({indexed:" + indexed + ",atLeast:" + atLeast + ",empty:" + empty
 		+ ",afterInsert:function(idx,element){" + (!StringUtils.isEmpty(onAfterInsert) ? onAfterInsert : "")
 		+ " },afterRemove:function(){" + (!StringUtils.isEmpty(onAfterRemove) ? onAfterRemove : "") + "}});");
 	return div;

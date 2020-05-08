@@ -30,6 +30,10 @@
 	width: 100%;
 }
 
+.form-group label.text-truncated {
+	cursor: help;
+}
+
 .form-group.is-focus {
 	border-color: #0d7ffb !important;
 }

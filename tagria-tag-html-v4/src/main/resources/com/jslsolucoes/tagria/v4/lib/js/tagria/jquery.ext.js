@@ -1,3 +1,13 @@
+jQuery.extend(jQuery.expr[':'], {
+	truncated : function(el) {
+		if (el.scrollWidth > el.clientWidth) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+});
+
 (function($){
     var originalVal = $.fn.val;
     $.fn.val = function(){

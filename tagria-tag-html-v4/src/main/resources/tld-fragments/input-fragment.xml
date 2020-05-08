@@ -101,6 +101,7 @@
 		<attribute>
 			<description>Indicates whether the component has ripple animation. Default: false</description>
 			<name>ripple</name>
+			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
@@ -331,6 +332,7 @@
 		<attribute>
 			<description>Indicates whether the component has ripple animation. Default: false</description>
 			<name>ripple</name>
+			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
@@ -446,8 +448,21 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the maximum number of characters</description>
+			<name>maxLength</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if the maximum number of characters must be count. Default: false</description>
+			<name>maxLengthCount</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates whether the component has ripple animation. Default: false</description>
 			<name>ripple</name>
+			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
@@ -608,6 +623,12 @@
 			<name>maxLength</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if the maximum number of characters must be count. Default: false</description>
+			<name>maxLengthCount</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the maximum value for input</description>

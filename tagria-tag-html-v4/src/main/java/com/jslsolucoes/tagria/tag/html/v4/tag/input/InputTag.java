@@ -25,6 +25,7 @@ public class InputTag extends AbstractSimpleTagSupport {
     private String title;
     private String titleKey;
     private Integer maxLength;
+    private Boolean maxLengthCount = Boolean.FALSE;
     private Integer max;
     private Integer min;
     private Integer step;
@@ -55,12 +56,12 @@ public class InputTag extends AbstractSimpleTagSupport {
 	}
 
 	Element toolbar = toolbar();
-	if (maxLength != null) {
+	if (maxLength != null && maxLengthCount) {
 	    toolbar.add(maxLengthCounter());
 	}
 	container.add(toolbar);
 
-	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input();");
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input({ maxLength : "+maxLength+",maxLengthCount : "+maxLengthCount+"  });");
 	return container;
     }
 
@@ -345,6 +346,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     public void setRipple(Boolean ripple) {
 	this.ripple = ripple;
+    }
+
+    public Boolean getMaxLengthCount() {
+	return maxLengthCount;
+    }
+
+    public void setMaxLengthCount(Boolean maxLengthCount) {
+	this.maxLengthCount = maxLengthCount;
     }
 
 }
