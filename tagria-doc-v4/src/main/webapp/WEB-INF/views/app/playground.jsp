@@ -57,7 +57,7 @@
 				</html:formGroup>
 			</html:col>
 		</html:formGroupRow>
-		<html:formGroup label="Field 17" required="true" help="My help 2">
+		<html:formGroup label="Field 17" required="true" help="My help 2" visible="false">
 			<html:textarea name="textarea17" required="true" maxLength="2" maxLengthCount="true"></html:textarea>
 		</html:formGroup>
 		<html:formGroup label="Field 18" required="true">

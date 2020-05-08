@@ -9,7 +9,24 @@ jQuery.extend(jQuery.expr[':'], {
 });
 
 (function($){
-    var originalVal = $.fn.val;
+	
+	var originalShow = $.fn.show;
+    $.fn.show = function(){
+    	if($(this).hasClass('d-none')){
+			$(this).removeClass('d-none');
+    	}
+    	return originalShow.apply(this,arguments);
+    };
+    
+    var originalHide = $.fn.hide;
+    $.fn.hide = function(){
+    	if(!$(this).hasClass('d-none')){
+			$(this).addClass('d-none');
+    	}
+    	return originalHide.apply(this,arguments);
+    };
+	
+	var originalVal = $.fn.val;
     $.fn.val = function(){
         var result =originalVal.apply(this,arguments);
         if(arguments.length > 0) {
