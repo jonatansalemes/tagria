@@ -25,7 +25,7 @@ public class CardTag extends AbstractSimpleTagSupport {
 	    div.attribute(Attribute.CLASS, cssClass);
 	}
 	if (!visible) {
-	    div.attribute(Attribute.CLASS, "collapse");
+	    div.attribute(Attribute.CLASS, "d-none");
 	}
 	return div;
     }

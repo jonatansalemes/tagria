@@ -2,6 +2,10 @@ package com.jslsolucoes.tagria.html.v4;
 
 public class ElementCreator {
 
+    public static Strong newStrong() {
+	return new Strong();
+    }
+
     public static Aside newAside() {
 	return new Aside();
     }

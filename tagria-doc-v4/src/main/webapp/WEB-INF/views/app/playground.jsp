@@ -35,7 +35,7 @@
 			<html:col extraSmall="4">
 				<html:formGroup label="Field 1 with an huge label of this one"
 					required="true" forElement="field1" help="My another huge label <p> asd </p> teste">
-					<html:input required="true" name="field1" maxLength="50"/>
+					<html:input required="true" name="field1" maxLength="50" maxLengthCount="true"/>
 				</html:formGroup>
 				<html:jsEvent event="blur" attachTo="field1">
 					console.log('hello ' + new Date());
@@ -57,8 +57,8 @@
 				</html:formGroup>
 			</html:col>
 		</html:formGroupRow>
-		<html:formGroup label="Field 17" required="true" help="My help 2">
-			<html:textarea name="textarea17" required="true"></html:textarea>
+		<html:formGroup label="Field 17" required="true" help="My help 2" visible="false">
+			<html:textarea name="textarea17" required="true" maxLength="2" maxLengthCount="true"></html:textarea>
 		</html:formGroup>
 		<html:formGroup label="Field 18" required="true">
 			<html:select name="filed18" data="${ persons }" var="person"
@@ -249,7 +249,7 @@
 		}
 		
 		if(random()){
-			$('#par_textarea17').val('textarea by val');
+			$('#par_textarea17').val('textarea by val').change();
 		}
 		
 		function random() {

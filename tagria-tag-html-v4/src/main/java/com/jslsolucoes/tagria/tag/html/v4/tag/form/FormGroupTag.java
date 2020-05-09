@@ -28,22 +28,25 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
 		.attribute(Attribute.CLASS, "form-group d-flex flex-column-reverse border rounded p-1")
 		.attribute(Attribute.ID, idForId(id));
 	if (!visible) {
-	    div.attribute(Attribute.CLASS, "collapse");
+	    div.attribute(Attribute.CLASS, "d-none");
 	}
 	div.add(bodyContent());
 	if (hasKeyOrLabel(labelKey, label)) {
 	    String labelText = keyOrLabel(labelKey, label);
 	    div.add(label(labelText));
 	}
+	
+	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').formGroup();");
+	
 	return div;
     }
 
-    private Element infoCircle(String text) {
+    private Element infoCircle() {
 	Element infoCircle = ElementCreator.newSpan().attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "fas fa-info-circle fa-fw mr-1 cursor-pointer")
 		.attribute(Attribute.DATA_TOGGLE,"tooltip")
 		.attribute(Attribute.DATA_PLACEMENT,"top")
-		.attribute(Attribute.TITLE,hasKeyOrLabel(helpKey,help) ? keyOrLabel(helpKey, help) : text);
+		.attribute(Attribute.TITLE,keyOrLabel(helpKey, help));
 	appendJsCode("$('#" + infoCircle.attribute(Attribute.ID) + "').tooltip({ html:true });");
 	return infoCircle;
     }
@@ -51,7 +54,10 @@ public class FormGroupTag extends AbstractSimpleTagSupport {
     private Element label(String text) {
 	Element element = ElementCreator.newLabel().attribute(Attribute.ID, id()).attribute(Attribute.CLASS,
 		"text-truncate");
-	element.add(infoCircle(text));
+	
+	if(hasKeyOrLabel(helpKey,help)) {
+	    element.add(infoCircle());
+	}
 	if (required) {
 	    element.add(span());
 	}

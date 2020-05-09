@@ -28,7 +28,7 @@ public class AlertTag extends AbstractSimpleTagSupport {
 	    div.attribute(Attribute.CLASS, cssClass);
 	}
 	if (!visible) {
-	    div.attribute(Attribute.CLASS, "collapse");
+	    div.attribute(Attribute.CLASS, "d-none");
 	}
 	if (dismissible) {
 	    div.attribute(Attribute.CLASS, "alert-dismissible").add(close());

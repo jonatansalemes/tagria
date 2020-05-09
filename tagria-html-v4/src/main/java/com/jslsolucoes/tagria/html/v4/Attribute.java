@@ -15,7 +15,7 @@ public enum Attribute {
     DATA_RIDE("data-ride"), LIST("list"), DATA_SLIDE("data-slide"), STEP("step"), DATA_SRC("data-src"),
     DATA_SHOW("data-show"), ARIA_LABEL("aria-label"), DATA_VALUE("data-value"), DATA_TEXT("data-text"),
     TABINDEX("tabIndex"), DATA_RENDER("data-render"), DATA_PLACEMENT("data-placement"), DATA_CALLBACK("data-callback"),
-    DATA_EXPIRED_CALLBACK("data-expired-callback"), DATA_ON_TEXT("data-on-text"), DATA_OFF_TEXT("data-off-text");
+    DATA_EXPIRED_CALLBACK("data-expired-callback"), DATA_ON_TEXT("data-on-text"), DATA_MAXLENGTH("data-maxlength"), DATA_OFF_TEXT("data-off-text");
 
     private String name;
 

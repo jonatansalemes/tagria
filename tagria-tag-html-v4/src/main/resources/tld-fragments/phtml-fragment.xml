@@ -40,6 +40,25 @@
 	</tag>
 	
 	<tag>
+		<description>Renders a strong</description>
+		<display-name>Html</display-name>
+		<name>strong</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.phtml.StrongTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:strong&gt;
+				Strong text
+			&lt;/html:strong&gt;
+		</example>
+	</tag>
+	
+	<tag>
 		<description>Renders a main</description>
 		<display-name>Html</display-name>
 		<name>main</name>

@@ -18,31 +18,48 @@ public class TextareaTag extends AbstractSimpleTagSupport {
     private Integer rows = 4;
     private Boolean disabled = Boolean.FALSE;
     private Boolean ripple = Boolean.FALSE;
+    private Integer maxLength;
+    private Boolean maxLengthCount = Boolean.FALSE;
 
     @Override
     public Element render() {
 	return inputTextContainer();
     }
-    
+
     public Element inputTextContainer() {
-	Element container = ElementCreator.newDiv()
-		.attribute(Attribute.ID, id())
+	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
 		.attribute(Attribute.CLASS, "form-control-container").add(textarea());
-	
+
 	if (ripple) {
 	    container.add(ripple());
 	}
-	
-	if(required) {
+
+	if (required) {
 	    container.attribute(Attribute.CLASS, "form-control-container-required");
 	}
-	
+
 	if (ripple && disabled) {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
-	
-	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').textarea();");
+
+	Element toolbar = toolbar();
+	if (maxLength != null && maxLengthCount) {
+	    toolbar.add(maxLengthCounter());
+	}
+	container.add(toolbar);
+
+	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').textarea({ maxLength : "+maxLength+",maxLengthCount : "+maxLengthCount+"  });");
 	return container;
+    }
+
+    private Element maxLengthCounter() {
+	return ElementCreator.newSpan().attribute(Attribute.CLASS, "maxlenght-counter")
+		.add((StringUtils.isEmpty(value) ? "0" : value.length()) + "/" + maxLength);
+    }
+
+    private Element toolbar() {
+	return ElementCreator.newDiv().attribute(Attribute.CLASS,
+		"d-flex justify-content-end align-items-center form-control-container-toolbar");
     }
 
     private Element ripple() {
@@ -56,6 +73,10 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	if (!StringUtils.isEmpty(cssClass)) {
 	    textArea.attribute(Attribute.CLASS, cssClass);
 	}
+	
+	if (maxLength != null) {
+	    textArea.attribute(Attribute.DATA_MAXLENGTH, maxLength);
+	}
 
 	if (hasKeyOrLabel(placeHolderKey, placeHolder)) {
 	    textArea.attribute(Attribute.PLACEHOLDER, keyOrLabel(placeHolderKey, placeHolder));
@@ -64,6 +85,9 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 	String textAreaValue = !StringUtils.isEmpty(value) ? value : bodyContent();
 
 	if (!StringUtils.isEmpty(textAreaValue)) {
+	    if (maxLength != null && textAreaValue.length() > maxLength) {
+		textAreaValue = textAreaValue.substring(0, maxLength);
+	    }
 	    textArea.add(textAreaValue);
 	}
 
@@ -140,6 +164,22 @@ public class TextareaTag extends AbstractSimpleTagSupport {
 
     public void setRipple(Boolean ripple) {
 	this.ripple = ripple;
+    }
+
+    public Integer getMaxLength() {
+	return maxLength;
+    }
+
+    public void setMaxLength(Integer maxLength) {
+	this.maxLength = maxLength;
+    }
+
+    public Boolean getMaxLengthCount() {
+	return maxLengthCount;
+    }
+
+    public void setMaxLengthCount(Boolean maxLengthCount) {
+	this.maxLengthCount = maxLengthCount;
     }
 
 }
