@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria-v4</artifactId>
-		<version>4.0.25</version>
+		<version>4.0.26-SNAPSHOT</version>
 	</parent>
 	<artifactId>tagria-tag-base-v4</artifactId>
 
