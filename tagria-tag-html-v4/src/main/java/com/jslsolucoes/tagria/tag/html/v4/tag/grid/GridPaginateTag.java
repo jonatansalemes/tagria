@@ -103,7 +103,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     }
 
     private Integer totalOfPages() {
-	return (int) Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
+	return (int) Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage()));
     }
 
     private Element divDisplay() {
@@ -125,7 +125,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     }
 
     private Integer endOfResults() {
-	Integer endOfResults = currentPage() * resultsPerPage;
+	Integer endOfResults = currentPage() * resultsPerPage();
 	if (endOfResults >= totalResults) {
 	    endOfResults = totalResults;
 	}
@@ -135,7 +135,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     private Integer resultsPerPage() {
 	return (httpServletRequest().getParameter("resultsPerPage") != null
 		? Integer.valueOf(httpServletRequest().getParameter("resultsPerPage"))
-		: this.resultsPerPage);
+		: getResultsPerPage());
     }
 
     private Integer currentPage() {
