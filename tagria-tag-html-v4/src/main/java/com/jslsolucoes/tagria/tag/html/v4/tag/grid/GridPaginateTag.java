@@ -47,7 +47,7 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
     private Element aDropDown(Integer resultsPerPage) {
 	Element a = ElementCreator.newA().attribute(Attribute.HREF, "#")
 		.attribute(Attribute.CLASS, "dropdown-item grid-results-per-page-item").add(resultsPerPage.toString());
-	if (resultsPerPage == resultsPerPage()) {
+	if (resultsPerPage.equals(resultsPerPage())) {
 	    a.attribute(Attribute.CLASS, "active");
 	}
 	return a;
