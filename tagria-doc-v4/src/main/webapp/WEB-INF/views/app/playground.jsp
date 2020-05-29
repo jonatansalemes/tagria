@@ -2,6 +2,67 @@
 <html:view title="Playground">
 
 
+	
+
+
+	<html:grid var="personAsObjectGrid" data="${ person }" label="Grid as single object">
+		<html:gridHeader>
+			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
+		</html:gridHeader>
+		<html:gridBody>
+			<html:gridColumnData align="right" exportable="true"
+				cssClass="border border-danger">
+				${ personAsObjectGrid.id } - ${ personAsObjectGrid.name }
+			</html:gridColumnData>
+		</html:gridBody>
+	</html:grid>
+	
+	<html:grid var="personAsArrayGrid" data="${ personsArray }" label="Grid as array">
+		<html:gridHeader>
+			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
+		</html:gridHeader>
+		<html:gridBody>
+			<html:gridColumnData align="right" exportable="true"
+				cssClass="border border-danger">
+				${ personAsArrayGrid.id } - ${ personAsArrayGrid.name }
+			</html:gridColumnData>
+		</html:gridBody>
+	</html:grid>
+	
+	<html:grid var="personAsEntryGrid" data="${ personsMap }" label="Grid as map">
+		<html:gridHeader>
+			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
+		</html:gridHeader>
+		<html:gridBody>
+			<html:gridColumnData align="right" exportable="true"
+				cssClass="border border-danger">
+				${ personAsEntryGrid.key } - ${ personAsEntryGrid.value }
+			</html:gridColumnData>
+		</html:gridBody>
+	</html:grid>
+
+
+	Persons as single object:
+	<html:select name="field19" data="${ person }" var="personAsObject"
+						required="true">
+		<html:option value="${ personAsObject.id }">${ personAsObject.name }</html:option>
+	</html:select>
+
+
+	Persons as array:
+	<html:select name="field19" data="${ personsArray }" var="personAsArray"
+						required="true">
+		<html:option value="${ personAsArray.id }">${ personAsArray.name }</html:option>
+	</html:select>
+	
+	
+	Persons as map:
+	<html:select name="field19" data="${ personsMap }" var="personAsEntry"
+						required="true">
+		<html:option value="${ personAsEntry.key }">${ personAsEntry.value }</html:option>
+	</html:select>
+
+
 	Developed by JSL Soluções LTDA Ãáôões
 	
 	<html:switch name="MySwitch" value="1"></html:switch>

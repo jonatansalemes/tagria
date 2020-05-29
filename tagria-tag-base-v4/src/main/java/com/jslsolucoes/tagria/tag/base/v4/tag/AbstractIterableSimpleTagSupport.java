@@ -21,11 +21,11 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
     private String var;
     private String varStatus;
     private Object data;
-    private Object[] dataArray;
     private VarStatus varStatusObject = new VarStatus();
 
     public void iterateOver(Consumer<Object> onNotEmpty) {
-	iterateOver(onNotEmpty, () -> {});
+	iterateOver(onNotEmpty, () -> {
+	});
     }
 
     public void iterateOver(Consumer<Object> onNotEmpty, NoArgsSupplier noArgsSupplier) {
@@ -51,7 +51,7 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
     @SuppressWarnings("unchecked")
     public Collection<Object> dataSet() {
 	Builder<Object> builder = ImmutableList.<Object>builder();
-	Class<?> classOfDataset = data != null ? data.getClass() : dataArray != null ? dataArray.getClass() : Object.class;
+	Class<?> classOfDataset = data != null ? data.getClass() : Object.class;
 	if (Collection.class.isAssignableFrom(classOfDataset)) {
 	    Collection<Object> collection = (Collection<Object>) data;
 	    if (!CollectionUtils.isEmpty(collection)) {
@@ -63,7 +63,7 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
 		map.entrySet().forEach(entry -> builder.add(entry));
 	    }
 	} else if (classOfDataset.isArray()) {
-	    Object[] objects = (Object[]) dataArray;
+	    Object[] objects = (Object[]) data;
 	    if (!ArrayUtils.isEmpty(objects)) {
 		builder.add(objects);
 	    }
@@ -75,7 +75,7 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
 	}
 	return checkForDataSetExceed(builder.build());
     }
-    
+
     public Collection<Object> checkForDataSetExceed(Collection<Object> data) {
 	Warning warning = xml().getWarning();
 	Long componentDataSetThreshold = warning.getComponentDataSetThreshold();
@@ -91,18 +91,6 @@ public abstract class AbstractIterableSimpleTagSupport extends AbstractSimpleTag
 
     public void setData(Object data) {
 	this.data = data;
-    }
-    
-    public void setData(Collection<Object> data) {
-   	this.data = data;
-    }
-    
-    public Object[] getDataArray() {
-	return dataArray;
-    }
-
-    public void setDataArray(Object[] dataArray) {
-	this.dataArray = dataArray;
     }
 
     public String getVar() {
