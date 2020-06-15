@@ -13,9 +13,14 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the component name a ser incorporado a mascara</description>
+			<description>Indicates the component name to be attached</description>
 			<name>attachTo</name>
-			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector to be attached</description>
+			<name>attachToSelector</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
