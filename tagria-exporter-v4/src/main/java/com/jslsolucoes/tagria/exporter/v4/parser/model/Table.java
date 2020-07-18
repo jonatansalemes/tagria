@@ -4,6 +4,8 @@ package com.jslsolucoes.tagria.exporter.v4.parser.model;
 import java.util.List;
 
 public class Table {
+    
+    private String id;
     private String title;
     private List<Header> headers;
     private List<Row> rows;
@@ -30,5 +32,13 @@ public class Table {
 
     public void setRows(List<Row> rows) {
 	this.rows = rows;
+    }
+
+    public String getId() {
+	return id;
+    }
+
+    public void setId(String id) {
+	this.id = id;
     }
 }

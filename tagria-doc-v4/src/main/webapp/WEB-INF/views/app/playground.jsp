@@ -6,6 +6,7 @@
 
 
 	<html:grid var="personAsObjectGrid" data="${ person }" label="Grid as single object">
+		<html:gridExport/>
 		<html:gridHeader>
 			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
 		</html:gridHeader>
@@ -213,7 +214,7 @@
 	</html:select>
 
 
-	<html:grid var="person" data="${ persons }" label="My grid"
+	<html:grid id="myGridId" var="person" data="${ persons }" label="My grid"
 		url="/app/playground/v4">
 
 		<html:gridExport filename="MyFileName" />
