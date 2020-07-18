@@ -120,9 +120,14 @@ Some configuration can be change by creating an tagrialib.xml file in source fol
 		&lt;/templates&gt;
 		&lt;formatters&gt;
 			&lt;formatter&gt;
-				&lt;class&gt;com.package.YourFormatterThatImplementsFormatterInterface&lt;/class&gt;
+				&lt;class&gt;com.package.YourCustomFormatterThatImplementsFormatterInterface&lt;/class&gt;
 			&lt;/formatter&gt;
 		&lt;/formatters&gt;
+		&lt;exporters&gt;
+			&lt;exporter&gt;
+				&lt;class&gt;com.package.YourCustomExporterThatImplementsExporterInterface&lt;/class&gt;
+			&lt;/exporter&gt;
+		&lt;/exporters&gt;
 		&lt;warning&gt;
 			&lt;componentMountTimeThreshold&gt;200&lt;/componentMountTimeThreshold&gt;
 			&lt;componentDataSetThreshold&gt;300&lt;/componentDataSetThreshold&gt;
