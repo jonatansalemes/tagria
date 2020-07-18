@@ -1,6 +1,7 @@
 (function($) {
 	$.widget("tagria.grid", {
 		options : {
+			id: '',
 			url : '',
 			queryString : '',
 			exporter : ''
@@ -80,6 +81,8 @@
 			var self = this;
 			var grid = self.element;
 			
+			var id = self.options.id;
+			
 			var headers = new Array();
 			$('table:first > thead > tr > th:visible.grid-column-exportable',grid).each(function(){
 				headers.push({
@@ -102,7 +105,8 @@
 			
 			var title = $('.grid-title',grid).text();
 			
-			return JSON.stringify({ 
+			return JSON.stringify({
+				id: id,
 				title :  title,
 				headers : headers,
 				rows : columns

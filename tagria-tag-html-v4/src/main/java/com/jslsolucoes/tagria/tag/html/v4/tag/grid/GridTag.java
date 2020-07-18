@@ -33,13 +33,11 @@ public class GridTag extends AbstractIterableSimpleTagSupport {
     }
 
     private Element divGrid() {
-	String id = id();
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex flex-column p-2")
-		.attribute(Attribute.ID, id);
+		.attribute(Attribute.ID, idForId(id));
 	if (hasKeyOrLabel(labelKey, label)) {
 	    div.add(divTitle());
 	}
-
 
 	Boolean hasData = !CollectionUtils.isEmpty(dataSet());	
 
@@ -67,7 +65,7 @@ public class GridTag extends AbstractIterableSimpleTagSupport {
 	    div.add(paginate);
 	}
 
-	appendJsCode("$('#" + id + "').grid({ url : '" + pathForUrl(url) + "',queryString:'"
+	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').grid({ id: '" + div.attribute(Attribute.ID) +"', url : '" + pathForUrl(url) + "',queryString:'"
 		+ queryString(Arrays.asList("page", "property", "direction", "resultsPerPage")) + "'});");
 	return div;
     }
