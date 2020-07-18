@@ -22,6 +22,10 @@ public class Configuration {
     @XmlElementWrapper(name = "formatters")
     @XmlElement(name = "formatter")
     private List<Formatter> formatters = new ArrayList<>();
+    
+    @XmlElementWrapper(name = "exporters")
+    @XmlElement(name = "exporter")
+    private List<Exporter> exporters = new ArrayList<>();
 
     private Cdn cdn = new Cdn();
     private Security security = new Security();
@@ -101,6 +105,14 @@ public class Configuration {
 
     public void setUrlBase(String urlBase) {
 	this.urlBase = urlBase;
+    }
+
+    public List<Exporter> getExporters() {
+	return exporters;
+    }
+
+    public void setExporters(List<Exporter> exporters) {
+	this.exporters = exporters;
     }
 
 }

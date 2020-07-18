@@ -12,6 +12,11 @@
 		<componentMountTimeThreshold>1200</componentMountTimeThreshold>
 		<componentDataSetThreshold>300</componentDataSetThreshold>
 	</warning>
+	<exporters>
+		<exporter>
+			<class>com.jslsolucoes.tagria.doc.v4.exporters.MyPdfExporter</class>
+		</exporter>
+	</exporters>
 	<formatters>
 		<formatter>
 			<class>com.jslsolucoes.tagria.doc.v4.formatter.BooleanFormatter</class>

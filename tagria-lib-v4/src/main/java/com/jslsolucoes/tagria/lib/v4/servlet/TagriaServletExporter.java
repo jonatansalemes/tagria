@@ -3,8 +3,11 @@ package com.jslsolucoes.tagria.lib.v4.servlet;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,7 +22,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
+import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.exporter.v4.impl.CsvExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.ExcelExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.Exporter;
@@ -34,8 +39,39 @@ import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
 public class TagriaServletExporter extends HttpServlet {
 
     private static Logger logger = LoggerFactory.getLogger(TagriaServletExporter.class);
-    private static List<Exporter> exporters = Arrays.asList(new CsvExporter(), new ExcelExporter(), new PdfExporter(),
-	    new XmlExporter());
+    private List<Exporter> exporters = Lists.newArrayList();
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+	logger.debug("Tagria exporter is up ...");
+	exporters = exporters();
+    }
+
+    private List<Exporter> exporters() {
+	return Stream.of(customExporters(), defaultExporters()).flatMap(List::stream).collect(Collectors.toList());
+    }
+
+    private List<Exporter> defaultExporters() {
+	return Arrays.asList(new CsvExporter(), new ExcelExporter(), new PdfExporter(), new XmlExporter());
+    }
+
+    private List<Exporter> customExporters() {
+	List<Exporter> exporters = new ArrayList<>();
+	List<com.jslsolucoes.tagria.config.v4.xml.Exporter> customExporters = ConfigurationParser.newParser().parse()
+		.getExporters();
+	if (!CollectionUtils.isEmpty(customExporters)) {
+	    for (com.jslsolucoes.tagria.config.v4.xml.Exporter customExporter : customExporters) {
+		try {
+		    exporters.add((Exporter) Class.forName(customExporter.getClazz()).newInstance());
+		} catch (Exception e) {
+		    throw new TagriaRuntimeException(e);
+		}
+	    }
+	} else {
+	    logger.debug("Customs formatters not found on xml...");
+	}
+	return exporters;
+    }
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
@@ -48,8 +84,9 @@ public class TagriaServletExporter extends HttpServlet {
 	    String type = httpServletRequest.getParameter("type");
 	    Boolean timestamp = Boolean.valueOf(httpServletRequest.getParameter("timestamp"));
 	    String pattern = httpServletRequest.getParameter("pattern");
-	    String filename = normalize(httpServletRequest.getParameter("filename") + (timestamp ? "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)): ""));	    
-	    
+	    String filename = normalize(httpServletRequest.getParameter("filename")
+		    + (timestamp ? "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)) : ""));
+
 	    logger.debug("exporting: json {},type {}", json, type);
 	    Table table = TableParser.newParser().withJson(json).parse();
 	    if (!CollectionUtils.isEmpty(table.getHeaders()) && !CollectionUtils.isEmpty(table.getRows())
@@ -64,6 +101,7 @@ public class TagriaServletExporter extends HttpServlet {
 			httpServletResponse.setContentLength(bytes.length);
 			servletOutputStream.write(bytes);
 			servletOutputStream.flush();
+			break;
 		    }
 		}
 	    } else {
@@ -79,11 +117,7 @@ public class TagriaServletExporter extends HttpServlet {
     }
 
     private String normalize(String fileName) {
-	return StringUtils.stripAccents(fileName).replaceAll("( |\\/|:|!|\\.)","_").toLowerCase();
+	return StringUtils.stripAccents(fileName).replaceAll("( |\\/|:|!|\\.)", "_").toLowerCase();
     }
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-	logger.debug("Tagria exporter is up ...");
-    }
 }
