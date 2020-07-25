@@ -18,7 +18,7 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 	String noRowTextKey = gridTag.getNoRowTextKey();
 	Element tbody = ElementCreator.newTBody();
 	gridTag.iterateOver(object -> {
-	    tbody.add(ElementCreator.newTr().add(bodyContent()));
+	    tbody.add(ElementCreator.newTr().attribute(Attribute.DATA_PARENT, gridTag.getId()).add(bodyContent()));
 	}, () -> {
 	    tbody.add(tr(noRowTextKey, noRowText));
 	});

@@ -24,6 +24,7 @@ public class GridTag extends AbstractIterableSimpleTagSupport {
 
     @Override
     public Boolean flush() {
+	id = idForId(id);
 	return true;
     }
 
@@ -34,12 +35,12 @@ public class GridTag extends AbstractIterableSimpleTagSupport {
 
     private Element divGrid() {
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex flex-column p-2")
-		.attribute(Attribute.ID, idForId(id));
+		.attribute(Attribute.ID, id);
 	if (hasKeyOrLabel(labelKey, label)) {
 	    div.add(divTitle());
 	}
 
-	Boolean hasData = !CollectionUtils.isEmpty(dataSet());	
+	Boolean hasData = !CollectionUtils.isEmpty(dataSet());
 
 	Element firstRow = ElementCreator.newDiv().attribute(Attribute.CLASS,
 		"d-flex flex-row justify-content-between align-items-center");
@@ -65,7 +66,8 @@ public class GridTag extends AbstractIterableSimpleTagSupport {
 	    div.add(paginate);
 	}
 
-	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').grid({ id: '" + div.attribute(Attribute.ID) +"', url : '" + pathForUrl(url) + "',queryString:'"
+	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').grid({ id: '" + div.attribute(Attribute.ID)
+		+ "', url : '" + pathForUrl(url) + "',queryString:'"
 		+ queryString(Arrays.asList("page", "property", "direction", "resultsPerPage")) + "'});");
 	return div;
     }
@@ -75,7 +77,9 @@ public class GridTag extends AbstractIterableSimpleTagSupport {
     }
 
     private Element h2Title() {
-	return ElementCreator.newH2().attribute(Attribute.CLASS, "text-secondary grid-title").add(keyOrLabel(labelKey, label));
+	return ElementCreator.newH2().attribute(Attribute.DATA_PARENT, id)
+			.attribute(Attribute.CLASS, "text-secondary grid-title")
+		.add(keyOrLabel(labelKey, label));
     }
 
     private Element divTable() {

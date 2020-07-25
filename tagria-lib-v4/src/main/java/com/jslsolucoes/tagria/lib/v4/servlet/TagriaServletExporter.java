@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,6 +33,8 @@ import com.jslsolucoes.tagria.exporter.v4.impl.ExporterContext;
 import com.jslsolucoes.tagria.exporter.v4.impl.PdfExporter;
 import com.jslsolucoes.tagria.exporter.v4.impl.XmlExporter;
 import com.jslsolucoes.tagria.exporter.v4.parser.TableParser;
+import com.jslsolucoes.tagria.exporter.v4.parser.model.Header;
+import com.jslsolucoes.tagria.exporter.v4.parser.model.Row;
 import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
 
 @SuppressWarnings("serial")
@@ -89,31 +92,44 @@ public class TagriaServletExporter extends HttpServlet {
 
 	    logger.debug("exporting: json {},type {}", json, type);
 	    Table table = TableParser.newParser().withJson(json).parse();
-	    if (!CollectionUtils.isEmpty(table.getHeaders()) && !CollectionUtils.isEmpty(table.getRows())
-		    && table.getRows().get(0).getColumns().size() == table.getHeaders().size()) {
 
-		httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-		httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + filename + "." + type);
-		for (Exporter exporter : exporters) {
-		    if (exporter.accepts(type)) {
-			byte[] bytes = exporter.export(new ExporterContext(table, filename, encoding));
-			httpServletResponse.setContentType(exporter.contentType(encoding));
-			httpServletResponse.setContentLength(bytes.length);
-			servletOutputStream.write(bytes);
-			servletOutputStream.flush();
-			break;
-		    }
-		}
-	    } else {
+	    Optional<String> error = checkPreconditions(table);
+	    if (error.isPresent()) {
 		httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		servletOutputStream.print(
-			"{ \"errors\": [\"At least one column header and data must be set as exportable\",\"Number of columns and headers must match\"], \"debug\" : "
-				+ json + " }");
+		servletOutputStream.print("{ \"error\": \"" + error.get() + "\"], \"debug\" : " + json + " }");
 	    }
+
+	    httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+	    httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + filename + "." + type);
+	    for (Exporter exporter : exporters) {
+		if (exporter.accepts(type)) {
+		    byte[] bytes = exporter.export(new ExporterContext(table, filename, encoding));
+		    httpServletResponse.setContentType(exporter.contentType(encoding));
+		    httpServletResponse.setContentLength(bytes.length);
+		    servletOutputStream.write(bytes);
+		    servletOutputStream.flush();
+		    break;
+		}
+	    }
+
 	} catch (Exception exception) {
 	    logger.error("Could not export data", exception);
 	    httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	}
+    }
+
+    private Optional<String> checkPreconditions(Table table) {
+	
+	List<Header> headers = table.getHeaders();
+	List<Row> rows = table.getRows();
+	
+	if (CollectionUtils.isEmpty(headers)) {
+	    return Optional.of("At least one column header and data must be set as exportable");
+	} else if (!CollectionUtils.isEmpty(rows)
+		&& rows.listIterator().next().getColumns().size() == headers.size()) {
+	    return Optional.of("Number of columns and headers must match");
+	}
+	return Optional.empty();
     }
 
     private String normalize(String fileName) {

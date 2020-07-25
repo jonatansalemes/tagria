@@ -15,37 +15,38 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 
     @Override
     public void renderOnVoid() {
-	findAncestorWithClass(GridTag.class).setPaginate(divPaginate());
+	String dataParent = findAncestorWithClass(GridTag.class).getId();
+	findAncestorWithClass(GridTag.class).setPaginate(divPaginate(dataParent));
     }
 
-    private Element divPaginate() {
+    private Element divPaginate(String dataParent) {
 	return ElementCreator.newDiv()
 		.attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center")
-		.add(divDisplay()).add(secondColumn());
+		.add(divDisplay()).add(secondColumn(dataParent));
     }
 
-    private Element secondColumn() {
+    private Element secondColumn(String dataParent) {
 	return ElementCreator.newDiv()
 		.attribute(Attribute.CLASS, "d-flex flex-row justify-content-between align-items-center")
-		.add(divDropdown()).add(divNavigation());
+		.add(divDropdown(dataParent)).add(divNavigation(dataParent));
     }
 
-    private Element divDropdown() {
+    private Element divDropdown(String dataParent) {
 	return ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown dropup mr-3")
 		.attribute(Attribute.TITLE, keyForLibrary("grid.results.per.page")).add(buttonDropdown())
-		.add(divDropdownMenu());
+		.add(divDropdownMenu(dataParent));
     }
 
-    private Element divDropdownMenu() {
+    private Element divDropdownMenu(String dataParent) {
 	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "dropdown-menu");
 	for (Integer resultsPerPage : Arrays.asList(20, 40, 60, 80, 100)) {
-	    div.add(aDropDown(resultsPerPage));
+	    div.add(aDropDown(resultsPerPage, dataParent));
 	}
 	return div;
     }
 
-    private Element aDropDown(Integer resultsPerPage) {
-	Element a = ElementCreator.newA().attribute(Attribute.HREF, "#")
+    private Element aDropDown(Integer resultsPerPage, String dataParent) {
+	Element a = ElementCreator.newA().attribute(Attribute.HREF, "#").attribute(Attribute.DATA_PARENT, dataParent)
 		.attribute(Attribute.CLASS, "dropdown-item grid-results-per-page-item").add(resultsPerPage.toString());
 	if (resultsPerPage.equals(resultsPerPage())) {
 	    a.attribute(Attribute.CLASS, "active");
@@ -58,15 +59,15 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 		.attribute(Attribute.DATA_TOGGLE, "dropdown").add(String.valueOf(resultsPerPage()));
     }
 
-    private Element divNavigation() {
-	return ElementCreator.newDiv().add(navPaginate());
+    private Element divNavigation(String dataParent) {
+	return ElementCreator.newDiv().add(navPaginate(dataParent));
     }
 
-    private Element navPaginate() {
-	return ElementCreator.newNav().add(ulPaginate());
+    private Element navPaginate(String dataParent) {
+	return ElementCreator.newNav().add(ulPaginate(dataParent));
     }
 
-    private Element ulPaginate() {
+    private Element ulPaginate(String dataParent) {
 
 	Integer currentPage = currentPage();
 	Integer totalOfPages = totalOfPages();
@@ -83,14 +84,14 @@ public class GridPaginateTag extends AbstractSimpleTagSupport {
 
 	Element ul = ElementCreator.newUl().attribute(Attribute.CLASS, "pagination");
 	for (int i = startOfPagination; i <= endOfPagination; i++) {
-	    ul.add(liPaginate(currentPage, i));
+	    ul.add(liPaginate(currentPage, i, dataParent));
 	}
 	return ul;
     }
 
-    private Element liPaginate(Integer currentPage, Integer page) {
-	Element li = ElementCreator.newLi().attribute(Attribute.CLASS, "page-item grid-paginate-item ")
-		.add(aPaginate(page));
+    private Element liPaginate(Integer currentPage, Integer page, String dataParent) {
+	Element li = ElementCreator.newLi().attribute(Attribute.DATA_PARENT, dataParent)
+		.attribute(Attribute.CLASS, "page-item grid-paginate-item").add(aPaginate(page));
 	if (currentPage == page) {
 	    li.attribute(Attribute.CLASS, "active");
 	}
