@@ -13,11 +13,13 @@ public class GridHeaderTag extends AbstractSimpleTagSupport {
     }
 
     private Element thead() {
-	return ElementCreator.newTHead().attribute(Attribute.CLASS, "thead-dark").add(tr());
+	return ElementCreator.newTHead().attribute(Attribute.DATA_PARENT, findAncestorWithClass(GridTag.class).getId())
+		.attribute(Attribute.CLASS, "thead-dark").add(tr());
     }
 
     private Element tr() {
-	return ElementCreator.newTr().add(bodyContent());
+	return ElementCreator.newTr().attribute(Attribute.DATA_PARENT, findAncestorWithClass(GridTag.class).getId())
+		.add(bodyContent());
     }
 
 }

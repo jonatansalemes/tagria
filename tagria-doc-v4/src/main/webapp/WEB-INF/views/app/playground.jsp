@@ -2,23 +2,41 @@
 <html:view title="Playground">
 
 
-	
 
 
-	<html:grid var="personAsObjectGrid" data="${ person }" label="Grid as single object">
-		<html:gridExport/>
+
+	<html:grid var="personAsObjectGrid" data="${ person }"
+		label="Grid as single object">
+		<html:gridExport />
 		<html:gridHeader>
 			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
+			<html:gridColumn label="Other persons" align="left"></html:gridColumn>
 		</html:gridHeader>
 		<html:gridBody>
 			<html:gridColumnData align="right" exportable="true"
 				cssClass="border border-danger">
 				${ personAsObjectGrid.id } - ${ personAsObjectGrid.name }
 			</html:gridColumnData>
+			<html:gridColumnData align="left" collapsable="true">
+				<html:grid var="personAsObjectGrid2" data="${ person }"
+					label="Sub grid">
+					<html:gridExport />
+					<html:gridHeader>
+						<html:gridColumn label="Sub person" align="left" exportable="true"></html:gridColumn>
+					</html:gridHeader>
+					<html:gridBody>
+						<html:gridColumnData align="right" exportable="true"
+							cssClass="border border-danger">
+							${ personAsObjectGrid2.id } - ${ personAsObjectGrid2.name }
+						</html:gridColumnData>
+					</html:gridBody>
+				</html:grid>
+			</html:gridColumnData>
 		</html:gridBody>
 	</html:grid>
-	
-	<html:grid var="personAsArrayGrid" data="${ personsArray }" label="Grid as array">
+
+	<html:grid var="personAsArrayGrid" data="${ personsArray }"
+		label="Grid as array">
 		<html:gridHeader>
 			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
 		</html:gridHeader>
@@ -29,8 +47,9 @@
 			</html:gridColumnData>
 		</html:gridBody>
 	</html:grid>
-	
-	<html:grid var="personAsEntryGrid" data="${ personsMap }" label="Grid as map">
+
+	<html:grid var="personAsEntryGrid" data="${ personsMap }"
+		label="Grid as map">
 		<html:gridHeader>
 			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>
 		</html:gridHeader>
@@ -45,21 +64,21 @@
 
 	Persons as single object:
 	<html:select name="field19" data="${ person }" var="personAsObject"
-						required="true">
+		required="true">
 		<html:option value="${ personAsObject.id }">${ personAsObject.name }</html:option>
 	</html:select>
 
 
 	Persons as array:
-	<html:select name="field19" data="${ personsArray }" var="personAsArray"
-						required="true">
+	<html:select name="field19" data="${ personsArray }"
+		var="personAsArray" required="true">
 		<html:option value="${ personAsArray.id }">${ personAsArray.name }</html:option>
 	</html:select>
 	
 	
 	Persons as map:
 	<html:select name="field19" data="${ personsMap }" var="personAsEntry"
-						required="true">
+		required="true">
 		<html:option value="${ personAsEntry.key }">${ personAsEntry.value }</html:option>
 	</html:select>
 
@@ -67,8 +86,8 @@
 	Developed by JSL Soluções LTDA Ãáôões
 	
 	<html:switch name="MySwitch" value="1"></html:switch>
-	
-	
+
+
 	<html:inputGroup>
 		<html:inputGroup prepend="true">
 			<html:button icon="trash" title="Search 1" />
@@ -78,7 +97,7 @@
 			<html:button icon="search" title="Search" />
 		</html:inputGroup>
 	</html:inputGroup>
-	
+
 	<html:popover attachTo="search2" label="My label" placement="bottom">
 		My content
 	</html:popover>
@@ -96,8 +115,10 @@
 		<html:formGroupRow>
 			<html:col extraSmall="4">
 				<html:formGroup label="Field 1 with an huge label of this one"
-					required="true" forElement="field1" help="My another huge label <p> asd </p> teste">
-					<html:input required="true" name="field1" maxLength="50" maxLengthCount="true"/>
+					required="true" forElement="field1"
+					help="My another huge label <p> asd </p> teste">
+					<html:input required="true" name="field1" maxLength="50"
+						maxLengthCount="true" />
 				</html:formGroup>
 				<html:jsEvent event="blur" attachTo="field1">
 					console.log('hello ' + new Date());
@@ -119,8 +140,10 @@
 				</html:formGroup>
 			</html:col>
 		</html:formGroupRow>
-		<html:formGroup label="Field 17" required="true" help="My help 2" visible="false">
-			<html:textarea name="textarea17" required="true" maxLength="2" maxLengthCount="true"></html:textarea>
+		<html:formGroup label="Field 17" required="true" help="My help 2"
+			visible="false">
+			<html:textarea name="textarea17" required="true" maxLength="2"
+				maxLengthCount="true"></html:textarea>
 		</html:formGroup>
 		<html:formGroup label="Field 18" required="true">
 			<html:select name="filed18" data="${ persons }" var="person"
@@ -214,8 +237,8 @@
 	</html:select>
 
 
-	<html:grid id="myGridId" var="person" data="${ persons }" label="My grid"
-		url="/app/playground/v4">
+	<html:grid id="myGridId" var="person" data="${ persons }"
+		label="My grid" url="/app/playground/v4">
 
 		<html:gridExport filename="MyFileName" />
 		<html:gridPaginate totalResults="200" />

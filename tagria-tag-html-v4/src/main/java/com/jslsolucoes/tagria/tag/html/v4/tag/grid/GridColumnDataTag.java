@@ -22,7 +22,9 @@ public class GridColumnDataTag extends AbstractSimpleTagSupport {
     }
 
     private Element td() {
-	Element td = ElementCreator.newTd().attribute(Attribute.CLASS, "text-" + (collapsable ? "center" : align));
+	Element td = ElementCreator.newTd()
+		.attribute(Attribute.DATA_PARENT, findAncestorWithClass(GridTag.class).getId())
+		.attribute(Attribute.CLASS, "text-" + (collapsable ? "center" : align));
 
 	if (!StringUtils.isEmpty(state)) {
 	    td.attribute(Attribute.CLASS, "bg-" + state);

@@ -18,7 +18,9 @@ public class GridColumnTag extends AbstractSimpleTagSupport {
     }
 
     private Element th() {
-	Element th = ElementCreator.newTh().attribute(Attribute.CLASS, "text-" + align);
+	Element th = ElementCreator.newTh()
+		.attribute(Attribute.DATA_PARENT, findAncestorWithClass(GridTag.class).getId())
+		.attribute(Attribute.CLASS, "text-" + align);
 	if (exportable) {
 	    th.attribute(Attribute.CLASS, "grid-column-exportable");
 	}
