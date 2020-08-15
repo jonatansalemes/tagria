@@ -1,7 +1,7 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
-	<html:pdf attachToSelector="#printit"></html:pdf>
+	<html:pdf attachToSelector="#mySpecialGrid"></html:pdf>
 
 	<html:div id="printit">
 		<html:div>
@@ -11,7 +11,7 @@
 
 
 	<html:grid var="personAsObjectGrid" data="${ person }"
-		label="Grid as single object">
+		label="Grid as single object" id="mySpecialGrid">
 		<html:gridExport />
 		<html:gridHeader>
 			<html:gridColumn label="Person" align="left" exportable="true"></html:gridColumn>

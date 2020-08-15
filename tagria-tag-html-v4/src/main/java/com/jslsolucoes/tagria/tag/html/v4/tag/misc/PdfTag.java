@@ -21,19 +21,20 @@ public class PdfTag extends AbstractSimpleTagSupport {
     private String filename = UUID.randomUUID().toString();
     private String filenameKey;
     private Boolean timestamp = Boolean.TRUE;
+    private Boolean asImage = Boolean.FALSE;
     private String pattern = "dd/MM/yyyy HH:mm:ss";
 
     @Override
     public Element render() {
 	String id = id();
 	Element div = div(id);
-	appendJsCode("$('#" + id + "').pdf({selector:'" + attachToSelector + "',filename:'" + filename() + "'});");
+	appendJsCode("$('#" + id + "').pdf({selector:'" + attachToSelector + "',filename:'" + filename() + "',asImage : "+asImage+"});");
 	return div;
     }
 
     private String filename() {
 	return normalize(keyOrLabel(filenameKey, filename)
-		+ (timestamp ? "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)) : ""));
+		+ (timestamp ? "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)) : "")) + ".pdf";
     }
 
     private Element div(String id) {
@@ -91,6 +92,14 @@ public class PdfTag extends AbstractSimpleTagSupport {
 
     public void setFilenameKey(String filenameKey) {
 	this.filenameKey = filenameKey;
+    }
+
+    public Boolean getAsImage() {
+	return asImage;
+    }
+
+    public void setAsImage(Boolean asImage) {
+	this.asImage = asImage;
     }
 
 }

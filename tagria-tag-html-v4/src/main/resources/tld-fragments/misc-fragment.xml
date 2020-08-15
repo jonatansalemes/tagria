@@ -20,6 +20,12 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates if target element must be rendered as image in pdf. Default: false</description>
+			<name>asImage</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>It indicates the pattern of appended file. Default: dd/MM/yyyy HH:mm:ss</description>
 			<name>pattern</name>
 			<rtexprvalue>true</rtexprvalue>
