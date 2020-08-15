@@ -39,12 +39,14 @@ public class Compressor {
 	String[] files = new String[] { "jquery/jquery.js", "tagria/jquery.ext.js", "jquery/ui/jquery.ui.js",
 		"tagria/onpageload.js", "tagria/form.js", "tagria/mask.js", "tagria/currency.mask.js",
 		"lazysizes/lazysizes.js", "tagria/iframe.js", "tagria/grid.js", "tagria/tabs.js",
-		"tagria/form.group.multiple.js","tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js", "tagria/select.js",
-		"tagria/searchableSelect.js", "tagria/autocomplete.js", "tagria/input.js", "tagria/textarea.js",
-		"sweet-alert/sweet.alert.js","switch/switch.js"  };
+		"tagria/form.group.multiple.js", "tagria/form.group.js", "popper/popper.js", "bootstrap/bootstrap.js",
+		"tagria/select.js", "tagria/searchableSelect.js", "tagria/autocomplete.js", "tagria/input.js",
+		"tagria/textarea.js", "sweet-alert/sweet.alert.js", "switch/switch.js", "pdf/jspdf.js","pdf/html2canvas.js",
+		"tagria/pdf.js" };
 
 	List<String> contents = new ArrayList<>();
 	for (String file : files) {
+	    logger.info("Adding js {} to bundle", file);
 	    contents.add(FileUtils.readFileToString(new File(new File(source, "js"), file), CHARSET));
 	}
 	String content = StringUtils.join(contents, "\n");
@@ -97,8 +99,8 @@ public class Compressor {
 	for (String theme : themes) {
 
 	    String[] files = new String[] { "common.css", "iframe.css", "bootstrap.css", "bootstrap.fix.css",
-		    "base.css", "animate.css", "fontawesome.css",  "sweet.alert.css",
-		    "link.css", "overlay.css", "print.css","form.css","grid.css","input.group.css","switch.css" };
+		    "base.css", "animate.css", "fontawesome.css", "sweet.alert.css", "link.css", "overlay.css",
+		    "print.css", "form.css", "grid.css", "input.group.css", "switch.css" };
 
 	    String content = StringUtils.join(Stream
 		    .concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),

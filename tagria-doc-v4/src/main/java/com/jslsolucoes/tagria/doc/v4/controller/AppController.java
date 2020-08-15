@@ -65,7 +65,7 @@ public class AppController {
 
     }
 
-    @POST
+    @GET
     @Path("autoComplete")
     @View("app/autoComplete.jsp")
     @Controller

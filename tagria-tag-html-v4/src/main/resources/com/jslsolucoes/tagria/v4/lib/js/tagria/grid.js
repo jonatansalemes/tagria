@@ -53,9 +53,7 @@
 		_exportation : function() {
 			var self = this;
 			var id = self._id();
-			console.log(id);
 			$('.grid-export-pdf[data-parent='+id+']').on('click.grid',function(){
-				console.log('click');
 				self._export('pdf');
 			});
 			

@@ -36,6 +36,7 @@ public class TagriaServlet extends HttpServlet {
 	for (ResourceHandler tagriaHandler : handlers) {
 	    if (tagriaHandler.accepts(httpServletRequest)) {
 		tagriaHandler.handle(httpServletRequest, httpServletResponse);
+		return;
 	    }
 	}
     }

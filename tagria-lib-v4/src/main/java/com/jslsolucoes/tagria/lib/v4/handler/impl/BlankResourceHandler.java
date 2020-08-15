@@ -9,7 +9,7 @@ public class BlankResourceHandler implements ResourceHandler {
 
     @Override
     public Boolean accepts(HttpServletRequest httpServletRequest) {
-	return httpServletRequest.getRequestURI().endsWith("blank");
+	return httpServletRequest.getRequestURI().endsWith("/blank");
     }
 
     @Override

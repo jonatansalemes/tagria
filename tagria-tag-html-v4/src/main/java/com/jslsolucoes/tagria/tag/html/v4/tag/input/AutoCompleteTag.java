@@ -34,7 +34,7 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 	Element div = div();
 	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').autocomplete({ onSelect: function(value,text) {"
 		+ onSelect + "}, url : '" + pathForUrl(url) + "',delay : " + delay + ",minLength:" + minLength
-		+ ",text: '" + (hasKeyOrLabel(textKey, text) ? keyOrLabel(textKey, text) : "") + "'  });");
+		+ ",text: '" + escapeSimpleQuote(hasKeyOrLabel(textKey, text) ? keyOrLabel(textKey, text) : "") + "'  });");
 	return div;
     }
 

@@ -432,7 +432,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	return url.replaceAll("\"", "'");
     }
-
+    
+    public static String escapeSimpleQuote(String value) {
+	return value.replaceAll("'", "\\\\'");
+    }
+    
     private String urlBaseForStaticFile() {
 	return xml().getCdn().getEnabled() ? httpScheme() + "://" + xml().getCdn().getUrl() : contextPath();
     }
