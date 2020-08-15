@@ -1,8 +1,13 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+	<html:pdf attachToSelector="#printit"></html:pdf>
 
-
+	<html:div id="printit">
+		<html:div>
+			Teste
+		</html:div>
+	</html:div>
 
 
 	<html:grid var="personAsObjectGrid" data="${ person }"

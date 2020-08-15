@@ -1,6 +1,64 @@
 <fragment>
 
 	<tag>
+		<description>Prints an html element</description>
+		<display-name>Misc</display-name>
+		<name>pdf</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.PdfTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component selector that will be exported</description>
+			<name>attachToSelector</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if timestamp must be added to fileName export. Default: true</description>
+			<name>timestamp</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the pattern of appended file. Default: dd/MM/yyyy HH:mm:ss</description>
+			<name>pattern</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the final name of the exported file. Default: uuid.pdf</description>
+			<name>filename</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the final name (i18n) of the exported file.</description>
+			<name>filenameKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title button</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title key(i18n) button</description>
+			<name>titleKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		     &lt;html:pdf attachToSelector="#printit"/&gt;
+		     &lt;html:div id="printit"&gt;
+		   		Print all content here
+			&lt;/html:div&gt;
+		</example>
+	</tag>
+
+
+	<tag>
 		<description>Renders a popover</description>
 		<display-name>Misc</display-name>
 		<name>popover</name>
