@@ -44,6 +44,7 @@ public class AppController {
     @View("app/playground.jsp")
     @Controller
     public void playground() {
+	this.models.put("quotedValue", "Teste de mensagem com \"aspas\" duplas");
 	this.models.put("booleanValue", Boolean.TRUE);
 	this.models.put("person", personRepository.listAll(1).get(0));
 	this.models.put("persons", personRepository.listAll(3));

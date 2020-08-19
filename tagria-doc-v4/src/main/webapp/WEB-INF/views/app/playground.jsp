@@ -1,6 +1,11 @@
 <%@include file="taglibs.jsp"%>
 <html:view title="Playground">
 
+
+	<html:input name="teste" value="${ quotedValue }"/>
+	<html:textarea name="teste" value="${ quotedValue }"/>
+
+
 	<html:pdf attachToSelector="#mySpecialGrid"></html:pdf>
 
 	<html:div id="printit">
