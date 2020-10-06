@@ -128,7 +128,7 @@ public class InputTag extends AbstractSimpleTagSupport {
 	}
 
 	if (!StringUtils.isEmpty(value)) {
-	    input.attribute(Attribute.VALUE, format(formatter, value));
+	    input.attribute(Attribute.VALUE, escapeAsHtmlDoubleQuote(format(formatter, value)));
 	}
 
 	if (!StringUtils.isEmpty(pattern)) {

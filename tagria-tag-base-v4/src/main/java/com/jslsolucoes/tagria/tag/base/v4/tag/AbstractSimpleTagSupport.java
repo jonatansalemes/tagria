@@ -437,6 +437,10 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return value.replaceAll("'", "\\\\'");
     }
     
+    public static String escapeAsHtmlDoubleQuote(String value) {
+	return value.replaceAll("\"", "&quot;");
+    }
+    
     private String urlBaseForStaticFile() {
 	return xml().getCdn().getEnabled() ? httpScheme() + "://" + xml().getCdn().getUrl() : contextPath();
     }
