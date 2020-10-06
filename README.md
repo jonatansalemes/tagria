@@ -78,15 +78,15 @@ The demo and documentation about components of tagria is hosted in :
 <a href='https://doc-tagrialib.jslsolucoes.com' target='_blank'>https://doc-tagrialib.jslsolucoes.com</a>
 
 <hr/>
-You can self host documentation following steps:
+You can also self host docs following steps:
 
 <pre>
 	<code>
-		git clone https://github.com/jslsolucoes/tagria.git
-		cd  tagria
-		mvn clean install -Dgpg.skip
-		mv tagria-doc-v4/target/tagria-doc-v4.war yourwildfly18+home/standalone/deployments/tagria-doc-v4.war
-		http://localhost:8080/tagria-doc-v4/app/home
+git clone https://github.com/jslsolucoes/tagria.git
+cd  tagria
+mvn clean install -Dgpg.skip
+mv tagria-doc-v4/target/tagria-doc-v4.war yourwildfly18+home/standalone/deployments/tagria-doc-v4.war
+http://localhost:8080/tagria-doc-v4/app/home
 	</code>
 </pre>
 
