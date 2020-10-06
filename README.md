@@ -81,13 +81,13 @@ The demo and documentation about components of tagria is hosted in :
 You can also self host docs following steps:
 
 <pre>
-	<code>
+<code>
 git clone https://github.com/jslsolucoes/tagria.git
 cd  tagria
 mvn clean install -Dgpg.skip
 mv tagria-doc-v4/target/tagria-doc-v4.war yourwildfly18+home/standalone/deployments/tagria-doc-v4.war
 http://localhost:8080/tagria-doc-v4/app/home
-	</code>
+</code>
 </pre>
 
 <hr/>
