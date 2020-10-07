@@ -5,7 +5,7 @@ import com.jslsolucoes.cache.CacheInstanceBuilder;
 
 public class Tagria {
 
-    private static final String VERSION = "4.0.35.2";
+    private static final String VERSION = "4.0.36.0";
     private static final CacheInstance<String, Object> CACHE = CacheInstanceBuilder.newBuilder().withKey("tagriaCache")
 	    .build();
     
