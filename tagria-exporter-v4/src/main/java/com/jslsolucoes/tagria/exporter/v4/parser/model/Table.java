@@ -41,4 +41,11 @@ public class Table {
     public void setId(String id) {
 	this.id = id;
     }
+
+    @Override
+    public String toString() {
+	return "Table [id=" + id + ", title=" + title + ", headers=" + headers + ", rows=" + rows + "]";
+    }
+    
+    
 }

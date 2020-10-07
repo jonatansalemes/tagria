@@ -14,19 +14,24 @@ public class GridBodyTag extends AbstractSimpleTagSupport {
 
     private Element tbody() {
 	GridTag gridTag = findAncestorWithClass(GridTag.class);
+	String dataParent = gridTag.getId();
 	String noRowText = gridTag.getNoRowText();
 	String noRowTextKey = gridTag.getNoRowTextKey();
-	Element tbody = ElementCreator.newTBody();
+	Element tbody = tbody(dataParent);
 	gridTag.iterateOver(object -> {
-	    tbody.add(ElementCreator.newTr().attribute(Attribute.DATA_PARENT, gridTag.getId()).add(bodyContent()));
+	    tbody.add(tr(dataParent).add(bodyContent()));
 	}, () -> {
-	    tbody.add(tr(noRowTextKey, noRowText));
+	    tbody.add(tr(dataParent).add(td(noRowTextKey, noRowText)));
 	});
 	return tbody;
     }
 
-    private Element tr(String noRowTextKey, String noRowText) {
-	return ElementCreator.newTr().add(td(noRowTextKey, noRowText));
+    private Element tbody(String dataParent) {
+	return ElementCreator.newTBody().attribute(Attribute.DATA_PARENT, dataParent);
+    }
+
+    private Element tr(String dataParent) {
+	return ElementCreator.newTr().attribute(Attribute.DATA_PARENT, dataParent);
     }
 
     private Element td(String noRowTextKey, String noRowText) {

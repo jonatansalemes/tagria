@@ -86,7 +86,7 @@
 			var id = self._id();
 			
 			var headers = new Array();
-			$('th[data-parent='+id+']:visible.grid-column-exportable').each(function(index,th){
+			$('th[data-parent='+id+']:visible.grid-column-exportable','thead[data-parent='+id+']').each(function(index,th){
 				headers.push({
 					align : ($(th).hasClass('text-left') ? 'left' : $(th).hasClass('text-right') ? 'right' : 'center'),
 					content : $.trim($(th).text())
@@ -94,7 +94,7 @@
 			});
 			
 			var columns = new Array();
-			$('tr[data-parent='+id+']:visible').each(function(index,tr){
+			$('tr[data-parent='+id+']:visible','tbody[data-parent='+id+']').each(function(index,tr){
 				var column = new Array();
 				$('td[data-parent='+id+']:visible.grid-column-exportable',$(tr)).each(function(index,td){
 					column.push({

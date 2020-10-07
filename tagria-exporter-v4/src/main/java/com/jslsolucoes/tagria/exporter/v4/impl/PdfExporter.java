@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -18,12 +19,14 @@ import com.jslsolucoes.tagria.exporter.v4.parser.model.Table;
 
 public class PdfExporter implements Exporter {
 
+    private Font font = new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD);;
+
     private PdfPCell createCell(String content, String align) {
 	return createCell(content, align, null);
     }
 
     private PdfPCell createCell(String content, String align, Integer colspan) {
-	Font font = new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD);
+
 	PdfPCell pdfPCell = new PdfPCell(new Phrase(content, font));
 	pdfPCell.setHorizontalAlignment(align(align));
 	if (colspan != null) {
@@ -48,8 +51,9 @@ public class PdfExporter implements Exporter {
     public byte[] export(ExporterContext exporterContext) {
 	Table table = exporterContext.getTable();
 	try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-	    Document document = new Document();
+	    Document document = new Document(PageSize.A4);
 	    PdfWriter pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
+	    pdfWriter.setPageEvent(new PdfExporterPageEvent(font));
 	    document.open();
 	    document.add(pdfTable(table));
 	    document.close();
