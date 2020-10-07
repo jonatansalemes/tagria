@@ -21,4 +21,9 @@ public class Column {
 	this.align = align;
     }
 
+    @Override
+    public String toString() {
+	return "Column [content=" + content + ", align=" + align + "]";
+    }
+
 }

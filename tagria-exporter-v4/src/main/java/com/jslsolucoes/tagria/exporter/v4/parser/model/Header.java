@@ -20,4 +20,10 @@ public class Header {
     public void setContent(String content) {
 	this.content = content;
     }
+
+    @Override
+    public String toString() {
+	return "Header [align=" + align + ", content=" + content + "]";
+    }
+   
 }
