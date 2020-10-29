@@ -191,7 +191,7 @@
 	
 
 	<tag>
-		<description>Renders a template attribute body</description>
+		<description>Renders a content in template slot</description>
 		<display-name>Misc</display-name>
 		<name>template</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TemplateTag</tag-class>
@@ -204,7 +204,37 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			No examples yet
+			-
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Creates an template parameter</description>
+		<display-name>Misc</display-name>
+		<name>templateParameter</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TemplateParameterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates an attribute template name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates an attribute template value</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			-
 		</example>
 	</tag>
 

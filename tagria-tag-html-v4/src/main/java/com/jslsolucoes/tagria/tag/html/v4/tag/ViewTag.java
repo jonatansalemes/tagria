@@ -4,6 +4,7 @@ package com.jslsolucoes.tagria.tag.html.v4.tag;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -36,6 +37,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     private Boolean dropBack = Boolean.TRUE;
     private Boolean asFragment = Boolean.FALSE;
     private String template;
+    private Map<String, String> templateParameters = Maps.newHashMap();
     private List<String> jsScripts = new ArrayList<>();
     private List<String> cssScripts = new ArrayList<>();
     private List<String> jsScriptsForImport = new ArrayList<>();
@@ -88,7 +90,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> partial() {
-	String templateContent = contentOfTemplate(template, Maps.newHashMap());
+	String templateContent = contentOfTemplate(template, templateParameters);
 	String currentContent = asHtml(appHtml());
 	String finalContent = recursiveSubstitution(templateContent, currentContent).replace("<!-- template -->",
 		asHtml(concat(appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs())));
@@ -410,4 +412,7 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 	this.dropBack = dropBack;
     }
 
+    public void withTemplateParam(String name, String value) {
+	templateParameters.put(name, value);
+    }
 }

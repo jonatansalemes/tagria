@@ -9,15 +9,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -137,7 +140,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    String urlForTemplate = urlFor(urlBase, templateUri, parameters);
 	    String cookies = cookies();
 	    logger.debug("Ask for render url {} with cookies {}", urlForTemplate, cookies);
-	    
+
 	    URL url = new URL(urlForTemplate);
 	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 	    httpURLConnection.addRequestProperty("Cookie", cookies);
@@ -153,18 +156,33 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
     }
 
+    public Map<String, String> requestAttributes() {
+	HttpServletRequest httpServletRequest = httpServletRequest();
+	return Collections.list(httpServletRequest.getAttributeNames()).stream()
+		.map(attributeName -> new SimpleEntry<>(attributeName,
+			httpServletRequest.getAttribute(attributeName).toString()))
+		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+    }
+
+    public Map<String, String> requestParams() {
+	return httpServletRequest().getParameterMap().entrySet().stream()
+		.map(entry -> new SimpleEntry<>(entry.getKey(), entry.getValue()[0]))
+		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+    }
+
     private String cookies() {
 	return Arrays.stream(httpServletRequest().getCookies())
-			.map(cookie-> String.format("%s=%s", cookie.getName(),cookie.getValue()))
-			.collect(Collectors.joining("&"));
+		.map(cookie -> String.format("%s=%s", cookie.getName(), cookie.getValue()))
+		.collect(Collectors.joining("&"));
     }
 
     private String urlFor(String urlBase, String templateUri, Map<String, String> parameters) {
 	return urlBase + templateUri + queryParams(parameters);
     }
 
-    private String queryParams(Map<String, String> parameters) {
-	String queryParam = parameters.entrySet().stream()
+    @SafeVarargs
+    private final String queryParams(Map<String, String>... parameters) {
+	String queryParam = Arrays.stream(parameters).map(Map::entrySet).flatMap(Set::stream)
 		.map(entry -> String.format("%s=%s", entry.getKey(), encode(entry.getValue(), encoding())))
 		.collect(Collectors.joining("&"));
 	return Optional.of(queryParam).filter(StringUtils::isNotEmpty).map(queryString -> "?" + queryString).orElse("");
@@ -489,21 +507,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
     }
 
-    public String queryString(List<String> excludesParams) {
-	try {
-	    HttpServletRequest httpServletRequest = httpServletRequest();
-	    List<String> queryString = new ArrayList<>();
-	    Enumeration<String> en = httpServletRequest.getParameterNames();
-	    while (en.hasMoreElements()) {
-		String paramName = en.nextElement();
-		if (!excludesParams.contains(paramName))
-		    queryString.add(
-			    paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
-	    }
-	    return StringUtils.join(queryString, '&');
-	} catch (Exception e) {
-	    throw new TagriaRuntimeException(e);
-	}
+    public String queryString(List<String> exclusions) {
+	Map<String, String> params = requestParams().entrySet().stream()
+		.filter(entry -> !exclusions.contains(entry.getKey()))
+		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+	return queryParams(params);
     }
 
     public void appendCssCode(String cssCode) {
