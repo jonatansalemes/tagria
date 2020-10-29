@@ -78,7 +78,7 @@ ol, ul, dl {
 }
 
 .navbar {
-	z-index: 2000;
+	z-index: 1040;
 }
 
 .d-none {

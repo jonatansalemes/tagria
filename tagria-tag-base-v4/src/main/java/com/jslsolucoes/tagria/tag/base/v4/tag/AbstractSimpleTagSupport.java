@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
@@ -46,6 +48,7 @@ import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.config.v4.xml.Configuration;
+import com.jslsolucoes.tagria.config.v4.xml.Template;
 import com.jslsolucoes.tagria.config.v4.xml.Warning;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.formatter.v4.DataFormatter;
@@ -112,26 +115,37 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	jspContext().setAttribute(name, value);
     }
 
-    public String contentOfTemplate(String template) {
+    public String contentOfTemplate(String templateName, Map<String, String> parameters) {
+
+	Template template = xml().getTemplates().stream()
+		.filter(templateXml -> templateName.equals(templateXml.getName())).findFirst()
+		.orElseThrow(() -> new TagriaRuntimeException(
+			"Could not find template " + templateName + " on definitions "));
+
 	String urlBase = xml().getUrlBase();
-	String templateUri = xml().getTemplates().stream()
-		.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
-		.orElseThrow(
-			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
-		.getUri();
-	return cache().get("template:" + template, () -> contentOfUri(urlBase,templateUri), String.class);
+	String templateUri = template.getUri();
+	Boolean cached = template.getCached();
+	Supplier<Object> templateContentUri = () -> contentOfUri(urlBase, parameters, templateUri);
+	if (cached) {
+	    return cache().get("template:" + templateName, templateContentUri, String.class);
+	}
+	return String.class.cast(templateContentUri.get());
     }
 
-    private String contentOfUri(String urlBase,String templateUri) {
+    private String contentOfUri(String urlBase, Map<String, String> parameters, String templateUri) {
 	try {
-	    String urlForTemplate = urlFor(urlBase,templateUri);
-	    logger.debug("Ask for render url {}", urlForTemplate);
+	    String urlForTemplate = urlFor(urlBase, templateUri, parameters);
+	    String cookies = cookies();
+	    logger.debug("Ask for render url {} with cookies {}", urlForTemplate, cookies);
+	    
 	    URL url = new URL(urlForTemplate);
-	    HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-	    httpCon.setDoOutput(true);
-	    httpCon.setRequestMethod("GET");
-	    httpCon.connect();
-	    try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpCon.getInputStream()))) {
+	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+	    httpURLConnection.addRequestProperty("Cookie", cookies);
+	    httpURLConnection.setDoOutput(true);
+	    httpURLConnection.setRequestMethod("GET");
+	    httpURLConnection.connect();
+	    try (BufferedReader bufferedReader = new BufferedReader(
+		    new InputStreamReader(httpURLConnection.getInputStream()))) {
 		return bufferedReader.lines().collect(Collectors.joining());
 	    }
 	} catch (Exception e) {
@@ -139,8 +153,29 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
     }
 
-    private String urlFor(String urlBase,String templateUri) {
-	return urlBase + templateUri;
+    private String cookies() {
+	return Arrays.stream(httpServletRequest().getCookies())
+			.map(cookie-> String.format("%s=%s", cookie.getName(),cookie.getValue()))
+			.collect(Collectors.joining("&"));
+    }
+
+    private String urlFor(String urlBase, String templateUri, Map<String, String> parameters) {
+	return urlBase + templateUri + queryParams(parameters);
+    }
+
+    private String queryParams(Map<String, String> parameters) {
+	String queryParam = parameters.entrySet().stream()
+		.map(entry -> String.format("%s=%s", entry.getKey(), encode(entry.getValue(), encoding())))
+		.collect(Collectors.joining("&"));
+	return Optional.of(queryParam).filter(StringUtils::isNotEmpty).map(queryString -> "?" + queryString).orElse("");
+    }
+
+    private String encode(String value, String encoding) {
+	try {
+	    return URLEncoder.encode(value, encoding);
+	} catch (UnsupportedEncodingException e) {
+	    throw new TagriaRuntimeException(e);
+	}
     }
 
     public String encoding() {
@@ -350,7 +385,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String keyFor(String key, String bundle, Object... args) {
-	if(args != null && args.length > 0) {
+	if (args != null && args.length > 0) {
 	    return keyForResourceBundle(key, bundle, args);
 	} else {
 	    return cache().get("resourceBundleKey:" + key + ":" + bundle, () -> keyForResourceBundle(key, bundle, args),
@@ -432,15 +467,15 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	return url.replaceAll("\"", "'");
     }
-    
+
     public static String escapeSimpleQuote(String value) {
 	return value.replaceAll("'", "\\\\'");
     }
-    
+
     public static String escapeAsHtmlDoubleQuote(String value) {
 	return value.replaceAll("\"", "&quot;");
     }
-    
+
     private String urlBaseForStaticFile() {
 	return xml().getCdn().getEnabled() ? httpScheme() + "://" + xml().getCdn().getUrl() : contextPath();
     }

@@ -101,3 +101,11 @@ html,body,#root {
 .cursor-pointer {
 	cursor: pointer;
 }
+
+.z-index-1020 {
+	z-index: 1020;
+}
+
+.r-5 {
+	right: 5px;
+}
