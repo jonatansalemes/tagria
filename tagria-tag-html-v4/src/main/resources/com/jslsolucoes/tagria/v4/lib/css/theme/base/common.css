@@ -2,10 +2,6 @@ html,body,#root {
     height: 100%;
 }
 
-.overflow-y-scroll {
-	overflow-y : scroll;
-}
-
 .w-5 {
 	width: 5%;
 }
@@ -108,4 +104,12 @@ html,body,#root {
 
 .r-15 {
 	right: 15px;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.overflow-y-scroll {
+	overflow-y : scroll;
 }

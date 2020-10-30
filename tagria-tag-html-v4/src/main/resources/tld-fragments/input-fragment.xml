@@ -571,6 +571,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates whether the component has ripple animation. Default: false</description>
+			<name>ripple</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the value of the component</description>
 			<name>value</name>
 			<rtexprvalue>true</rtexprvalue>
