@@ -90,9 +90,9 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
     }
 
     private List<Element> partial() {
+	String partialContent = asHtml(appHtml());
 	String templateContent = contentOfTemplate(template, templateParameters);
-	String currentContent = asHtml(appHtml());
-	String finalContent = recursiveSubstitution(templateContent, currentContent).replace("<!-- template -->",
+	String finalContent = recursiveSubstitution(templateContent, partialContent).replace("<!-- template -->",
 		asHtml(concat(appCssScriptsForImport(), appCss(), appJsScriptsForImport(), appJs())));
 	logger.debug("Final content {}", finalContent);
 	return Arrays.asList(ElementCreator.newCData(finalContent));

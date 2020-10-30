@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -171,8 +172,8 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String cookies() {
-	return Arrays.stream(httpServletRequest().getCookies())
-		.map(cookie -> String.format("%s=%s", cookie.getName(), cookie.getValue()))
+	Cookie[] cookies = Optional.ofNullable(httpServletRequest().getCookies()).orElse(new Cookie[0]);
+	return Arrays.stream(cookies).map(cookie -> String.format("%s=%s", cookie.getName(), cookie.getValue()))
 		.collect(Collectors.joining("&"));
     }
 
