@@ -47,9 +47,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
-import com.jslsolucoes.cache.CacheInstance;
 import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
+import com.jslsolucoes.tagria.api.v4.cache.MemoryCache;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.config.v4.xml.Configuration;
 import com.jslsolucoes.tagria.config.v4.xml.Template;
@@ -75,7 +75,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return Tagria.version();
     }
 
-    public CacheInstance<String, Object> cache() {
+    public MemoryCache<String, Object> cache() {
 	return Tagria.cache();
     }
 
