@@ -219,6 +219,12 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.layout.ContainerTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates whether a container must be responsive to the screen 100%</description>
 			<name>fluid</name>
 			<rtexprvalue>true</rtexprvalue>

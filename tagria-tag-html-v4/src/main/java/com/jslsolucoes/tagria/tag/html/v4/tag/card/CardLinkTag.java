@@ -20,7 +20,7 @@ public class CardLinkTag extends AbstractSimpleTagSupport {
 
     private Element a() {
 	Element a = ElementCreator.newA().attribute(Attribute.HREF, pathForUrl(url)).attribute(Attribute.TARGET, target)
-		.attribute(Attribute.CLASS, "card-link");
+		.attribute(Attribute.CLASS, "card-link").attribute(Attribute.ID, idForId(id));
 
 	if (hasKeyOrLabel(labelKey, label)) {
 	    a.add(keyOrLabel(labelKey, label));

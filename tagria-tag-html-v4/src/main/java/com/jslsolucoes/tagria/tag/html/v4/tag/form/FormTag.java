@@ -33,7 +33,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element div() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2   bg-white").add(form());
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2").add(form());
 	if (!StringUtils.isEmpty(cssClass)) {
 	    div.attribute(Attribute.CLASS, cssClass);
 	}
@@ -45,7 +45,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element divHeader() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center").add(h2());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center my-2").add(h2());
     }
 
     private Element h2() {

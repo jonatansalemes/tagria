@@ -27,7 +27,10 @@
 	position: static;
 	border: 0;
 	border-radius: 0;
-	margin-top: 0.5rem;
+}
+
+.card-title {
+    margin-bottom: 0;
 }
 
 .card-body {
@@ -35,7 +38,7 @@
 }
 
 .alert {
-	margin-bottom: 0rem;
+	margin-bottom: 0;
 }
 
 .form-group {
@@ -43,12 +46,24 @@
 	background: #fff;
 }
 
+.jumbotron {
+  margin-bottom: 0;
+}
+
 label {
-	margin-bottom: 0rem;
+	margin-bottom: 0;
 }
 
 ol, ul, dl {
-	margin-bottom: 0rem;
+	margin-bottom: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0;
 }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
