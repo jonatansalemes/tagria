@@ -5,7 +5,7 @@
 		<description>Renders an spinner</description>
 		<display-name>Misc</display-name>
 		<name>print</name>
-		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.SpinnerTag</tag-class>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.PrintTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>Indicates the type of spinner. Default: grow. Options: border, grow</description>
