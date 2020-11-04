@@ -24,7 +24,7 @@
 			button.click(function(){
 				self._createOptions(function(){
 					modal.modal('show');
-					input.val('')[0].focus();
+					input.val('').focus();
 				});
 			});
 		},

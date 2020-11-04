@@ -17,6 +17,11 @@
 				return true;
 			}
 		},
+		submit: function() {
+			var self = this;
+			self._scrollToTop();
+			self._validateAndSubmit();
+		},
 		_create: function() {
 			var self = this;
 			var form = self.element;  
@@ -38,9 +43,8 @@
 				submit = $('a.sure',target);
 			}
 			submit.on('click.form',function(){
-		    	self._scrollToTop();
-				self._validateAndSubmit();
-		    }); 
+		    	self.submit();
+		    });
 		},
 		_scrollToTop : function () {
 			window.parent.parent.scrollTo(0,0);
