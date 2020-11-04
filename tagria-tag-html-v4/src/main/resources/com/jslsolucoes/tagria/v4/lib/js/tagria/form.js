@@ -17,10 +17,10 @@
 				return true;
 			}
 		},
-		submit: function() {
+		submit: function(errorCallback,successCallback) {
 			var self = this;
 			self._scrollToTop();
-			self._validateAndSubmit();
+			self._validateAndSubmit(errorCallback,successCallback);
 		},
 		_create: function() {
 			var self = this;
@@ -61,7 +61,7 @@
 			var form = this.element;
 			$('a.btn[data-type=submit]',form).removeClass("disabled");
 		},
-		_validateAndSubmit : function() {
+		_validateAndSubmit : function(errorCallback,successCallback) {
 			var self = this;
 			var form = this.element;
 			self._block();
@@ -71,6 +71,9 @@
 			
 			if(!hasRequiredFieldBlank && !hasValidationError){
 				if(self.options.validation == '') {
+					if(successCallback){
+						successCallback();
+					}
 					self._submit();
 				} else {
 					var data = new Array();
@@ -88,22 +91,34 @@
 				        	if(data == null) {
 				        		throw new Error('data response cannot be null. Please return empty FormErrors. ex:. FormErrors.newBuilder().build()')
 				        	} else if(data.errors && data.errors.length > 0) {
-								var ul = $(document.createElement('ul')).addClass('list-group');
+				        		if(errorCallback){
+									errorCallback();
+								}
+				        		var ul = $(document.createElement('ul')).addClass('list-group');
 								$.each(data.errors,function( index, value ) {
 									ul.append($(document.createElement('li')).addClass('list-group-item list-group-item-danger').text(value));
 								});
 								self._alert(self.options.errors.required.title,ul[0].outerHTML)
 								self._unblock();
 							} else {
+								if(successCallback){
+									successCallback();
+								}
 								self._submit();
 							}					           	
 				        },
 				        error : function (jqXHR, textStatus, errorThrown) {
+				        	if(errorCallback){
+								errorCallback();
+							}
 				        	self._unblock();
 				        }
 				    });
 				}
 			} else {
+				if(errorCallback){
+					errorCallback();
+				}
 				self._unblock();
 				if(hasRequiredFieldBlank){
 					self._alert(self.options.errors.required.title,self.options.errors.required.text)
