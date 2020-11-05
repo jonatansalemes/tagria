@@ -80,8 +80,7 @@ public class FormTag extends AbstractSimpleTagSupport {
 	form.add(divFooter());
 	appendJsCode(
 		"$('#" + id + "').form({validation:'" + (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "")
-			+ "',errors:{required:{title: '" + keyForLibrary("form.required.fields.title") + "',text: '"
-			+ keyForLibrary("form.required.fields.text") + "'}},invalid:{email : '"
+			+ "',errors:{required:{title: '" + keyForLibrary("form.required.fields.title") + "',text: '" + keyForLibrary("form.required.fields.text") + "'},invalid:{title: '" + keyForLibrary("form.invalid.fields.title") + "',text: '" + keyForLibrary("form.invalid.fields.text") + "'}},invalid:{email : '"
 			+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid")
 			+ "',min:'" + keyForLibrary("form.min.invalid") + "',cpf:'" +keyForLibrary("form.cpf.invalid")+ "',date:'" +keyForLibrary("form.date.invalid")+ "'},beforeSubmit:function(){"
 			+ (StringUtils.isEmpty(onBeforeSubmit) ? "return true;" : onBeforeSubmit) + "}});");

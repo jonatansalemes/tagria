@@ -13,6 +13,10 @@
 				required: {
 					title: 'Form fillment error',
 					text: 'You cant leave required fields empty. Please check'
+				},
+				invalid : {
+					title: 'Form fillment error',
+					text: 'Some fields are invalid. Please check'
 				}
 			},
 			beforeSubmit: function() {
@@ -96,11 +100,7 @@
 				        		if(errorCallback){
 									errorCallback();
 								}
-				        		var ul = $(document.createElement('ul')).addClass('list-group');
-								$.each(data.errors,function( index, value ) {
-									ul.append($(document.createElement('li')).addClass('list-group-item list-group-item-danger').text(value));
-								});
-								self._alert(self.options.errors.required.title,ul[0].outerHTML)
+								self._alertWith(self.options.errors.required.title,data.errors);
 								self._unblock();
 							} else {
 								if(successCallback){
@@ -132,7 +132,16 @@
 				type: 'error',
 				title: title,
 				html: message
-			})
+			});
+		},
+		_alertWith: function(title,messages) {
+			var self = this;
+			var ul = $(document.createElement('ul')).addClass('list-group');
+			$.each(messages,function( index, message ) {
+				var li = $(document.createElement('li')).addClass('list-group-item list-group-item-danger').text(message);
+				ul.append(li);
+			});
+			self._alert(title,ul[0].outerHTML);
 		},
         _submit : function() {
         	var self = this;
@@ -159,18 +168,6 @@
          		}
          	 });
         	 return empty;
-		},
-		_popover: function(target,content) {
-			target.popover({
-			       content : content,
-			       html : true,
-			       placement : 'bottom',
-			       container : 'body',
-			       trigger : 'focus'
-			})
-			.popover('show');
-			
-			setTimeout(function() { target.popover('dispose'); },5000);
 		},
 		_isValidDate: function(dateString) {
 			if (typeof dateString !== "string") {
@@ -236,53 +233,60 @@
 		    if (resto != parseInt(newCpf.substring(10, 11))) return false;
 		    return true;
 		},
-		_makeInputInvalid: function(input,content) {
-			var self = this;
-			input.parents('.form-group').addClass('is-empty');
-			self._popover(input,content);
-			return true;
+		_invalid: function(input,content) {
+			input.parents('.form-control-container,.form-group').addClass('is-empty');
 		},
 		_hasValidationError : function() {
 			var self = this;
 			var form = self.element;
-			var error = false;
+			var errors = [];
 			
 			$('input[type=email]',form).each(function(){
 				var input = $(this);
-				if(!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test( $(this).val() )){
-					error = self._makeInputInvalid(input,self.options.invalid.email);
+				if(input.val() !== '' && !/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(input.val())){
+					self._invalid(input);
+					errors.push(self.options.invalid.email);
 				}
 			});
 			
 			$('input[type=number][max]',form).each(function(){
 				var input = $(this);
-				if(parseInt(input.val()) > parseInt(input.attr("max"))){
-					error = self._makeInputInvalid(input,self.options.invalid.max + ' ' + input.attr("max"));
+				if(input.val() !== '' && parseInt(input.val()) > parseInt(input.attr("max"))){
+					self._invalid(input);
+					errors.push(self.options.invalid.max + ' ' + input.attr("max"));
 				}
 			});
 			
 			$('input[type=number][min]',form).each(function(){
 				var input = $(this);
-				if(parseInt(input.val()) < parseInt(input.attr("min"))){
-					error = self._makeInputInvalid(input,self.options.invalid.min + ' ' + input.attr("min"));
+				if(input.val() !== '' && parseInt(input.val()) < parseInt(input.attr("min"))){
+					self._invalid(input);
+					errors.push(self.options.invalid.min + ' ' + input.attr("min"));
 				}
 			});
 			
 			$('input[data-validate=cpf]',form).each(function(){
 				var input = $(this);
-				if(!self._isValidCpf(input.val())){
-					error = self._makeInputInvalid(input,self.options.invalid.cpf);
+				if(input.val() !== '' && !self._isValidCpf(input.val())){
+					self._invalid(input);
+					errors.push(self.options.invalid.cpf);
 				}
 			});
 			
 			$('input[data-validate=date]',form).each(function(){
 				var input = $(this);
-				if(!self._isValidDate(input.val())){
-					error = self._makeInputInvalid(input,self.options.invalid.date);
+				if(input.val() !== '' && !self._isValidDate(input.val())){
+					self._invalid(input);
+					errors.push(self.options.invalid.date);
 				}
 			});
 			
-			return error;
+			if(errors.length > 0) {
+				self._alertWith(self.options.errors.invalid.title,errors);
+				return true;
+			} else {
+				return false;
+			}
 		}
 	});
 })(jQuery);
