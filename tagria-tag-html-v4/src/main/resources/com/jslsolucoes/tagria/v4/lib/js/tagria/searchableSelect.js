@@ -45,6 +45,8 @@
 						input.val('');
 						modal.modal('hide');
 						self._doQuickSearch('');
+						select.focus();
+						select.trigger('change');
 					});
 				ul.append(li);
 			});
