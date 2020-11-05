@@ -13,6 +13,25 @@
 			Teste
 		</html:div>
 	</html:div>
+	
+	<html:form name="form2" id="form2" action="#" label="Validate">
+		<html:formGroup label="Field validate 1">
+			<html:input name="validate1" type="email" value="aa"/>
+		</html:formGroup>
+		<html:formGroup label="Field validate 1">
+			<html:input name="validate2" type="number" max="20" value="30"/>
+		</html:formGroup>
+		<html:formGroup label="Field validate 3">
+			<html:input name="validate3" type="number" min="10" value="1"/>
+		</html:formGroup>
+		<html:formGroup label="Field validate 4">
+			<html:input name="validate4" validateAs="date"/>
+			<html:mask mask="99/99/9999" attachTo="validate4"></html:mask>
+		</html:formGroup>
+		<html:formGroup label="Field validate 5">
+			<html:input name="validate5" validateAs="cpf" value="839.932.328-99"/>
+		</html:formGroup>
+	</html:form>
 
 
 	<html:grid var="personAsObjectGrid" data="${ person }"

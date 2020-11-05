@@ -13,6 +13,7 @@ public class InputTag extends AbstractSimpleTagSupport {
     private Boolean checked;
     private String name;
     private String value;
+    private String validateAs;
     private String pattern;
     private String type = "text";
     private String placeHolder;
@@ -94,6 +95,11 @@ public class InputTag extends AbstractSimpleTagSupport {
 
 	if (min != null) {
 	    input.attribute(Attribute.MIN, min);
+	}
+	
+	
+	if(!StringUtils.isEmpty(validateAs)) {
+	    input.attribute(Attribute.DATA_VALIDATE, validateAs);
 	}
 
 	if (!StringUtils.isEmpty(list)) {
@@ -354,6 +360,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     public void setMaxLengthCount(Boolean maxLengthCount) {
 	this.maxLengthCount = maxLengthCount;
+    }
+
+    public String getValidateAs() {
+	return validateAs;
+    }
+
+    public void setValidateAs(String validateAs) {
+	this.validateAs = validateAs;
     }
 
 }

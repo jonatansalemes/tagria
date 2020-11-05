@@ -83,7 +83,7 @@ public class FormTag extends AbstractSimpleTagSupport {
 			+ "',errors:{required:{title: '" + keyForLibrary("form.required.fields.title") + "',text: '"
 			+ keyForLibrary("form.required.fields.text") + "'}},invalid:{email : '"
 			+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid")
-			+ "',min:'" + keyForLibrary("form.min.invalid") + "'}," + "beforeSubmit:function(){"
+			+ "',min:'" + keyForLibrary("form.min.invalid") + "',cpf:'" +keyForLibrary("form.cpf.invalid")+ "',date:'" +keyForLibrary("form.date.invalid")+ "'},beforeSubmit:function(){"
 			+ (StringUtils.isEmpty(onBeforeSubmit) ? "return true;" : onBeforeSubmit) + "}});");
 	return form;
     }

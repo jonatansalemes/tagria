@@ -5,7 +5,9 @@
 			invalid : {
 				email : 'Invalid email',
 				max : 'Must not be greater than',
-				min : 'Must not be less than'
+				min : 'Must not be less than',
+				cpf: 'Invalid cpf',
+				date: 'Invalid date',
 			},
 			errors: {
 				required: {
@@ -158,44 +160,125 @@
          	 });
         	 return empty;
 		},
-		_popover: function(element,content) {
-			element.popover({
+		_popover: function(target,content) {
+			target.popover({
 			       content : content,
 			       html : true,
 			       placement : 'bottom',
 			       container : 'body',
 			       trigger : 'focus'
-			}).popover('show');
-			setTimeout(function() {
-				element.popover('dispose');
-			},5000);
+			})
+			.popover('show');
+			
+			setTimeout(function() { target.popover('dispose'); },5000);
+		},
+		_isValidDate: function(dateString) {
+			if (typeof dateString !== "string") {
+				return false;
+			}
+			
+			var regex_date = /^\d{2}\/\d{2}\/\d{4}$/;
+
+		    if(!regex_date.test(dateString))
+		    {
+		    	return false;
+		    }
+
+		    var parts   = dateString.split("/");
+		    var day     = parseInt(parts[0], 10);
+		    var month   = parseInt(parts[1], 10);
+		    var year    = parseInt(parts[2], 10);
+        
+		    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+		    {
+		        return false;
+		    }
+
+		    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+		    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+		    {
+		        monthLength[1] = 29;
+		    }
+
+		    return day > 0 && day <= monthLength[month - 1];
+		},
+		_isValidCpf: function(cpf) {
+			if (typeof cpf !== "string") {
+				return false;
+			}
+			
+			var newCpf = cpf.replace(/[\s.-]*/igm, '')
+			if (!newCpf || newCpf.length != 11 || newCpf === "00000000000" || newCpf === "11111111111" || newCpf === "22222222222" ||
+		        newCpf === "33333333333" || newCpf === "44444444444" || newCpf === "55555555555" || newCpf === "66666666666" || newCpf === "77777777777" ||
+		        newCpf === "88888888888" || newCpf === "99999999999") {
+		        return false
+		    }
+			
+			var soma = 0;
+		    var resto;
+		    for (var i = 1; i <= 9; i++){
+		        soma = soma + parseInt(newCpf.substring(i-1, i)) * (11 - i);
+		    }
+		    resto = (soma * 10) % 11;
+		    if ((resto == 10) || (resto == 11))  resto = 0;
+		    if (resto != parseInt(newCpf.substring(9, 10))){
+		    	return false;
+		    }
+		    soma = 0;
+		    for (var i = 1; i <= 10; i++) {
+		    	soma = soma + parseInt(newCpf.substring(i-1, i)) * (12 - i);
+		    }
+		    resto = (soma * 10) % 11;
+		    if ((resto == 10) || (resto == 11)){
+		    	resto = 0;
+		    }
+		    if (resto != parseInt(newCpf.substring(10, 11))) return false;
+		    return true;
+		},
+		_makeInputInvalid: function(input,content) {
+			var self = this;
+			input.parents('.form-group').addClass('is-empty');
+			self._popover(input,content);
+			return true;
 		},
 		_hasValidationError : function() {
 			var self = this;
 			var form = self.element;
 			var error = false;
-			var parentSelectors = '.form-control-container,.form-group';
+			
 			$('input[type=email]',form).each(function(){
+				var input = $(this);
 				if(!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test( $(this).val() )){
-					var input = $(this).parents(parentSelectors).addClass('is-empty');
-					self._popover(input,self.options.invalid.email);
-					error = true;
+					error = self._makeInputInvalid(input,self.options.invalid.email);
 				}
 			});
 			
 			$('input[type=number][max]',form).each(function(){
-				if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
-					var input = $(this).parents(parentSelectors).addClass('is-empty');
-					self._popover(input,self.options.invalid.max + ' ' + input.attr("max"));
-					error = true;
+				var input = $(this);
+				if(parseInt(input.val()) > parseInt(input.attr("max"))){
+					error = self._makeInputInvalid(input,self.options.invalid.max + ' ' + input.attr("max"));
 				}
 			});
 			
 			$('input[type=number][min]',form).each(function(){
-				if(parseInt($(this).val()) < parseInt($(this).attr("min"))){
-					var input = $(this).parents(parentSelectors).addClass('is-empty');
-					self._popover(input,self.options.invalid.min + ' ' + input.attr("min"));
-					error = true;
+				var input = $(this);
+				if(parseInt(input.val()) < parseInt(input.attr("min"))){
+					error = self._makeInputInvalid(input,self.options.invalid.min + ' ' + input.attr("min"));
+				}
+			});
+			
+			$('input[data-validate=cpf]',form).each(function(){
+				var input = $(this);
+				if(!self._isValidCpf(input.val())){
+					error = self._makeInputInvalid(input,self.options.invalid.cpf);
+				}
+			});
+			
+			$('input[data-validate=date]',form).each(function(){
+				var input = $(this);
+				if(!self._isValidDate(input.val())){
+					error = self._makeInputInvalid(input,self.options.invalid.date);
 				}
 			});
 			
