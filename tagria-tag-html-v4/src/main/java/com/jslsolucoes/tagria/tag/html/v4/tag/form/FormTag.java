@@ -33,7 +33,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element div() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2   bg-white").add(form());
+	Element div = ElementCreator.newDiv().attribute(Attribute.CLASS, "p-2").add(form());
 	if (!StringUtils.isEmpty(cssClass)) {
 	    div.attribute(Attribute.CLASS, cssClass);
 	}
@@ -45,7 +45,7 @@ public class FormTag extends AbstractSimpleTagSupport {
     }
 
     private Element divHeader() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center").add(h2());
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "text-center my-2").add(h2());
     }
 
     private Element h2() {
@@ -80,10 +80,9 @@ public class FormTag extends AbstractSimpleTagSupport {
 	form.add(divFooter());
 	appendJsCode(
 		"$('#" + id + "').form({validation:'" + (!StringUtils.isEmpty(validation) ? pathForUrl(validation) : "")
-			+ "',errors:{required:{title: '" + keyForLibrary("form.required.fields.title") + "',text: '"
-			+ keyForLibrary("form.required.fields.text") + "'}},invalid:{email : '"
+			+ "',errors:{required:{title: '" + keyForLibrary("form.required.fields.title") + "',text: '" + keyForLibrary("form.required.fields.text") + "'},invalid:{title: '" + keyForLibrary("form.invalid.fields.title") + "',text: '" + keyForLibrary("form.invalid.fields.text") + "'}},invalid:{email : '"
 			+ keyForLibrary("form.email.invalid") + "',max:'" + keyForLibrary("form.max.invalid")
-			+ "',min:'" + keyForLibrary("form.min.invalid") + "'}," + "beforeSubmit:function(){"
+			+ "',min:'" + keyForLibrary("form.min.invalid") + "',cpf:'" +keyForLibrary("form.cpf.invalid")+ "',date:'" +keyForLibrary("form.date.invalid")+ "'},beforeSubmit:function(){"
 			+ (StringUtils.isEmpty(onBeforeSubmit) ? "return true;" : onBeforeSubmit) + "}});");
 	return form;
     }

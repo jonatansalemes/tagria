@@ -4,23 +4,29 @@ import java.io.BufferedReader;
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,11 +47,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Stopwatch;
-import com.jslsolucoes.cache.CacheInstance;
 import com.jslsolucoes.tagria.api.v4.Authorizer;
 import com.jslsolucoes.tagria.api.v4.Tagria;
+import com.jslsolucoes.tagria.api.v4.cache.MemoryCache;
 import com.jslsolucoes.tagria.config.v4.ConfigurationParser;
 import com.jslsolucoes.tagria.config.v4.xml.Configuration;
+import com.jslsolucoes.tagria.config.v4.xml.Template;
 import com.jslsolucoes.tagria.config.v4.xml.Warning;
 import com.jslsolucoes.tagria.exception.v4.TagriaRuntimeException;
 import com.jslsolucoes.tagria.formatter.v4.DataFormatter;
@@ -68,7 +75,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return Tagria.version();
     }
 
-    public CacheInstance<String, Object> cache() {
+    public MemoryCache<String, Object> cache() {
 	return Tagria.cache();
     }
 
@@ -112,26 +119,37 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	jspContext().setAttribute(name, value);
     }
 
-    public String contentOfTemplate(String template) {
+    public String contentOfTemplate(String templateName, Map<String, String> parameters) {
+
+	Template template = xml().getTemplates().stream()
+		.filter(templateXml -> templateName.equals(templateXml.getName())).findFirst()
+		.orElseThrow(() -> new TagriaRuntimeException(
+			"Could not find template " + templateName + " on definitions "));
+
 	String urlBase = xml().getUrlBase();
-	String templateUri = xml().getTemplates().stream()
-		.filter(tagriaTemplateXML -> template.equals(tagriaTemplateXML.getName())).findFirst()
-		.orElseThrow(
-			() -> new TagriaRuntimeException("Could not find template " + template + " on definitions "))
-		.getUri();
-	return cache().get("template:" + template, () -> contentOfUri(urlBase,templateUri), String.class);
+	String templateUri = template.getUri();
+	Boolean cached = template.getCached();
+	Supplier<Object> templateContentUri = () -> contentOfUri(urlBase, parameters, templateUri);
+	if (cached) {
+	    return cache().get("template:" + templateName, templateContentUri, String.class);
+	}
+	return String.class.cast(templateContentUri.get());
     }
 
-    private String contentOfUri(String urlBase,String templateUri) {
+    private String contentOfUri(String urlBase, Map<String, String> parameters, String templateUri) {
 	try {
-	    String urlForTemplate = urlFor(urlBase,templateUri);
-	    logger.debug("Ask for render url {}", urlForTemplate);
+	    String urlForTemplate = urlFor(urlBase, templateUri, parameters);
+	    String cookies = cookies();
+	    logger.debug("Ask for render url {} with cookies {}", urlForTemplate, cookies);
+
 	    URL url = new URL(urlForTemplate);
-	    HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-	    httpCon.setDoOutput(true);
-	    httpCon.setRequestMethod("GET");
-	    httpCon.connect();
-	    try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpCon.getInputStream()))) {
+	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+	    httpURLConnection.addRequestProperty("Cookie", cookies);
+	    httpURLConnection.setDoOutput(true);
+	    httpURLConnection.setRequestMethod("GET");
+	    httpURLConnection.connect();
+	    try (BufferedReader bufferedReader = new BufferedReader(
+		    new InputStreamReader(httpURLConnection.getInputStream()))) {
 		return bufferedReader.lines().collect(Collectors.joining());
 	    }
 	} catch (Exception e) {
@@ -139,8 +157,44 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
     }
 
-    private String urlFor(String urlBase,String templateUri) {
-	return urlBase + templateUri;
+    public Map<String, String> requestAttributes() {
+	HttpServletRequest httpServletRequest = httpServletRequest();
+	return Collections.list(httpServletRequest.getAttributeNames()).stream()
+		.map(attributeName -> new SimpleEntry<>(attributeName,
+			httpServletRequest.getAttribute(attributeName).toString()))
+		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+    }
+
+    public Map<String, String> requestParams() {
+	return httpServletRequest().getParameterMap().entrySet().stream()
+		.map(entry -> new SimpleEntry<>(entry.getKey(), entry.getValue()[0]))
+		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+    }
+
+    private String cookies() {
+	Cookie[] cookies = Optional.ofNullable(httpServletRequest().getCookies()).orElse(new Cookie[0]);
+	return Arrays.stream(cookies).map(cookie -> String.format("%s=%s", cookie.getName(), cookie.getValue()))
+		.collect(Collectors.joining("&"));
+    }
+
+    private String urlFor(String urlBase, String templateUri, Map<String, String> parameters) {
+	return urlBase + templateUri + queryParams(parameters);
+    }
+
+    @SafeVarargs
+    private final String queryParams(Map<String, String>... parameters) {
+	String queryParam = Arrays.stream(parameters).map(Map::entrySet).flatMap(Set::stream)
+		.map(entry -> String.format("%s=%s", entry.getKey(), encode(entry.getValue(), encoding())))
+		.collect(Collectors.joining("&"));
+	return Optional.of(queryParam).filter(StringUtils::isNotEmpty).map(queryString -> "?" + queryString).orElse("");
+    }
+
+    private String encode(String value, String encoding) {
+	try {
+	    return URLEncoder.encode(value, encoding);
+	} catch (UnsupportedEncodingException e) {
+	    throw new TagriaRuntimeException(e);
+	}
     }
 
     public String encoding() {
@@ -350,7 +404,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     private String keyFor(String key, String bundle, Object... args) {
-	if(args != null && args.length > 0) {
+	if (args != null && args.length > 0) {
 	    return keyForResourceBundle(key, bundle, args);
 	} else {
 	    return cache().get("resourceBundleKey:" + key + ":" + bundle, () -> keyForResourceBundle(key, bundle, args),
@@ -432,15 +486,15 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
 	return url.replaceAll("\"", "'");
     }
-    
+
     public static String escapeSimpleQuote(String value) {
 	return value.replaceAll("'", "\\\\'");
     }
-    
+
     public static String escapeAsHtmlDoubleQuote(String value) {
 	return value.replaceAll("\"", "&quot;");
     }
-    
+
     private String urlBaseForStaticFile() {
 	return xml().getCdn().getEnabled() ? httpScheme() + "://" + xml().getCdn().getUrl() : contextPath();
     }
@@ -454,21 +508,11 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	}
     }
 
-    public String queryString(List<String> excludesParams) {
-	try {
-	    HttpServletRequest httpServletRequest = httpServletRequest();
-	    List<String> queryString = new ArrayList<>();
-	    Enumeration<String> en = httpServletRequest.getParameterNames();
-	    while (en.hasMoreElements()) {
-		String paramName = en.nextElement();
-		if (!excludesParams.contains(paramName))
-		    queryString.add(
-			    paramName + "=" + URLEncoder.encode(httpServletRequest.getParameter(paramName), "UTF-8"));
-	    }
-	    return StringUtils.join(queryString, '&');
-	} catch (Exception e) {
-	    throw new TagriaRuntimeException(e);
-	}
+    public String queryString(List<String> exclusions) {
+	Map<String, String> params = requestParams().entrySet().stream()
+		.filter(entry -> !exclusions.contains(entry.getKey()))
+		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+	return queryParams(params);
     }
 
     public void appendCssCode(String cssCode) {

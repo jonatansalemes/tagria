@@ -13,6 +13,7 @@ public class InputTag extends AbstractSimpleTagSupport {
     private Boolean checked;
     private String name;
     private String value;
+    private String validateAs;
     private String pattern;
     private String type = "text";
     private String placeHolder;
@@ -55,12 +56,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 	    container.attribute(Attribute.CLASS, "disabled-line-ripple");
 	}
 
-	Element toolbar = toolbar();
+	
+	Element widget = widget();
+	Element invalid = invalid();
 	if (maxLength != null && maxLengthCount) {
-	    toolbar.add(maxLengthCounter());
+	    widget.add(maxLengthCounter());
 	}
-	container.add(toolbar);
-
+	container.add(toolbar().add(invalid).add(widget));
+	
 	appendJsCode("$('#" + container.attribute(Attribute.ID) + "').input({ maxLength : "+maxLength+",maxLengthCount : "+maxLengthCount+"  });");
 	return container;
     }
@@ -69,9 +72,20 @@ public class InputTag extends AbstractSimpleTagSupport {
 	return ElementCreator.newSpan().attribute(Attribute.CLASS, "maxlenght-counter")
 		.add((StringUtils.isEmpty(value) ? "0" : value.length()) + "/" + maxLength);
     }
+    
+    private Element invalid() {
+	return ElementCreator.newDiv()
+			.attribute(Attribute.CLASS, "form-control-container-toolbar-invalid");
+    }
+    
+    private Element widget() {
+   	return ElementCreator.newDiv()
+   			.attribute(Attribute.CLASS, "form-control-container-toolbar-widget");
+    }
 
     private Element toolbar() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "d-flex justify-content-end align-items-center form-control-container-toolbar");
+	return ElementCreator.newDiv()
+			.attribute(Attribute.CLASS, "d-flex justify-content-between align-items-center form-control-container-toolbar");
     }
 
     private Element ripple() {
@@ -94,6 +108,11 @@ public class InputTag extends AbstractSimpleTagSupport {
 
 	if (min != null) {
 	    input.attribute(Attribute.MIN, min);
+	}
+	
+	
+	if(!StringUtils.isEmpty(validateAs)) {
+	    input.attribute(Attribute.DATA_VALIDATE, validateAs);
 	}
 
 	if (!StringUtils.isEmpty(list)) {
@@ -354,6 +373,14 @@ public class InputTag extends AbstractSimpleTagSupport {
 
     public void setMaxLengthCount(Boolean maxLengthCount) {
 	this.maxLengthCount = maxLengthCount;
+    }
+
+    public String getValidateAs() {
+	return validateAs;
+    }
+
+    public void setValidateAs(String validateAs) {
+	this.validateAs = validateAs;
     }
 
 }

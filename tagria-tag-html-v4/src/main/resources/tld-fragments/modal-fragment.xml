@@ -111,6 +111,12 @@
 		<name>modalFooter</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.modal.ModalFooterTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 		    &lt;html:buttonGroup&gt;
 				&lt;html:button label="My button" icon="search" id="btn1" /&gt;

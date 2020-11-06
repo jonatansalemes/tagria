@@ -522,6 +522,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates an data type validation. Options: cpf, date</description>
+			<name>validateAs</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates a CSS class to the component</description>
 			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -569,6 +575,12 @@
 			<name>placeHolderKey</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates whether the component has ripple animation. Default: false</description>
+			<name>ripple</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the value of the component</description>

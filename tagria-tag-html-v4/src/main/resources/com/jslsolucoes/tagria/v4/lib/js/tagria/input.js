@@ -6,7 +6,9 @@
 		_create: function() {
 			var self = this;
 			var container = self.element;
-			var parentSelectors = '.form-control-container,.form-group';
+			var formControlContainerSelector = '.form-control-container';
+			var fromGroupSelector = '.form-group';
+			var parentSelectors = [formControlContainerSelector,fromGroupSelector].join(',');
 			var input = $('input',container);	
 			var maxLengther = $('.maxlenght-counter',container);
 			var maxLengthCount = self.options.maxLengthCount;
@@ -14,6 +16,8 @@
 				var inputValue = $(this).val();
 				if(inputValue !== ''){
 					$(this).parents(parentSelectors).removeClass('is-empty').addClass('is-not-empty');
+					$('.form-control-container-toolbar-invalid',input.parents(formControlContainerSelector))
+						.empty();
 				} else {
 					$(this).parents(parentSelectors).removeClass('is-not-empty').addClass('is-empty');
 				}

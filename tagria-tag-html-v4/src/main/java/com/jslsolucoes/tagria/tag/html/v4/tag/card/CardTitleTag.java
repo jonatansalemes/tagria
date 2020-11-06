@@ -1,6 +1,8 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.card;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -23,6 +25,11 @@ public class CardTitleTag extends AbstractSimpleTagSupport {
 	} else {
 	    h5.add(bodyContent());
 	}
+	
+	if (!StringUtils.isEmpty(cssClass)) {
+	    h5.attribute(Attribute.CLASS, cssClass);
+	}
+	
 	return h5;
     }
 

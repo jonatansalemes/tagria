@@ -137,6 +137,12 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardTitleTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the label</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -278,6 +284,12 @@
 		<name>cardBody</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardBodyTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates a css class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:card&gt;
 				&lt;html:cardImage url="/assets/image/person.png" width="32" height="32" responsive="false"&gt;&lt;/html:cardImage&gt;
@@ -303,6 +315,12 @@
 		<name>cardLink</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.card.CardLinkTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>Indicates the URL</description>
 			<name>url</name>

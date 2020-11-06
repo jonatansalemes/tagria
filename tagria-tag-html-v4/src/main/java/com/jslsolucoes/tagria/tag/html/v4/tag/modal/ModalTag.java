@@ -33,7 +33,7 @@ public class ModalTag extends AbstractSimpleTagSupport {
 		+ "').attr('data-toggle','modal').attr('data-target','#" + div.attribute(Attribute.ID) + "');");
 
 	if (open()) {
-	    appendJsCode("$('#" + div.attribute(Attribute.ID) + "').modal('show')");
+	    appendJsCode("$('#" + div.attribute(Attribute.ID) + "').modal('show');");
 	}
 	return div;
     }

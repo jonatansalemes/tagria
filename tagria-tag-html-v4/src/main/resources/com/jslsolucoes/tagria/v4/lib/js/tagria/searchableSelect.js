@@ -24,7 +24,7 @@
 			button.click(function(){
 				self._createOptions(function(){
 					modal.modal('show');
-					input.val('')[0].focus();
+					input.val('').focus();
 				});
 			});
 		},
@@ -45,6 +45,8 @@
 						input.val('');
 						modal.modal('hide');
 						self._doQuickSearch('');
+						select.focus();
+						select.trigger('change');
 					});
 				ul.append(li);
 			});

@@ -12,6 +12,8 @@ public class Template {
 
     private String uri;
 
+    private Boolean cached = Boolean.FALSE;
+
     public String getName() {
 	return name;
     }
@@ -22,7 +24,7 @@ public class Template {
 
     @Override
     public String toString() {
-	return "TagriaTemplateXML [name=" + name + ", uri=" + uri + "]";
+	return "Template [name=" + name + ", uri=" + uri + ", cached=" + cached + "]";
     }
 
     public String getUri() {
@@ -31,6 +33,14 @@ public class Template {
 
     public void setUri(String uri) {
 	this.uri = uri;
+    }
+
+    public Boolean getCached() {
+	return cached;
+    }
+
+    public void setCached(Boolean cached) {
+	this.cached = cached;
     }
 
 }

@@ -1,6 +1,8 @@
 
 package com.jslsolucoes.tagria.tag.html.v4.tag.layout;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jslsolucoes.tagria.html.v4.Attribute;
 import com.jslsolucoes.tagria.html.v4.Element;
 import com.jslsolucoes.tagria.html.v4.ElementCreator;
@@ -16,8 +18,14 @@ public class ContainerTag extends AbstractSimpleTagSupport {
     }
 
     private Element container() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "container" + (fluid ? "-fluid" : ""))
+	Element div =  ElementCreator.newDiv().attribute(Attribute.CLASS, "container" + (fluid ? "-fluid" : ""))
 		.add(bodyContent());
+	
+	if (!StringUtils.isEmpty(cssClass)) {
+	    div.attribute(Attribute.CLASS, cssClass);
+	}
+	
+	return div;
     }
 
     public Boolean getFluid() {

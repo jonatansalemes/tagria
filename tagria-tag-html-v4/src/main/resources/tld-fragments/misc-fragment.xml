@@ -1,5 +1,42 @@
 <fragment>
 
+
+	<tag>
+		<description>Renders an spinner</description>
+		<display-name>Misc</display-name>
+		<name>spinner</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.SpinnerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the type of spinner. Default: grow. Options: border, grow</description>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+			<attribute>
+			<description>Indicates the status of the group. Default: primary. Options: default, primary, danger, info, success</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label for the component</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates a label key (i18n) for the component</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:spinner label="Loading"/&gt;
+		</example>
+	</tag>
+
+
 	<tag>
 		<description>Prints an html element</description>
 		<display-name>Misc</display-name>
@@ -191,7 +228,7 @@
 	
 
 	<tag>
-		<description>Renders a template attribute body</description>
+		<description>Renders a content in template slot</description>
 		<display-name>Misc</display-name>
 		<name>template</name>
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TemplateTag</tag-class>
@@ -204,7 +241,37 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			No examples yet
+			-
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Creates an template parameter</description>
+		<display-name>Misc</display-name>
+		<name>templateParameter</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.misc.TemplateParameterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates an attribute template name</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates an attribute template value</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			-
 		</example>
 	</tag>
 

@@ -20,16 +20,12 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 
     @Override
     public Element render() {
-	if (searchable) {
-	    return div();
-	} else {
-	    return inputTextContainer();
-	}
+	return div();
     }
 
-    public Element inputTextContainer() {
+    public Element selectContainer() {
 	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
-		.attribute(Attribute.CLASS, "form-control-container").add(select());
+		.attribute(Attribute.CLASS, "form-control-container flex-fill mr-1").add(select());
 
 	if (ripple) {
 	    container.add(ripple());
@@ -52,18 +48,15 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
     }
 
     private Element div() {
-	Element div = ElementCreator.newDiv().attribute(Attribute.ID, id()).add(divRow()).add(divModal());
-	appendJsCode("$('#" + div.attribute(Attribute.ID) + "').searchableSelect();");
+	Element div = ElementCreator.newDiv().attribute(Attribute.ID, id())
+			.attribute(Attribute.CLASS,"d-flex justify-content-between align-items-center")
+			.add(selectContainer());
+	if (searchable) {
+	    div.add(a()).add(divModal());
+	    appendJsCode("$('#" + div.attribute(Attribute.ID) + "').searchableSelect();");
+	}
+
 	return div;
-    }
-
-    private Element divRow() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "row").add(divCol1()).add(divCol2());
-    }
-
-    private Element divCol2() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-1").add(a());
-
     }
 
     private Element a() {
@@ -76,9 +69,6 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 	return ElementCreator.newSpan().attribute(Attribute.CLASS, "fas fa-search");
     }
 
-    private Element divCol1() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "col col-11").add(inputTextContainer());
-    }
 
     private Element select() {
 	Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
