@@ -2,6 +2,8 @@
 <html:view title="Playground">
 
 
+	<html:spinner label="Some label"/>
+
 	<html:input name="teste" value="${ quotedValue }"/>
 	<html:textarea name="teste" value="${ quotedValue }"/>
 
@@ -16,7 +18,7 @@
 	
 	<html:form name="form2" id="form2" action="#" label="Validate">
 		<html:formGroup label="Field validate 1">
-			<html:input name="validate1" type="email" value="aa"/>
+			<html:input name="validate1" type="email" value="aa" maxLengthCount="true" maxLength="50"/>
 		</html:formGroup>
 		<html:formGroup label="Field validate 1">
 			<html:input name="validate2" type="number" max="20" value="30"/>

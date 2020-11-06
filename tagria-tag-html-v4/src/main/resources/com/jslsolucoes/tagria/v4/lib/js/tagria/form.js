@@ -233,8 +233,12 @@
 		    if (resto != parseInt(newCpf.substring(10, 11))) return false;
 		    return true;
 		},
-		_invalid: function(input,content) {
+		_invalid: function(input,message) {
 			input.parents('.form-control-container,.form-group').addClass('is-empty');
+			$('.form-control-container-toolbar-invalid',input.parents('.form-control-container'))
+				.empty()
+				.append('<span>' + message + '</span>');
+			return message;
 		},
 		_hasValidationError : function() {
 			var self = this;
@@ -244,45 +248,40 @@
 			$('input[type=email]',form).each(function(){
 				var input = $(this);
 				if(input.val() !== '' && !/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(input.val())){
-					self._invalid(input);
-					errors.push(self.options.invalid.email);
+					errors.push(self._invalid(input, self.options.invalid.email));
 				}
 			});
 			
 			$('input[type=number][max]',form).each(function(){
 				var input = $(this);
 				if(input.val() !== '' && parseInt(input.val()) > parseInt(input.attr("max"))){
-					self._invalid(input);
-					errors.push(self.options.invalid.max + ' ' + input.attr("max"));
+					errors.push(self._invalid(input,self.options.invalid.max + ' ' + input.attr("max")));
 				}
 			});
 			
 			$('input[type=number][min]',form).each(function(){
 				var input = $(this);
 				if(input.val() !== '' && parseInt(input.val()) < parseInt(input.attr("min"))){
-					self._invalid(input);
-					errors.push(self.options.invalid.min + ' ' + input.attr("min"));
+					errors.push(self._invalid(input, self.options.invalid.min + ' ' + input.attr("min")));
 				}
 			});
 			
 			$('input[data-validate=cpf]',form).each(function(){
 				var input = $(this);
 				if(input.val() !== '' && !self._isValidCpf(input.val())){
-					self._invalid(input);
-					errors.push(self.options.invalid.cpf);
+					errors.push(self._invalid(input, self.options.invalid.cpf));
 				}
 			});
 			
 			$('input[data-validate=date]',form).each(function(){
 				var input = $(this);
 				if(input.val() !== '' && !self._isValidDate(input.val())){
-					self._invalid(input);
-					errors.push(self.options.invalid.date);
+					errors.push(self._invalid(input, self.options.invalid.date));
 				}
 			});
 			
-			if(errors.length > 0) {
-				self._alertWith(self.options.errors.invalid.title,errors);
+			if(errors.length > 0){
+				self._alert(self.options.errors.invalid.title,self.options.errors.invalid.text);
 				return true;
 			} else {
 				return false;

@@ -40,7 +40,7 @@ public class AutoCompleteTag extends AbstractSimpleTagSupport {
 
     public Element inputTextContainer() {
 	Element container = ElementCreator.newDiv().attribute(Attribute.ID, id())
-		.attribute(Attribute.CLASS, "form-control-container").add(input());
+		.attribute(Attribute.CLASS, "form-control-container flex-fill").add(input());
 	
 	if (ripple) {
 	    container.add(ripple());

@@ -18,12 +18,12 @@ public class SpinnerTag extends AbstractSimpleTagSupport {
     }
 
     private Element div() {
-	return ElementCreator.newDiv().attribute(Attribute.CLASS, "alert spinner-" + type + " text-" + state)
+	return ElementCreator.newDiv().attribute(Attribute.CLASS, "spinner-" + type + " text-" + state)
 		.attribute(Attribute.ROLE, "status").add(span());
     }
 
     private Element span() {
-	Element span = ElementCreator.newSpan();
+	Element span = ElementCreator.newSpan().attribute(Attribute.CLASS, "sr-only");
 	if (hasKeyOrLabel(labelKey, label)) {
 	    span.add(keyOrLabel(labelKey, label));
 	} else {
@@ -31,4 +31,38 @@ public class SpinnerTag extends AbstractSimpleTagSupport {
 	}
 	return span;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabelKey() {
+        return labelKey;
+    }
+
+    public void setLabelKey(String labelKey) {
+        this.labelKey = labelKey;
+    }
+    
+    
 }

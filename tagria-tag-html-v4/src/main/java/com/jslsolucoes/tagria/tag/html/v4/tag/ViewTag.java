@@ -245,8 +245,8 @@ public class ViewTag extends AbstractSimpleTagSupport implements GlobalJsAppende
 
     private List<Element> appHtml() {
 	List<Element> elements = new ArrayList<>();
-	elements.add(antiCorruptionLayer());
-	if (dropBack) {
+	if(!asFragment) elements.add(antiCorruptionLayer());
+	if (dropBack && !asFragment) {
 	    elements.add(dropBackLayer());
 	    elements.add(dropBackLayerInlineCss());
 	}
