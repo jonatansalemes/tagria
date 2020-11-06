@@ -1,1 +1,1 @@
-docker build --rm -t jslsolucoes/tagria:4.0.36 .
+docker build --rm -t jslsolucoes/tagria:4.0.37 .
