@@ -5,6 +5,7 @@
 		<template>
 			<name>master</name>
 			<uri>/app/template</uri>
+			<cached>false</cached>
 		</template>
 	</templates>
 	<warning>
