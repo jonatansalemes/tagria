@@ -7,7 +7,13 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.text.MessageFormat;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -26,6 +32,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -129,27 +141,41 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	String urlBase = xml().getUrlBase();
 	String templateUri = template.getUri();
 	Boolean cached = template.getCached();
-	Supplier<Object> templateContentUri = () -> contentOfUri(urlBase, parameters, templateUri);
+	Boolean ignoreSSL = template.getIgnoreSSL();
+	Supplier<Object> templateContentUri = () -> contentOfUri(urlBase, parameters, templateUri, ignoreSSL);
 	if (cached) {
 	    return cache().get("template:" + templateName, templateContentUri, String.class);
 	}
 	return String.class.cast(templateContentUri.get());
     }
 
-    private String contentOfUri(String urlBase, Map<String, String> parameters, String templateUri) {
+    private String contentOfUri(String urlBase, Map<String, String> parameters, String templateUri, Boolean ignoreSSL) {
 	try {
+
 	    String urlForTemplate = urlFor(urlBase, templateUri, parameters);
 	    String cookies = cookies();
 	    logger.debug("Ask for render url {} with cookies {}", urlForTemplate, cookies);
 
 	    URL url = new URL(urlForTemplate);
-	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-	    httpURLConnection.addRequestProperty("Cookie", cookies);
-	    httpURLConnection.setDoOutput(true);
-	    httpURLConnection.setRequestMethod("GET");
-	    httpURLConnection.connect();
+	    URLConnection urlConnection = url.openConnection();
+	    urlConnection.addRequestProperty("Cookie", cookies);
+	    urlConnection.setDoOutput(true);
+	  
+	    if(HttpsURLConnection.class.isInstance(urlConnection)) {
+		HttpsURLConnection httpsURLConnection = HttpsURLConnection.class.cast(urlConnection);
+		httpsURLConnection.setRequestMethod("GET");
+		if(Boolean.TRUE.equals(ignoreSSL)) {
+		    httpsURLConnection.setHostnameVerifier(hostnameVerifier());
+		    httpsURLConnection.setSSLSocketFactory(sslSocketFactory());
+		}
+	    } else if(HttpURLConnection.class.isInstance(urlConnection)) {
+		HttpURLConnection httpURLConnection = HttpURLConnection.class.cast(urlConnection);
+		httpURLConnection.setRequestMethod("GET");
+	    }
+	    
+	    urlConnection.connect();
 	    try (BufferedReader bufferedReader = new BufferedReader(
-		    new InputStreamReader(httpURLConnection.getInputStream()))) {
+		    new InputStreamReader(urlConnection.getInputStream()))) {
 		return bufferedReader.lines().collect(Collectors.joining());
 	    }
 	} catch (Exception e) {
@@ -169,6 +195,36 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	return httpServletRequest().getParameterMap().entrySet().stream()
 		.map(entry -> new SimpleEntry<>(entry.getKey(), entry.getValue()[0]))
 		.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+    }
+
+    private HostnameVerifier hostnameVerifier() {
+	return (hostName, sslSession) -> true;
+    }
+
+    private TrustManager[] trustManagers() {
+	TrustManager trustManager = new X509TrustManager() {
+	    @Override
+	    public X509Certificate[] getAcceptedIssuers() {
+		return new X509Certificate[0];
+	    }
+
+	    @Override
+	    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+	    }
+
+	    @Override
+	    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+	    }
+	};
+	return new TrustManager[] { trustManager };
+    }
+
+    private SSLSocketFactory sslSocketFactory() throws NoSuchAlgorithmException, KeyManagementException {
+	SSLContext sslContext = SSLContext.getInstance("TLS");
+	sslContext.init(null, trustManagers(), new SecureRandom());
+	return sslContext.getSocketFactory();
     }
 
     private String cookies() {

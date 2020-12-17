@@ -13,6 +13,8 @@ public class Template {
     private String uri;
 
     private Boolean cached = Boolean.FALSE;
+    
+    private Boolean ignoreSSL = Boolean.TRUE;
 
     public String getName() {
 	return name;
@@ -41,6 +43,14 @@ public class Template {
 
     public void setCached(Boolean cached) {
 	this.cached = cached;
+    }
+
+    public Boolean getIgnoreSSL() {
+	return ignoreSSL;
+    }
+
+    public void setIgnoreSSL(Boolean ignoreSSL) {
+	this.ignoreSSL = ignoreSSL;
     }
 
 }

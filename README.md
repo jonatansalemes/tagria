@@ -129,6 +129,8 @@ Some configuration can be change by creating an tagrialib.xml file in source fol
 			&lt;template&gt;
 				&lt;name&gt;master&lt;/name&gt;
 				&lt;path&gt;/WEB-INF/jsp/app/template.jsp&lt;/path&gt;
+				&lt;cached&gt;false&lt;/cached&gt;
+				&lt;ignoreSSL&gt;true&lt;/path&gt;
 			&lt;/template&gt;
 		&lt;/templates&gt;
 		&lt;formatters&gt;
