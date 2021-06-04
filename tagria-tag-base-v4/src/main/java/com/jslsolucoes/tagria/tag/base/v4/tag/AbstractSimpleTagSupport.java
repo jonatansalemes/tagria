@@ -175,7 +175,7 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    
 	    urlConnection.connect();
 	    try (BufferedReader bufferedReader = new BufferedReader(
-		    new InputStreamReader(urlConnection.getInputStream()))) {
+		    new InputStreamReader(urlConnection.getInputStream(),encoding()))) {
 		return bufferedReader.lines().collect(Collectors.joining());
 	    }
 	} catch (Exception e) {
