@@ -26,17 +26,19 @@ public class DateTimeFormatter implements Formatter {
 	}
 	List<String> patterns = new ArrayList<>();
 	patterns.add("yyyy-MM-dd'T'HH:mm:ss");
+	patterns.add("yyyy-MM-dd'T'HH:mm");
 	patterns.add("yyyy-MM-dd HH:mm:ss");
+	patterns.add("yyyy-MM-dd HH:mm");
 	patterns.add("yyyy-MM-dd");
 	patterns.add("E MMM dd HH:mm:ss zzz yyyy");
 	patterns.add("MMM dd, yyyy hh:mm:ss a");
 
-	for (String cpattern : patterns) {
+	for (String pattern : patterns) {
 	    try {
-		logger.debug("pattern {} match with value {}, formatting ...", cpattern, value);
-		return dateFormat.format(new SimpleDateFormat(cpattern, Locale.ENGLISH).parse(value));
+		logger.debug("pattern {} match with value {}, formatting ...", pattern, value);
+		return dateFormat.format(new SimpleDateFormat(pattern, Locale.ENGLISH).parse(value));
 	    } catch (ParseException pe) {
-		logger.debug("pattern {} does not match with value {}", cpattern, value);
+		logger.debug("pattern {} does not match with value {}", pattern, value);
 	    }
 	}
 	return value;

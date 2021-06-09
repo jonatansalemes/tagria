@@ -324,6 +324,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if select has default empty option. Default: true</description>
+			<name>defaultOption</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates whether the component has ripple animation. Default: false</description>
 			<name>ripple</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -509,6 +515,12 @@
 		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.input.InputTag</tag-class>
 		<body-content>scriptless</body-content>
 		<dynamic-attributes>true</dynamic-attributes>
+		<attribute>
+			<description>It indicates whether the component should be rendered . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 			<description>It indicates a data list to attach on input</description>
 			<name>list</name>

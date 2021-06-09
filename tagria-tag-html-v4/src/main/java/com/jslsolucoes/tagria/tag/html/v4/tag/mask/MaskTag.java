@@ -10,6 +10,11 @@ public class MaskTag extends AbstractSimpleTagSupport {
     private String attachToSelector;
     private Boolean reverse = Boolean.FALSE;
     private String onKeyPress;
+    
+    @Override
+    public Boolean flush() {
+        return true;
+    }
 
     @Override
     public void renderOnVoid() {

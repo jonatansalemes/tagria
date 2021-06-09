@@ -9,6 +9,14 @@ public class ElementCreator {
     public static Aside newAside() {
 	return new Aside();
     }
+    
+    public static Legend newLegend() {
+	return new Legend();
+    }
+
+    public static Fieldset newFieldset() {
+	return new Fieldset();
+    }
 
     public static Footer newFooter() {
 	return new Footer();

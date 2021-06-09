@@ -14,6 +14,7 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
     private String value;
     private Boolean required = Boolean.FALSE;
     private Boolean fixed = Boolean.FALSE;
+    private Boolean defaultOption = Boolean.TRUE;
     private Boolean searchable = Boolean.FALSE;
     private Boolean disabled = Boolean.FALSE;
     private Boolean ripple = Boolean.FALSE;
@@ -72,7 +73,13 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 
     private Element select() {
 	Element select = ElementCreator.newSelect().attribute(Attribute.ID, id(name, id))
-		.attribute(Attribute.ARIA_LABEL, "select").attribute(Attribute.NAME, name).add(option());
+		.attribute(Attribute.ARIA_LABEL, "select").attribute(Attribute.NAME, name);
+	
+	
+	if(defaultOption) {
+	    select.add(option());
+	}
+	
 	if (required) {
 	    select.attribute(Attribute.REQUIRED, "required");
 	}
@@ -204,6 +211,14 @@ public class SelectTag extends AbstractIterableSimpleTagSupport {
 
     public void setRipple(Boolean ripple) {
 	this.ripple = ripple;
+    }
+
+    public Boolean getDefaultOption() {
+	return defaultOption;
+    }
+
+    public void setDefaultOption(Boolean defaultOption) {
+	this.defaultOption = defaultOption;
     }
 
 }

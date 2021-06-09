@@ -1,5 +1,71 @@
 <fragment>
 
+<tag>
+		<description>Renders a fieldset legend</description>
+		<display-name>Form</display-name>
+		<name>legend</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.LegendTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label of the form</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the localize (i18n) label key of the form</description>
+			<name>labelKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:fieldset&gt;
+						&lt;html:legend&gt;Some legend&lt;/html:legend&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input required="true" name="field1"/&gt;
+						&lt;/html:col&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input name="field2"/&gt;
+						&lt;/html:col&gt;
+				&lt;/html:fieldset&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renders a fieldset</description>
+		<display-name>Form</display-name>
+		<name>fieldset</name>
+		<tag-class>com.jslsolucoes.tagria.tag.html.v4.tag.form.FieldsetTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be disabled. Default: false</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:fieldset&gt;
+						&lt;html:legend&gt;Some legend&lt;/html:legend&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input required="true" name="field1"/&gt;
+						&lt;/html:col&gt;
+						&lt;html:col extraSmall="6"&gt;
+							&lt;html:input name="field2"/&gt;
+						&lt;/html:col&gt;
+				&lt;/html:fieldset&gt;
+			&lt;/html:form&gt; 
+		</example>
+	</tag>
+
 	<tag>
 		<description>Renders a form group row of columns in subdivision (divided into 12 sections combined with the col tag)</description>
 		<display-name>Form</display-name>
