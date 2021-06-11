@@ -10,11 +10,21 @@ public class Template {
 
     private String name;
 
+    private String path;
+
     private String uri;
 
     private Boolean cached = Boolean.FALSE;
-    
+
     private Boolean ignoreSSL = Boolean.TRUE;
+
+    public String getPath() {
+	return path;
+    }
+
+    public void setPath(String path) {
+	this.path = path;
+    }
 
     public String getName() {
 	return name;

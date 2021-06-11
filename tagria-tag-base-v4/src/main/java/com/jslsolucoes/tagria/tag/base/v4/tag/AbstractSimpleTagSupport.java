@@ -132,21 +132,42 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
     }
 
     public String contentOfTemplate(String templateName, Map<String, String> parameters) {
-
 	Template template = xml().getTemplates().stream()
 		.filter(templateXml -> templateName.equals(templateXml.getName())).findFirst()
 		.orElseThrow(() -> new TagriaRuntimeException(
 			"Could not find template " + templateName + " on definitions "));
-
-	String urlBase = xml().getUrlBase();
-	String templateUri = template.getUri();
 	Boolean cached = template.getCached();
-	Boolean ignoreSSL = template.getIgnoreSSL();
-	Supplier<Object> templateContentUri = () -> contentOfUri(urlBase, parameters, templateUri, ignoreSSL);
-	if (cached) {
+	Supplier<Object> templateContentUri = contentOfTemplateSupplier(template, parameters);
+	if (Boolean.TRUE.equals(cached)) {
 	    return cache().get("template:" + templateName, templateContentUri, String.class);
 	}
 	return String.class.cast(templateContentUri.get());
+    }
+
+    private Supplier<Object> contentOfTemplateSupplier(Template template, Map<String, String> parameters) {
+
+	String path = template.getPath();
+	if (StringUtils.isNotEmpty(template.getPath())) {
+	    return () -> contentOfPath(path);
+	}
+
+	String urlBase = xml().getUrlBase();
+	String templateUri = template.getUri();
+	Boolean ignoreSSL = template.getIgnoreSSL();
+	return () -> contentOfUri(urlBase, parameters, templateUri, ignoreSSL);
+    }
+
+    private String contentOfPath(String path) {
+	try (TagriaHttpServletResponse tagriaHttpServletResponse = new TagriaHttpServletResponse(httpServletResponse(),
+		encoding())) {
+	    TagriaHttpServletRequest tagriaHttpServletRequest = new TagriaHttpServletRequest(httpServletRequest());
+	    httpServletRequest().getRequestDispatcher(path).include(tagriaHttpServletRequest,
+		    tagriaHttpServletResponse);
+	    tagriaHttpServletResponse.flush();
+	    return tagriaHttpServletResponse.asString();
+	} catch (Exception e) {
+	    throw new TagriaRuntimeException(e);
+	}
     }
 
     private String contentOfUri(String urlBase, Map<String, String> parameters, String templateUri, Boolean ignoreSSL) {
@@ -160,22 +181,22 @@ public abstract class AbstractSimpleTagSupport extends SimpleTagSupport implemen
 	    URLConnection urlConnection = url.openConnection();
 	    urlConnection.addRequestProperty("Cookie", cookies);
 	    urlConnection.setDoOutput(true);
-	  
-	    if(HttpsURLConnection.class.isInstance(urlConnection)) {
+
+	    if (HttpsURLConnection.class.isInstance(urlConnection)) {
 		HttpsURLConnection httpsURLConnection = HttpsURLConnection.class.cast(urlConnection);
 		httpsURLConnection.setRequestMethod("GET");
-		if(Boolean.TRUE.equals(ignoreSSL)) {
+		if (Boolean.TRUE.equals(ignoreSSL)) {
 		    httpsURLConnection.setHostnameVerifier(hostnameVerifier());
 		    httpsURLConnection.setSSLSocketFactory(sslSocketFactory());
 		}
-	    } else if(HttpURLConnection.class.isInstance(urlConnection)) {
+	    } else if (HttpURLConnection.class.isInstance(urlConnection)) {
 		HttpURLConnection httpURLConnection = HttpURLConnection.class.cast(urlConnection);
 		httpURLConnection.setRequestMethod("GET");
 	    }
-	    
+
 	    urlConnection.connect();
 	    try (BufferedReader bufferedReader = new BufferedReader(
-		    new InputStreamReader(urlConnection.getInputStream(),encoding()))) {
+		    new InputStreamReader(urlConnection.getInputStream(), encoding()))) {
 		return bufferedReader.lines().collect(Collectors.joining());
 	    }
 	} catch (Exception e) {
