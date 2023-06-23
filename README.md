@@ -73,7 +73,7 @@ Features :
 
 
 <hr/>
-You can self host demos and docs following steps:
+You can self host demos and docs following steps, ps: java <strong>1.8</strong> is required to build:
 
 <pre>
 <code>
