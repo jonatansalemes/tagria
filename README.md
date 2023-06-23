@@ -73,7 +73,7 @@ Features :
 
 
 <hr/>
-You can self host demos and docs following steps, ps: java <strong>1.8</strong> is required to build:
+You can self host demos and docs following steps, ps: java <strong>1.8</strong> and wildfly <strong>18x</strong> is required to build and deploy:
 
 <pre>
 <code>
