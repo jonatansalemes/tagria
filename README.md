@@ -73,12 +73,7 @@ Features :
 
 
 <hr/>
-
-The demo and documentation about components of tagria is hosted in : 
-<a href='https://doc-tagrialib.jslsolucoes.com' target='_blank'>https://doc-tagrialib.jslsolucoes.com</a>
-
-<hr/>
-You can also self host docs following steps:
+You can self host demos and docs following steps:
 
 <pre>
 <code>
